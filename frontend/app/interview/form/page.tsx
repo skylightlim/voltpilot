@@ -390,16 +390,21 @@ export default function CalculatorFormPage() {
             </p>
           )}
 
-          <Button
-            size="lg"
-            onClick={submit}
-            className="mt-6 w-full text-base font-semibold"
-          >
-            {t("cf.cta")} <ArrowRight className="h-4 w-4" />
-          </Button>
-          <p className="mt-2.5 text-center text-[12px] leading-relaxed text-muted">
-            {t("cf.ctaHint")}
-          </p>
+          {/* The submit closes the form, so it gets a rule and real space above
+              it instead of sitting flush against the last select. */}
+          <div className="mt-9 border-t border-line pt-7">
+            <Button
+              size="xl"
+              onClick={submit}
+              className="w-full font-semibold"
+            >
+              {t("cf.cta")}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
+            <p className="mx-auto mt-4 max-w-[40ch] text-balance text-center text-[12.5px] leading-relaxed text-muted">
+              {t("cf.ctaHint")}
+            </p>
+          </div>
         </Card>
       </Stagger>
     </main>

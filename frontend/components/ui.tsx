@@ -16,13 +16,13 @@ export function Button({
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "accent" | "ghost" | "outline" | "destructive" | "dark" | "solar";
-  size?: "sm" | "md" | "lg" | "icon";
+  size?: "sm" | "md" | "lg" | "xl" | "icon";
 }) {
   const base =
-    "pressable tap-target inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium tracking-[-0.015em] transition-[background-color,color,border-color,box-shadow] duration-200 disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer";
+    "group pressable tap-target inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium tracking-[-0.015em] transition-[background-color,color,border-color,box-shadow] duration-200 disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer";
 
   const variants = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover shadow-sm",
+    primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover shadow-sm hover:shadow-md",
     secondary: "border border-border bg-white text-ink hover:bg-paper-2 hover:border-line-strong active:bg-parchment shadow-sm",
     accent: "bg-ink text-white hover:bg-primary active:bg-primary shadow-sm",
     ghost: "bg-transparent text-primary hover:bg-pine-tint active:bg-pine-tint/80",
@@ -36,6 +36,7 @@ export function Button({
     sm: "h-9 px-4 text-[13px]",
     md: "h-11 px-5 text-[14px]",
     lg: "h-12 px-6 text-[15px] sm:text-[16px]",
+    xl: "h-14 px-8 text-[16px] sm:text-[17px]",
     icon: "h-10 w-10 p-0 rounded-full",
   };
 
