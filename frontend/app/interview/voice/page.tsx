@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mic, MicOff, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User, Bot, Volume2 } from "lucide-react";
-import { Button, Card, SectionLabel } from "@/components/ui";
+import { Button, Card } from "@/components/ui";
 import { SESSION, apiService, BACKEND_URL } from "@/lib/api";
 import { useLang, useT } from "@/lib/i18n";
 
@@ -456,7 +456,7 @@ export default function VoiceInterviewPage() {
   const startLive = async () => {
     if (!liveToken) return;
     setStage("live");
-    logRef.current = [{ id: "open", role: "system", text: t("v.liveT"), time: formatTime() }];
+    logRef.current = [{ id: "open", role: "system", text: t("v.connecting"), time: formatTime() }];
     setMessages(logRef.current);
     transcriptRef.current = "";
     recentAdvisorPhrasesRef.current = [];
@@ -718,7 +718,13 @@ export default function VoiceInterviewPage() {
           onopen: () => {
             console.log("[voice] ✓ WebSocket connection opened");
             sessionReadyRef.current = true;
-            pushMsg("system", "Connected — " + t("v.advisor") + " is ready.");
+            // one status line, not two: promote the seeded "connecting" row in
+            // place. The previous pushMsg appended a second system message and
+            // built its text by concatenating English, which BM never saw.
+            logRef.current = logRef.current.map((m) =>
+              m.id === "open" ? { ...m, text: t("v.liveT"), time: formatTime() } : m,
+            );
+            setMessages(logRef.current);
           },
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onmessage: (m: any) => {
@@ -850,7 +856,6 @@ export default function VoiceInterviewPage() {
 
       {/* Main Content Area */}
       <section className="flex-1 mt-4 flex flex-col">
-        <SectionLabel>{t("v.label")}</SectionLabel>
         <h1 className="apple-display-2 mt-2 text-[26px] sm:text-[30px] text-ink leading-tight">
           {t("v.t1")} <span className="text-primary">{t("v.t2")}</span>
         </h1>
@@ -962,15 +967,10 @@ export default function VoiceInterviewPage() {
                           : "bg-primary text-white rounded-br-xs"
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-3 mb-1">
+                      <div className="mb-1">
                         <span className={`text-[10px] font-bold uppercase tracking-wider ${isUser ? "text-white/80" : "text-primary"}`}>
                           {isUser ? t("v.you") : t("v.advisor")} {m.isInterim && "(speaking...)"}
                         </span>
-                        {m.time && (
-                          <span className={`text-[9px] ${isUser ? "text-white/60" : "text-muted"}`}>
-                            {m.time}
-                          </span>
-                        )}
                       </div>
                       <p className="whitespace-pre-wrap break-words">{m.text}</p>
                     </div>

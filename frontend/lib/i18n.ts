@@ -457,6 +457,7 @@ const S = {
     "Speak in English or Bahasa Melayu. You can interrupt at any moment.",
     "Bercakap dalam Bahasa Melayu atau English. Anda boleh menyampuk bila-bila masa.",
   ],
+  "v.connecting": ["Connecting…", "Menyambung…"],
   "v.liveT": ["Live Consultation Active", "Konsultasi Langsung Aktif"],
   "v.liveB": [
     "Answer the Advisor out loud. Say 'Confirm' when finished to calculate your ranking.",
