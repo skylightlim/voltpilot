@@ -25,7 +25,13 @@ impartial rather than promotional.
   this identity had never rendered in a browser.
 - **Structure** — hairline rules, not card soup. Shape rule: pills for buttons/chips,
   14px inputs, 20px cards.
-- **Theme** — light is locked. The 3D analysis scene is the one dark route.
+- **Theme** — light is locked, enforced by `color-scheme: light` on `html, body`.
+  The 3D analysis scene is the one dark route.
+  **No Tailwind `dark:` variants anywhere.** They cannot be correct here: no dark tokens
+  are defined, so the background stays bone while a `dark:` utility flips the text white.
+  That is exactly what hid the footer navigation and FAQ links for any visitor whose OS
+  was set to dark. (`variant="dark"` / `tone="dark"` props are unrelated and fine — those
+  are named component variants, not the Tailwind modifier.)
 
 ## 2. Why we did NOT adopt the reference site's look
 

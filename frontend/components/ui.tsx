@@ -144,7 +144,7 @@ export function DataMetricTile({
         {delta && (
           <span
             className={`text-xs font-semibold ${
-              delta.positive ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
+              delta.positive ? "text-emerald-600" : "text-red-600"
             }`}
           >
             {delta.text}
@@ -258,7 +258,7 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
             alt="VoltPilot"
             className="h-7 w-auto"
           />
-          <span className="hidden md:inline-block rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+          <span className="hidden md:inline-block rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 border border-emerald-500/20">
             MY 2026
           </span>
         </Link>
@@ -294,7 +294,7 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
                 : "border-border text-ink bg-white hover:bg-parchment"
             }`}
           >
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             <span>{t("nav.voice")}</span>
           </Link>
           <Link
@@ -338,22 +338,22 @@ export function Footer({ dark = false }: { dark?: boolean }) {
             <p className="mono-label pb-3 text-fog">{t("ft.product")}</p>
             <ul className="space-y-2.5 text-[14px]">
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/#calculator">
+                <a className="hover:underline text-ink/80" href="/#calculator">
                   {t("calc.title")}
                 </a>
               </li>
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/#cars">
+                <a className="hover:underline text-ink/80" href="/#cars">
                   {t("ft.cars")}
                 </a>
               </li>
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/methodology">
+                <a className="hover:underline text-ink/80" href="/methodology">
                   {t("ft.how")}
                 </a>
               </li>
               <li>
-                <a className="hover:underline text-emerald-700 dark:text-emerald-400 font-medium" href="/interview/voice">
+                <a className="hover:underline text-emerald-700 font-medium" href="/interview/voice">
                   {t("nav.voice")}
                 </a>
               </li>
@@ -382,12 +382,12 @@ export function Footer({ dark = false }: { dark?: boolean }) {
             <p className="mono-label pb-3 text-fog">{t("faq.label")}</p>
             <ul className="space-y-2.5 text-[14px]">
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/#faq">
+                <a className="hover:underline text-ink/80" href="/#faq">
                   {t("faq.q1")}
                 </a>
               </li>
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/#faq">
+                <a className="hover:underline text-ink/80" href="/#faq">
                   {t("faq.q2")}
                 </a>
               </li>

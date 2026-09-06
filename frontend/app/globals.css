@@ -64,6 +64,11 @@
 
 html,
 body {
+  /* DESIGN.md §1 locks this theme to light. Without an explicit color-scheme
+     the UA still dark-ifies form controls, scrollbars and autofill under an OS
+     dark preference, on a page whose tokens never change — the same mismatch
+     that made the footer links white-on-bone. */
+  color-scheme: light;
   padding: 0;
   margin: 0;
   background: var(--color-background);
