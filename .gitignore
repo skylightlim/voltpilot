@@ -19,7 +19,10 @@ dist/
 # secrets — NEVER COMMIT
 .env
 .env.*
+# templates must ship: .env.*.example matches .env.* above
 !.env.example
+!.env.local.example
+!*.example
 
 # databases / generated data
 *.db
@@ -44,3 +47,6 @@ data/refresh-state.json
 # Superseded render frames; the shipping 3D asset is
 # frontend/public/models/showroom-car.glb
 data/emas5_3d/
+
+# scratch build dirs from NEXT_DIST_DIR
+frontend/.next-*

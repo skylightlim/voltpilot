@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Response
@@ -18,6 +19,22 @@ async def lifespan(app: FastAPI):
     yield
 
 
+def _allowed_origins() -> list[str]:
+    """Configured production origin, plus local dev hosts when not in production.
+
+    Extra origins can be added with a comma-separated EXTRA_CORS_ORIGINS, so a
+    preview deployment does not need a code change.
+    """
+    origins = [settings.frontend_origin]
+    origins += [o.strip() for o in os.getenv("EXTRA_CORS_ORIGINS", "").split(",") if o.strip()]
+    if os.getenv("ENV", "development").lower() != "production":
+        origins += [
+            "http://localhost:3000", "http://127.0.0.1:3000",
+            "http://localhost:3100", "http://127.0.0.1:3100",
+        ]
+    return list(dict.fromkeys(origins))
+
+
 app = FastAPI(
     title="AI Transportation Decision Intelligence Platform",
     version="0.1.0",
@@ -27,7 +44,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_origin, "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3100", "http://127.0.0.1:3100", "http://192.168.0.75:3100"],
+    # Production origin comes from FRONTEND_ORIGIN. The localhost entries are
+    # for local development only and are harmless in production because no
+    # browser can reach them from another host. The LAN address that used to sit
+    # here was one developer's LAN address and could not work anywhere else.
+    allow_origins=_allowed_origins(),
     allow_origin_regex=r"https://.*\.trycloudflare\.com",
     allow_credentials=True,
     allow_methods=["*"],

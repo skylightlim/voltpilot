@@ -5,7 +5,9 @@
 # write JSONL to data/used_market_raw/, then python import scripts upsert into DB.
 set -uo pipefail
 
-BASE="/home/skylight/ai-transport-platform"
+# Derive from this script's own location. Was hard-coded to one developer's
+# home directory, which meant the weekly run only worked on that machine.
+BASE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SCRIPTS="$BASE/scripts/used_market"
 NODE="$SCRIPTS/node_scrapers"
 RAW="$BASE/data/used_market_raw"
@@ -41,19 +43,27 @@ run mudah python3 "$SCRIPTS/scrape_mudah.py"
 run caricarz python3 "$SCRIPTS/scrape_caricarz.py"
 
 # --- node playwright scrapers ---
-run carsome-scrape node "$NODE/scrape_carsome.js"
-run carsome-import python3 "$SCRIPTS/import_carsome.py"
+# node_scrapers/ is tracked, but its node_modules is not. On a fresh clone the
+# directory exists and the scrapers still cannot run until `npm ci` has been run
+# there. Skip with a clear message rather than three opaque failures.
+if [ ! -d "$NODE/node_modules" ]; then
+  log "=== SKIP node scrapers: run \`npm ci\` in $NODE first (carsome/carlist/autoselection)"
+  NODE_MISSING=1
+fi
+[ -z "${NODE_MISSING:-}" ] && run carsome-scrape node "$NODE/scrape_carsome.js"
+[ -z "${NODE_MISSING:-}" ] && run carsome-import python3 "$SCRIPTS/import_carsome.py"
 
-run carlist-scrape node "$NODE/scrape_carlist.js"
-run carlist-import python3 "$SCRIPTS/import_carlist.py"
+[ -z "${NODE_MISSING:-}" ] && run carlist-scrape node "$NODE/scrape_carlist.js"
+[ -z "${NODE_MISSING:-}" ] && run carlist-import python3 "$SCRIPTS/import_carlist.py"
 
-run autoselection-scrape node "$NODE/scrape_autoselection.js"
-run autoselection-import python3 "$SCRIPTS/import_autoselection.py"
+[ -z "${NODE_MISSING:-}" ] && run autoselection-scrape node "$NODE/scrape_autoselection.js"
+[ -z "${NODE_MISSING:-}" ] && run autoselection-import python3 "$SCRIPTS/import_autoselection.py"
 
 # --- cleanup stale runs + summary ---
-python3 - "$LOG" <<'EOF' >> "$LOG" 2>&1
+DB="$BASE/data/used_market.db"
+python3 - "$DB" <<'EOF' >> "$LOG" 2>&1
 import sqlite3, sys
-c = sqlite3.connect("/home/skylight/ai-transport-platform/data/used_market.db")
+c = sqlite3.connect(sys.argv[1])
 n = c.execute("UPDATE source_runs SET status='error', error='interrupted', finished_at=started_at WHERE status='running'").rowcount
 c.commit()
 print("stale running rows marked error:", n)
