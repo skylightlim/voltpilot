@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+/* ————————————————————————————————————————————————————————————
+   VoltPilot design system — "field guide" identity.
+   Pine green + bone paper + amber signal; grotesque display type,
+   mono figures; hairline structure instead of card soup.
+   Shape rule: buttons/chips pill, inputs 14px, cards 20px.
+   Theme lock: light. The 3D analysis scene is its own dark route.
+   ———————————————————————————————————————————————————————————— */
+@theme {
+  /* surfaces */
+  --color-background: #f4f3ec;   /* page (bone paper) */
+  --color-foreground: #15221c;   /* ink, green-black */
+  --color-paper-2: #fbfaf5;      /* raised card */
+  --color-parchment: #e9e7d8;    /* recessed panel */
+  --color-pearl: #fbfaf5;
+  --color-ink: #15221c;
+  --color-ink-2: #3e4f47;
+  --color-fog: #5c6b62;          /* muted text, 4.5:1 on paper */
+  --color-muted: #5c6b62;
+  --color-muted-foreground: #5c6b62;
+  --color-line: #d9d5c5;
+  --color-line-strong: #b9b4a0;
+  --color-border: #d9d5c5;
+  --color-border-dark: #24473b;
+
+  /* brand */
+  --color-primary: #1c4a3a;      /* pine */
+  --color-primary-hover: #245c49;
+  --color-primary-foreground: #f6f4ea;
+  --color-pine: #1c4a3a;
+  --color-pine-deep: #0e2a21;
+  --color-pine-tint: #e2ece4;
+  --color-accent: #1c4a3a;
+  --color-accent-foreground: #f6f4ea;
+  --color-amber: #c97f10;
+  --color-amber-tint: #f6ead2;
+  --color-solar: #c97f10;
+
+  /* status */
+  --color-warning: #b4540a;
+  --color-destructive: #b3382c;
+  --color-dangerous: #b3382c;
+  --color-hybrid: #3f4a46;
+
+  /* dark-panel tokens (results hero card, footer) */
+  --color-tile: #0e2a21;
+  --color-tile-2: #123227;
+  --color-tile-3: #0a241c;
+  --color-black: #0e2a21;
+  --color-card: #fbfaf5;
+  --color-card-foreground: #15221c;
+  --color-chip: #cfcaba;
+  --color-ring: #1c4a3a;
+
+  --radius-xl: 1.25rem;
+  --radius-lg: 1.25rem;
+  --radius-md: 0.875rem;
+  --radius-sm: 0.625rem;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(28, 74, 58, 0.18);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Mobile-first viewport strategy */
+@layer base {
+  .app-shell {
+    min-height: 100svh;
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    background: var(--color-background);
+  }
+
+  .thumb-zone {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 0.75rem 1.25rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, var(--color-background) 70%, transparent);
+  }
+
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* frosted top bar (dark + light variants) */
+  .apple-nav {
+    background: rgba(14, 42, 33, 0.92);
+    backdrop-filter: saturate(160%) blur(20px);
+  }
+
+  .apple-white {
+    background: rgba(244, 243, 236, 0.78);
+    backdrop-filter: saturate(160%) blur(20px);
+  }
+
+  /* display type (Space Grotesk via --font-display) */
+  .apple-display {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .apple-display-2 {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .apple-copy {
+    letter-spacing: -0.012em;
+  }
+
+  /* mono data labels — use sparingly (eyebrow rationing) */
+  .mono-label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* tabular figures for data */
+  .figure {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Tap press feedback — no decorative shadows, single signature press */
+  .pressable {
+    transition:
+      transform 0.16s var(--ease-smooth),
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .pressable:active {
+    transform: scale(0.97);
+  }
+
+  /* ——— Shared motion primitives (transform/opacity only; reduced-motion handled globally) ——— */
+
+  /* Entrance: fade-and-rise for step/page content swaps */
+  @keyframes enter-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .enter-rise {
+    animation: enter-rise 0.28s var(--ease-smooth) both;
+  }
+
+  /* Entrance for chat/transcript bubbles: rise + settle from 0.97 */
+  @keyframes bubble-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .bubble-in {
+    animation: bubble-in 0.22s var(--ease-smooth) both;
+  }
+
+  /* Typing indicator: three-dot bounce */
+  @keyframes dot-bounce {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    30% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+  .typing-dot {
+    animation: dot-bounce 1s ease-in-out infinite;
+  }
+}
+
+@media (hover: none) {
+  .hover-opacity {
+    opacity: 0.85;
+  }
+}
+
+/* range slider (thin track, ringed thumb) */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(21, 34, 28, 0.16);
+  outline: none;
+  width: 100%;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  border: 3px solid var(--color-paper-2);
+  box-shadow: 0 1px 3px rgba(21, 34, 28, 0.25);
+  cursor: pointer;
+}
+input[type="range"].slider::-moz-range-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  border: 3px solid var(--color-paper-2);
+  cursor: pointer;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* live infrastructure look-up: radar sweep + count roll-in (results page) */
+@keyframes radar-ping {
+  0% { transform: scale(.35); opacity: 1; }
+  80%, 100% { transform: scale(1.45); opacity: 0; }
+}
+@keyframes radar-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.16), 0 0 34px rgba(52, 211, 153, 0.42); }
+  50% { box-shadow: 0 0 0 13px rgba(52, 211, 153, 0.08), 0 0 52px rgba(52, 211, 153, 0.62); }
+}
+@keyframes count-pop {
+  from { opacity: 0; transform: scale(.65); }
+  to { opacity: 1; transform: none; }
+}
+.radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid rgba(52, 211, 153, 0.45);
+  animation: radar-ping 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.radar-ring.r2 { animation-delay: 0.9s; }
+.radar-ring.r3 { animation-delay: 1.8s; }
+.radar-pin { animation: radar-pulse 2.2s ease-in-out infinite; }
+.count-pop { animation: count-pop 0.55s ease-out both; }
+
+/* partner logo marquee ("Ready for Transition" band on the homepage) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+/* let people stop the row to read a logo or click through */
+.marquee:hover,
+.marquee:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* the global reset below freezes the track at its start, so make the
+     off-screen logos reachable by scroll instead of by animation */
+  .marquee-wrap {
+    overflow-x: auto;
+  }
+  .marquee-fade {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

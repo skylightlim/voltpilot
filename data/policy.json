@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "updated_at": "2026-08-09",
+    "note": "Incentives snapshot for the Policy engine. Static JSON; update manually on change (TNB + MAV review), scraper polls announcements."
+  },
+  "incentives": {
+    "chert": {
+      "note": "Full import duty + excise + 50% SST exemption for CKD kits, full exemption for CBU imports",
+      "import_duty": "exempt (CKD & CBU)",
+      "excise": "exempt",
+      "sst": "exempt (EV), 50% for CKD EV kits",
+      "applies_until": "2027-12-31"
+    },
+    "ev_road_tax": {
+      "note": "Special RM- annual flat rate; phased return to 10% of ICE from 2026 (RMDB5).",
+      "applicable_through": "2025",
+      "phase_in_pct": 10
+    },
+    "tokopedia": {},
+    "myev": {
+      "note": "GoM programmes: NEM 3.0 rooftop solar net metering, charging-point development incentives"
+    },
+    "ev_charging_grant": {
+      "note": "Individual income-tax relief up to RM2,500 for EV charging equipment (2023 onward)"
+    },
+    "hybrid": {
+      "note": "Hybrids: standard import duty + excise (CKD). No special EV incentives; road tax standard formula. Hybrid incentives were removed after 2022 for most models."
+    }
+  },
+  "notes": "Source: MAV + JPJ + Ministry of Finance announcements. Manual review on change."
+}

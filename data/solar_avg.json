@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "currency": "RM",
+    "note": "Static average-Malaysia residential solar return (D6). No irradiance model, no Open-Meteo. Used ONLY for the conditional savings banner (D-SOLAR). Auto-hidden if home charging is unavailable or user did not tick 'consider solar'."
+  },
+  "solar": {
+    "system_kw_peak": 5,
+    "capex_rm": 34000,
+    "savings_rm_per_year": 4300,
+    "payback_years": 7.9,
+    "lifetime_years": 25,
+    "savings_10yr_rm": 43000,
+    "note": "Typical 5kWp system, average Malaysian insolation, net-metering (NEM) rooftop program."
+  }
+}

@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# next.js / build output
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# deploy artifacts
+.vercel/
+.wrangler/
+
+# secrets — NEVER COMMIT
+.env
+.env.*
+!.env.example
+
+# databases / generated data
+*.db
+*.sqlite
+*.sqlite3
+
+# test + tooling
+test-results/
+playwright-report/
+.pytest_cache/
+.impeccable/
+
+# os
+.DS_Store
+*.log

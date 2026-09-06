@@ -1,0 +1,853 @@
+id,name,address,lat,lng,operator,charger_type,power_kw,power,price,status,is_operational
+500974,[Restricted] OASIS 1 (Residential Condo),"Oasis 1 Residence, Kajang, 43000",3.012626,101.816444,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+500468,JomCharge Tesco Kajang,"Jalan Impian Mahkota 1, 43000, Selangor",3.0038830255829083,101.78575732219429,Jom Charge,CCS (Type 2),50,50 kW,"RM 1.60/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+500174,[Public] TROPEZ RESIDENCE JOHOR (Public Area),"Tropez Residence, Johor Bahru, 80200",1.481333,103.718666,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+500033,[Restricted] THE OOAK RESIDENCE (Residential Condo),"Perbadanan Pengurusan Kiara 163, Kuala Lumpur, 50480",3.166918,101.651588,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+499666,[Restricted] THE NORTHSHORE GARDENS (Residential Condo),"The Northshore Gardens, Kuala Lumpur, 52200",3.187639,101.626083,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+498110,TNB Electron Charging Station,"Jalan Slim, Behrang Stesen, 35950, Perak",3.770752388380714,101.44991568345779,Go ToU,CCS (Type 2),120,120 kW,RM1.50/kWh,In Use,True
+498095,[Public] PREMIUM LAUNDRYMART (Public Area),"PREMIUM LAUNDRYMART (自助 洗衣), Johor Bahru, 80250",1.479146,103.763779,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+497573,chargeEV | TF Value-Mart Gemas,"33, Jalan DS 2/2,, Gemas, 73400, Negeri Sembilan",2.5864782970035662,102.57496456588626,chargeEV (MY),CCS (Type 2),60,60 kW,RM1.40/kWh,In Use,True
+496866,Sri Hartamas Watsons,"22-2 Jalan 25/70A, Desa Sri Hartamas, 50480",3.1623938341397064,101.65028302333826,Jom Charge,CCS (Type 2),100,100 kW,N/A,In Use,True
+495441,[Restricted] ZEVA RESIDENCE @ EQUINE SOUTH (Residential Condo),"Zeva Residence, Seri Kembangan, 43300",2.993412,101.676567,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+495382,Petronas Bayan Baru,"1G Jalan Sungai Nibong, Bayan Baru, 11900, Pulau Pinang",5.328940281172791,100.29450208046205,Gentari Go (MY),Unknown,180,180 kW,RM1.60/kWh,In Use,True
+495315,[Public] Proton e-MAS Kulim - GB Auto (Car Showroom),"133, Lorong Kenanga 1, Taman Desa Impian , 09000 Kulim , Kedah, Kulim",5.353431,100.533417,Unknown Network,CCS (Type 2),25,25 kW,N/A,In Use,True
+495314,[Restricted] SETAPAK GREEN CONDOMINIUM (Residential Condo),"3 Jln Semarak Api, Off,, Kuala Lumpur, 53000",3.194831,101.706093,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+494739,Bandar Bukit Raja Town Park,"Jalan Kuda Kepang, Jalan Klang Sentral 9/KU5,, Klang, 41050, selangor",3.0961095182110956,101.42606090800106,DC Handal,CCS (Type 2),60,60 kW,0.90-1.20/kW,In Use,True
+494738,Bandar Bukit Raja Town Park,"Bandar Bukit Raja Wetland Townpark, Jalan Kuda Kepang, Jalan Klang Sentral 9/KU5, Bandar Bukit Raja, 40150 Klang, Selangor, Malaysia  , Klang, 41050, selangor",3.0960616927475257,101.42546256819128,DC Handal,CCS (Type 2),60,60 kW,1.20/kW,In Use,True
+494733,EI Charge @ McDonalds Pekan,"Sebahagian Tanah Taman Tasik Sultan Abu Bakar, Pekan Bandar DiRaja, 26600 Pekan, Pahang, Pekan, 26600, Pahang",3.5382994322586114,103.38573249755677,EI Charge (MY),CCS (Type 2),60,60 kW,N/A,In Use,True
+494569,[Restricted] SETIA SKY VILLE (Residential Condo),"Setia Sky Ville, Jelutong, 11600",5.400152,100.310295,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+493787,Belum Rainforest Resort,"Timur-Barat Hwy, Pulau Banding, Gerik, 33300 , Perak",5.543805818558809,101.34066261447015,(Unknown Operator),Unknown,22,22 kW,N/A,In Use,True
+493600,[Restricted] LEGEND HEIGHTS @ SRI SEGAMBUT (Residential Condo),"Legend Heights @ Sri Segambut, Kuala Lumpur, 52000",3.197656,101.656349,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+493537,Perpustakaan Laman Hikmah,"Perpustakaan Laman Hikmah, Durian Tunggal, 76100, Melaka",2.3088433,102.3203724,(Unknown Operator),Unknown,60,60 kW,RM1.00/kWh,In Use,True
+493348,[Restricted] CASA EMBUN @ CYBERSOUTH (Residential Condo),"Casa Embun @ Cybersouth, Dengkil, 43800",2.872276,101.662598,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+493035,[Restricted] SOUTH BROOKS RESIDENCE (Residential Condo),"South Brooks, Desa ParkCity, Kuala Lumpur, 52200",3.182748,101.626724,Unknown Network,Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+492907,Gentari Petronas Pekan Lukut (180kW DC),"Taman Kota Lukut, Port Dickson, 71010, Negeri Sembilan",2.5652771444597846,101.8242795401676,Gentari Go (MY),Unknown,180,180 kW,RM1.70/Kw,In Use,True
+492627,[Public] MENARA TOP GLOVE (Office Building),"6, Persiaran Setia Dagang, 40170 Shah Alam, Selangor, SHAH ALAM, 40170",3.108168,101.458496,Unknown Network,CCS (Type 2),60,60 kW,N/A,In Use,True
+492510,Surau Pahang Skills,"Jalan Industri Semambu 9, 25350, Pahang",3.8550069,103.3199475,EI Charge (MY),CCS (Type 2),60,60 kW,RM 1.00/kWh,In Use,True
+492334,DoubleTree by Hilton Damai Laut,"Jalan Damai Laut, , Lumut, 32200, Perak",4.259395410821369,100.59169832276564,Jom Charge,Unknown,7,7 kW,N/A,In Use,True
+492333,Sunway Carnival Supercharger,"Sunway Carnival Mall, 3086, Jalan Todak,, Seberang Jaya, , 13700 , Pulau Pinang",5.3991376692456186,100.39863998591181,Tesla (Tesla-only charging),CCS (Type 2),250,250 kW,N/A,In Use,True
+490109,[Restricted] THE BREZZA CONDOMINIUM BLOCK B (Residential Condo),"The Brezza Condominium, Tanjung Tokong, 10470",5.453625,100.307335,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+490108,[Restricted] TRINITY LEMANJA (Residential Condo),"Jalan Kuang Bertam 6, Taman Kepong, Kepong, 51200",3.209554,101.638931,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+489654,[Restricted] TREEO CONDOMINIUM BY HUNZA (Residential Condo),"Tree O, Jln Sungai Ara 10,, Bayan Lepas, 11900",5.325198,100.261459,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+489110,[Restricted] LAMAN GLASIER (Residential Condo),"Laman Glasier (Glacio) Country Garden Central Park Serviced Apartment, Johor Bahru, 81200",1.512668,103.717751,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+488675,[Restricted] EQUINE RESIDENCE (Residential Condo),"Equine Residence, Seri Kembangan, 43300",2.995656,101.676003,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+487950,TF Value-Mart Raub,"Kampung Sempalit, Raub, 27600, Pahang",3.804422883866792,101.87055170024541,chargEV,Unknown,60,60 kW,1.40,In Use,True
+487507,[Restricted] EAST LAKE RESIDENCE (Residential Condo),"East Lake Residence, Seri Kembangan, 43300",3.032942,101.707298,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+486513,[Restricted] SUNWAY BELFIELD TOWER A (Residential Condo),"Residensi Sunway Belfield, Kuala Lumpur, 50460",3.136339,101.696739,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+486452,[Public] SUNWAY MEDICAL CENTRE IPOH (Medical),"Sunway Medical Centre Ipoh, Ipoh, 31150",4.631488,101.154877,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+486081,[Restricted] SUNWAY ARTESSA RESIDENCE (Residential Condo),"Sunway Artessa Residence, Kuala Lumpur, 53300",3.195273,101.736145,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+485140,[Restricted] SUNWAY ARTESSA RESIDENCES (Residential Condo),"Sunway Artessa Residence, Kuala Lumpur, 53300",3.195318,101.737114,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+484851,[Restricted] KELISA RESIDENCE (Residential Condo),"Kelisa Residensi, Perai, 13700",5.393419,100.410675,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484850,[Restricted] FORTUNE CENTRA RESIDENCES (Residential Condo),"Fortune Centra Residence, Kuala Lumpur, 52100",3.215377,101.643318,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484849,[Restricted] SUNWAY AVILA RESIDENCES (Residential Condo),"Sunway Avila Residences, Kuala Lumpur, 53300",3.19244,101.735916,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,Offline,False
+484848,[Restricted] TIFFANI KIARA (Residential Condo),"Mont Kiara, 50480 Kuala Lumpur, Federal Territory of Kuala Lumpur, Mont Kiara, 50480",3.173578,101.658791,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+484847,[Public] SUNWAY 163 MALL (Shopping Mall),"8, Jalan Kiara, Mont Kiara, Kuala Lumpur",3.166467,101.652313,Unknown Network,CCS (Type 2),80,80 kW,N/A,In Use,True
+484846,[Restricted] MUTIARA UPPER EAST @ DESA PANDAN (BLOCK A) (Residential Condo),"39, Jln 1/76, Desa Pandan, Desa Pandan, 55100",3.15241,101.738159,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484845,[Restricted] MUTIARA UPPER EAST @ DESA PANDAN (BLOCK C1) (Residential Condo),"Mutiara Upper East @Desa Pandan, Kuala Lumpur, 55100",3.151889,101.738106,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+484844,[Restricted] H2O RESIDENCES (BLOCK A & B) (Residential Condo),"H20 Residences, Petaling Jaya, 47301",3.115636,101.577316,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+484843,[Restricted] TRIA SEPUTEH RESIDENCES (Residential Condo),"Tria Seputeh Residences, Kuala Lumpur, 58000",3.108319,101.676819,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484842,[Restricted] SUMMERVILLA CONDOMINIUM (Residential Condo),"Spring Summer Villa Condominium, Petaling Jaya, 47500",3.078489,101.601456,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484841,[Restricted] ALIRA RESIDENCE (Residential Condo),"Alira Residences, Metropark Subang Jaya, Subang Jaya, 47500",3.073056,101.567184,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484840,[Public] SAVILLE @ CHERAS (Residential Condo),"Saville @ Cheras Service Apartment, Cheras, 43200",3.0623,101.773537,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484839,[Restricted] NAUTICA LAKE SUITES CONDOMINIUM (Residential Condo),"Nautica Lake Suites @ Sunway South Quay, Subang Jaya, 47500",3.061109,101.608246,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484838,[Restricted] THE PARK 2 RESIDENCE (Residential Condo),"The Park 2 Residence, Bukit Jalil City, Kuala Lumpur, 57000",3.050728,101.6735,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+484837,[Public] SK1 RESIDENSI (Residential Condo),"SK One Residence, Seri Kembangan, 43300",3.014245,101.699341,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+484836,[Restricted] KSL RESIDENCES @ DAYA (Residential Condo),"KSL Residences @ Daya, Johor Bahru, 81100",1.536105,103.761513,Unknown Network,CCS (Type 2),50,50 kW,N/A,In Use,True
+484835,[Public] EMPORIUM KUCHING (Public Area),"Emporium Kuching, Kuching, 93350",1.516199,110.352417,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+480608,Lebuhraya Pantai Timur,"Lebuhraya Pantai Timur, 24000, Terengganu",4.01882115595977,103.31362243812055,Gentari Go (MY),CCS (Type 2),200,200 kW,RM1.8/kwh,In Use,True
+480555,"TNB Electron - Wisma TNB Bagan Serai, Perak","Jalan Taiping Batu 10, 7364, 1, Taman Seri Serai, Bagan Serai, 34300, Perak",5.0058708,100.5426283,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50 per kWh,In Use,True
+480554,TNB Electron - Wisma TNB Kulim Kedah,"Jalan Putra, Bandar Putra, Kulim, 09000, Kedah",5.368791162050556,100.54498917022215,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50 per kWh,In Use,True
+480553,"TNB Electron - Wisma TNB Kangar, Perlis","Bulatan Jubli Emas, Kampung Guru Peringkat Tiga, Kangar, 01000, Perlis",6.4447205567925465,100.20557724858418,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50 per kWh,In Use,True
+480475,Proton eMas Ipoh,"59, Jalan Raja Permaisuri Bainun,,  Ipoh, 30250, Perak",4.585185407698972,101.08500489946096,Jom Charge,CCS (Type 2),60,60 kW,1.20/kWh,In Use,True
+480474,KFC Tanjung Rambutan,"Susunan Tanjong 1, 31250, Perak",4.665534764333742,101.15908369020735,TNB Electron (MY),CCS (Type 2),200,200 kW,RM1.50/kWh,In Use,True
+480473,Starbuck DT Tambun,"Jalan Darul Johan, 31400, Perak",4.620838829272685,101.14815386764542,chargEV,CCS (Type 2),30,30 kW,RM1.20/kWh,In Use,True
+480472,Persiaran Lagun Sunway,"Persiaran Lagun Sunway, 31150, Perak",4.625357713499184,101.15529228097921,chargEV,Type 2 (Tethered Connector) ,6.4,6.4 kW,RM1.50/20mins,In Use,True
+480471,Jalan Niaga Simee 1,"Jalan Niaga Simee 1, 31400, Perak",4.618175320812313,101.11610842318112,Gentari Go (MY),CCS (Type 2),120,120 kW,RM1.60/kWh,In Use,True
+480470,Jalan Tokong,"Jalan Tokong, 31650, Perak",4.58490743257353,101.08493553806011,Jom Charge,CCS (Type 2),60,60 kW,RM1.20/kWh,In Use,True
+480140,"TNB Electron - Yard TNB PRCC Bayan Lepas, Penang","Lebuhraya Kampung Jawa, Bayan Lepas, 11900, Penang",5.316405322200055,100.2957099672758,TNB Electron (MY),CCS (Type 2),200,200 kW,RM 1.50 per kWh,In Use,True
+479814,RNR Mid Layar,"Engkeranji, Betong, 95600, Sarawak",1.4637625,111.5667969,Jom Charge,CCS (Type 2),30,30 kW,RM 0.80/min,In Use,True
+479684,Shell LPT 1 RNR Temerloh KTN Bound,"KM 129.5 EAST BOUND, TEMERLOH, 28020, Pahang",3.512228012084961,102.44186401367188,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479683,Shell LPT 1 RNR Temerloh KL Bound,"LEBUH RAYA PANTAI TIMUR FASA 1, TEMERLOH, 28020, Pahang",3.511526107788086,102.43900299072266,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479682,Pavilion Damansara Heights,"3, JALAN DAMANLELA, Kuala Lumpur, 50490, Kuala Lumpur",3.1482861042022705,101.66291046142578,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,22,22 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479681,Miri Multistorey Parking,"MIRI TIMES SQUARE, JALAN BENDAHARA, MARINA PARKCITY, Miri, 98000, Sarawak",4.394287109375,113.9854507446289,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479680,Citta Mall,"1, JALAN PJU 1A/48,, Petaling Jaya, 47301, Selangor",3.112056016921997,101.57936096191406,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479679,Miri Times Square,"JALAN BENDAHARA, MARINA PARKCITY, Miri, 98000, Sarawak",4.394287109375,113.9854507446289,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479678,IOI Mall Puchong,"PILLAR 9, BASEMENT 1, Puchong, 47170, Selangor",3.043111562728882,101.61827087402344,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479677,Setiawalk Mall,"BLOCK J,BASEMENT 1, Puchong, 47160, Selangor",3.030250072479248,101.61569213867188,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479676,Shell RNR Skudai JB Bound,"SKUDAI R&R, NSE SOUTHBOUND (KM 16.5), Senai, 81400, Johor",1.5899778604507446,103.63600158691406,Shell Recharge (Malaysia),CCS (Type 2),120,120 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479675,Shell RTC,"RURAL TRANSFORMATION CENTRE SIMPANG, Simpang Pulai, 31500, Perak",4.497345924377441,101.15523529052734,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479674,Dataran Maybank,"Dataran Maybank, Level 8, MaybanLife Tower,, Bangsar, 59000, Kuala Lumpur",3.127006769180298,101.6774673461914,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,7,7 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479673,SHELL NSE SEREMBAN RNR NORTH BOUND,"PLUS HIGHWAY NORTH BOUND, Labu, 71800, Negeri Sembilan",2.7571749687194824,101.84576416015625,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479671,Kuala Lumpur Golf and Country Club,"West Member Parking,10, Jalan 1/70 D, Kuala Lumpur, 60000, Kuala Lumpur",3.1395366191864014,101.6402359008789,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479670,Jaya Shopping Centre,"JALAN 14/17, SEKSYEN 14,, Petaling Jaya, 46100, Selangor",3.10904598236084,101.63665008544922,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479669,Pearl Point Shopping Mall,"MENARA PEARL POINT 2, Kuala Lumpur, 58200, Kuala Lumpur",3.084172487258911,101.67300415039062,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479668,IOI City Mall - Aeon,"IOI CITY MALL, LEBUH IRC, Putrajaya, 62502, Selangor",2.970863103866577,101.71643829345703,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479667,IOI City Mall - Lotus,"IOI CITY MALL, LEBUH IRC, Putrajaya, 62502, Selangor",2.9716598987579346,101.71102905273438,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479666,Eastern and Oriental Hotel,"10, Lebuh Farquhar, Georgetown, Georgetown, 10200, Pulau Pinang",5.423497200012207,100.33592987060547,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479665,1 Mont Kiara,"8, JALAN KIARA, MONT KIARA, Kuala Lumpur, 50480, Kuala Lumpur",3.1659371852874756,101.6531982421875,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479664,163 Retail Park,"8, JALAN KIARA, MONT KIARA, Kuala Lumpur, 50480, Kuala Lumpur",3.1669437885284424,101.65172576904297,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479663,Subang Jaya Medical Centre,"1, Jalan SS12/1A, SS 12, Subang Jaya, 47500, Selangor",3.0800070762634277,101.5938720703125,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479662,Faber Towers,"TAMAN DESA,, Kuala Lumpur, 58100, Kuala Lumpur",3.101876735687256,101.68470001220703,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479661,DA Square,"6, PERSIARAN PERDANA,, Kuala Lumpur, 52200, Kuala Lumpur",3.191804885864258,101.61730194091797,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479660,Atria Shopping Gallery,"JALAN 14/17, SEKSYEN 14,, Petaling Jaya, 47400, Selangor",3.127364158630371,101.61653900146484,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479659,Ativo Plaza,"PERSIARAN PERDANA,, Kuala Lumpur, 52200, Selangor",3.1950082778930664,101.6168212890625,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479658,Plaza Arkadia,"JALAN RESIDEN 3, DESA PARKCITY, Kuala Lumpur, 52200, Kuala Lumpur",3.185770273208618,101.63587951660156,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+479657,SHELL NSE SEREMBAN RNR SOUTH BOUND,"PLUS HIGHWAY SOUTH BOUND, Labu, 71800, Negeri Sembilan",2.7641777992248535,101.83048248291016,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+478773,Shell NSE Pagoh RNR KL Bound,"KM 146 Lebuhraya Utara Selatan,  Pagoh, 84600, Johor ",37.415328,-122.076575,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+478770,Cheras Leisure Mall,"Leisure Mall Cheras, Taman Gemilang, Kuala Lumpur, 56100, Wilayah Persekutuan Kuala Lumpur",37.415328,-122.076575,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+478508,Gentari PETRONAS Solaris Seri Kembangan,"Lebuhraya Utara Selatan (Arah Selatan), Seri Kembangan, 43400, Selangor",3.005837294190343,101.7250332842168,Gentari Go (MY),CCS (Type 2),150,150 kW,RM 1.70/Kwh,In Use,True
+475575,QuickCharge | Main Place Mall [50kW DC],"Main Place Mall, Subang Jaya, 47630, Selangor",3.026329198826346,101.58161549417423,Unknown Network,CCS (Type 2),50,50 kW,DC @ RM1.20/kWh,In Use,True
+475570,chargEV | AEON Mall Tebrau City [120kW DC & 22kW AC],"Basement, Pillar A38, Aeon Tebrau City Shopping Centre, Johor Bahru, 81100, Johor",1.5490588571206274,103.7963049724442,chargEV,Type 2 (Tethered Connector) ,22,22 kW,DC @ RM1.60/kWh | AC @ RM1.00/kWh,In Use,True
+475569,JomCharge | Toppen Shopping Centre (Yellow Zone) [200kW DC | 22kW AC],"Level P1, Yellow Zone J26 - L26, Toppen Shopping Centre, Johor Bahru, 81100, Johor",1.5523987998725204,103.79736875864774,Jom Charge,CCS (Type 2),200,200 kW,DC @ RM1.50/kWh | AC @ RM1.05/kWh,In Use,True
+475568,chargEV | Johor Premium Outlets [280kW DC],"Johor Premium Outlets, Kulai, 81000, Johor",1.6031001838612156,103.62294614674863,chargEV,CCS (Type 2),280,280 kW,DC @ RM1.50/kWh,In Use,True
+475567,Gentari | Careplus Mall Seremban (180kW DC),"Lot PT 3962 & 3963, Jalan Haruan 2, Seremban, 70300, Negeri Sembilan",2.7069530691615853,101.92009987021288,Gentari Go (MY),CCS (Type 2),180,180 kW,DC @ RM1.60/kWh + RM1.50/min (after 1 hour),In Use,True
+475566,chargEV | Quayside Mall Level 2 (22kW AC),"Level 2 (Lots 26-28), Upper Level Carpark (Indoor), Telok Panglima Garang, 42500, Selangor",2.9565853306487213,101.55343998878675,chargEV,Type 2 (Tethered Connector) ,22,22 kW,AC @ RM1.00/kWh,In Use,True
+475565,"chargEV | Quayside Mall Gamuda Kemuning (240kW DC, 22kW AC)","B1 Floor, Pillar M04 (DC Bays), Pillar K12 (AC Bays), Telok Panglima Garang, 42500, Selangor",2.9570267808223747,101.55291071768852,chargEV,CCS (Type 2),240,240 kW,DC @ RM1.60/kWh | AC @ RM1.00/kWh,In Use,True
+475564,chargEV | The Glades Plaza (60kW DC),"3, Persiaran Putra Perdana, Subang Jaya, 47650, Selangor",3.0085371283898468,101.57749588324384,chargEV,CCS (Type 2),60,60 kW,RM1.40/kWh,In Use,True
+474654,Wisma TNB Alor Setar,"887, Jalan Sehala, Alor Setar, 05200, Kedah",6.122000233062764,100.37247232105642,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50/kWh,In Use,True
+474469,Tenaga Nasional Berhad (Temerloh),"Bangunan Tenaga Nasional Berhad, Jalan Kuantan, Temerloh, 28000, Pahang",3.449099353987009,102.41258567929151,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50/kWh,In Use,True
+474393,Gentari | Petronas Ayer Keroh 3 (110kW DC),"2854, Jalan Tun Abdul Razak, Bemban, 75450, Melaka",2.2895482527241455,102.30501168715159,Gentari Go (MY),CCS (Type 2),110,110 kW,DC @ RM 1.70/kWh + RM 1.50/min (After 1 hour),In Use,True
+474296,Proton 4S Mercu Usaha Mesra,"1, Jalan Batu Lintang, Sungai Petani, 08600, Kedah",5.6180614571475616,100.46530701919733,Gentari Go (MY),CCS (Type 2),40,40 kW,RM 1.60/kWh + RM 1.50/min (After 1 hour),In Use,True
+474295,Starbucks Amanjaya DT,"No. 3, Jalan Cempaka 2/3, Sungai Petani, 08000, Kedah",5.669688689964772,100.50813826081435,chargEV,CCS (Type 2),60,60 kW,N/A,Offline,True
+474294,BMW Service Centre Start Lee Motors,"86C, Jalan Perak 18, Alor Setar, 05150, Kedah",6.138649554252993,100.35793295651933,chargEV,CCS (Type 2),30,30 kW,RM 0.60/min,In Use,True
+474293,Proton eMAS Alor Setar Rahmat Jutamas,"299, Jalan Perak, Alor Setar, 05150, Kedah",6.138136263356017,100.35777023518062,Jom Charge,CCS (Type 2),60,60 kW,"RM 1.50/kWh (DC), RM 1.05/kWh (AC)",In Use,True
+474292,BYD Alor Setar Hong Thai Motor,"Jalan Gangsa, Alor Setar, 05150, Kedah",6.136141420135814,100.36124931294921,(Unknown Operator),CCS (Type 2),60,60 kW,RM 1.40/min,In Use,True
+474291,Pejabat Pos Besar Alor Setar,"Jalan Stadium, Alor Setar, 05100, Kedah",6.13133027170386,100.3736126210465,chargEV,CCS (Type 2),40,40 kW,RM 1.30/kWh,In Use,True
+474290,smart Alor Setar Lee Motors,"Jalan Istana Kuning, Alor Setar, 05200, Kedah",6.125182720076495,100.36846157989555,Jom Charge,CCS (Type 2),25,25 kW,RM 1.05/kWh,In Use,True
+474289,Frazel Heritage Hotel,"429, Darul Aman Hwy, Jalan Kanchut, Alor Setar, 05100, Kedah",6.12290784119881,100.36655581091031,(Unknown Operator),CCS (Type 2),60,60 kW,RM 1.29/min,In Use,True
+474288,Lotus's Mergong,"Persiaran Bandar Baru Mergong, Alor Setar, 05150, Kedah",6.1287536795269375,100.34256190549172,Jom Charge,CCS (Type 2),50,50 kW,"RM 1.60/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+474287,Starbucks Alor Setar DT,"Jalan Alor Mengkudu, Alor Setar, 05400, Kedah",6.096171780666893,100.37651922963937,chargEV,CCS (Type 2),50,50 kW,RM 1.60/kWh,In Use,True
+474286,Lotus's Stargate,"Lebuh Stargate 1, Alor Setar, 05400, Kedah",6.079605122960402,100.36912957155869,Jom Charge,CCS (Type 2),50,50 kW,"RM 1.60/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+474285,Lotus's Jitra,"Jalan Aman 2, Jitra, 06000, Kedah",6.260313333478138,100.41660488621187,Jom Charge,CCS (Type 2),40,40 kW,RM 1.60/kWh,In Use,True
+474284,TNB Jitra,"Wisma TNB Jitra, Jalan Jitra, Jitra, 06000, Kedah",6.275758046017131,100.42079340105602,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50/kWh,In Use,True
+474283,Starbucks Kangar Jaya DT,"1A, Jalan Kangar Jaya 14, Kangar Jaya, Kangar, 01000, Perlis",6.40703337560619,100.17968747182715,chargEV,CCS (Type 2),60,60 kW,RM 1.30/kWh,In Use,True
+474282,Langkawi Port,"Jalan Bukit Malut, Langkawi, 07000, Kedah",6.293740025667077,99.78632315837194,(Unknown Operator),CCS (Type 2),40,40 kW,RM 60/hour,In Use,True
+474280,The Majestic Melaka,"Jalan Tun Sri Lanang, Pengkalan Rama, 75700, Melaka",2.201918680975055,102.25215412551984,Jom Charge,CCS (Type 2),47,47 kW,RM 1.50/kWh,In Use,True
+474279,BMW Seong Hoe Premium Motors,"Jalan Semabok, Semabok, 75050, Melaka",2.1958411117203127,102.26835938026989,chargEV,CCS (Type 2),30,30 kW,"RM 1.80/min (90kW), RM 0.60/min (30kW)",In Use,True
+474278,Pos Malaysia,"Pejabat Pos Besar Melaka, Bukit Baru, 75670, Melaka",2.2144796482063924,102.2650218831086,chargEV,CCS (Type 2),40,40 kW,RM 1.30/kWh,In Use,True
+474277,Proton eMAS Melaka NHL Auto Tech,"Jalan IKS MJ 1, Malim Jaya, 75250, Melaka",2.2407008019340964,102.24129330256415,Rexharge (MY),CCS (Type 2),60,60 kW,RM 1.25/kWh,In Use,True
+474276,BYD Melaka Sing Kwung Motors,"Jalan Abadi 1, Malim Jaya, 75250, Melaka",2.24490304968036,102.23756001475601,chargEV,CCS (Type 2),120,120 kW,RM 1.50/kWh,In Use,True
+474275,AEON Melaka Shopping Centre,"Jalan Tun Abdul Razak, Ayer Keroh, 75460, Melaka",2.233940299316899,102.28257729198594,chargEV,CCS (Type 2),80,80 kW,"RM 1.60/kWh (DC), RM 1.00/kWh (AC)",In Use,True
+474274,SQ Spirit,"Jalan Eco 1, Ayer Keroh, 75450, Melaka",2.2519369233080795,102.30074359633102,EVPower (MY),CCS (Type 2),30,30 kW,"RM 1.20/kWh (DC), RM 1.00/kWh (AC)",In Use,True
+474273,Charge+ | Amverton Heritage Resort (120kW DC & 7kW AC),"Amverton Heritage Resort, Ayer Keroh, 75450, Melaka",2.2914146122234342,102.30791900510053,CHARGE+,CCS (Type 2),120,120 kW,DC @ RM1.35/kWh | AC @ RM0.95/kWh,In Use,True
+474272,Lotus's Parit Raja,"Jalan Universiti 4, Parit Raja, 86400, Johor",1.8496698813246581,103.07632025657153,Jom Charge,CCS (Type 2),50,50 kW,"RM 1.60/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+474271,Hotel Bestari Prima,"28, Lorong BBKL 2/3/2, Kuala Lipis, 27200, Pahang",4.18761413852117,102.05983618821563,(Unknown Operator),CCS (Type 2),40,40 kW,RM 1.00/min,In Use,True
+474270,Hotel Jelai Raub,"36, Jalan Tan Tiong, Raub, 27600, Pahang",3.7895920054519934,101.85537892584,(Unknown Operator),CCS (Type 2),40,40 kW,RM 1.00/min (DC) ,In Use,True
+474269,Petron Jalan Permai,"Jalan Permai, Genting Highlands, 69000, Pahang",3.3866945435445075,101.77398513655385,EI Charge (MY),CCS (Type 2),60,60 kW,RM 1.20/kWh,In Use,True
+474268,Gohtong Jaya,"Genting Highlands, 69000, Pahang",3.3958455748519327,101.76933778099328,EI Charge (MY),CCS (Type 2),80,80 kW,RM 1.20/kWH,In Use,True
+474267,Lotus's Bukit Beruntung,"Bukit Sentosa, Rawang, 43000, Selangor",3.4029042464541703,101.55983077260782,Gentari Go (MY),CCS (Type 2),50,50 kW,"RM 1.50/kWh (DC), RM 1.05/kWh (AC)",In Use,True
+474266,AEON Mall Rawang,"Kompleks Beli Belah AEON Anggun Rawang, Rawang, 48000, Selangor",3.3160697420560723,101.5366024310074,chargeEV (MY),CCS (Type 2),240,240 kW,"RM 1.60/kWh (DC 240 kW), RM 1.40/kWh (DC 60 kW), RM 1.00/kWh (AC)",In Use,True
+474265,Lotus's Rawang,"Jalan Rawan, Rawang, 48000, Selangor",3.3021553895640636,101.5979721638696,Jom Charge,CCS (Type 2),50,50 kW,"RM 1.50/kWh (DC), RM 1.05/kWh (AC)",In Use,True
+474264,Petronas Sg Buloh Layby,"Hentian Sungai Buloh Arah Selatan, 47000, Sungai Buloh",3.2247062119811005,101.57709930360306,Jom Charge,CCS (Type 2),180,180 kW,RM 1.50/kWh,In Use,True
+474263,Kelab Rahman Putra Malaysia,"Notting Hill, Sungai Buloh, 47000, Selangor",3.2193459756758926,101.55264932612374,(Unknown Operator),CCS (Type 2),30,30 kW,"RM1.20/kWh (DC), RM 1.00/kWh (AC)",In Use,True
+474262,R&R GCE Elmina Southbound,"GCE, Shah Alam, 40160, Selangor",3.1727026648700303,101.5193920684186,chargeEV (MY),CCS (Type 2),60,60 kW,RM 1.40/kWh,In Use,True
+474261,Elmina Lakeside Mall,"Persiaran Garcinia, Shah Alam, 40160, Selangor",3.1808320065721034,101.50859044131062,chargeEV (MY),CCS (Type 2),120,120 kW,RM 1.60/kWh,In Use,True
+474260,R&R GCE Elmina Northbound,"GCE, 40160, Shah Alam",3.190952591013982,101.50857629051188,chargeEV (MY),CCS (Type 2),60,60 kW,RM 1.40/kWh,In Use,True
+474217,Yard TNB Bukit Kecil,"Jalan Bukit Kecil, Kuala Terengganu, 20300, Terengganu",5.316717143637618,103.13275730280452,TNB Electron (MY),CCS (Type 2),240,240 kW,RM 1.50/kWh,In Use,True
+473105,TNB Electron | RPGC Garden Hotel,"Jalan Sultan Azlan Shah, Ipoh, 30350, Perak",4.588343441253926,101.1137938251286,TNB Electron (MY),CCS (Type 2),240,240 kW,1.50/kWh,In Use,True
+473104,TNB Electron | RPGC Ipoh,"37, Jalan Sultan Azlan Shah, Ipoh, 30250 , Perak",4.58836976266204,101.11468501793274,TNB Electron (MY),CCS (Type 2),120,120 kW,1.50/kWh,In Use,True
+473103,Starbucks Marina ParkCity DT,"Jalan Marina 3, Miri, 98000, Sarawak",4.389434983170361,113.98095691029448,chargEV,CCS (Type 2),60,60 kW,RM 1.50 / min,In Use,True
+473102,"Islamic Commercial Centre, Boulevard, Miri (Gentari x SEB)","AL-BAYT Square, Miri 1010 Commercial Centre, Miri, Sarawak",4.4134461808019125,114.01134347608809,Gentari Go (MY),CCS (Type 2),60,60 kW,RM 1.40/kWh,In Use,True
+473021,Gentari @ Proton 3S YS Autoworld,"Jalan Seri Setali, 25300, Pahang",3.8455111160246815,103.33737364578519,Gentari Go (MY),CCS (Type 2),60,60 kW,N/A,In Use,True
+473019,EI Charge Teluk Cempedak,"No. 1 & 2, Pusat Rekreasi,, Kuantan, 25050, Pahang",3.812206186585456,103.37193930787475,EI Charge (MY),CCS (Type 2),30,30 kW,N/A,In Use,True
+473018,EI Charge @ Macinda BYD Kuantan,"Jalan Besar, 25000, Pahang",3.8093713920699344,103.33104804846516,EI Charge (MY),CCS (Type 2),160,160 kW,N/A,In Use,True
+473017,chargEV @ BMW Millenium Welt,"Jalan Besar, 25000, Pahang",3.8117401612920503,103.33292415526103,chargEV,CCS (Type 2),30,30 kW,N/A,In Use,True
+473016,Evlution @ UMPSA,"Jalan Kuala Pahang - Tanah Putih, 26600, Pahang",3.5368962367550125,103.43136720656787,Gentari Go (MY),CCS (Type 2),7,7 kW,N/A,In Use,True
+472949,Town Square Bintulu (Gentari x SEB),"IBRACO Bhd, Bintulu, Sarawak",3.1939723695511475,113.04906994913506,Gentari Go (MY),CCS (Type 2),180,180 kW,RM 1.40/kWh,In Use,True
+472948,Sanyan Square Sibu (Gentari x SEB),"Dataran Tun Tuanku Bujang, Sibu, Sarawak",2.2911837264536246,111.82224767573018,Gentari Go (MY),CCS (Type 2),120,120 kW,1.40myr/kwh,In Use,True
+472890,Proton eMAS JM OTOMOBIL EV,"Lorong Embi, Kota Bharu, 15503, Kelantan",6.115943752199257,102.24708567898233,Rexharge (MY),CCS (Type 2),40,40 kW,RM 1/kWh,In Use,True
+472889,AmBank Kota Bharu,"Jalan Sultan Ibrahim, Kota Bharu, 15990, Kelantan",6.123729637512881,102.23785644954637,Gentari Go (MY),CCS (Type 2),50,50 kW,RM 1.60/kWh,In Use,True
+472888,AEON Mall Kota Bharu,"Jalan Maulana Khurasan, Kota Bharu, 15150, Kelantan",6.1101173641256,102.2300724246461,chargeEV (MY),CCS (Type 2),240,240 kW,"RM 1.60/kWh (DC), RM 1.00/kWh (AC)",In Use,True
+472887,Petronas Padang Tembak,"Jalan Haji Nik Abdullah Arshad, Kota Bharu, 16100, Kelantan",6.149285670464607,102.29039947019965,Gentari Go (MY),CCS (Type 2),180,180 kW,RM 1.60/kWh,In Use,True
+472885,Jalan Kota Bharu – Kuala Terengganu,"Jalan Kota Bharu – Kuala Terengganu, 16810, Kelantan",5.909877479252785,102.32650760278352,TNB Electron (MY),CCS (Type 2),100,100 kW,RM 1.50/kwh,In Use,True
+472883,Masjid Al-Ehsan Instep Petronas,"Institut Teknologi Petroleum PETRONAS (INSTEP), Kuala Nerus, 21020, Terengganu",5.474016851220313,103.01563188176215,Gentari Go (MY),CCS (Type 2),120,120 kW,RM 1.50/kWh,In Use,True
+472881,BMW Millennium Welt KT,"159, Jalan Sultan Mohamad, Kampung Bukit Kecil, Kuala Terengganu, 21100, Terengganu",5.313478446199142,103.13820161109322,(Unknown Operator),CCS (Type 2),47,47 kW,RM 1.20/min,In Use,True
+472879,Pusat Sains & Kreativiti Terengganu,"Kampung Laut Chendering, Kuala Terengganu, 21080, Terengganu",5.268759354184837,103.15214751521148,Gentari Go (MY),Type 2 (Tethered Connector) ,22,22 kW,"RM 1.60/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+472877,R&R Ajil Eastbound,"Lebuhraya Pantai Timur, Ajil, 21040, Terengganu",5.141572107979883,103.04071285670375,Gentari Go (MY),CCS (Type 2),150,150 kW,RM 1.80/kWh,In Use,True
+472876,R&R Ajil Westbound,"Lebuhraya Pantai Timur, 21040, Terengganu",5.144210102109099,103.04201588587466,Gentari Go (MY),CCS (Type 2),150,150 kW,RM 1.80/kWh,In Use,True
+472874,Tesla Supercharger Majlis Bandaraya Kuantan,"Jalan Tanah Putih, Kuantan, 25100, Pahang",3.7982905568169514,103.3217739512362,Tesla (Tesla-only charging),CCS (Type 2),250,250 kW,N/A,In Use,True
+472872,Proton Pesat CTM 3S - Kuantan,"Kuantan, 25100, Pahang",3.7947894322893205,103.31304100007844,Gentari Go (MY),CCS (Type 2),120,120 kW,RM 1.60/kWh,In Use,True
+472871,Petronas Peramu 2,"Lot 879, Jalan Pekan-Kuantan, Kampung Kubang Sawa, Pekan, 26600, Pahang",3.525714607536571,103.38886092169423,Gentari Go (MY),CHAdeMO,24,24 kW,RM 1.40/kWh,In Use,True
+472870,Villea Rompin Resort,"Jalan Kanpung Lanjut, Rompin, 26800, Pahang",2.846358718734521,103.46283546996153,Gentari Go (MY),CCS (Type 2),60,60 kW,"RM 1.40/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+472869,Hotel Srimpian Rompin,"No. 2, Lorong Impiana 8, Taman Impiana, Kuala Rompin, 26800, Pahang",2.799422460594272,103.46828426083653,EI Charge (MY),CCS (Type 2),28,28 kW,RM 1.20/kWh,In Use,True
+472868,Petron Tanjung Gemok,"Lorong Permai 1, Endau, 26820, Pahang",2.678297342199727,103.60987172493572,TNB Electron (MY),CCS (Type 2),180,180 kW,RM 1.50/kWh,In Use,True
+472867,Endau DJH,"Jalan Penyabong-Endau, Endau, 86900, Johor",2.6491417913104414,103.6319432916033,EVPower (MY),Type 2 (Tethered Connector) ,22,22 kW,"RM 1.20/kWh (DC), RM 1.00/kWh (AC)",In Use,True
+472866,Mersing Harbour Centre,"Jalan Ibrahim, Mersing, 86807, Johor",2.432450785547772,103.83951298026545,Gentari Go (MY),CCS (Type 2),200,200 kW,RM 1.60/kWh,In Use,True
+472865,Kelab Golf Rekreasi Petronas,"Jalan Kemaman - Dungun, Perumahan Petronas Rantau Bukit, Kerteh, 24300, Terengganu",4.453326790006159,103.44674502922044,Gentari Go (MY),CCS (Type 2),50,50 kW,RM 1.60/kWh,In Use,True
+472864,Petronas Rantau Kemasik,"Federal Route 3, Kemasik, 24200, Terengganu",4.438500508215,103.44938107611438,Gentari Go (MY),CCS (Type 2),80,80 kW,RM 1.60/kWh,In Use,True
+472863,El Charge Cherating Lama,"Jalan Kampung Cherating Lama, Cherating, Pahang",4.130864511610099,103.40006179391253,EI Charge (MY),CCS (Type 2),60,60 kW,RM 1.40/kWh,In Use,True
+472862,Swiss-Garden Beach Resort Kuantan,"Jalan Beserah, 26100, Pahang",3.910573893771897,103.3651207892035,(Unknown Operator),CCS (Type 2),60,60 kW,RM 1.20/kWh,In Use,True
+472861,Tasek Commercial Centre,"Persiaran KotaSAS, Kuantan, 25200, Pahang",3.8710925701735164,103.27502816682863,Gentari Go (MY),CCS (Type 2),100,100 kW,RM 1.60/kWh,In Use,True
+472860,Burger King Indera Mahkota,"Jalan Sultan Ahmad Shah, Kuantan, 25300, Pahang",3.836630442405962,103.3030955243612,Gentari Go (MY),CCS (Type 2),120,120 kW,RM 1.60/kWh,In Use,True
+472859,Proton e.MAS Kuantan,"6, 1, Jln Indera Mahkota 3/11, Kuantan, 25100, Pahang",3.814039983874366,103.285256503362,Rexharge (MY),CCS (Type 2),60,60 kW,RM 1/kWh,In Use,True
+472858,Pahang Technology Park,"Persiaran Bandar Gambang, Gambang, 26300, Pahang",3.7460639745946906,103.12510945340205,Gentari Go (MY),Type 2 (Tethered Connector) ,22,22 kW,"RM 1.70/kWh (DC), RM 1.15/kWh (AC)",In Use,True
+472857,Petron Makmur Gambang Jaya 2,"Lebuhraya Kuantan - Segamat, Gambang, 26300, Pahang",3.6988324807008723,103.12152950836071,TNB Electron (MY),CCS (Type 2),200,200 kW,RM 1.50/kWh,In Use,True
+472856,Aurora Boutique Hotel,"No.1, Jalan Tecoma 1, Pusat Perniagaan Tecoma, Bahau, 72100, Negeri Sembilan",2.809293693524083,102.39591806905992,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,RM 0.60/min,In Use,True
+472855,Gemas Golf Resort,"Jalan Meranti 14, Gemas, 73400, Negeri Sembilan",2.570914458877681,102.60499620005771,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,Guest - RM 0.70/kWh. Non-guest - RM 0.80/kWh,In Use,True
+472853,Petron Keratong Muadzam,"Jalan Gadak Makmur Jaya Utama, Muadzam Shah, 26700, Pahang",3.0351345710275552,103.04662698777236,TNB Electron (MY),CCS (Type 2),240,240 kW,RM1.50/kwh,In Use,True
+472852,Triangle Farm Cottage House,"Jalan Ban Kenal, Sekinchan, 45400, Selangor",3.531206985075059,101.15747793104697,Jom Charge,Type 2 (Tethered Connector) ,11,11 kW,RM 0.90/kWh,In Use,True
+472851,Tai Chong Seafood,"Jalan Changkat Jong, Teluk Intan, 36000, Perak",4.015829055848982,101.02978503372447,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,RM 0.82/kWh,In Use,True
+472850,Tai Chong Seafood,"Jalan Changkat Jong, Teluk Intan, 36000, Perak",4.015655004762834,101.02997230600874,CHARGE+,CCS (Type 2),60,60 kW,RM 1.25/kWh,In Use,True
+472849,Majlis Daerah Sabak Bernam,"Jalan Kuala Selangor-Teluk Intan, Sungai Besar, 45300, Selangor",3.6761313034334933,100.99057217478878,chargeEV (MY),Type 2 (Tethered Connector) ,3.7,3.7 kW,RM 1.50 / 20 minutes,In Use,True
+472847,Tasek Commercial Centre,"Persiaran KotaSAS, 25200, Pahang",3.87101457249382,103.2750139985618,Gentari Go (MY),CCS (Type 2),100,100 kW,RM1.60/kwh,In Use,True
+472748,The Starling Mall,"Jalan SS 21/37, Petaling Jaya, 47400, Selangor",3.1358551433111472,101.62321579425316,chargeEV (MY),CCS (Type 2),400,400 kW,RM1.60/kWh,In Use,True
+472712,"PETRONAS KLS, Arah Kuala Selangor","Lebuhraya Kuala Lumpur–Kuala Selangor, Rawang, 48020, Selangor",3.269331062670304,101.50910033360742,Gentari Go (MY),CHAdeMO,16,16 kW,RM 1.50/kWh / RM 1.50/kWh per min after 1 hour,In Use,True
+472711,PETRONAS KLS ARAH KUALA LUMPUR (LATAR 2),"Lebuhraya Kuala Lumpur–Kuala Selangor, Rawang, 48020, Selangor",3.271279548699141,101.50649531266242,Gentari Go (MY),CHAdeMO,30,30 kW,RM 1.50/kWh / RM 1.50/kWh per min after 1 hours,In Use,True
+472710,Starbucks @ Eco Grandeur,"Jalan Eco Grandeur 1/3A, Bandar Puncak Alam, 42300, Selangor",3.227536339342322,101.4582503223553,chargeEV (MY),CCS (Type 2),50,50 kW,RM 1.30/kWh,In Use,True
+472709,Eco Grandeur,"Jalan Eco Grandeur 1/3A, Bandar Puncak Alam, 42300, Selangor",3.226436116199281,101.45697931144468,chargeEV (MY),CCS (Type 2),60,60 kW,"DC : RM 1.30/kWh, AC : RM 0.80/kWh",In Use,True
+472708,JayaGrocer @ Eco Grandeur,"No. 16, Ruang Niaga Eco Grandeur, Persiaran Mokhtar Dahari, Puncak Alam, 42300, Selangor",3.2271961711375496,101.45692674736279,Jom Charge,Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+472707,Lotus's Puncak Alam,"1, Jalan Niaga Bestari 9, Puncak Bestari, Puncak Alam, 42300, Selangor",3.2365384968186532,101.42773023114046,Jom Charge,CCS (Type 2),50,50 kW,"RM1.50/kWh DC, RM1.05/kWh AC",In Use,True
+472256,Petronas Pasir Pekan,"Lot 1748, Batu 2 1/2, Wakaf Bharu, 16250, Kelantan",6.1188579235058995,102.21924287863249,Gentari Go (MY),CCS (Type 2),180,180 kW,RM1.60/kWh,In Use,True
+471721,TNB Electron - Yard TNB Mergong,"Lot 115, Batu 3 3/4, Taman Tenaga Nasional, Alor Star, 05150, Kedah",6.12932,100.34775,TNB Electron (MY),CCS (Type 2),240,240 kW,RM1.50/kwh,In Use,True
+471720,TNB Electron - Wisma TNB Taiping,"Jalan Istana Larut, Taiping, 34000, Perak",4.86185,100.73573,TNB Electron (MY),CCS (Type 2),240,240 kW,RM1.50/kwh,In Use,True
+471719,TNB Electron - Yard TNB Lundang,"5323, , Kota Bharu, 15200, Kelantan",6.10741,102.25864,TNB Electron (MY),CCS (Type 2),240,240 kW,RM1.50/kwh,In Use,True
+471717,CarputZap | Cameron Highlands Resort (50kW DC),"8, Jalan Sultan Abu Bakar,  , Brinchang, 39000, Pahang",4.488543150648923,101.37976924477027,Jom Charge,CCS (Type 2),50,50 kW,RM1.3/kWh,In Use,True
+471716,QuickCharge | The Cool Point Hotel (40kW DC),"891, Persiaran Dayang Endah, Tanah Rata, 39000 , Pahang",4.469891540992151,101.37828285958017,Gentari Go (MY),CCS (Type 2),40,40 kW,N/A,In Use,True
+471590,TNB Electron - R & R Gurun Southbound,"KM 80, North-South Expressway, Gurun, 08300, Kedah",5.83049,100.48898,TNB Electron (MY),CCS (Type 2),180,180 kW,RM1.50/kwh,In Use,True
+471588,TNB Electron - RNR Gurun Northbound,"KM 81.1, R & R Gurun Arah Utara, Gurun, 08300, Kedah",5.83362,100.48695,TNB Electron (MY),CCS (Type 2),180,180 kW,RM1.50/kwh,In Use,True
+471541,EVPower - Bodyworks,"Lot PT 60458, Sungai Petani, 08000, Kedah",5.6843,100.50943,EVPower (MY),CCS (Type 2),60,60 kW,DC - RM1.20/kwh | AC - RM1/kwh,In Use,True
+471537,"JomCharge | Taman Tasik Taiping (7kW AC, 90kW DC)","No.2 Commersial Centre (TTCC, off, Jalan Pekeliling), Taiping, 34000 , Perak",4.85316,100.74597,Jom Charge,CCS (Type 2),90,90 kW,RM1.50/kwh (90kW DC); RM0.90/kWh (7kW AC),In Use,True
+471536,"JomCharge | Taman Tasik Taiping (7kW AC, 90kW DC)","No.2 Commersial Centre (TTCC, off, Jalan Pekeliling), Taiping, 34000 , Perak",4.85324,100.74602,Jom Charge,CCS (Type 2),90,90 kW,RM1.50/kwh (90kW DC); RM0.90/kWh (7kW AC),In Use,True
+471376,EVPower - Bloomsvale Shopping Gallery - Outdoor Parking,"LGK 021 & 022 , Lower GF Bloomsvale Shopping Gallery, Kuala Lumpur, 58200, Kuala Lumpur",3.07572,101.66087,EVPower (MY),CCS (Type 2),240,240 kW,"DC = RM1.30/kwh, AC = RM1.00 / kwh",In Use,True
+471160,Lotus's Kuala Selangor,"No. 2 Jalan Tiara, 1 Jalan Medan Niaga 2, Kuala Selangor, 45000, Selangor",3.3197730679012096,101.2708156666099,Jom Charge,Type 2 (Tethered Connector) ,7,7 kW,RM 0.90/kWh,In Use,True
+471159,TNB Electron - Yard TNB Batu Rimau,"Jalan Kuala Selangor-Teluk Intan, Kuala Selangor, 45000, Selangor",3.3397567240351123,101.25101375165264,TNB Electron (MY),CCS (Type 2),240,240 kW,RM1.50/kwh,In Use,True
+470952,Seremban R&R Northbound,"Lebuhraya Utara–Selatan, Labu, 71900, Negeri Sembilan",2.7570324058210076,101.84568741606813,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,N/A,In Use,True
+470577,[Restricted] SYMPHONY TOWER (Public Area),"Menara Simfoni (Symphony Tower), Seri Kembangan, 43300",3.02593,101.753075,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+470421,EVPower - 168 Park Mall Selayang,"UG Parking, 168 Park Mall, Batu Caves, 68100, Selangor",3.2480458119633084,101.64911251194712,EVPower (MY),CCS (Type 2),180,180 kW,DC - RM1.30/kwh,In Use,True
+470150,Jalan Akses Sri Aman,"Jalan Akses Sri Aman, 95000, Sarawak",1.2186529632091094,111.46810965795908,Gentari Go (MY),CCS (Type 2),120,120 kW,1.40myr/kwh,In Use,True
+469573,[Restricted] PALM HILL RESIDENCES 3 (Residential Condo),"32a, KAJANG, 43000",3.025894,101.805321,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+469402,TNB Electron - Petron Batu Melintang,"205, Jeli, 17600, Kelantan",5.704121186804414,101.74152420188284,TNB Electron (MY),CCS (Type 2),100,100 kW,RM1.50/kwh,In Use,True
+469388,JomCharge | Masjid Tengku Muhammad Faiz Petra,"Masjid Tengku Muhammad Faiz Petra, Gua Musang, Kelantan",4.865164599147022,101.9622305377668,Jom Charge,CCS (Type 2),50,50 kW,1.50,In Use,True
+463450,[Restricted] SKYCUBE RESIDENCE CONDOMINIUM (Residential Condo),"Skycube Residence Condominium, Bayan Lepas, 11900",5.33531,100.269356,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+463449,[Public] HOTEL DE'LA FERNS CAMERON HIGHLAND (Hotel),"Batu 39, Jalan Besar, Tanah Rata, 39000 Tanah Rata, Pahang, IPOH",4.481393,101.376923,Unknown Network,CCS (Type 2),60,60 kW,N/A,In Use,True
+463448,[Restricted] AETAS DAMANSARA (Residential Condo),"1, PERSIARAN TROPICANA, PETALING JAYA, 47410",3.131345,101.594055,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+463447,[Restricted] PEARL SURIA RESIDENCE (Residential Condo),"Pearl Suria Residence, Kuala Lumpur, 58200",3.085396,101.674324,Unknown Network,Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+463446,[Restricted] PUTRA RESIDENCE (Residential Condo),"Putra Residence , Jalan Putra Murni 3/1  47650 , Selangor, Subang Jaya",3.014806,101.574249,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+463445,[Public] PROTON E.MAS PUTRAJAYA - JEWEL SONIC SDN BHD (Car Showroom),"Proton e.MAS Putrajaya - Jewel Sonic Sdn Bhd, Putrajaya, 62502",2.970161,101.717346,Unknown Network,CCS (Type 2),50,50 kW,N/A,In Use,True
+463444,[Restricted] SAPPHIRE ON THE PARK (Residential Condo),"Sapphire On The Park, Kuching, 93200",1.53306,110.345711,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,Offline,False
+461781,Gentari G orange Gua Musang,"Jalan Cengal, Gua Musang, 17300, Kelantan",4.89199564601175,101.97545574544574,Gentari Go (MY),CCS (Type 2),200,200 kW,1.60myr/kwh,In Use,True
+461509,N.U.R POWER - RExharge,"Kulim Hi-Tech Park, Kulim",5.4302189869149515,100.59863562821732,(Unknown Operator),CCS (Type 2),180,180 kW,RM1.30/kWh,In Use,True
+461508,QuickCharge,"KHTP Business Centre, Kulim, 09090",5.4236870392385015,100.58424239975943,(Unknown Operator),CCS (Type 2),80,80 kW,"MYR1.20/kWh DC, MYR1.00/kWh AC",In Use,True
+461219,South View Serviced Apartments Residential Charger,"Jalan Kerinchi Kiri 2, 59200, Kuala Lumpur",3.1132752250227185,101.66456668698913,(Unknown Operator),CCS (Type 2),22,22 kW,RM 1 / kwh,In Use,True
+460908,PROTON E.MAS BUTTERWORTH (ELEGANZ LIFESTYLE) (Car Showroom),"7528, Jalan Bagan Ajam, Butterworth, 13000",5.438376,100.381805,ChargeSini,CCS (Type 2),40,40 kW,N/A,Offline,False
+460907,MBPP PASAR BAYAN BARU (Grocery),"Pasar Bayan Baru, Bayan Lepas, 11900",5.32463,100.287018,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+460906,MBPP PASAR RAJAWALI (Public Area),"Market and complex MBPP Jalan Rajawali, Bayan Lepas, 11900",5.306942,100.264809,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+460905,[Public] LEXIS SUITES PENANG (Hotel),"28, BAYAN LEPAS, 11920",5.287161,100.232903,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+460904,[Restricted] VERTU RESORT CONDOMINIUM (Residential Condo),"Vertu Resort Condominium, Simpang Ampat, 14110",5.237983,100.438507,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+460903,[Restricted] ARCORIS RESIDENCES (Residential Condo),"Arcoris Residences, Kuala Lumpur, 50480",3.16833,101.651833,Unknown Network,CCS (Type 2),60,60 kW,N/A,In Use,True
+460902,[Restricted] TRX RESIDENCES TOWER B (Residential Condo),"TRX Residences @ TRX, Kuala Lumpur, 55188",3.143634,101.719177,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+460901,PUSAT DAGANGAN NZX (Shopping Mall),"Pusat Dagangan NZX, 47301, Petaling Jaya, 47301",3.115191,101.589211,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+460900,[Public] BUNGARAYA CONDOMINIUM (Residential Condo),"Bungaraya Condominium, Shah Alam, 40150",3.112455,101.571426,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+460899,[Restricted] THE LEAFZ BY EXSIM (Residential Condo),"The Leafz by EXSIM, Kuala Lumpur, 57100",3.085547,101.695,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+460898,[Restricted] SUBANG PARKHOMES (Residential Condo),"Subang Parkhomes, Subang Jaya, 47500",3.077366,101.5718,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+460897,[Public] SUNWAY PYRAMID (Public Area),"3, Jalan PJS 11/15, Bandar Sunway, Petaling Jaya, 47500",3.072698,101.604675,Unknown Network,Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+460896,[Public] SILK SKY SERVICED APARTMENT (Residential Condo),"Silk Sky Service Apartment, Seri Kembangan, 43300",3.027286,101.750374,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+460895,[Restricted] SPRINGVILLE RESIDENCE (Residential Condo),"Springville Residence, Seri Kembangan, 43300",3.000393,101.679359,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+460894,[Restricted] BSP 21 BLOCK G (Residential Condo),"Block G, BSP21, Jenjarom, 42610",2.94521,101.590233,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+460893,[Restricted] BSP 21 BLOCK B & D (Residential Condo),"BSP21, Jenjarom, 42610",2.942995,101.589699,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+460892,GRAND SWISS-BELHOTEL (Commercial),"Grand Swiss-Belhotel Melaka, Melaka, 75300",2.210585,102.24588,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+460665,Perdana View Condo,"No. 21, Jalan PJU 8/1., Petaling Jaya, 47820, Selangor",3.170716172795977,101.60245416683614,(Unknown Operator),CCS (Type 2),40,40 kW,Rm0.99/kWh,In Use,True
+460649,TNB Electron | Machap R&R Southbound (180kW DC),"North-South Expy, Simpang Renggam, 86200, Johor ",1.8962638,103.2283679,TNB Electron (MY),CCS (Type 2),180,180 kW,DC @ RM1.50/kWh,In Use,True
+460551,Marc Residence,"Jalan Song Ban Kheng, Bukit Mertajam, 14000, Pulau Pinang",5.349489515986733,100.45997900226371,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,Rm1/kwh,In Use,True
+460247,Petron Bandar Tasik Puteri EB by DC Handal,"Petron Bandar Tasik Puteri EB, Rawang, 48020, Selangor",3.29193608950942,101.47926153681544,DC Handal,CCS (Type 2),180,180 kW,RM1.30/kWh,In Use,True
+460234,GO TO-U EDUCITY HUB @ ISKANDAR PUTERI,"NO 3, STUDENT HUB, ISKANDAR PUTERI, 79250, JOHOR DARUL TA'ZIM",1.4319652934410811,103.61727027432562,Go ToU,CCS (Type 2),120,120 kW,RM 1.40 per kWh,In Use,True
+459797,MYDIN KUBANG KERIAN (Shopping Mall),"Mydin Kubang Kerian, Kota Bharu, 15200",6.097991,102.277771,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459796,THE WALK @ RIVERSON (Shopping Mall),"Riverson, Kota Kinabalu, 8810",5.969017,116.064499,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459795,LIDO PLAZA 2 (Shopping Mall),"Lido Plaza, Penampang, 88300",5.936645,116.082413,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459794,PERMAIPURA GOLF & COUNTRY CLUB (Golf Course),"Permaipura Golf & Country Club, Bedong, 08100",5.728236,100.527924,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459793,CINTA SAYANG RESORT (Hotel),"Cinta Sayang Resort, Sungai Petani, 08000",5.659039,100.518845,ChargeSini,CCS (Type 2),40,40 kW,"DC - RM1.29/kwh, AC - RM1.19/kwh",In Use,True
+459792,Purest Hotel Sungai Petani Kedah,"Purest Hotel Sungai Petani Kedah, Sungai Petani, 08000, Kedah",5.614636,100.482018,ChargeSini,CCS (Type 2),40,40 kW,RM 1.29/kWh,In Use,True
+459791,THE REEF PENANG (Residential Condo),"The Reef, Batu Ferringhi, 11100",5.477899,100.269989,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459790,[Restricted] SURIN CONDOMINIUM (Residential Condo),"SURIN BLOCK A, TANJUNG BUNGAH, 11200",5.466606,100.274902,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459789,[Restricted] ONE TANJONG (TOWER A) (Residential Condo),"One Tanjong by Lone Pine Group, George Town, 11200",5.466416,100.293724,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459788,[Restricted] PEARL VIEW CONDOMINIUM (Residential Condo),"Pearl View Condominium, Penang Hill, 11200",5.464443,100.295944,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459787,[Restricted] TAMAN LEADER CONDOMINIUM (Residential Condo),"1, Jalan Chee Seng 13, Taman Leader, 11200 Tanjung Bungah, Pulau Pinang, Malaysia, Tanjung Bungah, 11200",5.463445,100.277107,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459786,MBPP PASAR TANJONG BUNGAH (Public Area),"Pasar & Kompleks Makan Tanjung Bungah/தஞ்சோங் பூங்கா சந்தை வளாகம், Tanjung Bungah, 11200",5.46335,100.28508,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459785,ANGSANA TELUK BAHANG PENANG (Hotel),"Angsana Teluk Bahang, Penang, Tanjong Bungah, 11050",5.461868,100.219742,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459784,[Restricted] QUAYSIDE CONDOMINIUM (Residential Condo),"Quayside Condominium, Georgetown, 13050",5.460772,100.312714,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459783,[Restricted] TAMARIND CONDO PENANG (Residential Condo),"Tamarind Penang, Tanjung Tokong, 10470",5.456723,100.309563,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459782,[Restricted] I-SANTORINI CONDOMINIUM (Residential Condo),"I-Santorini, Tanjung Tokong, 10470",5.455225,100.309143,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459781,[Restricted] MARINOX SKY VILLAS (Residential Condo),"Marinox Sky Villas, Tanjung Tokong, 10470",5.454387,100.310135,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459780,[Restricted] THE BREZZA CONDOMINIUM BLOCK A (Residential Condo),"The Brezza Condominium, Tanjung Tokong, 10470",5.453275,100.308083,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+459778,[Restricted] TANJUNG PARK CONDOMINIUM (OUTDOOR) (Residential Condo),"Persiaran Lengkuas, Pulau Pinang, 11200",5.450167,100.304626,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459777,MBPP PRECINT 10 (Public Area),"Precinct 10, George Town, 10470",5.448701,100.30558,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459776,[Restricted] MONT RESIDENCES PENANG (Residential Condo),"Mont Residence, Georgetown, 10470",5.446555,100.29882,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459775,G HOTEL GURNEY (Hotel),"G Hotel Gurney, Georgetown, 10250",5.437557,100.310631,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459774,G KELAWAI HOTEL (Hotel),"G Hotel Kelawai, Georgetown, 10250",5.435551,100.309929,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459773,[Public] MBPP JALAN CONCORDIA (Public Area),"Jalan Concordia, George Town, 10250",5.434278,100.314377,Unknown Network,CCS (Type 2),50,50 kW,N/A,In Use,True
+459772,[Restricted] SETIA V RESIDENCES (Residential Condo),"SETIA V RESIDENCES, GEORGE TOWN, 10250",5.432878,100.314827,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459771,MBPP JALAN ARRATOON (Public Area),"Jalan Arratoon, George Town, 10450",5.422729,100.323074,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459770,MBPP LEBUH UNION (Public Area),"Lebuh Union, George Town, 10200",5.419094,100.342606,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459769,MBPP LEBUH DICKENS (Public Area),"Ee Beng Vegetarian Food, George Town, 10050",5.418923,100.330742,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459768,[Restricted] ELEMENTS GARDEN (Residential Condo),"Elements Garden, Butterworth, 13400",5.417818,100.382507,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459767,MBPP LEBUH CINTRA (Public Area),"Wen Chang Hainan Chicken Rice, George Town, 10200",5.417183,100.333359,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459766,MBPP LEBUH PASAR (LITTLE INDIA) (Public Area),"Penang Little India, George Town, 10200",5.416258,100.340462,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459765,MBPP GAT LEBUH GEREJA (Public Area),"Gat Lebuh Gereja, George Town, 10300",5.415994,100.343353,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459764,MBPP GAT LEBUH CHINA (Public Area),"Wisma Yeap Chor Ee, George Town, 10300",5.415108,100.342506,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459763,1ST AVENUE PENANG (Shopping Mall),"1st Avenue Mall, Georgetown, 10300",5.413373,100.331314,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459762,CYC HERITAGE HOTEL (Hotel),"CYC Heritage Hotel, George Town, 10300",5.408709,100.331421,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459761,[Restricted] SANDILANDS CONDOMINIUM (Residential Condo),"Sandilands Condominium, Georgetown, 10300",5.405225,100.329376,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459760,MBPP JALAN PASAR (KEK LOK SI) (Public Area),"617, Jalan Balik Pulau, Pekan Ayer Itam, Air Itam, 11500",5.401554,100.27655,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459759,[Restricted] WOODSBURY SUITES (Residential Condo),"Woodsbury Suites Butterworth, Butterworth, 12100",5.39948,100.374596,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459758,MBPP PERSIARAN KARPAL SINGH (Public Area),"Family Mart Karpal Singh, Jelutong, 11600",5.398926,100.329536,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459757,[Restricted] BOULEVARD PENANG CONDOMINIUM (Residential Condo),"Boulevard Condominium, Ayer Itam, 11500",5.397755,100.294464,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459756,[Restricted] LUMINARI RESIDENCES (Residential Condo),"Luminari Residences, Butterworth, 12100",5.397302,100.373077,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459755,[Restricted] THE SPRING CONDOMINIUM (Residential Condo),"The Spring Condominium, Sungai Pinang, 11600",5.396901,100.325943,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459754,MBPP JALAN MASJID NEGERI (Public Area),"Jalan Masjid Negeri, Jelutong, 11600",5.390752734244174,100.3023786016663,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459753,SUNWAY MEDICAL CENTRE PENANG (LEVEL 1B) (Medical),"Sunway Medical Centre Penang, Perai, 13700",5.395644,100.396744,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459752,MBPP JALAN LENGGONG (Public Area),"Jalan Lenggong, Jelutong, 11600",5.395393,100.31691,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459751,MBPP JALAN TAN SRI TEH EWE LIM (Public Area),"Jalan Tan Sri Teh Ewe Lim, Jelutong, 11600",5.393008,100.306,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459750,MBPP PASAR BATU LANCHANG (Public Area),"BATU LANCHANG, JELUTONG",5.389948,100.305725,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459749,[Restricted] BAYSWATER CONDOMINIUM (Residential Condo),"Bayswater Resort Condominium, Gelugor, 11700",5.376084,100.314514,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459748,[Restricted] PLATINO CONDOMINIUM (Residential Condo),"no 1, Persiaran Tunku Kudin, Jelutong, 11700",5.376035,100.312653,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459747,"MBPP PASAR JALAN PERMAI, GELUGOR (Commercial)","Pasar Jalan Permai, Penang",5.371862,100.301521,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459746,MYDIN BUKIT MERTAJAM (Shopping Mall),"Mydin Mall Bukit Mertajam, Bukit Mertajam, 13600",5.368251,100.414551,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+459745,MYDIN GONG BADAK (Shopping Mall),"Mydin Mall Gong Badak, Kuala Terengganu, 21300",5.355653,103.096504,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459744,[Restricted] PANGSAPURI SERI JAYA BUKIT MERTAJAM (Residential Condo),"Pangsapuri Seri Jaya, Bukit Mertajam, 14000",5.349842,100.472855,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459743,[Restricted] BERJAYA CONDOMINIUM (Residential Condo),"Berjaya Condominium, Bukit Mertajam, 14000",5.348321,100.470856,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459742,[Restricted] ICONIC SKIES (Residential Condo),"Iconic Skies, Bayan Lepas, 11900",5.342919,100.281273,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459741,MBPP KOMPLEX SUKAN BANDARAYA RELAU (Commercial),"Kompleks Sukan Bandaraya Relau, Bayan Lepas, 11900",5.342166,100.271591,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459740,[Restricted] QUAY WEST RESIDENCE (Residential Condo),"QuayWest Residence, Bayan Lepas, 11900",5.342048,100.310806,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459739,[Restricted] PUTRA PLACE CONDOMINIUM (Residential Condo),"118, Persiaran Bayan Indah, Bayan Lepas, 11900",5.340545,100.309975,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459738,MAYANG MALL (Shopping Mall),"Mayang Mall, Kuala Terengganu, 20000",5.337903,103.143982,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459737,MBPP GOLDEN TRIANGLE (Public Area),"GOLDEN TRIANGLE, Bayan Lepas, 11900",5.33707,100.270882,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459736,[Restricted] IMPERIAL RESIDENCES CONDOMINIUM (Residential Condo),"Imperial Residence Condominium, Bayan Lepas",5.334093,100.271492,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459735,MBPP MEDAN KAMPUNG RELAU (Public Area),"Medan Kampung Relau, Bayan Lepas, 11900",5.333898,100.294701,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459734,MBPP 7 ELEVEN BALIK PULAU (Public Area),"KEDAI JERUK TEIK SEANG, Balik Pulau, 11000",5.333833,100.21698,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459733,[Restricted] NOVUS RESIDENCES (Residential Condo),"Novus Residences, Bayan Lepas, 11900",5.332276,100.298653,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+459732,PROTON e.MAS KUALA TERENGGANU (Car Showroom),"Proton Indahsari Otomobil 3S - K.Terengganu (065639-M), Kuala Terengganu, 20400",5.315983,103.150764,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459731,[Restricted] SOLARIA RESIDENCES (Residential Condo),"Solaria Residences, Bayan Lepas, 11900",5.300654,100.265976,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459730,MBPP PASAR KELICAP (Public Area),"Kompleks Pasar Kelicap, Bayan Lepas, 11900",5.3005,100.257675,ChargeSini,CCS (Type 2),50,50 kW,N/A,In Use,True
+459729,[Restricted] ECO BLOOM CONDOMINIUM (Residential Condo),"ECO BLOOM @ ECO MEADOWS, SIMPANG AMPAT, 14100",5.25882,100.469116,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459728,[Restricted] SUASANA @ UTROPOLIS (Residential Condo),"Jalan Cassia Barat 2, Bandar Cassia, Bandar Cassia",5.241358,100.435699,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459727,BEVERLY HOTEL TAIPING (FOOD AVENUE) (Hotel),"Beverly Hotel, Taiping, 34000",4.864984,100.73056,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459726,FLEMINGTON HOTEL TAIPING (Hotel),"no 1, Jalan Samanea Saman, Taiping, 34000",4.847657,100.750282,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459725,MYDIN MERU (Shopping Mall),"MYDIN MERU RAYA, Ipoh, 30020",4.671015,101.074158,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459724,[Restricted] TASEK FAMILY HOMESTAY (Homestay),"no. 42, Regat Tasek Jaya 2, Ipoh, 31400",4.650584,101.10733,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459723,THE HAVEN ALL SUITE RESORT @ IPOH (BLOCK A) (Hotel),"The Haven All Suite Resort, Ipoh, Ipoh, 31150",4.63739,101.163017,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459722,FESTIVAL WALK @ IPOH (Commercial),"Medan Ipoh Bistari (IP2), Ipoh, 31400",4.619425,101.119522,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459721,[Restricted] THE COVE HILLSIDE RESIDENCE BLOCK A (Residential Condo),"The Cove Hillside Residence, Ipoh, 31400",4.613544,101.13533,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459720,M ROOF HOTEL & RESIDENCES (Hotel),"M Roof Hotel & Residences, Ipoh, 31400",4.612164,101.105164,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459719,REGALODGE HOTEL IPOH (Hotel),"Regalodge Hotel Ipoh, Ipoh, 30450",4.600909,101.08696,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459718,[Restricted] PRIMA IPOH CONDOMINIUM (Residential Condo),"Prima Ipoh Condominium, Ipoh, 30350",4.595509,101.097816,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459717,[Restricted] DAMAIPURI CONDOMINIUM (Residential Condo),"Damaipuri Condominium, Ipoh, 30250",4.585387,101.091469,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459716,[Restricted] PARKVIEW RESIDENCE (Residential Condo),"Parkview Homes, Ipoh, 31350",4.542344,101.106583,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459715,ECONSAVE CASH & CARRY KAMPAR (Grocery),"Econsave Kampar, Kampar, 31900",4.32785,101.146538,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459714,THE KASTURI RESORT CHERATING (Hotel),"The Kasturi Resort Cherating, Kuantan, 26080",4.163994,103.410583,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459713,"BLH ECOENERGY , KUANTAN (Commercial)","PL-A1, Ground Floor, Lorong Seri Setali 1,, Kuantan, 25300",3.841507,103.336868,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459712,KEMAMAN KOPITIAM JALAN BESERAH (Restaurant),"Jalan Beserah, Kuantan, 25250",3.827981,103.340355,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459711,ZENITH HOTEL KUANTAN (Hotel),"The Zenith Hotel, Kuantan, 25200",3.819549,103.325966,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459710,EMPIRE RESTAURANT (Restaurant),"Empire Seafood Restaurant, Kuantan, 25000",3.817081,103.329659,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459709,MEGA VIEW HOTEL (Hotel),"567, Jalan Besar, Kuantan, 25000",3.805526,103.329231,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459708,MAJLIS BANDARAYA KUANTAN (MBK) (Commercial),"Jalan Tanah Putih, Kuantan, 25100",3.797902,103.322044,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459707,[Public] RESTORAN SENTOSA RAUB (Restaurant),"Restaurant Sentosa (Raub), Raub District, 27600",3.754591,101.853226,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459706,[Public] HOTEL GREEN PARK TEMERLOH (Hotel),"Hotel Green Park, Temerloh, 28000",3.443756,102.413109,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459705,"[Restricted] RAINTREE BATU CAVES, SELANGOR (Residential Condo)","Taman Raintree, Batu Caves, 68100",3.245793,101.68248,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459704,SELAYANG CAPITOL KOMPLEX (Shopping Mall),"Selayang Capitol Kompleks, Batu Caves, 68100",3.243213,101.649673,ChargeSini,CCS (Type 2),40,40 kW,RM1.29 per kwh,In Use,True
+459703,[Restricted] NADAYU 63 (Residential Condo),"Nadayu 63, Kuala Lumpur, 53100",3.22253,101.752602,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459702,[Restricted] NADAYU 62 (Residential Condo),"8a, Jalan Melawati, Kuala Lumpur, 53100",3.221433,101.75145,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459701,[Restricted] SURIA PUTRA RESIDENCE (Residential Condo),"Suria Putra, Sungai Buloh, 47000",3.218914,101.555115,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459700,[Restricted] GAYA APARTMENT (Residential Condo),"Gaya Apartment Block 6, Kuala Lumpur, 53100",3.212245,101.745728,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459699,[Restricted] LAKEVILLE RESIDENCE TAMAN WAHYU (Residential Condo),"68, Jalan Sibu, Jalan Ipoh, 68100",3.209003,101.668945,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459698,SMILE HOTEL WANGSA MAJU (Hotel),"No.36&37, jalan metro wangsa,, Setiawangsa, 53300",3.20335,101.736328,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459697,[Restricted] 1 SENTUL CONDOMINIUM (Residential Condo),"1 Sentul Condominium, Sentul, 51100",3.200006,101.689575,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459696,[Restricted] QUINN RESIDENCE (Residential Condo),"Quinn Residence Official, Kuala Lumpur, 53300",3.199034,101.738152,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459695,[Restricted] MH PLATINUM RESIDENCE (Residential Condo),"MH Platinum Residence, Gombak, 53100",3.198403,101.704727,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459694,[Restricted] SPHERE DAMANSARA (Residential Condo),"SPHERE Damansara, Petaling Jaya, 47830",3.197164,101.599075,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459693,[Restricted] SERI RIANA RESIDENCES (Residential Condo),"Seri Riana Residence, Kuala Lumpur, 53300",3.196209,101.739929,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+459692,[Restricted] BENNINGTON RESIDENCES (Residential Condo),"1, Jalan Arena 1, Kuala Lumpur, 53200",3.194103,101.714622,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459691,SINCHOIWAH RESTAURANT SDN BHD (Restaurant),"Sinchoiwah Restaurant, Jinjang Kepong, 52200",3.194077,101.634285,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459690,[Restricted] DUA MENJALARA KONDOMINIUM (Residential Condo),"Dua Menjalara Condominium, Jinjang Kepong, 52200",3.192754,101.635666,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459689,[Restricted] FERA RESIDENCE (Residential Condo),"Fera Residence, Kuala Lumpur, 53300",3.191956,101.737511,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459688,[Restricted] UNITED POINT RESIDENCES (Residential Condo),"JALAN LANG EMAS, Segambut, 51200",3.191765,101.653366,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459687,[Restricted] LEXA RESIDENCE (Residential Condo),"Lexa Residence, Kuala Lumpur, 53300",3.191246,101.736626,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459686,[Restricted] THE REACH @ TITIWANGSA (Residential Condo),"The Reach @ Titiwangsa, Setapak, 53200",3.18707,101.704689,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459685,[Restricted] HERITAGE CONDOMINIUM (Residential Condo),"Heritage Condominium, Setapak, 53000",3.186329,101.700851,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459684,[Restricted] BREEZEWAY RESIDENCES (Residential Condo),"12, Persiaran Residen, Pandan Perdana, 52200",3.185125,101.634544,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459683,[Restricted] ANJALI NORTH KIARA (Residential Condo),"Anjali North Kiara, Mont Kiara, 51200",3.183415,101.652992,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459682,[Restricted] THE FENNEL SENTUL EAST (Residential Condo),"The Fennel Sentul East, Sentul, 51000",3.182122,101.693649,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459681,[Restricted] DAMANSARA FORESTA (Residential Condo),"Damansara Foresta Damansara Foresta Condominium, Persiaran Meranti, Bandar Sri Damansara,, Bukit Damansara A, 52200",3.181285,101.612526,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459680,[Restricted] ICON RESIDENCE MONT KIARA (Residential Condo),"20, Persiaran Dutamas, Cheras, 50480",3.179405,101.663658,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459679,[Restricted] CONCERTO NORTH KIARA CONDOMINIUM GROUND PARKING (Residential Condo),"Concerto North Kiara, Segambut, 51200",3.178471,101.658821,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459678,[Restricted] RESIDENSI HARMONI 2 (Residential Condo),"Residensi Harmoni 2, Segambut, 51200",3.178458,101.644836,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459677,[Restricted] VILLA ORKID CONDOMINIUM (Residential Condo),"Villa Orkid, Segambut, 51200",3.178057,101.644402,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459676,[Restricted] CONCERTO NORTH KIARA CONDOMINIUM BLOCK B (Residential Condo),"Concerto North Kiara, Mont Kiara, 51200",3.177837,101.658791,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459675,[Restricted] WEDGEWOOD RESIDENCES (Residential Condo),"Wedgewood Residences, Mont Kiara, 50480",3.174555,101.657722,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459674,[Restricted] PANGSAPURI ONE JELATEK (Residential Condo),"One Jelatek Condominium, Klang, 54200",3.173146,101.734619,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459673,[Restricted] HARTAMAS REGENCY 2 (Residential Condo),"Hartamas Regency 2, Kuala Lumpur, 50480",3.173123,101.66275,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459672,[Restricted] KIARAVILLE CONDOMINIUM (Residential Condo),"Kiaraville, Kuala Lumpur, 50480",3.172485,101.659172,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459671,[Restricted] EXPRESSIONZ PROFESSIONAL SUITES (Residential Condo),"Expressionz Professional Suites by EXSIM, Kuala Lumpur, 50400",3.171628,101.712433,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459670,GURNEY MALL (Shopping Mall),"Gurney Mall, Keramat, 54000",3.171486,101.72126,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459669,[Restricted] SUNWAY MONT RESIDENCE (Residential Condo),"Sunway Mont Residences, Mont Kiara, 50480",3.169577,101.647079,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459668,[Restricted] CHYMES GURNEY RESIDENCY (Residential Condo),"Chymes Gurney Residency, Keramat, 54000",3.169267,101.726036,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459667,[Restricted] LAMAN SURIA (Residential Condo),"Laman Suria, Mont Kiara, 50480",3.169065,101.650833,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459666,[Restricted] CASA KIARA 2 CONDOMINIUM (Residential Condo),"Casa Kiara 2, Mont Kiara, 50480",3.168871,101.646622,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459665,[Restricted] KIARA DESIGNERS SUITES (Residential Condo),"Kiara Designer Suites - Serviced Condominium, Mont Kiara, 50480",3.16838,101.647987,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459664,[Restricted] RESIDENSI 22 MONT KIARA (Residential Condo),"Residensi 22 Mont’Kiara, UEM Sunrise, Kuala Lumpur, 50480",3.167785,101.650536,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459663,[Restricted] KIARAMAS SUTERA CONDO (Residential Condo),"Kiaramas Sutera, Mont Kiara, 50480",3.167461,101.643799,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459662,MENARA MUSTAPHA KAMAL (Commercial),"Menara Mustapha Kamal, Petaling Jaya, 47820",3.167105,101.613358,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459661,[Restricted] I-ZEN KIARA 2 (Residential Condo),"I-zen @ Kiara 2, Kuala Lumpur, 50480",3.165764,101.654022,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459660,[Restricted] FLORA MURNI CONDOMINIUM (Residential Condo),"Flora Murni Condominium Mont Kiara, Mont Kiara, 50480",3.165466,101.650841,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459659,[Restricted] LANAI KIARA CONDOMINIUM (Residential Condo),"Lanai Kiara Condominium, Mont Kiara, 50480",3.165365,101.648788,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459658,MERCU MUSTAPHA KAMAL (Commercial),"Neo Damansara, Petaling Jaya, 47820",3.164928,101.613968,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459657,MENARA TOKIO MARINE (Commercial),"Tokio Marine Life Insurance Malaysia Bhd., Kuala Lumpur, 50400",3.16296,101.717049,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459656,[Restricted] 202 DESA CAHAYA (Residential Condo),"202DC Desa Cahaya, Keramat, 55000",3.161202,101.725151,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459655,GREAT EASTERN MALL (LEVEL P1) (Shopping Mall),"Great Eastern Mall, Kuala Lumpur, 55000",3.16059,101.736671,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459654,[Restricted] NOVO AMPANG (Residential Condo),"NOVO Ampang, Kuala Lumpur, 55000",3.160543,101.739365,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459653,[Restricted] GCB COURT (Residential Condo),"GCB Court Condominium, Kuala Lumpur, 55000",3.160379,101.748093,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459652,GREAT EASTERN MALL OUTDOOR (Shopping Mall),"Great Eastern Mall, Kuala Lumpur, 55000",3.160346,101.736938,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459651,INTERCONTINENTAL HOTEL KL (Hotel),"InterContinental Kuala Lumpur, an IHG Hotel, KLCC, 50450",3.159514,101.717857,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459650,[Restricted] THE FACE SUITES (Residential Condo),"THE FACE Suites, Kuala Lumpur, 50250",3.158533,101.703842,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459649,[Restricted] SERI HENING RESIDENCE (Residential Condo),"28, Jalan Ampang Hilir, Kuala Lumpur, 55000",3.158469,101.737213,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459648,SHOPPES AT FOUR SEASON PLACE (Commercial),"145, Jln Ampang, Kuala Lumpur, 50088",3.158184,101.713768,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459647,THE CURVE (Shopping Mall),"The Curve, Petaling Jaya, 47800",3.157687,101.611427,ChargeSini,CCS (Type 2),23,23 kW,N/A,In Use,True
+459646,[PARTNER EVHUB] PERTAMA COMPLEX (Shopping Mall),"Pertama Complex | First Shopping Center, Jalan Duta, 50100",3.157289,101.695572,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459645,SOGO KL (Shopping Mall),"Sogo, Kuala Lumpur, 50100",3.156078,101.69529,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459644,CONCORDE HOTEL (Hotel),"Concorde Hotel Kuala Lumpur, KLCC, 50250",3.155288,101.705879,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459643,[Restricted] DAMAI SURIA CONDOMINIUM (Residential Condo),"Damai Suria, Jln Ampang, 55000",3.154796,101.730087,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459642,[Restricted] THE MANOR KL (Residential Condo),"The Manor, Jln Tun Razak, 50450",3.152432,101.719872,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459641,[Restricted] D'SURIA CONDOMINIUM (Residential Condo),"D'Suria Condominium - Ampang, Ampang, 68000",3.151467,101.747108,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459640,10 SEMANTAN SUITES  (EAST WING) (Residential Condo),"10 Semantan - East Wing Lobby, Bukit Damansara A, 50490",3.151314,101.671043,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459639,[Restricted] 10 SEMANTAN SUITES (Residential Condo),"10 Semantan Service Suite, Bukit Damansara A, 50490",3.150833,101.670433,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459638,[Restricted] CASA INDAH 2 CONDOMINIUM (Residential Condo),"2A, Persiaran Surian Tropicana Indah, PJU 3, Kota Damansara, 47410 Petaling Jaya, Selangor, Tropicana Indah",3.149504,101.587891,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459637,WISMA CHUANG (Commercial),"Wisma Chuang, Kuala Lumpur, 50250",3.149054,101.711357,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459636,[Restricted] OPAL DAMANSARA CONDOMINIUM (Residential Condo),"Sunway Opal Damansara Condominium, Petaling Jaya, 47810",3.148517,101.598381,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459635,[Restricted] SENTRIO PANDAN CONDOMINIUM (OUTDOOR) (Residential Condo),"Sentrio Pandan, Kuala Lumpur, 55100",3.148235,101.737785,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459634,JOURNAL HOTEL BUKIT BINTANG (Hotel),"The Kuala Lumpur Journal Hotel, Jalan Tun Ismail, 50200",3.148212,101.710533,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+459633,[Restricted] REGENCY TOWER (Residential Condo),"Regency Tower, Jln Ampang, 50200",3.147179,101.704971,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459632,[Restricted] DC RESIDENSI (Residential Condo),"DC Residensi, Kuala Lumpur, 50490",3.146692,101.660881,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459631,[Restricted] THE HORIZON RESIDENCES (Residential Condo),"The Horizon Residences KL, Jln Tun Razak, 55000",3.145089,101.722572,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459630,MELIA HOTEL (Hotel),"Meliá Kuala Lumpur, Kuala Lumpur, 51000",3.143214,101.709831,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459629,PLAZA BERJAYA (Shopping Mall),"Plaza Berjaya, Jln Raja Laut, 55100",3.143053,101.709023,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459628,[Restricted] RESIDENSI PANDANMAS 2 (Residential Condo),"Residensi Pandanmas 2, Kampung Pandan, 55100",3.140326,101.737648,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459627,[Restricted] [PARTNER EVHUB] LUCENTIA RESIDENCES (Residential Condo),"2, Jalan Hang Tuah, Jln Ampang, 55100",3.140128,101.708366,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459626,MENARA TAKAFUL (AC) (Commercial),"Takaful Malaysia, Kg Attap, 50000",3.139236,101.696205,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459625,[Restricted] OPUS RESIDENCES (Residential Condo),"Opus Residences, Kg Attap, 50460",3.137392,101.699799,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459624,[Restricted] Q SENTRAL (Commercial),"Q Sentral, Kuala Lumpur, 50470",3.136605,101.687714,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459623,[Restricted] SUNWAY BELFIELD TOWER B (Residential Condo),"Residensi Sunway Belfield, Kuala Lumpur, 50460",3.135861,101.696404,Unknown Network,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459622,[Restricted] SUASANA SENTRAL LOFT (Residential Condo),"5, Jalan Stesen Sentral, Jln Tun Razak, 50470",3.131384,101.683586,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459621,[Restricted] LUMI TROPICANA (Residential Condo),"Lumi Tropicana, Petaling Jaya, 47800",3.129476,101.59417,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459620,[Restricted] SUNWAY VELOCITY TWO (Residential Condo),"Sunway Velocity TWO TOWER C&D, Kuala Lumpur, 55100",3.129367,101.725037,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459619,SEVENTEEN MALL (Shopping Mall),"Seventeen Mall, Petaling Jaya, 46400",3.128598,101.634811,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459618,(PRIVATE) Chargesini Showroom (Car Showroom),"ChargeSini EV Charging Solution, Cheras, 55100",3.1281,101.754181,ChargeSini,CCS (Type 2),15,15 kW,N/A,Offline,False
+459617,SHAMELIN STAR RESIDENCE (Residential Condo),"Shamelin Star Residences Rigel, Kuala Lumpur, 56100",3.126423,101.737045,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459616,[Restricted] NADI BANGSAR SERVICED RESIDENCE (Residential Condo),"Nadi Bangsar Serviced Residence, Bangsar, 59100",3.125863,101.67514,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+459615,[Restricted] TRION 2 @ KL (Residential Condo),"Trion 2 @ KL, Kuala Lumpur, 55200",3.12525,101.712776,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+459614,[Restricted] PARC 3 RESIDENCE (Residential Condo),"5, Jalan Pudu Perdana, Kuala Lumpur, 56100",3.121749,101.730713,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459613,[Restricted] SETIA SKY SEPUTEH (Residential Condo),"Setia Sky Seputeh, Kuala Lumpur, 58000",3.12028,101.681557,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459612,COLUMBIA ASIA HOSPITAL PETALING JAYA (Medical),"Columbia Asia Hospital - Petaling Jaya, Petaling Jaya, 46200",3.118356,101.637642,ChargeSini,CCS (Type 2),30,30 kW,N/A,In Use,True
+459611,[Restricted] VILA VISTA CHERAS CONDOMINIUM (Residential Condo),"Vila Vista Condominium, Kuala Lumpur, 56100",3.114405,101.730003,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459610,D'NETWORK @ SETIA ECO PARK (Commercial),"D'Network @ Setia Eco Park, Shah Alam, 40170",3.108452,101.477661,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459609,KELANA D'PUTERA CONDOMINIUM (Residential Condo),"Kelana D'Putera - Main Gate | PJ Ss7 condominium, Petaling Jaya, 47301",3.108021,101.593048,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459608,[Restricted] VIVO RESIDENCE @ 9 SEPUTEH (Residential Condo),"VIVO Residence @ 9 Seputeh, Kuala Lumpur, 58000",3.105652,101.677086,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459607,MILLENNIUM SQUARE,"Millennium Square, Petaling Jaya, 46100",3.10489,101.635345,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459606,[Restricted] PAPILLON DESAHILL CONDOMINIUM (Residential Condo),"Papillon Desahill Condominium, Kuala Lumpur, 58100",3.102913,101.679718,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459605,PROTON E.MAS CHERAS- ABLE MOBILITY SDN BHD (Car Showroom),"Proton e.MAS Cheras - Able Mobility Sdn Bhd, Willayah Persekutuan, 56100",3.102519,101.734657,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459604,[Restricted] DANAU PERMAI CONDOMINIUM (Residential Condo),"Danau Permai Condominium, Kuala Lumpur, 58100",3.101011,101.68837,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459603,[Restricted] SURIA RESIDENCES (Residential Condo),"Suria Residence by Sunsuria, Shah Alam, 40150",3.098301,101.537277,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459602,[Restricted] THE HIPSTER TAMAN DESA (Residential Condo),"The Hipster, Taman Desa, Kuala Lumpur, 58100",3.098231,101.69014,Unknown Network,CCS (Type 2),40,40 kW,N/A,In Use,True
+459601,[Restricted] PANGSAPURI SERVIS SURIA JELUTONG (Residential Condo),"Suria Jelutong Serviced Apartment, Shah Alam, 40150",3.098137,101.538795,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459600,[Restricted] CASA DESA CONDOMINIUM (Residential Condo),"Casa Desa Condominium, Cheras, 58100",3.096656,101.679192,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459599,[Restricted] ABADI RIA CONDOMINIUM (Residential Condo),"Abadi Ria Condominium (Kondominium Abadi Ria), Cheras, 58100",3.095673,101.684349,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459598,HJ SEAFOOD TREASURE (Restaurant),"HJ Seafood Treasure 海景大酒家, Kuchai Lama, 58200",3.092424,101.685303,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459597,[Restricted] UTROPOLIS SUITES TOWER B (Residential Condo),"Utropolis Suites 1 (namely Tower A and B), Shah Alam, 40150",3.09107,101.55896,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459596,[Restricted] THE HOLMES 2 CONDOMINIUM (Residential Condo),"The Holmes 2, Jln Tun Razak, 56000",3.088864,101.720764,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459595,[Restricted] KL PALACE COURT (Residential Condo),"KL Palace Court, Kuala Lumpur, 58200",3.088201,101.683678,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459594,[Restricted] ICON CITY (Residential Condo),"Icon City, Petaling Jaya, 47300",3.087786,101.615036,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459593,[Restricted] KUCHAI BREM PARK CONDO 1 (Residential Condo),"Kuchai Brem Park Condo 1, Kuchai Lama, 58200",3.086742,101.686554,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459592,CHINT MALAYSIA (Commercial),"CHINT Malaysia, Shah Alam, 40150",3.085453,101.572601,ChargeSini,CCS (Type 2),60,60 kW,N/A,Offline,False
+459591,SMILE HOTEL SHAH ALAM (Hotel),"Smile Hotel Shah Alam Seksyen 9, Shah Alam, 40100",3.085349,101.522308,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459590,[Restricted] PETALZ RESIDENCES @ OLD KLANG ROAD (Residential Condo),"Petalz Residences by EXSIM, Kuala Lumpur, 58000",3.084323,101.661392,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459589,[Restricted] WIDURI IMPIAN CONDOMINIUM (Residential Condo),"Widuri Impian Condominium, Desa Petaling, 57100",3.084177,101.713982,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459588,CONCORDE HOTEL SHAH ALAM (Hotel),"Concorde Hotel Shah Alam, Shah Alam, 40100",3.083955,101.524399,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459587,[Restricted] CITIZEN 2 @ OLD KLANG ROAD (Residential Condo),"Citizen 2 @ Old Klang Road, Old Klang Road, 58000",3.081979,101.662781,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459586,NU EMPIRE SHOPPING GALLERY (Shopping Mall),"Empire Shopping Gallery, Subang Jaya, 47500",3.081778,101.582802,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459585,IKON CONNAUGHT MALL (Shopping Mall),"IKON Connaught, Cheras, 56000",3.081166,101.731636,ChargeSini,CCS (Type 2),47,47 kW,N/A,In Use,True
+459584,[Restricted] ONE SOHO SUBANG APARTMENT (Residential Condo),"One Soho Subang, Subang Jaya, 47500",3.079117,101.572502,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459583,[Restricted] GREENFIELD RESIDENCE (Residential Condo),"Greenfield Residence, Petaling Jaya, 46150",3.078443,101.613419,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459582,[Restricted] BOULEVARD SUBANG JAYA (Residential Condo),"The Boulevard Condominium Subang Jaya, Subang Jaya, 47500",3.07837,101.602219,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459581,[Restricted] PRIMA U1 CONDOMINIUM (Residential Condo),"Prima U1 Condominium, Shah Alam, 40150",3.078161,101.556183,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459580,[Restricted] SERINGIN RESIDENCES (Residential Condo),"Seringin Residences, Old Klang Road, 58200",3.076546,101.686668,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459579,[Restricted] RIANA SOUTH CONDOMINIUM (Residential Condo),"Riana South @ Bukit Manda'rina - IJM Land, Kuala Lumpur, 56000",3.076233,101.732903,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459578,[Restricted] RIVERVILLE RESIDENCES (Residential Condo),"Riverville Residences, Kuala Lumpur, 58200",3.076086,101.65593,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459577,[Restricted] ALTITUDE 236 (Residential Condo),"9, Persiaran Alam Damai, Cheras, 56000",3.076023,101.735252,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459576,[Restricted] YOU CITY-YOU VISTA (Residential Condo),"You City - You Vista, Cheras, 43200",3.074682,101.762955,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459575,[Restricted] GREEN RESIDENCE (Residential Condo),"Jalan Sayang 1, Cheras, 43200",3.072992,101.755684,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459574,[Restricted] IMPERIAL RESIDENCE (Residential Condo),"Imperial Residence, Cheras, 43200",3.072718,101.759346,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459573,[Restricted] CHERAS HEIGHTS CONDOMINIUM (Residential Condo),"no 2, Jalan Bukit Cheras 18, Kuala Lumpur, 56000",3.068582,101.747993,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459572,[Restricted] ALAM SANJUNG (Residential Condo),"ALAM SANJUNG, Shah Alam, 40300",3.068384,101.553566,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459571,[Restricted] WALTZ RESIDENCES (Residential Condo),"Waltz Residences, Puchong, 58200",3.068148,101.672478,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459570,PINNACLE SRI PETALING MALL (Grocery),"Pinnacle Sri Petaling (Condominium Complex), Kuala Lumpur, 57000",3.067885,101.693985,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459569,[Restricted] THE GREENS (RESIDENSI HIJAUAN) (Residential Condo),"Residensi Hijauan (The Greens), Shah Alam, 40300",3.067677,101.553314,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459568,THE FOOD MERCHANT WCITY OUG SALES GALLERY (Grocery),"The Food Merchant, WCity OUG Sales Gallery, OUG, 58200",3.067541,101.67411,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459567,[Restricted] PARK VILLA CONDOMINIUM (TOWER A) (Residential Condo),"Park Villa Condominium @ Jalan Pipit, Puchong, 47100",3.066964,101.625031,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459566,[Restricted] IMPIAN HEIGHT CONDOMINIUM (Residential Condo),"Impian Height Condominium, Puchong, 47100",3.065263,101.625984,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459565,[Restricted] KIARA RESIDENCE 2 (Residential Condo),"Kiara Residence 2, Kuala Lumpur, 58200",3.064063,101.669563,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+459564,THE SUMMIT USJ (Shopping Mall),"The Summit USJ, Subang Jaya, 47600",3.06024,101.593544,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459563,[Restricted] USJ ONE RESIDENCE (Residential Condo),"USJ One Residence Tower B, Subang Jaya, 47500",3.059559,101.598648,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459562,[Restricted] CASA GREEN CONDOMINIUM (TOWER A) (Residential Condo),"Casa Green Condominium - Cheras, Cheras, 43200",3.057322,101.761642,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459561,[Restricted] SAVANNA BUKIT JALIL (Residential Condo),"Savanna Bukit Jalil, Kuala Lumpur, 57000",3.056604,101.687775,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459560,[Restricted] THE HAVRE BUKIT JALIL (Residential Condo),"The Havre Bukit Jalil, Kuala Lumpur, 57000",3.056034,101.666908,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459559,BMC MALL (Shopping Mall),"BMC Mall, Cheras, 43200",3.054651,101.786812,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459558,[Restricted] KEN RIMBA CONDOMINIUM 1 (Residential Condo),"Ken Rimba Condominium 1, Shah Alam, 40200",3.053399,101.4851,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459557,[Restricted] EMERALD RESIDENCES (Residential Condo),"Emerald Residence, Cheras, 43200",3.052281,101.794403,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459556,[Restricted] THE ZEST @ KINRARA 9 (Residential Condo),"The Zest @Kinrara 9, Puchong, 47180",3.052172,101.654312,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459555,[Restricted] REGENCY KLANG (Residential Condo),"Regency Condominium, Klang, 41300",3.051143,101.462868,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459554,[Restricted] TWIN ARKZ (Residential Condo),"Twin Arkz @ Bukit Jalil, Desa Petaling, 57000",3.051014,101.680023,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459553,[Restricted] VINA RESIDENCY (Residential Condo),"Vina Residency, Cheras, 43200",3.049642,101.753036,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459552,[Restricted] THE NETIZEN (Residential Condo),"The Netizen Cheras Homestay, Cheras, 43200",3.049329,101.772591,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459551,[Restricted] TEN KINRARA (Residential Condo),"Ten Kinrara, Puchong, 47180",3.047793,101.646339,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459550,RAYTECH SERI KEMBANGAN (Car Showroom),"Raytech Tinting Sdn Bhd, Seri Kembangan, 43300",3.0469,101.704361,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459549,[Restricted] RESIDENSI SUNGAI LONG (Residential Condo),"Sungai Long Residence, Kajang, 43000",3.04404,101.803787,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459548,[Restricted] CLOUD TREE RESIDENCE C (Residential Condo),"CloudTree Residence, Seri Kembangan, 43300",3.043346,101.733009,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459547,BURAQ OIL LUMUT (Commercial),"CO3 Social Office | Puchong Campus, Puchong, 47170",3.042961,101.618248,ChargeSini,CHAdeMO,40,40 kW,N/A,Offline,False
+459546,[Restricted] CLOUD TREE RESIDENCE A (Residential Condo),"CloudTree Residence, Seri Kembangan, 43300",3.04292,101.73111,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459545,[Restricted] THE SANDERSON (Residential Condo),"The Sanderson, Seri Kembangan, 43300",3.042449,101.692055,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459544,[Restricted] IRIS RESIDENCES (Residential Condo),"Iris Residence, Kajang, 43000",3.04221,101.807518,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459543,[Restricted] PARKLAND RESIDENCES (Residential Condo),"10, Jalan Seksyen 2/2, Cheras, 43200",3.041734,101.772774,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459542,[Restricted] PERMATA RESIDENCE (Residential Condo),"Permata Residence, Kajang, 43000",3.029084,101.786896,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459541,[Restricted] SUTERA PINES APARTMENT (Residential Condo),"Sutera Pines, Kajang, 43000",3.026803,101.813782,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459540,[Restricted] ASTETICA RESIDENCES (Residential Condo),"Astetica Residence Tower A (Block A), Seri Kembangan, 43300",3.026323,101.716347,ChargeSini,Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+459539,"AMERIN MALL, SERI KEMBANGAN (Shopping Mall)","Amerin Mall, Seri Kembangan, 43300",3.024839,101.751541,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459538,[Restricted] RESIDENSI BUKIT PALMA (Residential Condo),"Palm Hill Residence 1, Kajang, 43000",3.024755,101.805649,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459537,[Restricted] RESIDENSI BUKIT PALMA 2 (Residential Condo),"Residensi Bukit Palma 2, Cheras, 43000",3.02411,101.804726,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459536,ONE CITY USJ (SKYPARK OUTDOOR) (Shopping Mall),"Sky Park @ One City USJ, Subang Jaya, 47650",3.021792,101.580353,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459535,IOI RIO CITY PUCHONG (Shopping Mall),"IOI Rio, Puchong, 47100",3.020621,101.623741,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459534,[Restricted] CONDOMINIUM UNIVERSAL 360 (Residential Condo),"Univ 360 Place Management Office, Seri Kembangan, 43300",3.020611,101.71489,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459533,[Restricted] PANGSAPURI PUNCAK SAUJANA (Residential Condo),"Pangsapuri Puncak Saujana, Kajang, 43000",3.017278,101.812614,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+459532,PANGSAPURI SAUJANA PERMAI 2 (Residential Condo),"Pangsapuri Saujana Permai 2, Kajang, 43000",3.014625,101.810944,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,RM0.99/kWh,In Use,True
+459531,[Restricted] ZENOPY RESIDENCES (Residential Condo),"Zenopy Residences - Residence Lobby 1, Seri Kembangan, 43300",3.007914,101.668701,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459530,[Restricted] GEO BUKIT RIMAU CONDOMINIUM (Residential Condo),"GEO Bukit Rimau Condominium, Shah Alam, 40460",3.000672,101.527245,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459529,COLUMBIA HOSPITAL BUKIT RIMAU (Medical),"Columbia Asia Hospital - Bukit Rimau, Shah Alam, 40460",2.99737,101.52877,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459528,ECONSAVE CASH & CARRY PANDAMARAN (Grocery),"Econsave Pandamaran (Hypermarket | Wholesale), Klang, 42000",2.994984,101.419701,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459527,[Restricted] PARAGON 3 CONDOMINIUM (TOWER 1) (Residential Condo),"Paragon 3, Puchong, 43300",2.994305,101.650497,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459526,[Restricted] PARAGON 3 CONDOMINIUM (TOWER 2) (Residential Condo),"Paragon 3, Seri Kembangan, 43300",2.993159,101.651047,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459525,CANVAS HOTEL KLANG (Hotel),"The Canvas Hotel, Klang, 41200",2.992799,101.443863,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459524,[Restricted] JADITE SUITES (Residential Condo),"Persiaran Jade Hills Utama, Kajang, 43000",2.992677,101.757736,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459523,PARK INN BY RADISSON PUTRAJAYA (Hotel),"Park Inn by Radisson Putrajaya, Kajang, 43000",2.979283,101.737564,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459522,[Restricted] DESARIA VILLA CONDOMINIUM (Residential Condo),"Desaria Villa Condominium, Puchong, 47120",2.977706,101.639618,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459521,[Restricted] D'AMAN RESIDENCES (Residential Condo),"D'Aman Residences, Puchong, 47130",2.975389,101.581833,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459520,[Restricted] KOI SUITES CONDOMINIUM (Residential Condo),"Koi Suites Condominium, Puchong, 47130",2.974447,101.579185,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459518,[Restricted] X2 RESIDENCY (BLOCK B) (Residential Condo),"X2 Residency, Puchong, 47130",2.965042,101.593376,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459517,[Restricted] TASIK RESIDENCY (Residential Condo),"Tasik Residency, Puchong, 47130",2.963733,101.592911,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459516,PKNS COMPLEX BANGI (Shopping Mall),"Kompleks PKNS Bangi, Bandar Baru Bangi, 43650",2.961875,101.757225,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459515,[Restricted] PUNCAK HIJAUAN CONDOMINIUM (Residential Condo),"Puncak Hijauan Condominium, Kajang, 43000",2.944719,101.796471,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459514,[Restricted] BSP SKYPARK (Residential Condo),"BSP Skypark, Jenjarom, 42610",2.941624,101.587875,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459513,[Restricted] LAKEFRONT RESIDENCE @ CYBERJAYA (Residential Condo),"Lakefront Residence @ Cyberjaya, Cyberjaya, 63000",2.933997,101.631264,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459512,BANGI GATEWAY MALL (Shopping Mall),"Bangi Gateway Shopping Complex, Bandar Baru Bangi, 43650",2.932871,101.76532,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459511,[Restricted] TAMARA RESIDENCE TOWER A (Residential Condo),"Tamara Residence, Putrajaya, 62250",2.927745,101.679329,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459510,[Restricted] LAKEFRONT HOMES @ CYBERJAYA (PR1MA) (Residential Condo),"Lakefront Homes, Cyberjaya, Cyberjaya, 63000",2.92746,101.631958,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459509,[Restricted] TAMARA RESIDENCE TOWER  C (Residential Condo),"Tamara Residence, Putrajaya, 62250",2.926,101.679375,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459508,SHAFTSBURY SQUARE (Commercial),"Shaftsbury Square, Cyberjaya, 63000",2.922597,101.661896,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459507,[Restricted] ALMYRA RESIDENCE (Residential Condo),"Almyra Residence, Kajang, 43000",2.877916,101.795326,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459506,[Restricted] PALMERA RESIDENCE (Residential Condo),"Palmyra Residence, Kajang, 43000",2.877094,101.793533,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459505,HOLIDAY INN SEPANG (Hotel),"Holiday Inn Sepang Airport, an IHG Hotel, Sepang, 43900",2.82035,101.695267,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459504,"OE RESORT, NEGERI SEMBILAN (Hotel)","OE Resort (Private Ground), Seremban, 71700",2.815522,101.912743,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459503,ECONSAVE CASH & CARRY BANTING (Grocery),"2-14, Jalan Suasa, Banting, 42700",2.811765,101.506699,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459502,TERMINAL 1 SEREMBAN (Shopping Mall),"Terminal 1 Shopping Centre, Seremban, 70000",2.722891,101.937012,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459501,SEREMBAN GATEWAY (Shopping Mall),"Seremban Gateway, Seremban, 70200",2.716845,101.920074,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459500,LOTUS'S SEREMBAN 2 (Shopping Mall),"Lotus Seremban 2, Seremban, 70300",2.712631,101.914429,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459499,MYDIN SENAWANG HYPERMARKET (Shopping Mall),"Mydin Senawang Hypermarket, Seremban, 70450",2.70045,101.979942,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459498,MYDIN SEREMBAN 2 (Shopping Mall),"Mydin Mall Seremban 2, Seremban, 70300",2.69512,101.903976,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459497,REGINA MALL PORT DICKSON (Shopping Mall),"Regina Mall, Port Dickson, 71000",2.524174,101.801422,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459496,MYDIN HYPERMARKET PULAU SEBANG (Shopping Mall),"Mydin Pulau Sebang Hypermarket, Alor Gajah, 78000",2.462454,102.231361,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459495,MYDIN BANDAR JASIN (Shopping Mall),"Mydin Wholesale Hypermarket Bandar Jasin Bestari, Melaka, Melaka, 77200",2.280188,102.391357,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459494,MYDIN MITC AYER KEROH (Shopping Mall),"Mydin MITC, Ayer Keroh, 75450",2.271234,102.291786,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459493,RAYTECH MELAKA (Car Showroom),"Raytech Melaka (Tinted, PPF, Coating and Detailing Shop), Melaka, 75400",2.209156,102.254295,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459492,ORIENTAL MELAKA STRAITS MEDICAL CENTRE (Medical),"Oriental Melaka Straits Medical Centre, Melaka, 75200",2.207943,102.213966,ChargeSini,Type 2 (Tethered Connector) ,20,20 kW,N/A,In Use,True
+459491,"[Restricted] ADMIRAL RESIDENCES, MELAKA (Residential Condo)","Admiral Residences Kota Laksamana, Melaka, 75300",2.200723,102.232895,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459490,"SWAN GARDEN HOTEL, MELAKA (Hotel)","Bank of China Melaka, Melaka, 75200",2.19383,102.237282,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459489,HOLIDAY INN MELAKA (BASEMENT) (Hotel),"Holiday Inn Melaka, an IHG Hotel, Melaka, 75000",2.18742,102.247635,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459488,REMINGTON HOTEL MUAR (Hotel),"REMINGTON HOTEL MUAR, Muar, 84000",2.044196,102.567108,ChargeSini,CCS (Type 2),35,35 kW,N/A,In Use,True
+459487,MUO RESORT (Hotel),"MUO Resort, Muar, 84000",2.037202,102.562996,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459486,KLUANG PARADE JOHOR (Shopping Mall),"Kluang Parade, Kluang, 86000",2.036453,103.320312,ChargeSini,Type 2 (Tethered Connector) ,11,11 kW,N/A,In Use,True
+459485,PRIME CITY HOTEL (Hotel),"Prime City Hotel, Kluang, 86000",2.034902,103.323204,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459484,TARGET YONG PENG (Shopping Mall),"Target Supermarket Cawangan Yong Peng, Yong Peng, 83700",2.006035,103.048004,ChargeSini,CCS (Type 2),47,47 kW,N/A,In Use,True
+459483,TARGET GRAND SUPERMARKET (TAMAN KLUANG PERDANA) SDN BHD (Grocery),"Target Grand Supermarket (Taman Kluang Perdana) Sdn Bhd, Kluang, 86000",2.002378,103.291092,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459482,TARGET PARIT RAJA (Grocery),"TARGET SUPERMARKET SDN BHD CAWANGAN PUSAT BANDAR PARIT RAJA, Parit Raja, 86400",1.866485,103.109177,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+459481,THE SUMMIT BATU PAHAT (Shopping Mall),"The Summit Batu Pahat, Batu Pahat, 83000, Johor",1.857076,102.934471,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459480,THE COMMUNE LIFESTYLE MALL (Shopping Mall),"THE COMMUNE Lifestyle Mall, Kulai, 81000",1.642143,103.602264,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459479,ECONSAVE CASH & CARRY SENAI (Grocery),"Econsave Senai, Senai, 81400",1.611948,103.656784,ChargeSini,CCS (Type 2),60,60 kW,N/A,Offline,False
+459478,IMPIANA HOTEL SENAI (Hotel),"Jalan Impian Senai Utama 2, Senai, 81400",1.593194,103.647102,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459477,CATHAY RESTAURANT ECO SPRING (Restaurant),"Cathay Restaurant 新国泰酒楼, Johor Bahru, 81100",1.588687,103.756241,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459476,"RESTAURANT PEKIN DESA CEMERLANG 北京楼, JOHOR (Restaurant)","Restaurant Pekin Desa Cemerlang 北京楼, Ulu Tiram, 81800",1.560008,103.810768,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459475,[Restricted] RIVERINE GEMZ (Residential Condo),"2, Jalan Petanak, Kuching, 93100",1.556243,110.361794,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459474,THE SPRING KUCHING (Shopping Mall),"The Spring Shopping Mall, Kuching, 93300",1.535546,110.3582,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459473,THE PODIUM (Shopping Mall),"The Podium, Kuching, 93200",1.529211,110.336014,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459472,ZUS COFFEE DT - JALAN ROCK (Commercial),"ZUS Coffee DT - Jalan Rock, Kuching, Kuching, 93200",1.52799,110.340843,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,Offline,False
+459471,[Restricted] MOLEK REGENCY (TOWER B) (Residential Condo),"Molek Regency (Tower B), Johor Bahru, 81100",1.518907,103.784622,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459470,SUTERA MALL (OLD WING) (Shopping Mall),"Sutera Mall, Skudai, 81300",1.517355,103.67244,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459469,PEKIN SUTERA RESTAURANT (Restaurant),"No.1, Jalan Sutera Tanjung 8/4, Skudai, 81300",1.517046,103.670113,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+459468,ECONSAVE PERMAS JAYA (Grocery),"Econsave Permas Jaya, Masai, 81750",1.511842,103.816093,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459467,COLUMBIA ASIA HOSPITAL TEBRAU JB (Medical),"Columbia Asia Hospital - Tebrau, Johor Bahru, 80150",1.499985,103.765785,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459466,[PARTNER EVHUB] ANGSANA MALL (Shopping Mall),"Angsana Mall, Skudai, 81200",1.49533,103.706711,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459465,TODAY'S MARKET (Grocery),"Today's Market, Masai, 81750",1.495118,103.87101,ChargeSini,CCS (Type 2),40,40 kW,N/A,In Use,True
+459464,KPJ PUTERI SPECIALIST HOSPITAL (Medical),"KPJ Puteri Specialist Hospital, Johor Bahru, 80350",1.490253,103.742455,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459462,KSL CITY MALL OUTDOOR (Shopping Mall),"KSL City Mall, Johor Bahru, 80250",1.485749,103.762955,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+459461,[Restricted] ZENNITH SUITES (Residential Condo),"Zennith Suites Service Apartments, Johor Bahru, 80250",1.485736,103.753494,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459460,"KSL CITY MALL, JOHOR BHARU (Shopping Mall)","KSL City Mall, Johor Bahru, 80250",1.485375,103.762886,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459459,GRAND PARAGON HOTEL (Hotel),"Grand Paragon Hotel, Johor Bahru, Johor Bahru, 80250",1.481227,103.761909,ChargeSini,CCS (Type 2),60,60 kW,N/A,In Use,True
+459458,COLUMBIA ASIA HOSPITAL - ISKANDAR PUTERI (Medical),"Persiaran Afiat, Johor Bahru",1.479415,103.63723,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459457,[Restricted] TWIN GALAXY (OUTDOOR) (Residential Condo),"Twin Galaxy Residences, Johor Bahru, 80300",1.478155,103.761795,ChargeSini,CCS (Type 2),120,120 kW,N/A,In Use,True
+459456,HOTEL HOLMES GP (Hotel),"Hotel Holmes GP, Gelang Patah, 81550",1.478101,103.583595,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459455,[Restricted] TWIN GALAXY (BASEMENT 1) (Residential Condo),"Twin Galaxy Residences, Johor Bahru, 80300",1.477868,103.76207,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459454,HOTEL HAKO JBCC (Hotel),"Hako Hotel JBCC, Johor Bahru, 80300",1.467939,103.76989,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459453,[PARTNER EVHUB] MENARA LANDMARK (Commercial),"Menara Landmark, Johor Bahru, 80000",1.465002,103.760117,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459452,[Restricted] D'SUITES AKASIA HORIZON (Residential Condo),"D' Suites Akasia Horizon, Johor Bahru, 79100",1.448387,103.628876,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459451,[Restricted] MERIDIN MEDINI EXECUTIVE SUITES (OUTDOOR) (Residential Condo),"Pangsapuri Meridian Medini, Iskandar Puteri, 79250",1.421901,103.628975,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459450,[Restricted] SOUTHERN MARINA RESIDENCES (WEST TOWER) (Residential Condo),"Southern Marina Residence, Johor Bahru, 79100",1.413567,103.657974,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459449,[Restricted] SUNWAY GRID RESIDENCE (Residential Condo),"Sunway GRID Residence, Iskandar Puteri, 79250",1.396111,103.632355,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+459422,BHPetrol Persiaran Tengku Ampuan 1 by DC Handal,"Persiaran Tengku Ampuan 1, Shah Alam, 40400, Selangor",3.0399518674450974,101.54778817690953,DC Handal,CCS (Type 2),60,60 kW,1.20,In Use,True
+458998,Casa Refleksologi,"No.7, Jalan Anggerik Indah, Taman Anggerik Indah, Triang, 28300, Pahang",3.2557427611545506,102.4295252801503,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,RM0.30/min (22kW AC)  RM1.00/min (40kW DC),In Use,True
+458997,Hotel Nur,"C76, Jalan Dato' Ngau Ken Look, Temerloh, 28000, Pahang",3.4467188964843984,102.41294014493656,(Unknown Operator),CCS (Type 2),40,40 kW,RM1 per minute,In Use,True
+458996,Hotel Jelai,"Jalan Tengku Ismail, Kampung Batu Satu, Temerloh, 28000, Pahang",3.4463782833245915,102.41357498980102,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,22kW AC - RM0.30/min 30kW DC - RM0.70/min,In Use,True
+456362,chargEV | Pitstop @ Tangkak (180kW DC),"Outdoor Carpark, Lot PTD 16031, Jln Teknologi 1, Tangakak, 84900, Johor",2.2433127143120117,102.53164026307275,chargEV,CCS (Type 2),180,180 kW,DC @ RM1.60/kWh,In Use,True
+313016,ChargeEV,"No.141, Pusat Komersial Changloon, Pekan, Kampung Baru Changloon, 06010 Changlun, Kedah, Changlun, 06010, Kedah",6.436811325694819,100.42989335928132,chargEV,CCS (Type 2),60,60 kW,RM1.3,In Use,True
+312710,Dataran Bentong,"740 Jalan Tras, Bentong, 28700, Pahang",3.5276953266041886,101.90526461271975,(Unknown Operator),CCS (Type 2),60,60 kW,RM1.40/kWh,In Use,True
+312365,Tealive Bagan Ajam,"Jalan Oren, Butterworth, 13000, Pulau Pinang",5.440049642726805,100.38211119172729,chargEV,CCS (Type 2),24,24 kW,RM1.30/kWh,In Use,True
+312364,BYD Showroom Bukit Mertajam Iroll EV,"Lorong Setia Sentral 2, Perai, 13600, Pulau Pinang",5.354625430612572,100.41966511770096,chargEV,CCS (Type 2),80,80 kW,RM1.70/kWh,In Use,True
+312363,Starbucks Raja Uda DT,"2020, Jalan Raja Uda, Butterworth, 12300, Penang",5.414816874265128,100.38141314726766,chargEV,CCS (Type 2),60,60 kW,RM1.30/kWh,In Use,True
+311714,GO TO-U CHARGING HUB @ PANTAI BATU BUROK,"Tmn Awam Batu Buruk, Kuala Terengganu, 20400 , Terengganu",5.320609078218041,103.15440805118715,Go ToU,CCS (Type 2),120,120 kW,RM1.40/kWh,In Use,True
+311713,GO TO-U CHARGING HUB @ DATARAN SHAHBANDAR,"Jalan Sultan Zainal Abidin, Kuala Terengganu, 20000 , Terengganu",5.336942839097148,103.14092931074845,Go ToU,CCS (Type 2),120,120 kW,RM1.40/kWh,In Use,True
+311405,De'ahza Homestay Gurun,"17, Lorong 24, Taman Gurun Jaya, 08300 Gurun, Kedah, Malaysia, Gurun, 08300, Kedah",5.816872446930503,100.47019020913825,(Unknown Operator),Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+311392,DC Handal | Medini EV Forecourt [300kW DC],"4, Lebuh Medini Utara, Iskandar Puteri, 79200, Johor",1.4297701830106604,103.63282382814009,DC Handal,CCS (Type 2),300,300 kW,DC @ RM1.30/kWh,In Use,True
+311391,Kuantan City Mall (P4) by DC Handal,"Kuantan City Mall Pillar (P4), Kuantan, 25300, Pahang",3.817508680176104,103.32757215864842,DC Handal,CCS (Type 2),120,120 kW,RM1.40-RM0.90,In Use,True
+311390,MH Hotel Ipoh by DC Handal,"Hotel Lobby Level, MH Hotel Ipoh,, Ipoh, 31400, Perak",4.6217330386739945,101.11715017027302,DC Handal,CCS (Type 2),120,120 kW,RM1.30,In Use,True
+311348,DC Handal | Johor Premium Outlets (Zone F) Commercial [320kW DC],"Zone F, Johor Premium Outlets, Kulai, 81000, Johor",1.6033024944264724,103.62345700778337,DC Handal,CCS (Type 2),320,320 kW,DC @ RM1.50/kWh,In Use,True
+311299,C-Mart Menara Alor Setar by DC Handal,"Jalan Istana Kuning, Alor Setar, 05100, Kedah",6.125105796828933,100.36875279177457,DC Handal,CCS (Type 2),180,180 kW,RM1.30,In Use,True
+311278,EI Charge Bukit Tinggi,"15, Jalan Pesona 1, Taman Pesona Height, Jln Bukit Tinggi, Kampung Bukit Tinggi, Bentong, 28750, Pahang",3.3538744850402793,101.82722644270251,(Unknown Operator),CCS (Type 2),60,60 kW,RM1.40/kWh,In Use,True
+308756,Smart Penang ,"169, Jalan Jelutong, Jelutong, 11600, Pulau Pinang",5.40044522516331,100.32336250129765,chargEV,CCS (Type 2),120,120 kW,RM1.60/min,In Use,True
+307699,AmanJaya Walk by DC Handal,"Jalan Badlishah, Sungai Petani, 08000, Kedah",5.67543,100.50787,DC Handal,CCS (Type 2),240,240 kW,RM1.50,In Use,True
+306732,United Point Mall Segambut by DC Handal,"Jalan 1/38C, Kuala Lumpur, 52000",3.1907406783919754,101.65339668312879,DC Handal,CCS (Type 2),120,120 kW,RM1.20,In Use,True
+306731,ICE Sales Gallery by DC Handal,"Jalan Pantai Sentral 1, Kuala Lumpur, 58000",3.1015790176272304,101.66692424064126,DC Handal,CCS (Type 2),120,120 kW,RM1.20,In Use,True
+306730,Pulse Grande Hotel Putrajaya by DC Handal,"Jalan Putra Perdana, Putrajaya, 62519, Putrajaya",2.9433395118267214,101.69997592712821,DC Handal,CCS (Type 2),47,47 kW,RM1.00,In Use,True
+305583,Petronas NKVE,"Lot 15385 KM 15, 3, New Klang Valley Expy, Damansara Bound, Petaling Jaya, 47000 , Selangor",3.119187,101.592813,Jom Charge,CCS (Type 2),150,150 kW,RM1.50/kWh,In Use,True
+305530,Gamuda Gardens (200kW DC x 4),"Waterfront Village, , Rawang, 48050 , Selangor ",3.283483660240023,101.54025882934667,Gentari Go (MY),CCS (Type 2),200,200 kW,1.50 per kWh,In Use,True
+304542,Petron Kg. Gemuroh (TNB Electron),"Lot PT 102422, Kampung Gemuroh, 21060, Terengganu",5.349086718773293,103.01908758564514,Go ToU,CCS (Type 2),34,34 kW,RM1.40/kWh,In Use,True
+303964,Gurney Plaza,"B1 Car park, George Town, 10250, Pulau Pinang",5.437956611846076,100.30977069128102,Tesla (Tesla-only charging),CCS (Type 2),250,250 kW,N/A,In Use,True
+302725,Shell LPT 2 RNR Paka KT Bound,"Paka (North Bound) Paka,, Paka,  23000 ,  Terengganu",4.6472725848,101.7310334231055,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+302724,Shell LPT 2 RNR Paka KL Bound,"Paka (South Bound) ,  Paka,  23000,  Terengganu",4.645522438018084,103.3443739419308,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+302723,Shell LPT 2 Perasing RNR,"Perasing R&R Lebuhraya Pantai Timur,, Chukai,  24000, Terengganu",4.020795568231557,103.31399206344597,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+302466,AEON Mall Kinta City (TNB Electron),"No 2, Jalan Teh Lean Swee, Ipoh, 31400 , Perak ",4.61404,101.11803,Go ToU,CCS (Type 2),47,47 kW,RM1.35/kWh,In Use,True
+302465,AEON Mall Taiping (TNB Electron),"Lot 8576 & 8577, Taiping, 34000 , Perak",4.87335,100.73086,Go ToU,CCS (Type 2),47,47 kW,RM1.35/kWh,In Use,True
+302210,AEON Mall Kota Bharu,"Jalan Maulana Khurasan, Kota Bharu, 15150, Kelantan",6.108795211839322,102.23038450073204,Go ToU,CCS (Type 2),47,47 kW,RM1.35/kWh,In Use,True
+302209,AEON Mall Seri Manjung (TNB Electron) ,"Jalan Sitiawan, Lumut, 32200, Perak., Lumut, 32040, Perak",4.221061350566757,100.67141097744047,Go ToU,CCS (Type 2),47,47 kW,RM1.35/kWh,In Use,True
+301867,Encore Melaka by DC Handal,"Jalan Persisiran Pantai, Taman Limbongan Jaya, , Malacca City, 75200, Malacca",2.1886185778604386,102.22003323991703,DC Handal,CCS (Type 2),240,240 kW,RM1.50,In Use,True
+301623,XPENG Glenmarie by DC Handal,"5, Jalan Pelukis U1/46, Shah Alam, 40150, Selangor",3.088297087824813,101.5753787031208,DC Handal,CCS (Type 2),120,120 kW,RM1.30,In Use,True
+301288,Shell Bukit Jalil TPM,"NORTH SOUTH EXPRESSWAY, Kuala Lumpur, 57100, Kuala Lumpur",3.0556299686431885,101.70437622070312,Shell Recharge (Malaysia),CCS (Type 2),120,120 kW,Please refer to Shell Recharge App for pricing,In Use,True
+301217,Gentari | Gamuda Cove (DC 240kW),"Gamuda Cove Experiance Gallery, Dengkil, 42700, Selangor",2.8852469903292643,101.61649051641916,Gentari Go (MY),CCS (Type 2),240,240 kW,DC @ RM1.60/kWh + RM1.50/min (after 1 hours),In Use,True
+301067,WCE E32 Trong Toll Plaza by DC Handal,"MPWF+X8 Terong, Trong, 34800, Perak",4.697722841126321,100.72287123029992,DC Handal,CCS (Type 2),400,400 kW,RM1.50,In Use,True
+300453,WCE E32 Trong Toll Plaza by DC Handal,"MPXC+GH,, Terong, 34800, Perak",4.69778,100.72284,DC Handal,CCS (Type 2),400,400 kW,RM1.50,In Use,True
+300078,Menara MATRADE West Wing by DC Handal,"West Wing Menara MATRADE, , Kuala Lumpur,, 50480 , Wilayah Persekutuan Kuala Lumpur",3.177577,101.666105,DC Handal,CCS (Type 2),200,200 kW,RM1.30,In Use,True
+300077,MG Motor Petaling Jaya by DC Handal,"Lot 8241, Ground Floor,, Petaling Jaya,, 46100, Selangor",3.095361120767933,101.63277914241291,DC Handal,CCS (Type 2),47,47 kW,RM1.30,In Use,True
+299969,WCE E32 Taiping Selatan Toll Plaza by DC Handal,"QP8G+RH,, Changkat Jering,, 34850, Perak",4.76716507978314,100.72709555411393,DC Handal,CCS (Type 2),400,400 kW,RM1.50,In Use,True
+299968,C-Mart Nibong Tebal by DC Handal,"Taman Perindustrian Nibong Tebal, Nibong Tebal, 14300, Penang",5.178504948344823,100.48122091354276,DC Handal,CCS (Type 2),47,47 kW,RM1.30,In Use,True
+299781,Persiaran TESCO,"Persiaran TESCO, 31600, Perak",4.494425649679485,101.15489251419518,ChargeSini,Unknown,60,60 kW,RM1.40/kWh,In Use,True
+299716,Gentari | Senawang South Bound Layby (BESS | 150kW DC),"Senewang Layby South Bound, KM250, Senawang, 71450, Negeri Sembilan",2.6402662142461963,101.99580836933228,Gentari Go (MY),CCS (Type 2),150,150 kW,DC @ RM1.80/kWh,In Use,True
+299471,Kelab Golf Perkhidmatan Awam (KGPA),"Bukit Kiara, Petaling Jaya, Selangor",3.1302279855423905,101.64358293605466,(Unknown Operator),Type 2 (Socket Only),7,7 kW,RM0.12/min,In Use,True
+299457,IJM Bayouri Sales Gallery Jawi Penang by DC Handal,"IJM Bayouri Sales Gallery Jawi,, Sungai Jawi, 14200, Penang",5.1932476197917765,100.48813369891582,DC Handal,CCS (Type 2),47,47 kW,RM1.30,In Use,True
+299323,IOI City Mall Putrajaya LG Zone D by DC Handal ,"LG Zone D, IOI City Mall,, Putrajaya, 62502, Wilayah Persekutuan Putrajaya",2.9691498356477126,101.7145284443427,DC Handal,CCS (Type 2),47,47 kW,N/A,In Use,True
+299297,"DC Handal | Johor Premium Outlets (Zone E) [200kW & 320kW DC, 22kW AC]","Zone E, Johor Premium Outlets, Kulai, 81000, Johor",1.6027549391701115,103.62244443119016,DC Handal,CCS (Type 2),200,200 kW,DC @ RM1.50/kWh | AC @ RM0.90/kWh,In Use,True
+299296,Desaru Coast Riverside Johor by DC Handal [200 kW Dynamic DC],"Persiaran Pantai, 81930, Johor",1.5385857455990788,104.26428708302444,DC Handal,CCS (Type 2),200,200 kW,RM1.50,In Use,True
+299295,The Pines Melaka by DC Handal [100 kW Dynamic DC],"33, Jalan Tun Sri Lanang, Malacca City, 75100, Malaka",2.2044404478298674,102.25242927466581,DC Handal,CCS (Type 2),100,100 kW,RM 1.50/kWh,In Use,True
+299294,Wisma UOA Damansara II by DC Handal [200 kW Dynamic DC],"Wisma UOA Damansara II, 50, Jalan Dungun, , Kuala Lumpur, 50490, Wilayah Persekutuan Kuala Lumpur",3.1515669104173014,101.66647547942875,DC Handal,CCS (Type 2),200,200 kW,RM1.50,In Use,True
+299293,UOA Business Park Glenmarie by DC Handal [200 kW Dynamic DC],"UOA Business Park Glenmarie, J, Shah Alam, 40150, Selangor",3.0857290623483493,101.58690691810989,DC Handal,CCS (Type 2),200,200 kW,RM1.50,In Use,True
+299196,Bamboo Hills DUKE by DC Handal,"Bamboo Hills, Off Lebuhraya Duta, Kuala Lumpur, 51200, Wilayah Persekutuan",3.1940416424604336,101.67292912732864,DC Handal,CCS (Type 2),200,200 kW,RM1.50,In Use,True
+299195,Wisma MCA Jalan Ampang by DC Handal,"163, Jalan Ampang, Kuala Lumpur, 50450, Wilayah Persekutuan",3.1599740630678923,101.71657119717622,DC Handal,CCS (Type 2),150,150 kW,RM1.50,In Use,True
+299194,Bangsar South The Vertical (Lazada HQ) by DC Handal,"The Vertical, Bangsar South,, Kuala Lumpu, 59200, Wilayah Persekutuan",3.111356444851495,101.66566376998094,DC Handal,CCS (Type 2),100,100 kW,RM1.50,In Use,True
+299193,Bangsar South The Vertical B1 by DC Handal,"Jalan Kerinchi, Kuala Lumpur, 59200",3.111413745822773,101.66569946412915,DC Handal,CCS (Type 2),47,47 kW,RM1.30,In Use,True
+299183,Bangsar South The Sphere UG by DC Handal,"The Sphere Upper Ground, Bangsar South, , Kuala Lumpur, 59200, Wilayah Persekutuan",3.1109152186687226,101.66784184834864,DC Handal,CCS (Type 2),240,240 kW,RM1.50,In Use,True
+299182,Bangsar South The Horizon B1 by DC Handal ,"B1, The Horizon 1, Bangsar South,, Kuala Lumpur, 59200, Wilayah Persekutuan",3.1108941686467517,101.6677757580369,DC Handal,CCS (Type 2),30,30 kW,RM1.30,In Use,True
+299181,Udini Square Gelugor Penang by DC Handal ,"B1, Udini Square,, Gelugor , 11700 , Pulau Pinang",5.378289280758381,100.31416060075344,DC Handal,CCS (Type 2),100,100 kW,RM1.30,In Use,True
+299180,Choo Plaza Georgetown by DC Handal,"41, Lorong Abu Siti, , George Town, 10400, Penang",5.417975662433037,100.32376090728133,DC Handal,CCS (Type 2),90,90 kW,RM1.50,In Use,True
+299179,Ferringhi Garden Restaurant by DC Handal,"34, Jalan Batu Ferringhi, , Batu Ferringhi, , 111000, Penang",5.47126,100.24517,DC Handal,CCS (Type 2),47,47 kW,RM1.30,In Use,True
+298947,WCE E32 Assam Jawa Toll Plaza by DC Handal,WCE Assam Jawa Toll Plaza,3.3133566515275845,101.37419292125537,DC Handal,CCS (Type 2),200,200 kW,RM1.50/kWh,In Use,True
+298380,Petronas R&R Gunung Semanggol South bound,"Jalan Bukit Merah, 34400, Perak",4.988317179605261,100.66553791789175,Jom Charge,CCS (Type 2),150,150 kW,[JomCharge Ready] Charging rate: Type 2 - RM 1.20/min CCS - RM 1.20/min CHAdeMO - RM 1.20/min NOTE: not compatible with Tesla CHAdeMO adapter,In Use,True
+298146,Lebuhraya Utara–Selatan,"Lebuhraya Utara–Selatan, Behrang, 35950, Perak",3.783416918190639,101.44618707517702,Jom Charge,CCS (Type 2),150,150 kW,N/A,In Use,True
+298145,"JomCharge, R&R Ulu Bernam","North-South Expy, Tanjong Malim, 50480, Selangor",3.6628652811950246,101.52061810316161,Jom Charge,CCS (Type 2),150,150 kW,N/A,In Use,True
+297693,Shell LDP D Alpinia,"LOT 117230 (TAPAK C), PUCHONG GATEWAY, BANDAR PUTRA PERMAI, PETALING, 47110, SELANGOR",2.980460414727784,101.64718938115136,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+297559,Handal Indah Depot,"23 Jalan Firma 2, Tebrau, 81100, Johor",1.5341866843580192,103.746420392078,DC Handal,CCS (Type 2),80,80 kW,RM1.30/kWh,In Use,True
+297551,Hentian Gua Musang by DC Handal [47 kW Dynamic DC],"Lot 10280, , Gua Musang, 18300, Kelantan",4.826540698146232,101.96267366977577,DC Handal,CCS (Type 2),47,47 kW,RM1.30/kWh,In Use,True
+297400,Gentari | Senawang North Bound Layby (BESS | 150kW DC),"Senawang Layby North Bound, Senawang, 71200, Negeri Sembilan",2.6298985882089596,101.99864004758479,Gentari Go (MY),CCS (Type 2),150,150 kW,DC @ RM1.80/kWh,In Use,True
+297133,Jom Charge - McD Pantai Sentral Park,"2, Jalan Pantai Sentral, KL, 59200, W.P. Kuala Lumpur",3.102138797595174,101.66660133248251,Jom Charge,CCS (Type 2),100,100 kW,N/A,In Use,True
+297031,Da Men Mall,"1, Persiaran Kewajipan, Usj 1, Subang Jaya, 47600 , Selangor",3.0574949878249953,101.59273718189957,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,As per Shell Recharge app,In Use,True
+297030,Highlands Hotel,"Highlands Hotel, Resorts World Genting, Genting Highlands, 69000, Pahang",3.424090636431325,101.79137594284197,Shell Recharge (Malaysia),CCS (Type 2),360,360 kW,Please refer to Shell Recharge App for pricing,In Use,True
+297029,Shell Recharge Impian Golf and Country Club,"Jalan Impian Gemilang, Saujana Impian, Kajang, 43000, Selangor",3.01749,101.795035,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+295988,Juru Setia Sentral (TNB Electron),"Setia Sentral Juru, Perai, 13600, Penang",5.354746140569034,100.41844354130342,Go ToU,CCS (Type 2),200,200 kW,RM 1.50 / kWh,In Use,True
+295953,Pavilion Hotel,"170, Jln Bukit Bintang, Bukit Bintang, Kuala Lumpur,  55100 , Wilayah Persekutuan Kuala Lumpur",3.1484076738907305,101.71524155835607,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+295952,Banyan Tree KL,"2, Jalan Conlay, Kuala Lumpur, 50450, Wilayah Persekutuan Kuala Lumpur",3.1499789586367726,101.71397638010694,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing​,Offline,False
+295951,Pavilion Bukit Jalil,"2, Persiaran Jalil 8, Bukit Jalil, Kuala Lumpur, 57000, Wilayah Persekutuan Kuala Lumpur",3.0530607980854176,101.67292364221993,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,22,22 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+290926,Jalan Padang Matsirat,"Jalan Padang Matsirat, 07000, Kedah",6.324573582782492,99.79657740999414,chargEV,Type 2 (Tethered Connector) ,22,22 kW,RM2.00/10 minutes,In Use,True
+290709,Nadi Bangsar,"Jalan Tandok, 59000",3.126061587784136,101.67585923754729,ChargeSini,CCS (Type 2),80,80 kW,N/A,In Use,True
+290708,Starbucks Kuantan Indera Mahkota Dt,"Jln IM 7/1, 25200, Pahang",3.834005809666465,103.29928261878513,chargEV,CCS (Type 2),60,60 kW,N/A,In Use,True
+290707,Petronas KM 26 Jalan Gambang,"Jalan Kuala Lumpur – Kuantan, Gambang, 26070, Pahang",3.7113084205591775,103.12696483558534,Gentari Go (MY),CCS (Type 2),150,150 kW,RM 1.70/kWh,In Use,True
+289617,Petronas KLIA 1 (45kW DC),"Petronas Pt3906, Jalan Terminal, Sepang, 43900, Selangor",2.7643898019282034,101.68310825889165,Jom Charge,CCS (Type 2),45,45 kW,RM1.10/min,In Use,True
+289127,Permy Mall Miri,"Jalan Dato Seri Joseph Balan Seling, Bandar Baru Permyjaya, 98000, Sarawak",4.449624925158105,114.03766639938112,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+289126,SEB Miri,"Sesco, 98000, Sarawak",4.4210632173275854,114.01784891623174,chargEV,Type 2 (Socket Only),22,22 kW,N/A,In Use,True
+289125,Miri Green Community Hub,"Jalan Yakin, 98000, Sarawak",4.41435096047438,114.00593024458135,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289124,Miri City Hall,"Jalan Bandaraya, 98000, Sarawak",4.387746239885615,113.97363715894085,chargEV,Type 2 (Tethered Connector) ,7.4,7.4 kW,N/A,In Use,True
+289123,The Spring Bintulu,"Bintulu Promenade, 97000, Sarawak",3.180947500662782,113.03493977560356,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289122,SEB Sibu,"Jalan Deshon, 96000, Sarawak",2.3077787422848814,111.86227520113198,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289121,Wisma Sanyan,"Jalan Sanyan 三洋路, 96000, Sarawak",2.2904465883684964,111.82554531277992,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289120,Roxy Serian,"Jalan Bandar Serian, 94700, Sarawak",1.1743735322419013,110.56577690181456,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289119,Sematan Roxy Hotel,"Jalan Seacom, Sarawak",1.8253702934829334,109.75214413563276,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289118,Damai Beach Resort,"Jalan Sultan Tengah, Sarawak",1.7484181317953045,110.31446951223745,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289117,CENTEXS,"Jalan Sultan Tengah, Sarawak",1.6755097893359192,110.34271111478245,chargEV,CCS (Type 2),120,120 kW,N/A,In Use,True
+289116,Petros Darul Hana,"Jalan Tun Salahuddin, 93000, Sarawak",1.56503847898027,110.36570133730527,chargEV,CCS (Type 2),60,60 kW,N/A,In Use,True
+289115,iCom Square ChargEV,"Jalan Pending, 93450, Sarawak",1.5515193946041848,110.37295996932642,chargEV,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+289114,iCom Square x Gentari ,"Jalan Pending, 93000, Sarawak",1.5507358257278412,110.37132295206487,Jom Charge,CCS (Type 2),150,150 kW,N/A,In Use,True
+289044,Waterfront Hotel,"Jalan Tun Abang Haji Openg, 93000, Sarawak",1.5586242433341226,110.34462174731527,chargEV,Type 2 (Socket Only),22,22 kW,N/A,In Use,True
+289043,Mederka Plaza,"Jalan Barrack, 93000, Sarawak",1.5582486950136172,110.34381088882378,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+289042,The Podium,"Jalan Tun Ahmad Zaidi Adruce, 93000, Sarawak",1.5275397137946527,110.3358579584276,ChargeSini,Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+285135,Copthorne Cameron Highlands,"Kea Farm, Cameron Highlands, 39100, Pahang",4.504877261512931,101.4087164034272,(Unknown Operator),Type 2 (Tethered Connector) ,7,7 kW,N/A,In Use,True
+280188,Lebuhraya Utara–Selatan,"Lebuhraya Utara–Selatan, 78000, Melaka",2.445081603097563,102.20609157069293,Tesla (Tesla-only charging),CCS (Type 2),250,250 kW,1.25/kWh,In Use,True
+279460,Pavilion KL,"Pavilion Kuala Lumpur, 168 Jalan Bukit Bintang, 55100 , Kuala Lumpur",3.1506265487112097,101.70763605512641,Shell Recharge (Malaysia),CCS (Type 2),60,60 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+279459,IOI Connezion,"3 CAR PARK BAYS NEXT TO A-G-01, Putrajaya,  62502, Putrajaya",2.9645142555236816,101.72149658203125,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+279111,Paradigm Mall JB,"PARADIGM MALL JOHOR BAHRU, Johor Bahru, 81200, Johor",1.516175389289856,103.68168123607626,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+278507,XPark Sunway City Ipoh,"No. 1, Persiaran Lagun, , Ipoh, 31150, Perak",4.6201881356441845,101.14831524557599,Jom Charge,CCS (Type 2),100,100 kW,RM1.50/kWh,In Use,True
+274441,ParkEasy @ Hyatt Regency Kuantan,"Teluk Cempedak, Kuantan, 25050, Pahang",3.8117328,103.3717045,ParkEasy,Type 2 (Tethered Connector) ,22,22 kW,As per ParkEasy app. Parking fee applies,In Use,True
+274440,ParkEasy @ MyTOWN Shopping Centre,"Level 3, No.6, Jalan Cochrane, Seksyen 90, 55100, Kuala Lumpur",3.134935653344625,101.72291988173652,(Unknown Operator),Type 2 (Tethered Connector) ,11,11 kW,As per ParkEasy app. Parking fee applies,In Use,True
+274419,KSL AUTOMOBILE ENTERPRISE,"Lorong 3, Klang, 41050, Selangor",3.0320488743881384,101.47225567832493,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,RM7/hr,In Use,True
+272739,Sunway Medical Centre,"5, Jalan Lagoon Selatan, Bandar Sunway, Petaling Jaya, 47500, Selangor",3.0662840788850048,101.60883364438882,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,7,7 kW,Please refer to Shell Recharge App for pricing,In Use,True
+272738,Thomson Hospital,"11 JLN TEKNOLOGI,TMN SAINS SELANGOR, Petaling Jaya, 47810 , Selangor",3.1490321159362793,101.57888793945312,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+272737,Sunway Pyramid,"No. 3, Jalan PJS 11/15, Sunway City, Petaling Jaya, 47500 , Selangor",3.0730197776390895,101.60770072325602,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,3.7,3.7 kW,Please refer to Shell Recharge App for pricing,In Use,True
+272736,ParkEasy @ DC Mall,"6, Jalan Damanlela, Bukit Damansara, Kuala Lumpur, 50490 , Wilayah Persekutuan Kuala Lumpur",3.1457698511140615,101.66245708173652,ParkEasy,Type 2 (Tethered Connector) ,11,11 kW,Please refer to ParkEasy app for rates,In Use,True
+272734,The LINC KL,"360, Jln Tun Razak, Taman U Thant, Kuala Lumpur, 50400, Wilayah Persekutuan Kuala Lumpur",3.159032,101.720941,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+272733,Shell Recharge St. Regis KL,"No 6, Jalan Stesen Sentral 2 , Kuala Lumpur, 50470 , Wilayah Persekutuan Kuala Lumpur",3.136857095624805,101.68850911065647,Unknown Network,Type 2 (Tethered Connector) ,11,11 kW,Confirmation fee - 5.00 credits / First 1 hour 0.00 credits / Subsequent hours 4.80 credits,In Use,True
+272730,The Waterfront,"5, Persiaran Residen, Kuala Lumpur, 52200, Wilayah Persekutuan Kuala Lumpur",3.186992993439432,101.62775212846486,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+272728,Shell Sungai Besi,"Lebuhraya KL-Seremban Kuala Lumpur, Kuala Lumpur, 57000, Kuala Lumpur",3.0493377015096854,101.705615160403,Shell Recharge (Malaysia),CCS (Type 2),60,60 kW,Please refer to Shell Recharge App for pricing​,In Use,True
+270839,Megah Rise Mall,"MEGAH RISE MALL, LEVEL B1, Petaling Jaya, 47301, Selangor",3.1138038635253906,101.61124420166016,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+270838,KSL Esplanade Mall,"LEVEL 2 PILLAR 7, KSL ESPLANADE MALL, Klang, 41200, Selangor",2.9582014083862305,101.46519470214844,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+270836,Menara Hap Seng 2,"Menara Hap Seng 2 LEVEL BASEMENT 1 PARKING,  Kuala Lumpur, 50250,  Kuala Lumpur",3.1518490314483643,101.70696258544922,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+265446,ParkEasy @ Decathlon Toppen JB,"33, Jln Harmonium, Taman Desa Tebrau, Johor Bahru, 81100, Johor",1.5516239637869698,103.7980366411034,(Unknown Operator),Type 2 (Socket Only),11,11 kW,Please refer to ParkEasy app for rates,In Use,True
+265144,IOI Sierra,"JLN SIERRA 10/1, Puchong, 47110, Selangor",2.973581552505493,101.65482330322266,Shell Recharge (Malaysia),Type 2 (Tethered Connector) ,11,11 kW,Please refer to Shell Recharge App for pricing,In Use,True
+260568,Project 703 Cafe,"24 Jalan Kota Laksamana 3/14, Melaka, 75200, Melaka",2.1957902977811727,102.23556130608972,EVPower (MY),Unknown,22,22 kW,"RM0.40/min for 22kW, RM0.20/min for 11kW",In Use,True
+260419,The Concept Hotel Melaka,"10 Jalan Gajah Berang, Melaka, 75200, Melaka",2.208494435930632,102.24294226549262,EVPower (MY),CCS (Type 2),240,240 kW,"RM1.30/kW for 60kW DC, RM1.40/kW for 240kW DC, RM0.90/kW for 11kW AC",In Use,True
+259727,ChargeSini Station Starbucks Megamall (11 kW AC & 22 kW AC),"Ground Floor, Berjaya Megamall, Lot G15, Jalan Tun Ismail, Sri Dagangan, 25000, Pahang, Kuantan, 25000, Pahang",3.8151167582230556,103.32983248955486,ChargeSini,Type 2 (Socket Only),11,11 kW,As per ChargeSini app 11 kW AC RM0.20/min & 22kW AC RM0.40,In Use,True
+259726,ChargeSini Station Starbucks Megamall (11 kW AC & 22 kW AC),"Ground Floor, Berjaya Megamall, Lot G15, Jalan Tun Ismail, Sri Dagangan, 25000, Pahang, Kuantan, Pahang",3.8151167582230556,103.32983248955486,ChargeSini,Type 2 (Socket Only),11,11 kW,As per ChargeSini app 11 kW AC RM0.20/min & 22 kW AC RM0.40,In Use,True
+259708,Empire seafood Restaurant ChargeSini Station," A1, Lorong Tun Ismail 10, Kuantan, 25000, Pahang",3.7635288216894196,101.46222147688707,(Unknown Operator),Type 2 (Socket Only),11,11 kW,As per ChargeSini app 11 kW AC RM0.20/min & 22 kW RM0.40/min,In Use,True
+259698,Gentari @ Perdana Hotel Kota Bahru,"Jalan Mahmood, 15990, Kelantan",6.121831844839946,102.24170259798882,Jom Charge,CCS (Type 2),60,60 kW,DCFC RM1.40/min; AC RM0.15/min,In Use,True
+259248,Sime Darby Auto Selection Glenmarie (TNBX),"33, Jalan Pelukis U1/46, Shah Alam, 40150 , Selangor",3.08388,101.57588,Go ToU,CCS (Type 2),30,30 kW,Check the GO TO-U app,In Use,True
+259247,BYD Trec Kuala Lumpur (TNBX),"Jln Tun Razak, Kuala Lumpur,, 55100, Wilayah Persekutuan Kuala Lumpur",3.1411330863188027,101.72109755703809,Go ToU,CCS (Type 2),30,30 kW,Check the GO TO-U app,In Use,True
+259246,BYD Ara Damasara (TNBX),"Jalan PJU 1a/9,, Petaling Jaya, 47301, Selangor",3.11558,101.57016,Go ToU,CCS (Type 2),90,90 kW,Check the GO TO-U app,In Use,True
+259245,Auto Bavaria Ara Damansara (TNBX),"6, Jln PJU 1A/7, Petaling Jaya, 47301, Selangor",3.1145398,101.5698149,Go ToU,CCS (Type 2),90,90 kW,Check the GO TO-U app,In Use,True
+259244,Hyundai Ara Damansara (TNBX),"6, Jln PJU 1A/7, Petaling Jaya, Selangor",3.114902655126272,101.56920836109902,Go ToU,CCS (Type 2),60,60 kW,Check the GO TO-U app.,In Use,True
+259243,"Jaguar Land Rover, Ara Damansara","Jalan PJU 1A/7, Petaling Jaya, Selangor",3.115026,101.568663,Go ToU,CCS (Type 2),180,180 kW,Check GO TO-U app,In Use,True
+258751,BHP R&R Skudai,"16 Jalan R&R Skudai Kawasan R&R Skudai, Senai, 81400, Johor",1.5897277130447236,103.63590792890477,Jom Charge,CCS (Type 2),120,120 kW,RM 2/min,In Use,True
+257223,chargEV | Ayer Keroh OBR Southbound (50kW DC),"Restoran Jejantas Ayer Keroh, Alor Gajah, 78000, Melaka",2.39815757056887,102.22173256937708,chargEV,CCS (Type 2),50,50 kW,DC @ RM1.30/kWh,In Use,True
+256493,(EDOTCO) Dataran PHB - Lot 186,"Block A, Dataran PHB, Shah Alam, 40150 , Selangor",3.107952,101.582832,Go ToU,Type 2 (Tethered Connector) ,22,22 kW,RM0.2 / minute,In Use,True
+235675,Royale Chulan Cherating Villa,"49GX+F8 Balok, Pahang, Malaysia, Kampung Cherating Lama, 26100, Pahang",4.12597927024764,103.39833496156575,Go ToU,Type 2 (Socket Only),22,22 kW,Free,In Use,True
+235087,R&R Tapah (TNB Electron),"AH2, Tapah, 35000 , Perak",4.17876,101.289916,Go ToU,CCS (Type 2),80,80 kW,Refer to GO TO-U App,In Use,True
+213521,Petronas Jalan Sultan Azlan Shah,"Jalan Sultan Azlan Shah, Bandar Baru Medan Ipoh, Ipoh, 31400, Perak",4.621028392422403,101.11686169681889,Gentari Go (MY),CCS (Type 2),60,60 kW,RM1/kWh,In Use,True
+213079,Royal Kedah Club - BMW x Rexharge Charging Hub,"PUM PONG, Alor Setar, 05250, Kedah",6.150152736907415,100.3704215778045,Rexcharge (Malaysia),CCS (Type 2),60,60 kW,DC: RM 1.40 / Minute; AC: RM 0.15 / Minute,In Use,True
+212604,GO TO-U EV Lifestyle Charging Hub @ Rekascape,"Persiaran Apec, Cyberjaya, 63000, Selangor",2.909098501107678,101.65706353519931,Go ToU,CCS (Type 2),120,120 kW,Check the GO TO-U mobile app,In Use,True
+212603,TNB Electron Paka R&R Northbound,"East Coast Expressway, Paka, 23100, Terengganu",4.645887262869238,103.34258483768656,Go ToU,CCS (Type 2),90,90 kW,Refer to the Tariff in the GO TO-U mobile app.,In Use,True
+212602,TNB Electron Ayer Keroh R&R Northbound,"Lebuhraya Utara-Selatan, Alor Gajah, 78000, Melaka",2.364023922119671,102.24633619606334,Go ToU,CCS (Type 2),90,90 kW,According to Tariff in the Mobile App,In Use,True
+210973,GENTARI @ XPARK SUNWAY ISKANDAR,"Jalan Medini Selatan 2 Medini Zone F, Bandar Medini Iskandar, , Johor , 79250, Johor",1.395408479,103.6258287,Jom Charge,CHAdeMO,50,50 kW,N/A,In Use,True
+210972,GENTARI @ THE BEAT KIARA BAY,"Kiara Bay, Karya Bayu Metropolitan, 51, Persiaran Putra Bayu, , Kuala Lumpur, 52100, Kuala Lumpur",3.226195265,101.6503368,Jom Charge,Type 2 (Socket Only),11,11 kW,Charging rate: Type 2 - RM0.10/min,In Use,True
+210875,GENTARI @ PANTAI HOSPITAL KL ,"8, Jalan Bukit Pantai,, Kuala Lumpur, 59100, Kuala Lumpur",3.1538604000008377,101.71300489999624,Jom Charge,Type 2 (Tethered Connector) ,22,22 kW,"Charging Rate: RM0.5/10 min , :RM3.00/hour",In Use,True
+210873,GENTARI @ LOTUS SETIA TROPIKA,"1, Persiaran Desa Tebrau,, Johor Bharu, 81100, Johor",1.5486959,103.7143175,Jom Charge,Type 2 (Socket Only),7,7 kW,Charging Rate: RM2.00/hour,In Use,True
+210872,JomCharge | Lotus's Desa Terau [11kW AC],"1, Persiaran Desa Tebrau, Johor Bahru, 81100, Johor",1.547618618,103.793576905804,Jom Charge,Type 2 (Socket Only),11,11 kW,AC @ RM1.15/kWh,In Use,True
+210871,GENTARI @ KUALA LUMPUR CONVENTION CENTRE,"Kuala Lumpur Convention Centre, Kuala Lumpur City Centre,, Kuala Lumpur, 50088, Kuala Lumpur",3.154223516420899,101.71278508646026,Jom Charge,Type 2 (Socket Only),11,11 kW,AC: RM0.10/min,In Use,True
+210870,GENTARI @ MENARA KLK,"1, Jalan PJU 7/6,, Petaling Jaya, 47800, Selangor",3.1610295319679125,101.61340371763185,Jom Charge,Type 2 (Socket Only),11,11 kW,Charging Rate: RM0.50 per 10 min ,In Use,True
+210833,Shell Tapah RNR South Bound,"KAW R&R TAPAH (ARAH SELATAN), Tapah, 35000, Perak",4.179113108832453,101.29116443958378,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+210832,MYDIN Gopeng (ChargeSini) Near MyMart,"Jalan Teknologi 3, 31600, Perak",4.49487473483461,101.15499213550879,ChargeSini,CCS (Type 2),60,60 kW,Standard: RM1.40/kWh,In Use,True
+210709,Gentari x JomCharge @ Bangi Golf Resort,"1 Jalan Golf, Bandar Baru Bangi, 43650, Selangor",2.9569960938979563,101.76559011438917,Jom Charge,CCS (Type 2),0,N/A,"DC: RM1.00/kWh, AC: RM0.55/kWh",In Use,True
+210685,GENTARI @ SURIA KLCC,"Lot Lot 241, Jalan Pinang, Kuala Lumpur, 50450, Kuala Lumpur",3.158277,101.712381,Jom Charge,Type 2 (Socket Only),11,11 kW,DC: Cost RM0.60/min (RM36/hour). AC: RM0.10/min (RM6/hour),In Use,True
+210594,Gentari x JomCharge @ XPark Sunway Serene,"Lot 1, Jln SS 8/6, Petaling Jaya, 47300, Selangor",3.090550504892434,101.60945661419487,Jom Charge,CCS (Type 2),350,350 kW,"350kW: RM1.20/kWh, 90kW: RM1.00/kWh, AC: RM0.55/kWh",In Use,True
+210593,Gentari | Petronas Bandar Baru Ayer Hitam (180kW DC),"Jalan Batu Pahat, Ayer Hitam, 86100, Johor",1.9326955748789914,103.1878232354129,Gentari Go (MY),CCS (Type 2),50,50 kW,DC @ RM1.70/kWh | AC @ RM1.15/kWh,In Use,True
+210070,D One Motorsports Sdn Bhd,"Lot 17972, Jln Gombak Bt 7 1/4 53100, Gombak, Selangor, Malaysia, Gombak, 53100, Selangor",3.24099245612112,101.71863601816347,(Unknown Operator),CCS (Type 2),40,40 kW,0.90/min,In Use,True
+209760,Petronas Gambang R&R East Coast Expressway (eastbound),"Lebuhraya Pantai Timur, Gambang, Pahang, Gambang, 26300, Pahang",3.7239378572429245,102.92524615395884,Jom Charge,CCS (Type 2),90,90 kW,RM2.20/minutes,In Use,True
+204368,Jalan PJU 1A/7,"Jalan PJU 1A/7, 40250, Selangor",3.1155304906540664,101.56913329962629,(Unknown Operator),CCS (Type 2),60,60 kW,N/A,In Use,True
+201669,Abadi Motors Penang,"1683, Jalan Perusahaan, Simpang Ampat, 13600, Pulau Pinang",5.3364396246523995,100.43270216485166,(Business Owner at Location),CCS (Type 2),30,30 kW,Booking required,In Use,True
+201668,Tian Siang BMW Butterworth,"Lot 6235, Jalan Baru, Butterworth, 13700, Pulau Pinang",5.373514310177768,100.40735191205454,chargEV,CCS (Type 2),120,120 kW,Refer to ChargeEV app,In Use,True
+201667,Tian Siang BMW Butterworth,"Lot 6235, Jalan Baru, Butterworth, 13700, Pulau Pinang",5.373352595616737,100.40742147761785,chargEV,CCS (Type 2),120,120 kW,Refer to ChargeEV app,In Use,True
+201461,Gentari | Petronas Pedas Linggi Layby North Bound (180kW DC),"KM 225 Pedas - Linggi Layby, Plus Highway (Northbound), Rembau, 71300, Negeri Sembilan",2.4670944135324504,102.1201027036036,Gentari Go (MY),CCS (Type 2),180,180 kW,DC @ RM1.70/kWh,In Use,True
+201276,Petronas Juru Layby,"4290 NSE, Perai, 14000",5.354334670442725,100.41614084971695,chargEV,CCS (Type 2),180,180 kW,RM1.70/kWh,In Use,True
+201260,Petronas Rasah,"PT25435 Jalan Rasah, Mambau, 70300, Negeri Sembilan",2.6803958664272756,101.92752975819928,Jom Charge,CCS (Type 2),17,17 kW,RM0.40/min,In Use,True
+195394,SRS Automobile Sdn Bhd,"No 23, Lot 10, Kuching, 93400, Sarawak",1.5550312622909388,110.34087410372717,Jom Charge,CCS (Type 2),60,60 kW,N/A,In Use,True
+195334,Flexi Parking,"Lot/No. F-4-G, Jalan Multimedia 7/AG,, Shah Alam, 40000, Selangor",3.064948315280205,101.48387149027872,(Unknown Operator),Type 2 (Socket Only),22,22 kW,Free,In Use,True
+195332,Flexi Parking,"Jalan Multimedia 7/AG, i-City, 40200, Selangor",3.0648746055722853,101.48393139174414,(Unknown Operator),Type 2 (Socket Only),22,22 kW,FREE,In Use,True
+195331,Flexi Parking,"Lot/No. F-4-G, Jalan Multimedia 7/AG,, Shah Alam, 40000, Selangor",3.064885149696366,101.48394802301254,(Unknown Operator),Type 2 (Socket Only),22,22 kW,FREE,In Use,True
+193503,Tahap Puncak Sdn Bhd,"19, Jalan PPBK, Pusat Perniagaan Bukit Katil, , Melaka, 75450, Melaka",2.229938,102.299063,(Unknown Operator),CCS (Type 2),60,60 kW,N/A,In Use,True
+193463,ACO HQ Johor Bahru," 16, Jalan Firma 3, , Johor Bahru, , 81100 , Johor, ",1.5363681482626248,103.75320997460153,Jom Charge,CCS (Type 2),180,180 kW,N/A,In Use,True
+193462,Petron Jalan Kluang 2,"Jalan Batu Pahat, Kluang, 86000, Johor",2.020994557034669,103.30985253011318,Jom Charge,CCS (Type 2),50,50 kW,N/A,In Use,True
+193033,LBI Motor Sdn Bhd,"Lot 2235 & 2236, Lebuhraya Darulaman,, Alor Setar,  05100, Kedah",6.129046557537933,100.368014231421,(Unknown Operator),CCS (Type 2),60,60 kW,Not determined yet.,In Use,True
+192590,G-Mart Autocity Subang,"Jalan Sungai Buloh, Kampung Melayu Subang, 40150, Selangor",3.1584245357530563,101.5282950715312,(Unknown Operator),CCS (Type 2),60,60 kW,Charges to be determined later.,Offline,False
+192589,Izuwan Automobile Sdn Bhd,"Middle Ring Road 2 (MRR2), Gombak, 68100, Selangor",3.2407257990892617,101.70692374599867,(Unknown Operator),CCS (Type 2),50,50 kW,Charges to be decided.,Offline,False
+192161,TJM Cars Kuantan,"2, Jalan Gambut, Kuantan, 25000, Pahang",3.815087825199356,103.33227166103654,chargEV,CCS (Type 2),60,60 kW,N/A,In Use,True
+192078,BMW Tian Siang Ipoh,"99 Jalan Kuala Kangsar, Ipoh, 30010, Perak",4.62427447956631,101.08195954910389,chargEV,CCS (Type 2),120,120 kW,N/A,In Use,True
+191085,Shell Tangkak RNR JB Bound,"TANGKAK LAYBY SOUTH BOUND, Tangkak, 84900, Johor",2.2357642587962516,102.57086650016004,Shell Recharge (Malaysia),CCS (Type 2),180,180 kW,Please refer to Shell Recharge App for pricing,In Use,True
+189665,Mall of Medini,"Mall of Medini, Johor Bahru, 79250, Johor",1.425373663952172,103.63351963183493,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+189663,Jen Hotel by Shangri-La ,"Persiaran Puteri Selatan, Nusajaya, Johor",1.417863545793466,103.65671167970254,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+189656,Forest City Sales Gallery,"Jalan Forest City, Johor Bahru, 81550, Johor",1.3343838631701033,103.59112817935534,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+189645,Palkom Motors,"Jalan Waja 4, Johor Bahru, 81100, Johor",1.5307606248543237,103.78067773767259,chargEV,CCS (Type 2),40,40 kW,N/A,In Use,True
+189601,Kiara Bay Sales Gallery,"Off Middle Ring Road 2, Kiara Bay, 52000, Wilayah Persekutuan Kuala Lumpur",3.2255662859760434,101.65056532499057,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+189600,Petronas Penchala Link KL-Bound,"Petronas, Kampung Palimbayan Indah, Kuala Lumpur",3.16462824487445,101.6206206353678,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+189599,"Hamza Motors, The Nizra Building","No. 8 Jalan Seri Penchala, Wilayah Persekutuan, 60000, Kuala Lumpur",3.1614231844645246,101.62373989272623,chargEV,CCS (Type 2),60,60 kW,FOC,In Use,True
+189565,Behrang Northbound Lay-by ,"North-South Expressway, Behrang Ulu, 35950, Perak",3.7816201660434814,101.44631076750943,Jom Charge,CCS (Type 2),150,150 kW,N/A,In Use,True
+189385,Utama Motors,"Jalan Ampang, Kuala Lumpur , 50450",3.1605088510449235,101.74151023110016,chargEV,CCS (Type 2),40,40 kW,N/A,Offline,False
+188644,D’Wharf Hotel & Serviced Residence,"Persiaran Waterfront, Port Dickson, 71000, Negeri Sembilan",2.522050947098151,101.79933844599395,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188643,Gentari | Petronas R&R Seremban North Bound,"Petronas R&R Seremban, North Bound, Labu, 71900, Negeri Sembilan",2.757163301283967,101.84424385937916,Gentari Go (MY),CCS (Type 2),180,180 kW,DC @ RM1.70/kWh,In Use,True
+188642,Petronas Dengkil R&R Northbound,"Petronas, Taman Sains Selangor 2, 47130, Selangor",2.9107231388831707,101.60920500242241,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188641,RnR Dengkil Southbound,"RnR Dengkil, Taman Sains Selangor 2, 47130, Selangor",2.9039529017553747,101.61504873781178,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188640,Petronas Bukit Jelutong ELITE Layby,"Shah Alam, 40150, Selangor",3.098753143759822,101.5441379790027,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188639,Petronas Bukit Jelutong ELITE Layby,"Shah Alam, 40150, Selangor",3.098753143759822,101.5441379790027,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188614,Gentari | Petronas R&R Seremban South Bound,"Petronas R&R Seremban South Bound, Labu, 71900, Negeri Sembilan",2.7633602127052512,101.83142114095449,Gentari Go (MY),Type 2 (Socket Only),180,180 kW,DC @ RM1.70/kWh,In Use,True
+188604,Petronas R&R Sungai Perak Northbound,"Stesen Petronas , Kuala Kangsar, Perak",4.713001352884035,100.94498047940567,Jom Charge,CCS (Type 2),180,180 kW,RM 1.50/kW,In Use,True
+188603,Hentian Rehat Gunung Semanggol (Northbound),"Hentian Rehat Gunung Semanggol, Balik Bukit, Perak",4.982473708982312,100.66565280934947,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188602,Kulim Landmark Central,"Giant, Kulim, Kedah",5.38556787232595,100.54692695647964,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188601,Hard Rock Hotel Penang,"Hard Rock Hotel Penang, George Town, 11100, Penang",5.467906359713638,100.24161791364759,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188600,Central Square Sg. Petani,"Central Square, Sungai Petani, 08000, Kedah",5.63667499999849,100.48829399999897,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188599,Petronas BKE2 (Butterworth Westbound),"Petronas, Butterworth, 13700, Penang",5.398008074578556,100.41096988216975,chargEV,CCS (Type 2),24,24 kW,Yearly Subscription,In Use,True
+188598,Star City Hotel Alor Setar Kedah,"Jalan Tengah, Alor Setar, 05200, Kedah",6.124538206941267,100.36393461817488,chargEV,Type 2 (Tethered Connector) ,22,22 kW,FREE,In Use,True
+188597,Komtar JBCC (JB City Centre),"Jalan Wong Ah Fook, Johor Bahru, 80730, Johor",1.464331637192032,103.76244054037727,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,Offline,False
+188596,Petronas R&R Skudai Northbound,"North–South Expressway, Senai, 81210, Johor",1.5794532893281854,103.65046880073555,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188595,chargEV | R&R Pagoh Southbound (47kW DC),"R&R Pagoh Southbound, KM135.5, Pagoh, 84600, Johor",2.121798087845775,102.79363621765151,chargEV,CCS (Type 2),47,47 kW,DC @ RM1.40/kWh,In Use,True
+188594,Wetex Parade,"Wetex Parade, Muar, 84000, Johor",2.0442945958745753,102.56641865943618,chargEV,Type 2 (Socket Only),22,22 kW,"RM240 annually, FREE to charge",In Use,True
+188593,R&R Tapah Southbound Southbound,"North–South Expressway, Tanah Mas, Perak",4.181391067942073,101.28920599851767,chargEV,Type 2 (Tethered Connector) ,22,22 kW,Yearly Subscription,In Use,True
+188592,Petronas R&R Tapah Northbound,"Petronas, Kampung Seri Asam, Perak",4.179873290828041,101.28894593268137,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+188584,Genting Premium Outlet (Premium Parking),"KM13, Genting Highlands, 69000, Pahang",3.403134996141773,101.78293167077959,chargEV,Type 2 (Socket Only),7.4,7.4 kW,FREE to charge with Premium Parking Charges,In Use,True
+188581,Petronas Genting Sempah,Pahang,3.351952072777678,101.79085722298169,chargEV,Type 2 (Socket Only),13,13 kW,Yearly Subscription,In Use,True
+188580,Petronas R&R Bentong,"Kuala Lumpur–Karak Expressway, Bentong, Pahang",3.4434137701198466,101.89353812668628,Jom Charge,Type 2 (Socket Only),40,40 kW,RM1.50/kWh,In Use,True
+188566,Petronas Lebuhraya Karak,"Kuala Lumpur–Karak Expressway, Kg Sungai Dua, BENTONG, Pahang",3.462699096440332,101.98512555391858,chargEV,Type 2 (Socket Only),22,22 kW,N/A,In Use,True
+188565,PETRONAS Gambung Westbound,"East Coast Expressway Westbound, Hulu Lepar, 26300, Pahang",3.723980943033098,102.91863883940118,chargEV,Type 2 (Socket Only),22,22 kW,N/A,In Use,True
+188564,East Coast Expressway,"East Coast Expressway, Pahang",3.7242122130858775,102.92546117008601,chargEV,Type 2 (Socket Only),22,22 kW,N/A,In Use,True
+174603,Petronas Batu Tiga Federal Highway,"Federal Highway Klang bound, Batu Tiga, Selangor",3.08073496763933,101.57230285574519,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+174574,Bukit Raja Toll Plaza,"NKVE Expressway, Bukit Raja, 40000, Selangor",3.0711858980810973,101.47323639260503,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+174566,Petronas Temasya Federal Highway,"Federal Highway KL-bound, Glenmarie, 47500, Selangor",3.0845143596427533,101.58338819232415,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+174565,Primula Beach Resort,"Primula Beach Resort, Kuala Terengganu, 20300, Terengganu",5.32954210903317,103.15022966055312,(Unknown Operator),Type 2 (Socket Only),7.4,7.4 kW,FREE for visitors & hotel guests,In Use,True
+174564,Hotel Tanjong Vista,"Hotel Tanjong Vista, Kuala Terengganu, 20100, Terengganu",5.333225573409749,103.14830386993663,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,N/A,In Use,True
+174560,Resorts World Kijal ,"KM 28, 24210 Jalan Kemaman - Dungun, Kijal, 24100, Terengganu ",4.388690289595928,103.45596474551985,(Unknown Operator),Type 2 (Tethered Connector) ,22,22 kW,Free for hotel guests ,In Use,True
+174558,Subang Parade,"Jalan Kemajuan Subang, Subang Jaya, 47500, Selangor",3.081900777569018,101.58420788977924,chargEV,Type 2 (Socket Only),22,22 kW,Yearly Subscription,In Use,True
+174548,Zaibar Automobile Industries,"Persiaran Kuala Selangor, Shah Alam, 47630, Selangor",3.0353952630432133,101.55705596857297,(Unknown Operator),CCS (Type 2),60,60 kW,N/A,In Use,True
+174473,Caltex RnR Bukit Gantang Northbound ,"RnR Bukit Gantang Northbound , Taiping, Perak",4.77283288240514,100.76130194698885,Jom Charge,CCS (Type 2),50,50 kW,RM1.20 per minute,In Use,True
+174459,Caltex RnR Bukit Gantang Southbound,"North–South Expressway, Taiping, Perak",4.773803484306939,100.75537052627112,Jom Charge,CCS (Type 2),50,50 kW,RM1.20 per minute,In Use,True
+174452,Caltex Ayer Keroh RnR Northbound,"North–South Expressway, Alor Gajah, Malacca",2.3983202540996587,102.2196182172014,(Unknown Operator),CCS (Type 2),50,50 kW,RM1.20 per minute,In Use,True
+174451,Ayer Keroh Rest Area Southbound,"North-South Expressway, Ayer Keroh, 78000, Malacca",2.395100169579621,102.22357670685437,Jom Charge,CCS (Type 2),50,50 kW,RM1.20/min,In Use,True
+174435,ABB Malaysia Sunway,"Lot 608 Jalan Lagoon Selatan, Subang Jaya, 47500, Selangor",3.0651019140756404,101.59704223799531,(Unknown Operator),CCS (Type 2),50,50 kW,Free,In Use,True
+174397,Caltex R&R Skudai Southbound,"13 Jalan R&R Skudai Kawasan R&R Skudai, Senai, Kulai, 81400, Johor",1.5899360929474682,103.63514625448329,(Unknown Operator),CCS (Type 2),50,50 kW,RM1.20 per minute,In Use,True
+95820,IKEA Tebrau,"33 Jalan Harmonium, Johor Bahru, 81100, Johor",1.5525571709246004,103.7979128174743,(Business Owner at Location),Type 2 (Socket Only),0,N/A,Unknown. Parking fees apply,In Use,True
+67844,SILK,"SILK, Balakong, 43300",3.02863718047523,101.719263179307,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+65335,Pintu Barat,"Pintu Barat, Klang, 40170",3.11026828201771,101.46009667791,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+65334,Lebuhraya Damansara-Puchong,"Lebuhraya Damansara-Puchong, Petaling Jaya, 47301",3.10508084393876,101.596059009926,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+65333,Menara MBPJ,"Menara MBPJ, Petaling Jaya, 46000",3.0975030000999,101.644430076582,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+65150,Acson Malaysia Sales & Service Sdn. Bhd.,"Lot 4, Lorong 19/1A, Seksyen 19, Petaling Jaya, 46300, Selangor Darul Ehsan",3.0738379,101.5183469,(Business Owner at Location),Unknown Type,0,N/A,N/A,In Use,True
+62531,The Curve Mall,"Jalan PJU 7/3, Petaling Jaya, 47800",3.15827036999565,101.612484654106,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,N/A,In Use,True
+62530,Jalan Pudu,"Jalan Pudu, Sentul, 50150",3.14419108835014,101.705908981229,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62529,Jalan 13/6,"Jalan 13/6, Petaling Jaya, 46000",3.11772396783834,101.63547043055,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62528,NPE,"NPE, PJS10, 45500",3.07263807011829,101.601058162457,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62527,Persiaran Semarak Api,"Persiaran Semarak Api, Cyberia, 63000",2.93814578683156,101.644753046627,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62525,Persiaran APEC,"Persiaran APEC, Cyberjaya, 63000",2.90722110779707,101.656301047816,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62524,5,"5, Melaka Tengah, 76300",2.2901735,102.1396378,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62523,Jalan Klebang,"Jalan Klebang, Kelebang Besar, 75250",2.21638,102.194365,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+62522,Jalan Tun Perak,"Jalan Tun Perak, Melaka, 75300",2.209708,102.243628,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,N/A,In Use,True
+62521,Jalan Molek 1/27,"Jalan Molek 1/27, Johor Bahru, 81100",1.52518037482521,103.784269860119,Shell Recharge Solutions (BE),Type 2 (Socket Only),3.7,3.7 kW,0.00 jaarabonnement,In Use,True
+57461,Lebuh Laguna Merbok 2,"Lebuh Laguna Merbok 2, Sungai Petani, 8000",5.683502,100.493956,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+57460,Persiaran Petronas,"Persiaran Petronas, Kuala Lumpur, 50088",3.1559369,101.7117102,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+57459,Jalan 52/1 33,"Jalan 52/1 33, Petaling Jaya, 46200",3.09918,101.6450899,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+57458,E10,"E10, Subang Jaya, 47500",3.072622,101.5979468,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+57457,Persiaran Bakti,"Persiaran Bakti, Subang Jaya, 47610",3.051596,101.582347,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+57456,Jalan Usahawan 2,"Jalan Usahawan 2, Cyberjaya, 63000",2.926689,101.662598,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+53546,Jalan 9/10,"Jalan 9/10, Bandar Baru Bangi, 43650",2.95731570182009,101.751333322754,Shell Recharge Solutions (BE),Type 2 (Socket Only),37,37 kW,0.00 jaarabonnement,In Use,True
+41864,Straits Quay Carpark,"Straits Quay, Tanjung Tokong, 10470, Penang",5.457148,100.31297,(Unknown Operator),Unknown,0,N/A,Free,In Use,True

@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "note": "3D lie-room sponsor car (D-AD). One CC0 substitute EV body recolored to evoke the Proton eMas 5. Serves as a sponsor/ad slot. Probe: recolored body carries the sponsor livery in the lie-room only."
+  },
+  "sponsor": {
+    "slug": "proton-emas-5",
+    "display_name": "Proton eMas 5",
+    "tagline": "Electrify the everyday. Made in Malaysia, made for Malaysia.",
+    "cc0_body": "CC0 low-poly EV body (substitute, NOT paultan.org textures)",
+    "color_theme": {
+      "primary": "#0F3D6B",
+      "secondary": "#00A6A6",
+      "accent": "#F2A900"
+    },
+    "link": "https://www.proton.com/my/emAs",
+    "cta": "Book a test drive"
+  }
+}

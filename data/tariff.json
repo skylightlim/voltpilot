@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "currency": "RM",
+    "updated_at": "2026-08-14",
+    "source": "TNB Domestic ToU (TNB calculator-domesticTOU.js v1.1.65) + JomCharge app Aug 2026. The 2023 EV residential block (home_ev_special RM0.25) no longer exists; home EV charging is billed under the standard Domestic ToU tariff.",
+    "notes": [
+      "home_ev_marginal_rm_per_kwh is the MARGINAL cost of adding EV charging to a baseline 400 kWh/month household under Domestic ToU (10% peak / 90% off-peak overnight charging), validated in scripts/used_market/compute_charging_cost.py. Representative 150 kWh/month EV draw -> RM74.79 marginal bill delta.",
+      "AFA is the automatic fuel adjustment surcharge from TNB rates.js FUEL_BY_MONTH; only applies above 600 kWh/month total usage.",
+      "Public rates are JomCharge app prices (AC RM1.10 / DC RM1.40), blended 50/50 -> RM1.25."
+    ]
+  },
+  "tnb_tariffs": {
+    "home_ev_marginal_rm_per_kwh": 0.4986,
+    "home_ev_marginal_note": "Marginal ToU cost (baseline 400 kWh household + 150 kWh/mo EV draw, 90% off-peak/10% peak, incl. capacity, network, incentive tier shift; AFA 2026-08 +0.038 excluded as draw straddles the 600 kWh threshold)",
+    "home_household_assumptions": {
+      "base_household_kwh": 400,
+      "base_peak_share": 0.6,
+      "charge_peak_share": 0.1,
+      "charger_efficiency": 0.9
+    },
+    "domestic_tou": {
+      "energy_tier1": {"peak": 0.2852, "off_peak": 0.2443},
+      "energy_tier2": {"peak": 0.3852, "off_peak": 0.3443},
+      "capacity_rate": 0.0455,
+      "network_rate": 0.1285,
+      "afa_rm_per_kwh": 0.038,
+      "afa_source": "TNB rates.js FUEL_BY_MONTH 2026-08",
+      "usage_threshold_kwh": 600,
+      "high_usage_threshold_kwh": 1501,
+      "service_tax_rate": 0.08,
+      "kwtbb_threshold_kwh": 300,
+      "kwtbb_rate": 0.016,
+      "retail_charge_rm": 10.0
+    }
+  },
+  "public_charging_rm_per_kwh": {
+    "ac_basic": 1.1,
+    "dc_fast": 1.4,
+    "blended": 1.25,
+    "note": "JomCharge app Aug 2026 (AC RM1.10 / DC RM1.40), blended 50/50 for the station share"
+  },
+  "ev_road_tax": {
+    "note": "EVs RM2 road tax via Finance Minister incentive; phase-in announced in RM #5 2026: 10% of ICE-equivalent rate from 2026.",
+    "rm2_exempt_through": "2025",
+    "phase_in_pct_of_ice": 0.10,
+    "phase_in_from_year": 2026,
+    "hybrid_road_tax": "standard ICE formula"
+  }
+}

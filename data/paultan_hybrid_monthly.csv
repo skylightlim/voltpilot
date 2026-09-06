@@ -1,0 +1,1269 @@
+month,rank,make,model,units,share_pct
+2023-09,1,Toyota,Corolla Cross,667,36.87
+2023-09,2,Honda,HR-V,381,21.06
+2023-09,3,Honda,City,190,10.5
+2023-09,4,Honda,Civic,129,7.13
+2023-09,5,Mercedes Benz,C-Class,94,5.2
+2023-09,6,Mercedes Benz,GLC,88,4.86
+2023-09,7,Volvo,XC60,77,4.26
+2023-09,8,Volvo,XC90,59,3.26
+2023-09,9,Volvo,XC40,45,2.49
+2023-09,10,Mercedes Benz,A-Class,27,1.49
+2023-09,11,Mercedes Benz,GLE,17,0.94
+2023-09,12,Mercedes Benz,S-Class,16,0.88
+2023-09,13,Lexus,RX,12,0.66
+2023-09,14,Volvo,V60,3,0.17
+2023-09,15,BMW,7 Series,2,0.11
+2023-09,16,Mercedes Benz,E-Class,1,0.06
+2023-09,17,Mercedes-Maybach,GLS,1,0.06
+2023-10,1,Toyota,Corolla Cross,773,34.71
+2023-10,2,Honda,HR-V,457,20.52
+2023-10,3,Honda,City,292,13.11
+2023-10,4,Mercedes Benz,GLC,254,11.41
+2023-10,5,Honda,Civic,121,5.43
+2023-10,6,Mercedes Benz,C-Class,101,4.54
+2023-10,7,Volvo,XC40,36,1.62
+2023-10,8,Volvo,XC90,33,1.48
+2023-10,9,Volvo,XC60,31,1.39
+2023-10,10,Mercedes Benz,A-Class,28,1.26
+2023-10,11,Lexus,RX,23,1.03
+2023-10,12,BMW,7 Series,19,0.85
+2023-10,13,Mercedes Benz,S-Class,19,0.85
+2023-10,14,Toyota,Innova Zenix,17,0.76
+2023-10,15,Mercedes Benz,GLE,16,0.72
+2023-10,16,Volvo,V60,3,0.13
+2023-10,17,Toyota,Vios,2,0.09
+2023-10,18,Lexus,IS,1,0.04
+2023-10,19,Nissan,Note,1,0.04
+2023-11,1,Toyota,Corolla Cross,904,34.16
+2023-11,2,Honda,HR-V,648,24.49
+2023-11,3,Honda,City,270,10.2
+2023-11,4,Mercedes Benz,GLC,255,9.64
+2023-11,5,Mercedes Benz,C-Class,100,3.78
+2023-11,6,Honda,Civic,84,3.17
+2023-11,7,Volvo,XC60,65,2.46
+2023-11,8,Toyota,Innova Zenix,61,2.31
+2023-11,9,BMW,7 Series,55,2.08
+2023-11,10,Lexus,RX,51,1.93
+2023-11,11,Volvo,XC40,44,1.66
+2023-11,12,Mercedes Benz,S-Class,35,1.32
+2023-11,13,Volvo,XC90,31,1.17
+2023-11,14,Mercedes Benz,GLE,19,0.72
+2023-11,15,Mercedes Benz,A-Class,16,0.6
+2023-11,16,Volvo,V60,6,0.23
+2023-11,17,Mercedes Benz,CLS,1,0.04
+2023-11,18,Toyota,Vios,1,0.04
+2023-12,1,Toyota,Corolla Cross,1140,38.89
+2023-12,2,Honda,HR-V,706,24.09
+2023-12,3,Honda,City,287,9.79
+2023-12,4,Mercedes Benz,GLC,226,7.71
+2023-12,5,Mercedes Benz,C-Class,107,3.65
+2023-12,6,Honda,Civic,99,3.38
+2023-12,7,Volvo,XC60,61,2.08
+2023-12,8,Lexus,RX,60,2.05
+2023-12,9,Volvo,XC90,56,1.91
+2023-12,10,BMW,7 Series,51,1.74
+2023-12,11,Volvo,XC40,43,1.47
+2023-12,12,Mercedes Benz,S-Class,31,1.06
+2023-12,13,Toyota,Innova Zenix,28,0.96
+2023-12,14,Mercedes Benz,A-Class,17,0.58
+2023-12,15,Mercedes Benz,GLE,8,0.27
+2023-12,16,Chery,Omoda 5,3,0.1
+2023-12,17,Volvo,V60,3,0.1
+2023-12,18,Mercedes-Maybach,S-Class,2,0.07
+2023-12,19,Mercedes Benz,GLS,1,0.03
+2023-12,20,Porsche,Panamera,1,0.03
+2023-12,21,Toyota,Crown,1,0.03
+2024-01,1,Toyota,Corolla Cross,533,25.37
+2024-01,2,Honda,HR-V,523,24.89
+2024-01,3,Honda,City,208,9.9
+2024-01,4,Mercedes Benz,GLC,193,9.19
+2024-01,5,Honda,CR-V,179,8.52
+2024-01,6,Mercedes Benz,C-Class,166,7.9
+2024-01,7,Honda,Civic,64,3.05
+2024-01,8,Volvo,XC60,50,2.38
+2024-01,9,Mercedes Benz,A-Class,33,1.57
+2024-01,10,Volvo,XC40,33,1.57
+2024-01,11,Volvo,XC90,32,1.52
+2024-01,12,Lexus,RX,24,1.14
+2024-01,13,BMW,7 Series,21,1.0
+2024-01,14,Mercedes Benz,S-Class,20,0.95
+2024-01,15,Mercedes Benz,GLE,12,0.57
+2024-01,16,Volvo,V60,4,0.19
+2024-01,17,Toyota,Innova Zenix,3,0.14
+2024-01,18,Porsche,Panamera,1,0.05
+2024-01,19,Toyota,Crown,1,0.05
+2024-01,20,Toyota,Vellfire,1,0.05
+2024-02,1,Honda,HR-V,454,24.81
+2024-02,2,Toyota,Corolla Cross,446,24.37
+2024-02,3,Mercedes Benz,GLC,198,10.82
+2024-02,4,Mercedes Benz,C-Class,183,10.0
+2024-02,5,Honda,City,133,7.27
+2024-02,6,Honda,CR-V,109,5.96
+2024-02,7,Honda,Civic,60,3.28
+2024-02,8,Lexus,RX,53,2.9
+2024-02,9,Volvo,XC60,53,2.9
+2024-02,10,Volvo,XC90,37,2.02
+2024-02,11,Volvo,XC40,30,1.64
+2024-02,12,BMW,7 Series,27,1.48
+2024-02,13,Mercedes Benz,A-Class,20,1.09
+2024-02,14,Mercedes Benz,S-Class,9,0.49
+2024-02,15,Mercedes Benz,GLE,8,0.44
+2024-02,16,Volvo,V60,4,0.22
+2024-02,17,Mercedes Benz,E-Class,2,0.11
+2024-02,18,Land Rover,Range Rover Sport,1,0.05
+2024-02,19,Toyota,Innova Zenix,1,0.05
+2024-02,20,Toyota,Vios,1,0.05
+2024-02,21,Toyota,Yaris,1,0.05
+2024-03,1,Honda,HR-V,518,22.91
+2024-03,2,Toyota,Corolla Cross,495,21.89
+2024-03,3,Mercedes Benz,GLC,217,9.6
+2024-03,4,Honda,City,211,9.33
+2024-03,5,Honda,CR-V,176,7.78
+2024-03,6,Mercedes Benz,C-Class,168,7.43
+2024-03,7,Lexus,RX,101,4.47
+2024-03,8,Honda,Civic,83,3.67
+2024-03,9,Volvo,XC60,73,3.23
+2024-03,10,Volvo,XC40,48,2.12
+2024-03,11,Volvo,XC90,38,1.68
+2024-03,12,BMW,7 Series,37,1.64
+2024-03,13,Mercedes Benz,A-Class,32,1.42
+2024-03,14,Mercedes Benz,GLE,17,0.75
+2024-03,15,Toyota,Innova Zenix,15,0.66
+2024-03,16,Mercedes Benz,S-Class,13,0.57
+2024-03,17,Volvo,V60,10,0.44
+2024-03,18,Audi,RS6,1,0.04
+2024-03,19,Honda,Shuttle,1,0.04
+2024-03,20,Mercedes Benz,E-Class,1,0.04
+2024-03,21,Mercedes Benz,GLS,1,0.04
+2024-03,22,Mercedes-Maybach,S-Class,1,0.04
+2024-03,23,Toyota,Harrier,1,0.04
+2024-03,24,Toyota,RAV4,1,0.04
+2024-03,25,Toyota,Vios,1,0.04
+2024-03,26,Volvo,S90,1,0.04
+2024-04,1,Toyota,Corolla Cross,519,29.47
+2024-04,2,Honda,HR-V,286,16.24
+2024-04,3,Mercedes Benz,C-Class,207,11.75
+2024-04,4,Honda,City,186,10.56
+2024-04,5,Mercedes Benz,GLC,144,8.18
+2024-04,6,Honda,Civic,73,4.15
+2024-04,7,Mercedes Benz,A-Class,69,3.92
+2024-04,8,Honda,CR-V,56,3.18
+2024-04,9,Lexus,RX,54,3.07
+2024-04,10,Volvo,XC60,41,2.33
+2024-04,11,Volvo,XC40,30,1.7
+2024-04,12,BMW,7 Series,29,1.65
+2024-04,13,Volvo,XC90,18,1.02
+2024-04,14,Toyota,Innova Zenix,15,0.85
+2024-04,15,Mercedes Benz,S-Class,13,0.74
+2024-04,16,Mercedes Benz,GLE,7,0.4
+2024-04,17,Volvo,V60,7,0.4
+2024-04,18,Mercedes Benz,E-Class,1,0.06
+2024-04,19,Mercedes Benz,GLS,1,0.06
+2024-04,20,Nissan,Kicks,1,0.06
+2024-04,21,Toyota,Aqua,1,0.06
+2024-04,22,Toyota,Crown,1,0.06
+2024-04,23,Toyota,RAV4,1,0.06
+2024-04,24,Toyota,Yaris,1,0.06
+2024-05,1,Toyota,Corolla Cross,508,27.17
+2024-05,2,Honda,HR-V,353,18.88
+2024-05,3,Honda,CR-V,200,10.7
+2024-05,4,Honda,City,134,7.17
+2024-05,5,Mercedes Benz,C-Class,131,7.01
+2024-05,6,Mercedes Benz,GLC,125,6.68
+2024-05,7,Mercedes Benz,GLE,112,5.99
+2024-05,8,Honda,Civic,64,3.42
+2024-05,9,Lexus,RX,59,3.16
+2024-05,10,Volvo,XC60,45,2.41
+2024-05,11,BMW,7 Series,26,1.39
+2024-05,12,Volvo,XC90,25,1.34
+2024-05,13,Volvo,XC40,22,1.18
+2024-05,14,Mercedes Benz,A-Class,16,0.86
+2024-05,15,Toyota,Innova Zenix,16,0.86
+2024-05,16,Mercedes Benz,S-Class,15,0.8
+2024-05,17,Volvo,V60,8,0.43
+2024-05,18,Mercedes Benz,CLE,3,0.16
+2024-05,19,Mercedes Benz,GLB,2,0.11
+2024-05,20,Mercedes-Maybach,GLS,2,0.11
+2024-05,21,Toyota,Alphard,2,0.11
+2024-05,22,Mercedes Benz,E-Class,1,0.05
+2024-05,23,Toyota,Vellfire,1,0.05
+2024-06,1,Toyota,Corolla Cross,548,28.86
+2024-06,2,Honda,City,326,17.17
+2024-06,3,Honda,HR-V,322,16.96
+2024-06,4,Honda,CR-V,126,6.64
+2024-06,5,Mercedes Benz,C-Class,118,6.21
+2024-06,6,Mercedes Benz,GLA,80,4.21
+2024-06,7,Honda,Civic,70,3.69
+2024-06,8,Mercedes Benz,GLC,52,2.74
+2024-06,9,Mercedes Benz,GLE,46,2.42
+2024-06,10,Volvo,XC60,43,2.26
+2024-06,11,Volvo,XC90,39,2.05
+2024-06,12,Lexus,RX,33,1.74
+2024-06,13,Volvo,V60,21,1.11
+2024-06,14,BMW,7 Series,17,0.9
+2024-06,15,Mercedes Benz,A-Class,15,0.79
+2024-06,16,Mercedes Benz,S-Class,11,0.58
+2024-06,17,Volvo,XC40,10,0.53
+2024-06,18,Toyota,Innova Zenix,6,0.32
+2024-06,19,Mercedes Benz,G-Class,5,0.26
+2024-06,20,Lexus,LM,2,0.11
+2024-06,21,Mercedes Benz,GLB,2,0.11
+2024-06,22,Ferrari,296,1,0.05
+2024-06,23,Great Wall,Haval H6,1,0.05
+2024-06,24,Honda,STEPWGN,1,0.05
+2024-06,25,Land Rover,Range Rover,1,0.05
+2024-06,26,Toyota,RAV4,1,0.05
+2024-06,27,Toyota,Vellfire,1,0.05
+2024-06,28,Toyota,Vios,1,0.05
+2024-07,1,Toyota,Corolla Cross,820,38.7
+2024-07,2,Honda,HR-V,294,13.87
+2024-07,3,Honda,City,232,10.95
+2024-07,4,Honda,CR-V,194,9.16
+2024-07,5,Mercedes Benz,C-Class,132,6.23
+2024-07,6,Mercedes Benz,GLA,94,4.44
+2024-07,7,Honda,Civic,69,3.26
+2024-07,8,Mercedes Benz,GLC,43,2.03
+2024-07,9,Mercedes Benz,GLE,40,1.89
+2024-07,10,Lexus,RX,34,1.6
+2024-07,11,Mercedes Benz,A-Class,29,1.37
+2024-07,12,Volvo,XC60,23,1.09
+2024-07,13,Lexus,LBX,20,0.94
+2024-07,14,Volvo,XC90,17,0.8
+2024-07,15,Mercedes Benz,S-Class,16,0.76
+2024-07,16,Toyota,Innova Zenix,13,0.61
+2024-07,17,BMW,7 Series,11,0.52
+2024-07,18,Mercedes Benz,G-Class,9,0.42
+2024-07,19,Mercedes Benz,CLE,8,0.38
+2024-07,20,Volvo,XC40,5,0.24
+2024-07,21,Mercedes Benz,GLB,3,0.14
+2024-07,22,Volvo,V60,3,0.14
+2024-07,23,Mercedes-Maybach,GLS,2,0.09
+2024-07,24,Toyota,Vios,2,0.09
+2024-07,25,Audi,RS6,1,0.05
+2024-07,26,BMW,i8,1,0.05
+2024-07,27,Mercedes Benz,AMG GT,1,0.05
+2024-07,28,Mercedes Benz,CLS,1,0.05
+2024-07,29,Mercedes Benz,E-Class,1,0.05
+2024-07,30,Toyota,RAV4,1,0.05
+2024-08,1,Toyota,Corolla Cross,661,34.36
+2024-08,2,Honda,CR-V,387,20.11
+2024-08,3,Honda,City,243,12.63
+2024-08,4,Mercedes Benz,C-Class,149,7.74
+2024-08,5,Honda,HR-V,110,5.72
+2024-08,6,Honda,Civic,62,3.22
+2024-08,7,Lexus,LBX,51,2.65
+2024-08,8,Mercedes Benz,GLA,48,2.49
+2024-08,9,Lexus,RX,35,1.82
+2024-08,10,Mercedes Benz,GLE,33,1.72
+2024-08,11,Mercedes Benz,GLC,24,1.25
+2024-08,12,Volvo,XC90,24,1.25
+2024-08,13,Mercedes Benz,A-Class,20,1.04
+2024-08,14,BMW,7 Series,15,0.78
+2024-08,15,Mercedes Benz,S-Class,14,0.73
+2024-08,16,Toyota,Innova Zenix,9,0.47
+2024-08,17,Volvo,XC60,8,0.42
+2024-08,18,Great Wall,Haval H6,4,0.21
+2024-08,19,Mercedes Benz,CLE,4,0.21
+2024-08,20,Mercedes Benz,GLB,4,0.21
+2024-08,21,Volvo,V60,4,0.21
+2024-08,22,Mercedes Benz,G-Class,3,0.16
+2024-08,23,Mercedes Benz,GLS,2,0.1
+2024-08,24,BMW,X7,1,0.05
+2024-08,25,Ferrari,296,1,0.05
+2024-08,26,Lexus,LM,1,0.05
+2024-08,27,Lexus,LS,1,0.05
+2024-08,28,Mazda,CX-60,1,0.05
+2024-08,29,Mercedes-Maybach,GLS,1,0.05
+2024-08,30,Nissan,Kicks,1,0.05
+2024-08,31,Toyota,Vios,1,0.05
+2024-08,32,Toyota,Yaris,1,0.05
+2024-08,33,Volvo,XC40,1,0.05
+2024-09,1,Toyota,Corolla Cross,529,31.34
+2024-09,2,Honda,CR-V,264,15.64
+2024-09,3,Mercedes Benz,E-Class,200,11.85
+2024-09,4,Honda,City,132,7.82
+2024-09,5,Mercedes Benz,C-Class,102,6.04
+2024-09,6,Volvo,XC60,68,4.03
+2024-09,7,Lexus,RX,49,2.9
+2024-09,8,Honda,Civic,48,2.84
+2024-09,9,Mercedes Benz,GLC,48,2.84
+2024-09,10,Volvo,XC90,41,2.43
+2024-09,11,Mercedes Benz,GLA,35,2.07
+2024-09,12,Mercedes Benz,GLE,33,1.95
+2024-09,13,Great Wall,Haval H6,26,1.54
+2024-09,14,Honda,HR-V,21,1.24
+2024-09,15,Lexus,LBX,20,1.18
+2024-09,16,BMW,7 Series,17,1.01
+2024-09,17,Mercedes Benz,S-Class,15,0.89
+2024-09,18,Toyota,Innova Zenix,9,0.53
+2024-09,19,Mercedes Benz,A-Class,7,0.41
+2024-09,20,Volvo,V60,6,0.36
+2024-09,21,Mercedes Benz,G-Class,5,0.3
+2024-09,22,Mercedes Benz,GLB,5,0.3
+2024-09,23,Toyota,Crown,3,0.18
+2024-09,24,Ferrari,296,2,0.12
+2024-09,25,Lexus,LM,1,0.06
+2024-09,26,Lexus,LS,1,0.06
+2024-09,27,Mercedes Benz,CLE,1,0.06
+2024-10,1,Toyota,Corolla Cross,505,27.99
+2024-10,2,Mercedes Benz,E-Class,274,15.19
+2024-10,3,Honda,CR-V,204,11.31
+2024-10,4,Honda,City,151,8.37
+2024-10,5,Mercedes Benz,C-Class,131,7.26
+2024-10,6,Great Wall,Haval H6,118,6.54
+2024-10,7,Honda,HR-V,91,5.04
+2024-10,8,Mercedes Benz,GLA,53,2.94
+2024-10,9,Mercedes Benz,GLC,51,2.83
+2024-10,10,Mercedes Benz,GLE,36,2.0
+2024-10,11,Volvo,XC60,31,1.72
+2024-10,12,Lexus,RX,29,1.61
+2024-10,13,Honda,Civic,24,1.33
+2024-10,14,Lexus,LBX,23,1.27
+2024-10,15,BMW,7 Series,18,1.0
+2024-10,16,Mercedes Benz,S-Class,18,1.0
+2024-10,17,Volvo,XC90,16,0.89
+2024-10,18,Toyota,Innova Zenix,7,0.39
+2024-10,19,Mercedes Benz,A-Class,6,0.33
+2024-10,20,Mercedes Benz,CLE,3,0.17
+2024-10,21,Mercedes Benz,GLB,2,0.11
+2024-10,22,Toyota,Alphard,2,0.11
+2024-10,23,Toyota,Crown,2,0.11
+2024-10,24,Volvo,V60,2,0.11
+2024-10,25,Volvo,XC40,2,0.11
+2024-10,26,Land Rover,Range Rover,1,0.06
+2024-10,27,Lexus,LM,1,0.06
+2024-10,28,Mercedes Benz,G-Class,1,0.06
+2024-10,29,Omoda Jaecoo,Jaecoo J7,1,0.06
+2024-10,30,Toyota,Vios,1,0.06
+2024-11,1,Great Wall,Haval H6,356,19.11
+2024-11,2,Mercedes Benz,GLC,221,11.86
+2024-11,3,Toyota,Corolla Cross,218,11.7
+2024-11,4,Honda,CR-V,193,10.36
+2024-11,5,Honda,HR-V,189,10.14
+2024-11,6,Honda,City,164,8.8
+2024-11,7,Mercedes Benz,E-Class,161,8.64
+2024-11,8,Mercedes Benz,C-Class,95,5.1
+2024-11,9,Honda,Civic,55,2.95
+2024-11,10,Volvo,XC60,41,2.2
+2024-11,11,Volvo,XC90,33,1.77
+2024-11,12,Mercedes Benz,A-Class,18,0.97
+2024-11,13,Mercedes Benz,GLA,18,0.97
+2024-11,14,BMW,7 Series,17,0.91
+2024-11,15,Lexus,LBX,17,0.91
+2024-11,16,Lexus,RX,15,0.81
+2024-11,17,Mercedes Benz,GLE,15,0.81
+2024-11,18,Hyundai,Santa Fe,12,0.64
+2024-11,19,Mercedes Benz,S-Class,6,0.32
+2024-11,20,Mercedes Benz,GLB,5,0.27
+2024-11,21,Toyota,Innova Zenix,5,0.27
+2024-11,22,GAC,M8,2,0.11
+2024-11,23,Chery,Tiggo,1,0.05
+2024-11,24,Ferrari,296,1,0.05
+2024-11,25,Honda,ZR-V,1,0.05
+2024-11,26,Lamborghini,Revuelto,1,0.05
+2024-11,27,Mercedes Benz,G-Class,1,0.05
+2024-11,28,Mercedes-Maybach,GLS,1,0.05
+2024-11,29,Toyota,Crown,1,0.05
+2024-12,1,Toyota,Corolla Cross,1092,32.06
+2024-12,2,Great Wall,Haval H6,506,14.86
+2024-12,3,Honda,HR-V,425,12.48
+2024-12,4,Honda,City,206,6.05
+2024-12,5,Honda,CR-V,175,5.14
+2024-12,6,Mercedes Benz,GLC,163,4.79
+2024-12,7,Honda,Civic,158,4.64
+2024-12,8,Mercedes Benz,C-Class,138,4.05
+2024-12,9,Mercedes Benz,E-Class,129,3.79
+2024-12,10,Volvo,XC60,118,3.46
+2024-12,11,Volvo,XC90,92,2.7
+2024-12,12,Lexus,LBX,58,1.7
+2024-12,13,BMW,7 Series,34,1.0
+2024-12,14,Mercedes Benz,GLA,25,0.73
+2024-12,15,Mercedes Benz,GLE,20,0.59
+2024-12,16,Mercedes Benz,A-Class,14,0.41
+2024-12,17,Mercedes Benz,S-Class,11,0.32
+2024-12,18,Hyundai,Santa Fe,10,0.29
+2024-12,19,Toyota,Innova Zenix,6,0.18
+2024-12,20,Ferrari,296,4,0.12
+2024-12,21,Lexus,RX,4,0.12
+2024-12,22,Lexus,LM,2,0.06
+2024-12,23,Mercedes Benz,CLE,2,0.06
+2024-12,24,Mercedes Benz,G-Class,2,0.06
+2024-12,25,Mercedes Benz,GLB,2,0.06
+2024-12,26,Nissan,Kicks,2,0.06
+2024-12,27,Omoda Jaecoo,Jaecoo J7,2,0.06
+2024-12,28,Toyota,Prius,2,0.06
+2024-12,29,Ferrari,SF90,1,0.03
+2024-12,30,Honda,Vezel,1,0.03
+2024-12,31,Lamborghini,Revuelto,1,0.03
+2024-12,32,Lexus,CT,1,0.03
+2025-01,1,Toyota,Corolla Cross,655,29.12
+2025-01,2,Great Wall,Haval H6,344,15.3
+2025-01,3,Nissan,Kicks,216,9.6
+2025-01,4,Honda,CR-V,193,8.58
+2025-01,5,Honda,HR-V,168,7.47
+2025-01,6,Mercedes Benz,C-Class,100,4.45
+2025-01,7,Mercedes Benz,E-Class,88,3.91
+2025-01,8,Honda,City,86,3.82
+2025-01,9,Honda,Civic,74,3.29
+2025-01,10,Mercedes Benz,GLC,64,2.85
+2025-01,11,Mercedes Benz,GLA,34,1.51
+2025-01,12,Mercedes Benz,A-Class,33,1.47
+2025-01,13,Mercedes Benz,GLE,30,1.33
+2025-01,14,Lexus,LBX,26,1.16
+2025-01,15,Volvo,XC60,25,1.11
+2025-01,16,Volvo,XC90,25,1.11
+2025-01,17,BMW,7 Series,22,0.98
+2025-01,18,Volvo,XC40,16,0.71
+2025-01,19,Mercedes Benz,S-Class,11,0.49
+2025-01,20,Hyundai,Santa Fe,10,0.44
+2025-01,21,Toyota,Alphard,5,0.22
+2025-01,22,Ferrari,296,3,0.13
+2025-01,23,Lamborghini,Revuelto,3,0.13
+2025-01,24,Mercedes Benz,CLE,3,0.13
+2025-01,25,Toyota,Innova Zenix,3,0.13
+2025-01,26,Audi,RS6,2,0.09
+2025-01,27,Mercedes Benz,G-Class,2,0.09
+2025-01,28,Mercedes Benz,GLB,2,0.09
+2025-01,29,Toyota,Vios,2,0.09
+2025-01,30,Ferrari,SF90,1,0.04
+2025-01,31,Omoda Jaecoo,Jaecoo J7,1,0.04
+2025-01,32,Porsche,Cayenne,1,0.04
+2025-01,33,Toyota,Crown,1,0.04
+2025-02,1,Toyota,Corolla Cross,655,31.01
+2025-02,2,Honda,CR-V,231,10.94
+2025-02,3,Honda,HR-V,220,10.42
+2025-02,4,Great Wall,Haval H6,194,9.19
+2025-02,5,Nissan,Kicks,166,7.86
+2025-02,6,Honda,City,141,6.68
+2025-02,7,Mercedes Benz,C-Class,97,4.59
+2025-02,8,Honda,Civic,90,4.26
+2025-02,9,Mercedes Benz,GLC,61,2.89
+2025-02,10,Mercedes Benz,E-Class,42,1.99
+2025-02,11,Lexus,LBX,29,1.37
+2025-02,12,Volvo,XC60,28,1.33
+2025-02,13,Mercedes Benz,GLA,24,1.14
+2025-02,14,Mercedes Benz,A-Class,18,0.85
+2025-02,15,Mercedes Benz,GLE,15,0.71
+2025-02,16,Volvo,XC90,15,0.71
+2025-02,17,BMW,7 Series,14,0.66
+2025-02,18,Mercedes Benz,S-Class,12,0.57
+2025-02,19,Hyundai,Santa Fe,11,0.52
+2025-02,20,Lexus,RX,11,0.52
+2025-02,21,Volvo,XC40,11,0.52
+2025-02,22,Porsche,Cayenne,7,0.33
+2025-02,23,Lexus,LM,3,0.14
+2025-02,24,Toyota,Alphard,3,0.14
+2025-02,25,Toyota,Crown,3,0.14
+2025-02,26,Omoda Jaecoo,Jaecoo J7,2,0.09
+2025-02,27,Toyota,Vios,2,0.09
+2025-02,28,BMW,5 Series,1,0.05
+2025-02,29,BMW,i8,1,0.05
+2025-02,30,Ferrari,296,1,0.05
+2025-02,31,Mercedes Benz,CLE,1,0.05
+2025-02,32,Mercedes Benz,GLB,1,0.05
+2025-02,33,Mercedes Benz,GLS,1,0.05
+2025-02,34,Toyota,Innova Zenix,1,0.05
+2025-03,1,Toyota,Corolla Cross,777,28.03
+2025-03,2,Honda,HR-V,320,11.54
+2025-03,3,Great Wall,Haval H6,315,11.36
+2025-03,4,Honda,CR-V,229,8.26
+2025-03,5,Honda,City,169,6.1
+2025-03,6,Mercedes Benz,GLC,140,5.05
+2025-03,7,Nissan,Kicks,129,4.65
+2025-03,8,Mercedes Benz,E-Class,112,4.04
+2025-03,9,Mercedes Benz,C-Class,111,4.0
+2025-03,10,Honda,Civic,65,2.34
+2025-03,11,Volvo,XC60,59,2.13
+2025-03,12,Omoda Jaecoo,Jaecoo J7,51,1.84
+2025-03,13,Volvo,XC90,41,1.48
+2025-03,14,Mercedes Benz,A-Class,34,1.23
+2025-03,15,Volvo,XC40,31,1.12
+2025-03,16,Lexus,RX,28,1.01
+2025-03,17,Toyota,Camry,27,0.97
+2025-03,18,Mercedes Benz,GLE,22,0.79
+2025-03,19,Lexus,LBX,21,0.76
+2025-03,20,Mercedes Benz,GLA,20,0.72
+2025-03,21,BMW,7 Series,16,0.58
+2025-03,22,Hyundai,Santa Fe,11,0.4
+2025-03,23,Mercedes Benz,S-Class,10,0.36
+2025-03,24,Porsche,Cayenne,6,0.22
+2025-03,25,BMW,5 Series,5,0.18
+2025-03,26,Mercedes Benz,G-Class,5,0.18
+2025-03,27,Ferrari,296,4,0.14
+2025-03,28,Toyota,Innova Zenix,3,0.11
+2025-03,29,Toyota,Alphard,2,0.07
+2025-03,30,Bentley,Continental Flying Spur,1,0.04
+2025-03,31,Lamborghini,Revuelto,1,0.04
+2025-03,32,Land Rover,Range Rover Sport,1,0.04
+2025-03,33,Lexus,LM,1,0.04
+2025-03,34,Mazda,CX-8,1,0.04
+2025-03,35,Mercedes Benz,CLE,1,0.04
+2025-03,36,Mercedes Benz,GLS,1,0.04
+2025-03,37,Suzuki,Hustler,1,0.04
+2025-03,38,Toyota,Crown,1,0.04
+2025-04,1,Toyota,Corolla Cross,686,30.23
+2025-04,2,Great Wall,Haval H6,282,12.43
+2025-04,3,Honda,CR-V,184,8.11
+2025-04,4,Honda,HR-V,154,6.79
+2025-04,5,Nissan,Kicks,142,6.26
+2025-04,6,Mercedes Benz,E-Class,88,3.88
+2025-04,7,Mercedes Benz,GLC,87,3.83
+2025-04,8,Mercedes Benz,C-Class,85,3.75
+2025-04,9,Honda,City,77,3.39
+2025-04,10,Hyundai,Santa Fe,62,2.73
+2025-04,11,Toyota,Camry,61,2.69
+2025-04,12,Lexus,RX,50,2.2
+2025-04,13,Lexus,LBX,46,2.03
+2025-04,14,Volvo,XC60,32,1.41
+2025-04,15,Volvo,XC90,31,1.37
+2025-04,16,Omoda Jaecoo,Jaecoo J7,28,1.23
+2025-04,17,Honda,Civic,27,1.19
+2025-04,18,Mercedes Benz,A-Class,26,1.15
+2025-04,19,BMW,7 Series,20,0.88
+2025-04,20,Mercedes Benz,GLE,20,0.88
+2025-04,21,BMW,5 Series,18,0.79
+2025-04,22,Mercedes Benz,GLA,18,0.79
+2025-04,23,Volvo,XC40,11,0.48
+2025-04,24,Toyota,Crown,7,0.31
+2025-04,25,Porsche,Cayenne,6,0.26
+2025-04,26,Mercedes Benz,S-Class,4,0.18
+2025-04,27,Toyota,Innova Zenix,4,0.18
+2025-04,28,Ferrari,296,3,0.13
+2025-04,29,Ferrari,SF90,2,0.09
+2025-04,30,Toyota,Alphard,2,0.09
+2025-04,31,Hyundai,Genesis G90,1,0.04
+2025-04,32,Lexus,LM,1,0.04
+2025-04,33,Mercedes Benz,CLE,1,0.04
+2025-04,34,Mercedes Benz,G-Class,1,0.04
+2025-04,35,Mercedes Benz,GLB,1,0.04
+2025-04,36,Toyota,Vellfire,1,0.04
+2025-05,1,Toyota,Corolla Cross,720,26.72
+2025-05,2,Great Wall,Haval H6,305,11.32
+2025-05,3,Honda,HR-V,252,9.35
+2025-05,4,Honda,CR-V,208,7.72
+2025-05,5,Mercedes Benz,C-Class,141,5.23
+2025-05,6,Mercedes Benz,GLC,136,5.05
+2025-05,7,Mercedes Benz,E-Class,120,4.45
+2025-05,8,Honda,City,117,4.34
+2025-05,9,Nissan,Kicks,108,4.01
+2025-05,10,Omoda Jaecoo,Jaecoo J7,102,3.78
+2025-05,11,Toyota,Camry,74,2.75
+2025-05,12,Mercedes Benz,A-Class,60,2.23
+2025-05,13,Lexus,LBX,47,1.74
+2025-05,14,Honda,Civic,39,1.45
+2025-05,15,Lexus,RX,39,1.45
+2025-05,16,Mercedes Benz,GLA,37,1.37
+2025-05,17,Volvo,XC90,37,1.37
+2025-05,18,Mercedes Benz,G-Class,27,1.0
+2025-05,19,BMW,5 Series,24,0.89
+2025-05,20,BMW,7 Series,23,0.85
+2025-05,21,Volvo,XC60,17,0.63
+2025-05,22,Mercedes Benz,GLE,15,0.56
+2025-05,23,Volvo,XC40,14,0.52
+2025-05,24,Mercedes Benz,S-Class,10,0.37
+2025-05,25,Lexus,LM,4,0.15
+2025-05,26,Toyota,Crown,4,0.15
+2025-05,27,Porsche,Cayenne,3,0.11
+2025-05,28,Toyota,Innova Zenix,3,0.11
+2025-05,29,Ferrari,SF90,2,0.07
+2025-05,30,Mercedes Benz,CLE,2,0.07
+2025-05,31,Ferrari,296,1,0.04
+2025-05,32,Lamborghini,Revuelto,1,0.04
+2025-05,33,Mercedes Benz,GLB,1,0.04
+2025-05,34,Mercedes Benz,GLS,1,0.04
+2025-05,35,Toyota,Alphard,1,0.04
+2025-06,1,Toyota,Corolla Cross,623,30.1
+2025-06,2,Great Wall,Haval H6,257,12.42
+2025-06,3,Honda,CR-V,186,8.99
+2025-06,4,Omoda Jaecoo,Jaecoo J7,115,5.56
+2025-06,5,Mercedes Benz,C-Class,111,5.36
+2025-06,6,Honda,HR-V,110,5.31
+2025-06,7,Mercedes Benz,GLC,101,4.88
+2025-06,8,Mercedes Benz,E-Class,84,4.06
+2025-06,9,Nissan,Kicks,58,2.8
+2025-06,10,Honda,City,50,2.42
+2025-06,11,BMW,5 Series,40,1.93
+2025-06,12,Honda,Civic,40,1.93
+2025-06,13,Lexus,LBX,39,1.88
+2025-06,14,Lexus,RX,39,1.88
+2025-06,15,Volvo,XC90,36,1.74
+2025-06,16,Toyota,Camry,30,1.45
+2025-06,17,Volvo,XC60,27,1.3
+2025-06,18,Mercedes Benz,GLA,26,1.26
+2025-06,19,Mercedes Benz,GLE,22,1.06
+2025-06,20,BMW,7 Series,18,0.87
+2025-06,21,BMW,X3,10,0.48
+2025-06,22,Volvo,XC40,10,0.48
+2025-06,23,Mercedes Benz,A-Class,8,0.39
+2025-06,24,Toyota,Crown,6,0.29
+2025-06,25,Hyundai,Santa Fe,4,0.19
+2025-06,26,Mercedes Benz,S-Class,3,0.14
+2025-06,27,Toyota,Innova Zenix,3,0.14
+2025-06,28,Chery,Tiggo,2,0.1
+2025-06,29,Mercedes Benz,G-Class,2,0.1
+2025-06,30,Porsche,Cayenne,2,0.1
+2025-06,31,Ferrari,296,1,0.05
+2025-06,32,Lamborghini,Revuelto,1,0.05
+2025-06,33,Lexus,CT,1,0.05
+2025-06,34,Lexus,LM,1,0.05
+2025-06,35,Mercedes Benz,CLE,1,0.05
+2025-06,36,Mercedes Benz,GLS,1,0.05
+2025-06,37,Toyota,Harrier,1,0.05
+2025-06,38,Toyota,Vios,1,0.05
+2025-07,1,Toyota,Corolla Cross,645,26.05
+2025-07,2,Great Wall,Haval H6,394,15.91
+2025-07,3,Honda,CR-V,175,7.07
+2025-07,4,Honda,HR-V,171,6.91
+2025-07,5,BMW,X3,135,5.45
+2025-07,6,Mercedes Benz,GLC,99,4.0
+2025-07,7,Nissan,Kicks,91,3.68
+2025-07,8,Omoda Jaecoo,Jaecoo J7,90,3.63
+2025-07,9,Honda,City,84,3.39
+2025-07,10,Mercedes Benz,E-Class,78,3.15
+2025-07,11,Mercedes Benz,C-Class,75,3.03
+2025-07,12,Lexus,LBX,49,1.98
+2025-07,13,Toyota,Camry,47,1.9
+2025-07,14,Lexus,RX,45,1.82
+2025-07,15,BMW,5 Series,40,1.62
+2025-07,16,Volvo,XC60,31,1.25
+2025-07,17,BMW,7 Series,28,1.13
+2025-07,18,Mercedes Benz,GLE,27,1.09
+2025-07,19,Honda,Civic,26,1.05
+2025-07,20,Porsche,Cayenne,21,0.85
+2025-07,21,Volvo,XC90,21,0.85
+2025-07,22,Volvo,XC40,20,0.81
+2025-07,23,Mercedes Benz,GLA,13,0.53
+2025-07,24,Mercedes Benz,A-Class,11,0.44
+2025-07,25,Great Wall,Tank 500,10,0.4
+2025-07,26,Chery,Tiggo,9,0.36
+2025-07,27,Mercedes Benz,S-Class,7,0.28
+2025-07,28,Toyota,Innova Zenix,7,0.28
+2025-07,29,Toyota,Crown,6,0.24
+2025-07,30,Ferrari,SF90,3,0.12
+2025-07,31,Lexus,LM,3,0.12
+2025-07,32,Hyundai,Santa Fe,2,0.08
+2025-07,33,Lamborghini,Urus,2,0.08
+2025-07,34,Mercedes Benz,G-Class,2,0.08
+2025-07,35,Mercedes Benz,GLB,2,0.08
+2025-07,36,Toyota,Alphard,2,0.08
+2025-07,37,Ferrari,296,1,0.04
+2025-07,38,Mercedes Benz,CLE,1,0.04
+2025-07,39,Mercedes-Maybach,GLS,1,0.04
+2025-07,40,Suzuki,Hustler,1,0.04
+2025-07,41,Toyota,Harrier,1,0.04
+2025-08,1,Toyota,Corolla Cross,658,22.67
+2025-08,2,Great Wall,Haval H6,484,16.68
+2025-08,3,Chery,Tiggo,268,9.24
+2025-08,4,Honda,HR-V,235,8.1
+2025-08,5,Honda,CR-V,182,6.27
+2025-08,6,Mercedes Benz,GLC,128,4.41
+2025-08,7,Omoda Jaecoo,Jaecoo J7,93,3.2
+2025-08,8,BMW,X3,81,2.79
+2025-08,9,Mercedes Benz,C-Class,79,2.72
+2025-08,10,Mercedes Benz,E-Class,73,2.52
+2025-08,11,Toyota,Camry,72,2.48
+2025-08,12,Nissan,Kicks,70,2.41
+2025-08,13,Lexus,RX,61,2.1
+2025-08,14,Honda,City,59,2.03
+2025-08,15,Lexus,LBX,51,1.76
+2025-08,16,Great Wall,Tank 500,42,1.45
+2025-08,17,Volvo,XC40,33,1.14
+2025-08,18,Honda,Civic,30,1.03
+2025-08,19,Volvo,XC60,23,0.79
+2025-08,20,Volvo,XC90,23,0.79
+2025-08,21,BMW,5 Series,19,0.65
+2025-08,22,Mercedes Benz,GLA,19,0.65
+2025-08,23,Porsche,Cayenne,17,0.59
+2025-08,24,BMW,7 Series,15,0.52
+2025-08,25,Hyundai,Santa Fe,15,0.52
+2025-08,26,Mercedes Benz,GLE,14,0.48
+2025-08,27,Mercedes Benz,S-Class,12,0.41
+2025-08,28,Mercedes Benz,A-Class,11,0.38
+2025-08,29,Toyota,Crown,6,0.21
+2025-08,30,Hyundai,Tucson,5,0.17
+2025-08,31,Lamborghini,Revuelto,4,0.14
+2025-08,32,Lexus,NX,4,0.14
+2025-08,33,GAC,M8,2,0.07
+2025-08,34,Mercedes Benz,G-Class,2,0.07
+2025-08,35,Toyota,Alphard,2,0.07
+2025-08,36,Audi,RS6,1,0.03
+2025-08,37,Ferrari,296,1,0.03
+2025-08,38,Ferrari,Purosangue,1,0.03
+2025-08,39,Lamborghini,Urus,1,0.03
+2025-08,40,Lexus,LM,1,0.03
+2025-08,41,Mercedes Benz,GLB,1,0.03
+2025-08,42,Mercedes Benz,GLS,1,0.03
+2025-08,43,Nissan,Roox,1,0.03
+2025-08,44,Toyota,C-HR,1,0.03
+2025-08,45,Toyota,Harrier,1,0.03
+2025-09,1,Toyota,Corolla Cross,603,25.14
+2025-09,2,Great Wall,Haval H6,455,18.97
+2025-09,3,Chery,Tiggo,211,8.8
+2025-09,4,Honda,HR-V,135,5.63
+2025-09,5,Honda,CR-V,111,4.63
+2025-09,6,Nissan,Kicks,96,4.0
+2025-09,7,Mercedes Benz,GLC,81,3.38
+2025-09,8,Mercedes Benz,C-Class,77,3.21
+2025-09,9,BMW,X3,58,2.42
+2025-09,10,Toyota,Camry,48,2.0
+2025-09,11,Lexus,RX,45,1.88
+2025-09,12,Mercedes Benz,E-Class,45,1.88
+2025-09,13,Omoda Jaecoo,Jaecoo J7,45,1.88
+2025-09,14,Great Wall,Tank 500,41,1.71
+2025-09,15,Honda,City,38,1.58
+2025-09,16,BMW,5 Series,34,1.42
+2025-09,17,Volvo,XC40,34,1.42
+2025-09,18,Lexus,LBX,24,1.0
+2025-09,19,Honda,Civic,22,0.92
+2025-09,20,Volvo,XC90,20,0.83
+2025-09,21,BMW,7 Series,18,0.75
+2025-09,22,Porsche,Cayenne,17,0.71
+2025-09,23,Volvo,XC60,17,0.71
+2025-09,24,Toyota,Innova Zenix,16,0.67
+2025-09,25,Lexus,NX,15,0.63
+2025-09,26,Toyota,Crown,15,0.63
+2025-09,27,Mercedes Benz,S-Class,13,0.54
+2025-09,28,Mercedes Benz,GLA,12,0.5
+2025-09,29,Mercedes Benz,GLE,12,0.5
+2025-09,30,Hyundai,Santa Fe,6,0.25
+2025-09,31,Mercedes Benz,GLB,6,0.25
+2025-09,32,Ferrari,296,5,0.21
+2025-09,33,Mercedes Benz,A-Class,5,0.21
+2025-09,34,Lexus,LM,4,0.17
+2025-09,35,Mazda,CX-8,3,0.13
+2025-09,36,Hyundai,Tucson,2,0.08
+2025-09,37,Lamborghini,Revuelto,2,0.08
+2025-09,38,Ferrari,SF90,1,0.04
+2025-09,39,Lamborghini,Urus,1,0.04
+2025-09,40,Mercedes Benz,CLE,1,0.04
+2025-09,41,Mercedes Benz,G-Class,1,0.04
+2025-09,42,Porsche,911 Carrera,1,0.04
+2025-09,43,Toyota,Alphard,1,0.04
+2025-09,44,Toyota,C-HR,1,0.04
+2025-09,45,Toyota,Vellfire,1,0.04
+2025-10,1,Toyota,Corolla Cross,622,22.18
+2025-10,2,Great Wall,Haval H6,499,17.8
+2025-10,3,Chery,Tiggo,323,11.52
+2025-10,4,Honda,HR-V,180,6.42
+2025-10,5,Honda,CR-V,140,4.99
+2025-10,6,Mercedes Benz,C-Class,138,4.92
+2025-10,7,Mercedes Benz,GLC,122,4.35
+2025-10,8,Honda,City,83,2.96
+2025-10,9,Omoda Jaecoo,Jaecoo J7,68,2.43
+2025-10,10,Mercedes Benz,E-Class,64,2.28
+2025-10,11,BMW,X3,55,1.96
+2025-10,12,Nissan,Kicks,53,1.89
+2025-10,13,Volvo,XC60,45,1.6
+2025-10,14,BMW,5 Series,38,1.36
+2025-10,15,Toyota,Camry,37,1.32
+2025-10,16,Lexus,RX,35,1.25
+2025-10,17,Lexus,LBX,27,0.96
+2025-10,18,Great Wall,Tank 500,26,0.93
+2025-10,19,Toyota,Innova Zenix,24,0.86
+2025-10,20,Honda,Civic,23,0.82
+2025-10,21,Lexus,NX,18,0.64
+2025-10,22,Mercedes Benz,S-Class,18,0.64
+2025-10,23,Volvo,XC90,18,0.64
+2025-10,24,BMW,7 Series,17,0.61
+2025-10,25,Mercedes Benz,GLE,16,0.57
+2025-10,26,Porsche,Cayenne,15,0.53
+2025-10,27,Mercedes Benz,GLA,14,0.5
+2025-10,28,Volvo,XC40,12,0.43
+2025-10,29,Hyundai,Santa Fe,11,0.39
+2025-10,30,Toyota,Crown,11,0.39
+2025-10,31,GAC,M8,8,0.29
+2025-10,32,Mercedes Benz,A-Class,7,0.25
+2025-10,33,Mercedes Benz,GLB,6,0.21
+2025-10,34,Ferrari,296,4,0.14
+2025-10,35,Mercedes Benz,G-Class,4,0.14
+2025-10,36,Hyundai,Tucson,3,0.11
+2025-10,37,Lexus,LM,3,0.11
+2025-10,38,Toyota,Alphard,3,0.11
+2025-10,39,Lamborghini,Urus,2,0.07
+2025-10,40,Bentley,Continental Flying Spur,1,0.04
+2025-10,41,Ferrari,SF90,1,0.04
+2025-10,42,Honda,Fit,1,0.04
+2025-10,43,Lamborghini,Revuelto,1,0.04
+2025-10,44,Land Rover,Range Rover,1,0.04
+2025-10,45,Lexus,ES,1,0.04
+2025-10,46,Mercedes-Maybach,S-Class,1,0.04
+2025-10,47,Omoda Jaecoo,Omoda 9,1,0.04
+2025-10,48,Toyota,C-HR,1,0.04
+2025-10,49,Toyota,Century,1,0.04
+2025-10,50,Toyota,Noah,1,0.04
+2025-10,51,Toyota,Sienta,1,0.04
+2025-11,1,Toyota,Corolla Cross,551,21.61
+2025-11,2,Great Wall,Haval H6,513,20.12
+2025-11,3,Chery,Tiggo,263,10.31
+2025-11,4,Honda,CR-V,157,6.16
+2025-11,5,Honda,HR-V,138,5.41
+2025-11,6,Honda,City,124,4.86
+2025-11,7,Mercedes Benz,C-Class,98,3.84
+2025-11,8,Omoda Jaecoo,Jaecoo J7,68,2.67
+2025-11,9,Mercedes Benz,GLC,65,2.55
+2025-11,10,Toyota,Camry,56,2.2
+2025-11,11,Volvo,XC60,45,1.76
+2025-11,12,Volvo,XC90,39,1.53
+2025-11,13,Mercedes Benz,E-Class,38,1.49
+2025-11,14,Honda,Civic,37,1.45
+2025-11,15,Nissan,Kicks,36,1.41
+2025-11,16,BMW,X3,35,1.37
+2025-11,17,BMW,5 Series,34,1.33
+2025-11,18,Lexus,LBX,30,1.18
+2025-11,19,Lexus,RX,28,1.1
+2025-11,20,Great Wall,Tank 500,24,0.94
+2025-11,21,Volvo,XC40,16,0.63
+2025-11,22,Mazda,CX-8,14,0.55
+2025-11,23,Mercedes Benz,GLA,14,0.55
+2025-11,24,BMW,7 Series,13,0.51
+2025-11,25,GAC,M8,13,0.51
+2025-11,26,Toyota,Innova Zenix,13,0.51
+2025-11,27,Lexus,NX,10,0.39
+2025-11,28,Mercedes Benz,A-Class,10,0.39
+2025-11,29,Mercedes Benz,GLE,9,0.35
+2025-11,30,Porsche,Cayenne,9,0.35
+2025-11,31,Toyota,Crown,9,0.35
+2025-11,32,Mercedes Benz,S-Class,6,0.24
+2025-11,33,Hyundai,Santa Fe,5,0.2
+2025-11,34,Lexus,LM,5,0.2
+2025-11,35,Toyota,Alphard,5,0.2
+2025-11,36,Ferrari,296,3,0.12
+2025-11,37,Hyundai,Tucson,3,0.12
+2025-11,38,Mercedes Benz,G-Class,3,0.12
+2025-11,39,Ferrari,SF90,2,0.08
+2025-11,40,BMW,i8,1,0.04
+2025-11,41,Lamborghini,Revuelto,1,0.04
+2025-11,42,Lamborghini,Urus,1,0.04
+2025-11,43,Mercedes Benz,AMG GT,1,0.04
+2025-11,44,Mercedes Benz,CLE,1,0.04
+2025-11,45,Mercedes Benz,GLB,1,0.04
+2025-11,46,Mercedes-Maybach,S-Class,1,0.04
+2025-11,47,Suzuki,Hustler,1,0.04
+2025-11,48,Toyota,Harrier,1,0.04
+2025-12,1,Toyota,Corolla Cross,1166,29.96
+2025-12,2,Great Wall,Haval H6,610,15.67
+2025-12,3,Chery,Tiggo,369,9.48
+2025-12,4,Honda,HR-V,351,9.02
+2025-12,5,Honda,CR-V,182,4.68
+2025-12,6,Omoda Jaecoo,Jaecoo J7,131,3.37
+2025-12,7,Mercedes Benz,C-Class,118,3.03
+2025-12,8,Honda,City,94,2.42
+2025-12,9,Mercedes Benz,GLC,69,1.77
+2025-12,10,Mercedes Benz,E-Class,54,1.39
+2025-12,11,BMW,X3,53,1.36
+2025-12,12,Lexus,LBX,51,1.31
+2025-12,13,Toyota,Camry,50,1.28
+2025-12,14,Lexus,RX,49,1.26
+2025-12,15,Nissan,Kicks,49,1.26
+2025-12,16,BMW,5 Series,44,1.13
+2025-12,17,Honda,Civic,44,1.13
+2025-12,18,Volvo,XC60,44,1.13
+2025-12,19,Volvo,XC90,39,1.0
+2025-12,20,Mercedes Benz,A-Class,31,0.8
+2025-12,21,Mercedes Benz,GLE,29,0.75
+2025-12,22,Great Wall,Tank 500,28,0.72
+2025-12,23,Mercedes Benz,S-Class,26,0.67
+2025-12,24,Toyota,Innova Zenix,19,0.49
+2025-12,25,Volvo,XC40,19,0.49
+2025-12,26,Lexus,NX,18,0.46
+2025-12,27,Mercedes Benz,G-Class,18,0.46
+2025-12,28,Toyota,Crown,16,0.41
+2025-12,29,Mercedes Benz,GLA,15,0.39
+2025-12,30,Porsche,Cayenne,15,0.39
+2025-12,31,BMW,7 Series,14,0.36
+2025-12,32,GAC,M8,11,0.28
+2025-12,33,Mazda,CX-8,9,0.23
+2025-12,34,Hyundai,Santa Fe,8,0.21
+2025-12,35,Lexus,LM,7,0.18
+2025-12,36,Lamborghini,Revuelto,6,0.15
+2025-12,37,Lamborghini,Urus,6,0.15
+2025-12,38,Toyota,Alphard,6,0.15
+2025-12,39,Mercedes Benz,GLB,4,0.1
+2025-12,40,McLaren,Artura,3,0.08
+2025-12,41,Mercedes Benz,AMG GT,3,0.08
+2025-12,42,Porsche,911 Carrera,3,0.08
+2025-12,43,Ferrari,296,2,0.05
+2025-12,44,Hyundai,Tucson,2,0.05
+2025-12,45,Lexus,LX,2,0.05
+2025-12,46,Mercedes Benz,CLE,2,0.05
+2025-12,47,Bentley,Continental Flying Spur,1,0.03
+2025-12,48,Mercedes-Maybach,S-Class,1,0.03
+2025-12,49,Toyota,Century,1,0.03
+2026-01,1,Toyota,Corolla Cross,430,19.95
+2026-01,2,Great Wall,Haval H6,336,15.59
+2026-01,3,Chery,Tiggo,297,13.78
+2026-01,4,Honda,HR-V,154,7.15
+2026-01,5,Omoda Jaecoo,Jaecoo J7,134,6.22
+2026-01,6,Mercedes Benz,C-Class,117,5.43
+2026-01,7,Toyota,Vios,95,4.41
+2026-01,8,Mercedes Benz,E-Class,70,3.25
+2026-01,9,Mercedes Benz,GLC,60,2.78
+2026-01,10,Nissan,Kicks,50,2.32
+2026-01,11,BMW,5 Series,43,2.0
+2026-01,12,Honda,City,40,1.86
+2026-01,13,BMW,X3,33,1.53
+2026-01,14,Volvo,XC90,33,1.53
+2026-01,15,Volvo,XC60,30,1.39
+2026-01,16,Honda,CR-V,25,1.16
+2026-01,17,Great Wall,Tank 500,21,0.97
+2026-01,18,Porsche,Cayenne,19,0.88
+2026-01,19,Toyota,Camry,18,0.84
+2026-01,20,Mercedes Benz,GLE,17,0.79
+2026-01,21,Lexus,NX,16,0.74
+2026-01,22,Honda,Civic,14,0.65
+2026-01,23,BMW,7 Series,12,0.56
+2026-01,24,Hyundai,Santa Fe,12,0.56
+2026-01,25,Mercedes Benz,A-Class,11,0.51
+2026-01,26,Mercedes Benz,GLA,9,0.42
+2026-01,27,Lexus,LBX,7,0.32
+2026-01,28,Mercedes Benz,S-Class,7,0.32
+2026-01,29,Toyota,Crown,7,0.32
+2026-01,30,Omoda Jaecoo,Omoda 9,6,0.28
+2026-01,31,Lexus,RX,5,0.23
+2026-01,32,GAC,M8,3,0.14
+2026-01,33,LEVC,TX,3,0.14
+2026-01,34,Mazda,CX-8,3,0.14
+2026-01,35,Lexus,LM,2,0.09
+2026-01,36,Mercedes Benz,G-Class,2,0.09
+2026-01,37,Mercedes Benz,GLB,2,0.09
+2026-01,38,Omoda Jaecoo,Jaecoo J8,2,0.09
+2026-01,39,Toyota,Alphard,2,0.09
+2026-01,40,Volvo,XC40,2,0.09
+2026-01,41,Ferrari,296,1,0.05
+2026-01,42,Hyundai,Tucson,1,0.05
+2026-01,43,Mercedes Benz,AMG GT,1,0.05
+2026-01,44,Mercedes Benz,GLS,1,0.05
+2026-01,45,Toyota,Corolla,1,0.05
+2026-01,46,Toyota,Vellfire,1,0.05
+2026-02,1,Toyota,Corolla Cross,365,16.53
+2026-02,2,Chery,Tiggo,261,11.82
+2026-02,3,Toyota,Vios,189,8.56
+2026-02,4,Omoda Jaecoo,Jaecoo J7,177,8.02
+2026-02,5,Great Wall,Haval H6,151,6.84
+2026-02,6,Honda,HR-V,145,6.57
+2026-02,7,Great Wall,Wey G9,123,5.57
+2026-02,8,Mercedes Benz,E-Class,98,4.44
+2026-02,9,Proton,e.MAS 7 PHEV,96,4.35
+2026-02,10,Mercedes Benz,C-Class,95,4.3
+2026-02,11,Mercedes Benz,GLC,78,3.53
+2026-02,12,Honda,CR-V,51,2.31
+2026-02,13,BMW,5 Series,36,1.63
+2026-02,14,Honda,City,32,1.45
+2026-02,15,BMW,X3,31,1.4
+2026-02,16,Nissan,Kicks,27,1.22
+2026-02,17,Mercedes Benz,GLE,25,1.13
+2026-02,18,Volvo,XC90,21,0.95
+2026-02,19,Honda,Civic,20,0.91
+2026-02,20,Volkswagen,Golf,18,0.82
+2026-02,21,Volvo,XC60,18,0.82
+2026-02,22,BMW,7 Series,14,0.63
+2026-02,23,Mercedes Benz,GLA,14,0.63
+2026-02,24,Toyota,Camry,14,0.63
+2026-02,25,Great Wall,Tank 500,13,0.59
+2026-02,26,Porsche,Cayenne,12,0.54
+2026-02,27,Mercedes Benz,S-Class,11,0.5
+2026-02,28,Mercedes Benz,A-Class,10,0.45
+2026-02,29,Toyota,Crown,10,0.45
+2026-02,30,Hyundai,Santa Fe,9,0.41
+2026-02,31,Lexus,NX,6,0.27
+2026-02,32,Lexus,LM,5,0.23
+2026-02,33,Toyota,Alphard,5,0.23
+2026-02,34,Hyundai,Tucson,3,0.14
+2026-02,35,Lexus,RX,3,0.14
+2026-02,36,Omoda Jaecoo,Omoda 9,3,0.14
+2026-02,37,GAC,M8,2,0.09
+2026-02,38,Lexus,LBX,2,0.09
+2026-02,39,Mercedes Benz,CLE,2,0.09
+2026-02,40,Ferrari,SF90,1,0.05
+2026-02,41,Honda,Insight,1,0.05
+2026-02,42,Lexus,ES,1,0.05
+2026-02,43,Mazda,CX-8,1,0.05
+2026-02,44,Mercedes Benz,GLB,1,0.05
+2026-02,45,Mercedes Benz,GLS,1,0.05
+2026-02,46,Mercedes-Maybach,GLS,1,0.05
+2026-02,47,Omoda Jaecoo,Jaecoo J5,1,0.05
+2026-02,48,Omoda Jaecoo,Jaecoo J8,1,0.05
+2026-02,49,Toyota,Harrier,1,0.05
+2026-02,50,Toyota,Innova Zenix,1,0.05
+2026-02,51,Toyota,Vellfire,1,0.05
+2026-02,52,Volvo,XC40,1,0.05
+2026-03,1,Proton,e.MAS 7 PHEV,646,15.78
+2026-03,2,Toyota,Corolla Cross,474,11.58
+2026-03,3,Toyota,Vios,457,11.17
+2026-03,4,Great Wall,Wey G9,298,7.28
+2026-03,5,Honda,HR-V,290,7.09
+2026-03,6,Chery,Tiggo,267,6.52
+2026-03,7,Honda,CR-V,265,6.47
+2026-03,8,Nissan,Serena,245,5.99
+2026-03,9,Omoda Jaecoo,Jaecoo J7,193,4.72
+2026-03,10,Great Wall,Haval H6,169,4.13
+2026-03,11,Honda,City,88,2.15
+2026-03,12,Mercedes Benz,C-Class,81,1.98
+2026-03,13,Mercedes Benz,GLC,70,1.71
+2026-03,14,Mercedes Benz,E-Class,65,1.59
+2026-03,15,Volvo,XC60,51,1.25
+2026-03,16,Nissan,Kicks,45,1.1
+2026-03,17,BMW,5 Series,43,1.05
+2026-03,18,Honda,Civic,35,0.86
+2026-03,19,Volvo,XC90,32,0.78
+2026-03,20,Mercedes Benz,GLE,29,0.71
+2026-03,21,Toyota,Crown,22,0.54
+2026-03,22,BMW,X3,21,0.51
+2026-03,23,Hyundai,Santa Fe,19,0.46
+2026-03,24,Lexus,RX,19,0.46
+2026-03,25,Mercedes Benz,GLA,18,0.44
+2026-03,26,Volkswagen,Golf,18,0.44
+2026-03,27,Porsche,Cayenne,16,0.39
+2026-03,28,Audi,Q7,15,0.37
+2026-03,29,Toyota,Camry,12,0.29
+2026-03,30,BMW,7 Series,10,0.24
+2026-03,31,Lexus,NX,9,0.22
+2026-03,32,Mercedes Benz,A-Class,9,0.22
+2026-03,33,Great Wall,Tank 500,8,0.2
+2026-03,34,Lexus,LBX,8,0.2
+2026-03,35,Mercedes Benz,S-Class,8,0.2
+2026-03,36,Omoda Jaecoo,Omoda 9,6,0.15
+2026-03,37,Hyundai,Tucson,5,0.12
+2026-03,38,Lexus,LM,5,0.12
+2026-03,39,Toyota,Alphard,4,0.1
+2026-03,40,GAC,M8,3,0.07
+2026-03,41,Omoda Jaecoo,Jaecoo J5,2,0.05
+2026-03,42,Toyota,Innova Zenix,2,0.05
+2026-03,43,Toyota,Vellfire,2,0.05
+2026-03,44,Jetour,T1,1,0.02
+2026-03,45,Jetour,T2,1,0.02
+2026-03,46,Lamborghini,Revuelto,1,0.02
+2026-03,47,Lexus,LS,1,0.02
+2026-03,48,Mazda,CX-8,1,0.02
+2026-03,49,Mercedes Benz,AMG GT,1,0.02
+2026-03,50,Porsche,911 Carrera,1,0.02
+2026-03,51,Toyota,Harrier,1,0.02
+2026-03,52,Volvo,XC40,1,0.02
+2026-04,1,Proton,e.MAS 7 PHEV,1013,20.5
+2026-04,2,Toyota,Vios,645,13.05
+2026-04,3,Toyota,Corolla Cross,580,11.74
+2026-04,4,Chery,Tiggo,348,7.04
+2026-04,5,Great Wall,Haval H6,280,5.67
+2026-04,6,Honda,HR-V,238,4.82
+2026-04,7,Honda,CR-V,222,4.49
+2026-04,8,Great Wall,Wey G9,189,3.82
+2026-04,9,Mercedes Benz,C-Class,153,3.1
+2026-04,10,Nissan,Serena,148,2.99
+2026-04,11,Mercedes Benz,GLC,132,2.67
+2026-04,12,Honda,City,124,2.51
+2026-04,13,Mercedes Benz,E-Class,117,2.37
+2026-04,14,Omoda Jaecoo,Omoda 9,96,1.94
+2026-04,15,Nissan,Kicks,93,1.88
+2026-04,16,Omoda Jaecoo,Jaecoo J7,76,1.54
+2026-04,17,Mercedes Benz,GLA,51,1.03
+2026-04,18,Honda,Civic,44,0.89
+2026-04,19,Toyota,Camry,44,0.89
+2026-04,20,Mercedes Benz,A-Class,42,0.85
+2026-04,21,BMW,5 Series,30,0.61
+2026-04,22,BMW,X3,29,0.59
+2026-04,23,Toyota,Crown,29,0.59
+2026-04,24,Lexus,RX,24,0.49
+2026-04,25,Mercedes Benz,GLE,22,0.45
+2026-04,26,Volvo,XC60,21,0.42
+2026-04,27,Toyota,Harrier,17,0.34
+2026-04,28,Volvo,XC90,14,0.28
+2026-04,29,Audi,Q7,12,0.24
+2026-04,30,Great Wall,Tank 500,11,0.22
+2026-04,31,Porsche,Cayenne,11,0.22
+2026-04,32,Toyota,Alphard,10,0.2
+2026-04,33,Volkswagen,Golf,10,0.2
+2026-04,34,Hyundai,Tucson,8,0.16
+2026-04,35,Lexus,LBX,8,0.16
+2026-04,36,Lexus,NX,7,0.14
+2026-04,37,Toyota,Vellfire,7,0.14
+2026-04,38,BMW,7 Series,6,0.12
+2026-04,39,Hyundai,Santa Fe,6,0.12
+2026-04,40,Lexus,LM,6,0.12
+2026-04,41,Toyota,Innova Zenix,5,0.1
+2026-04,42,Mercedes Benz,GLS,2,0.04
+2026-04,43,Mercedes Benz,S-Class,2,0.04
+2026-04,44,GAC,M8,1,0.02
+2026-04,45,Honda,STEPWGN,1,0.02
+2026-04,46,LEVC,TX,1,0.02
+2026-04,47,Lexus,LS,1,0.02
+2026-04,48,Mazda,CX-8,1,0.02
+2026-04,49,Mitsubishi,Delica,1,0.02
+2026-04,50,Toyota,Century,1,0.02
+2026-04,51,Toyota,Prius,1,0.02
+2026-04,52,Toyota,Voxy,1,0.02
+2026-04,53,Toyota,Yaris Cross,1,0.02
+2026-05,1,Proton,e.MAS 7 PHEV,1181,23.14
+2026-05,2,Toyota,Vios,588,11.52
+2026-05,3,Toyota,Yaris Cross,504,9.88
+2026-05,4,Toyota,Corolla Cross,493,9.66
+2026-05,5,Chery,Tiggo,308,6.04
+2026-05,6,Great Wall,Haval H6,287,5.62
+2026-05,7,Honda,CR-V,247,4.84
+2026-05,8,Honda,HR-V,204,4.0
+2026-05,9,Great Wall,Wey G9,203,3.98
+2026-05,10,Nissan,Serena,170,3.33
+2026-05,11,Honda,City,121,2.37
+2026-05,12,Omoda Jaecoo,Jaecoo J7,94,1.84
+2026-05,13,Nissan,Kicks,72,1.41
+2026-05,14,Mercedes Benz,GLC,68,1.33
+2026-05,15,Omoda Jaecoo,Omoda 9,67,1.31
+2026-05,16,BMW,X3,59,1.16
+2026-05,17,Mercedes Benz,E-Class,46,0.9
+2026-05,18,Honda,Civic,45,0.88
+2026-05,19,Toyota,Camry,39,0.76
+2026-05,20,Mercedes Benz,C-Class,26,0.51
+2026-05,21,Toyota,Crown,22,0.43
+2026-05,22,Mercedes Benz,GLA,20,0.39
+2026-05,23,BMW,5 Series,17,0.33
+2026-05,24,Lexus,RX,16,0.31
+2026-05,25,Volkswagen,Golf,16,0.31
+2026-05,26,Volvo,XC60,16,0.31
+2026-05,27,Hyundai,Tucson,14,0.27
+2026-05,28,Mercedes Benz,GLE,14,0.27
+2026-05,29,Toyota,Harrier,13,0.25
+2026-05,30,Volvo,XC90,12,0.24
+2026-05,31,Great Wall,Tank 500,11,0.22
+2026-05,32,Audi,Q7,10,0.2
+2026-05,33,Lexus,LBX,9,0.18
+2026-05,34,Porsche,Cayenne,9,0.18
+2026-05,35,Toyota,Innova Zenix,9,0.18
+2026-05,36,Lexus,LM,8,0.16
+2026-05,37,Mazda,CX-60,8,0.16
+2026-05,38,Toyota,Vellfire,7,0.14
+2026-05,39,Hyundai,Santa Fe,6,0.12
+2026-05,40,Lexus,NX,6,0.12
+2026-05,41,Mazda,CX-8,5,0.1
+2026-05,42,Mercedes Benz,A-Class,5,0.1
+2026-05,43,Toyota,Alphard,5,0.1
+2026-05,44,GAC,M8,4,0.08
+2026-05,45,Mercedes Benz,S-Class,4,0.08
+2026-05,46,Mercedes Benz,GLB,3,0.06
+2026-05,47,BMW,7 Series,2,0.04
+2026-05,48,Great Wall,Tank 300,2,0.04
+2026-05,49,Denza,B8,1,0.02
+2026-05,50,Ferrari,296,1,0.02
+2026-05,51,Ferrari,SF90,1,0.02
+2026-05,52,Lamborghini,Revuelto,1,0.02
+2026-05,53,Lexus,ES,1,0.02
+2026-05,54,Mercedes Benz,GLS,1,0.02
+2026-05,55,Toyota,C-HR,1,0.02
+2026-05,56,Toyota,Prius,1,0.02
+2026-06,1,Proton,e.MAS 7 PHEV,1138,20.16
+2026-06,2,Toyota,Yaris Cross,614,10.87
+2026-06,3,Toyota,Corolla Cross,558,9.88
+2026-06,4,Toyota,Vios,532,9.42
+2026-06,5,Chery,Tiggo,380,6.73
+2026-06,6,Great Wall,Haval H6,328,5.81
+2026-06,7,Great Wall,Wey G9,315,5.58
+2026-06,8,Honda,HR-V,250,4.43
+2026-06,9,Nissan,Serena,213,3.77
+2026-06,10,Honda,CR-V,196,3.47
+2026-06,11,Omoda Jaecoo,Jaecoo J7,145,2.57
+2026-06,12,Honda,City,106,1.88
+2026-06,13,Honda,Civic,105,1.86
+2026-06,14,Mercedes Benz,E-Class,64,1.13
+2026-06,15,Mercedes Benz,GLC,62,1.1
+2026-06,16,BMW,X3,60,1.06
+2026-06,17,Volvo,XC60,45,0.8
+2026-06,18,Nissan,Kicks,44,0.78
+2026-06,19,Toyota,Camry,40,0.71
+2026-06,20,Omoda Jaecoo,Omoda 9,36,0.64
+2026-06,21,Mercedes Benz,C-Class,33,0.58
+2026-06,22,Toyota,Crown,32,0.57
+2026-06,23,BMW,5 Series,30,0.53
+2026-06,24,Lexus,RX,26,0.46
+2026-06,25,Mercedes Benz,GLE,26,0.46
+2026-06,26,Volkswagen,Golf,25,0.44
+2026-06,27,Hyundai,Tucson,22,0.39
+2026-06,28,Audi,Q7,18,0.32
+2026-06,29,Toyota,Harrier,18,0.32
+2026-06,30,Volvo,XC90,18,0.32
+2026-06,31,Lexus,LBX,17,0.3
+2026-06,32,Toyota,Vellfire,15,0.27
+2026-06,33,Toyota,Alphard,13,0.23
+2026-06,34,Lexus,NX,12,0.21
+2026-06,35,Denza,B8,11,0.19
+2026-06,36,Lexus,LM,11,0.19
+2026-06,37,Mercedes Benz,GLA,11,0.19
+2026-06,38,Porsche,Cayenne,11,0.19
+2026-06,39,Great Wall,Tank 500,10,0.18
+2026-06,40,BMW,7 Series,9,0.16
+2026-06,41,Great Wall,Tank 300,8,0.14
+2026-06,42,Hyundai,Santa Fe,7,0.12
+2026-06,43,Mercedes Benz,A-Class,6,0.11
+2026-06,44,Mazda,CX-60,5,0.09
+2026-06,45,Mercedes Benz,GLB,4,0.07
+2026-06,46,Mazda,CX-8,3,0.05
+2026-06,47,Mercedes Benz,S-Class,3,0.05
+2026-06,48,Toyota,Innova Zenix,3,0.05
+2026-06,49,GAC,M8,2,0.04
+2026-06,50,Audi,S5,1,0.02
+2026-06,51,Ferrari,296,1,0.02
+2026-06,52,Jetour,T2,1,0.02
+2026-06,53,Lexus,ES,1,0.02
+2026-06,54,Toyota,Prius,1,0.02
+2026-06,55,Toyota,Voxy,1,0.02
+2026-07,1,Proton,e.MAS 7 PHEV,872,15.51
+2026-07,2,Toyota,Yaris Cross,715,12.72
+2026-07,3,Toyota,Corolla Cross,641,11.4
+2026-07,4,Toyota,Vios,627,11.15
+2026-07,5,Great Wall,Haval H6,328,5.83
+2026-07,6,Great Wall,Wey G9,323,5.75
+2026-07,7,Nissan,Serena,294,5.23
+2026-07,8,Honda,HR-V,262,4.66
+2026-07,9,Chery,Tiggo,251,4.46
+2026-07,10,Honda,CR-V,183,3.26
+2026-07,11,Omoda Jaecoo,Jaecoo J7,122,2.17
+2026-07,12,Mercedes Benz,C-Class,66,1.17
+2026-07,13,Honda,Civic,65,1.16
+2026-07,14,BMW,X3,64,1.14
+2026-07,15,Mercedes Benz,E-Class,59,1.05
+2026-07,16,Mercedes Benz,GLC,56,1.0
+2026-07,17,Nissan,Kicks,46,0.82
+2026-07,18,Toyota,Camry,46,0.82
+2026-07,19,Toyota,Crown,41,0.73
+2026-07,20,Volkswagen,Tayron,40,0.71
+2026-07,21,Honda,City,37,0.66
+2026-07,22,Omoda Jaecoo,Omoda 9,36,0.64
+2026-07,23,Jetour,T2,34,0.6
+2026-07,24,Toyota,Harrier,33,0.59
+2026-07,25,Lexus,RX,28,0.5
+2026-07,26,Honda,Prelude,26,0.46
+2026-07,27,BMW,5 Series,23,0.41
+2026-07,28,Audi,Q7,22,0.39
+2026-07,29,Hyundai,Tucson,22,0.39
+2026-07,30,Mercedes Benz,GLE,20,0.36
+2026-07,31,Mazda,CX-8,18,0.32
+2026-07,32,Toyota,Alphard,17,0.3
+2026-07,33,Lexus,LM,16,0.28
+2026-07,34,Mercedes Benz,GLB,16,0.28
+2026-07,35,Hyundai,Santa Fe,15,0.27
+2026-07,36,Lexus,LBX,15,0.27
+2026-07,37,Volkswagen,Golf,15,0.27
+2026-07,38,Mercedes Benz,GLA,13,0.23
+2026-07,39,Toyota,Innova Zenix,13,0.23
+2026-07,40,Volvo,XC90,13,0.23
+2026-07,41,Great Wall,Tank 500,12,0.21
+2026-07,42,Volvo,XC60,9,0.16
+2026-07,43,Great Wall,Tank 300,8,0.14
+2026-07,44,Lexus,NX,8,0.14
+2026-07,45,BMW,7 Series,7,0.12
+2026-07,46,Mercedes Benz,A-Class,7,0.12
+2026-07,47,Mercedes Benz,S-Class,7,0.12
+2026-07,48,Porsche,Cayenne,7,0.12
+2026-07,49,Toyota,Vellfire,4,0.07
+2026-07,50,Mazda,CX-60,3,0.05
+2026-07,51,Denza,B8,2,0.04
+2026-07,52,Ferrari,SF90,2,0.04
+2026-07,53,Honda,STEPWGN,2,0.04
+2026-07,54,Lexus,ES,2,0.04
+2026-07,55,Bentley,Continental GT,1,0.02
+2026-07,56,Ferrari,296,1,0.02
+2026-07,57,GAC,M8,1,0.02
+2026-07,58,Honda,Odyssey,1,0.02
+2026-07,59,Jeep,Cherokee,1,0.02
+2026-07,60,Lamborghini,Revuelto,1,0.02
+2026-07,61,Porsche,911,1,0.02
+2026-07,62,Porsche,Panamera,1,0.02
+2026-07,63,Toyota,Prius,1,0.02
