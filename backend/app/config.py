@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from functools import lru_cache
+
 import os
 from pathlib import Path
 
@@ -36,9 +39,15 @@ settings = Settings()
 # ---- static data caches (seeded flat files; DB stores history/state) -----
 
 
+@lru_cache(maxsize=None)
 def load_data_json(name: str) -> dict:
-    import json
+    """Parse a seed file once per process.
 
+    These files are static and ship with the image; re-reading them was ~50% of
+    every scoring request (1.95 ms of 3.94 ms, catalog_vehicles.json alone).
+    Cached values are shared, so callers must treat them as read-only —
+    scoring.py already copies each row before touching it.
+    """
     with open(DATA_DIR / name, encoding="utf-8") as fh:
         return json.load(fh)
 

@@ -54,7 +54,12 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
                 "litres_yr": eng["litres_yr"],
                 "ev_share": eng.get("ev_share", 0.0),
                 "financial_raw": tco["tco_excluding_rm"],
-                "energy_raw": eng["cost_rm_yr"],
+                # The environment criterion must measure emissions, not money.
+                # This was eng["cost_rm_yr"], the same figure already carried by
+                # running_cost_rm_yr — so the "Carbon & Eco Impact" slider was
+                # re-weighting running cost and the ranking did not respond to
+                # grid region at all. co2_kg_yr is what the UI claims is scored.
+                "energy_raw": eng["co2_kg_yr"],
             }
         )
 

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..db import EngineScore, Profile, TopsisResult, get_db
+from ..db import Profile, TopsisResult, get_db
 from ..schemas import ProfileIn, ScoreRequest
 from ..services import scoring
 
@@ -38,13 +38,10 @@ async def run_score(body: ScoreRequest, db: AsyncSession = Depends(get_db)):
         }
         for r in bundle["ranking"]
     }
-    db.add(
-        EngineScore(
-            result_token=token,
-            slug="bundle",
-scores_json=engine_scores,
-        )
-    )
+    # EngineScore used to be written here with this exact dict. Nothing ever read
+    # it back — it duplicated TopsisResult.engine_scores_json byte for byte
+    # (~20 KB per scoring request). The model stays in db.py so the existing
+    # table is untouched; it just has no writer any more.
     db.add(
         TopsisResult(
             result_token=token,
@@ -59,6 +56,4 @@ scores_json=engine_scores,
         )
     )
     await db.commit()
-    if token is None:
-        raise HTTPException(status_code=400, detail="token required")
     return {"token": token, "solar_eligible": bundle["solar_eligible"], "ranked": len(bundle["ranking"])}
