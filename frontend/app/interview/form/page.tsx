@@ -198,9 +198,14 @@ export default function CalculatorFormPage() {
 
   return (
     <main className="app-shell mx-auto flex min-h-[100svh] w-full max-w-lg flex-col px-4 pt-6 pb-8 sm:px-6">
-      <header className="flex justify-end">
-        <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-ink">
-          {t("v.back")}
+      {/* upper-left, matching /interview/voice. -ml-1 keeps the text optically
+          flush with the content below while the padding gives it a real tap target */}
+      <header className="flex justify-start">
+        <Link
+          href="/"
+          className="-ml-1 flex min-h-11 items-center gap-1.5 rounded-lg px-1 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-ink"
+        >
+          ← {t("v.back")}
         </Link>
       </header>
 
