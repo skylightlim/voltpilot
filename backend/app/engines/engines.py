@@ -264,68 +264,6 @@ def bev_charging_gate(profile: dict) -> dict:
     }
 
 
-# Spec Step 03 — payback as a cost tipping point.
-#
-# The baseline is always "keep the current vehicle" (spec Eq. 2). Its two fixed
-# coefficients are RM/km running terms; the third is straight-line depreciation
-# of the car the buyer already owns, spread over the kilometres they will drive.
-BASELINE_RUNNING_RM_PER_KM = 0.04974175 + 0.18905
-BASELINE_DEPRECIATION_SHARE = 0.40
-
-
-def baseline_annual_cost(profile: dict, annual_km: float) -> float | None:
-    """Annual cost of keeping the current petrol car (spec Eq. 2).
-
-    None when the buyer has not told us their current vehicle's price — the
-    baseline is undefined without it and payback must not be guessed.
-    """
-    price = float(profile.get("current_vehicle_price_rm") or 0)
-    if price <= 0 or annual_km <= 0:
-        return None
-    years = max(1, int(profile.get("ownership_years") or 10))
-    vkt = annual_km * years
-    per_km = BASELINE_RUNNING_RM_PER_KM + (BASELINE_DEPRECIATION_SHARE * price) / vkt
-    return per_km * annual_km
-
-
-def payback_for_candidate(
-    price_rm: float,
-    candidate_annual_cost: float,
-    baseline_annual: float | None,
-    ownership_years: int,
-    horizon_years: int = 30,
-) -> dict:
-    """Years for a candidate's running savings to repay its purchase price.
-
-    Spec Eq. 5-8: walk the cost gap year by year and interpolate the crossing.
-    Status follows the ownership-horizon rule — note the spec is explicit that a
-    candidate past its horizon is *demoted and explained*, never deleted, so this
-    only tags. Screening decisions stay with the caller.
-    """
-    if baseline_annual is None:
-        return {"payback_years": None, "payback_status": "not_evaluated"}
-
-    saving = baseline_annual - candidate_annual_cost
-    if price_rm <= 0:
-        return {"payback_years": 0.0, "payback_status": "within_horizon"}
-    if saving <= 0:
-        # never cheaper than simply keeping the current car
-        return {"payback_years": None, "payback_status": "not_reached"}
-
-    prev_gap = float(price_rm)
-    for t in range(1, horizon_years + 1):
-        gap = price_rm - saving * t
-        if gap <= 0:
-            # Eq. 8 linear interpolation between the last positive and first
-            # non-positive year, so the UI gets 4.67 rather than a bare 5.
-            frac = prev_gap / (prev_gap - gap) if prev_gap != gap else 0.0
-            years = round((t - 1) + frac, 2)
-            status = "within_horizon" if years <= ownership_years else "not_recovered_within_horizon"
-            return {"payback_years": years, "payback_status": status}
-        prev_gap = gap
-    return {"payback_years": None, "payback_status": "not_reached"}
-
-
 def classify_area(count: int) -> str:
     """Public-access class for the count of stations around the user."""
     if count >= 50:

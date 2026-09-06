@@ -90,12 +90,6 @@ class ProfileIn(BaseModel):
     # Existing household draw. TNB Domestic ToU is blocked, so a heavy household
     # pays a higher MARGINAL rate once EV charging is added on top.
     monthly_electricity_bill_rm: float = Field(default=0, ge=0, le=100000)
-    # Spec Step 03 inputs. Both optional: payback is only evaluated when the
-    # buyer tells us what they drive today, since the baseline is always the
-    # "keep current vehicle" alternative. Absent -> payback_status
-    # "not_evaluated" and nothing is screened out.
-    current_vehicle_price_rm: float = Field(default=0, ge=0, le=5000000)
-    ownership_years: int = Field(default=10, ge=1, le=30)
 
     def missing_required(self) -> list[str]:
         # "blank" means None/empty for strings, default-unset for numbers.
