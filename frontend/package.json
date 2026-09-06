@@ -9,7 +9,8 @@
     "lint": "next lint",
     "pages:build": "npx @cloudflare/next-on-pages",
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "pages:deploy": "npx wrangler pages deploy .vercel/output/static"
+    "pages:deploy": "npx wrangler pages deploy .vercel/output/static",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.0.0",
