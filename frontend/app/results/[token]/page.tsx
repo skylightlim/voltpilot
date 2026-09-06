@@ -27,13 +27,15 @@ import { CountUp, ScrollRefresh, ScrubReveal, Stagger } from "@/components/motio
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { apiService } from "@/lib/api";
-import { useT } from "@/lib/i18n";
+import { useT, type StrKey } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type Row = {
   rank: number;
   slug: string;
+  /** field -> how that figure is known. See scripts/build_provenance.py. */
+  provenance?: Record<string, { method: string; basis?: string; caveat?: boolean }>;
   brand: string;
   model: string;
   variant: string;
@@ -260,6 +262,52 @@ export default function ResultsPage() {
               </div>
             </div>
 
+          </div>
+
+          {/* Where each figure comes from. The product's claim is that the
+              recommendation is not a black box, so a computed JPJ figure and an
+              estimated one must not look identical to the reader. */}
+          {top.provenance && Object.keys(top.provenance).length > 0 && (
+            <details className="group mt-4 rounded-[18px] border border-line bg-white/60 px-5 py-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[13px] font-semibold text-ink">
+                <span>{t("r.provH")}</span>
+                <span className="font-mono text-[11px] font-normal text-muted transition-transform group-open:rotate-90">
+                  ›
+                </span>
+              </summary>
+              <p className="mt-1 text-[12px] text-muted">{t("r.provSub")}</p>
+              <ul className="mt-3 space-y-2 border-t border-line/60 pt-3">
+                {Object.entries(
+                  top.provenance as Record<string, { method: string; basis?: string; caveat?: boolean }>
+                ).map(([field, e]) => (
+                  <li key={field} className="grid grid-cols-1 gap-x-4 gap-y-0.5 text-[12px] sm:grid-cols-[11.5rem_1fr]">
+                    <span className="break-all font-mono text-[11px] leading-5 text-primary">{field}</span>
+                    <span className="text-muted">
+                      <b
+                        className={`font-semibold ${
+                          e.method === "measured"
+                            ? "text-emerald-800"
+                            : e.method === "computed"
+                            ? "text-ink"
+                            : "text-warning"
+                        }`}
+                      >
+                        {t(`prov.${e.method}` as StrKey)}
+                      </b>
+                      {e.basis ? ` — ${e.basis}` : ""}
+                      {e.caveat && (
+                        <span className="ml-1.5 rounded border border-warning/40 px-1 py-0.5 font-mono text-[9.5px] uppercase tracking-wider text-warning">
+                          {t("prov.caveat")}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
             {/* TOPSIS score */}
             <div className="col-span-1">
               <div className="group relative overflow-hidden rounded-[20px] sm:rounded-[22px] border border-white/40 bg-white/70 p-4 sm:p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all hover:border-violet-500/20 hover:shadow-md">

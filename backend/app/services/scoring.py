@@ -60,6 +60,11 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
                 "price_rm": float(vehicle["price_rm"]),
                 "specs": vehicle.get("specs", {}),
                 "ownership": vehicle.get("ownership", {}),
+                # How each figure is known — measured / computed / estimated.
+                # Carried through so the results page can show a reader that the
+                # road tax is derived from a published JPJ schedule while the
+                # maintenance figure may be a fallback.
+                "provenance": vehicle.get("provenance", {}),
                 "source": vehicle.get("source", "official"),
                 "tco_excluding_rm": tco["tco_excluding_rm"],
                 "tco_components": tco["components"],

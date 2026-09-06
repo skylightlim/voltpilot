@@ -82,6 +82,20 @@ def run(only: str | None = None) -> dict:
         entry["seconds"] = round(time.perf_counter() - t0, 2)
         results.append(entry)
 
+    # Re-attribute after the refresh: an updater may have written new figures,
+    # and an unattributed figure fails validation below.
+    try:
+        pspec = importlib.util.spec_from_file_location(
+            "build_provenance", ROOT / "scripts" / "build_provenance.py")
+        pmod = importlib.util.module_from_spec(pspec)          # type: ignore[arg-type]
+        pspec.loader.exec_module(pmod)                          # type: ignore[union-attr]
+        with contextlib.redirect_stdout(io.StringIO()):
+            sys.argv = ["build_provenance.py", "--apply"]
+            pmod.main()
+    except Exception as exc:
+        results.append({"source": "provenance", "ok": False, "seconds": 0.0,
+                        "error": f"{type(exc).__name__}: {exc}"})
+
     # Validate whatever the refresh left behind. Sources can succeed and still
     # write something the engine cannot use, so this runs regardless.
     validation: dict = {}

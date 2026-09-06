@@ -111,6 +111,28 @@ def validate() -> list[dict]:
         _add(out, WARN, "ownership.maintenance_rm_yr",
              "absent; TCO uses the type-median fallback in engines.py", no_maint)
 
+    # --- provenance -------------------------------------------------------
+    # Every figure the ranking depends on must say how it is known, so a
+    # computed JPJ figure and a hand-entered estimate are distinguishable.
+    CRITICAL = ("price_rm", "road_tax_rm", "insurance_rm_yr")
+    unattributed = []
+    for v in V:
+        prov = v.get("provenance") or {}
+        for f in CRITICAL:
+            has_value = v.get(f) is not None or v.get("ownership", {}).get(f) is not None
+            if has_value and f not in prov:
+                unattributed.append(f"{v['id']}.{f}")
+    if unattributed:
+        _add(out, ERROR, "provenance.critical",
+             "engine-critical figure with no recorded source "
+             "(run scripts/build_provenance.py --apply)", unattributed)
+
+    caveated = [f"{v['id']}.{f}" for v in V
+                for f, e in (v.get("provenance") or {}).items() if e.get("caveat")]
+    if caveated:
+        _add(out, WARN, "provenance.caveat",
+             "figure is attributed but flagged as the wrong metric", caveated)
+
     # --- supporting files -------------------------------------------------
     fuel_path = DATA / "fuel.json"
     if not fuel_path.exists():

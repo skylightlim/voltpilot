@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import contextlib
 import importlib.util
+import json
 import io
 import sys
 from pathlib import Path
@@ -109,3 +110,26 @@ def test_insurance_scripts_do_not_clobber_each_other():
         assert "continue" in apply_block.split("ownership.pop")[0], (
             f"{name} reaches ownership.pop without first skipping rows it does not own"
         )
+
+
+def test_every_critical_figure_is_attributed():
+    """Price, road tax and insurance must each say how they are known.
+
+    Road tax validates against the JPJ schedule exactly; maintenance is 22
+    hand-entered numbers. Without provenance those look identical in the JSON,
+    which undercuts the one claim the product makes about itself.
+    """
+    catalog = json.loads((REPO / "data" / "catalog_vehicles.json").read_text())
+    allowed = {"measured", "computed", "estimated"}
+    missing, bad_method = [], []
+    for v in catalog["vehicles"]:
+        prov = v.get("provenance") or {}
+        for field in ("price_rm", "road_tax_rm", "insurance_rm_yr"):
+            present = v.get(field) is not None or v.get("ownership", {}).get(field) is not None
+            if present and field not in prov:
+                missing.append(f"{v['id']}.{field}")
+        for field, entry in prov.items():
+            if entry.get("method") not in allowed:
+                bad_method.append(f"{v['id']}.{field}={entry.get('method')}")
+    assert not missing, f"unattributed: {missing[:8]}"
+    assert not bad_method, f"unknown method: {bad_method[:8]}"

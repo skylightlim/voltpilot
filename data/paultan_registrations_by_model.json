@@ -15,7 +15,7 @@
    "share_pct"
   ],
   "note": "Paultan aggregates the official JPJ per-transaction dataset (registration_transactions_car). EV = fuel electric; Hybrid = hybrid_petrol + hybrid_diesel (incl PHEV). share_pct is the share of that fuel class within the queried period.",
-  "retrieved_at": "2026-09-06T13:12:10+00:00"
+  "retrieved_at": "2026-09-06T15:23:09+00:00"
  },
  "all_time": {
   "EV": [
