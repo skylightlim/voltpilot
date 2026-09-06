@@ -50,7 +50,6 @@ function RangeField({
   onChange,
   caption,
   zeroLabel,
-  hint,
 }: {
   id: string;
   label: string;
@@ -62,7 +61,6 @@ function RangeField({
   onChange: (v: number) => void;
   caption: (v: number) => string;
   zeroLabel?: string;
-  hint?: string;
 }) {
   /* The box hugs its value instead of sitting in a fixed 128px well. The face is
      mono with tabular-nums, so every digit is exactly 1ch and this is exact
@@ -106,7 +104,6 @@ function RangeField({
         <span>{caption(min)}</span>
         <span>{caption(max)}+</span>
       </div>
-      {hint && <p className="mt-2 text-[12px] leading-relaxed text-muted">{hint}</p>}
     </div>
   );
 }
@@ -261,7 +258,10 @@ export default function CalculatorFormPage() {
 
           {/* ---------------- Budget & context ---------------- */}
           <Section title={t("cf.s2")}>
-            <div className="grid gap-4 sm:grid-cols-2">
+            {/* Sliders run full width. In a 512px card a 2-col split leaves ~228px
+                per field, which wrapped "Monthly electricity bill (RM)" onto three
+                lines and knocked the two sliders out of alignment. */}
+            <div className="space-y-5">
               <RangeField
                 id="budget"
                 label={t("cf.budget")}
@@ -284,7 +284,6 @@ export default function CalculatorFormPage() {
                 onChange={(v) => set({ monthly_electricity_bill_rm: v })}
                 caption={(v) => `RM ${v}`}
                 zeroLabel={t("cf.notSure")}
-                hint={t("cf.billHint")}
               />
             </div>
 
@@ -305,7 +304,6 @@ export default function CalculatorFormPage() {
                     </option>
                   ))}
                 </select>
-                <p className="mt-1.5 text-[12px] leading-relaxed text-muted">{t("cf.regionHint")}</p>
               </div>
               <Toggle
                 id="can_charge_work"
@@ -333,7 +331,6 @@ export default function CalculatorFormPage() {
 
           {/* ------- Charging infrastructure & long trips ------- */}
           <Section title={t("cf.s3")}>
-            <p className="-mt-1 text-[12px] leading-relaxed text-muted">{t("cf.s3hint")}</p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <FieldLabel htmlFor="home_postcode">{t("cf.postcode")}</FieldLabel>
