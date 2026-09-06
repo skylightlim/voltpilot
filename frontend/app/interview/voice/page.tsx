@@ -7,6 +7,9 @@ import { Mic, MicOff, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User
 import { Button, Card } from "@/components/ui";
 import { SESSION, apiService, BACKEND_URL } from "@/lib/api";
 import { useLang, useT } from "@/lib/i18n";
+import { getWorkletUrl, downsampleAndConvertToInt16, pcmToBase64 } from "@/lib/voice/audio";
+import { isEchoOfAdvisor } from "@/lib/voice/echo";
+import { appendDelta, withInterim, withFinalUser, promoteStatus } from "@/lib/voice/transcript";
 
 type Stage = "checking" | "ready" | "live" | "extracting" | "done" | "fallback";
 type ChatMsg = { id: string; role: "advisor" | "user" | "system"; text: string; time?: string; isInterim?: boolean };
@@ -14,181 +17,12 @@ type ChatMsg = { id: string; role: "advisor" | "user" | "system"; text: string; 
 let msgId = 0;
 const nextId = () => `m${++msgId}`;
 
-// Ultra-low latency AudioWorklet (512-sample buffer = ~10.6ms latency at 48kHz)
-const WORKLET_CODE = `
-class MicProcessor extends AudioWorkletProcessor {
-  constructor() {
-    super();
-    this.buffer = new Float32Array(512);
-    this.bufferIndex = 0;
-  }
-  process(inputs) {
-    const input = inputs[0];
-    if (input && input[0] && input[0].length > 0) {
-      const channelData = input[0];
-      let sum = 0;
-      for (let i = 0; i < channelData.length; i++) {
-        const val = channelData[i];
-        sum += Math.abs(val);
-        this.buffer[this.bufferIndex++] = val;
-        if (this.bufferIndex >= this.buffer.length) {
-          const chunk = new Float32Array(this.buffer);
-          this.port.postMessage({ audio: chunk, level: sum / channelData.length }, [chunk.buffer]);
-          this.buffer = new Float32Array(512);
-          this.bufferIndex = 0;
-          sum = 0;
-        }
-      }
-    }
-    return true;
-  }
-}
-registerProcessor("mic-processor", MicProcessor);
-`;
-
-function getWorkletUrl() {
-  return URL.createObjectURL(new Blob([WORKLET_CODE], { type: "application/javascript" }));
-}
 
 function formatTime() {
   const d = new Date();
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-// Resamples Float32 audio from input sample rate to 16000Hz Int16 PCM
-function downsampleAndConvertToInt16(
-  input: Float32Array,
-  inputRate: number,
-  outputRate: number = 16000
-): Int16Array {
-  if (inputRate === outputRate) {
-    const pcm = new Int16Array(input.length);
-    for (let i = 0; i < input.length; i++) {
-      const s = Math.max(-1, Math.min(1, input[i]));
-      pcm[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
-    }
-    return pcm;
-  }
-
-  const ratio = inputRate / outputRate;
-  const newLength = Math.round(input.length / ratio);
-  const result = new Int16Array(newLength);
-  let offsetResult = 0;
-  let offsetInput = 0;
-
-  while (offsetResult < newLength) {
-    const nextOffsetInput = Math.round((offsetResult + 1) * ratio);
-    let sum = 0;
-    let count = 0;
-    for (let i = offsetInput; i < nextOffsetInput && i < input.length; i++) {
-      sum += input[i];
-      count++;
-    }
-    const val = count > 0 ? sum / count : (input[offsetInput] || 0);
-    const s = Math.max(-1, Math.min(1, val));
-    result[offsetResult] = s < 0 ? s * 0x8000 : s * 0x7fff;
-    offsetResult++;
-    offsetInput = nextOffsetInput;
-  }
-
-  return result;
-}
-
-// Convert Int16Array PCM to base64 string
-function pcmToBase64(pcm: Int16Array): string {
-  const bytes = new Uint8Array(pcm.buffer, pcm.byteOffset, pcm.byteLength);
-  let binary = "";
-  const len = bytes.byteLength;
-  const chunk = 8192;
-  for (let i = 0; i < len; i += chunk) {
-    const end = Math.min(i + chunk, len);
-    for (let j = i; j < end; j++) {
-      binary += String.fromCharCode(bytes[j]);
-    }
-  }
-  return btoa(binary);
-}
-
-// Semantic echo detector that identifies if transcribed text is actually the advisor's question or statement
-function isEchoOfAdvisor(text: string, recentPhrases: string[]): boolean {
-  const clean = text.toLowerCase().replace(/[^a-z0-9\s]/g, "").trim();
-  if (clean.length < 3) return false;
-
-  const forbiddenQuestionPatterns = [
-    "introduce yourself",
-    "voltpilot",
-    "ai advisor",
-    "penasihat ai",
-    "7 quick questions",
-    "7 soalan",
-    "how many kilometres",
-    "how many kilometers",
-    "how many km",
-    "berapa kilometer",
-    "typical day",
-    "hari biasa",
-    "how many days a week",
-    "berapa hari seminggu",
-    "long trips over 100",
-    "perjalanan jauh melebihi",
-    "perjalanan jauh",
-    "where do your long trips",
-    "ke mana destinasi",
-    "klang valley",
-    "lembah klang",
-    "can you charge an ev at home",
-    "can you charge at home",
-    "bolehkah anda mengecas",
-    "charge at home",
-    "cas di rumah",
-    "home postcode",
-    "poskod rumah",
-    "5 digits",
-    "5 digit",
-    "considering solar panels",
-    "mempertimbangkan panel solar",
-    "solar panels at home",
-    "panel solar",
-    "let me confirm",
-    "biar saya sahkan",
-    "is everything correct",
-    "adakah semuanya betul",
-    "say yes to confirm",
-    "katakan ya untuk sahkan",
-    "interview_complete",
-    "interview complete",
-    "welcome to voltpilot",
-    "first question",
-    "soalan pertama",
-    "tell me what to change",
-  ];
-
-  for (const pattern of forbiddenQuestionPatterns) {
-    if (clean.includes(pattern)) {
-      return true;
-    }
-  }
-
-  // Check overlap against what the advisor recently spoke
-  const words = clean.split(/\s+/).filter((w) => w.length > 2);
-  if (words.length === 0) return false;
-
-  for (const recent of recentPhrases) {
-    const cleanRecent = recent.toLowerCase().replace(/[^a-z0-9\s]/g, "");
-    if (cleanRecent.includes(clean) && clean.length > 6) {
-      return true;
-    }
-    let matchCount = 0;
-    for (const w of words) {
-      if (cleanRecent.includes(w)) matchCount++;
-    }
-    if (words.length >= 3 && matchCount / words.length >= 0.5) {
-      return true;
-    }
-  }
-
-  return false;
-}
 
 export default function VoiceInterviewPage() {
   const t = useT();
@@ -232,15 +66,7 @@ export default function VoiceInterviewPage() {
   }, []);
 
   const appendMsg = useCallback((role: "advisor" | "user", delta: string) => {
-    const log = logRef.current;
-    const last = log[log.length - 1];
-    if (last && last.role === role && last.id !== "open" && !last.isInterim) {
-      logRef.current = [...log.slice(0, -1), { ...last, text: last.text + delta }];
-    } else if (last && last.role === role && last.isInterim) {
-      logRef.current = [...log.slice(0, -1), { id: nextId(), role, text: delta, time: formatTime(), isInterim: false }];
-    } else {
-      logRef.current = [...log, { id: nextId(), role, text: delta, time: formatTime(), isInterim: false }];
-    }
+    logRef.current = appendDelta(logRef.current, role, delta, nextId(), formatTime());
     setMessages(logRef.current);
   }, []);
 
@@ -250,15 +76,9 @@ export default function VoiceInterviewPage() {
     if (Date.now() - lastAdvisorSpokeTimeRef.current < 500) return;
     if (isEchoOfAdvisor(interimText, recentAdvisorPhrasesRef.current)) return;
 
-    const log = logRef.current;
-    const last = log[log.length - 1];
-    if (last && last.role === "user" && last.isInterim) {
-      logRef.current = [...log.slice(0, -1), { ...last, text: interimText }];
-    } else if (last && last.role === "user" && !last.isInterim) {
-      logRef.current = [...log, { id: `interim_${nextId()}`, role: "user", text: interimText, time: formatTime(), isInterim: true }];
-    } else {
-      logRef.current = [...log, { id: `interim_${nextId()}`, role: "user", text: interimText, time: formatTime(), isInterim: true }];
-    }
+    logRef.current = withInterim(
+      logRef.current, interimText, `interim_${nextId()}`, formatTime(),
+    );
     setMessages(logRef.current);
   }, []);
 
@@ -271,13 +91,7 @@ export default function VoiceInterviewPage() {
       return;
     }
 
-    const log = logRef.current;
-    const last = log[log.length - 1];
-    if (last && last.role === "user") {
-      logRef.current = [...log.slice(0, -1), { id: nextId(), role: "user", text: finalText.trim(), time: formatTime(), isInterim: false }];
-    } else {
-      logRef.current = [...log, { id: nextId(), role: "user", text: finalText.trim(), time: formatTime(), isInterim: false }];
-    }
+    logRef.current = withFinalUser(logRef.current, finalText, nextId(), formatTime());
     setMessages(logRef.current);
     transcriptRef.current += "User: " + finalText.trim() + "\n";
   }, []);
@@ -721,9 +535,7 @@ export default function VoiceInterviewPage() {
             // one status line, not two: promote the seeded "connecting" row in
             // place. The previous pushMsg appended a second system message and
             // built its text by concatenating English, which BM never saw.
-            logRef.current = logRef.current.map((m) =>
-              m.id === "open" ? { ...m, text: t("v.liveT"), time: formatTime() } : m,
-            );
+            logRef.current = promoteStatus(logRef.current, t("v.liveT"), formatTime());
             setMessages(logRef.current);
           },
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
