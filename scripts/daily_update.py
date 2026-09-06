@@ -29,6 +29,7 @@ import io
 import json
 import contextlib
 import importlib.util
+import os
 import sys
 import time
 import traceback
@@ -36,6 +37,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Where the last run records itself. File mtimes alone cannot distinguish "the
+# job ran and every source was already current" from "the job never fired at
+# all" — both leave the data files untouched. This makes the run itself
+# observable, so a missed cron is detectable rather than silent.
+STATE_PATH = Path(os.environ.get("DATA_DIR", ROOT / "data")) / "refresh-state.json"
 
 # name -> (module path, callable returning an int exit code)
 SOURCES: list[tuple[str, Path]] = [
@@ -113,7 +120,7 @@ def run(only: str | None = None) -> dict:
         validation = {"errors": [{"check": "validator", "detail": str(exc)}], "warnings": 0}
 
     ok = [r for r in results if r["ok"]]
-    return {
+    report = {
         "validation": validation,
         "started_at": started.isoformat(),
         "finished_at": datetime.now(timezone.utc).isoformat(),
@@ -124,6 +131,13 @@ def run(only: str | None = None) -> dict:
         # One dead upstream among several is still green.
         "status": "ok" if (ok and not validation.get("errors")) else "failed",
     }
+
+    try:
+        STATE_PATH.write_text(json.dumps(report, indent=1) + "\n")
+    except OSError as exc:
+        report["state_write_error"] = str(exc)
+
+    return report
 
 
 def main() -> int:

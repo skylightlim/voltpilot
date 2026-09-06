@@ -133,3 +133,61 @@ def test_every_critical_figure_is_attributed():
                 bad_method.append(f"{v['id']}.{field}={entry.get('method')}")
     assert not missing, f"unattributed: {missing[:8]}"
     assert not bad_method, f"unknown method: {bad_method[:8]}"
+
+
+# ---------------------------------------------------------------------------
+# Daily refresh observability
+# ---------------------------------------------------------------------------
+
+
+def _refresh_health(tmp_state, monkeypatch):
+    from app.routers import admin
+    monkeypatch.setattr(admin, "REFRESH_STATE", tmp_state)
+    return admin.refresh_health()
+
+
+def test_health_data_is_red_when_the_job_never_ran(tmp_path, monkeypatch):
+    ok, detail = _refresh_health(tmp_path / "absent.json", monkeypatch)
+    assert ok is False
+    assert "ever been recorded" in detail["reason"]
+
+
+def test_health_data_is_red_when_the_cron_stopped_firing(tmp_path, monkeypatch):
+    """The failure mode file mtimes cannot see.
+
+    A cron that silently stops leaves every data file untouched and quietly
+    ageing, so nothing based on mtimes trips. Keying on the run record does.
+    """
+    from datetime import datetime, timedelta, timezone
+    p = tmp_path / "state.json"
+    p.write_text(json.dumps({
+        "finished_at": (datetime.now(timezone.utc) - timedelta(hours=50)).isoformat(),
+        "status": "ok", "succeeded": ["fuel"], "failed": [],
+    }))
+    ok, detail = _refresh_health(p, monkeypatch)
+    assert ok is False
+    assert "missed a run" in detail["reason"]
+
+
+def test_health_data_is_red_when_the_last_run_failed(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    p = tmp_path / "state.json"
+    p.write_text(json.dumps({
+        "finished_at": datetime.now(timezone.utc).isoformat(),
+        "status": "failed", "succeeded": [], "failed": ["fuel"],
+    }))
+    ok, _ = _refresh_health(p, monkeypatch)
+    assert ok is False
+
+
+def test_health_data_is_green_after_a_good_run(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    p = tmp_path / "state.json"
+    p.write_text(json.dumps({
+        "finished_at": datetime.now(timezone.utc).isoformat(),
+        "status": "ok", "succeeded": ["fuel", "registrations"], "failed": ["ev_stations"],
+    }))
+    ok, detail = _refresh_health(p, monkeypatch)
+    # One dead upstream among several is still a green run.
+    assert ok is True
+    assert detail["failed"] == ["ev_stations"]

@@ -4,6 +4,12 @@ interface Env {
   BACKEND: DurableObjectNamespace<Backend>;
   /** Shared secret for POST /admin/refresh. Set with `wrangler secret put ADMIN_TOKEN`. */
   ADMIN_TOKEN?: string;
+  /**
+   * Optional Slack/Discord-style incoming webhook. When set, a failed refresh
+   * posts there. Without it a failure only reaches `wrangler tail`, which
+   * nobody is watching at 06:00.
+   */
+  ALERT_WEBHOOK_URL?: string;
 }
 
 /** One container instance, addressed by a stable name. */
@@ -41,13 +47,45 @@ export default {
           );
           const body = await res.text();
           console.log(`scheduled(${event.cron}) -> ${res.status} ${body.slice(0, 500)}`);
+
+          // A 200 still carries a per-source report: one dead upstream is not a
+          // job failure, but "status":"failed" means nothing refreshed or the
+          // data left behind is unusable. Alert on that, and on a non-200.
+          let failed = res.status !== 200;
+          let summary = `HTTP ${res.status}`;
+          try {
+            const report = JSON.parse(body);
+            failed = failed || report.status !== "ok";
+            summary = `status=${report.status} ok=[${report.succeeded ?? []}] failed=[${report.failed ?? []}] validation_errors=${(report.validation?.errors ?? []).length}`;
+          } catch { /* non-JSON body: the HTTP status is all we have */ }
+
+          if (failed) await alert(env, `VoltPilot daily refresh failed — ${summary}`);
         } catch (err) {
           console.error(`scheduled(${event.cron}) failed:`, err);
+          await alert(env, `VoltPilot daily refresh threw: ${err}`);
         }
       })(),
     );
   },
 };
+
+/** Post a one-line alert, if a webhook is configured. Never throws: a broken
+ *  alerting path must not turn a partial refresh into a crashed cron. */
+async function alert(env: Env, text: string): Promise<void> {
+  if (!env.ALERT_WEBHOOK_URL) {
+    console.warn("ALERT_WEBHOOK_URL unset — failure not reported anywhere");
+    return;
+  }
+  try {
+    await fetch(env.ALERT_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, content: text }), // Slack uses text, Discord content
+    });
+  } catch (err) {
+    console.error("alert webhook failed:", err);
+  }
+}
 
 export class Backend extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {

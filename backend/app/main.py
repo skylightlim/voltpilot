@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
@@ -40,4 +40,20 @@ for r in (profiles.router, score.router, results.router, chat.router, tokens.rou
 
 @app.get("/health")
 async def health() -> dict:
+    """Liveness. The API is up and serving."""
     return {"ok": True, "gemini": settings.has_gemini}
+
+
+@app.get("/health/data")
+async def health_data(response: Response) -> dict:
+    """Freshness of the daily data refresh — the URL to point a monitor at.
+
+    Returns 503 when the refresh has failed or has not run, so an uptime check
+    alerts instead of the staleness being noticed by a user. Unauthenticated and
+    free of secrets: a monitor cannot carry a bearer token, and this reveals only
+    whether a scheduled job ran.
+    """
+    ok, detail = admin.refresh_health()
+    if not ok:
+        response.status_code = 503
+    return {"ok": ok, **detail}

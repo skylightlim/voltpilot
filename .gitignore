@@ -35,3 +35,8 @@ playwright-report/
 # os
 .DS_Store
 *.log
+
+# Written by scripts/daily_update.py on every run — runtime state, not source.
+# Absent in a fresh container, which is exactly why /health/data reports red
+# until the first refresh has happened.
+data/refresh-state.json

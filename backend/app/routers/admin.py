@@ -9,8 +9,10 @@ outbound fetches and rewrites files under data/.
 from __future__ import annotations
 
 import importlib.util
+import json
 import secrets
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +25,11 @@ router = APIRouter(prefix="/admin", tags=["admin"])
 
 REPO_DIR = Path(__file__).resolve().parents[3]
 DAILY_UPDATE = REPO_DIR / "scripts" / "daily_update.py"
+REFRESH_STATE = DATA_DIR / "refresh-state.json"
+
+# A daily cron with room for a late or slow run. Past this the job has missed a
+# scheduled firing, which is the condition worth waking someone for.
+MAX_RUN_AGE_HOURS = 36.0
 
 
 def _load_daily_update():
@@ -82,9 +89,6 @@ async def refresh(
 @router.get("/data-status")
 async def data_status() -> dict[str, Any]:
     """Freshness of the seed files, for uptime checks. No secret required."""
-    import json
-    from datetime import datetime, timezone
-
     out: dict[str, Any] = {"data_dir": str(DATA_DIR), "files": {}}
     for name in ("fuel.json", "catalog_vehicles.json", "ev-stations.csv",
                  "datagovmy_vehicle_stats.json"):
@@ -108,3 +112,42 @@ async def data_status() -> dict[str, Any]:
         out["files"][name] = entry
     out["any_stale"] = any(f.get("stale") for f in out["files"].values())
     return out
+
+
+def refresh_health() -> tuple[bool, dict]:
+    """Is the daily refresh actually running and succeeding?
+
+    Keyed on the run record rather than on file mtimes. Mtimes cannot tell "the
+    job ran and everything was already current" apart from "the job never fired",
+    and the second is the failure worth catching: a cron that silently stops
+    leaves the data quietly ageing with nothing to trip on.
+    """
+    if not REFRESH_STATE.exists():
+        return False, {"reason": "no refresh has ever been recorded",
+                       "hint": "POST /admin/refresh, or wait for the daily cron"}
+    try:
+        state = json.loads(REFRESH_STATE.read_text())
+    except (OSError, ValueError) as exc:
+        return False, {"reason": f"refresh state unreadable: {exc}"}
+
+    finished = state.get("finished_at")
+    try:
+        age_h = (datetime.now(timezone.utc)
+                 - datetime.fromisoformat(finished)).total_seconds() / 3600
+    except (TypeError, ValueError):
+        return False, {"reason": f"refresh state has no usable finished_at: {finished!r}"}
+
+    detail = {
+        "last_run": finished,
+        "age_hours": round(age_h, 1),
+        "last_status": state.get("status"),
+        "succeeded": state.get("succeeded", []),
+        "failed": state.get("failed", []),
+        "validation_errors": len((state.get("validation") or {}).get("errors", [])),
+    }
+
+    if age_h > MAX_RUN_AGE_HOURS:
+        return False, {**detail, "reason": f"last refresh was {age_h:.0f}h ago; the daily job has missed a run"}
+    if state.get("status") != "ok":
+        return False, {**detail, "reason": "the last refresh finished in a failed state"}
+    return True, detail
