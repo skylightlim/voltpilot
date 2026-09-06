@@ -207,21 +207,6 @@ body {
   }
 
   /* Typing indicator: three-dot bounce */
-  @keyframes dot-bounce {
-    0%,
-    60%,
-    100% {
-      transform: translateY(0);
-      opacity: 0.4;
-    }
-    30% {
-      transform: translateY(-3px);
-      opacity: 1;
-    }
-  }
-  .typing-dot {
-    animation: dot-bounce 1s ease-in-out infinite;
-  }
 }
 
 @media (hover: none) {
