@@ -99,7 +99,7 @@ export function Hero() {
                 value={dailyKm}
                 onChange={(e) => setDailyKm(Number(e.target.value))}
                 className="slider"
-                aria-label="Daily commute distance"
+                aria-label={t("calc.aria")}
               />
               {/* mono is wider than the old serif fallback these were sized
                   against — at 11px the three labels collide on a 375px screen */}
@@ -163,7 +163,7 @@ export function Hero() {
             <div className="mt-4">
               <Link href="/interview/form" className="block w-full">
                 <Button variant="primary" size="md" className="w-full text-[14px]">
-                  <span>Calculate with 184 exact models</span>
+                  <span>{t("calc.cta184")}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>

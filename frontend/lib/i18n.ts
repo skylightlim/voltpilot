@@ -127,6 +127,20 @@ const S = {
 
   "m.label": ["Decision Methodology", "Kaedah Keputusan"],
 
+  /* ---- strings that were hardcoded in JSX until the 2026-09-06 i18n audit ---- */
+  "lr.otr": ["OTR Price", "Harga OTR"],
+  "lr.rangeW": ["Range (WLTP)", "Jarak (WLTP)"],
+  "lr.runYr": ["Running / yr", "Kos tahunan"],
+  "lr.homeCh": ["Home Charge", "Cas di rumah"],
+  "lr.fit": ["Fit Rating", "Skor Padanan"],
+  "lr.needMath": ["Need exact math for your personal commute?", "Perlukan pengiraan tepat untuk perjalanan anda?"],
+  "eng.f3": ["JPJ Lampiran B Formula", "Formula JPJ Lampiran B"],
+  "eng.f4": ["PLUS Expressway Corridors", "Koridor Lebuhraya PLUS"],
+  "eng.f5": ["Used Market Telemetry", "Telemetri Pasaran Terpakai"],
+  "calc.cta184": ["Calculate with 184 exact models", "Kira dengan 184 model tepat"],
+  "calc.aria": ["Daily commute distance", "Jarak perjalanan harian"],
+  "ui.closeDialog": ["Close dialog", "Tutup dialog"],
+
   /* ---- /methodology — sourced from VOLT_PILOT_TECHNICAL_SPECIFICATION.
      Equations, variable names and citations stay untranslated: they are
      universal notation, and nobody localises a DOI or CLCC_RM_per_km. ---- */
@@ -445,12 +459,13 @@ const S = {
   "sl.err": ["Could not communicate with scoring engine. Please check backend connection.", "Gagal menghubungi enjin pengiraan. Sila semak sambungan backend."],
 
   "an.label": ["AI Transportation Laboratory", "Makmal Pengangkutan AI"],
-  "an.s1": ["Filtering 184 Malaysian EV & Hybrid configurations...", "Menapis 184 konfigurasi EV & Hibrid Malaysia..."],
-  "an.s2": ["Executing 10-year TCO and JPJ road-tax simulations...", "Menjalankan simulasi TCO 10 tahun dan cukai jalan JPJ..."],
-  "an.s3": ["Evaluating PLUS Highway DC charging corridor access...", "Menilai akses koridor pengecasan DC Lebuhraya PLUS..."],
-  "an.s4": ["Running TOPSIS multi-criteria vector normalization...", "Menjalankan normalisasi vektor pelbagai kriteria TOPSIS..."],
-  "an.s5": ["Synthesizing Gemini AI executive recommendation roadmap...", "Mensintesis peta jalan cadangan eksekutif AI Gemini..."],
-  "an.prep": ["Initializing 3D vehicle stage...", "Menyiapkan garaj..."],
+  "an.s1": ["Matching your profile to 184 models…", "Memadankan profil anda dengan 184 model…"],
+  "an.s2": ["Financial · behaviour · infrastructure engines…", "Enjin kewangan · tingkah laku · infrastruktur…"],
+  "an.s3": ["Energy engine…", "Enjin tenaga…"],
+  "an.s4": ["TOPSIS ranking…", "Kedudukan TOPSIS…"],
+  "an.s5": ["AI analyst writing your roadmap…", "Penganalisis AI menulis peta jalan anda…"],
+  "an.heading": ["Analysing with AI", "Menganalisis dengan AI"],
+  "an.prep": ["Preparing the garage…", "Menyediakan garaj…"],
 
   "r.your": ["Decision Intelligence Report", "Laporan Keputusan Pintar"],
   "r.restart": ["New Diagnostic", "Diagnostik Baru"],
@@ -507,22 +522,22 @@ const S = {
   "r.type.ev": ["Full Electric (BEV)", "Elektrik Penuh (BEV)"],
   "r.type.hybrid": ["Hybrid (HEV)", "Hibrid (HEV)"],
 
-  "ch.title": ["AI Transport Advisor", "Penasihat Pengangkutan AI"],
-  "ch.sub": ["Grounded on your TOPSIS results & Malaysian market data", "Berasaskan keputusan TOPSIS & data pasaran Malaysia anda"],
-  "ch.results": ["Return to Results", "Kembali ke Keputusan"],
+  "ch.title": ["AI analyst", "Penganalisis AI"],
+  "ch.sub": ["Knows your results", "Tahu keputusan anda"],
+  "ch.results": ["Results", "Keputusan"],
   "ch.greeting": [
     "Hello! I am your AI Transportation Advisor. I have loaded your diagnostic profile and TOPSIS rankings across all 184 Malaysian models. Ask me about road taxes, charging on the PLUS highway, 10-year TCO comparisons, or battery warranties.",
     "Salam! Saya Penasihat Pengangkutan AI anda. Saya telah memuatkan profil diagnostik dan kedudukan TOPSIS anda merangkumi 184 model Malaysia. Tanya saya tentang cukai jalan, pengecasan di lebuhraya PLUS, perbandingan TCO 10 tahun, atau jaminan bateri.",
   ],
-  "ch.q1": ["Best EV for long trips to Penang?", "EV terbaik untuk perjalanan jauh ke Pulau Pinang?"],
-  "ch.q2": ["Compare my top EV vs top Hybrid", "Bandingkan EV teratas vs Hibrid teratas saya"],
-  "ch.q3": ["How does post-2025 JPJ EV road tax affect me?", "Bagaimana cukai jalan EV JPJ selepas 2025 mempengaruhi saya?"],
-  "ch.q4": ["What if I charge exclusively at home on TNB?", "Bagaimana jika saya mengecas sepenuhnya di rumah di TNB?"],
-  "ch.placeholder": ["Ask any question about vehicles, costs, or charging...", "Tanya sebarang soalan tentang kereta, kos, atau pengecasan..."],
+  "ch.q1": ["Best EV for road trips?", "EV terbaik untuk perjalanan jauh?"],
+  "ch.q2": ["Charging cost per 100 km?", "Kos mengecas setiap 100 km?"],
+  "ch.q3": ["Compare my top 2", "Bandingkan 2 teratas saya"],
+  "ch.q4": ["Battery warranty coverage?", "Perlindungan waranti bateri?"],
+  "ch.placeholder": ["Ask about your results…", "Tanya tentang keputusan anda…"],
   "ch.note": ["AI advice is educational and based on Malaysian regulatory datasets.", "Nasihat AI adalah pendidikan dan berdasarkan data kawal selia Malaysia."],
   "ch.err": ["The AI advisor is temporarily unreachable. Please try again shortly.", "Penasihat AI tidak dapat dihubungi buat sementara. Sila cuba sebentar lagi."],
   "ch.typing": ["AI Advisor is analyzing data...", "Penasihat AI sedang menganalisis data..."],
-  "ch.send": ["Send Message", "Hantar Mesej"],
+  "ch.send": ["Send", "Hantar"],
 
   "v.label": ["Gemini Live Voice Advisor", "Penasihat Suara Gemini Live"],
   "v.t1": ["Speak naturally.", "Bercakap secara semula jadi."],

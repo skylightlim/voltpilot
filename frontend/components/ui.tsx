@@ -422,6 +422,7 @@ export function Modal({
   children: React.ReactNode;
   maxWidth?: string;
 }) {
+  const t = useT();
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -453,7 +454,7 @@ export function Modal({
           <button
             onClick={onClose}
             className="tap-target -mr-2 grid h-9 w-9 place-items-center rounded-full text-muted hover:bg-parchment hover:text-ink transition-colors cursor-pointer"
-            aria-label="Close dialog"
+            aria-label={t("ui.closeDialog")}
           >
             <X className="h-5 w-5" />
           </button>

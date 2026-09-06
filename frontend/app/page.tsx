@@ -272,25 +272,25 @@ export default function LandingPage() {
 
                 <div className="mt-4 pt-3 border-t border-line/60 grid grid-cols-2 gap-2 text-[12px]">
                   <div>
-                    <span className="text-muted text-[11px] block">OTR Price</span>
+                    <span className="text-muted text-[11px] block">{t("lr.otr")}</span>
                     <span className="font-mono font-bold text-ink text-[13px]">
                       RM {car.priceRm.toLocaleString("en-MY")}
                     </span>
                   </div>
                   <div>
-                    <span className="text-muted text-[11px] block">Range (WLTP)</span>
+                    <span className="text-muted text-[11px] block">{t("lr.rangeW")}</span>
                     <span className="font-mono font-bold text-primary text-[13px]">
                       {car.rangeKm} km
                     </span>
                   </div>
                   <div>
-                    <span className="text-muted text-[11px] block">Running / yr</span>
+                    <span className="text-muted text-[11px] block">{t("lr.runYr")}</span>
                     <span className="font-mono font-medium text-emerald-800 text-[12px]">
                       RM {car.runningCostYr.toLocaleString("en-MY")}
                     </span>
                   </div>
                   <div>
-                    <span className="text-muted text-[11px] block">Home Charge</span>
+                    <span className="text-muted text-[11px] block">{t("lr.homeCh")}</span>
                     <span className="font-mono font-medium text-ink text-[12px]">
                       {car.homeChargeHours > 0 ? `${car.homeChargeHours} hrs` : "N/A"}
                     </span>
@@ -299,7 +299,7 @@ export default function LandingPage() {
               </div>
 
               <div className="mt-5 pt-3 border-t border-line flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase text-muted">Fit Rating</span>
+                <span className="text-[11px] font-mono uppercase text-muted">{t("lr.fit")}</span>
                 <span className="figure text-[18px] font-bold text-primary">{car.topsisScore.toFixed(1)} / 10</span>
               </div>
             </div>
@@ -325,7 +325,7 @@ export default function LandingPage() {
               <Compass className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[14px] font-bold text-primary">Need exact math for your personal commute?</p>
+              <p className="text-[14px] font-bold text-primary">{t("lr.needMath")}</p>
               <p className="text-[12px] text-ink/70">
                 Our 5 decision engines rank all 184 Malaysian models tailored to your daily route and charging access.
               </p>
@@ -452,7 +452,7 @@ export default function LandingPage() {
               </div>
 
               <div className="mt-5 pt-3 border-t border-line/60">
-                <span className="text-[11px] font-mono uppercase text-muted">JPJ Lampiran B Formula</span>
+                <span className="text-[11px] font-mono uppercase text-muted">{t("eng.f3")}</span>
               </div>
             </div>
 
@@ -476,7 +476,7 @@ export default function LandingPage() {
               </div>
 
               <div className="mt-5 pt-3 border-t border-line/60">
-                <span className="text-[11px] font-mono uppercase text-muted">PLUS Expressway Corridors</span>
+                <span className="text-[11px] font-mono uppercase text-muted">{t("eng.f4")}</span>
               </div>
             </div>
 
@@ -500,7 +500,7 @@ export default function LandingPage() {
               </div>
 
               <div className="mt-5 pt-3 border-t border-line/60">
-                <span className="text-[11px] font-mono uppercase text-muted">Used Market Telemetry</span>
+                <span className="text-[11px] font-mono uppercase text-muted">{t("eng.f5")}</span>
               </div>
             </div>
           </ScrubStagger>

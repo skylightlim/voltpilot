@@ -8,10 +8,12 @@ import Link from "next/link";
 import { BatteryWarning, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui";
 import { apiService } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 type Msg = { role: "user" | "ai"; text: string };
 
 export default function ChatPage() {
+  const t = useT();
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -65,12 +67,12 @@ export default function ChatPage() {
             <Sparkles className="h-4 w-4 text-primary" />
           </span>
           <div>
-            <p className="text-[14px] font-semibold leading-none text-ink">AI analyst</p>
-            <p className="mt-0.5 text-[11px] text-muted">Knows your results</p>
+            <p className="text-[14px] font-semibold leading-none text-ink">{t("ch.title")}</p>
+            <p className="mt-0.5 text-[11px] text-muted">{t("ch.sub")}</p>
           </div>
         </div>
         <Link href={`/results/${token}`} className="text-[13px] text-muted transition-colors hover:text-ink">
-          Results
+          {t("ch.results")}
         </Link>
       </header>
 
@@ -100,20 +102,18 @@ export default function ChatPage() {
 
       {/* quick chips */}
       <div className="flex gap-2 overflow-x-auto px-5 pb-2 no-scrollbar">
-        {[
-          "Best EV for road trips?",
-          "Charging cost per 100 km?",
-          "Compare my top 2",
-          "Battery warranty coverage?",
-        ].map((chip) => (
+        {(["ch.q1", "ch.q2", "ch.q3", "ch.q4"] as const).map((k) => {
+          const chip = t(k);
+          return (
           <button
-            key={chip}
+            key={k}
             onClick={() => send(chip)}
             className="shrink-0 rounded-full border border-primary/25 bg-primary/[0.04] px-4 py-2 text-[13px] font-medium text-primary active:bg-primary/10 tap-target"
           >
             {chip}
           </button>
-        ))}
+          );
+        })}
       </div>
 
       <div className="thumb-zone w-auto border-t border-border/60 px-5 pt-3">
@@ -121,7 +121,7 @@ export default function ChatPage() {
           <textarea
             rows={1}
             value={input}
-            placeholder="Ask about your results…"
+            placeholder={t("ch.placeholder")}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
@@ -133,7 +133,7 @@ export default function ChatPage() {
           />
           <Button
             size="lg"
-            aria-label="Send"
+            aria-label={t("ch.send")}
             disabled={!input.trim() || busy}
             onClick={() => send()}
           >
