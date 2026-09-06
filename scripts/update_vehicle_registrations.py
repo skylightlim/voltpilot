@@ -34,9 +34,10 @@ doubling bands:
    9: 32,000-63,999  10: >=64,000
 
 Run daily, e.g. cron:
-    0 7 * * * cd /home/skylight/ai-transport-platform && python3 scripts/update_vehicle_registrations.py
+    0 7 * * * cd /path/to/ai-transport-platform && python3 scripts/update_vehicle_registrations.py
 """
 
+from pathlib import Path
 import csv
 import json
 import os
@@ -46,7 +47,11 @@ import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 
-ROOT = "/home/skylight/ai-transport-platform"
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent / "used_market"))
+from http_client import get_json, get_text  # noqa: E402
+
+ROOT = str(Path(__file__).resolve().parents[1])
 CATALOG_PATH = f"{ROOT}/data/catalog_vehicles.json"
 STATS_PATH = f"{ROOT}/data/datagovmy_vehicle_stats.json"
 PAULTAN_JSON_PATH = f"{ROOT}/data/paultan_registrations_by_model.json"
@@ -319,9 +324,8 @@ def current_month() -> str:
 def fetch_paultan_csv(fuel: str, mnth_from: str, mnth_to: str) -> list:
     url = (f"{PAULTAN_API}?action=rankings&group=model&format=csv"
            f"&from={mnth_from}&to={mnth_to}&fuel={fuel}")
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (data research)"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        rows = list(csv.DictReader(r.read().decode().splitlines()))
+    text = get_text(url, headers={"User-Agent": "Mozilla/5.0 (data research)"}, timeout=60)
+    rows = list(csv.DictReader(text.splitlines()))
     for row in rows:
         row["units"] = int(row["units"])
         row["rank"] = int(row["rank"])
@@ -424,8 +428,7 @@ def write_paultan_csvs(ds: dict) -> None:
 
 
 def fetch_official_stats() -> dict:
-    req = urllib.request.Request(API_URL, headers={"User-Agent": "ai-transport-platform/1.0"})
-    rows = json.load(urllib.request.urlopen(req, timeout=60))
+    rows = get_json(API_URL, headers={"User-Agent": "ai-transport-platform/1.0"}, timeout=60)
     ev = hybrid = all_cars = 0
     latest = "0000-00-00"
     for r in rows:

@@ -10,14 +10,21 @@ Sources:
 Usage: python3 compute_road_tax.py [--apply]
 """
 import json
+import os
 import re
 import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent.parent / "data"
 CATALOG_PATH = BASE / "catalog_vehicles.json"
-EV_TAX_PATH = Path("/home/skylight/Downloads/gemini-code-1786485078103.json")
-EV_BRACKETS_PATH = Path("/home/skylight/Downloads/gemini-code-1786485085387.json")
+
+# JPJ EV reference tables. These arrived as one-off exports in a Downloads
+# folder that no longer exists, which used to crash this module on import — and
+# because compute_insurance.py imports MISSING_CC from here, it took that script
+# down too. Look for them under data/ now, and allow an override:
+#   EV_TAX_PATH=/path/to/file.json python3 compute_road_tax.py --apply
+EV_TAX_PATH = Path(os.environ.get("EV_TAX_PATH", BASE / "jpj_ev_road_tax.json"))
+EV_BRACKETS_PATH = Path(os.environ.get("EV_BRACKETS_PATH", BASE / "jpj_ev_brackets.json"))
 
 
 # ---------- EV road tax (paultan-published, JPJ 2026 kW structure) ----------
@@ -45,9 +52,30 @@ EV_ALIASES = {
     ("bmw", "ix2"): ("bmw", "ix2"),
 }
 
-EV_BY_MODEL = {}
-for r in json.loads(EV_TAX_PATH.read_text()):
-    EV_BY_MODEL.setdefault((_norm(r["brand"]), _norm(r["model"])), []).append(r)
+_EV_BY_MODEL: dict | None = None
+
+
+def ev_by_model() -> dict:
+    """Published per-variant EV road tax, keyed by (brand, model). Loaded on use.
+
+    Importing this module must stay side-effect free: the catalog's road_tax_rm
+    is already populated for all 184 rows, so callers that only want the ICE
+    schedule or MISSING_CC should never be blocked by a missing EV export.
+    """
+    global _EV_BY_MODEL
+    if _EV_BY_MODEL is None:
+        if not EV_TAX_PATH.exists():
+            raise SystemExit(
+                f"EV road-tax reference not found at {EV_TAX_PATH}.\n"
+                "Place the JPJ EV export there, or set EV_TAX_PATH=/path/to/file.json.\n"
+                "The catalog already carries road_tax_rm for every vehicle; this file is\n"
+                "only needed to recompute the EV side from source."
+            )
+        acc: dict = {}
+        for r in json.loads(EV_TAX_PATH.read_text()):
+            acc.setdefault((_norm(r["brand"]), _norm(r["model"])), []).append(r)
+        _EV_BY_MODEL = acc
+    return _EV_BY_MODEL
 
 
 def parse_w(s):
@@ -69,7 +97,8 @@ def ev_road_tax_from_brackets(watts):
 def find_ev_variant(brand, model, power_kw):
     """Return best-matching user-file entry for a catalog EV, or None."""
     key = (_norm(brand), _norm(model))
-    cands = EV_BY_MODEL.get(key) or EV_BY_MODEL.get(EV_ALIASES.get(key, ()))
+    table = ev_by_model()
+    cands = table.get(key) or table.get(EV_ALIASES.get(key, ()))
     if not cands:
         return None
     if len(cands) == 1 or power_kw is None:

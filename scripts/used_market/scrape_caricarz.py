@@ -4,13 +4,15 @@ The model/model_group filter fields are ignored by the API, so we use
 `keyword` (fuzzy match, e.g. "eMas 5") per catalog vehicle. Results are
 paginated (per_page=18, meta.last_page) and deduped by ads_id.
 """
+from pathlib import Path
 import json
 import re
 import sys
 import time
 import urllib.request
 
-sys.path.insert(0, "/home/skylight/ai-transport-platform/scripts/used_market")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_client import get_text, post_json  # noqa: E402
 import db  # noqa: E402
 import matcher  # noqa: E402
 
@@ -43,9 +45,7 @@ def call(keyword="", page="1", brand=""):
         "body_type": [], "color": [], "fuel_type": [], "page": page, "keyword": keyword,
         "automall": 0,
     }
-    req = urllib.request.Request(API, data=json.dumps(body).encode(), headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8", "replace"))
+    return post_json(API, json.dumps(body).encode(), headers=HEADERS, timeout=30)
 
 
 def parse_item(a):

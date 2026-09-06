@@ -1,33 +1,35 @@
 {
- "_meta": {
-  "currency": "RM",
-  "updated_at": "2026-08-14",
-  "source": "data.gov.my fuel price weekly API (id=fuelprice) — updated daily via scripts/update_fuel_prices.py",
-  "price_date": "2026-08-13"
- },
- "fuel": {
-  "ron95_rm_per_l": 2.05,
-  "ron97_rm_per_l": 4.15,
-  "diesel_rm_per_l": 2.1,
-  "note": "Pump prices = what consumers pay: RON95 RM2.05 (SKPS-subsidized), diesel RM2.10 (BUDI); RON97 RM4.15 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-08-13."
- },
- "co2_factors": {
-  "petrol_kg_co2_per_l": 2.31,
-  "grid_kg_co2_per_kwh": 0.63,
-  "note": "grid (default/peninsular): Peninsular Malaysia generation mix average (2025, ~2024 TNB + independent power producers). by_region.east_malaysia is an ESTIMATE blending hydro-dominant Sarawak (Bakun/Murum/Batang Ai, ~0.2 kg/kWh) with gas/diesel Sabah (~0.5 kg/kWh), weighted to Sarawak's larger generation share. Replace with a sourced SEB/SESB figure when one is available.",
-  "grid_kg_co2_per_kwh_by_region": {
-   "peninsular": 0.63,
-   "east_malaysia": 0.33
+  "_meta": {
+    "currency": "RM",
+    "updated_at": "2026-09-06",
+    "source": "data.gov.my fuel price weekly API (id=fuelprice) \u2014 updated daily via scripts/update_fuel_prices.py",
+    "price_date": "2026-09-03"
+  },
+  "fuel": {
+    "ron95_rm_per_l": 2.05,
+    "ron97_rm_per_l": 4.25,
+    "diesel_rm_per_l": 2.1,
+    "note": "Pump prices = what consumers pay: RON95 RM2.05 (SKPS-subsidized), diesel RM2.10 (BUDI); RON97 RM4.25 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-09-03."
+  },
+  "co2_factors": {
+    "petrol_kg_co2_per_l": 2.31,
+    "grid_kg_co2_per_kwh": 0.74,
+    "note": "Grid Emission Factors: Energy Commission Malaysia / Malaysia Energy Statistics (2026 publication of provisional 2022-2024 data), 2024 values \u2014 Peninsular 0.740, Sabah 0.539, Sarawak 0.199 kg CO2e/kWh. east_malaysia is a 60/40 Sarawak/Sabah generation-weighted blend of those two sourced values (0.6*0.199 + 0.4*0.539 = 0.335), kept because the profile schema only offers peninsular/east_malaysia; sabah and sarawak are carried separately so the region can be split without re-sourcing. Replaces the previous 0.63/0.33 estimates, which this file's own note flagged for replacement once a sourced figure existed.",
+    "grid_kg_co2_per_kwh_by_region": {
+      "peninsular": 0.74,
+      "east_malaysia": 0.335,
+      "sabah": 0.539,
+      "sarawak": 0.199
+    }
+  },
+  "market_rm_per_l": {
+    "ron95": 3.77,
+    "ron97": 4.25,
+    "diesel": 4.67,
+    "ron95_skps": 2.05,
+    "diesel_budi": 2.1,
+    "diesel_skds": 2.15,
+    "ron95_budi95": 1.99,
+    "diesel_eastmsia": 2.15
   }
- },
- "market_rm_per_l": {
-  "ron95": 3.62,
-  "ron97": 4.15,
-  "diesel": 4.47,
-  "ron95_skps": 2.05,
-  "diesel_budi": 2.1,
-  "diesel_skds": 2.15,
-  "ron95_budi95": 1.99,
-  "diesel_eastmsia": 2.15
- }
 }

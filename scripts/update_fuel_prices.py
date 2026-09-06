@@ -26,15 +26,19 @@ This script updates the live price fields + a full market snapshot and
 preserves everything else in data/fuel.json (co2_factors, notes).
 
 Run daily, e.g. cron:
-    0 6 * * * cd /home/skylight/ai-transport-platform && python3 scripts/update_fuel_prices.py
+    0 6 * * * cd /path/to/ai-transport-platform && python3 scripts/update_fuel_prices.py
 """
 
+from pathlib import Path
+
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent / "used_market"))
+from http_client import get_json  # noqa: E402
 import json
 import sys
-import urllib.request
 from datetime import datetime, timezone
 
-ROOT = "/home/skylight/ai-transport-platform"
+ROOT = str(Path(__file__).resolve().parents[1])
 FUEL_PATH = f"{ROOT}/data/fuel.json"
 API_URL = "https://api.data.gov.my/data-catalogue?id=fuelprice&limit=20000"
 
@@ -54,9 +58,10 @@ PUMP_FALLBACKS = {
 
 
 def fetch_levels() -> list[dict]:
-    req = urllib.request.Request(API_URL, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        rows = json.load(resp)
+    # Pooled session with backoff. data.gov.my rate-limits (429) under repeated
+    # polling, which a bare urlopen surfaced as a hard failure and a skipped
+    # daily update; the retry layer rides that out.
+    rows = get_json(API_URL, timeout=30)
     levels = [r for r in rows if r.get("series_type") == "level"]
     if not levels:
         raise RuntimeError("no 'level' series rows in fuelprice response")

@@ -4,13 +4,15 @@ SvelteKit app: POST https://carro.co/_actions/getBuyCarListingData
 with a JSON filter payload. Response body is SvelteKit "devalue"
 serialization; see decode_devalue().
 """
+from pathlib import Path
 import json
 import sys
 import time
 import urllib.parse
 import urllib.request
 
-sys.path.insert(0, "/home/skylight/ai-transport-platform/scripts/used_market")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_client import post_json  # noqa: E402
 import db  # noqa: E402
 import matcher  # noqa: E402
 
@@ -75,9 +77,7 @@ def search(children=None, parent=None, max_pages=10, base_payload=None):
     seen = set()
     results = []
     for page in range(max_pages):
-        req = urllib.request.Request(API, data=json.dumps(payload).encode(), headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=30) as r:
-            raw = json.loads(r.read().decode("utf-8", "replace"))
+        raw = post_json(API, json.dumps(payload).encode(), headers=HEADERS, timeout=30)
         root = decode_devalue(raw)
         cars = root.get("carList") or []
         if not cars:

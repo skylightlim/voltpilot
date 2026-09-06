@@ -20,7 +20,10 @@ import json
 import sys
 from pathlib import Path
 
-import requests
+import requests  # noqa: F401  (kept: raise_for_status/exceptions used below)
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "used_market"))
+from http_client import session as _session  # noqa: E402
 
 API_URL = "https://tools.evcharge.my/_api/ev-stations"
 REPO_DIR = Path(__file__).resolve().parent.parent
@@ -58,7 +61,8 @@ KEY_MAP = {
 
 
 def fetch_stations(timeout: int = 60) -> list[dict]:
-    resp = requests.get(API_URL, timeout=timeout)
+    # shared pooled session: adds retry/backoff on 429 and 5xx
+    resp = _session().get(API_URL, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
     if not isinstance(data, list):

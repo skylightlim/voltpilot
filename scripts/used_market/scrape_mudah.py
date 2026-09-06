@@ -7,6 +7,7 @@ Search URL scheme:
   /malaysia/cars-for-sale?q=<search>&page=<n>
   /malaysia/cars-for-sale?b=<brand>&m=<model>  (brand/model filters)
 """
+from pathlib import Path
 import json
 import re
 import sys
@@ -15,7 +16,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-sys.path.insert(0, "/home/skylight/ai-transport-platform/scripts/used_market")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_client import get_text  # noqa: E402
 import db  # noqa: E402
 import matcher  # noqa: E402
 
@@ -28,9 +30,7 @@ MAX_PAGES = 50
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", "replace")
+    return get_text(url, headers=HEADERS, timeout=30)
 
 
 def parse_listings(html):

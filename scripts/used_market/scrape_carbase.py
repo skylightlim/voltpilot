@@ -14,6 +14,7 @@ cc, transmission, wm_new_pr, wm_rrr, em_new_pr, em_rrr, sum_insured,
 valuation_date.  wm=wholesale market, em=external market, pr=price, rrr=...,
 values are strings in RM.
 """
+from pathlib import Path
 import json
 import re
 import sys
@@ -21,7 +22,9 @@ import time
 import urllib.parse
 import urllib.request
 
-sys.path.insert(0, "/home/skylight/ai-transport-platform/scripts/used_market")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_client import get_text, post_json, session  # noqa: E402
+from http_client import get_text, post_json  # noqa: E402
 import db  # noqa: E402
 
 BASE = "https://www.carbase.my"
@@ -35,9 +38,9 @@ HEADERS = {
 
 def post(path, data):
     body = urllib.parse.urlencode(data).encode()
-    req = urllib.request.Request(BASE + path, data=body, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", "replace")
+    r = session().post(BASE + path, data=body, headers=HEADERS, timeout=30)
+    r.raise_for_status()
+    return r.text
 
 
 def parse_options(html):
@@ -135,7 +138,7 @@ def main():
     db.init_db()
     db._ACTIVE_RUN = db.start_run("carbase")
     try:
-        page = urllib.request.urlopen(urllib.request.Request(BASE + "/tool/car-market-value-guide", headers={"User-Agent": HEADERS["User-Agent"]}), timeout=30).read().decode("utf-8", "replace")
+        page = get_text(BASE + "/tool/car-market-value-guide", headers={"User-Agent": HEADERS["User-Agent"]}, timeout=30)
         i = page.find('name="car_market_value_guide_form"')
         seg = page[i:i + 30000]
         makes = parse_options(seg)

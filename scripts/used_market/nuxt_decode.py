@@ -4,6 +4,7 @@ The payload is a devalue-style IIFE:
     window.__NUXT__=(function(a,b,c,...){...}(v1,v2,v3,...));
 Evaluating it in Node.js yields the state object as JSON.
 """
+import shutil
 import json
 import re
 import subprocess
@@ -26,7 +27,9 @@ def extract_nuxt(html):
     return stmt
 
 
-def decode_nuxt(html, node="/home/skylight/.local/share/mise/installs/node/26.2.0/bin/node"):
+def decode_nuxt(html, node=None):
+    # was pinned to one machine's mise install of node 26.2.0
+    node = node or shutil.which("node") or "node"
     """Decode window.__NUXT__ from HTML into a Python object."""
     stmt = extract_nuxt(html)
     if not stmt:

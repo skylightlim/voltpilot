@@ -1,13 +1,14 @@
 """Import autoselection JSONL listings into used_market.db with matching."""
+from pathlib import Path
 import json
 import sys
 
-sys.path.insert(0, "/home/skylight/ai-transport-platform/scripts/used_market")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import db  # noqa: E402
 import matcher  # noqa: E402
 
 
-def main(path="/home/skylight/ai-transport-platform/data/used_market_raw/autoselection_listings.jsonl"):
+def main(path=str(Path(__file__).resolve().parents[2] / "data" / "used_market_raw/autoselection_listings.jsonl")):
     db.init_db()
     db._ACTIVE_RUN = db.start_run("autoselection")
     total = new = 0
