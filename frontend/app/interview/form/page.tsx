@@ -64,6 +64,12 @@ function RangeField({
   zeroLabel?: string;
   hint?: string;
 }) {
+  /* The box hugs its value instead of sitting in a fixed 128px well. The face is
+     mono with tabular-nums, so every digit is exactly 1ch and this is exact
+     rather than approximate. 1.5rem covers px-2.5 on both sides plus the border. */
+  const shown = value ? String(value) : (zeroLabel ?? "");
+  const chars = Math.max(shown.length, 3);
+
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
@@ -80,7 +86,8 @@ function RangeField({
           onChange={(e) =>
             onChange(Math.min(hardMax, Math.max(0, Number(e.target.value))))
           }
-          className="w-32 rounded-[10px] border border-transparent bg-parchment px-2.5 py-1 text-right font-mono text-[13px] font-bold text-primary tabular-nums outline-none transition-colors placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card"
+          style={{ width: `calc(${chars}ch + 1.5rem)` }}
+          className="max-w-full shrink-0 rounded-[10px] border border-transparent bg-parchment px-2.5 py-1 text-center font-mono text-[13px] font-bold text-primary tabular-nums outline-none transition-[width,background-color,border-color] duration-150 placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
       </div>
       <input
