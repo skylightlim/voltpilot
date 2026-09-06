@@ -24,6 +24,15 @@ const LieRoom = dynamic(() => import("@/components/lierooms/LieRoom"), {
    Resolved inside the component, where the t() hook is available. */
 const STAGE_KEYS = ["an.s1", "an.s2", "an.s3", "an.s4", "an.s5"] as const;
 
+/** The five engines, in the order they actually run. Name and what it reads. */
+const LEDGER = [
+  ["an.l1", "an.l1d"],
+  ["an.l2", "an.l2d"],
+  ["an.l3", "an.l3d"],
+  ["an.l4", "an.l4d"],
+  ["an.l5", "an.l5d"],
+] as const;
+
 export default function AnalysisPage() {
   return (
     <Suspense fallback={<div className="grid h-[100svh] place-items-center bg-[#081926]" />}>
@@ -71,26 +80,105 @@ function AnalysisInner() {
   }, [token, router]);
 
   return (
-    <main className="relative h-[100svh] w-full overflow-hidden bg-[#081926]">
+    <main className="relative h-[100svh] w-full overflow-hidden bg-pine-deep">
       <ScrollRefresh />
-      <LieRoom />
 
-      {/* status overlay (top = status only) */}
-      <div className="absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-[#081926]/90 to-transparent p-5 pb-12">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-          {t("an.heading")}
-        </p>
-        <p className="mt-2 text-center text-[15px] text-white/90">{t(STAGE_KEYS[stage])}</p>
-        <div className="mx-auto mt-4 h-[3px] w-40 overflow-hidden rounded-full bg-white/15">
-          <div
-            className="h-full rounded-full bg-sky transition-all duration-700 ease-out"
-            style={{ width: `${((stage + 1) / STAGE_KEYS.length) * 100}%` }}
-          />
-        </div>
+      {/* The car is the stage, not the subject: it sits behind the ledger and
+          is pushed right so the reading column never lands on bodywork. */}
+      <div className="pointer-events-none absolute inset-0 md:left-[26rem]">
+        <LieRoom />
       </div>
 
+      {/* Reading ground for the mobile ledger. The car fills the viewport
+          behind it there, and rows over bodywork are unreadable. */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[62%] bg-gradient-to-t from-pine-deep via-pine-deep/95 to-transparent md:hidden"
+        aria-hidden="true"
+      />
+
+      {/* Masthead */}
+      <header className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-5 py-5 sm:px-8">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-pearl/45">
+          {t("an.heading")}
+        </p>
+        <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-amber">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber" aria-hidden="true" />
+          {t("an.working")}
+        </p>
+      </header>
+
+      {/* The instrument ledger — the signature of this screen.
+          A waiting page has one job: make the wait legible as real work. A
+          spinner asserts that; naming each engine and what it reads shows it,
+          and teaches the method on the way to the result. */}
+      <section
+        className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-8 md:inset-y-0 md:right-auto md:w-[26rem] md:px-8 md:pb-0 md:flex md:flex-col md:justify-center"
+        aria-live="polite"
+      >
+        <p className="hidden max-w-[30ch] text-[15px] leading-relaxed text-pearl/70 md:block">
+          {t("an.sub")}
+        </p>
+
+        <ol className="mt-0 md:mt-8">
+          {LEDGER.map(([name, detail], i) => {
+            const state = i < stage ? "done" : i === stage ? "active" : "pending";
+            return (
+              <li
+                key={name}
+                className={`grid grid-cols-[1.6rem_1fr] items-baseline gap-x-3 border-t py-3 transition-colors duration-500 ${
+                  state === "active" ? "border-amber/40" : "border-pearl/10"
+                }`}
+              >
+                <span
+                  className={`font-mono text-[11px] tabular-nums transition-colors duration-500 ${
+                    state === "done" ? "text-[#7fc9a4]" : state === "active" ? "text-amber" : "text-pearl/25"
+                  }`}
+                >
+                  {state === "done" ? "✓" : String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0">
+                  <p
+                    className={`font-display text-[15px] font-bold leading-tight transition-colors duration-500 ${
+                      state === "pending" ? "text-pearl/35" : "text-pearl"
+                    }`}
+                  >
+                    {t(name)}
+                  </p>
+                  {/* Only the running engine explains itself — five descriptions
+                      at once is a wall of text nobody reads while waiting. */}
+                  {state === "active" && (
+                    <p className="mt-0.5 text-[12.5px] leading-snug text-pearl/55">{t(detail)}</p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div className="mt-5 h-px w-full bg-pearl/10">
+          <div
+            className="h-px bg-amber transition-all duration-700 ease-out"
+            style={{ width: `${((stage + 1) / LEDGER.length) * 100}%` }}
+          />
+        </div>
+      </section>
+
+      {/* Sponsor: bottom-right, clear of both the ledger and the car */}
+      <aside className="pointer-events-none absolute bottom-6 right-6 z-10 hidden text-right md:block">
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-pearl/35">
+          {t("an.sponsor")}
+        </p>
+        <p className="mt-1 font-display text-[15px] font-bold text-pearl/90">Kia EV9 GT-Line</p>
+        <p className="mt-0.5 max-w-[22ch] text-[12px] leading-snug text-pearl/45">
+          {t("lie.tagline")}
+        </p>
+      </aside>
+
       {error && (
-        <div className="absolute inset-x-5 bottom-24 z-10 rounded-2xl bg-red-500/90 p-4 text-sm text-white">
+        <div
+          role="alert"
+          className="absolute inset-x-5 bottom-24 z-20 rounded-2xl border border-warning/40 bg-pine-deep/95 p-4 text-sm text-pearl"
+        >
           {error}
         </div>
       )}

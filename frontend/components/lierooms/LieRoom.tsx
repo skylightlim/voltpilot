@@ -1,10 +1,12 @@
 "use client";
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { useT } from "@/lib/i18n";
 
 /**
@@ -13,16 +15,27 @@ import { useT } from "@/lib/i18n";
  * standing shapes are scaled by height, car-like shapes by length.
  */
 
-const FIT_LENGTH = 4.6;
-const FIT_HEIGHT = 2.8;
-const GROUND_Y = -0.45;
+// The EV9 is a ~5 m SUV. The camera sat at z=4.4 with a 42° field of view,
+// which frames roughly 3.4 world units at the origin — so a car scaled to 4.6
+// ran off both edges. Fit the car smaller and pull the camera back.
+const FIT_LENGTH = 4.0;
+const FIT_HEIGHT = 2.4;
+const GROUND_Y = -0.62;
+const CAMERA = { position: [5.2, 1.85, 8.4] as [number, number, number], fov: 32 };
+
+/** Kia EV9 GT-Line. Draco-compressed glTF converted from the supplied FBX. */
+const MODEL_URL = "/models/kia-ev9-gt-line.glb";
+const SPONSOR_CAR = "Kia EV9 GT-Line";
 
 function Model() {
-  const gltf = useLoader(
-    GLTFLoader,
-    "/models/showroom-car.glb",
-    (loader) => loader.setMeshoptDecoder(MeshoptDecoder)
-  );
+  const gltf = useLoader(GLTFLoader, MODEL_URL, (loader) => {
+    // The EV9 is Draco-compressed; the previous showroom model was meshopt.
+    // Both decoders are registered so either asset loads without a code change.
+    loader.setMeshoptDecoder(MeshoptDecoder);
+    const draco = new DRACOLoader();
+    draco.setDecoderPath("/draco/");   // copied from three/examples at build time
+    loader.setDRACOLoader(draco);
+  });
   const ref = useRef<THREE.Group>(null);
 
   const { scale, yOffset } = useMemo(() => {
@@ -31,9 +44,12 @@ function Model() {
     const center = new THREE.Vector3();
     box.getSize(size);
     box.getCenter(center);
+    void center;
     const standing = size.y > size.x * 1.5 && size.y > size.z * 1.5;
     const s = standing ? FIT_HEIGHT / size.y : FIT_LENGTH / Math.max(size.x, size.z);
-    return { scale: s, yOffset: -center.y * s };
+    // Rest the model's LOWEST point on the floor. Offsetting by the centre put
+    // the bounding box's midpoint at ground level, burying the wheels.
+    return { scale: s, yOffset: -box.min.y * s };
   }, [gltf]);
 
   useEffect(() => {
@@ -58,14 +74,67 @@ function Model() {
   );
 }
 
+/**
+ * Image-based lighting from three's built-in room.
+ *
+ * The scene had ambient + two directionals, which lights a surface evenly and
+ * leaves metallic paint looking like flat plastic — a car's whole read comes
+ * from what its clearcoat reflects. A generated environment gives every PBR
+ * material something to mirror.
+ */
+function Environment() {
+  const { gl, scene } = useThree();
+  useEffect(() => {
+    const pmrem = new THREE.PMREMGenerator(gl);
+    const env = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    scene.environment = env.texture;
+    return () => {
+      env.texture.dispose();
+      pmrem.dispose();
+      scene.environment = null;
+    };
+  }, [gl, scene]);
+  return null;
+}
+
+/** Pull the camera back on narrow viewports.
+ *
+ *  Horizontal FOV follows the aspect ratio, so a distance framed against a
+ *  1280px canvas cuts the car off on a 390px portrait one. */
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const aspect = size.width / size.height;
+    const pull = aspect < 1 ? 1.75 : aspect < 1.5 ? 1.25 : 1;
+    camera.position.set(
+      CAMERA.position[0] * pull,
+      CAMERA.position[1] * (aspect < 1 ? 1.15 : 1),
+      CAMERA.position[2] * pull,
+    );
+    camera.lookAt(0, aspect < 1 ? 0.1 : 0, 0);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+  return null;
+}
+
 function Ground() {
+  // Pine-deep, not the near-white #e8eef4 that filled the lower half of the
+  // frame with a grey slab. Slightly reflective so the car sits ON something.
   const mat = useMemo(
-    () => new THREE.MeshStandardMaterial({ color: "#e8eef4", roughness: 1 }),
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: "#071a14",
+        roughness: 0.92,
+        metalness: 0.0,
+        // Without this the stage mirrors the (bright) studio environment and
+        // washes out to pale grey-green across half the frame.
+        envMapIntensity: 0.12,
+      }),
     []
   );
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.45, 0]} material={mat}>
-      <circleGeometry args={[5.5, 32]} />
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, GROUND_Y, 0]} material={mat} receiveShadow>
+      <circleGeometry args={[6.5, 64]} />
     </mesh>
   );
 }
@@ -85,7 +154,7 @@ function RoomParticles() {
     return g;
   }, []);
   const mat = useMemo(
-    () => new THREE.PointsMaterial({ color: "#00a6a6", size: 0.035, transparent: true, opacity: 0.6 }),
+    () => new THREE.PointsMaterial({ color: "#c97f10", size: 0.02, transparent: true, opacity: 0.35 }),
     []
   );
   useFrame((state) => {
@@ -110,11 +179,6 @@ export default function LieRoom() {
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 1.4, ease: "power3.out", delay: 0.15 }
         );
-        g.gsap.fromTo(
-          ".lie-room-caption",
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", delay: 0.8 }
-        );
       }, introRef);
       setReady(true);
     });
@@ -127,12 +191,24 @@ export default function LieRoom() {
         <Canvas
           dpr={[1, 1.75]}
           gl={{ antialias: false, powerPreference: "high-performance" }}
-          camera={{ position: [2.6, 1.6, 4.4], fov: 42 }}
+          camera={{ position: CAMERA.position, fov: CAMERA.fov }}
         >
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[3, 5, 2]} intensity={1.5} color="#fff8e8" />
-          <directionalLight position={[-4, 2, -3]} intensity={0.45} color="#8ecbff" />
+          {/* Specimen under examination: one warm key from above-front, a cool
+              rim to separate the roofline from the dark ground, and almost no
+              ambient so the environment map does the modelling. */}
+          <ResponsiveCamera />
+          <ambientLight intensity={0.35} />
+          <spotLight
+            position={[3.5, 6.5, 4]}
+            angle={0.55}
+            penumbra={0.9}
+            intensity={28}
+            color="#fff4dd"
+            castShadow
+          />
+          <directionalLight position={[-5, 2.5, -4]} intensity={0.7} color="#7fc9a4" />
           <Suspense fallback={null}>
+            <Environment />
             <Model />
           </Suspense>
           <Ground />
@@ -140,17 +216,7 @@ export default function LieRoom() {
         </Canvas>
       </div>
 
-      <div className="lie-room-caption pointer-events-none absolute inset-x-0 bottom-[22vh] z-10 px-6 text-center opacity-0">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-          {t("lie.sponsor")}
-        </p>
-        <p className="mt-1 text-xl font-bold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
-          Proton eMas 5
-        </p>
-        <p className="mx-auto mt-1 max-w-[240px] text-[13px] leading-snug text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.4)]">
-          {t("lie.tagline")}
-        </p>
-      </div>
+
     </div>
   );
 }
