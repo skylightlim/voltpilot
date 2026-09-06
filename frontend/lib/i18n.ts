@@ -69,6 +69,13 @@ const S = {
   "ts.rm": ["RM", "RM"],
   "ts.rm.sub": ["Complete OTR prices, JPJ road tax & TNB tariffs", "Harga OTR lengkap, cukai jalan JPJ & tarif TNB"],
   "ts.count": ["184", "184"],
+  // scroll marquee band (DESIGN.md §3) — factual claims only, no brand noise
+  "mq.a": ["184 Malaysian trims", "184 varian Malaysia"],
+  "mq.b": ["5 decision engines", "5 enjin keputusan"],
+  "mq.c": ["TOPSIS ranked", "Disusun secara TOPSIS"],
+  "mq.d": ["Free, no sign-up", "Percuma, tanpa daftar"],
+  "lr.showAll": ["Show all {n} models", "Papar semua {n} model"],
+  "lr.showLess": ["Show fewer", "Papar kurang"],
   "ts.count.sub": ["Malaysian EV and Hybrid models evaluated", "Model EV dan Hibrid Malaysia dinilai"],
   "ts.yr": ["10 Years", "10 Tahun"],
   "ts.yr.sub": ["Lifecycle TCO roadmap and battery health projection", "Peta jalan TCO dan unjuran kesihatan bateri"],

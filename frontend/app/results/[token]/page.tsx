@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import { Badge, Button, Card, SectionLabel } from "@/components/ui";
 import { InfrastructureAccess } from "@/components/InfrastructureAccess";
-import { CountUp, Reveal, Stagger } from "@/components/motion";
+import { CountUp, ScrollRefresh, ScrubReveal, Stagger } from "@/components/motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { apiService } from "@/lib/api";
@@ -147,6 +147,7 @@ export default function ResultsPage() {
   if (!data) {
     return (
       <main className="grid min-h-[100dvh] place-items-center bg-background">
+      <ScrollRefresh />
         <div className="text-center">
           <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
           <p className="mt-3 text-[14px] text-muted">Compiling your analysis…</p>
@@ -174,7 +175,7 @@ export default function ResultsPage() {
 
       {/* ── AI Recommendation Hero ────────────────────────────────────── */}
       {rec && top && (
-        <Reveal className="mb-10">
+        <ScrubReveal className="mb-10">
           <div className="group relative overflow-hidden rounded-[28px] bg-pine-deep text-white">
             {/* outer bezel */}
             <div className="absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/[0.08]" />
@@ -220,12 +221,12 @@ export default function ResultsPage() {
               </Stagger>
             </div>
           </div>
-        </Reveal>
+        </ScrubReveal>
       )}
 
       {/* ── Key Metrics Bento ─────────────────────────────────────────── */}
       {top && (
-        <Reveal className="mb-10">
+        <ScrubReveal className="mb-10">
           <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
             {/* Price card — spans full width */}
             <div className="col-span-2">
@@ -271,7 +272,7 @@ export default function ResultsPage() {
               </div>
             </div>
           </div>
-        </Reveal>
+        </ScrubReveal>
       )}
 
       {/* ── Live Infrastructure Look-up ────────────────────────────────── */}
@@ -279,7 +280,7 @@ export default function ResultsPage() {
 
       {/* ── Solar Bonus Banner ────────────────────────────────────────── */}
       {data.solar && (
-        <Reveal className="mb-10">
+        <ScrubReveal className="mb-10">
           <div className="group relative overflow-hidden rounded-[20px] sm:rounded-[22px] border border-amber-300/40 bg-gradient-to-br from-[#fffbeb] via-[#fef3c7] to-[#fff9ec] p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all hover:shadow-md">
             <div className="absolute inset-0 rounded-[22px] ring-1 ring-inset ring-amber-500/[0.08]" />
             <div className="flex items-start gap-4">
@@ -300,7 +301,7 @@ export default function ResultsPage() {
               </div>
             </div>
           </div>
-        </Reveal>
+        </ScrubReveal>
       )}
 
       {/* ── Dashboard Section ─────────────────────────────────────────── */}

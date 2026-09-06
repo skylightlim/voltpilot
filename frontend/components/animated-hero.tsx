@@ -101,10 +101,12 @@ export function Hero() {
                 className="slider"
                 aria-label="Daily commute distance"
               />
-              <div className="flex justify-between text-[11px] font-mono text-muted mt-1.5">
-                <span>10 km (Urban)</span>
-                <span>50 km (Commute)</span>
-                <span>200 km (Field/Sales)</span>
+              {/* mono is wider than the old serif fallback these were sized
+                  against — at 11px the three labels collide on a 375px screen */}
+              <div className="flex justify-between gap-1 text-[10px] font-mono text-muted mt-1.5">
+                <span>10 urban</span>
+                <span>50 commute</span>
+                <span>200 field</span>
               </div>
             </div>
 

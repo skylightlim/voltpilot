@@ -17,7 +17,12 @@ impartial rather than promotional.
 - **Surfaces** — bone paper `#f4f3ec`, raised `#fbfaf5`, recessed parchment `#e9e7d8`
 - **Ink** — `#15221c` green-black; muted `#5c6b62` (4.5:1 on paper)
 - **Brand** — pine `#1c4a3a`; amber signal `#c97f10`
-- **Type** — Space Grotesk display (`--font-display`), mono for all figures
+- **Type** — Space Grotesk display (`--font-display`), Inter body, JetBrains Mono figures.
+  Wired in `app/layout.tsx` via `next/font/google`. **This was broken until 2026-09-06:**
+  `globals.css` consumed `--font-grotesk` / `--font-body` / `--font-mono` but nothing
+  defined them, and an undefined `var()` inside a `font-family` shorthand invalidates the
+  whole declaration — so every surface fell back to the UA serif. The typographic half of
+  this identity had never rendered in a browser.
 - **Structure** — hairline rules, not card soup. Shape rule: pills for buttons/chips,
   14px inputs, 20px cards.
 - **Theme** — light is locked. The 3D analysis scene is the one dark route.
@@ -68,9 +73,37 @@ scroll" means scrub.
 The reference is 16,167px tall — ~18 screens — because scrolling *is* its product.
 Ours is a funnel into a 9-step interview, so scroll before the CTA is drop-off.
 
-- Landing caps at **~8–10 screens**.
 - Primary CTA **above the fold**. Second CTA mid-page.
 - Scroll choreography lives **after** the first CTA, never in front of it.
+
+### Measured 2026-09-06
+
+| viewport | height | screens | vs cap |
+|---|---|---|---|
+| desktop 1440×900 | 6,284px | **7.0** | within the ~8–10 cap |
+| mobile 390×844 | 10,955px | **13.0** | over |
+
+The original cap did not name a viewport, and a single-column stack cannot meet
+it without deleting sections. Desktop meets it. Mobile does not, and the honest
+reading is that the cap is a **desktop** figure.
+
+Mobile height by section — the leaderboard is already truncated to 6 cards with a
+"show all" toggle:
+
+| section | px | share |
+|---|---|---|
+| leaderboard (`#cars`) | 2,597 | 24% |
+| five engines (`#method`) | 2,000 | 18% |
+| supporting initiatives | 1,532 | 14% |
+| hero | 1,272 | 12% |
+| how it works (`#how`) | 941 | 9% |
+| footer | 875 | 8% |
+
+**Open, needs a product decision:** getting mobile under ~10 screens means cutting
+a section, not restyling one. `SupportingInitiatives` (1,532px, 14%) is the
+weakest earner per pixel — government/clean-energy context that no visitor needs
+before converting. Cutting it lands mobile at ~11.2 screens. Not done unilaterally;
+deleting content is the owner's call, not the redesign's.
 
 ## 5. Scope
 

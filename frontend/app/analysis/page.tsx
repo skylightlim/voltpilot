@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import { ScrollRefresh } from "@/components/motion";
 
 const LieRoom = dynamic(() => import("@/components/lierooms/LieRoom"), {
   ssr: false,
@@ -68,6 +69,7 @@ function AnalysisInner() {
 
   return (
     <main className="relative h-[100svh] w-full overflow-hidden bg-[#081926]">
+      <ScrollRefresh />
       <LieRoom />
 
       {/* status overlay (top = status only) */}

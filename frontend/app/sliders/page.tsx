@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Banknote, Leaf, Gauge, ShieldCheck, Sparkles } from "lucide-react";
 import { Button, Card, SectionLabel } from "@/components/ui";
-import { Stagger } from "@/components/motion";
+import { ScrollRefresh, ScrubStagger } from "@/components/motion";
 import { RadarChart } from "@/components/charts/RadarChart";
 import { useT, type StrKey } from "@/lib/i18n";
 import { SESSION, apiService, type Weights } from "@/lib/api";
@@ -83,6 +83,7 @@ export default function SlidersPage() {
 
   return (
     <main className="app-shell mx-auto flex min-h-[100svh] w-full max-w-md flex-col px-5 pt-6">
+      <ScrollRefresh />
       <header className="flex items-center justify-between">
         <button
           className="pressable tap-target flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-ink"
@@ -130,7 +131,7 @@ export default function SlidersPage() {
         </div>
       </div>
 
-      <Stagger className="mt-6 space-y-3 pb-8" stagger={0.05}>
+      <ScrubStagger className="mt-6 space-y-3 pb-8" each={0.05}>
         {SLIDERS.map((s) => (
           <Card key={s.key} className="!p-5 border-line bg-card">
             <div className="flex items-center gap-2">
@@ -159,7 +160,7 @@ export default function SlidersPage() {
             <p className="mt-2.5 text-[13px] leading-relaxed text-muted">{t(`sl.${s.p}.hint` as StrKey)}</p>
           </Card>
         ))}
-      </Stagger>
+      </ScrubStagger>
 
       {error && (
         <p className="mt-4 rounded-xl bg-red-50/80 px-4 py-3 text-sm font-medium text-red-600 border border-red-200/50">{error}</p>
