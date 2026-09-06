@@ -12,8 +12,11 @@ import {
 } from "@/components/motion";
 import { useT, type StrKey } from "@/lib/i18n";
 
-/* Content is transcribed from VOLT_PILOT_TECHNICAL_SPECIFICATION_FINAL_PRINTING.
-   Equation numbers are the spec's own, so a reader can hold the two side by side.
+/* Documents the SHIPPING implementation, which is the current revision of the
+   framework: 184 trims and six TOPSIS criteria driven by four user sliders.
+   An earlier unrevised specification described 108 vehicles and three criteria
+   (money / environment / convenience) plus a payback screen; that revision was
+   superseded and is deliberately not what this page describes.
    Notation is never translated — see the i18n note on the "me.*" block. */
 
 type Step = {
@@ -26,33 +29,12 @@ type Step = {
 const STEPS: Step[] = [
   { key: "me.s1", body: "me.s1d" },
   { key: "me.s2", body: "me.s2d" },
-  { key: "me.s3", body: "me.s3d" },
-  {
-    key: "me.s4",
-    body: "me.s4d",
-    eq: "Eq. 9",
-    formula: "N_candidates = 1 + N_all + N_plug_recommended",
-  },
-  {
-    key: "me.s5",
-    body: "me.s5d",
-    eq: "Eq. 10",
-    formula:
-      "CLCC_RM_per_km = (maintenance + fuel + price_vehicle + solar_capex) / VKT",
-  },
-  {
-    key: "me.s6",
-    body: "me.s6d",
-    eq: "Eq. 29",
-    formula: "convenience_score = 0.65 × A + 0.35 × L",
-  },
-  {
-    key: "me.s7",
-    body: "me.s7d",
-    eq: "Eq. 34",
-    formula: "wtw_icev_g_km = (9.5 / 100) × 2.515 × 1000",
-  },
-  { key: "me.s8", body: "me.s8d", eq: "Eq. 42–50" },
+  { key: "me.s3", body: "me.s3d", eq: "20 km · 5 points" },
+  { key: "me.s4", body: "me.s4d" },
+  { key: "me.s5", body: "me.s5d" },
+  { key: "me.s6", body: "me.s6d" },
+  { key: "me.s7", body: "me.s7d" },
+  { key: "me.s8", body: "me.s8d", eq: "6 criteria" },
 ];
 
 const GRID = [
@@ -170,25 +152,31 @@ export default function MethodologyPage() {
             </p>
           </ScrubReveal>
 
-          <ScrubStagger className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-3" selector="> div">
+          <ScrubStagger className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" selector="> div">
             {(
               [
-                ["me.c1", "me.c1d", "me.cost", "CLCC_RM_per_km"],
-                ["me.c2", "me.c2d", "me.cost", "WTW_GHG_g_per_km"],
-                ["me.c3", "me.c3d", "me.benefit", "convenience_score"],
+                ["me.c1", "me.c1d", "me.cost", "tco_excluding_rm", "0.24"],
+                ["me.c2", "me.c2d", "me.benefit", "behaviour_score", "0.15"],
+                ["me.c3", "me.c3d", "me.benefit", "infrastructure_score", "0.13"],
+                ["me.c4", "me.c4d", "me.cost", "co2_kg_yr", "0.15"],
+                ["me.c5", "me.c5d", "me.cost", "purchase_price_rm", "0.17"],
+                ["me.c6", "me.c6d", "me.cost", "running_cost_rm_yr", "0.16"],
               ] as const
-            ).map(([name, desc, dir, variable]) => (
+            ).map(([name, desc, dir, variable, weight]) => (
               <div
                 key={name}
                 className="rounded-[20px] border border-line bg-white p-5 card-highlight"
               >
-                <h3 className="font-display text-[19px] font-bold text-ink">{t(name)}</h3>
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="font-display text-[19px] font-bold text-ink">{t(name)}</h3>
+                  <span className="shrink-0 font-mono text-[11px] font-bold text-amber">{weight}</span>
+                </div>
                 <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{t(desc)}</p>
                 <p className="mt-4 break-all border-t border-line/60 pt-3 font-mono text-[11px] text-primary">
                   {variable}
                 </p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-fog">
-                  {t(dir)}
+                  {t(dir)} · {t("me.weight")}
                 </p>
               </div>
             ))}
