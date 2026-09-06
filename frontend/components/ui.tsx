@@ -277,7 +277,7 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
             {t("nav.cars")}
           </a>
           <a
-            href="/#method"
+            href="/methodology"
             className={`${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
           >
             {t("nav.method")}
@@ -348,7 +348,7 @@ export function Footer({ dark = false }: { dark?: boolean }) {
                 </a>
               </li>
               <li>
-                <a className="hover:underline text-ink/80 dark:text-white/80" href="/#method">
+                <a className="hover:underline text-ink/80 dark:text-white/80" href="/methodology">
                   {t("ft.how")}
                 </a>
               </li>

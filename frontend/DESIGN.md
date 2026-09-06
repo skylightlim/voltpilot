@@ -108,7 +108,15 @@ deleting content is the owner's call, not the redesign's.
 ## 5. Scope
 
 **In scope now** — presentation surfaces, no backend coupling:
-`/` · `/analysis` · `/sliders` · `/results/[token]`
+`/` · `/analysis` · `/sliders` · `/results/[token]` · `/methodology`
+
+`/methodology` is transcribed from `VOLT_PILOT_TECHNICAL_SPECIFICATION_FINAL_PRINTING.pdf`
+(31pp). It keeps the spec's own equation numbers so a reader can hold both side by side.
+Equations, variable names and citations are deliberately **not** translated — universal
+notation, and nobody localises a DOI. Nav and footer "Methodology" links moved from the
+`/#method` anchor to this route.
+
+Measured: desktop 5,669px (6.3 screens), mobile 7,488px (8.9) — both inside the §4 cap.
 
 **Deferred** — token- and API-coupled funnel internals. Restyle shells only, never touch
 session logic: `/interview/voice` (1,066 lines, live Gemini audio), `/interview/form`,
@@ -129,3 +137,11 @@ session logic: `/interview/voice` (1,066 lines, live Gemini audio), `/interview/
 The catalog is **184 trims** (`data/catalog_vehicles.json` → `vehicles[]`). Copy across
 `app/` and `lib/i18n.ts` says 184 and is correct. The root `README.md` still says 23 —
 the README is stale, not the UI.
+
+**Unresolved conflict.** The technical specification is written against a *different*
+vehicle universe: it repeatedly cites `voltpilot_vehicle_full_database.json` and states
+"the 108 vehicles in the given database", and Eq. 9 bounds candidates at Max 109 (108 + 1).
+That file does not exist anywhere in this repo. So the spec's math assumes 108 while the
+running site advertises 184 from a different file. `/methodology` therefore states no
+vehicle count at all — it describes the method, not the inventory. Someone needs to decide
+which database is authoritative before that page or the landing copy claims a number.

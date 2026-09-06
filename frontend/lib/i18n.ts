@@ -126,6 +126,96 @@ const S = {
   "lr.topsisFit": ["TOPSIS Score", "Skor TOPSIS"],
 
   "m.label": ["Decision Methodology", "Kaedah Keputusan"],
+
+  /* ---- /methodology — sourced from VOLT_PILOT_TECHNICAL_SPECIFICATION.
+     Equations, variable names and citations stay untranslated: they are
+     universal notation, and nobody localises a DOI or CLCC_RM_per_km. ---- */
+  "me.eyebrow": ["Decision methodology", "Kaedah keputusan"],
+  "me.t1": ["No black box.", "Tiada kotak hitam."],
+  "me.t2": ["Here is the whole method.", "Inilah keseluruhan kaedahnya."],
+  "me.sub": [
+    "Every recommendation runs these eight steps, in this order. The maths is published so you — or anyone who knows the field — can check it.",
+    "Setiap cadangan melalui lapan langkah ini, mengikut susunan ini. Matematiknya diterbitkan supaya anda — atau sesiapa yang arif dalam bidang ini — boleh menyemaknya.",
+  ],
+
+  "me.critH": ["Three criteria decide the ranking", "Tiga kriteria menentukan kedudukan"],
+  "me.critSub": [
+    "Nothing else is scored. Payback screens candidates earlier but carries no weight in the final rank.",
+    "Tiada yang lain diberi markah. Tempoh pulangan menapis calon lebih awal tetapi tidak berwajaran dalam kedudukan akhir.",
+  ],
+  "me.c1": ["Money", "Wang"],
+  "me.c1d": ["Consumer life-cycle cost per km", "Kos kitaran hayat pengguna per km"],
+  "me.c2": ["Environment", "Alam sekitar"],
+  "me.c2d": ["Well-to-wheel greenhouse gas per km", "Gas rumah hijau well-to-wheel per km"],
+  "me.c3": ["Convenience", "Kemudahan"],
+  "me.c3d": ["Charging access and long-trip capability", "Akses pengecasan dan keupayaan perjalanan jauh"],
+  "me.cost": ["Lower is better", "Lebih rendah lebih baik"],
+  "me.benefit": ["Higher is better", "Lebih tinggi lebih baik"],
+
+  "me.stepsH": ["The eight steps", "Lapan langkah"],
+  "me.s1": ["User input", "Input pengguna"],
+  "me.s1d": [
+    "Twelve fields covering how you drive, what charging you can reach, and your budget. The framework adds nothing beyond this list.",
+    "Dua belas medan merangkumi cara anda memandu, pengecasan yang boleh anda capai, dan bajet anda. Rangka kerja ini tidak menambah apa-apa di luar senarai ini.",
+  ],
+  "me.s2": ["Hard feasibility gate", "Get kebolehlaksanaan"],
+  "me.s2d": [
+    "Impossible options are removed before anything is scored: over budget, solar pathways you cannot host, and battery-electric cars when you have neither home nor workplace charging and fewer than five public points within 20 km.",
+    "Pilihan mustahil dibuang sebelum sebarang pemarkahan: melebihi bajet, laluan solar yang tidak dapat anda pasang, dan kereta elektrik bateri apabila anda tiada pengecasan di rumah mahupun tempat kerja serta kurang daripada lima titik awam dalam 20 km.",
+  ],
+  "me.s3": ["Payback tipping point", "Titik pulangan modal"],
+  "me.s3d": [
+    "A low lifetime cost does not mean you recover a high purchase price in time. Break-even is compared against your ownership period as a screen — it never scores.",
+    "Kos hayat yang rendah tidak bermakna anda memulihkan harga belian yang tinggi tepat pada masanya. Titik pulang modal dibandingkan dengan tempoh pemilikan anda sebagai tapisan — ia tidak sekali-kali diberi markah.",
+  ],
+  "me.s4": ["Candidate pathway generation", "Penjanaan laluan calon"],
+  "me.s4d": [
+    "Each candidate is a specific pathway paired with a specific model, never a generic average for a powertrain. Specs come only from the vehicle database.",
+    "Setiap calon ialah laluan tertentu yang digandingkan dengan model tertentu, bukan purata generik bagi sesuatu pacuan. Spesifikasi diambil hanya daripada pangkalan data kenderaan.",
+  ],
+  "me.s5": ["Consumer life-cycle cost", "Kos kitaran hayat pengguna"],
+  "me.s5d": [
+    "Maintenance, fuel or charging, purchase price and any solar capital cost, divided by the kilometres you will actually drive over your ownership period.",
+    "Penyelenggaraan, bahan api atau pengecasan, harga belian dan sebarang kos modal solar, dibahagikan dengan kilometer yang benar-benar anda pandu sepanjang tempoh pemilikan.",
+  ],
+  "me.s6": ["Type-level convenience", "Kemudahan peringkat jenis"],
+  "me.s6d": [
+    "Scored once per powertrain type from your charging access and long-trip routes, then shared by every model of that type. Two battery-electric cars never differ here.",
+    "Dimarkah sekali bagi setiap jenis pacuan berdasarkan akses pengecasan dan laluan jauh anda, kemudian dikongsi oleh setiap model jenis itu. Dua kereta elektrik bateri tidak pernah berbeza di sini.",
+  ],
+  "me.s7": ["Well-to-wheel emissions", "Pelepasan well-to-wheel"],
+  "me.s7d": [
+    "Upstream energy production plus emissions from driving. For electricity this depends on your grid region, so the same car scores differently in Sarawak than in Peninsular Malaysia.",
+    "Pengeluaran tenaga huluan serta pelepasan daripada pemanduan. Bagi elektrik ini bergantung pada wilayah grid anda, jadi kereta yang sama mendapat markah berbeza di Sarawak berbanding Semenanjung Malaysia.",
+  ],
+  "me.s8": ["TOPSIS ranking", "Kedudukan TOPSIS"],
+  "me.s8d": [
+    "Surviving candidates are ranked by how close they sit to an ideal solution and how far from the worst one, using your three weights.",
+    "Calon yang tinggal disusun mengikut kehampirannya dengan penyelesaian ideal dan jaraknya daripada yang terburuk, menggunakan tiga wajaran anda.",
+  ],
+
+  "me.gridH": ["Grid emission factors", "Faktor pelepasan grid"],
+  "me.gridSub": [
+    "Electricity is not equally clean across Malaysia. Published factors, kg CO₂e per kWh.",
+    "Elektrik tidak sama bersihnya di seluruh Malaysia. Faktor yang diterbitkan, kg CO₂e per kWh.",
+  ],
+  "me.topsisH": ["How the final score is computed", "Cara skor akhir dikira"],
+  "me.topsisSub": [
+    "Vector normalisation, then your weights, then distance to the best and worst possible outcome.",
+    "Penormalan vektor, kemudian wajaran anda, kemudian jarak ke hasil terbaik dan terburuk.",
+  ],
+  "me.n1": ["Weights always sum to 1.", "Wajaran sentiasa berjumlah 1."],
+  "me.n2": ["Higher closeness ranks higher.", "Kehampiran lebih tinggi, kedudukan lebih tinggi."],
+  "me.srcH": ["Sources", "Sumber"],
+  "me.srcSub": [
+    "The framework is built on published work, not house opinion.",
+    "Rangka kerja ini dibina atas kajian terbitan, bukan pendapat sendiri.",
+  ],
+  "me.ctaH": ["See it run on your own numbers", "Lihat ia berjalan dengan nombor anda"],
+  "me.ctaB": [
+    "The same eight steps, applied to how you actually drive.",
+    "Lapan langkah yang sama, digunakan pada cara anda memandu sebenarnya.",
+  ],
   "m.title": ["Five engines, one mathematical TOPSIS solver.", "Lima enjin, satu penyelesai matematik TOPSIS."],
   "m.body": [
     "We fuse total cost of ownership with real-world practicality, ranking every vehicle against your exact requirements using TOPSIS, the multi-criteria optimization standard used in aerospace and logistics.",
