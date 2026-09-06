@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ShieldCheck, BatteryWarning, Zap } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 interface BatteryDegradationChartProps {
   initialRangeKm?: number;
@@ -16,6 +17,7 @@ export function BatteryDegradationChart({
   chemistry = "LFP",
   className = "",
 }: BatteryDegradationChartProps) {
+  const t = useT();
   const [selectedYear, setSelectedYear] = useState<number>(5);
 
   // Degradation model: LFP degrades ~1.4% per year, NMC ~1.7% per year
@@ -71,7 +73,7 @@ export function BatteryDegradationChart({
             </span>
           </div>
           <p className="text-[13px] text-muted mt-0.5">
-            Electrochemical capacity retention curve under Malaysian tropical climate
+            {t("bd.sub")}
           </p>
         </div>
 
@@ -188,7 +190,7 @@ export function BatteryDegradationChart({
       {/* Interactive Year Scrubber */}
       <div className="rounded-xl bg-paper-2 p-4 border border-line">
         <div className="flex items-center justify-between text-[13px] font-medium text-ink mb-2">
-          <span>Simulate Vehicle Ownership Duration:</span>
+          <span>{t("bd.sim")}</span>
           <span className="font-mono text-primary font-bold">{selectedYear} Years</span>
         </div>
         <input
@@ -201,38 +203,38 @@ export function BatteryDegradationChart({
           className="slider"
         />
         <div className="flex justify-between text-[11px] font-mono text-muted mt-1">
-          <span>Delivery (Yr 0)</span>
-          <span>Warranty End (Yr 8)</span>
-          <span>Long-Term (Yr 15)</span>
+          <span>{t("bd.y0")}</span>
+          <span>{t("bd.y8")}</span>
+          <span>{t("bd.y15")}</span>
         </div>
       </div>
 
       {/* Metric Cards */}
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="rounded-xl border border-line bg-paper-2 p-3.5">
-          <p className="text-[11px] font-mono uppercase text-muted">Usable Range</p>
+          <p className="text-[11px] font-mono uppercase text-muted">{t("bd.range")}</p>
           <p className="figure text-[20px] font-bold text-ink mt-1">{current.rangeKm} km</p>
           <p className="text-[12px] text-muted mt-0.5">From original {initialRangeKm} km</p>
         </div>
 
         <div className="rounded-xl border border-line bg-paper-2 p-3.5">
-          <p className="text-[11px] font-mono uppercase text-muted">Remaining Pack</p>
+          <p className="text-[11px] font-mono uppercase text-muted">{t("bd.pack")}</p>
           <p className="figure text-[20px] font-bold text-ink mt-1">{current.usableKwh} kWh</p>
           <p className="text-[12px] text-muted mt-0.5">From original {initialBatteryKwh} kWh</p>
         </div>
 
         <div className="rounded-xl border border-line bg-paper-2 p-3.5">
-          <p className="text-[11px] font-mono uppercase text-muted">Factory Warranty</p>
+          <p className="text-[11px] font-mono uppercase text-muted">{t("bd.warranty")}</p>
           <div className="flex items-center gap-1.5 mt-1">
             {current.inWarranty ? (
               <>
                 <ShieldCheck className="h-5 w-5 text-emerald-600 shrink-0" />
-                <span className="text-[14px] font-semibold text-emerald-700">Fully Covered</span>
+                <span className="text-[14px] font-semibold text-emerald-700">{t("bd.covered")}</span>
               </>
             ) : (
               <>
                 <BatteryWarning className="h-5 w-5 text-amber-600 shrink-0" />
-                <span className="text-[14px] font-semibold text-amber-700">Post-Warranty (70%+ SoH)</span>
+                <span className="text-[14px] font-semibold text-amber-700">{t("bd.post")}</span>
               </>
             )}
           </div>

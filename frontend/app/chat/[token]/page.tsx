@@ -142,7 +142,7 @@ export default function ChatPage() {
         </div>
         <p className="py-2 text-center text-[11px] text-muted">
           <BatteryWarning className="mr-1 inline h-3 w-3 text-warning" />
-          Battery answers are education, not a change to your ranking.
+          {t("ch.note")}
         </p>
       </div>
     </main>

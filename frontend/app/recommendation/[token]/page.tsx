@@ -9,8 +9,10 @@ import { ArrowDown, Coins, Leaf, Loader2, MessageCircle, Target } from "lucide-r
 import { Badge, Button, Card, SectionLabel } from "@/components/ui";
 import { CountUp, Reveal, Stagger } from "@/components/motion";
 import { apiService } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 export default function RecommendationPage() {
+  const t = useT();
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const [data, setData] = useState<any>(null);
@@ -42,7 +44,7 @@ export default function RecommendationPage() {
         >
           ← Back to results
         </button>
-        <SectionLabel>Your roadmap</SectionLabel>
+        <SectionLabel>{t("re.yours")}</SectionLabel>
       </header>
 
       {!rec ? (
@@ -50,14 +52,14 @@ export default function RecommendationPage() {
           <div className="text-center">
             <Loader2 className="mx-auto h-7 w-7 animate-spin text-primary" />
             <p className="mt-3 animate-pulse text-[14px] text-muted">
-              Letting the analyst draft the plan…
+              {t("re.drafting")}
             </p>
           </div>
         </div>
       ) : (
         <>
           <Reveal className="mt-6">
-            <SectionLabel>AI recommendation</SectionLabel>
+            <SectionLabel>{t("r.ai")}</SectionLabel>
             <h1 className="apple-display mt-3 text-[32px] text-ink">{rec.headline}</h1>
             <p className="mt-3 text-[15px] leading-relaxed text-muted">{rec.summary}</p>
           </Reveal>
@@ -75,7 +77,7 @@ export default function RecommendationPage() {
                   "—"
                 )}
               </p>
-              <p className="mt-1 text-[13px] leading-snug text-muted">CO₂ saved over 10 years</p>
+              <p className="mt-1 text-[13px] leading-snug text-muted">{t("re.co2")}</p>
             </Card>
             <Card className="!p-5">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-parchment">
@@ -98,7 +100,7 @@ export default function RecommendationPage() {
 
           {/* Roadmap timeline */}
           <section className="mt-10">
-            <SectionLabel>Staged plan — relative years</SectionLabel>
+            <SectionLabel>{t("re.staged")}</SectionLabel>
             <div className="mt-6 space-y-0">
               {rec.roadmap?.map((m: any, i: number) => (
                 <Reveal key={i} y={16} className="relative flex gap-4 pb-8 last:pb-0">
@@ -129,7 +131,7 @@ export default function RecommendationPage() {
           {/* Milestones */}
           {rec.tradeoffs && (
             <section className="mt-10">
-              <SectionLabel>Milestones & trade-offs</SectionLabel>
+              <SectionLabel>{t("re.milestones")}</SectionLabel>
               <Stagger className="mt-3 space-y-2" selector="> p">
                 {rec.tradeoffs.map((t: string, i: number) => (
                   <p
@@ -148,7 +150,7 @@ export default function RecommendationPage() {
           {rec.solar_banner && (
             <Reveal className="mt-6">
               <Card className="border-solar/40 bg-[#fff9ec] p-5">
-                <p className="font-semibold text-ink">Solar-first bonus</p>
+                <p className="font-semibold text-ink">{t("r.solar")}</p>
                 <p className="mt-0.5 text-[14px] leading-relaxed text-muted">
                   You qualify: home charging + solar considered. Average Malaysia: capex RM
                   {rec.solar_banner.capex_rm?.toLocaleString() ?? "34,000"}, ~RM

@@ -35,7 +35,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-pine/20 bg-pine-tint px-3.5 py-1 text-primary">
             <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             <span className="font-mono text-[11px] font-semibold tracking-wider uppercase">
-              Malaysian EV & Hybrid Decision Engine
+              {t("hero.badge")}
             </span>
           </div>
 

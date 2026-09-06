@@ -327,7 +327,7 @@ export default function LandingPage() {
             <div>
               <p className="text-[14px] font-bold text-primary">{t("lr.needMath")}</p>
               <p className="text-[12px] text-ink/70">
-                Our 5 decision engines rank all 184 Malaysian models tailored to your daily route and charging access.
+                {t("lr.needSub")}
               </p>
             </div>
           </div>
@@ -363,7 +363,7 @@ export default function LandingPage() {
           <Reveal>
             <SectionLabel>{t("hw.label")}</SectionLabel>
             <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
-              {t("hw.title")}
+              {t("hw.worksTitle")}
             </h2>
             <p className="mt-2.5 max-w-2xl text-[15px] text-muted leading-relaxed">
               We evaluate every car through 5 specialized domain engines before synthesizing with TOPSIS multi-criteria optimization.
@@ -379,7 +379,7 @@ export default function LandingPage() {
                     <Wallet className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-primary bg-pine-tint px-2.5 py-1 rounded-md border border-pine/15">
-                    Engine 01
+                    {t("eng.n")} 01
                   </span>
                 </div>
                 <h3 className="font-display text-[22px] font-bold text-ink mt-5">
@@ -392,10 +392,10 @@ export default function LandingPage() {
 
               <div className="mt-6 pt-4 border-t border-line/60 flex flex-wrap gap-2">
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  OTR Registration
+                  {t("eng.t1a")}
                 </span>
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  TNB Off-Peak Tariff
+                  {t("eng.t1b")}
                 </span>
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
                   10-Year Insurance
@@ -411,7 +411,7 @@ export default function LandingPage() {
                     <Gauge className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
-                    Engine 02
+                    {t("eng.n")} 02
                   </span>
                 </div>
                 <h3 className="font-display text-[22px] font-bold text-ink mt-5">
@@ -424,10 +424,10 @@ export default function LandingPage() {
 
               <div className="mt-6 pt-4 border-t border-line/60 flex flex-wrap gap-2">
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  Tropical WLTP Derating
+                  {t("eng.t2a")}
                 </span>
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  Highway Speed Drag
+                  {t("eng.t2b")}
                 </span>
               </div>
             </div>
@@ -440,7 +440,7 @@ export default function LandingPage() {
                     <Scale className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
-                    Engine 03
+                    {t("eng.n")} 03
                   </span>
                 </div>
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
@@ -464,7 +464,7 @@ export default function LandingPage() {
                     <Zap className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-cyan-800 bg-cyan-50 px-2.5 py-1 rounded-md border border-cyan-200">
-                    Engine 04
+                    {t("eng.n")} 04
                   </span>
                 </div>
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
@@ -488,7 +488,7 @@ export default function LandingPage() {
                     <ShieldCheck className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-slate-800 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
-                    Engine 05
+                    {t("eng.n")} 05
                   </span>
                 </div>
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
@@ -512,7 +512,7 @@ export default function LandingPage() {
         <Reveal>
           <SectionLabel>{t("hw.label")}</SectionLabel>
           <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
-            How VoltPilot works.
+            {t("hw.title")}
           </h2>
         </Reveal>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useT } from "@/lib/i18n";
 
 export type TcoCategory = {
   name: string;
@@ -21,6 +22,7 @@ interface TcoChartProps {
 }
 
 export function TcoChart({ items, title, className = "" }: TcoChartProps) {
+  const t = useT();
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   if (!items || items.length === 0) return null;
@@ -45,7 +47,7 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h3 className="font-display text-[18px] sm:text-[20px] font-semibold text-ink">{title}</h3>
-            <p className="text-[13px] text-muted">Amortized 10-year cumulative vehicle ownership expenditure</p>
+            <p className="text-[13px] text-muted">{t("tc.sub")}</p>
           </div>
           <span className="mono-label rounded-md bg-pine-tint px-2.5 py-1 text-primary border border-pine/15 self-start sm:self-auto">
             10-Year Horizon
@@ -79,7 +81,7 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[11px] font-mono uppercase text-muted mr-1.5">Net TCO:</span>
+                  <span className="text-[11px] font-mono uppercase text-muted mr-1.5">{t("tc.net")}</span>
                   <span className="figure text-[16px] sm:text-[18px] font-bold text-primary">
                     RM {Math.round(item.netCost).toLocaleString("en-MY")}
                   </span>
@@ -118,7 +120,7 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
               {/* Breakdown numbers */}
               <div className="mt-3 grid grid-cols-2 sm:grid-cols-5 gap-2 text-[12px] pt-2 border-t border-line/40">
                 <div>
-                  <p className="text-muted text-[11px]">Purchase OTR</p>
+                  <p className="text-muted text-[11px]">{t("tc.otr")}</p>
                   <p className="font-mono font-medium text-ink">RM {Math.round(item.purchasePrice).toLocaleString("en-MY")}</p>
                 </div>
                 <div>
@@ -130,11 +132,11 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
                   <p className="font-mono font-medium text-cyan-800">RM {Math.round(item.maintenance10Yr).toLocaleString("en-MY")}</p>
                 </div>
                 <div>
-                  <p className="text-muted text-[11px]">Road Tax (10y)</p>
+                  <p className="text-muted text-[11px]">{t("tc.tax10")}</p>
                   <p className="font-mono font-medium text-amber-800">RM {Math.round(item.roadTax10Yr).toLocaleString("en-MY")}</p>
                 </div>
                 <div>
-                  <p className="text-muted text-[11px]">Est. 10y Resale</p>
+                  <p className="text-muted text-[11px]">{t("tc.resale")}</p>
                   <p className="font-mono font-medium text-emerald-800">(-RM {Math.round(item.resaleValue10Yr).toLocaleString("en-MY")})</p>
                 </div>
               </div>
@@ -147,11 +149,11 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-[12px] text-muted">
         <div className="flex items-center gap-1.5">
           <span className="h-3 w-3 rounded-full bg-primary" />
-          <span>Purchase Price</span>
+          <span>{t("tc.price")}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-3 w-3 rounded-full bg-emerald-500" />
-          <span>TNB Electricity / Petrol</span>
+          <span>{t("tc.energy")}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-3 w-3 rounded-full bg-cyan-600" />
@@ -163,7 +165,7 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-3 w-3 rounded-full bg-amber-500" />
-          <span>JPJ Road Tax</span>
+          <span>{t("tc.tax")}</span>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
+import { useT } from "@/lib/i18n";
 
 /**
  * Lie room: the showroom GLB slowly rotates on a turntable while the AI
@@ -94,6 +95,7 @@ function RoomParticles() {
 }
 
 export default function LieRoom() {
+  const t = useT();
   const [ready, setReady] = useState(false);
   const introRef = useRef<HTMLDivElement>(null);
 
@@ -140,13 +142,13 @@ export default function LieRoom() {
 
       <div className="lie-room-caption pointer-events-none absolute inset-x-0 bottom-[22vh] z-10 px-6 text-center opacity-0">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-          Sponsor showcase
+          {t("lie.sponsor")}
         </p>
         <p className="mt-1 text-xl font-bold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
           Proton eMas 5
         </p>
         <p className="mx-auto mt-1 max-w-[240px] text-[13px] leading-snug text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.4)]">
-          Electrify the everyday. Made in Malaysia, made for Malaysia.
+          {t("lie.tagline")}
         </p>
       </div>
     </div>

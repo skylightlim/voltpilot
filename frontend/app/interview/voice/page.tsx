@@ -880,7 +880,7 @@ export default function VoiceInterviewPage() {
             </p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-200/60">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Real-time voice with echo suppression</span>
+              <span>{t("v.echo")}</span>
             </div>
           </Card>
         )}
@@ -988,16 +988,16 @@ export default function VoiceInterviewPage() {
               {isAdvisorSpeaking && (
                 <div className="flex items-center gap-1.5 text-xs text-primary font-medium py-1 px-2">
                   <span className="flex h-2 w-2 rounded-full bg-primary animate-ping" />
-                  <span className="text-[11px]">Advisor is speaking...</span>
+                  <span className="text-[11px]">{t("v.speaking")}</span>
                 </div>
               )}
             </div>
 
             {/* Conversation footer notice */}
             <div className="border-t border-line/60 bg-white px-4 py-2 text-[11px] text-muted flex items-center justify-between">
-              <span>Automatic acoustic echo suppression active</span>
+              <span>{t("v.echoOn")}</span>
               <span className="flex items-center gap-1 text-emerald-600 font-medium">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live Stream
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> {t("v.liveStream")}
               </span>
             </div>
           </div>
@@ -1007,7 +1007,7 @@ export default function VoiceInterviewPage() {
         {stage === "extracting" && (
           <Card className="mt-8 text-center p-8">
             <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-            <h3 className="mt-4 font-semibold text-ink text-base">Processing Your Answers</h3>
+            <h3 className="mt-4 font-semibold text-ink text-base">{t("v.processing")}</h3>
             <p className="mt-1 text-[13px] text-muted">{t("v.extracting")}</p>
           </Card>
         )}
@@ -1018,8 +1018,8 @@ export default function VoiceInterviewPage() {
             <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-emerald-100 text-emerald-600">
               <Check className="h-6 w-6" />
             </div>
-            <h3 className="mt-4 font-semibold text-ink text-base">Diagnostic Complete</h3>
-            <p className="mt-1 text-[13px] text-muted">Profile successfully calibrated. Redirecting to scoring...</p>
+            <h3 className="mt-4 font-semibold text-ink text-base">{t("v.done")}</h3>
+            <p className="mt-1 text-[13px] text-muted">{t("v.doneSub")}</p>
           </Card>
         )}
 

@@ -27,6 +27,7 @@ import { CountUp, ScrollRefresh, ScrubReveal, Stagger } from "@/components/motio
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { apiService } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,7 @@ const CRITERIA: { key: keyof Row; label: string; icon: typeof Calculator; accent
 ];
 
 export default function ResultsPage() {
+  const t = useT();
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const [data, setData] = useState<any>(null);
@@ -150,7 +152,7 @@ export default function ResultsPage() {
       <ScrollRefresh />
         <div className="text-center">
           <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-          <p className="mt-3 text-[14px] text-muted">Compiling your analysis…</p>
+          <p className="mt-3 text-[14px] text-muted">{t("r.compiling")}</p>
         </div>
       </main>
     );
@@ -163,12 +165,12 @@ export default function ResultsPage() {
       {/* ── Frosted Glass Header ──────────────────────────────────────── */}
       <header className="sticky top-0 z-30 -mx-4 sm:-mx-5 mb-8 border-b border-white/40 bg-background/65 px-4 sm:px-5 py-4 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40">
         <div className="flex items-center justify-between">
-          <SectionLabel>Your result</SectionLabel>
+          <SectionLabel>{t("r.your")}</SectionLabel>
           <Link
             href="/"
             className="tap-target inline-flex items-center gap-1.5 rounded-full border border-border bg-white/50 px-3.5 py-2 text-[13px] font-medium text-muted transition-colors hover:border-primary/30 hover:bg-pine-tint/50 hover:text-ink"
           >
-            Start over
+            {t("r.restart")}
           </Link>
         </div>
       </header>
@@ -188,7 +190,7 @@ export default function ResultsPage() {
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-emerald-500/20 ring-1 ring-emerald-500/30">
                   <Sparkles className="h-4.5 w-4.5 text-emerald-400" />
                 </span>
-                <p className="mono-label text-emerald-400/80">AI recommendation</p>
+                <p className="mono-label text-emerald-400/80">{t("r.ai")}</p>
               </div>
               <h1 className="apple-display mt-4 sm:mt-5 text-[26px] sm:text-[38px] text-white leading-[1.08]">
                 {rec.headline}
@@ -201,7 +203,7 @@ export default function ResultsPage() {
                   onClick={() => router.push(`/recommendation/${token}`)}
                   className="pressable tap-target group/btn relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 py-3 text-[14px] font-semibold text-pine-deep transition-all hover:shadow-lg hover:shadow-white/10 active:scale-[0.97]"
                 >
-                  See the 10-year roadmap
+                  {t("r.roadmap")}
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-pine-deep/10 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
                     <span className="text-[12px]">↗</span>
                   </span>
@@ -216,7 +218,7 @@ export default function ResultsPage() {
                   onClick={() => setShowPdf(true)}
                   className="pressable tap-target inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[14px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 active:scale-[0.97]"
                 >
-                  <Download className="h-4 w-4" /> PDF report
+                  <Download className="h-4 w-4" /> {t("r.pdf")}
                 </button>
               </Stagger>
             </div>
@@ -232,14 +234,14 @@ export default function ResultsPage() {
             <div className="col-span-2">
               <div className="group relative overflow-hidden rounded-[20px] sm:rounded-[22px] border border-white/40 bg-white/70 p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all hover:border-primary/20 hover:shadow-md">
                 <div className="absolute inset-0 rounded-[22px] ring-1 ring-inset ring-black/[0.03]" />
-                <p className="mono-label text-fog">Purchase price</p>
+                <p className="mono-label text-fog">{t("r.price")}</p>
                 <p className="figure mt-2 text-[36px] sm:text-[44px] text-ink leading-none">
                   RM{top.price_rm.toLocaleString()}
                 </p>
                 <p className="mt-2 text-[13px] text-muted">
-                  Energy cost <span className="font-semibold text-ink">RM{top.running_cost_rm_yr.toLocaleString()}/yr</span>
+                  {t("r.energy")} <span className="font-semibold text-ink">RM{top.running_cost_rm_yr.toLocaleString()}/yr</span>
                   {" · "}
-                  10-yr TCO <span className="font-semibold text-ink">RM{top.tco_excluding_rm.toLocaleString()}</span>
+                  {t("r.tco10")} <span className="font-semibold text-ink">RM{top.tco_excluding_rm.toLocaleString()}</span>
                 </p>
               </div>
             </div>
@@ -251,9 +253,9 @@ export default function ResultsPage() {
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20">
                   <Leaf className="h-5 w-5 text-emerald-600" />
                 </div>
-                <p className="mono-label text-fog">CO₂ saved</p>
+                <p className="mono-label text-fog">{t("r.co2s")}</p>
                 <p className="figure mt-1.5 text-[28px] text-ink leading-none">
-                  <CountUp value={Math.round(top.co2_kg_yr)} /> <span className="text-[16px] text-muted font-normal">kg/yr</span>
+                  <CountUp value={Math.round(top.co2_kg_yr)} /> <span className="text-[16px] text-muted font-normal">{t("r.kgyr")}</span>
                 </p>
               </div>
             </div>
@@ -265,7 +267,7 @@ export default function ResultsPage() {
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-violet-500/10 ring-1 ring-violet-500/20">
                   <Sparkles className="h-5 w-5 text-violet-600" />
                 </div>
-                <p className="mono-label text-fog">TOPSIS score</p>
+                <p className="mono-label text-fog">{t("r.topsis")}</p>
                 <p className="figure mt-1.5 text-[28px] text-ink leading-none">
                   {top.topsis_score.toFixed(3)}
                 </p>
@@ -288,7 +290,7 @@ export default function ResultsPage() {
                 <Sun className="h-5 w-5 text-amber-700" />
               </span>
               <div className="min-w-0">
-                <p className="text-[15px] font-semibold text-ink">Solar-first bonus</p>
+                <p className="text-[15px] font-semibold text-ink">{t("r.solar")}</p>
                 <p className="mt-1 text-[14px] leading-relaxed text-muted">
                   Add rooftop solar (avg MY: capex{" "}
                   <span className="font-semibold text-ink">RM{data.solar.capex_rm.toLocaleString()}</span>,
@@ -306,7 +308,7 @@ export default function ResultsPage() {
 
       {/* ── Dashboard Section ─────────────────────────────────────────── */}
       <section className="space-y-2.5 sm:space-y-3">
-        <SectionLabel className="mb-3 sm:mb-4 block">Full dashboard</SectionLabel>
+        <SectionLabel className="mb-3 sm:mb-4 block">{t("r.dash")}</SectionLabel>
 
         {/* Ranking Table */}
         <DashboardCard
@@ -331,12 +333,12 @@ export default function ResultsPage() {
           {/* Body / brand filters — display only, they never re-rank */}
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <select
-              aria-label="Filter by body type"
+              aria-label={t("r.filterBody")}
               value={bodyFilter}
               onChange={(e) => setBodyFilter(e.target.value)}
               className="rounded-full border border-line bg-parchment px-3.5 py-1.5 text-[12.5px] font-semibold text-ink outline-none focus:border-primary"
             >
-              <option value="all">All body types</option>
+              <option value="all">{t("r.allBody")}</option>
               {bodyOptions.map((b) => (
                 <option key={b} value={b}>
                   {b}
@@ -344,12 +346,12 @@ export default function ResultsPage() {
               ))}
             </select>
             <select
-              aria-label="Filter by brand"
+              aria-label={t("r.filterBrand")}
               value={brandFilter}
               onChange={(e) => setBrandFilter(e.target.value)}
               className="rounded-full border border-line bg-parchment px-3.5 py-1.5 text-[12.5px] font-semibold text-ink outline-none focus:border-primary"
             >
-              <option value="all">All brands</option>
+              <option value="all">{t("r.allBrands")}</option>
               {brandOptions.map((b) => (
                 <option key={b} value={b}>
                   {b}
@@ -414,7 +416,7 @@ export default function ResultsPage() {
           </div>
           {filteredRanking.length === 0 && (
             <p className="mt-4 text-[13px] text-muted">
-              No model within your budget matches those filters. Try clearing one.
+              {t("r.noMatch")}
             </p>
           )}
           <p className="mt-4 text-[12px] leading-relaxed text-muted">
@@ -470,7 +472,7 @@ export default function ResultsPage() {
         >
           <div className="mt-4">
             <div className="flex items-center justify-between text-[14px]">
-              <span className="text-muted">Assumed battery age</span>
+              <span className="text-muted">{t("r.assumed")}</span>
               <span className="figure text-ink">{batteryAge} yrs</span>
             </div>
             <input
@@ -479,7 +481,7 @@ export default function ResultsPage() {
               max={15}
               step={1}
               className="slider mt-3"
-              aria-label="Battery age"
+              aria-label={t("r.batteryAge")}
               value={batteryAge}
               onChange={(e) => setBatteryAge(Number(e.target.value))}
             />
@@ -493,7 +495,7 @@ export default function ResultsPage() {
               onClick={() => router.push(`/chat/${token}?ask=battery`)}
               className="pressable tap-target mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-[14px] font-medium text-ink transition-colors hover:bg-parchment/50 active:scale-[0.98]"
             >
-              <MessageCircle className="h-4 w-4" /> Ask chatbot about battery degradation
+              <MessageCircle className="h-4 w-4" /> {t("r.askbat")}
             </button>
           </div>
         </DashboardCard>
@@ -534,7 +536,7 @@ export default function ResultsPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <h2 className="apple-display-2 text-[22px] text-ink">Email me the PDF report</h2>
+              <h2 className="apple-display-2 text-[22px] text-ink">{t("r.emailT")}</h2>
               <button
                 className="tap-target -mr-2 grid h-10 w-10 place-items-center rounded-full bg-parchment/60 text-muted transition-colors hover:bg-parchment hover:text-ink cursor-pointer"
                 onClick={() => setShowPdf(false)}
@@ -543,7 +545,7 @@ export default function ResultsPage() {
               </button>
             </div>
             <p className="mt-1.5 text-[14px] leading-relaxed text-muted">
-              Includes your profile, ranking, roadmap and savings. One send — bound to the first email.
+              {t("r.emailSub")}
             </p>
             <input
               type="email"
