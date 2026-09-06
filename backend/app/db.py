@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import asyncio
+
 import uuid
 from datetime import datetime
 
@@ -17,7 +19,7 @@ from sqlalchemy import (
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from .config import settings
+from .config import BASE_DIR, settings
 
 
 class Base(DeclarativeBase):
@@ -177,10 +179,24 @@ async def get_db():
 
 
 async def init_db() -> None:
-    from sqlalchemy.ext.asyncio import AsyncEngine
+    """Bring the schema up to date.
 
-    async with _engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    Was Base.metadata.create_all, which creates missing tables but never ALTERs
+    an existing one — so the first deploy worked and every schema change after
+    it silently did not apply, surfacing as a column error at runtime. Alembic
+    applies the ordered migrations instead.
+
+    Run inline at startup: one container instance serves this app (the Worker
+    addresses a single Durable Object), so there is no migration race, and a
+    schema that cannot be brought up to date should stop the app rather than
+    let it serve against a half-built database.
+    """
+    from alembic import command
+    from alembic.config import Config
+
+    cfg = Config(str(BASE_DIR / "alembic.ini"))
+    cfg.set_main_option("script_location", str(BASE_DIR / "migrations"))
+    await asyncio.to_thread(command.upgrade, cfg, "head")
 
 
 async def seed_if_empty(db: AsyncSession) -> None:

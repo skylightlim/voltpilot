@@ -50,3 +50,7 @@ data/emas5_3d/
 
 # scratch build dirs from NEXT_DIST_DIR
 frontend/.next-*
+
+# scratch databases from alembic runs
+backend/*_test.db
+backend/_scratch.db

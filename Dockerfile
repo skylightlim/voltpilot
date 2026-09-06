@@ -17,6 +17,10 @@ COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/app/ app/
+# Schema migrations run at startup (app/db.py init_db -> alembic upgrade head).
+# Without these the container starts and immediately dies on a missing config.
+COPY backend/alembic.ini .
+COPY backend/migrations/ migrations/
 COPY data/ data/
 # Needed by POST /admin/refresh, which the Cloudflare cron trigger calls:
 # scripts/daily_update.py loads scripts/update_*.py and scraper/ev_stations.py.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 from contextlib import asynccontextmanager
 
@@ -8,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .db import AsyncSessionLocal, init_db, seed_if_empty
+from .ratelimit import rate_limit_middleware
 from .routers import admin, chat, config, interview, profiles, report, results, score, tokens
 
 
@@ -32,7 +34,18 @@ def _allowed_origins() -> list[str]:
             "http://localhost:3000", "http://127.0.0.1:3000",
             "http://localhost:3100", "http://127.0.0.1:3100",
         ]
-    return list(dict.fromkeys(origins))
+    resolved = list(dict.fromkeys(o for o in origins if o))
+    if os.getenv("ENV", "development").lower() == "production":
+        # A production deployment still pointing at localhost means
+        # FRONTEND_ORIGIN was never set. CORS will then reject every browser
+        # request while /health stays green, so say it loudly at startup.
+        if not resolved or all("localhost" in o or "127.0.0.1" in o for o in resolved):
+            logging.getLogger("uvicorn.error").error(
+                "FRONTEND_ORIGIN is unset or still localhost in production — "
+                "every browser request will fail CORS. Set it to the deployed "
+                "frontend URL (wrangler.toml [vars] or an environment variable)."
+            )
+    return resolved
 
 
 app = FastAPI(
@@ -41,6 +54,10 @@ app = FastAPI(
     description="EV vs hybrid decision intelligence for Malaysia (mobile-first).",
     lifespan=lifespan,
 )
+
+# Before CORS so a throttled request is cheap. Health checks are exempt inside
+# the middleware — throttling a monitor turns a healthy service red.
+app.middleware("http")(rate_limit_middleware)
 
 app.add_middleware(
     CORSMiddleware,

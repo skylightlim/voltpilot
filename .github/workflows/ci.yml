@@ -36,6 +36,15 @@ jobs:
         working-directory: backend
         run: pip install -r requirements.txt
 
+      # Proves the migrations actually apply to an empty database. The app runs
+      # `alembic upgrade head` at startup, so a broken revision is a container
+      # that boots and immediately dies.
+      - name: Apply migrations to a fresh database
+        working-directory: backend
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./ci_migration_check.db
+        run: alembic upgrade head
+
       - name: Run tests
         working-directory: backend
         run: python -m pytest tests/ -q

@@ -26,7 +26,7 @@ import { InfrastructureAccess } from "@/components/InfrastructureAccess";
 import { CountUp, ScrollRefresh, ScrubReveal, Stagger } from "@/components/motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { apiService } from "@/lib/api";
+import { ApiError, apiService } from "@/lib/api";
 import { useT, type StrKey } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -88,8 +88,11 @@ export default function ResultsPage() {
         if (!r.recommendation) {
           await apiService.getRecommendation(token).catch(() => {});
         }
-      } catch {
-        setError("Result not found — this link may have expired.");
+      } catch (e) {
+        // Was a single hardcoded English string, so a cold-starting backend or
+        // a rate limit both read as "your link expired" — sending the user off
+        // to redo an interview that was never the problem.
+        setError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("err.unknown"));
       }
     };
     poll();
@@ -141,8 +144,8 @@ export default function ResultsPage() {
       const r = await apiService.postReport(token, email);
       setPdfSent(r);
       setShowPdf(false);
-    } catch (e: any) {
-      setPdfError(e.detail && typeof e.detail === "string" ? e.detail : "Could not send the report.");
+    } catch (e) {
+      setPdfError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("err.unknown"));
     } finally {
       setPdfBusy(false);
     }

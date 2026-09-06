@@ -157,3 +157,53 @@ describe("routes", () => {
     });
   }
 });
+
+describe("api error handling", () => {
+  test("every ApiError kind has copy in both languages", async () => {
+    // The pages render t(err.messageKey), so a kind without a key shows the raw
+    // key to the user — and a missing BM half shows English to half the market.
+    const S = strings();
+    const kinds = ["offline", "timeout", "rate_limited", "not_found", "invalid", "server", "unknown"];
+    for (const k of kinds) {
+      const entry = S[`err.${k}`];
+      assert.ok(entry, `no copy for err.${k}`);
+      assert.ok(entry[0]?.trim() && entry[1]?.trim(), `err.${k} is missing a language`);
+    }
+  });
+
+  test("a failed fetch becomes an ApiError, not a raw TypeError", async () => {
+    // The blank-screen bug: an unreachable backend rejected out of api() as
+    // "TypeError: Failed to fetch" and no page had anything to render.
+    const { apiService, ApiError } = await import("../lib/api.ts");
+    const original = globalThis.fetch;
+    globalThis.fetch = async () => { throw new TypeError("Failed to fetch"); };
+    try {
+      await apiService.getConfigSolar?.() ?? await apiService.getInterviewScript();
+      assert.fail("expected a rejection");
+    } catch (err) {
+      assert.ok(err instanceof ApiError, `got ${err?.constructor?.name}`);
+      assert.equal(err.kind, "offline");
+      assert.equal(err.messageKey, "err.offline");
+    } finally {
+      globalThis.fetch = original;
+    }
+  });
+
+  test("a 429 carries a retry hint the page can show", async () => {
+    const { apiService, ApiError } = await import("../lib/api.ts");
+    const original = globalThis.fetch;
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({ retry_after_seconds: 30 }), {
+        status: 429, headers: { "Retry-After": "30", "Content-Type": "application/json" },
+      });
+    try {
+      await apiService.getInterviewScript();
+      assert.fail("expected a rejection");
+    } catch (err) {
+      assert.equal(err.kind, "rate_limited");
+      assert.equal(err.retryAfterSeconds, 30);
+    } finally {
+      globalThis.fetch = original;
+    }
+  });
+});

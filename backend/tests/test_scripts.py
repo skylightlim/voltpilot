@@ -191,3 +191,62 @@ def test_health_data_is_green_after_a_good_run(tmp_path, monkeypatch):
     # One dead upstream among several is still a green run.
     assert ok is True
     assert detail["failed"] == ["ev_stations"]
+
+
+# ---------------------------------------------------------------------------
+# Rate limiting
+# ---------------------------------------------------------------------------
+
+
+def _client():
+    from fastapi.testclient import TestClient
+    from app.main import app
+    from app import ratelimit
+    ratelimit.reset()
+    return TestClient(app), ratelimit
+
+
+def test_health_is_never_rate_limited():
+    """Monitors poll /health. Throttling it turns a healthy service red."""
+    client, _ = _client()
+    for _ in range(200):
+        assert client.get("/health").status_code == 200
+
+
+def test_expensive_endpoint_is_capped_per_client():
+    """/score runs the whole engine; unauthenticated and uncapped it is a bill."""
+    client, rl = _client()
+    limit = rl.limit_for("/score")
+    hdr = {"CF-Connecting-IP": "203.0.113.1"}
+    codes = [client.post("/score", json={}, headers=hdr).status_code for _ in range(limit + 3)]
+    assert 429 not in codes[:limit], "throttled before reaching the limit"
+    assert codes[-1] == 429, "never throttled past the limit"
+
+
+def test_one_client_cannot_throttle_another():
+    client, rl = _client()
+    limit = rl.limit_for("/score")
+    noisy = {"CF-Connecting-IP": "203.0.113.2"}
+    for _ in range(limit + 2):
+        client.post("/score", json={}, headers=noisy)
+    quiet = client.post("/score", json={}, headers={"CF-Connecting-IP": "203.0.113.3"})
+    assert quiet.status_code != 429
+
+
+def test_a_throttled_response_says_when_to_retry():
+    client, rl = _client()
+    hdr = {"CF-Connecting-IP": "203.0.113.4"}
+    for _ in range(rl.limit_for("/score") + 1):
+        r = client.post("/score", json={}, headers=hdr)
+    assert r.status_code == 429
+    assert int(r.headers["Retry-After"]) >= 1
+    assert "retry_after_seconds" in r.json()
+
+
+def test_buckets_are_independent_per_endpoint():
+    """Exhausting /score must not lock a user out of reading their results."""
+    client, rl = _client()
+    hdr = {"CF-Connecting-IP": "203.0.113.5"}
+    for _ in range(rl.limit_for("/score") + 2):
+        client.post("/score", json={}, headers=hdr)
+    assert client.get("/results/nonexistent", headers=hdr).status_code != 429

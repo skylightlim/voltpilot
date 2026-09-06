@@ -67,30 +67,90 @@ const PROFILE_KEY = "atp.profile";
 const WEIGHTS_KEY = "atp.weights";
 const TOKEN_KEY = "atp.token";
 
-async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BACKEND_URL}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...init,
-  });
-  if (!res.ok) {
-    let detail: unknown = await res.text();
-    try {
-      detail = await res.json();
-    } catch {
-      /* keep text */
-    }
-    throw new ApiError(res.status, detail);
-  }
-  return res.json() as Promise<T>;
-}
+/** Wait this long before giving up. The backend is a container that cold-starts,
+ *  so the first request after an idle period is legitimately slow — but not
+ *  indefinitely, and a hung request with no timeout hangs the UI forever. */
+const TIMEOUT_MS = 45_000;
+
+/**
+ * What went wrong, in terms a page can act on. Kept as a code rather than a
+ * message so the copy stays in lib/i18n.ts and both languages are served —
+ * see the "err.*" keys.
+ */
+export type ApiErrorKind =
+  | "offline"       // the request never reached the server
+  | "timeout"       // it reached the server and nothing came back in time
+  | "rate_limited"  // 429
+  | "not_found"     // 404
+  | "invalid"       // 4xx from our own bad input
+  | "server"        // 5xx
+  | "unknown";
 
 export class ApiError extends Error {
   status: number;
   detail: unknown;
-  constructor(status: number, detail: unknown) {
+  kind: ApiErrorKind;
+  retryAfterSeconds?: number;
+
+  constructor(status: number, detail: unknown, kind: ApiErrorKind = "unknown") {
     super(typeof detail === "string" ? detail : JSON.stringify(detail));
+    this.name = "ApiError";
     this.status = status;
     this.detail = detail;
+    this.kind = kind;
+  }
+
+  /** i18n key for a message that can be shown to a person. */
+  get messageKey(): string {
+    return `err.${this.kind}`;
+  }
+}
+
+function kindForStatus(status: number): ApiErrorKind {
+  if (status === 429) return "rate_limited";
+  if (status === 404) return "not_found";
+  if (status >= 500) return "server";
+  if (status >= 400) return "invalid";
+  return "unknown";
+}
+
+async function api<T>(path: string, init?: RequestInit): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(`${BACKEND_URL}${path}`, {
+      headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+      ...init,
+    });
+  } catch (err) {
+    // fetch rejects on DNS failure, connection refused, offline and abort.
+    // Unwrapped, these surfaced as a raw "TypeError: Failed to fetch" and the
+    // page rendered nothing — the blank screen during a container cold start.
+    const timedOut = err instanceof DOMException && err.name === "TimeoutError";
+    throw new ApiError(0, String(err), timedOut ? "timeout" : "offline");
+  }
+
+  if (!res.ok) {
+    let detail: unknown = await res.text().catch(() => "");
+    try {
+      detail = JSON.parse(detail as string);
+    } catch {
+      /* keep the text body */
+    }
+    const error = new ApiError(res.status, detail, kindForStatus(res.status));
+    if (res.status === 429) {
+      const header = Number(res.headers.get("Retry-After"));
+      const body = (detail as { retry_after_seconds?: number })?.retry_after_seconds;
+      error.retryAfterSeconds = header || body || 60;
+    }
+    throw error;
+  }
+
+  try {
+    return (await res.json()) as T;
+  } catch {
+    // 200 with a body that is not JSON — a proxy error page, usually.
+    throw new ApiError(res.status, "malformed response body", "server");
   }
 }
 

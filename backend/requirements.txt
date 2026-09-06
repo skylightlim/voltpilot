@@ -1,6 +1,9 @@
 fastapi>=0.115
 uvicorn[standard]>=0.30
 sqlalchemy[asyncio]>=2.0
+# schema migrations; create_all cannot ALTER an existing table
+alembic>=1.13
+psycopg2-binary>=2.9  # sync driver used only by alembic against Postgres
 aiosqlite>=0.20
 asyncpg>=0.30
 pydantic>=2.9

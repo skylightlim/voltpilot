@@ -7,7 +7,7 @@ import { Button, Card, SectionLabel } from "@/components/ui";
 import { ScrollRefresh, ScrubStagger } from "@/components/motion";
 import { RadarChart } from "@/components/charts/RadarChart";
 import { useT, type StrKey } from "@/lib/i18n";
-import { SESSION, apiService, type Weights } from "@/lib/api";
+import { ApiError, SESSION, apiService, type Weights } from "@/lib/api";
 
 const SLIDERS: { key: keyof Weights; icon: React.ReactNode; p: string; color: string }[] = [
   { key: "future_proofing", icon: <ShieldCheck className="h-4.5 w-4.5" />, p: "fut", color: "text-amber-600" },
@@ -76,7 +76,9 @@ export default function SlidersPage() {
       const r = await apiService.postScore(p.token, profile, weights);
       router.push(`/analysis?token=${r.token}`);
     } catch (e) {
-      setError((e as Error).message || t("sl.err"));
+      // ApiError.message is the serialised server payload — useful in a log,
+      // meaningless to a person. Map the typed kind to translated copy instead.
+      setError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("sl.err"));
       setBusy(false);
     }
   };

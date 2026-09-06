@@ -28,6 +28,12 @@ new_sqlite_classes = ["Backend"]
 crons = ["0 22 * * *"]
 
 [vars]
-# Non-secret defaults. Set DATABASE_URL, GEMINI_API_KEY, ADMIN_TOKEN and the
-# SMTP_* values with `wrangler secret put <NAME>` — never in this file.
-FRONTEND_ORIGIN = "https://voltpilot.pages.dev"
+# Non-secret configuration. Set DATABASE_URL, GEMINI_API_KEY, ADMIN_TOKEN and
+# the SMTP_* values with `wrangler secret put <NAME>` — never in this file.
+#
+# FRONTEND_ORIGIN must match the deployed Pages URL exactly, scheme included.
+# Get it wrong and CORS rejects every browser request against a backend that is
+# otherwise healthy — which looks like a broken site with green health checks.
+# There is deliberately no default here: a guessed origin fails silently,
+# whereas an unset one is reported at startup.
+ENV = "production"
