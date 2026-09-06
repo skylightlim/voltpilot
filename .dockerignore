@@ -1,0 +1,12 @@
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/dev.db
+**/.env
+**/node_modules
+**/.next
+**/.wrangler
+frontend/
+.git/
+data/used_market_raw/

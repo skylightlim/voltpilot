@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .db import AsyncSessionLocal, init_db, seed_if_empty
-from .routers import chat, config, interview, profiles, report, results, score, tokens
+from .routers import admin, chat, config, interview, profiles, report, results, score, tokens
 
 
 @asynccontextmanager
@@ -34,7 +34,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-for r in (profiles.router, score.router, results.router, chat.router, tokens.router, report.router, config.router, interview.router):
+for r in (profiles.router, score.router, results.router, chat.router, tokens.router, report.router, config.router, interview.router, admin.router):
     app.include_router(r)
 
 

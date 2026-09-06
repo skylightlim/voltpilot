@@ -111,15 +111,31 @@ class TestEnergyEngine:
         assert out["kwh_yr"] > 0          # EV-mode share now draws grid power
         assert out["litres_yr"] > 0       # remainder still burns petrol
         assert out["co2_kg_yr"] > 0
-        assert out["ev_share"] == pytest.approx(146 / 200, abs=0.01)
 
-    def test_phev_full_ev_when_range_covers_daily(self, catalog):
+    def test_phev_burns_some_petrol_even_when_range_covers_the_commute(self, catalog):
+        """A PHEV must never model as a zero-petrol car.
+
+        Previously ev_share saturated at exactly 1.0 whenever the electric range
+        covered the daily commute — true for 22 of 25 catalog PHEVs — so
+        litres_yr came out 0 and they scored as pure EVs on cost and CO2. The
+        share now blends the commute with the long-trip duty cycle, where only
+        the first EV-range km of a round trip are electric.
+        """
         phev = _by_slug(catalog, "proton-emas-7-phev")
         energy = scoring.energy_context()
         features = engines.build_features(BASE_PROFILE)  # 40km/day < 146km range
         out = engines.energy_engine(phev, BASE_PROFILE, features, energy)
-        assert out["ev_share"] == 1.0
-        assert out["litres_yr"] == 0
+        assert out["ev_share"] < 1.0
+        assert out["litres_yr"] > 0
+        assert out["kwh_yr"] > 0
+
+    def test_phev_more_long_trips_means_more_petrol(self, catalog):
+        phev = _by_slug(catalog, "proton-emas-7-phev")
+        energy = scoring.energy_context()
+        def litres(freq):
+            p = dict(BASE_PROFILE, long_trip_frequency=freq)
+            return engines.energy_engine(phev, p, engines.build_features(p), energy)["litres_yr"]
+        assert litres("weekly") > litres("monthly") > litres("rarely")
 
     def test_phev_home_charging_cheaper_than_station_only(self, catalog):
         phev = _by_slug(catalog, "proton-emas-7-phev")

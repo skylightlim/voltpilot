@@ -1,10 +1,16 @@
 name = "ai-transport-backend"
 main = "src/index.ts"
-compatibility_date = "2025-10-01"
+# was 2025-10-01 — nearly a year stale, so the Worker ran on old runtime defaults
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
 
 [[containers]]
 class_name = "Backend"
-image = "./Dockerfile"
+# Build context is the repo root: data/, scripts/ and scraper/ live there, not
+# in backend/. The old config built from backend/ and its `COPY data/ data/`
+# could never resolve.
+image = "../Dockerfile"
+image_build_context = ".."
 max_instances = 2
 
 [[durable_objects.bindings]]
@@ -14,3 +20,14 @@ name = "BACKEND"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["Backend"]
+
+# Daily data refresh. 22:00 UTC = 06:00 MYT, matching the cron in
+# update_fuel_prices.py. The scheduled() handler in src/index.ts calls
+# POST /admin/refresh on the container with ADMIN_TOKEN.
+[triggers]
+crons = ["0 22 * * *"]
+
+[vars]
+# Non-secret defaults. Set DATABASE_URL, GEMINI_API_KEY, ADMIN_TOKEN and the
+# SMTP_* values with `wrangler secret put <NAME>` — never in this file.
+FRONTEND_ORIGIN = "https://voltpilot.pages.dev"

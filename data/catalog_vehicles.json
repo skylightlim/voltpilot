@@ -26,14 +26,14 @@
         "resale_10yr_pct": 46,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 85 kW)",
         "road_tax_rm": 60,
-        "insurance_rm_yr": 2812,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM99,800 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 9980,
         "loan_monthly_rm": 1200.27,
         "loan_total_interest_rm": 11003,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2812
       },
       "registered_my": 13280,
       "popularity_rating": 7,
@@ -58,14 +58,14 @@
         "resale_10yr_pct": 50,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 4055,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 14980,
         "loan_monthly_rm": 1801.61,
         "loan_total_interest_rm": 16515,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4055
       },
       "specs": {
         "battery_kwh": 49.92,
@@ -110,14 +110,14 @@
         "resale_10yr_pct": 50,
         "road_tax_rm": 965,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 390 kW)",
-        "insurance_rm_yr": 5552,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM213,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 21380,
         "loan_monthly_rm": 2571.33,
         "loan_total_interest_rm": 23571,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5552
       },
       "registered_my": 4194,
       "popularity_rating": 6,
@@ -152,14 +152,14 @@
         "resale_10yr_pct": 55,
         "road_tax_rm": 280,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 208 kW)",
-        "insurance_rm_yr": 4033,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 14900,
         "loan_monthly_rm": 1791.99,
         "loan_total_interest_rm": 16427,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4033
       },
       "registered_my": 8678,
       "popularity_rating": 7,
@@ -194,14 +194,14 @@
         "resale_10yr_pct": 56,
         "road_tax_rm": 305,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 220 kW)",
-        "insurance_rm_yr": 5275,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM195,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 19500,
         "loan_monthly_rm": 2345.22,
         "loan_total_interest_rm": 21499,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5275
       },
       "registered_my": 8438,
       "popularity_rating": 7,
@@ -236,14 +236,14 @@
         "resale_10yr_pct": 48,
         "road_tax_rm": 305,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 218 kW)",
-        "insurance_rm_yr": 4327,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM159,900 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 15990,
         "loan_monthly_rm": 1923.08,
         "loan_total_interest_rm": 17629,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4327
       },
       "registered_my": 1873,
       "popularity_rating": 4,
@@ -278,14 +278,14 @@
         "resale_10yr_pct": 49,
         "road_tax_rm": 615,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 315 kW)",
-        "insurance_rm_yr": 5110,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM188,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 18889,
         "loan_monthly_rm": 2271.72,
         "loan_total_interest_rm": 20825,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5110
       },
       "registered_my": 572,
       "popularity_rating": 3,
@@ -320,14 +320,14 @@
         "resale_10yr_pct": 45,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 3493,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM129,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 12900,
         "loan_monthly_rm": 1551.46,
         "loan_total_interest_rm": 14222,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3493
       },
       "registered_my": 1281,
       "popularity_rating": 4,
@@ -362,14 +362,14 @@
         "resale_10yr_pct": 46,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 3758,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM138,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 13880,
         "loan_monthly_rm": 1669.32,
         "loan_total_interest_rm": 15303,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3758
       },
       "registered_my": 192,
       "popularity_rating": 2,
@@ -404,14 +404,14 @@
         "resale_10yr_pct": 44,
         "road_tax_rm": 80,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 105 kW)",
-        "insurance_rm_yr": 3245,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 11980,
         "loan_monthly_rm": 1440.81,
         "loan_total_interest_rm": 13208,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3245
       },
       "registered_my": 1910,
       "popularity_rating": 4,
@@ -446,14 +446,14 @@
         "resale_10yr_pct": 45,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 2948,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM108,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10880,
         "loan_monthly_rm": 1308.51,
         "loan_total_interest_rm": 11995,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2948
       },
       "registered_my": 1290,
       "popularity_rating": 4,
@@ -488,14 +488,14 @@
         "resale_10yr_pct": 46,
         "road_tax_rm": 615,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 315 kW)",
-        "insurance_rm_yr": 5684,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM218,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 21889,
         "loan_monthly_rm": 2632.52,
         "loan_total_interest_rm": 24132,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5684
       },
       "registered_my": 1394,
       "popularity_rating": 4,
@@ -534,7 +534,8 @@
         "loan_down_payment_rm": 13790,
         "loan_monthly_rm": 1684.35,
         "loan_total_interest_rm": 17375,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3898
       },
       "registered_my": 31432,
       "popularity_rating": 8,
@@ -573,7 +574,8 @@
         "loan_down_payment_rm": 19980,
         "loan_monthly_rm": 2440.41,
         "loan_total_interest_rm": 25175,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5541
       },
       "registered_my": 10116,
       "popularity_rating": 7,
@@ -612,7 +614,8 @@
         "loan_down_payment_rm": 14890,
         "loan_monthly_rm": 1818.71,
         "loan_total_interest_rm": 18761,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4151
       },
       "registered_my": 15230,
       "popularity_rating": 7,
@@ -651,7 +654,8 @@
         "loan_down_payment_rm": 16380,
         "loan_monthly_rm": 2000.7,
         "loan_total_interest_rm": 20639,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4572
       },
       "registered_my": 7286,
       "popularity_rating": 6,
@@ -677,14 +681,14 @@
         "road_tax_yr": 20,
         "road_tax_rm": 20,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 50 kW)",
-        "insurance_rm_yr": 1914,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM67,800 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 6780,
         "loan_monthly_rm": 815.42,
         "loan_total_interest_rm": 7475,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 1914
       },
       "specs": {
         "battery_kwh": 37.9,
@@ -715,14 +719,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 1976,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM69,999 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 7000,
         "loan_monthly_rm": 841.86,
         "loan_total_interest_rm": 7717,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 1976
       },
       "specs": {
         "battery_kwh": 52.5,
@@ -753,14 +757,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 120.1 kW)",
-        "insurance_rm_yr": 2678,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM95,000 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 9500,
         "loan_monthly_rm": 1142.54,
         "loan_total_interest_rm": 10474,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2678
       },
       "specs": {
         "battery_kwh": 53.6,
@@ -791,14 +795,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 130 kW)",
-        "insurance_rm_yr": 2818,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM100,000 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10000,
         "loan_monthly_rm": 1202.68,
         "loan_total_interest_rm": 11025,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2818
       },
       "specs": {
         "battery_kwh": 51.1,
@@ -829,14 +833,14 @@
         "road_tax_yr": 70,
         "road_tax_rm": 70,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 95 kW)",
-        "insurance_rm_yr": 2818,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM100,000 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10000,
         "loan_monthly_rm": 1202.68,
         "loan_total_interest_rm": 11025,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2818
       },
       "specs": {
         "battery_kwh": 56.64,
@@ -867,14 +871,14 @@
         "road_tax_yr": 50,
         "road_tax_rm": 40,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 70 kW)",
-        "insurance_rm_yr": 2818,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM100,000 @ 2.60%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10000,
         "loan_monthly_rm": 1202.68,
         "loan_total_interest_rm": 11025,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2818
       },
       "specs": {
         "battery_kwh": 42.3,
@@ -905,14 +909,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-        "insurance_rm_yr": 2813,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM103,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10380,
         "loan_monthly_rm": 1248.38,
         "loan_total_interest_rm": 11444,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2813
       },
       "specs": {
         "battery_kwh": 60.22,
@@ -943,14 +947,14 @@
         "road_tax_yr": 70,
         "road_tax_rm": 80,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 101.5 kW)",
-        "insurance_rm_yr": 2894,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM106,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10680,
         "loan_monthly_rm": 1284.46,
         "loan_total_interest_rm": 11775,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2894
       },
       "specs": {
         "battery_kwh": 55.2,
@@ -981,14 +985,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-        "insurance_rm_yr": 2921,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM107,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10780,
         "loan_monthly_rm": 1296.49,
         "loan_total_interest_rm": 11885,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2921
       },
       "specs": {
         "battery_kwh": 67.1,
@@ -1019,14 +1023,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 120.1 kW)",
-        "insurance_rm_yr": 2950,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM108,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10889,
         "loan_monthly_rm": 1309.57,
         "loan_total_interest_rm": 12005,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2950
       },
       "specs": {
         "battery_kwh": 51.87,
@@ -1057,14 +1061,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 100,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 120 kW)",
-        "insurance_rm_yr": 2975,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM109,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 10980,
         "loan_monthly_rm": 1320.54,
         "loan_total_interest_rm": 12105,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2975
       },
       "specs": {
         "battery_kwh": 71.8,
@@ -1095,14 +1099,14 @@
         "road_tax_yr": 180,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 125 kW)",
-        "insurance_rm_yr": 3183,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM117,528 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 11753,
         "loan_monthly_rm": 1413.48,
         "loan_total_interest_rm": 12957,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3183
       },
       "specs": {
         "battery_kwh": 62.0,
@@ -1133,14 +1137,14 @@
         "road_tax_yr": 140,
         "road_tax_rm": 140,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 135 kW)",
-        "insurance_rm_yr": 3245,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 11980,
         "loan_monthly_rm": 1440.81,
         "loan_total_interest_rm": 13208,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3245
       },
       "specs": {
         "battery_kwh": 69.77,
@@ -1171,14 +1175,14 @@
         "road_tax_yr": 100,
         "road_tax_rm": 100,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 120 kW)",
-        "insurance_rm_yr": 3247,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,900 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 11990,
         "loan_monthly_rm": 1442.01,
         "loan_total_interest_rm": 13219,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3247
       },
       "specs": {
         "battery_kwh": 52.49,
@@ -1209,14 +1213,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-        "insurance_rm_yr": 3493,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM129,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 12900,
         "loan_monthly_rm": 1551.46,
         "loan_total_interest_rm": 14222,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3493
       },
       "specs": {
         "battery_kwh": 69.9,
@@ -1247,14 +1251,14 @@
         "road_tax_yr": 180,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 155 kW)",
-        "insurance_rm_yr": 3595,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM132,780 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 13278,
         "loan_monthly_rm": 1596.92,
         "loan_total_interest_rm": 14639,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3595
       },
       "specs": {
         "battery_kwh": 81.76,
@@ -1285,14 +1289,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 4057,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,900 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 14990,
         "loan_monthly_rm": 1802.82,
         "loan_total_interest_rm": 16526,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4057
       },
       "specs": {
         "range_km": 410.0,
@@ -1321,14 +1325,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 395,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 249.9 kW)",
-        "insurance_rm_yr": 4298,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM158,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 15880,
         "loan_monthly_rm": 1909.85,
         "loan_total_interest_rm": 17508,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4298
       },
       "specs": {
         "battery_kwh": 66.0,
@@ -1359,14 +1363,14 @@
         "road_tax_yr": 220,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 230 kW)",
-        "insurance_rm_yr": 4433,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM163,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 16380,
         "loan_monthly_rm": 1969.99,
         "loan_total_interest_rm": 18059,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4433
       },
       "specs": {
         "battery_kwh": 82.5,
@@ -1397,14 +1401,14 @@
         "road_tax_yr": 50,
         "road_tax_rm": 50,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 80 kW)",
-        "insurance_rm_yr": 4465,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM165,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 16500,
         "loan_monthly_rm": 1984.42,
         "loan_total_interest_rm": 18191,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4465
       },
       "specs": {
         "battery_kwh": 52.0,
@@ -1435,14 +1439,14 @@
         "road_tax_yr": 100,
         "road_tax_rm": 80,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 110 kW)",
-        "insurance_rm_yr": 4570,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM168,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 16889,
         "loan_monthly_rm": 2031.18,
         "loan_total_interest_rm": 18620,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4570
       },
       "specs": {
         "battery_kwh": 40.0,
@@ -1473,14 +1477,14 @@
         "road_tax_yr": 260,
         "road_tax_rm": 260,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 200 kW)",
-        "insurance_rm_yr": 4573,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM169,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 16900,
         "loan_monthly_rm": 2032.53,
         "loan_total_interest_rm": 18632,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4573
       },
       "specs": {
         "battery_kwh": 66.0,
@@ -1511,14 +1515,14 @@
         "road_tax_yr": 260,
         "road_tax_rm": 260,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 199.9 kW)",
-        "insurance_rm_yr": 4597,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM169,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 16989,
         "loan_monthly_rm": 2043.21,
         "loan_total_interest_rm": 18730,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4597
       },
       "specs": {
         "battery_kwh": 73.48,
@@ -1549,14 +1553,14 @@
         "road_tax_yr": 615,
         "road_tax_rm": 575,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 310 kW)",
-        "insurance_rm_yr": 4946,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM182,800 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 18280,
         "loan_monthly_rm": 2198.5,
         "loan_total_interest_rm": 20154,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4946
       },
       "specs": {
         "battery_kwh": 100.0,
@@ -1587,14 +1591,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 128.3 kW)",
-        "insurance_rm_yr": 5086,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM188,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 18800,
         "loan_monthly_rm": 2261.04,
         "loan_total_interest_rm": 20727,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5086
       },
       "specs": {
         "battery_kwh": 61.1,
@@ -1625,14 +1629,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-        "insurance_rm_yr": 5245,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM193,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 19389,
         "loan_monthly_rm": 2331.85,
         "loan_total_interest_rm": 21376,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5245
       },
       "specs": {
         "battery_kwh": 54.2,
@@ -1663,14 +1667,14 @@
         "road_tax_yr": 120,
         "road_tax_rm": 120,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 128.3 kW)",
-        "insurance_rm_yr": 5356,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM198,000 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 19800,
         "loan_monthly_rm": 2381.3,
         "loan_total_interest_rm": 21830,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5356
       },
       "specs": {
         "battery_kwh": 61.1,
@@ -1701,14 +1705,14 @@
         "road_tax_yr": 305,
         "road_tax_rm": 305,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 214.8 kW)",
-        "insurance_rm_yr": 5407,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM199,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 19989,
         "loan_monthly_rm": 2404.01,
         "loan_total_interest_rm": 22038,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5407
       },
       "specs": {
         "battery_kwh": 88.0,
@@ -1739,14 +1743,14 @@
         "road_tax_yr": 455,
         "road_tax_rm": 455,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 267 kW)",
-        "insurance_rm_yr": 5448,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM209,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 20980,
         "loan_monthly_rm": 2523.22,
         "loan_total_interest_rm": 23130,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5448
       },
       "specs": {
         "battery_kwh": 100.0,
@@ -1777,14 +1781,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 180,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-        "insurance_rm_yr": 5554,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM213,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 21389,
         "loan_monthly_rm": 2572.39,
         "loan_total_interest_rm": 23581,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5554
       },
       "specs": {
         "battery_kwh": 54.2,
@@ -1815,14 +1819,14 @@
         "road_tax_yr": 200,
         "road_tax_rm": 200,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 167.1 kW)",
-        "insurance_rm_yr": 5712,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM220,000 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 22000,
         "loan_monthly_rm": 2645.89,
         "loan_total_interest_rm": 24255,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5712
       },
       "specs": {
         "battery_kwh": 73.1,
@@ -1853,14 +1857,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 144.0 kW)",
-        "insurance_rm_yr": 5876,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM226,300 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 22630,
         "loan_monthly_rm": 2721.66,
         "loan_total_interest_rm": 24950,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5876
       },
       "specs": {
         "battery_kwh": 59.2,
@@ -1891,14 +1895,14 @@
         "road_tax_yr": 665,
         "road_tax_rm": 665,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 324.5 kW)",
-        "insurance_rm_yr": 5943,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM228,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 22889,
         "loan_monthly_rm": 2752.79,
         "loan_total_interest_rm": 25235,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5943
       },
       "specs": {
         "battery_kwh": 102.2,
@@ -1929,14 +1933,14 @@
         "road_tax_yr": 220,
         "road_tax_rm": 220,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 175 kW)",
-        "insurance_rm_yr": 6461,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM248,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 24889,
         "loan_monthly_rm": 2993.32,
         "loan_total_interest_rm": 27440,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6461
       },
       "specs": {
         "battery_kwh": 78.0,
@@ -1967,14 +1971,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 6511,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM250,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 25080,
         "loan_monthly_rm": 3016.32,
         "loan_total_interest_rm": 27651,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6511
       },
       "specs": {
         "battery_kwh": 64.7,
@@ -2005,14 +2009,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 6563,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM252,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 25280,
         "loan_monthly_rm": 3040.37,
         "loan_total_interest_rm": 27871,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6563
       },
       "specs": {
         "battery_kwh": 66.5,
@@ -2043,14 +2047,14 @@
         "road_tax_yr": 335,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 230 kW)",
-        "insurance_rm_yr": 6720,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM258,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 25889,
         "loan_monthly_rm": 3113.59,
         "loan_total_interest_rm": 28542,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6720
       },
       "specs": {
         "battery_kwh": 66.5,
@@ -2081,14 +2085,14 @@
         "road_tax_yr": 220,
         "road_tax_rm": 220,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 180 kW)",
-        "insurance_rm_yr": 7005,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM269,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 26989,
         "loan_monthly_rm": 3245.89,
         "loan_total_interest_rm": 29755,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7005
       },
       "specs": {
         "range_km": 430.0,
@@ -2117,14 +2121,14 @@
         "road_tax_yr": 365,
         "road_tax_rm": 365,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 235 kW)",
-        "insurance_rm_yr": 7295,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM281,073 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 28107,
         "loan_monthly_rm": 3380.4,
         "loan_total_interest_rm": 30988,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7295
       },
       "specs": {
         "battery_kwh": 110.0,
@@ -2155,14 +2159,14 @@
         "road_tax_yr": 335,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 230 kW)",
-        "insurance_rm_yr": 7366,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM283,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 28380,
         "loan_monthly_rm": 3413.2,
         "loan_total_interest_rm": 31289,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7366
       },
       "specs": {
         "battery_kwh": 64.7,
@@ -2193,14 +2197,14 @@
         "road_tax_yr": 305,
         "road_tax_rm": 280,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 210 kW)",
-        "insurance_rm_yr": 7651,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM294,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 29480,
         "loan_monthly_rm": 3545.5,
         "loan_total_interest_rm": 32502,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7651
       },
       "specs": {
         "battery_kwh": 70.3,
@@ -2231,14 +2235,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 140,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 140 kW)",
-        "insurance_rm_yr": 7705,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM296,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 29689,
         "loan_monthly_rm": 3570.61,
         "loan_total_interest_rm": 32732,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7705
       },
       "specs": {
         "battery_kwh": 66.5,
@@ -2269,14 +2273,14 @@
         "road_tax_yr": 335,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 230 kW)",
-        "insurance_rm_yr": 7760,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM299,000 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 29900,
         "loan_monthly_rm": 3596.01,
         "loan_total_interest_rm": 32965,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7760
       },
       "specs": {
         "battery_kwh": 103.36,
@@ -2307,14 +2311,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 395,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 250 kW)",
-        "insurance_rm_yr": 7781,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM299,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 29980,
         "loan_monthly_rm": 3605.63,
         "loan_total_interest_rm": 33053,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7781
       },
       "specs": {
         "battery_kwh": 116.0,
@@ -2345,14 +2349,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 395,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 250 kW)",
-        "insurance_rm_yr": 7783,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM299,900 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 29990,
         "loan_monthly_rm": 3606.83,
         "loan_total_interest_rm": 33064,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7783
       },
       "specs": {
         "battery_kwh": 77.0,
@@ -2383,14 +2387,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 395,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 245.4 kW)",
-        "insurance_rm_yr": 8746,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM339,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 33989,
         "loan_monthly_rm": 4087.76,
         "loan_total_interest_rm": 37473,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8746
       },
       "specs": {
         "battery_kwh": 92.0,
@@ -2421,14 +2425,14 @@
         "road_tax_yr": 515,
         "road_tax_rm": 515,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 283 kW)",
-        "insurance_rm_yr": 9486,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM368,668 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 36867,
         "loan_monthly_rm": 4433.89,
         "loan_total_interest_rm": 40646,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9486
       },
       "specs": {
         "battery_kwh": 99.8,
@@ -2459,14 +2463,14 @@
         "road_tax_yr": 9140,
         "road_tax_rm": 9440,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 850.4 kW)",
-        "insurance_rm_yr": 9487,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM368,690 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 36869,
         "loan_monthly_rm": 4434.16,
         "loan_total_interest_rm": 40648,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9487
       },
       "specs": {
         "battery_kwh": 122.49,
@@ -2497,14 +2501,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 230 kW)",
-        "insurance_rm_yr": 9490,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM368,800 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 36880,
         "loan_monthly_rm": 4435.48,
         "loan_total_interest_rm": 40660,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9490
       },
       "specs": {
         "battery_kwh": 81.2,
@@ -2535,14 +2539,14 @@
         "road_tax_yr": 765,
         "road_tax_rm": 280,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 210 kW)",
-        "insurance_rm_yr": 9747,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM378,800 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 37880,
         "loan_monthly_rm": 4555.75,
         "loan_total_interest_rm": 41763,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9747
       },
       "specs": {
         "battery_kwh": 113.4,
@@ -2573,14 +2577,14 @@
         "road_tax_yr": 305,
         "road_tax_rm": 305,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 215 kW)",
-        "insurance_rm_yr": 9775,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM379,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 37989,
         "loan_monthly_rm": 4568.83,
         "loan_total_interest_rm": 41883,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9775
       },
       "specs": {
         "battery_kwh": 90.6,
@@ -2611,14 +2615,14 @@
         "road_tax_yr": 305,
         "road_tax_rm": 305,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 215 kW)",
-        "insurance_rm_yr": 10263,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM398,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 39889,
         "loan_monthly_rm": 4797.34,
         "loan_total_interest_rm": 43977,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10263
       },
       "specs": {
         "battery_kwh": 90.6,
@@ -2649,14 +2653,14 @@
         "road_tax_yr": 545,
         "road_tax_rm": 545,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 300 kW)",
-        "insurance_rm_yr": 10817,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM425,800 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 42580,
         "loan_monthly_rm": 5121.01,
         "loan_total_interest_rm": 46944,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10817
       },
       "specs": {
         "battery_kwh": 111.5,
@@ -2687,14 +2691,14 @@
         "road_tax_yr": 335,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 229.8 kW)",
-        "insurance_rm_yr": 10921,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM429,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 42989,
         "loan_monthly_rm": 5170.17,
         "loan_total_interest_rm": 47395,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10921
       },
       "specs": {
         "battery_kwh": 71.4,
@@ -2725,14 +2729,14 @@
         "road_tax_yr": 1065,
         "road_tax_rm": 1015,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 400 kW)",
-        "insurance_rm_yr": 10944,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM430,800 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 43080,
         "loan_monthly_rm": 5181.14,
         "loan_total_interest_rm": 47496,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10944
       },
       "specs": {
         "battery_kwh": 83.9,
@@ -2763,14 +2767,14 @@
         "road_tax_yr": 965,
         "road_tax_rm": 915,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 380 kW)",
-        "insurance_rm_yr": 11250,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM442,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 44289,
         "loan_monthly_rm": 5326.52,
         "loan_total_interest_rm": 48828,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11250
       },
       "specs": {
         "battery_kwh": 111.0,
@@ -2801,14 +2805,14 @@
         "road_tax_yr": 1440,
         "road_tax_rm": 1440,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 448 kW)",
-        "insurance_rm_yr": 11276,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM443,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 44389,
         "loan_monthly_rm": 5338.55,
         "loan_total_interest_rm": 48939,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11276
       },
       "specs": {
         "battery_kwh": 84.0,
@@ -2839,14 +2843,14 @@
         "road_tax_yr": 1440,
         "road_tax_rm": 1440,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 448.3 kW)",
-        "insurance_rm_yr": 11428,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM449,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 44989,
         "loan_monthly_rm": 5410.71,
         "loan_total_interest_rm": 49600,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11428
       },
       "specs": {
         "battery_kwh": 84.0,
@@ -2877,14 +2881,14 @@
         "road_tax_yr": 160,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 149.9 kW)",
-        "insurance_rm_yr": 11440,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM450,350 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 45035,
         "loan_monthly_rm": 5416.26,
         "loan_total_interest_rm": 49651,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11440
       },
       "specs": {
         "battery_kwh": 90.0,
@@ -2915,14 +2919,14 @@
         "road_tax_yr": 1440,
         "road_tax_rm": 1440,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 450 kW)",
-        "insurance_rm_yr": 11659,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM459,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 45900,
         "loan_monthly_rm": 5520.29,
         "loan_total_interest_rm": 50605,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11659
       },
       "specs": {
         "battery_kwh": 102.0,
@@ -2953,14 +2957,14 @@
         "road_tax_yr": 545,
         "road_tax_rm": 545,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 300 kW)",
-        "insurance_rm_yr": 11837,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM465,990 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 46599,
         "loan_monthly_rm": 5604.36,
         "loan_total_interest_rm": 51375,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11837
       },
       "specs": {
         "battery_kwh": 114.0,
@@ -2991,14 +2995,14 @@
         "road_tax_yr": 545,
         "road_tax_rm": 545,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 299.9 kW)",
-        "insurance_rm_yr": 12065,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM474,990 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 47499,
         "loan_monthly_rm": 5712.6,
         "loan_total_interest_rm": 52368,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12065
       },
       "specs": {
         "battery_kwh": 114.0,
@@ -3029,14 +3033,14 @@
         "road_tax_yr": 1440,
         "road_tax_rm": 1440,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 450 kW)",
-        "insurance_rm_yr": 12675,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM499,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 49900,
         "loan_monthly_rm": 6001.37,
         "loan_total_interest_rm": 55015,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12675
       },
       "specs": {
         "battery_kwh": 112.0,
@@ -3067,14 +3071,14 @@
         "road_tax_yr": 455,
         "road_tax_rm": 395,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 250 kW)",
-        "insurance_rm_yr": 14604,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM575,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 57500,
         "loan_monthly_rm": 6915.4,
         "loan_total_interest_rm": 63394,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 14604
       },
       "specs": {
         "battery_kwh": 100.0,
@@ -3105,14 +3109,14 @@
         "road_tax_yr": 455,
         "road_tax_rm": 455,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 265 kW)",
-        "insurance_rm_yr": 15895,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM625,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 62589,
         "loan_monthly_rm": 7527.42,
         "loan_total_interest_rm": 69004,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 15895
       },
       "specs": {
         "battery_kwh": 118.0,
@@ -3143,14 +3147,14 @@
         "road_tax_yr": 395,
         "road_tax_rm": 665,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 330 kW)",
-        "insurance_rm_yr": 16479,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM648,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 64889,
         "loan_monthly_rm": 7804.04,
         "loan_total_interest_rm": 71540,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 16479
       },
       "specs": {
         "battery_kwh": 107.8,
@@ -3181,14 +3185,14 @@
         "road_tax_yr": 1640,
         "road_tax_rm": 1640,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 460.3 kW)",
-        "insurance_rm_yr": 16504,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM649,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 64989,
         "loan_monthly_rm": 7816.06,
         "loan_total_interest_rm": 71650,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 16504
       },
       "specs": {
         "battery_kwh": 90.6,
@@ -3219,14 +3223,14 @@
         "road_tax_yr": 1015,
         "road_tax_rm": 1015,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 400 kW)",
-        "insurance_rm_yr": 18152,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM714,800 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 71480,
         "loan_monthly_rm": 8596.75,
         "loan_total_interest_rm": 78807,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 18152
       },
       "specs": {
         "range_km": 625.0,
@@ -3255,14 +3259,14 @@
         "road_tax_yr": 1840,
         "road_tax_rm": 1840,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 484.2 kW)",
-        "insurance_rm_yr": 20286,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM798,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 79889,
         "loan_monthly_rm": 9608.05,
         "loan_total_interest_rm": 88077,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 20286
       },
       "specs": {
         "battery_kwh": 108.4,
@@ -3293,14 +3297,14 @@
         "road_tax_yr": 1340,
         "road_tax_rm": 1340,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 432 kW)",
-        "insurance_rm_yr": 24347,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM958,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 95889,
         "loan_monthly_rm": 11532.34,
         "loan_total_interest_rm": 105717,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 24347
       },
       "specs": {
         "battery_kwh": 116.0,
@@ -3331,14 +3335,14 @@
         "road_tax_yr": 1840,
         "road_tax_rm": 1840,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 484.2 kW)",
-        "insurance_rm_yr": 27646,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM1,088,888 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 108889,
         "loan_monthly_rm": 13095.82,
         "loan_total_interest_rm": 120050,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 27646
       },
       "specs": {
         "battery_kwh": 118.0,
@@ -3375,7 +3379,8 @@
         "loan_down_payment_rm": 8880,
         "loan_monthly_rm": 1084.63,
         "loan_total_interest_rm": 11189,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2588
       },
       "specs": {
         "battery_kwh": 1.83,
@@ -3420,7 +3425,8 @@
         "loan_down_payment_rm": 9060,
         "loan_monthly_rm": 1106.61,
         "loan_total_interest_rm": 11416,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2635
       },
       "specs": {
         "fuel_l_per_100km": 5.2,
@@ -3459,7 +3465,8 @@
         "loan_down_payment_rm": 10980,
         "loan_monthly_rm": 1341.13,
         "loan_total_interest_rm": 13835,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3134
       },
       "specs": {
         "battery_kwh": 29.8,
@@ -3505,7 +3512,8 @@
         "loan_down_payment_rm": 9990,
         "loan_monthly_rm": 1220.21,
         "loan_total_interest_rm": 12587,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 2877
       },
       "specs": {
         "battery_kwh": 0.8,
@@ -3549,7 +3557,8 @@
         "loan_down_payment_rm": 11190,
         "loan_monthly_rm": 1366.78,
         "loan_total_interest_rm": 14099,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3189
       },
       "specs": {
         "fuel_l_per_100km": 3.6,
@@ -3590,7 +3599,8 @@
         "loan_down_payment_rm": 11290,
         "loan_monthly_rm": 1378.99,
         "loan_total_interest_rm": 14225,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3215
       },
       "specs": {
         "battery_kwh": 1.3,
@@ -3634,7 +3644,8 @@
         "loan_down_payment_rm": 11380,
         "loan_monthly_rm": 1389.99,
         "loan_total_interest_rm": 14339,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3207
       },
       "specs": {
         "battery_kwh": 2.1,
@@ -3679,7 +3690,8 @@
         "loan_down_payment_rm": 12380,
         "loan_monthly_rm": 1512.13,
         "loan_total_interest_rm": 15599,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3532
       },
       "specs": {
         "power_hp": 161,
@@ -3719,7 +3731,8 @@
         "loan_down_payment_rm": 12940,
         "loan_monthly_rm": 1580.53,
         "loan_total_interest_rm": 16304,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3644
       },
       "specs": {
         "fuel_l_per_100km": 7.0,
@@ -3762,7 +3775,8 @@
         "loan_down_payment_rm": 13089,
         "loan_monthly_rm": 1598.7,
         "loan_total_interest_rm": 16492,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3683
       },
       "specs": {
         "engine_cc": 1462,
@@ -3804,7 +3818,8 @@
         "loan_down_payment_rm": 13980,
         "loan_monthly_rm": 1707.56,
         "loan_total_interest_rm": 17615,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3914
       },
       "specs": {
         "engine_cc": 1497,
@@ -3847,7 +3862,8 @@
         "loan_down_payment_rm": 15480,
         "loan_monthly_rm": 1890.77,
         "loan_total_interest_rm": 19505,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4304
       },
       "specs": {
         "battery_kwh": 1.77,
@@ -3890,7 +3906,8 @@
         "loan_down_payment_rm": 15980,
         "loan_monthly_rm": 1951.84,
         "loan_total_interest_rm": 20135,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4468
       },
       "specs": {
         "fuel_l_per_100km": 7.2,
@@ -3933,7 +3950,8 @@
         "loan_down_payment_rm": 17820,
         "loan_monthly_rm": 2176.59,
         "loan_total_interest_rm": 22453,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4946
       },
       "specs": {
         "fuel_l_per_100km": 5.0,
@@ -3973,7 +3991,8 @@
         "loan_down_payment_rm": 18599,
         "loan_monthly_rm": 2271.73,
         "loan_total_interest_rm": 23435,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5115
       },
       "specs": {
         "engine_cc": 1498,
@@ -4015,7 +4034,8 @@
         "loan_down_payment_rm": 19066,
         "loan_monthly_rm": 2328.78,
         "loan_total_interest_rm": 24023,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5270
       },
       "specs": {
         "engine_cc": 1998,
@@ -4057,7 +4077,8 @@
         "loan_down_payment_rm": 14389,
         "loan_monthly_rm": 1757.49,
         "loan_total_interest_rm": 18130,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4021
       },
       "specs": {
         "battery_kwh": 1.49,
@@ -4100,7 +4121,8 @@
         "loan_down_payment_rm": 16500,
         "loan_monthly_rm": 2015.36,
         "loan_total_interest_rm": 20790,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4603
       },
       "specs": {
         "engine_cc": 1987,
@@ -4142,7 +4164,8 @@
         "loan_down_payment_rm": 22500,
         "loan_monthly_rm": 2748.21,
         "loan_total_interest_rm": 28350,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6197
       },
       "specs": {
         "battery_kwh": 1.49,
@@ -4185,7 +4208,8 @@
         "loan_down_payment_rm": 23889,
         "loan_monthly_rm": 2917.85,
         "loan_total_interest_rm": 30100,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6491
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -4229,7 +4253,8 @@
         "loan_down_payment_rm": 20051,
         "loan_monthly_rm": 2449.09,
         "loan_total_interest_rm": 25264,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5592
       },
       "specs": {
         "battery_kwh": 0.33,
@@ -4274,7 +4299,8 @@
         "loan_down_payment_rm": 25000,
         "loan_monthly_rm": 3053.57,
         "loan_total_interest_rm": 31500,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6813
       },
       "specs": {
         "battery_kwh": 1.67,
@@ -4318,7 +4344,8 @@
         "loan_down_payment_rm": 23889,
         "loan_monthly_rm": 2917.85,
         "loan_total_interest_rm": 30100,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6524
       },
       "specs": {
         "engine_cc": 1991,
@@ -4362,7 +4389,8 @@
         "loan_down_payment_rm": 26889,
         "loan_monthly_rm": 3284.27,
         "loan_total_interest_rm": 33880,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7304
       },
       "specs": {
         "fuel_l_per_100km": 7.7,
@@ -4405,7 +4433,8 @@
         "loan_down_payment_rm": 26980,
         "loan_monthly_rm": 3295.41,
         "loan_total_interest_rm": 33995,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7294
       },
       "specs": {
         "battery_kwh": 44.2,
@@ -4451,7 +4480,8 @@
         "loan_down_payment_rm": 27800,
         "loan_monthly_rm": 3395.57,
         "loan_total_interest_rm": 35028,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7541
       },
       "specs": {
         "engine_cc": 1993,
@@ -4494,7 +4524,8 @@
         "loan_down_payment_rm": 28900,
         "loan_monthly_rm": 3529.93,
         "loan_total_interest_rm": 36414,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7827
       },
       "specs": {
         "engine_cc": 1987,
@@ -4537,11 +4568,12 @@
         "loan_down_payment_rm": 29289,
         "loan_monthly_rm": 3577.42,
         "loan_total_interest_rm": 36904,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7928
       },
       "specs": {
         "fuel_l_per_100km": 2.3,
-        "battery_kwh": 1.0,
+        "battery_kwh": 25.4,
         "range_km": 117,
         "engine_cc": 1999,
         "power_hp": 201,
@@ -4583,7 +4615,8 @@
         "loan_down_payment_rm": 29661,
         "loan_monthly_rm": 3622.88,
         "loan_total_interest_rm": 37373,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8058
       },
       "specs": {
         "battery_kwh": 17.8,
@@ -4629,7 +4662,8 @@
         "loan_down_payment_rm": 32580,
         "loan_monthly_rm": 3979.41,
         "loan_total_interest_rm": 41051,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8784
       },
       "specs": {
         "engine_cc": 1998,
@@ -4670,7 +4704,8 @@
         "loan_down_payment_rm": 32880,
         "loan_monthly_rm": 4016.06,
         "loan_total_interest_rm": 41429,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8862
       },
       "specs": {
         "battery_kwh": 25.57,
@@ -4716,7 +4751,8 @@
         "loan_down_payment_rm": 32880,
         "loan_monthly_rm": 4016.06,
         "loan_total_interest_rm": 41429,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8862
       },
       "specs": {
         "battery_kwh": 1.75,
@@ -4759,7 +4795,8 @@
         "loan_down_payment_rm": 32889,
         "loan_monthly_rm": 4017.13,
         "loan_total_interest_rm": 41440,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8864
       },
       "specs": {
         "battery_kwh": 19.0,
@@ -4806,11 +4843,12 @@
         "loan_down_payment_rm": 32989,
         "loan_monthly_rm": 4029.35,
         "loan_total_interest_rm": 41566,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8890
       },
       "specs": {
         "fuel_l_per_100km": 2.25,
-        "battery_kwh": 1.0,
+        "battery_kwh": 31.2,
         "range_km": 131,
         "engine_cc": 1999,
         "power_hp": 201,
@@ -4852,7 +4890,8 @@
         "loan_down_payment_rm": 34080,
         "loan_monthly_rm": 4162.63,
         "loan_total_interest_rm": 42941,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9174
       },
       "specs": {
         "engine_cc": 1998,
@@ -4894,7 +4933,8 @@
         "loan_down_payment_rm": 34389,
         "loan_monthly_rm": 4200.35,
         "loan_total_interest_rm": 43330,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9254
       },
       "specs": {
         "engine_cc": 1991,
@@ -4937,7 +4977,8 @@
         "loan_down_payment_rm": 36389,
         "loan_monthly_rm": 4444.63,
         "loan_total_interest_rm": 45850,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9774
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -4981,7 +5022,8 @@
         "loan_down_payment_rm": 36789,
         "loan_monthly_rm": 4493.49,
         "loan_total_interest_rm": 46354,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9878
       },
       "specs": {
         "battery_kwh": 25.4,
@@ -5027,7 +5069,8 @@
         "loan_down_payment_rm": 39589,
         "loan_monthly_rm": 4835.49,
         "loan_total_interest_rm": 49882,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10640
       },
       "specs": {
         "engine_cc": 2393,
@@ -5070,7 +5113,8 @@
         "loan_down_payment_rm": 41889,
         "loan_monthly_rm": 5116.42,
         "loan_total_interest_rm": 52780,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11204
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -5114,7 +5158,8 @@
         "loan_down_payment_rm": 41889,
         "loan_monthly_rm": 5116.42,
         "loan_total_interest_rm": 52780,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11204
       },
       "specs": {
         "battery_kwh": 18.8,
@@ -5161,10 +5206,11 @@
         "loan_down_payment_rm": 42589,
         "loan_monthly_rm": 5201.92,
         "loan_total_interest_rm": 53662,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11386
       },
       "specs": {
-        "battery_kwh": 1.0,
+        "battery_kwh": 31.2,
         "range_km": 131,
         "engine_cc": 1999,
         "power_hp": 201,
@@ -5208,7 +5254,8 @@
         "loan_down_payment_rm": 44099,
         "loan_monthly_rm": 5386.38,
         "loan_total_interest_rm": 55565,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11779
       },
       "specs": {
         "fuel_l_per_100km": 7.1,
@@ -5248,7 +5295,8 @@
         "loan_down_payment_rm": 44389,
         "loan_monthly_rm": 5421.77,
         "loan_total_interest_rm": 55930,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11854
       },
       "specs": {
         "battery_kwh": 6.1,
@@ -5294,7 +5342,8 @@
         "loan_down_payment_rm": 45994,
         "loan_monthly_rm": 5617.83,
         "loan_total_interest_rm": 57952,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12272
       },
       "specs": {
         "battery_kwh": 36.8,
@@ -5341,7 +5390,8 @@
         "loan_down_payment_rm": 46227,
         "loan_monthly_rm": 5646.32,
         "loan_total_interest_rm": 58246,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12366
       },
       "specs": {
         "engine_cc": 2995,
@@ -5384,7 +5434,8 @@
         "loan_down_payment_rm": 47080,
         "loan_monthly_rm": 5750.49,
         "loan_total_interest_rm": 59321,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12587
       },
       "specs": {
         "battery_kwh": 29.5,
@@ -5430,7 +5481,8 @@
         "loan_down_payment_rm": 46889,
         "loan_monthly_rm": 5727.13,
         "loan_total_interest_rm": 59080,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 12538
       },
       "specs": {
         "engine_cc": 2393,
@@ -5473,10 +5525,11 @@
         "loan_down_payment_rm": 49889,
         "loan_monthly_rm": 6093.56,
         "loan_total_interest_rm": 62860,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 13318
       },
       "specs": {
-        "battery_kwh": 0.9,
+        "battery_kwh": 31.2,
         "range_km": 114,
         "engine_cc": 2999,
         "power_hp": 248,
@@ -5519,7 +5572,8 @@
         "loan_down_payment_rm": 49889,
         "loan_monthly_rm": 6093.56,
         "loan_total_interest_rm": 62860,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 13284
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -5563,7 +5617,8 @@
         "loan_down_payment_rm": 51889,
         "loan_monthly_rm": 6337.85,
         "loan_total_interest_rm": 65380,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 13804
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -5608,7 +5663,8 @@
         "loan_down_payment_rm": 44800,
         "loan_monthly_rm": 5472.0,
         "loan_total_interest_rm": 56448,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11995
       },
       "specs": {
         "fuel_l_per_100km": 9.1,
@@ -5648,7 +5704,8 @@
         "loan_down_payment_rm": 63580,
         "loan_monthly_rm": 7765.84,
         "loan_total_interest_rm": 80111,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 16877
       },
       "specs": {
         "fuel_l_per_100km": 10.1,
@@ -5693,7 +5750,8 @@
         "loan_down_payment_rm": 68580,
         "loan_monthly_rm": 8376.56,
         "loan_total_interest_rm": 86411,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 18177
       },
       "specs": {
         "battery_kwh": 18.7,
@@ -5739,7 +5797,8 @@
         "loan_down_payment_rm": 72289,
         "loan_monthly_rm": 8829.56,
         "loan_total_interest_rm": 91084,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 19142
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -5783,7 +5842,8 @@
         "loan_down_payment_rm": 73580,
         "loan_monthly_rm": 8987.27,
         "loan_total_interest_rm": 92711,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 19477
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -5828,7 +5888,8 @@
         "loan_down_payment_rm": 73889,
         "loan_monthly_rm": 9024.99,
         "loan_total_interest_rm": 93100,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 19558
       },
       "specs": {
         "fuel_l_per_100km": 2.95,
@@ -5874,7 +5935,8 @@
         "loan_down_payment_rm": 73900,
         "loan_monthly_rm": 9026.36,
         "loan_total_interest_rm": 93114,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 19561
       },
       "specs": {
         "battery_kwh": 25.9,
@@ -5921,7 +5983,8 @@
         "loan_down_payment_rm": 87389,
         "loan_monthly_rm": 10673.92,
         "loan_total_interest_rm": 110110,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 23099
       },
       "specs": {
         "battery_kwh": 0.9,
@@ -5965,7 +6028,8 @@
         "loan_down_payment_rm": 99989,
         "loan_monthly_rm": 12212.92,
         "loan_total_interest_rm": 125986,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 26310
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -6011,7 +6075,8 @@
         "loan_down_payment_rm": 119189,
         "loan_monthly_rm": 14558.06,
         "loan_total_interest_rm": 150178,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 31367
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -6055,7 +6120,8 @@
         "loan_down_payment_rm": 120080,
         "loan_monthly_rm": 14666.91,
         "loan_total_interest_rm": 151301,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 31664
       },
       "specs": {
         "battery_kwh": 22.1,
@@ -6101,7 +6167,8 @@
         "loan_down_payment_rm": 122800,
         "loan_monthly_rm": 14999.14,
         "loan_total_interest_rm": 154728,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 32275
       },
       "specs": {
         "engine_cc": 2393,
@@ -6144,7 +6211,8 @@
         "loan_down_payment_rm": 154000,
         "loan_monthly_rm": 18810.0,
         "loan_total_interest_rm": 194040,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 40418
       },
       "specs": {
         "fuel_l_per_100km": 10.0,
@@ -6184,7 +6252,8 @@
         "loan_down_payment_rm": 185089,
         "loan_monthly_rm": 22607.27,
         "loan_total_interest_rm": 233212,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 48501
       },
       "specs": {
         "fuel_l_per_100km": 11.15,
@@ -6228,7 +6297,8 @@
         "loan_down_payment_rm": 191889,
         "loan_monthly_rm": 23437.85,
         "loan_total_interest_rm": 241780,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 50269
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -6272,7 +6342,8 @@
         "loan_down_payment_rm": 194889,
         "loan_monthly_rm": 23804.27,
         "loan_total_interest_rm": 245560,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 51049
       },
       "specs": {
         "battery_kwh": 1.0,
@@ -6316,7 +6387,8 @@
         "loan_down_payment_rm": 223889,
         "loan_monthly_rm": 27346.42,
         "loan_total_interest_rm": 282100,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 58589
       },
       "specs": {
         "battery_kwh": 13.1,
@@ -6359,7 +6431,8 @@
         "loan_down_payment_rm": 10800,
         "loan_monthly_rm": 1319.14,
         "loan_total_interest_rm": 13608,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3088
       },
       "specs": {
         "engine_cc": 1498,
@@ -6399,7 +6472,8 @@
         "loan_down_payment_rm": 13880,
         "loan_monthly_rm": 1695.34,
         "loan_total_interest_rm": 17489,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3888
       },
       "specs": {
         "engine_cc": 1598,
@@ -6439,7 +6513,8 @@
         "loan_down_payment_rm": 17880,
         "loan_monthly_rm": 2183.91,
         "loan_total_interest_rm": 22529,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4962
       },
       "specs": {
         "engine_cc": 1998,
@@ -6479,7 +6554,8 @@
         "loan_down_payment_rm": 16880,
         "loan_monthly_rm": 2061.77,
         "loan_total_interest_rm": 21269,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4668
       },
       "specs": {
         "engine_cc": 1598,
@@ -6521,7 +6597,8 @@
         "loan_down_payment_rm": 15880,
         "loan_monthly_rm": 1939.63,
         "loan_total_interest_rm": 20009,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4408
       },
       "specs": {
         "battery_kwh": 18.3,
@@ -6568,7 +6645,8 @@
         "loan_down_payment_rm": 20880,
         "loan_monthly_rm": 2550.34,
         "loan_total_interest_rm": 26309,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5708
       },
       "specs": {
         "battery_kwh": 34.46,
@@ -6619,14 +6697,14 @@
         "resale_10yr_pct": 52,
         "road_tax_rm": 160,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-        "insurance_rm_yr": 3247,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,900 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 11990,
         "loan_monthly_rm": 1442.01,
         "loan_total_interest_rm": 13219,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3247
       },
       "registered_my": 2831,
       "popularity_rating": 5,
@@ -6661,14 +6739,14 @@
         "resale_10yr_pct": 45,
         "road_tax_rm": 335,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 225 kW)",
-        "insurance_rm_yr": 6487,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM249,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 24989,
         "loan_monthly_rm": 3005.35,
         "loan_total_interest_rm": 27550,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6487
       },
       "registered_my": 348,
       "popularity_rating": 2,
@@ -6703,14 +6781,14 @@
         "resale_10yr_pct": 47,
         "road_tax_rm": 365,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 239 kW)",
-        "insurance_rm_yr": 8207,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM318,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 31889,
         "loan_monthly_rm": 3835.2,
         "loan_total_interest_rm": 35157,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8207
       },
       "registered_my": 120,
       "popularity_rating": 2,
@@ -6749,7 +6827,8 @@
         "loan_down_payment_rm": 13435,
         "loan_monthly_rm": 1640.99,
         "loan_total_interest_rm": 16928,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3806
       },
       "registered_my": 3,
       "popularity_rating": 1,
@@ -6788,7 +6867,8 @@
         "loan_down_payment_rm": 19590,
         "loan_monthly_rm": 2392.78,
         "loan_total_interest_rm": 24683,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5406
       },
       "registered_my": 0,
       "popularity_rating": 1,
@@ -6827,7 +6907,8 @@
         "loan_down_payment_rm": 14830,
         "loan_monthly_rm": 1811.38,
         "loan_total_interest_rm": 18686,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4135
       },
       "registered_my": 3558,
       "popularity_rating": 5,
@@ -6855,14 +6936,14 @@
         "warranty_battery_km": 160000,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 294 kW)",
         "road_tax_rm": 545,
-        "insurance_rm_yr": 11705,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM460,800 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 46080,
         "loan_monthly_rm": 5541.94,
         "loan_total_interest_rm": 50803,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11705
       },
       "specs": {
         "battery_kwh": 90.0,
@@ -6897,14 +6978,14 @@
         "warranty_battery_yrs": 10,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 430 kW)",
         "road_tax_rm": 1240,
-        "insurance_rm_yr": 50770,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM2,000,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 200000,
         "loan_monthly_rm": 24053.57,
         "loan_total_interest_rm": 220500,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 50770
       },
       "specs": {
         "battery_kwh": 102.0,
@@ -6941,14 +7022,14 @@
         "warranty_battery_km": 200000,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 90 kW)",
         "road_tax_rm": 60,
-        "insurance_rm_yr": 6980,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM268,888 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 26889,
         "loan_monthly_rm": 3233.86,
         "loan_total_interest_rm": 29645,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6980
       },
       "specs": {
         "battery_kwh": 70.47,
@@ -6982,14 +7063,14 @@
       "ownership": {
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 120 kW)",
         "road_tax_rm": 100,
-        "insurance_rm_yr": 9006,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM350,000 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 35000,
         "loan_monthly_rm": 4209.38,
         "loan_total_interest_rm": 38588,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 9006
       },
       "specs": {
         "battery_kwh": 86.4,
@@ -7027,7 +7108,8 @@
         "loan_down_payment_rm": 16200,
         "loan_monthly_rm": 1978.71,
         "loan_total_interest_rm": 20412,
-        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4559
       },
       "specs": {
         "battery_kwh": 22.7,
@@ -7064,14 +7146,14 @@
         "warranty_battery_yrs": 5,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 258 kW)",
         "road_tax_rm": 425,
-        "insurance_rm_yr": 11431,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM450,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 45000,
         "loan_monthly_rm": 5412.05,
         "loan_total_interest_rm": 49613,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 11431
       },
       "specs": {
         "battery_kwh": 88.0,
@@ -7106,14 +7188,14 @@
       "ownership": {
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 300 kW)",
         "road_tax_rm": 545,
-        "insurance_rm_yr": 19680,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM775,000 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 77500,
         "loan_monthly_rm": 9320.76,
         "loan_total_interest_rm": 85444,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 19680
       },
       "specs": {
         "battery_kwh": 105.0,
@@ -7149,14 +7231,14 @@
         "warranty_battery_km": 160000,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 215 kW)",
         "road_tax_rm": 305,
-        "insurance_rm_yr": 8721,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM338,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 33889,
         "loan_monthly_rm": 4075.73,
         "loan_total_interest_rm": 37362,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 8721
       },
       "specs": {
         "battery_kwh": 66.5,
@@ -7191,14 +7273,14 @@
         "warranty_battery_km": 160000,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 300 kW)",
         "road_tax_rm": 545,
-        "insurance_rm_yr": 10134,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM393,888 @ 2.38%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 39389,
         "loan_monthly_rm": 4737.21,
         "loan_total_interest_rm": 43426,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 10134
       },
       "specs": {
         "battery_kwh": 80.0,
@@ -7232,14 +7314,14 @@
         "warranty_battery_yrs": 8,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 100 kW)",
         "road_tax_rm": 70,
-        "insurance_rm_yr": 4057,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,888 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 14989,
         "loan_monthly_rm": 1802.67,
         "loan_total_interest_rm": 16525,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 4057
       },
       "specs": {
         "battery_kwh": 39.2,
@@ -7272,14 +7354,14 @@
         "warranty_battery_yrs": 8,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
         "road_tax_rm": 160,
-        "insurance_rm_yr": 5410,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM208,348 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 20835,
         "loan_monthly_rm": 2505.76,
         "loan_total_interest_rm": 22970,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5410
       },
       "specs": {
         "battery_kwh": 64.0,
@@ -7311,14 +7393,14 @@
       "ownership": {
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 130 kW)",
         "road_tax_rm": 120,
-        "insurance_rm_yr": 3412,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM125,999 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 12600,
         "loan_monthly_rm": 1515.36,
         "loan_total_interest_rm": 13891,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 3412
       },
       "specs": {
         "battery_kwh": 51.1,
@@ -7350,14 +7432,14 @@
       "ownership": {
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 680 kW)",
         "road_tax_rm": 4890,
-        "insurance_rm_yr": 20156,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM793,790 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 79379,
         "loan_monthly_rm": 9546.74,
         "loan_total_interest_rm": 87515,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 20156
       },
       "specs": {
         "battery_kwh": 93.4,
@@ -7389,14 +7471,14 @@
       "ownership": {
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 370 kW)",
         "road_tax_rm": 865,
-        "insurance_rm_yr": 13207,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM519,990 @ 2.35%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 51999,
         "loan_monthly_rm": 6253.81,
         "loan_total_interest_rm": 57329,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 13207
       },
       "specs": {
         "battery_kwh": 106.0,
@@ -7429,14 +7511,14 @@
         "warranty_battery_yrs": 8,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 107 kW)",
         "road_tax_rm": 80,
-        "insurance_rm_yr": 5382,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM198,980 @ 2.50%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 19898,
         "loan_monthly_rm": 2393.09,
         "loan_total_interest_rm": 21938,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 5382
       },
       "specs": {
         "battery_kwh": 35.5,
@@ -7471,14 +7553,14 @@
         "warranty_battery_km": 160000,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 135 kW)",
         "road_tax_rm": 140,
-        "insurance_rm_yr": 7236,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM278,800 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 27880,
         "loan_monthly_rm": 3353.07,
         "loan_total_interest_rm": 30738,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 7236
       },
       "specs": {
         "battery_kwh": 42.2,
@@ -7513,14 +7595,14 @@
         "warranty_battery_yrs": 8,
         "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
         "road_tax_rm": 160,
-        "insurance_rm_yr": 6663,
         "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM256,668 @ 2.40%)",
         "loan_rate_pct": 1.75,
         "loan_tenure_yrs": 7,
         "loan_down_payment_rm": 25667,
         "loan_monthly_rm": 3086.89,
         "loan_total_interest_rm": 28298,
-        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
+        "insurance_rm_yr": 6663
       },
       "specs": {
         "battery_kwh": 64.8,

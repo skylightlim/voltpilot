@@ -66,6 +66,12 @@ def main():
 
     by_id = {r[0]: r for r in results}
     for v in vehicles:
+        # Only touch vehicles this script owns. It previously popped
+        # insurance_rm_yr for every out-of-scope row, so running this and its
+        # sibling in sequence wiped each other's work and the catalog never held
+        # more than one powertrain's premiums at a time.
+        if v.get("type") != "ev":
+            continue
         rid = v["id"]
         _, prem, basis = by_id[rid]
         ownership = v.setdefault("ownership", {})

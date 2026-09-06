@@ -536,6 +536,22 @@ def _loan_parameters(vehicle: dict) -> tuple[float, float, int, float]:
     return max(0.0, price - down), rate, tenure, down
 
 
+# Servicing cost when the catalog has no measured figure. Only 22 of 184 rows
+# carry one, so the fallback decides this for most vehicles — and a single flat
+# RM600 charged a hybrid the same servicing as a battery EV, understating 50 of
+# 57 hybrids by roughly a third. These are the medians of the rows that DO carry
+# a figure (EV n=15 -> 600, hybrid n=7 -> 950). No PHEV row carries one, so PHEV
+# takes the hybrid median: it has the same engine servicing plus a drive battery,
+# making the hybrid figure a floor rather than a guess in the other direction.
+# Kept in code, not written into the catalog, so the data file holds only
+# measured values and this stays visibly an estimate.
+_MAINTENANCE_FALLBACK_RM_YR = {"ev": 600.0, "hybrid": 950.0, "phev": 950.0}
+
+
+def _maintenance_fallback(vehicle: dict) -> float:
+    return _MAINTENANCE_FALLBACK_RM_YR.get(vehicle.get("type", ""), 600.0)
+
+
 def financial_tco_excluding(vehicle: dict) -> dict:
     """10-yr TCO excluding purchase price and running cost (D18).
 
@@ -546,7 +562,7 @@ def financial_tco_excluding(vehicle: dict) -> dict:
     own = vehicle.get("ownership", {})
     financed, rate, tenure, down = _loan_parameters(vehicle)
     insurance = float(own.get("insurance_rm_yr") or (price * 0.015))
-    maintenance = float(own.get("maintenance_rm_yr", 600))
+    maintenance = float(own.get("maintenance_rm_yr") or _maintenance_fallback(vehicle))
     road_tax = float(own.get("road_tax_rm", 0))
 
     interest = loan_interest_total(financed, tenure, rate)
@@ -650,9 +666,23 @@ def _phev_ev_share(vehicle: dict, profile: dict) -> float:
     specs = vehicle.get("specs", {})
     range_km = float(specs.get("range_km", 0) or 0)
     daily = max(float(profile.get("daily_km", 0) or 0), 1.0)
-    coverage = min(1.0, range_km / daily) if range_km > 0 else 0.35
+    commute_cov = min(1.0, range_km / daily) if range_km > 0 else 0.35
+
+    # Long trips are the part the commute term cannot see. `specs.range_km` on a
+    # PHEV is the ELECTRIC range (65-170 km here), so range/daily was >= 1 for 22
+    # of 25 PHEVs at a normal commute. That pinned the share to exactly 1.0, made
+    # litres_yr = l100 * (1 - 1.0) = 0, and modelled those cars as burning no
+    # petrol at all — scoring them as pure EVs on both running cost and CO2.
+    # On a round trip only the first EV-range km are electric.
+    round_trip = max(2.0 * destination_distance_km(profile), 1.0)
+    trip_cov = min(1.0, range_km / round_trip) if range_km > 0 else 0.1
+
+    w = long_trip_weight(profile)  # 0.1 rarely .. 0.85 weekly
+    coverage = (1.0 - w) * commute_cov + w * trip_cov
+
     if profile.get("can_charge_home"):
         return coverage
+    # no home charger: opportunistic public top-ups only
     return min(coverage, 0.5)
 
 

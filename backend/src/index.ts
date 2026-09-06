@@ -1,27 +1,62 @@
-import { Container, DurableObject } from "cloudflare:workers";
+import { DurableObject } from "cloudflare:workers";
 
 interface Env {
-  BACKEND: DurableObjectNamespace;
+  BACKEND: DurableObjectNamespace<Backend>;
+  /** Shared secret for POST /admin/refresh. Set with `wrangler secret put ADMIN_TOKEN`. */
+  ADMIN_TOKEN?: string;
+}
+
+/** One container instance, addressed by a stable name. */
+function backend(env: Env) {
+  return env.BACKEND.get(env.BACKEND.idFromName("backend"));
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const id = env.BACKEND.idFromName("backend");
-    const stub = env.BACKEND.get(id);
-    return stub.fetch(request);
+    return backend(env).fetch(request);
+  },
+
+  /**
+   * Daily data refresh, driven by the cron trigger in wrangler.toml
+   * (0 22 * * * UTC = 06:00 MYT).
+   *
+   * The Worker only kicks the container; the actual work lives in
+   * scripts/daily_update.py behind POST /admin/refresh. waitUntil keeps the
+   * invocation alive for the fetch, and errors are logged rather than thrown so
+   * a dead upstream shows up in `wrangler tail` instead of as a failed cron.
+   */
+  async scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+    ctx.waitUntil(
+      (async () => {
+        if (!env.ADMIN_TOKEN) {
+          console.error("scheduled: ADMIN_TOKEN unset — refresh endpoint is disabled");
+          return;
+        }
+        try {
+          const res = await backend(env).fetch(
+            new Request("http://backend/admin/refresh", {
+              method: "POST",
+              headers: { Authorization: `Bearer ${env.ADMIN_TOKEN}` },
+            }),
+          );
+          const body = await res.text();
+          console.log(`scheduled(${event.cron}) -> ${res.status} ${body.slice(0, 500)}`);
+        } catch (err) {
+          console.error(`scheduled(${event.cron}) failed:`, err);
+        }
+      })(),
+    );
   },
 };
 
 export class Backend extends DurableObject<Env> {
-  private container: Container;
-
-  constructor(ctx: DurableObjectState, env: Env) {
-    super(ctx, env);
-    this.container = ctx.container!;
-  }
-
   async fetch(request: Request): Promise<Response> {
-    await this.container.start();
-    return this.container.fetch(request);
+    // ctx.container is present because wrangler.toml binds this class to a
+    // container image. start() is idempotent once the instance is running.
+    const container = this.ctx.container!;
+    if (!container.running) {
+      container.start();
+    }
+    return container.getTcpPort(8080).fetch(request);
   }
 }

@@ -18,6 +18,9 @@ DATA_DIR = Path(os.getenv("DATA_DIR", str(REPO_DIR / "data")))
 class Settings:
     database_url: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./dev.db")
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
+    # Shared secret for POST /admin/refresh. Unset disables the endpoint rather
+    # than leaving an unauthenticated trigger for outbound fetches and file writes.
+    admin_token: str = os.getenv("ADMIN_TOKEN", "")
     analyst_model: str = os.getenv("GEMINI_ANALYST_MODEL", "gemini-3.7-flash")
     live_model: str = os.getenv("GEMINI_LIVE_MODEL", "gemini-3.1-flash-live-preview")
     smtp_host: str = os.getenv("SMTP_HOST", "localhost")
