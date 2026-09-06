@@ -250,3 +250,76 @@ def test_buckets_are_independent_per_endpoint():
     for _ in range(rl.limit_for("/score") + 2):
         client.post("/score", json={}, headers=hdr)
     assert client.get("/results/nonexistent", headers=hdr).status_code != 429
+
+
+# ---------------------------------------------------------------------------
+# Startup
+# ---------------------------------------------------------------------------
+
+
+def test_init_db_builds_a_fresh_database(tmp_path, monkeypatch):
+    """The app must reach a serving state from an empty database."""
+    import asyncio
+    import importlib
+    monkeypatch.setenv("DATABASE_URL", f"sqlite+aiosqlite:///{tmp_path/'fresh.db'}")
+    import app.config, app.db
+    importlib.reload(app.config); db = importlib.reload(app.db)
+
+    asyncio.run(db.init_db())
+
+    import sqlite3
+    names = {r[0] for r in sqlite3.connect(tmp_path / "fresh.db")
+             .execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    assert "profiles" in names
+    assert "alembic_version" in names, "migrations did not record a revision"
+
+
+def test_init_db_adopts_a_database_built_before_alembic(tmp_path, monkeypatch):
+    """A pre-alembic database must be stamped, not rebuilt.
+
+    Regression: init_db switched from create_all to `alembic upgrade head`, and
+    against a database whose tables already existed the upgrade tried to CREATE
+    TABLE over live tables. Startup then hung while uvicorn kept the port bound,
+    so the service looked alive and answered nothing — which is how the voice
+    interview lost its Gemini token endpoint.
+    """
+    import asyncio
+    import importlib
+    url = f"sqlite+aiosqlite:///{tmp_path/'legacy.db'}"
+    monkeypatch.setenv("DATABASE_URL", url)
+    import app.config, app.db
+    importlib.reload(app.config); db = importlib.reload(app.db)
+
+    # build the schema the old way, with no alembic_version
+    async def build_legacy():
+        async with db._engine.begin() as conn:
+            await conn.run_sync(db.Base.metadata.create_all)
+    asyncio.run(build_legacy())
+
+    import sqlite3
+    before = {r[0] for r in sqlite3.connect(tmp_path / "legacy.db")
+              .execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    assert "alembic_version" not in before
+
+    asyncio.run(db.init_db())          # must not raise, must not hang
+
+    after = {r[0] for r in sqlite3.connect(tmp_path / "legacy.db")
+             .execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    assert "alembic_version" in after, "existing database was not adopted"
+    assert "profiles" in after
+
+
+def test_no_sync_only_database_driver_is_required():
+    """Migrations must run on the app's own async engine.
+
+    env.py once rewrote the async URL to psycopg2 — a driver nothing else used.
+    When it was missing, startup failed while the port stayed bound.
+    """
+    env = (REPO / "backend" / "migrations" / "env.py").read_text(encoding="utf-8")
+    # the driver may be named in a comment explaining why it is gone; what must
+    # not exist is a rewrite that selects it
+    code = "\n".join(l for l in env.splitlines() if not l.lstrip().startswith("#"))
+    assert "+psycopg2" not in code, "env.py still rewrites the URL to a sync driver"
+    reqs = (REPO / "backend" / "requirements.txt").read_text(encoding="utf-8")
+    assert not any(l.strip().startswith("psycopg2") for l in reqs.splitlines()), \
+        "psycopg2 is declared as a dependency again"

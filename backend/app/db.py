@@ -194,9 +194,33 @@ async def init_db() -> None:
     from alembic import command
     from alembic.config import Config
 
-    cfg = Config(str(BASE_DIR / "alembic.ini"))
-    cfg.set_main_option("script_location", str(BASE_DIR / "migrations"))
-    await asyncio.to_thread(command.upgrade, cfg, "head")
+    from alembic.runtime.migration import MigrationContext
+    from sqlalchemy import inspect
+
+    def _upgrade(sync_conn) -> None:
+        cfg = Config(str(BASE_DIR / "alembic.ini"))
+        cfg.set_main_option("script_location", str(BASE_DIR / "migrations"))
+        # Hand alembic this connection so it runs on the engine the app already
+        # has, rather than opening its own with a second driver.
+        cfg.attributes["connection"] = sync_conn
+
+        stamped = MigrationContext.configure(sync_conn).get_current_revision()
+        already_built = "profiles" in inspect(sync_conn).get_table_names()
+
+        if stamped is None and already_built:
+            # A database created by the old Base.metadata.create_all: the schema
+            # is there but alembic has never seen it, so an upgrade would try to
+            # CREATE TABLE over live tables. Adopt it at the baseline instead;
+            # later revisions then apply normally.
+            command.stamp(cfg, "head")
+        else:
+            command.upgrade(cfg, "head")
+
+    # connect(), not begin(): alembic opens its own transaction inside env.py,
+    # and nesting that in one we already started hangs the connection.
+    async with _engine.connect() as conn:
+        await conn.run_sync(_upgrade)
+        await conn.commit()
 
 
 async def seed_if_empty(db: AsyncSession) -> None:

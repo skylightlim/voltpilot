@@ -4,9 +4,15 @@ Reads DATABASE_URL rather than alembic.ini, so one set of migrations runs
 against local SQLite and deployed Postgres with no config change and no
 connection string in the repository.
 
-Runs synchronously: the app's engine is async, but migrations are a one-shot
-startup step and a sync driver keeps this simple. The async URL is rewritten to
-its sync equivalent below.
+When the app calls this at startup it passes its own async connection through
+`config.attributes["connection"]`, so migrations run on the engine that is
+already configured and no second database driver is needed. Invoked from the
+command line with no connection, it builds one from DATABASE_URL.
+
+An earlier version always rewrote the async URL to a sync driver (psycopg2).
+That made the app depend on a driver nothing else used — and when it was
+missing, startup failed while uvicorn kept the port bound, so the service
+looked alive and answered nothing.
 """
 
 from __future__ import annotations
@@ -30,30 +36,41 @@ if config.config_file_name:
 target_metadata = Base.metadata
 
 
-def _sync_url() -> str:
+def _url() -> str:
+    """DATABASE_URL with the async driver stripped, for standalone CLI use."""
     url = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./dev.db")
-    return url.replace("+aiosqlite", "").replace("+asyncpg", "+psycopg2" if "postgresql" in url else "")
+    return url.replace("+aiosqlite", "").replace("+asyncpg", "")
 
 
 def run_migrations_offline() -> None:
-    context.configure(url=_sync_url(), target_metadata=target_metadata, literal_binds=True)
+    context.configure(url=_url(), target_metadata=target_metadata, literal_binds=True)
+    with context.begin_transaction():
+        context.run_migrations()
+
+
+def _configure_and_run(connection) -> None:
+    context.configure(
+        connection=connection,
+        target_metadata=target_metadata,
+        # SQLite cannot ALTER most things in place; batch mode rewrites the
+        # table instead, so one migration works on both backends.
+        render_as_batch=connection.dialect.name == "sqlite",
+        compare_type=True,
+    )
     with context.begin_transaction():
         context.run_migrations()
 
 
 def run_migrations_online() -> None:
-    engine = create_engine(_sync_url(), poolclass=pool.NullPool)
+    # Handed in by app.db.init_db via run_sync — reuse the app's own engine.
+    existing = config.attributes.get("connection")
+    if existing is not None:
+        _configure_and_run(existing)
+        return
+
+    engine = create_engine(_url(), poolclass=pool.NullPool)
     with engine.connect() as connection:
-        context.configure(
-            connection=connection,
-            target_metadata=target_metadata,
-            # SQLite cannot ALTER most things in place; batch mode rewrites the
-            # table instead, so the same migration works on both backends.
-            render_as_batch=connection.dialect.name == "sqlite",
-            compare_type=True,
-        )
-        with context.begin_transaction():
-            context.run_migrations()
+        _configure_and_run(connection)
 
 
 if context.is_offline_mode():
