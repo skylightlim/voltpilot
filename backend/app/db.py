@@ -156,7 +156,18 @@ if settings.database_url.startswith("postgresql+asyncpg"):
     _ssl_ctx.verify_mode = ssl.CERT_NONE
     _connect_args["ssl"] = _ssl_ctx
 
-_engine = create_async_engine(settings.database_url, echo=False, connect_args=_connect_args)
+_engine_kwargs: dict = {"echo": False, "connect_args": _connect_args}
+if settings.database_url.startswith("postgresql"):
+    # Managed Postgres and the proxies in front of it drop idle connections.
+    # Without pre-ping SQLAlchemy hands out a socket the server has already
+    # closed and the first query dies with
+    #   InterfaceError: <asyncpg...InterfaceError>: connection is closed
+    # which surfaces as a 500 on the very next request after a quiet period.
+    # pre_ping costs one cheap round trip; recycle retires sockets before the
+    # typical 30-60 min server-side idle timeout can reach them.
+    _engine_kwargs.update(pool_pre_ping=True, pool_recycle=1800)
+
+_engine = create_async_engine(settings.database_url, **_engine_kwargs)
 AsyncSessionLocal = async_sessionmaker(_engine, expire_on_commit=False)
 
 

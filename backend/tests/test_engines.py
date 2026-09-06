@@ -173,3 +173,93 @@ class TestTopsis:
         out = run_topsis(rows, preference_weights(DEFAULT_SLIDERS))
         assert [r["rank"] for r in out] == [1, 2, 3, 4]
         assert out[0]["topsis_score"] >= out[-1]["topsis_score"]
+
+# ---------------------------------------------------------------------------
+# Spec Step 02 — hard feasibility gate
+# ---------------------------------------------------------------------------
+
+
+def test_postcode_falls_back_to_state_not_kl():
+    """An unmapped Sabah postcode must not inherit Klang Valley coordinates.
+
+    Regression: home_coordinates() used to return _KL for any unknown prefix,
+    which reported 300+ chargers within 20 km for users in Tawau or Labuan.
+    """
+    kl = engines.home_coordinates("50000")
+    tawau = engines.home_coordinates("91000")
+    assert tawau != kl
+    assert engines.public_stations_within("91000") < engines.public_stations_within("50000")
+
+
+def test_bev_gate_blocks_only_without_any_charging_access():
+    no_access = {**BASE_PROFILE, "home_postcode": "91000",
+                 "can_charge_home": False, "can_charge_work": False}
+    assert engines.bev_charging_gate(no_access)["passed"] is False
+
+    # any one of the three routes to charging is enough
+    for override in ({"can_charge_home": True}, {"can_charge_work": True},
+                     {"home_postcode": "50000"}):
+        assert engines.bev_charging_gate({**no_access, **override})["passed"] is True
+
+
+def test_gate_removes_bevs_but_never_empties_the_pool():
+    profile = {**BASE_PROFILE, "home_postcode": "91000",
+               "can_charge_home": False, "can_charge_work": False}
+    bundle = scoring.score_catalog(profile, {"save_money": 50, "environment": 50,
+                                             "convenience": 50, "future_proofing": 50})
+    assert bundle["feasibility"]["passed"] is False
+    assert bundle["feasibility"]["bev_removed"] > 0
+    assert bundle["ranking"], "gate must never hand back an empty ranking"
+    assert not [r for r in bundle["ranking"] if r["type"] == "ev"]
+
+
+# ---------------------------------------------------------------------------
+# Spec Step 03 — payback tipping point
+# ---------------------------------------------------------------------------
+
+
+def test_payback_not_evaluated_without_a_current_vehicle_price():
+    """The baseline is 'keep current vehicle'; without its price, do not guess."""
+    out = engines.payback_for_candidate(100000, 2000, None, 10)
+    assert out == {"payback_years": None, "payback_status": "not_evaluated"}
+
+
+def test_payback_interpolates_between_years():
+    # saving 3000/yr against a 10000 price: gap +1000 at year 3, -2000 at year 4
+    out = engines.payback_for_candidate(10000, 0, 3000, 10)
+    assert out["payback_status"] == "within_horizon"
+    assert 3.3 < out["payback_years"] < 3.4  # 3 + 1000/3000
+
+
+def test_payback_respects_the_ownership_horizon():
+    within = engines.payback_for_candidate(10000, 0, 3000, ownership_years=10)
+    beyond = engines.payback_for_candidate(10000, 0, 3000, ownership_years=2)
+    assert within["payback_status"] == "within_horizon"
+    assert beyond["payback_status"] == "not_recovered_within_horizon"
+    assert within["payback_years"] == beyond["payback_years"]  # tagging only
+
+
+def test_payback_never_reached_when_candidate_costs_more_to_run():
+    out = engines.payback_for_candidate(100000, 9000, 5000, 10)
+    assert out == {"payback_years": None, "payback_status": "not_reached"}
+
+
+def test_payback_shortens_as_mileage_rises():
+    w = {"save_money": 50, "environment": 50, "convenience": 50, "future_proofing": 50}
+    base = {**BASE_PROFILE, "current_vehicle_price_rm": 120000, "ownership_years": 10}
+
+    def fastest(daily_km: float) -> float:
+        rows = scoring.score_catalog({**base, "daily_km": daily_km}, w)["ranking"]
+        return min(r["payback_years"] for r in rows if r["payback_years"] is not None)
+
+    assert fastest(140) < fastest(45), "more km driven must repay the premium sooner"
+
+
+def test_payback_tags_but_does_not_screen():
+    """Step 03 demotes and explains; it must not shrink the candidate pool."""
+    w = {"save_money": 50, "environment": 50, "convenience": 50, "future_proofing": 50}
+    without = scoring.score_catalog(dict(BASE_PROFILE), w)
+    with_pb = scoring.score_catalog({**BASE_PROFILE, "current_vehicle_price_rm": 120000}, w)
+    assert len(with_pb["ranking"]) == len(without["ranking"])
+    assert with_pb["payback"]["evaluated"] is True
+    assert without["payback"]["evaluated"] is False

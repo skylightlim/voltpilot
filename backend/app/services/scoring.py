@@ -27,6 +27,21 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
     if not affordable:
         affordable = catalog
 
+    # Spec Step 02 — hard feasibility gate. A buyer with no home charging, no
+    # workplace charging and fewer than 5 public points within 20 km cannot run
+    # a battery-electric car, so those candidates are removed before scoring
+    # rather than merely ranked low. PHEVs survive: they still drive on petrol.
+    # Screening only — the six criteria are untouched.
+    gate = engines.bev_charging_gate(profile)
+    bev_removed = 0
+    if not gate["passed"]:
+        before = len(affordable)
+        affordable = [v for v in affordable if v.get("type") != "ev"]
+        bev_removed = before - len(affordable)
+        if not affordable:  # never hand back nothing
+            affordable = catalog
+            bev_removed = 0
+
     rows = []
     for raw in affordable:
         vehicle = dict(raw)
@@ -63,6 +78,35 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
             }
         )
 
+    # Spec Step 03 — payback tagging. Candidate annual cost pairs the existing
+    # engines rather than importing the spec's C-LCC.
+    #
+    # It is deliberately running cost + maintenance, NOT the full
+    # tco_excluding_rm. The spec's baseline (Eq. 2) is fuel + maintenance +
+    # depreciation of the car already owned; charging the candidate for
+    # insurance, road tax, loan interest and opportunity cost while the baseline
+    # carries none of them compares unlike with unlike, and made almost every
+    # candidate "not_reached" at 15-22 years. Those costs are largely paid on the
+    # current car too, so they cancel. The purchase price is the investment being
+    # repaid and is already the starting cost gap.
+    #
+    # Per the ownership-horizon rule this only tags; nothing is deleted, so the
+    # six-criterion ranking below is unchanged.
+    annual_km = features["annual_km"]
+    baseline = engines.baseline_annual_cost(profile, annual_km)
+    own_years = max(1, int(profile.get("ownership_years") or 10))
+    for r in rows:
+        maintenance_yr = float(r["tco_components"].get("maintenance_10yr_rm", 6000)) / 10.0
+        candidate_annual = float(r["running_cost_raw"]) + maintenance_yr
+        r.update(
+            engines.payback_for_candidate(
+                price_rm=float(r["price_rm"]),
+                candidate_annual_cost=candidate_annual,
+                baseline_annual=baseline,
+                ownership_years=own_years,
+            )
+        )
+
     tco_scores = normalize_cost_scores({r["slug"]: r["financial_raw"] for r in rows})
     energy_scores = normalize_cost_scores({r["slug"]: r["energy_raw"] for r in rows})
     behaviour_scores = {r["slug"]: engines.behaviour_engine(r, profile, features) for r in rows}
@@ -93,5 +137,16 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
             "applied": budget_applied,
             "considered": len(affordable),
             "catalog_total": len(catalog),
+        },
+        "feasibility": {**gate, "bev_removed": bev_removed},
+        "payback": {
+            "baseline_annual_rm": round(baseline, 0) if baseline is not None else None,
+            "ownership_years": own_years,
+            "evaluated": baseline is not None,
+            "within_horizon": sum(1 for r in rows if r.get("payback_status") == "within_horizon"),
+            "beyond_horizon": sum(
+                1 for r in rows if r.get("payback_status") == "not_recovered_within_horizon"
+            ),
+            "not_reached": sum(1 for r in rows if r.get("payback_status") == "not_reached"),
         },
     }

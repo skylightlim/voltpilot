@@ -160,13 +160,170 @@ def _load_postcode_centroids() -> dict[str, tuple[float, float]]:
     return _postcode_coords
 
 
+# Postcode ranges -> (state, geographic centroid). Station geodata only covers
+# 51 of the ~98 live prefixes, and every miss used to resolve to KL. That told a
+# Tawau user they had 318 chargers within 20 km — KL's count, 1,500 km away —
+# and inflated BEV feasibility in exactly the states where charging is sparsest.
+# Centroids are geographic, not capital-city, so an unresolved postcode reads as
+# the middle of its state rather than optimistically as its best-served city.
+_STATE_RANGES: list[tuple[int, int, str, tuple[float, float]]] = [
+    (1000, 2800, "Perlis", (6.44, 100.20)),
+    (5000, 9810, "Kedah", (5.98, 100.66)),
+    (10000, 14400, "Penang", (5.36, 100.40)),
+    (15000, 18500, "Kelantan", (5.75, 102.10)),
+    (20000, 24300, "Terengganu", (4.99, 103.10)),
+    (25000, 28800, "Pahang", (3.81, 102.90)),
+    (30000, 36810, "Perak", (4.60, 101.09)),
+    (39000, 39200, "Pahang", (4.47, 101.38)),
+    (40000, 48300, "Selangor", (3.24, 101.45)),
+    (49000, 49000, "Pahang", (3.81, 102.90)),
+    (50000, 60999, "Kuala Lumpur", (3.14, 101.69)),
+    (62000, 62988, "Putrajaya", (2.93, 101.70)),
+    (63000, 68100, "Selangor", (3.05, 101.60)),
+    (70000, 73509, "Negeri Sembilan", (2.73, 102.13)),
+    (75000, 78309, "Melaka", (2.24, 102.35)),
+    (79000, 86900, "Johor", (1.94, 103.36)),
+    (87000, 87033, "Labuan", (5.28, 115.24)),
+    (88000, 91309, "Sabah", (5.42, 116.90)),
+    (93000, 98859, "Sarawak", (2.50, 113.00)),
+]
+
+
+def state_for_postcode(postcode: str) -> tuple[str, tuple[float, float]] | None:
+    """State and geographic centroid for a Malaysian postcode, if it is in range."""
+    try:
+        n = int(str(postcode or "")[:5])
+    except ValueError:
+        return None
+    for lo, hi, name, centre in _STATE_RANGES:
+        if lo <= n <= hi:
+            return name, centre
+    return None
+
+
 def home_coordinates(postcode: str) -> tuple[float, float]:
-    """Best available home position: exact postcode, else 2-digit prefix, else KL."""
+    """Best available home position.
+
+    Exact postcode centroid, else 2-digit prefix, else the centroid of the state
+    the postcode belongs to, and only then KL. The state step exists because the
+    previous KL fallback silently gave East Malaysian users Klang Valley
+    infrastructure — see _STATE_RANGES.
+    """
     p = str(postcode or "")[:5]
     exact = _load_postcode_centroids()
     if p in exact:
         return exact[p]
-    return _load_prefix_centroids().get(p[:2], _KL)
+    prefix = _load_prefix_centroids().get(p[:2])
+    if prefix is not None:
+        return prefix
+    st = state_for_postcode(p)
+    return st[1] if st else _KL
+
+
+# Spec Step 02 — hard feasibility gate for battery-electric candidates.
+# 20 km is the specification's radius; AREA_RADIUS_KM (15 km) stays the display
+# radius so the "in your area" panel keeps its existing meaning.
+BEV_GATE_RADIUS_KM = 20.0
+BEV_GATE_MIN_STATIONS = 5
+
+
+def public_stations_within(postcode: str, radius_km: float = BEV_GATE_RADIUS_KM) -> int:
+    """Operational public charging points within radius_km of the user's postcode."""
+    home = home_coordinates(postcode)
+    return sum(1 for st in _load_stations() if _haversine_km(home, st) <= radius_km)
+
+
+def bev_charging_gate(profile: dict) -> dict:
+    """Can this user actually charge a BEV?
+
+    Spec Step 02: keep BEV candidates when home OR workplace charging is
+    available, or when at least 5 public points sit within 20 km. Only when the
+    user has neither private option AND fewer than 5 public points does the
+    specification remove every BEV.
+
+    This screens; it does not score. The infrastructure and behaviour engines
+    still rank the survivors exactly as before.
+    """
+    home_ok = bool(profile.get("can_charge_home"))
+    work_ok = bool(profile.get("can_charge_work"))
+    stations = public_stations_within(profile.get("home_postcode", ""))
+    public_ok = stations >= BEV_GATE_MIN_STATIONS
+    passed = home_ok or work_ok or public_ok
+    if home_ok or work_ok:
+        reason = "private_charging"
+    elif public_ok:
+        reason = "public_charging"
+    else:
+        reason = "no_charging_access"
+    return {
+        "passed": passed,
+        "reason": reason,
+        "stations_within_radius": stations,
+        "radius_km": BEV_GATE_RADIUS_KM,
+        "min_stations": BEV_GATE_MIN_STATIONS,
+    }
+
+
+# Spec Step 03 — payback as a cost tipping point.
+#
+# The baseline is always "keep the current vehicle" (spec Eq. 2). Its two fixed
+# coefficients are RM/km running terms; the third is straight-line depreciation
+# of the car the buyer already owns, spread over the kilometres they will drive.
+BASELINE_RUNNING_RM_PER_KM = 0.04974175 + 0.18905
+BASELINE_DEPRECIATION_SHARE = 0.40
+
+
+def baseline_annual_cost(profile: dict, annual_km: float) -> float | None:
+    """Annual cost of keeping the current petrol car (spec Eq. 2).
+
+    None when the buyer has not told us their current vehicle's price — the
+    baseline is undefined without it and payback must not be guessed.
+    """
+    price = float(profile.get("current_vehicle_price_rm") or 0)
+    if price <= 0 or annual_km <= 0:
+        return None
+    years = max(1, int(profile.get("ownership_years") or 10))
+    vkt = annual_km * years
+    per_km = BASELINE_RUNNING_RM_PER_KM + (BASELINE_DEPRECIATION_SHARE * price) / vkt
+    return per_km * annual_km
+
+
+def payback_for_candidate(
+    price_rm: float,
+    candidate_annual_cost: float,
+    baseline_annual: float | None,
+    ownership_years: int,
+    horizon_years: int = 30,
+) -> dict:
+    """Years for a candidate's running savings to repay its purchase price.
+
+    Spec Eq. 5-8: walk the cost gap year by year and interpolate the crossing.
+    Status follows the ownership-horizon rule — note the spec is explicit that a
+    candidate past its horizon is *demoted and explained*, never deleted, so this
+    only tags. Screening decisions stay with the caller.
+    """
+    if baseline_annual is None:
+        return {"payback_years": None, "payback_status": "not_evaluated"}
+
+    saving = baseline_annual - candidate_annual_cost
+    if price_rm <= 0:
+        return {"payback_years": 0.0, "payback_status": "within_horizon"}
+    if saving <= 0:
+        # never cheaper than simply keeping the current car
+        return {"payback_years": None, "payback_status": "not_reached"}
+
+    prev_gap = float(price_rm)
+    for t in range(1, horizon_years + 1):
+        gap = price_rm - saving * t
+        if gap <= 0:
+            # Eq. 8 linear interpolation between the last positive and first
+            # non-positive year, so the UI gets 4.67 rather than a bare 5.
+            frac = prev_gap / (prev_gap - gap) if prev_gap != gap else 0.0
+            years = round((t - 1) + frac, 2)
+            status = "within_horizon" if years <= ownership_years else "not_recovered_within_horizon"
+            return {"payback_years": years, "payback_status": status}
+        prev_gap = gap
+    return {"payback_years": None, "payback_status": "not_reached"}
 
 
 def classify_area(count: int) -> str:
