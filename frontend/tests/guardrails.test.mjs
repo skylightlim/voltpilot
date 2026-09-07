@@ -173,6 +173,34 @@ describe("voice interview", () => {
     }
   });
 
+  test("no second speech recognizer runs alongside Gemini's transcription", () => {
+    // Android Chrome plays a system chime on every SpeechRecognition start and
+    // abort. The advisor's playback aborted one and restarted it on every turn,
+    // so the whole interview beeped on Honor and Pixel handsets, where those
+    // chimes ring at notification volume. Desktop Chrome plays them quietly,
+    // which is why it survived. The session already sets inputAudioTranscription
+    // and reads serverContent.inputTranscription, so the local recognizer bought
+    // slightly faster interim text and cost a beep per exchange.
+    assert.ok(
+      !/webkitSpeechRecognition|new SpeechRecognition/.test(src),
+      "the voice page constructs a SpeechRecognition again",
+    );
+    assert.match(src, /inputTranscription/, "server transcription must remain the source");
+  });
+
+  test("a live session holds a screen wake lock and gives it back", () => {
+    // iOS auto-locks the display after a short idle and the interview is minutes
+    // of deliberately not touching the screen, so the phone blanked mid-answer
+    // and took the AudioContexts and the socket with it.
+    assert.match(src, /wakeLock\.request\(\s*["']screen["']\s*\)/, "no wake lock is requested");
+    // Releasing only when the interview finishes normally would leave the screen
+    // awake on whatever the user opened after walking away mid-interview.
+    // The definition reads `const releaseWakeLock = useCallback(...)`, so a match
+    // on the call syntax counts invocations only.
+    assert.match(src, /^\s*releaseWakeLock\(\);/m, "releaseWakeLock is defined but never called");
+    assert.match(src, /cleanupRef\.current\(\)/, "session teardown is not wired to unmount");
+  });
+
   test("the voice script covers every field /interview/form collects", () => {
     // The two intakes feed the same scoring engine. A field the form asks for
     // and the voice interview does not is not a missing question — it is a

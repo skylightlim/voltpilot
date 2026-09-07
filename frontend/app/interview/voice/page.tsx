@@ -9,7 +9,7 @@ import { SESSION, apiService } from "@/lib/api";
 import { useLang, useT } from "@/lib/i18n";
 import { getWorkletUrl, downsampleAndConvertToInt16, pcmToBase64 } from "@/lib/voice/audio";
 import { isEchoOfAdvisor } from "@/lib/voice/echo";
-import { appendDelta, withInterim, withFinalUser, promoteStatus } from "@/lib/voice/transcript";
+import { appendDelta, promoteStatus } from "@/lib/voice/transcript";
 
 type Stage = "checking" | "ready" | "live" | "extracting" | "done" | "fallback";
 type ChatMsg = { id: string; role: "advisor" | "user" | "system"; text: string; time?: string; isInterim?: boolean };
@@ -43,14 +43,12 @@ export default function VoiceInterviewPage() {
   const playCtxRef = useRef<AudioContext | null>(null);
   const micGainRef = useRef<GainNode | null>(null);
   const nextTimeRef = useRef(0);
-  /** True while recognition is deliberately stopped for advisor playback.
-   *  Without it, abort() ran on every 20ms audio chunk — ~50 times a second. */
-  const recogSuppressedRef = useRef(false);
   const speakerEndTimeRef = useRef(0);
   const isAdvisorSpeakingRef = useRef(false);
   const lastAdvisorSpokeTimeRef = useRef(0);
   const speakingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const recentAdvisorPhrasesRef = useRef<string[]>([]);
+  const wakeLockRef = useRef<WakeLockSentinel | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sessionRef = useRef<any>(null);
   const sessionReadyRef = useRef(false);
@@ -58,8 +56,6 @@ export default function VoiceInterviewPage() {
   const logRef = useRef<ChatMsg[]>([]);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const transcriptRef = useRef("");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognitionRef = useRef<any>(null);
 
   useEffect(() => { stageRef.current = stage; }, [stage]);
 
@@ -73,40 +69,41 @@ export default function VoiceInterviewPage() {
     setMessages(logRef.current);
   }, []);
 
-  // Update live interim recognized user speech in real-time
-  const updateInterimUserMsg = useCallback((interimText: string) => {
-    if (!interimText.trim()) return;
-    if (Date.now() - lastAdvisorSpokeTimeRef.current < 500) return;
-    if (isEchoOfAdvisor(interimText, recentAdvisorPhrasesRef.current)) return;
-
-    logRef.current = withInterim(
-      logRef.current, interimText, `interim_${nextId()}`, formatTime(),
-    );
-    setMessages(logRef.current);
+  /* Screen Wake Lock, held for as long as the session is live.
+     iOS auto-locks the display after a short idle, and a voice interview is
+     minutes of deliberately not touching the screen — so it blanked mid-answer,
+     Safari suspended the page, and the AudioContexts and the socket went with
+     it. Reported as "the phone turns itself off during the advisor".
+     Safari has shipped this since 16.4 and Chrome on Android since 84; where it
+     is absent the request throws and the session runs exactly as before. */
+  const releaseWakeLock = useCallback(() => {
+    const sentinel = wakeLockRef.current;
+    wakeLockRef.current = null;
+    sentinel?.release().catch(() => {});
   }, []);
 
-  // Finalize recognized user speech
-  const finalizeUserMsg = useCallback((finalText: string) => {
-    if (!finalText.trim()) return;
-    if (Date.now() - lastAdvisorSpokeTimeRef.current < 500) return;
-    if (isEchoOfAdvisor(finalText, recentAdvisorPhrasesRef.current)) {
-      console.log("[voice] Dropped acoustic echo of advisor:", finalText);
-      return;
+  const requestWakeLock = useCallback(async () => {
+    if (!("wakeLock" in navigator) || wakeLockRef.current) return;
+    try {
+      const sentinel = await navigator.wakeLock.request("screen");
+      wakeLockRef.current = sentinel;
+      // The browser releases the lock itself whenever the page is hidden. Clear
+      // the ref when that happens so the visibilitychange handler below knows to
+      // take a fresh one rather than assuming it still holds this one.
+      sentinel.addEventListener("release", () => {
+        if (wakeLockRef.current === sentinel) wakeLockRef.current = null;
+      });
+    } catch (err) {
+      // Not fatal — an older iOS, a denied request, or a battery-saver mode.
+      console.warn("[voice] Screen wake lock unavailable:", err);
     }
-
-    logRef.current = withFinalUser(logRef.current, finalText, nextId(), formatTime());
-    setMessages(logRef.current);
-    transcriptRef.current += "User: " + finalText.trim() + "\n";
   }, []);
 
   const cleanupSession = useCallback(() => {
+    releaseWakeLock();
     sessionReadyRef.current = false;
     isAdvisorSpeakingRef.current = false;
     speakerEndTimeRef.current = 0;
-    try {
-      recognitionRef.current?.stop();
-    } catch {}
-    recognitionRef.current = null;
     try {
       sessionRef.current?.sendRealtimeInput({
         audioStreamEnd: true,
@@ -119,7 +116,7 @@ export default function VoiceInterviewPage() {
     sessionRef.current = null;
     if (speakingTimeoutRef.current) clearTimeout(speakingTimeoutRef.current);
     setIsAdvisorSpeaking(false);
-  }, []);
+  }, [releaseWakeLock]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -127,6 +124,33 @@ export default function VoiceInterviewPage() {
       el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
     }
   }, [messages]);
+
+  // Nothing tore the session down when this page unmounted: leaving mid-interview
+  // (the "Back to home" link, the browser's back gesture) left the microphone
+  // open with the recording indicator lit, the socket connected, and — now that
+  // the page takes one — the wake lock held, so the phone would stay awake on
+  // whatever the user opened next. Held through a ref so the teardown runs on
+  // unmount only, not every time the callback identity changes.
+  const cleanupRef = useRef(cleanupSession);
+  useEffect(() => {
+    cleanupRef.current = cleanupSession;
+  }, [cleanupSession]);
+  useEffect(() => () => cleanupRef.current(), []);
+
+  // The wake lock is dropped by the browser every time the page hides, so one
+  // glance at another app would leave the rest of the interview unprotected.
+  // Take a fresh lock on return, and resume the audio contexts iOS suspends
+  // while backgrounded — otherwise playback comes back silent.
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.visibilityState !== "visible" || stageRef.current !== "live") return;
+      requestWakeLock();
+      playCtxRef.current?.resume().catch(() => {});
+      micCtxRef.current?.resume().catch(() => {});
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, [requestWakeLock]);
 
   // Fetch live token
   useEffect(() => {
@@ -150,11 +174,10 @@ export default function VoiceInterviewPage() {
    *  so playback never underruns mid-sentence. See playPcmDirect. */
   const PLAYBACK_JITTER_LEAD = 0.12;
 
-  /** Extra hold after the advisor's audio ends before the mic and recognition come
-   *  back. getUserMedia already requests echoCancellation, so this is a guard on
-   *  top of hardware AEC rather than the only defence. It was 0.4s, which meant
-   *  the first 400ms of your reply landed while recognition was still stopped —
-   *  lost speech, and a transcript that arrived late. */
+  /** Extra hold after the advisor's audio ends before the mic is unmuted.
+   *  getUserMedia already requests echoCancellation, so this is a guard on top
+   *  of hardware AEC rather than the only defence. It was 0.4s, which clipped
+   *  the first 400ms of a reply. */
   const ECHO_TAIL = 0.15;
 
   // --- Audio helpers ---
@@ -199,19 +222,6 @@ export default function VoiceInterviewPage() {
         micGainRef.current.gain.setValueAtTime(0, micCtxRef.current.currentTime);
       }
 
-      // Stop recognition while the advisor speaks, or it transcribes the advisor
-      // through the speakers. SpeechRecognition runs its own capture, so muting
-      // micGain does not cover this.
-      //
-      // Edge-triggered, not per chunk. This ran on every incoming 20ms chunk —
-      // ~50 abort() calls a second, 200 per 4-second reply. Chrome plays a chime
-      // on each start/stop, which is the beeping, and every abort throws away the
-      // in-progress recognition buffer, which is why transcripts lagged.
-      if (recognitionRef.current && !recogSuppressedRef.current) {
-        recogSuppressedRef.current = true;
-        try { recognitionRef.current.abort(); } catch {}
-      }
-
       if (speakingTimeoutRef.current) clearTimeout(speakingTimeoutRef.current);
       const msUntilDone = Math.max(50, (speakerEndTimeRef.current - ctx.currentTime) * 1000);
       speakingTimeoutRef.current = setTimeout(() => {
@@ -223,14 +233,6 @@ export default function VoiceInterviewPage() {
           // Restore mic gain after echo dissipation
           if (micGainRef.current && micCtxRef.current) {
             micGainRef.current.gain.setValueAtTime(1, micCtxRef.current.currentTime);
-          }
-
-          // Resume recognition once, matching the single abort above.
-          if (recogSuppressedRef.current) {
-            recogSuppressedRef.current = false;
-            if (recognitionRef.current && stageRef.current === "live") {
-              try { recognitionRef.current.start(); } catch {}
-            }
           }
         }
       }, msUntilDone);
@@ -313,6 +315,10 @@ export default function VoiceInterviewPage() {
     speakerEndTimeRef.current = 0;
     isAdvisorSpeakingRef.current = false;
     lastAdvisorSpokeTimeRef.current = 0;
+
+    // Before the mic prompt: this still runs inside the click that started the
+    // session, which is the context a wake lock request wants.
+    requestWakeLock();
 
     try {
       // 1. Microphone capture with audio enhancements
@@ -419,72 +425,23 @@ export default function VoiceInterviewPage() {
         silentGain.connect(micCtx.destination);
       }
 
-      // 5. Client-Side Instant Real-Time Speech Recognition with anti-echo protection
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const SpeechRecognitionClass = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognitionClass) {
-        try {
-          const recognition = new SpeechRecognitionClass();
-          recognition.continuous = true;
-          recognition.interimResults = true;
-          recognition.lang = lang === "bm" ? "ms-MY" : "en-MY";
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          recognition.onresult = (event: any) => {
-            const isMuted =
-              isAdvisorSpeakingRef.current ||
-              (playCtxRef.current && playCtxRef.current.currentTime < speakerEndTimeRef.current) ||
-              Date.now() - lastAdvisorSpokeTimeRef.current < 500;
-
-            if (isMuted) {
-              return;
-            }
-
-            let interim = "";
-            let final = "";
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-              const res = event.results[i];
-              if (res[0]?.transcript) {
-                if (res.isFinal) {
-                  final += res[0].transcript;
-                } else {
-                  interim += res[0].transcript;
-                }
-              }
-            }
-            if (final.trim()) {
-              finalizeUserMsg(final);
-            } else if (interim.trim()) {
-              updateInterimUserMsg(interim);
-            }
-          };
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          recognition.onerror = (err: any) => {
-            if (err.error !== "no-speech") {
-              console.warn("[voice] Client SpeechRecognition notice:", err.error);
-            }
-          };
-
-          recognition.onend = () => {
-            const isMuted =
-              isAdvisorSpeakingRef.current ||
-              (playCtxRef.current && playCtxRef.current.currentTime < speakerEndTimeRef.current);
-
-            if (stageRef.current === "live" && recognitionRef.current && !isMuted) {
-              try {
-                recognition.start();
-              } catch {}
-            }
-          };
-
-          recognition.start();
-          recognitionRef.current = recognition;
-          console.log("[voice] Instant Client SpeechRecognition active");
-        } catch (err) {
-          console.warn("[voice] SpeechRecognition not started, falling back to server transcription:", err);
-        }
-      }
+      // The user's speech is transcribed by Gemini itself — the session sets
+      // inputAudioTranscription and onmessage below reads
+      // serverContent.inputTranscription, which is what builds both the visible
+      // transcript and the text the extraction step parses.
+      //
+      // A second, local Web Speech API recognizer used to run alongside it for
+      // slightly faster interim text. It cost more than it bought. Android
+      // Chrome plays a system chime on every start()/abort(), and the advisor's
+      // playback had to abort it on each turn and restart it afterwards — an
+      // audible beep on every exchange on Honor and Pixel handsets, where those
+      // chimes ring at notification volume. It also opened a second microphone
+      // capture competing with the one feeding the socket. Desktop Chrome plays
+      // the chime quietly, which is why this survived so long.
+      //
+      // There is no API to silence the chime, so the fix is to not open the
+      // recognizer. Server transcription already streams in incrementally, so
+      // the transcript still fills in as the user speaks.
 
       // --- Build system prompt ---
       const isBm = lang === "bm";
