@@ -231,6 +231,35 @@ describe("voice interview", () => {
     assert.match(src, /baseLatency/, "no output-buffer allowance in the playback schedule");
   });
 
+  test("the end-of-speech timer cannot latch the microphone shut", () => {
+    // The timer fires on wall clock and the guard reads the audio clock, which
+    // disagree whenever the audio thread is starved or the context is suspended
+    // — routine on Android. With no else branch a miss scheduled nothing, so
+    // isAdvisorSpeakingRef stayed true and the mic gain stayed at 0 for the rest
+    // of the session: "it stopped hearing me", with no error anywhere.
+    assert.match(src, /setTimeout\(settle,/, "the settle check never re-arms itself");
+    // ...and the retry must not be able to spin forever against a context whose
+    // clock never advances, or the mic is held shut by the fix instead.
+    assert.match(src, /giveUpAt/, "no wall-clock backstop on the retry");
+    assert.ok(
+      /Date\.now\(\) < giveUpAt/.test(src),
+      "the retry does not consult the wall-clock backstop",
+    );
+  });
+
+  test("barge-in drops audio the advisor has already queued", () => {
+    // The model stops generating when interrupted, but audio it already sent is
+    // scheduled in the graph and keeps playing over the user — with the mic
+    // muted throughout, because playback is still sounding. Web Audio has no
+    // cancel-what-is-queued call, so the nodes must be tracked and stopped.
+    assert.match(src, /serverContent\?\.interrupted/, "the interrupted signal is ignored");
+    assert.match(src, /activeSourcesRef/, "source nodes are not tracked, so none can be stopped");
+    assert.match(src, /src\.stop\(\)/, "queued sources are never stopped");
+    // Registering without unregistering grows the array by one node per ~20ms
+    // chunk — roughly 3000 dead nodes a minute.
+    assert.match(src, /src\.onended =/, "finished nodes are never released");
+  });
+
   test("the voice script covers every field /interview/form collects", () => {
     // The two intakes feed the same scoring engine. A field the form asks for
     // and the voice interview does not is not a missing question — it is a

@@ -51,6 +51,11 @@ export default function VoiceInterviewPage() {
   const micGainRef = useRef<GainNode | null>(null);
   const nextTimeRef = useRef(0);
   const resampleRef = useRef<ResampleState>(newResampleState());
+  /** Every source node still scheduled or sounding. Barge-in has to stop these
+   *  individually — Web Audio has no "cancel everything queued" call, and the
+   *  advisor's remaining audio is already handed to the graph by the time the
+   *  user starts talking over it. */
+  const activeSourcesRef = useRef<AudioBufferSourceNode[]>([]);
   const speakerEndTimeRef = useRef(0);
   const isAdvisorSpeakingRef = useRef(false);
   const lastAdvisorSpokeTimeRef = useRef(0);
@@ -246,6 +251,13 @@ export default function VoiceInterviewPage() {
         ? ctx.currentTime + PLAYBACK_JITTER_LEAD   // queue drained: re-arm
         : nextTimeRef.current;                      // mid-utterance: continue
       src.start(when);
+      activeSourcesRef.current.push(src);
+      // Without this the array grows for the whole session — one entry per 20ms
+      // chunk is ~3000 dead nodes a minute.
+      src.onended = () => {
+        const at = activeSourcesRef.current.indexOf(src);
+        if (at !== -1) activeSourcesRef.current.splice(at, 1);
+      };
       const endTime = when + audioBuffer.duration;
       nextTimeRef.current = endTime;
 
@@ -261,20 +273,69 @@ export default function VoiceInterviewPage() {
 
       if (speakingTimeoutRef.current) clearTimeout(speakingTimeoutRef.current);
       const msUntilDone = Math.max(50, (speakerEndTimeRef.current - ctx.currentTime) * 1000);
-      speakingTimeoutRef.current = setTimeout(() => {
-        if (!ctx || ctx.currentTime >= speakerEndTimeRef.current - 0.05) {
-          isAdvisorSpeakingRef.current = false;
-          lastAdvisorSpokeTimeRef.current = Date.now();
-          setIsAdvisorSpeaking(false);
-
-          // Restore mic gain after echo dissipation
-          if (micGainRef.current && micCtxRef.current) {
-            micGainRef.current.gain.setValueAtTime(1, micCtxRef.current.currentTime);
-          }
+      // The timer fires on wall clock; the guard reads the audio clock. Those
+      // disagree whenever the audio thread is starved or the context is
+      // suspended — routine on Android. The guard had no else branch, so a miss
+      // scheduled nothing further and isAdvisorSpeakingRef stayed true with the
+      // mic gain pinned at 0: the interview stopped hearing the user for the
+      // rest of the session, and only a new advisor chunk could have rearmed it.
+      // Poll until the audio clock agrees, and give up on wall clock so a
+      // context that never advances cannot hold the microphone shut.
+      const giveUpAt = Date.now() + msUntilDone + 1500;
+      const settle = () => {
+        const clockDone =
+          !ctx || ctx.state === "closed" || ctx.currentTime >= speakerEndTimeRef.current - 0.05;
+        if (!clockDone && Date.now() < giveUpAt) {
+          speakingTimeoutRef.current = setTimeout(settle, 250);
+          return;
         }
-      }, msUntilDone);
+        isAdvisorSpeakingRef.current = false;
+        lastAdvisorSpokeTimeRef.current = Date.now();
+        setIsAdvisorSpeaking(false);
+
+        // Restore mic gain after echo dissipation
+        if (micGainRef.current && micCtxRef.current) {
+          micGainRef.current.gain.setValueAtTime(1, micCtxRef.current.currentTime);
+        }
+      };
+      speakingTimeoutRef.current = setTimeout(settle, msUntilDone);
     } catch (err) {
       console.error("[voice] playPcmDirect error:", err);
+    }
+  }, []);
+
+  /**
+   * Drop everything queued and hand the microphone straight back.
+   *
+   * The model decides on its own that it was interrupted and stops generating,
+   * but audio it already sent is scheduled in the graph and keeps playing —
+   * up to a second of the advisor talking over someone who has started
+   * answering, with the mic muted the whole time because playback is still
+   * "sounding". Stopping the nodes is the only way back: Web Audio has no
+   * cancel-what-is-queued call.
+   */
+  const stopPlayback = useCallback(() => {
+    for (const src of activeSourcesRef.current.splice(0)) {
+      // onended fires on stop() too, and its splice would mutate the array we
+      // are walking — detach first.
+      src.onended = null;
+      try { src.stop(); } catch {}
+      try { src.disconnect(); } catch {}
+    }
+    if (speakingTimeoutRef.current) {
+      clearTimeout(speakingTimeoutRef.current);
+      speakingTimeoutRef.current = null;
+    }
+    // The next chunk is the start of a new utterance, not a continuation, so
+    // the schedule and the resampler seam both have to forget the old one.
+    nextTimeRef.current = 0;
+    resampleRef.current = newResampleState();
+    speakerEndTimeRef.current = 0;
+    isAdvisorSpeakingRef.current = false;
+    lastAdvisorSpokeTimeRef.current = Date.now();
+    setIsAdvisorSpeaking(false);
+    if (micGainRef.current && micCtxRef.current) {
+      micGainRef.current.gain.setValueAtTime(1, micCtxRef.current.currentTime);
     }
   }, []);
 
@@ -354,6 +415,7 @@ export default function VoiceInterviewPage() {
     sessionReadyRef.current = false;
     nextTimeRef.current = 0;
     resampleRef.current = newResampleState();
+    activeSourcesRef.current = [];
     speakerEndTimeRef.current = 0;
     isAdvisorSpeakingRef.current = false;
     lastAdvisorSpokeTimeRef.current = 0;
@@ -592,6 +654,14 @@ export default function VoiceInterviewPage() {
           },
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onmessage: (m: any) => {
+            // 0. Barge-in. The server reports the turn was interrupted; the
+            //    audio it already sent is ours to throw away.
+            if (m.serverContent?.interrupted) {
+              console.log("[voice] interrupted — dropping queued advisor audio");
+              stopPlayback();
+              return;
+            }
+
             // 1. Incoming Audio Stream
             const parts = m.serverContent?.modelTurn?.parts ?? [];
             for (const p of parts) {
