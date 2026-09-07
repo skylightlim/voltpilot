@@ -7,7 +7,14 @@ import { Mic, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User, Bot, V
 import { Button, Card } from "@/components/ui";
 import { SESSION, apiService } from "@/lib/api";
 import { useLang, useT } from "@/lib/i18n";
-import { getWorkletUrl, downsampleAndConvertToInt16, pcmToBase64 } from "@/lib/voice/audio";
+import {
+  getWorkletUrl,
+  downsampleAndConvertToInt16,
+  pcmToBase64,
+  newResampleState,
+  resamplePcmToFloat32,
+  type ResampleState,
+} from "@/lib/voice/audio";
 import { isEchoOfAdvisor } from "@/lib/voice/echo";
 import { appendDelta, promoteStatus } from "@/lib/voice/transcript";
 
@@ -43,6 +50,7 @@ export default function VoiceInterviewPage() {
   const playCtxRef = useRef<AudioContext | null>(null);
   const micGainRef = useRef<GainNode | null>(null);
   const nextTimeRef = useRef(0);
+  const resampleRef = useRef<ResampleState>(newResampleState());
   const speakerEndTimeRef = useRef(0);
   const isAdvisorSpeakingRef = useRef(false);
   const lastAdvisorSpokeTimeRef = useRef(0);
@@ -174,6 +182,10 @@ export default function VoiceInterviewPage() {
    *  so playback never underruns mid-sentence. See playPcmDirect. */
   const PLAYBACK_JITTER_LEAD = 0.12;
 
+  /** The rate Gemini's native-audio output actually arrives at. The playback
+   *  context asks for it, and the mimeType parse falls back to it. */
+  const ADVISOR_PCM_RATE = 24000;
+
   /** Extra hold after the advisor's audio ends before the mic is unmuted.
    *  getUserMedia already requests echoCancellation, so this is a guard on top
    *  of hardware AEC rather than the only defence. It was 0.4s, which clipped
@@ -189,11 +201,37 @@ export default function VoiceInterviewPage() {
       ctx.resume().catch(() => {});
     }
     try {
-      const audioBuffer = ctx.createBuffer(1, samples.length, rate);
-      const channelData = audioBuffer.getChannelData(0);
-      for (let i = 0; i < samples.length; i++) {
-        channelData[i] = samples[i] / 32768.0;
-      }
+      // The drain test has to clear the output buffer, not just zero.
+      // ctx.currentTime is the frame after the last one the graph rendered, and
+      // the audio thread renders a whole callback buffer at a time, so a start
+      // scheduled inside that buffer is clamped to its edge: the node plays late
+      // and in full, overlapping the one still sounding, while nextTimeRef
+      // advances by the nominal duration and puts the chunk after it deeper into
+      // the past. Comparing against currentTime alone never leaves that window.
+      // Simulated over 300 chunks: on desktop's 2.7ms buffer this never fires,
+      // on a 20-40ms Android buffer it clamped 3-18 starts and accumulated
+      // 20-180ms of overlap — the asymmetry users reported. Re-arming a buffer
+      // early costs no extra silence: it is a smaller jump forward than
+      // re-arming once the queue has already fallen behind.
+      const safetyLead = Math.min(2 * (ctx.baseLatency || 0.01), PLAYBACK_JITTER_LEAD / 2);
+      const drained = nextTimeRef.current < ctx.currentTime + safetyLead;
+
+      // The buffer is built at the context's own rate, never at the PCM's.
+      // Declaring 24000Hz on a context running at the device rate left the graph
+      // resampling every ~20ms node independently, carrying no filter state
+      // between them, so each boundary got a sample-and-hold step — a 50Hz tick
+      // under the whole utterance. It also measured duration in the source's
+      // time base, so on any device rate that is not a multiple of 24000 (44100
+      // is the common one) nextTimeRef advanced by a different number of frames
+      // than were actually rendered and the nodes crept into overlap.
+      // A drained queue is a real break in the audio, and the only place the
+      // carried interpolation state is meaningless.
+      if (drained) resampleRef.current = newResampleState();
+      const frames = resamplePcmToFloat32(samples, rate, ctx.sampleRate, resampleRef.current);
+      if (frames.length === 0) return;
+
+      const audioBuffer = ctx.createBuffer(1, frames.length, ctx.sampleRate);
+      audioBuffer.getChannelData(0).set(frames);
       const src = ctx.createBufferSource();
       src.buffer = audioBuffer;
       src.connect(ctx.destination);
@@ -204,10 +242,9 @@ export default function VoiceInterviewPage() {
       // reads as a buzz. Measured: ±10ms jitter produced ~17 gaps per 300 chunks
       // with no lead, ~0.1 with 120ms. The cost is 120ms of added delay at the
       // start of each utterance, not on every chunk — continuations stay seamless.
-      const when =
-        nextTimeRef.current < ctx.currentTime
-          ? ctx.currentTime + PLAYBACK_JITTER_LEAD   // queue drained: re-arm
-          : nextTimeRef.current;                      // mid-utterance: continue
+      const when = drained
+        ? ctx.currentTime + PLAYBACK_JITTER_LEAD   // queue drained: re-arm
+        : nextTimeRef.current;                      // mid-utterance: continue
       src.start(when);
       const endTime = when + audioBuffer.duration;
       nextTimeRef.current = endTime;
@@ -245,7 +282,11 @@ export default function VoiceInterviewPage() {
     isAdvisorSpeakingRef.current = true;
     lastAdvisorSpokeTimeRef.current = Date.now();
     setIsAdvisorSpeaking(true);
-    const rate = Number(mimeType.match(/rate=(\d+)/)?.[1] ?? 24000);
+    // A missing rate fell back correctly, a nonsensical one did not: "rate=0"
+    // or a non-numeric rate reached the resampler as a ratio of 0 or NaN, which
+    // fills the buffer with zeros — a silent turn with nothing logged.
+    const parsed = Number(mimeType.match(/rate=(\d+)/)?.[1]);
+    const rate = parsed >= 8000 && parsed <= 96000 ? parsed : ADVISOR_PCM_RATE;
     const bin = atob(base64);
     const sampleCount = Math.floor(bin.length / 2);
     const samples = new Int16Array(sampleCount);
@@ -312,6 +353,7 @@ export default function VoiceInterviewPage() {
     recentAdvisorPhrasesRef.current = [];
     sessionReadyRef.current = false;
     nextTimeRef.current = 0;
+    resampleRef.current = newResampleState();
     speakerEndTimeRef.current = 0;
     isAdvisorSpeakingRef.current = false;
     lastAdvisorSpokeTimeRef.current = 0;
@@ -334,13 +376,24 @@ export default function VoiceInterviewPage() {
       streamRef.current = stream;
       console.log("[voice] Mic stream access granted");
 
-      // 2. Playback audio context
+      // 2. Playback audio context, asked for at the rate the advisor's PCM
+      // arrives in so the graph does no resampling at all and Chrome's own
+      // continuous resampler converts to the device rate once, for the stream,
+      // rather than per node. Android builds may reject the option or ignore
+      // it, so nothing downstream assumes it took: playPcmDirect reads
+      // ctx.sampleRate back and resamples itself when they disagree.
       const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const playCtx = new AudioCtxClass();
+      let playCtx: AudioContext;
+      try {
+        playCtx = new AudioCtxClass({ sampleRate: ADVISOR_PCM_RATE });
+      } catch {
+        playCtx = new AudioCtxClass();
+      }
       if (playCtx.state === "suspended") {
         await playCtx.resume();
       }
       playCtxRef.current = playCtx;
+      console.log("[voice] Playback AudioContext sampleRate:", playCtx.sampleRate);
 
       // 3. Mic capture audio context
       const micCtx = new AudioCtxClass();
@@ -602,6 +655,7 @@ export default function VoiceInterviewPage() {
             console.log("[voice] Session closed");
             sessionReadyRef.current = false;
             nextTimeRef.current = 0;
+            resampleRef.current = newResampleState();
             if (stageRef.current === "live") {
               if (transcriptRef.current.length > 20) {
                 extractAndFinish(transcriptRef.current);

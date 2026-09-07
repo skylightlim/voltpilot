@@ -201,6 +201,36 @@ describe("voice interview", () => {
     assert.match(src, /cleanupRef\.current\(\)/, "session teardown is not wired to unmount");
   });
 
+  test("decoded advisor audio is buffered at the playback context's own rate", () => {
+    // Gemini's native audio arrives at 24kHz and was handed to Web Audio as a
+    // buffer declaring 24000Hz. On a context running at the device rate the
+    // graph then resampled every ~20ms node independently — interpolation
+    // restarting at phase 0, the last frame interpolating against the chunk's
+    // own final sample instead of the next chunk's first — so every boundary
+    // got a step. At 50 chunks a second that is a 50Hz tick running under the
+    // whole utterance, which is the "rapid tick buzz" reported on Honor and
+    // Pixel. It also measured duration in the source's time base, so on a rate
+    // that is not a multiple of 24000 the booked schedule and the frames
+    // actually rendered disagreed and the nodes crept into overlap.
+    assert.match(src, /createBuffer\(\s*1,\s*frames\.length,\s*ctx\.sampleRate\s*\)/,
+      "the PCM buffer must be created at ctx.sampleRate, not at the stream's rate");
+    assert.match(src, /resamplePcmToFloat32\(/, "chunks must go through the continuous resampler");
+  });
+
+  test("playback is never scheduled inside the already-rendered buffer", () => {
+    // ctx.currentTime is the frame after the last one the graph rendered, and
+    // the audio thread renders a whole callback buffer at a time. A start
+    // scheduled inside that buffer is clamped to its edge: it plays late and in
+    // full, overlapping the node still sounding, while nextTimeRef advances by
+    // the nominal duration and puts the next chunk deeper into the past.
+    // Simulated over 300 chunks it never fires on desktop's 2.7ms buffer and
+    // clamps 3-18 starts on a 20-40ms Android buffer, which is the asymmetry
+    // users reported. The drain test has to clear the buffer, not just zero.
+    assert.ok(!/nextTimeRef\.current\s*<\s*ctx\.currentTime\s*[;?]/.test(src),
+      "the drain test compares against ctx.currentTime with no allowance for the output buffer");
+    assert.match(src, /baseLatency/, "no output-buffer allowance in the playback schedule");
+  });
+
   test("the voice script covers every field /interview/form collects", () => {
     // The two intakes feed the same scoring engine. A field the form asks for
     // and the voice interview does not is not a missing question — it is a

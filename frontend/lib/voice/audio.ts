@@ -101,3 +101,75 @@ function pcmToBase64(pcm: Int16Array): string {
   }
   return btoa(binary);
 }
+
+/** Carried between calls to resamplePcmToFloat32 so consecutive chunks join. */
+export type ResampleState = { phase: number; prev: number; primed: boolean };
+
+export const newResampleState = (): ResampleState => ({ phase: 0, prev: 0, primed: false });
+
+/**
+ * Int16 PCM at `inRate` to Float32 at `outRate`, continuous across calls.
+ *
+ * The advisor's audio arrives as ~20ms chunks at 24kHz and used to be handed to
+ * Web Audio as a buffer declaring 24000Hz, leaving the browser to resample each
+ * chunk into the context's rate. It resamples every AudioBufferSourceNode
+ * independently: interpolation restarts at phase 0 and the final output frame
+ * interpolates against the buffer's own last sample instead of the next chunk's
+ * first, so every boundary got a sample-and-hold step. At 50 chunks a second
+ * that is a 50Hz impulse train under the whole utterance — the "rapid tick buzz
+ * whenever the advisor starts speaking" reported on Honor and Pixel.
+ *
+ * `state` carries the fractional read position and the previous chunk's last
+ * sample, so the interpolation reads across the seam and the seam disappears.
+ * Reset it (newResampleState) only where the audio genuinely breaks — a drained
+ * queue — never between chunks of one utterance.
+ */
+export function resamplePcmToFloat32(
+  samples: Int16Array,
+  inRate: number,
+  outRate: number,
+  state: ResampleState,
+): Float32Array {
+  if (samples.length === 0) return new Float32Array(0);
+
+  // Equal rates need no interpolation at all, and taking the copy keeps the
+  // common path bit-exact rather than merely continuous.
+  if (inRate === outRate) {
+    const out = new Float32Array(samples.length);
+    for (let i = 0; i < samples.length; i++) out[i] = samples[i] / 32768;
+    state.prev = samples[samples.length - 1];
+    state.phase = 0;
+    state.primed = true;
+    return out;
+  }
+
+  // Index 0 is the previous chunk's last sample, index k is samples[k-1]. That
+  // one-sample overlap is what lets the first output frame of this chunk
+  // interpolate against the end of the last one.
+  if (!state.primed) {
+    state.prev = samples[0];
+    state.phase = 1;
+    state.primed = true;
+  }
+
+  const ratio = inRate / outRate;
+  const len = samples.length;
+  let t = state.phase;
+  const count = t < len ? Math.ceil((len - t) / ratio) : 0;
+  const out = new Float32Array(count);
+
+  for (let k = 0; k < count; k++) {
+    const i = Math.floor(t);
+    const f = t - i;
+    const a = (i === 0 ? state.prev : samples[i - 1]) / 32768;
+    const b = samples[i] / 32768;
+    out[k] = a + f * (b - a);
+    t += ratio;
+  }
+
+  // t has run past the end of this chunk; rebase it onto the next one, whose
+  // index 0 is this chunk's last sample.
+  state.prev = samples[len - 1];
+  state.phase = t - len;
+  return out;
+}
