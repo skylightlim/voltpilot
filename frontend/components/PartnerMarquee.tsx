@@ -33,7 +33,7 @@ function Track({ duplicate = false }: { duplicate?: boolean }) {
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={duplicate ? -1 : undefined}
-          className="pressable flex min-w-[180px] flex-col items-center justify-center gap-3.5 rounded-[20px] border border-line bg-white px-7 py-6 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md sm:min-w-[210px]"
+          className="pressable flex min-w-[180px] flex-col items-center justify-center gap-3.5 rounded-lg border border-line bg-white px-7 py-6 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md sm:min-w-[210px]"
         >
           {/* wordmarks are wide, so give them a landscape box rather than a square */}
           <img
@@ -42,7 +42,7 @@ function Track({ duplicate = false }: { duplicate?: boolean }) {
             loading="lazy"
             className="h-12 w-auto max-w-[130px] object-contain sm:h-14"
           />
-          <span className="text-center text-[14px] font-bold text-ink">{p.name}</span>
+          <span className="text-center text-[16px] font-bold text-ink">{p.name}</span>
         </a>
       ))}
     </div>
@@ -52,14 +52,14 @@ function Track({ duplicate = false }: { duplicate?: boolean }) {
 export function PartnerMarquee() {
   const t = useT();
   return (
-    <section id="partners" className="border-t border-line bg-parchment py-20 sm:py-28">
+    <section id="partners" className="border-t border-line bg-parchment py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
           <SectionLabel>{t("pt.label")}</SectionLabel>
-          <h2 className="apple-display mt-2 text-[32px] font-bold text-ink sm:text-[42px]">
+          <h2 className="apple-display mt-2 text-[32px] text-ink sm:text-[42px]">
             {t("pt.title")}
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-muted">
+          <p className="mx-auto mt-3 max-w-xl text-[16px] leading-relaxed text-muted">
             {t("pt.sub")}
           </p>
         </Reveal>

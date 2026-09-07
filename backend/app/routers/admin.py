@@ -1,9 +1,14 @@
 """Operational endpoints for the scheduled daily refresh.
 
-The Cloudflare Worker's scheduled() handler calls POST /admin/refresh once a
-day. The work is CPU- and network-bound and runs in a thread so it never blocks
-the event loop, and it is guarded by a shared secret because it triggers
-outbound fetches and rewrites files under data/.
+POST /admin/refresh rewrites files under data/, so it only works where the
+filesystem is writable and persistent. On Vercel it is neither, and the daily
+refresh runs in GitHub Actions instead (.github/workflows/daily-refresh.yml),
+which has a writable checkout, can commit the result, and then syncs it into the
+database. The endpoint is kept for container and local deployments; set
+ADMIN_TOKEN to enable it, leave it unset to disable it.
+
+GET /health/data stays useful everywhere — it reports how stale the data is,
+whoever refreshed it.
 """
 
 from __future__ import annotations

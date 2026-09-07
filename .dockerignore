@@ -10,3 +10,4 @@
 frontend/
 .git/
 data/used_market_raw/
+**/.vercel_python_packages

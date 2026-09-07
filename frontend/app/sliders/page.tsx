@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Banknote, Leaf, Gauge, ShieldCheck, Sparkles } from "lucide-react";
 import { Button, Card, SectionLabel } from "@/components/ui";
-import { ScrollRefresh, ScrubStagger } from "@/components/motion";
+import { ScrollRefresh } from "@/components/motion";
 import { RadarChart } from "@/components/charts/RadarChart";
 import { useT, type StrKey } from "@/lib/i18n";
 import { ApiError, SESSION, apiService, type Weights } from "@/lib/api";
@@ -15,6 +15,9 @@ const SLIDERS: { key: keyof Weights; icon: React.ReactNode; p: string; color: st
   { key: "convenience", icon: <Gauge className="h-4.5 w-4.5" />, p: "conv", color: "text-cyan-600" },
   { key: "save_money", icon: <Banknote className="h-4.5 w-4.5" />, p: "money", color: "text-emerald-600" },
 ] as const;
+
+/** Axis labels carry a "|" that only RadarChart understands; strip it for prose. */
+const plain = (s: string) => s.replace(/\s*\|\s*/g, " ");
 
 type PresetKey = "balanced" | "budget" | "highway" | "green";
 
@@ -62,38 +65,34 @@ export default function SlidersPage() {
     }));
   }, [weights, t]);
 
-  const run = async () => {
+  const run = () => {
+    // Hand over immediately. Scoring took about five seconds, and waiting for it
+    // here left the visitor on a dead button before the waiting screen appeared.
+    // /analysis owns the whole pipeline now — profile, score, analyst, results —
+    // so there is one wait, on the page built to hold it.
     SESSION.saveWeights(weights);
     setBusy(true);
     setError("");
-    try {
-      const p = await apiService.postProfile(profile);
-      if (p.missing_required.length) {
-        router.push("/interview/form");
-        return;
-      }
-      SESSION.saveToken(p.token);
-      const r = await apiService.postScore(p.token, profile, weights);
-      router.push(`/analysis?token=${r.token}`);
-    } catch (e) {
-      // ApiError.message is the serialised server payload — useful in a log,
-      // meaningless to a person. Map the typed kind to translated copy instead.
-      setError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("sl.err"));
-      setBusy(false);
-    }
+    router.push("/analysis");
   };
 
   return (
     <main className="app-shell mx-auto flex min-h-[100svh] w-full max-w-md flex-col px-5 pt-6">
       <ScrollRefresh />
-      <header className="flex items-center justify-between">
+      {/* Both labels are longer in BM ("Kembali ke diagnostik" / "Langkah 2 · Studio
+          Pemberat") than the 335px of a 375px phone allows side by side. Wrapping the
+          row rather than the phrases lets them drop onto separate lines intact instead
+          of each breaking mid-phrase. */}
+      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5">
         <button
-          className="pressable tap-target flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors hover:text-ink"
+          className="pressable tap-target -ml-1 flex shrink-0 items-center gap-1.5 whitespace-nowrap px-1 text-[16px] font-medium text-muted transition-colors hover:text-ink"
           onClick={() => router.push("/interview/form")}
         >
-          <ArrowLeft className="h-4 w-4" /> {t("sl.back")}
+          <ArrowLeft className="h-4 w-4 shrink-0" /> {t("sl.back")}
         </button>
-        <span className="mono-label text-accent font-semibold">{t("sl.step")}</span>
+        <span className="mono-label shrink-0 whitespace-nowrap font-semibold text-accent">
+          {t("sl.step")}
+        </span>
       </header>
 
       <section className="mt-6">
@@ -101,7 +100,7 @@ export default function SlidersPage() {
         <h1 className="apple-display-2 mt-2 text-[26px] sm:text-[28px] text-ink">
           {t("sl.t1")} <span className="text-primary">{t("sl.t2")}</span>
         </h1>
-        <p className="mt-2 text-[14px] leading-relaxed text-muted">{t("sl.sub")}</p>
+        <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("sl.sub")}</p>
       </section>
 
       {/* Radar Chart Weight Visualization */}
@@ -119,7 +118,7 @@ export default function SlidersPage() {
               <button
                 key={key}
                 onClick={() => setWeights(p.values)}
-                className={`pressable rounded-full px-3.5 py-1.5 text-[12.5px] font-semibold transition-all border ${
+                className={`pressable inline-flex min-h-11 items-center rounded-full px-4 text-[13px] font-semibold transition-all border ${
                   isActive
                     ? "bg-primary border-primary text-white"
                     : "bg-white border-line text-muted hover:text-ink"
@@ -133,15 +132,19 @@ export default function SlidersPage() {
         </div>
       </div>
 
-      <ScrubStagger className="mt-6 space-y-3 pb-8" each={0.05}>
+      {/* Plain container, not ScrubStagger. A scrub reveal binds opacity to
+          scroll position, which left these four sliders parked at 0.23 / 0.13 /
+          0.03 / 0 opacity on load — measured. Editorial blocks can afford to
+          arrive on scroll; the controls this page exists for cannot. */}
+      <div className="mt-6 space-y-3 pb-8">
         {SLIDERS.map((s) => (
           <Card key={s.key} className="!p-5 border-line bg-card">
             <div className="flex items-center gap-2">
               <span className={`p-1.5 rounded-full bg-parchment ${s.color}`}>
                 {s.icon}
               </span>
-              <h2 className="text-[15px] font-bold text-ink">{t(`sl.${s.p}.t` as StrKey)}</h2>
-              <span className="ml-auto font-mono text-[14px] font-bold text-primary tabular-nums">
+              <h2 className="text-[16px] font-bold text-ink">{plain(t(`sl.${s.p}.t` as StrKey))}</h2>
+              <span className="ml-auto font-mono text-[16px] font-bold text-primary tabular-nums">
                 {Math.round(weights[s.key])}%
               </span>
             </div>
@@ -150,7 +153,7 @@ export default function SlidersPage() {
               min={0}
               max={100}
               step={1}
-              aria-label={t(`sl.${s.p}.t` as StrKey)}
+              aria-label={plain(t(`sl.${s.p}.t` as StrKey))}
               value={weights[s.key]}
               className="slider mt-4"
               onChange={(e) => setWeights((w) => ({ ...w, [s.key]: Number(e.target.value) }))}
@@ -159,10 +162,10 @@ export default function SlidersPage() {
               <span>{t(`sl.${s.p}.low` as StrKey)}</span>
               <span>{t(`sl.${s.p}.high` as StrKey)}</span>
             </div>
-            <p className="mt-2.5 text-[13px] leading-relaxed text-muted">{t(`sl.${s.p}.hint` as StrKey)}</p>
+            <p className="mt-2.5 text-[15px] leading-relaxed text-muted">{t(`sl.${s.p}.hint` as StrKey)}</p>
           </Card>
         ))}
-      </ScrubStagger>
+      </div>
 
       {error && (
         <p className="mt-4 rounded-xl bg-red-50/80 px-4 py-3 text-sm font-medium text-red-600 border border-red-200/50">{error}</p>

@@ -1,0 +1,31 @@
+# What `gcloud run deploy --source .` uploads to Cloud Build.
+#
+# gcloud reads THIS file, not .dockerignore — without it the upload carries the
+# whole 3 GB tree (frontend/node_modules alone is 985 MB, backend/.venv and the
+# Vercel package cache another ~1.4 GB). Only what the Dockerfile COPYs needs
+# to travel: backend/app, backend/migrations, data, scripts, scraper.
+.git/
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.next/
+**/.next-*/
+**/.vercel/
+**/.vercel_python_packages/
+**/.wrangler/
+frontend/
+docs/
+**/.env
+**/.env.*
+!**/.env.example
+**/dev.db
+**/*.db
+data/used_market_raw/
+
+# vercel-build.sh copies the root data/ and scripts/ into backend/ so a
+# Vercel project rooted there can see them. The Dockerfile COPYs from the root,
+# so these duplicates are 26 MB of dead weight in the upload.
+backend/data/
+backend/scripts/

@@ -110,6 +110,22 @@ describe("design system", () => {
     assert.deepEqual(offenders, []);
   });
 
+  test("no server/client-branched constant is rendered into JSX", () => {
+    // lib/api.ts picks BACKEND_URL with `typeof window !== "undefined"`, so it
+    // is "/api/proxy" on the client and the real host on the server. The voice
+    // page rendered it into a hidden <span>, which failed hydration on every
+    // load and published the backend address into the served HTML.
+    const offenders = [];
+    for (const p of sources()) {
+      if (rel(p) === "lib/api.ts") continue;
+      read(p).split("\n").forEach((line, i) => {
+        if (/\{\s*BACKEND_URL\s*\}/.test(line) && !line.includes("from ") && !line.includes("import"))
+          offenders.push(`${rel(p)}:${i + 1}`);
+      });
+    }
+    assert.deepEqual(offenders, [], "BACKEND_URL rendered into markup");
+  });
+
   test("the font variables globals.css consumes are actually bound", () => {
     // globals.css referenced --font-grotesk / --font-body / --font-mono while
     // nothing defined them. An undefined var() inside a font-family shorthand
@@ -127,6 +143,51 @@ describe("design system", () => {
     );
     const unbound = leaves.filter((v) => !layout.includes(`variable: "${v}"`));
     assert.deepEqual(unbound, [], "consumed by globals.css but never bound in layout.tsx");
+  });
+});
+
+describe("voice interview", () => {
+  const src = read(join(ROOT, "app", "interview", "voice", "page.tsx"));
+
+  test("the announced question count matches the questions actually scripted", () => {
+    // The script grew 7 -> 11 and both prompt arrays were rewritten, but the
+    // spoken greeting still promised "7 quick questions". The advisor opened by
+    // announcing a count it contradicted four questions later, and users who
+    // took it at its word hung up before the budget question.
+    const numbered = [...src.matchAll(/"(\d+)\.\s/g)].map((m) => Number(m[1]));
+    const asked = Math.max(...numbered);
+    const announced = [
+      ...src.matchAll(
+        /(?:exactly|all|tepat|semua)\s+(\d+)\s+(?:questions|soalan)|(\d+)\s+(?:quick questions|soalan pantas)/g,
+      ),
+    ].map((m) => Number(m[1] ?? m[2]));
+
+    // en + bm, each stating the count when opening the list, when closing it,
+    // and once more in the greeting.
+    assert.ok(announced.length >= 6, `only ${announced.length} count statements found`);
+    for (const n of announced) {
+      assert.equal(n, asked, `prompt announces ${n} questions but scripts ${asked}`);
+    }
+    for (let i = 1; i <= asked; i++) {
+      assert.ok(numbered.filter((n) => n === i).length >= 2, `question ${i} missing from a language`);
+    }
+  });
+
+  test("the voice script covers every field /interview/form collects", () => {
+    // The two intakes feed the same scoring engine. A field the form asks for
+    // and the voice interview does not is not a missing question — it is a
+    // profile that scores against the engine's fallback anchor instead of the
+    // user's own numbers, silently, with no way to tell from the result.
+    const topics = {
+      workplace_charging: [/charge at your workplace/i, /mengecas di tempat kerja/i],
+      grid_region: [/Peninsular grid/i, /grid Semenanjung/i],
+      electricity_bill: [/monthly electricity bill/i, /bil elektrik bulanan/i],
+      budget: [/maximum budget/i, /bajet maksimum/i],
+    };
+    const missing = Object.entries(topics)
+      .filter(([, [en, bm]]) => !en.test(src) || !bm.test(src))
+      .map(([k]) => k);
+    assert.deepEqual(missing, [], "asked on the form but not in the voice script");
   });
 });
 

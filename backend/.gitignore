@@ -1,0 +1,7 @@
+.vercel
+.env*
+public/
+
+# Local pip install target for the Vercel Python runtime — rebuilt from
+# requirements.txt at deploy time, 379MB, never a build input.
+.vercel_python_packages/

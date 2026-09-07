@@ -67,11 +67,11 @@ export default function ChatPage() {
             <Sparkles className="h-4 w-4 text-primary" />
           </span>
           <div>
-            <p className="text-[14px] font-semibold leading-none text-ink">{t("ch.title")}</p>
+            <p className="text-[16px] font-semibold leading-none text-ink">{t("ch.title")}</p>
             <p className="mt-0.5 text-[11px] text-muted">{t("ch.sub")}</p>
           </div>
         </div>
-        <Link href={`/results/${token}`} className="text-[13px] text-muted transition-colors hover:text-ink">
+        <Link href={`/results/${token}`} className="text-[15px] text-muted transition-colors hover:text-ink">
           {t("ch.results")}
         </Link>
       </header>
@@ -80,7 +80,7 @@ export default function ChatPage() {
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              className={`max-w-[85%] whitespace-pre-wrap rounded-[18px] px-4 py-3 text-[14px] leading-relaxed ${
+              className={`max-w-[85%] whitespace-pre-wrap rounded-lg px-4 py-3 text-[16px] leading-relaxed ${
                 m.role === "user"
                   ? "bg-primary text-white rounded-br-[6px]"
                   : "border border-border bg-parchment text-ink rounded-bl-[6px]"
@@ -91,7 +91,7 @@ export default function ChatPage() {
           </div>
         ))}
         {busy && (
-          <div className="flex items-center gap-2 px-1 text-[13px] text-muted">
+          <div className="flex items-center gap-2 px-1 text-[15px] text-muted">
             <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
             Thinking…
           </div>
@@ -108,7 +108,7 @@ export default function ChatPage() {
           <button
             key={k}
             onClick={() => send(chip)}
-            className="shrink-0 rounded-full border border-primary/25 bg-primary/[0.04] px-4 py-2 text-[13px] font-medium text-primary active:bg-primary/10 tap-target"
+            className="shrink-0 rounded-full border border-primary/25 bg-primary/[0.04] px-4 py-2 text-[15px] font-medium text-primary active:bg-primary/10 tap-target"
           >
             {chip}
           </button>
@@ -129,7 +129,7 @@ export default function ChatPage() {
                 send();
               }
             }}
-            className="max-h-32 min-h-[48px] flex-1 resize-none rounded-[18px] border border-border bg-parchment px-4 py-3 text-[15px] text-ink outline-none placeholder:text-[#c7c7cc] focus:border-primary"
+            className="max-h-32 min-h-[48px] flex-1 resize-none rounded-lg border border-border bg-parchment px-4 py-3 text-[16px] text-ink outline-none placeholder:text-[#c7c7cc] focus:border-primary"
           />
           <Button
             size="lg"

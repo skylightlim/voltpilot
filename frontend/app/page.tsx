@@ -142,8 +142,6 @@ const BENCHMARK_MODELS: BenchmarkCar[] = [
 export default function LandingPage() {
   const t = useT();
   const [filterType, setFilterType] = useState<"all" | "ev" | "hybrid" | "under100k" | "premium">("all");
-  const [showAll, setShowAll] = useState(false);
-  const PREVIEW_COUNT = 6;
 
   const filteredCars = BENCHMARK_MODELS.filter((car) => {
     if (filterType === "all") return true;
@@ -167,28 +165,28 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Stagger className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-line">
             <div className="px-6 py-8 sm:py-10 text-center">
-              <p className="apple-display text-[38px] sm:text-[44px] text-ink font-bold">
+              <p className="apple-display text-[38px] sm:text-[44px] text-ink">
                 <ScrubCount value={184} />
               </p>
-              <p className="mx-auto mt-1 max-w-[240px] text-[13px] text-muted">
+              <p className="mx-auto mt-1 max-w-[240px] text-[15px] text-muted">
                 {t("ts.count.sub")}
               </p>
             </div>
 
             <div className="px-6 py-8 sm:py-10 text-center">
-              <p className="apple-display text-[38px] sm:text-[44px] text-primary font-bold">
+              <p className="apple-display text-[38px] sm:text-[44px] text-primary">
                 10 Years
               </p>
-              <p className="mx-auto mt-1 max-w-[240px] text-[13px] text-muted">
+              <p className="mx-auto mt-1 max-w-[240px] text-[15px] text-muted">
                 {t("ts.yr.sub")}
               </p>
             </div>
 
             <div className="px-6 py-8 sm:py-10 text-center">
-              <p className="apple-display text-[38px] sm:text-[44px] text-ink font-bold">
+              <p className="apple-display text-[38px] sm:text-[44px] text-ink">
                 JPJ & TNB
               </p>
-              <p className="mx-auto mt-1 max-w-[240px] text-[13px] text-muted">
+              <p className="mx-auto mt-1 max-w-[240px] text-[15px] text-muted">
                 {t("ts.rm.sub")}
               </p>
             </div>
@@ -197,24 +195,24 @@ export default function LandingPage() {
       </section>
 
       {/* Live Market Leaderboard Preview */}
-      <section id="cars" className="mx-auto max-w-6xl px-4 sm:px-6 py-20 sm:py-28">
+      <section id="cars" className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
         <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
             <div>
               <SectionLabel>{t("lr.label")}</SectionLabel>
-              <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
+              <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink">
                 {t("lr.title")}
               </h2>
-              <p className="mt-2.5 max-w-2xl text-[15px] text-muted leading-relaxed">
+              <p className="mt-2.5 max-w-2xl text-[16px] text-muted leading-relaxed">
                 {t("lr.sub")}
               </p>
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-parchment border border-line self-start md:self-auto">
+            <div className="flex shrink-0 flex-wrap items-center gap-1.5 rounded-lg border border-line bg-parchment p-1 self-start xl:self-auto">
               <button
                 onClick={() => setFilterType("all")}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 text-[13px] font-semibold transition-all cursor-pointer ${
                   filterType === "all" ? "bg-primary text-white shadow-xs" : "text-muted hover:text-ink"
                 }`}
               >
@@ -222,7 +220,7 @@ export default function LandingPage() {
               </button>
               <button
                 onClick={() => setFilterType("ev")}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 text-[13px] font-semibold transition-all cursor-pointer ${
                   filterType === "ev" ? "bg-primary text-white shadow-xs" : "text-muted hover:text-ink"
                 }`}
               >
@@ -230,7 +228,7 @@ export default function LandingPage() {
               </button>
               <button
                 onClick={() => setFilterType("hybrid")}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 text-[13px] font-semibold transition-all cursor-pointer ${
                   filterType === "hybrid" ? "bg-primary text-white shadow-xs" : "text-muted hover:text-ink"
                 }`}
               >
@@ -238,7 +236,7 @@ export default function LandingPage() {
               </button>
               <button
                 onClick={() => setFilterType("under100k")}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 text-[13px] font-semibold transition-all cursor-pointer ${
                   filterType === "under100k" ? "bg-primary text-white shadow-xs" : "text-muted hover:text-ink"
                 }`}
               >
@@ -250,10 +248,10 @@ export default function LandingPage() {
 
         {/* Model Cards Grid */}
         <ScrubStagger className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" selector="> div">
-          {(showAll ? filteredCars : filteredCars.slice(0, PREVIEW_COUNT)).map((car, idx) => (
+          {filteredCars.map((car, idx) => (
             <div
               key={car.name + car.variant}
-              className="rounded-[22px] border border-line bg-white p-5 card-highlight hover:border-primary/40 transition-all group flex flex-col justify-between"
+              className="rounded-lg border border-line bg-white p-5 card-highlight hover:border-primary/40 transition-all group flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2">
@@ -273,13 +271,13 @@ export default function LandingPage() {
                 <div className="mt-4 pt-3 border-t border-line/60 grid grid-cols-2 gap-2 text-[12px]">
                   <div>
                     <span className="text-muted text-[11px] block">{t("lr.otr")}</span>
-                    <span className="font-mono font-bold text-ink text-[13px]">
+                    <span className="font-mono font-bold text-ink text-[15px]">
                       RM {car.priceRm.toLocaleString("en-MY")}
                     </span>
                   </div>
                   <div>
                     <span className="text-muted text-[11px] block">{t("lr.rangeW")}</span>
-                    <span className="font-mono font-bold text-primary text-[13px]">
+                    <span className="font-mono font-bold text-primary text-[15px]">
                       {car.rangeKm} km
                     </span>
                   </div>
@@ -306,26 +304,13 @@ export default function LandingPage() {
           ))}
         </ScrubStagger>
 
-        {filteredCars.length > PREVIEW_COUNT && (
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => setShowAll((v) => !v)}
-              className="tap-target rounded-full border border-line-strong bg-paper-2 px-6 py-2.5 font-mono text-[12px] font-semibold uppercase tracking-wider text-ink transition-colors hover:border-primary hover:text-primary cursor-pointer"
-            >
-              {showAll
-                ? t("lr.showLess")
-                : t("lr.showAll").replace("{n}", String(filteredCars.length))}
-            </button>
-          </div>
-        )}
-
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-pine-tint p-5 border border-pine/20">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full bg-primary grid place-items-center text-white shrink-0">
               <Compass className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[14px] font-bold text-primary">{t("lr.needMath")}</p>
+              <p className="text-[16px] font-bold text-primary">{t("lr.needMath")}</p>
               <p className="text-[12px] text-ink/70">
                 {t("lr.needSub")}
               </p>
@@ -348,7 +333,7 @@ export default function LandingPage() {
         <ScrollMarquee distance={260} repeat={3}>
           {(["mq.a", "mq.b", "mq.c", "mq.d"] as const).map((k) => (
             <span key={k} className="flex items-center gap-10">
-              <span className="apple-display whitespace-nowrap text-[26px] sm:text-[38px] font-bold text-pearl">
+              <span className="apple-display whitespace-nowrap text-[26px] sm:text-[38px] text-pearl">
                 {t(k)}
               </span>
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
@@ -358,24 +343,24 @@ export default function LandingPage() {
       </section>
 
       {/* Five Decision Engines Bento Grid */}
-      <section id="method" className="border-t border-line bg-parchment/60 py-20 sm:py-28">
+      <section id="method" className="border-t border-line bg-parchment/60 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal>
             <SectionLabel>{t("hw.label")}</SectionLabel>
-            <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
+            <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink">
               {t("hw.worksTitle")}
             </h2>
-            <p className="mt-2.5 max-w-2xl text-[15px] text-muted leading-relaxed">
-              We evaluate every car through 5 specialized domain engines before synthesizing with TOPSIS multi-criteria optimization.
+            <p className="mt-2.5 max-w-2xl text-[16px] text-muted leading-relaxed">
+              {t("hw.enginesSub")}
             </p>
           </Reveal>
 
           <ScrubStagger className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-5" selector="> div">
             {/* Bento Card 1: TCO Engine */}
-            <div className="md:col-span-7 rounded-[26px] border border-line bg-white p-7 card-highlight flex flex-col justify-between">
+            <div className="md:col-span-7 rounded-lg border border-line bg-white p-7 card-highlight flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pine-tint text-primary">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-pine-tint text-primary">
                     <Wallet className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-primary bg-pine-tint px-2.5 py-1 rounded-md border border-pine/15">
@@ -385,7 +370,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-[22px] font-bold text-ink mt-5">
                   {t("eng.e1t")}
                 </h3>
-                <p className="text-[14px] text-muted mt-2 leading-relaxed">
+                <p className="text-[16px] text-muted mt-2 leading-relaxed">
                   {t("eng.e1d")}
                 </p>
               </div>
@@ -398,16 +383,16 @@ export default function LandingPage() {
                   {t("eng.t1b")}
                 </span>
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  10-Year Insurance
+                  {t("eng.insurance10")}
                 </span>
               </div>
             </div>
 
             {/* Bento Card 2: Range & Commute Engine */}
-            <div className="md:col-span-5 rounded-[26px] border border-line bg-white p-7 card-highlight flex flex-col justify-between">
+            <div className="md:col-span-5 rounded-lg border border-line bg-white p-7 card-highlight flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-800">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-emerald-50 text-emerald-800">
                     <Gauge className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
@@ -417,7 +402,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-[22px] font-bold text-ink mt-5">
                   {t("eng.e2t")}
                 </h3>
-                <p className="text-[14px] text-muted mt-2 leading-relaxed">
+                <p className="text-[16px] text-muted mt-2 leading-relaxed">
                   {t("eng.e2d")}
                 </p>
               </div>
@@ -433,10 +418,10 @@ export default function LandingPage() {
             </div>
 
             {/* Bento Card 3: JPJ Road Tax Engine */}
-            <div className="md:col-span-4 rounded-[26px] border border-line bg-white p-7 card-highlight flex flex-col justify-between">
+            <div className="md:col-span-4 rounded-lg border border-line bg-white p-7 card-highlight flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-800">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-amber-50 text-amber-800">
                     <Scale className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
@@ -446,7 +431,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
                   {t("eng.e3t")}
                 </h3>
-                <p className="text-[13px] text-muted mt-2 leading-relaxed">
+                <p className="text-[15px] text-muted mt-2 leading-relaxed">
                   {t("eng.e3d")}
                 </p>
               </div>
@@ -457,10 +442,10 @@ export default function LandingPage() {
             </div>
 
             {/* Bento Card 4: Charging Infrastructure Grid */}
-            <div className="md:col-span-4 rounded-[26px] border border-line bg-white p-7 card-highlight flex flex-col justify-between">
+            <div className="md:col-span-4 rounded-lg border border-line bg-white p-7 card-highlight flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-800">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-cyan-50 text-cyan-800">
                     <Zap className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-cyan-800 bg-cyan-50 px-2.5 py-1 rounded-md border border-cyan-200">
@@ -470,7 +455,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
                   {t("eng.e4t")}
                 </h3>
-                <p className="text-[13px] text-muted mt-2 leading-relaxed">
+                <p className="text-[15px] text-muted mt-2 leading-relaxed">
                   {t("eng.e4d")}
                 </p>
               </div>
@@ -481,10 +466,10 @@ export default function LandingPage() {
             </div>
 
             {/* Bento Card 5: Battery & Resale Engine */}
-            <div className="md:col-span-4 rounded-[26px] border border-line bg-white p-7 card-highlight flex flex-col justify-between">
+            <div className="md:col-span-4 rounded-lg border border-line bg-white p-7 card-highlight flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-800">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-slate-100 text-slate-800">
                     <ShieldCheck className="h-5 w-5" />
                   </div>
                   <span className="mono-label text-slate-800 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
@@ -494,7 +479,7 @@ export default function LandingPage() {
                 <h3 className="font-display text-[20px] font-bold text-ink mt-5">
                   {t("eng.e5t")}
                 </h3>
-                <p className="text-[13px] text-muted mt-2 leading-relaxed">
+                <p className="text-[15px] text-muted mt-2 leading-relaxed">
                   {t("eng.e5d")}
                 </p>
               </div>
@@ -508,37 +493,37 @@ export default function LandingPage() {
       </section>
 
       {/* 3-Step Process */}
-      <section id="how" className="mx-auto max-w-6xl px-4 sm:px-6 py-20 sm:py-28">
+      <section id="how" className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
         <Reveal>
           <SectionLabel>{t("hw.label")}</SectionLabel>
-          <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
+          <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink">
             {t("hw.title")}
           </h2>
         </Reveal>
 
         <ScrubStagger className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" selector="> div">
-          <div className="rounded-[22px] border border-line bg-white p-6 card-highlight">
+          <div className="rounded-lg border border-line bg-white p-6 card-highlight">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white font-mono font-bold text-sm">
               01
             </div>
             <h3 className="font-display text-[18px] font-bold text-ink mt-4">{t("hw.s1t")}</h3>
-            <p className="text-[14px] text-muted mt-2 leading-relaxed">{t("hw.s1b")}</p>
+            <p className="text-[16px] text-muted mt-2 leading-relaxed">{t("hw.s1b")}</p>
           </div>
 
-          <div className="rounded-[22px] border border-line bg-white p-6 card-highlight">
+          <div className="rounded-lg border border-line bg-white p-6 card-highlight">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white font-mono font-bold text-sm">
               02
             </div>
             <h3 className="font-display text-[18px] font-bold text-ink mt-4">{t("hw.s2t")}</h3>
-            <p className="text-[14px] text-muted mt-2 leading-relaxed">{t("hw.s2b")}</p>
+            <p className="text-[16px] text-muted mt-2 leading-relaxed">{t("hw.s2b")}</p>
           </div>
 
-          <div className="rounded-[22px] border border-line bg-white p-6 card-highlight">
+          <div className="rounded-lg border border-line bg-white p-6 card-highlight">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white font-mono font-bold text-sm">
               03
             </div>
             <h3 className="font-display text-[18px] font-bold text-ink mt-4">{t("hw.s3t")}</h3>
-            <p className="text-[14px] text-muted mt-2 leading-relaxed">{t("hw.s3b")}</p>
+            <p className="text-[16px] text-muted mt-2 leading-relaxed">{t("hw.s3b")}</p>
           </div>
         </ScrubStagger>
       </section>
@@ -548,11 +533,11 @@ export default function LandingPage() {
       <SupportingInitiatives />
 
       {/* FAQ Section */}
-      <section id="faq" className="border-t border-line py-20 sm:py-28">
+      <section id="faq" className="border-t border-line py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <Reveal>
             <SectionLabel>{t("faq.label")}</SectionLabel>
-            <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink font-bold">
+            <h2 className="apple-display mt-2 text-[32px] sm:text-[42px] text-ink">
               {t("faq.title")}
             </h2>
           </Reveal>
@@ -566,13 +551,13 @@ export default function LandingPage() {
             ] as const).map(([qk, ak]) => (
               <details
                 key={qk}
-                className="group rounded-[20px] border border-line bg-white px-6 transition-all duration-200 card-highlight"
+                className="group rounded-lg border border-line bg-white px-6 transition-all duration-200 card-highlight"
               >
-                <summary className="flex cursor-pointer items-center justify-between py-5 text-[15px] sm:text-[16px] font-semibold text-ink select-none">
+                <summary className="flex cursor-pointer items-center justify-between py-5 text-[16px] sm:text-[17px] font-semibold text-ink select-none">
                   <span>{t(qk)}</span>
                   <ChevronDown className="h-4 w-4 text-muted transition-transform duration-200 group-open:rotate-180 shrink-0 ml-4" />
                 </summary>
-                <p className="pb-5 text-[14px] leading-relaxed text-muted border-t border-line/40 pt-3">
+                <p className="pb-5 text-[16px] leading-relaxed text-muted border-t border-line/40 pt-3">
                   {t(ak)}
                 </p>
               </details>

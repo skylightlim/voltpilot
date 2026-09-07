@@ -135,19 +135,19 @@ export default function MethodologyPage() {
           <br />
           <span className="text-primary">{t("me.t2")}</span>
         </h1>
-        <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-fog sm:text-[17px]">
+        <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-fog sm:text-[17px]">
           {t("me.sub")}
         </p>
       </section>
 
       {/* ---------- The three scored criteria ---------- */}
-      <section className="border-y border-line bg-paper-2 py-14 sm:py-20">
+      <section className="border-y border-line bg-paper-2 py-12 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <ScrubReveal>
             <h2 className="apple-display text-[26px] text-ink sm:text-[34px]">
               {t("me.critH")}
             </h2>
-            <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-muted">
+            <p className="mt-2 max-w-2xl text-[16px] leading-relaxed text-muted">
               {t("me.critSub")}
             </p>
           </ScrubReveal>
@@ -165,13 +165,13 @@ export default function MethodologyPage() {
             ).map(([name, desc, dir, variable, weight]) => (
               <div
                 key={name}
-                className="rounded-[20px] border border-line bg-white p-5 card-highlight"
+                className="rounded-lg border border-line bg-white p-5 card-highlight"
               >
                 <div className="flex items-baseline justify-between gap-2">
                   <h3 className="font-display text-[19px] font-bold text-ink">{t(name)}</h3>
                   <span className="shrink-0 font-mono text-[11px] font-bold text-amber">{weight}</span>
                 </div>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{t(desc)}</p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{t(desc)}</p>
                 <p className="mt-4 break-all border-t border-line/60 pt-3 font-mono text-[11px] text-primary">
                   {variable}
                 </p>
@@ -209,7 +209,7 @@ export default function MethodologyPage() {
                   <h3 className="font-display text-[19px] font-bold leading-snug text-ink sm:text-[21px]">
                     {t(s.key)}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-muted sm:text-[15px]">
+                  <p className="mt-2 text-[16px] leading-relaxed text-muted sm:text-[16px]">
                     {t(s.body)}
                   </p>
                   {s.formula && <Formula eq={s.eq}>{s.formula}</Formula>}
@@ -226,20 +226,20 @@ export default function MethodologyPage() {
       </section>
 
       {/* ---------- Grid factors: the one place a number changes the answer ---------- */}
-      <section className="border-y border-line bg-parchment/50 py-14 sm:py-20">
+      <section className="border-y border-line bg-parchment/50 py-12 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <ScrubReveal>
             <h2 className="apple-display text-[24px] text-ink sm:text-[30px]">
               {t("me.gridH")}
             </h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-muted">{t("me.gridSub")}</p>
+            <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("me.gridSub")}</p>
           </ScrubReveal>
 
           <ScrubStagger className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3" selector="> div">
             {GRID.map((g) => (
               <div
                 key={g.region}
-                className="rounded-[18px] border border-line bg-white px-5 py-6 text-center"
+                className="rounded-lg border border-line bg-white px-5 py-6 text-center"
               >
                 <p className="figure text-[34px] font-bold text-primary sm:text-[40px]">
                   <ScrubCount value={g.factor} decimals={3} />
@@ -247,7 +247,7 @@ export default function MethodologyPage() {
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-fog">
                   kg CO₂e / kWh
                 </p>
-                <p className="mt-3 border-t border-line/60 pt-3 text-[13px] font-semibold text-ink">
+                <p className="mt-3 border-t border-line/60 pt-3 text-[15px] font-semibold text-ink">
                   {g.region}
                 </p>
               </div>
@@ -266,7 +266,7 @@ export default function MethodologyPage() {
             <h2 className="apple-display mt-3 text-[26px] text-pearl sm:text-[34px]">
               {t("me.topsisH")}
             </h2>
-            <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-pearl/70">
+            <p className="mt-2 max-w-xl text-[16px] leading-relaxed text-pearl/70">
               {t("me.topsisSub")}
             </p>
           </ScrubReveal>
@@ -280,7 +280,7 @@ export default function MethodologyPage() {
                 <p className="font-mono text-[10px] uppercase tracking-wider text-pearl/50">
                   <span className="text-amber">Eq. {m.eq}</span> · {m.label}
                 </p>
-                <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-pearl sm:text-[14px]">
+                <code className="overflow-x-auto whitespace-nowrap font-mono text-[15px] text-pearl sm:text-[16px]">
                   {m.f}
                 </code>
               </div>
@@ -289,7 +289,7 @@ export default function MethodologyPage() {
 
           {/* the closeness coefficient — the single number the whole page builds to */}
           <ScrubReveal y={26}>
-            <div className="mt-10 rounded-[22px] border border-amber/30 bg-white/[0.04] px-5 py-8 text-center sm:px-8 sm:py-10">
+            <div className="mt-10 rounded-lg border border-amber/30 bg-white/[0.04] px-5 py-8 text-center sm:px-8 sm:py-10">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber">
                 Eq. 50 · Closeness coefficient
               </p>
@@ -310,7 +310,7 @@ export default function MethodologyPage() {
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
         <ScrubReveal>
           <h2 className="apple-display text-[24px] text-ink sm:text-[30px]">{t("me.srcH")}</h2>
-          <p className="mt-2 text-[14px] leading-relaxed text-muted">{t("me.srcSub")}</p>
+          <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("me.srcSub")}</p>
         </ScrubReveal>
 
         <ScrubStagger className="mt-8" selector="> li" each={0.05}>
@@ -318,7 +318,7 @@ export default function MethodologyPage() {
             {SOURCES.map((s) => (
               <li
                 key={s.n}
-                className="grid grid-cols-[1.75rem_1fr] gap-3 border-t border-line py-4 text-[13px] leading-relaxed text-muted"
+                className="grid grid-cols-[1.75rem_1fr] gap-3 border-t border-line py-4 text-[15px] leading-relaxed text-muted"
               >
                 <span className="font-mono text-[11px] font-bold text-primary">
                   [{s.n}]
@@ -346,13 +346,13 @@ export default function MethodologyPage() {
       </section>
 
       {/* ---------- Back into the funnel ---------- */}
-      <section className="border-t border-line bg-paper-2 py-14 sm:py-20">
+      <section className="border-t border-line bg-paper-2 py-12 sm:py-20">
         <div className="mx-auto flex max-w-3xl flex-col items-start gap-5 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div>
             <h2 className="apple-display text-[22px] text-ink sm:text-[28px]">
               {t("me.ctaH")}
             </h2>
-            <p className="mt-1.5 text-[14px] text-muted">{t("me.ctaB")}</p>
+            <p className="mt-1.5 text-[16px] text-muted">{t("me.ctaB")}</p>
           </div>
           <Link href="/interview/form" className="w-full shrink-0 sm:w-auto">
             <Button variant="primary" size="lg" className="w-full sm:w-auto">

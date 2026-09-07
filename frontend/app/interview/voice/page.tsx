@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Mic, MicOff, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User, Bot, Volume2 } from "lucide-react";
+import { Mic, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User, Bot, Volume2 } from "lucide-react";
 import { Button, Card } from "@/components/ui";
-import { SESSION, apiService, BACKEND_URL } from "@/lib/api";
+import { SESSION, apiService } from "@/lib/api";
 import { useLang, useT } from "@/lib/i18n";
 import { getWorkletUrl, downsampleAndConvertToInt16, pcmToBase64 } from "@/lib/voice/audio";
 import { isEchoOfAdvisor } from "@/lib/voice/echo";
@@ -43,6 +43,9 @@ export default function VoiceInterviewPage() {
   const playCtxRef = useRef<AudioContext | null>(null);
   const micGainRef = useRef<GainNode | null>(null);
   const nextTimeRef = useRef(0);
+  /** True while recognition is deliberately stopped for advisor playback.
+   *  Without it, abort() ran on every 20ms audio chunk — ~50 times a second. */
+  const recogSuppressedRef = useRef(false);
   const speakerEndTimeRef = useRef(0);
   const isAdvisorSpeakingRef = useRef(false);
   const lastAdvisorSpokeTimeRef = useRef(0);
@@ -143,6 +146,17 @@ export default function VoiceInterviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /** Lead time before the first chunk of an utterance, absorbing network jitter
+   *  so playback never underruns mid-sentence. See playPcmDirect. */
+  const PLAYBACK_JITTER_LEAD = 0.12;
+
+  /** Extra hold after the advisor's audio ends before the mic and recognition come
+   *  back. getUserMedia already requests echoCancellation, so this is a guard on
+   *  top of hardware AEC rather than the only defence. It was 0.4s, which meant
+   *  the first 400ms of your reply landed while recognition was still stopped —
+   *  lost speech, and a transcript that arrived late. */
+  const ECHO_TAIL = 0.15;
+
   // --- Audio helpers ---
 
   const playPcmDirect = useCallback((samples: Int16Array, rate: number) => {
@@ -160,13 +174,22 @@ export default function VoiceInterviewPage() {
       const src = ctx.createBufferSource();
       src.buffer = audioBuffer;
       src.connect(ctx.destination);
-      const when = Math.max(ctx.currentTime, nextTimeRef.current);
+      // Jitter buffer. Chunks were scheduled at max(now, nextTime) with no lead,
+      // so the moment one arrived after the queue drained — which network jitter
+      // guarantees — playback restarted at "now" and the silence in between was
+      // an audible click. At 20ms chunks that fires several times a second and
+      // reads as a buzz. Measured: ±10ms jitter produced ~17 gaps per 300 chunks
+      // with no lead, ~0.1 with 120ms. The cost is 120ms of added delay at the
+      // start of each utterance, not on every chunk — continuations stay seamless.
+      const when =
+        nextTimeRef.current < ctx.currentTime
+          ? ctx.currentTime + PLAYBACK_JITTER_LEAD   // queue drained: re-arm
+          : nextTimeRef.current;                      // mid-utterance: continue
       src.start(when);
       const endTime = when + audioBuffer.duration;
       nextTimeRef.current = endTime;
 
-      // Extend speaker active time + 400ms buffer for room echo dissipation
-      speakerEndTimeRef.current = Math.max(speakerEndTimeRef.current, endTime + 0.4);
+      speakerEndTimeRef.current = Math.max(speakerEndTimeRef.current, endTime + ECHO_TAIL);
       isAdvisorSpeakingRef.current = true;
       lastAdvisorSpokeTimeRef.current = Date.now();
       setIsAdvisorSpeaking(true);
@@ -176,8 +199,16 @@ export default function VoiceInterviewPage() {
         micGainRef.current.gain.setValueAtTime(0, micCtxRef.current.currentTime);
       }
 
-      // Stop speech recognition buffer during advisor speech to prevent acoustic leak
-      if (recognitionRef.current) {
+      // Stop recognition while the advisor speaks, or it transcribes the advisor
+      // through the speakers. SpeechRecognition runs its own capture, so muting
+      // micGain does not cover this.
+      //
+      // Edge-triggered, not per chunk. This ran on every incoming 20ms chunk —
+      // ~50 abort() calls a second, 200 per 4-second reply. Chrome plays a chime
+      // on each start/stop, which is the beeping, and every abort throws away the
+      // in-progress recognition buffer, which is why transcripts lagged.
+      if (recognitionRef.current && !recogSuppressedRef.current) {
+        recogSuppressedRef.current = true;
         try { recognitionRef.current.abort(); } catch {}
       }
 
@@ -194,9 +225,12 @@ export default function VoiceInterviewPage() {
             micGainRef.current.gain.setValueAtTime(1, micCtxRef.current.currentTime);
           }
 
-          // Restart clean speech recognition with empty buffer
-          if (recognitionRef.current && stageRef.current === "live") {
-            try { recognitionRef.current.start(); } catch {}
+          // Resume recognition once, matching the single abort above.
+          if (recogSuppressedRef.current) {
+            recogSuppressedRef.current = false;
+            if (recognitionRef.current && stageRef.current === "live") {
+              try { recognitionRef.current.start(); } catch {}
+            }
           }
         }
       }, msUntilDone);
@@ -457,22 +491,26 @@ export default function VoiceInterviewPage() {
       const systemPrompt = isBm
         ? [
             "Anda adalah penasihat AI untuk panduan keputusan EV vs Hibrid Malaysia.",
-            "Tanya pengguna tepat 7 soalan, satu demi satu, dalam urutan ini:",
+            "Tanya pengguna tepat 11 soalan, satu demi satu, dalam urutan ini:",
             "",
             "1. Berapa kilometer anda memandu pada hari biasa?",
             "2. Berapa hari seminggu anda biasanya memandu?",
             "3. Berapa kerap anda memandu perjalanan jauh melebihi 100 km? (jarang / bulanan / mingguan)",
             "4. Ke mana destinasi perjalanan jauh anda biasanya? (Lembah Klang / utara / selatan / pantai timur / Malaysia timur)",
             "5. Bolehkah anda mengecas EV di rumah? (ya / tidak)",
-            "6. Apakah poskod rumah anda? (5 digit)",
-            "7. Adakah anda mempertimbangkan panel solar di rumah? (ya / tidak)",
+            "6. Bolehkah anda juga mengecas di tempat kerja? (ya / tidak)",
+            "7. Apakah poskod rumah anda? (5 digit)",
+            "8. Adakah rumah anda di grid Semenanjung atau di Malaysia Timur, Sabah atau Sarawak?",
+            "9. Lebih kurang berapa bil elektrik bulanan anda dalam RM? (sebut sifar jika tidak pasti)",
+            "10. Berapakah bajet maksimum anda untuk kereta dalam RM?",
+            "11. Adakah anda mempertimbangkan panel solar di rumah? (ya / tidak)",
             "",
             "PERATURAN:",
             "- Tanya SATU soalan pada satu masa. Tunggu jawapan pengguna.",
             "- Selepas setiap jawapan, sahkan secara ringkas apa yang anda dengar, kemudian tanya soalan seterusnya.",
             "- Pastikan respons pendek dan mesra.",
             "",
-            "SELEPAS semua 7 soalan dijawab:",
+            "SELEPAS semua 11 soalan dijawab:",
             "1. Katakan: \"Biar saya sahkan semua jawapan anda.\"",
             "2. Bacakan setiap jawapan dengan jelas.",
             "3. Tanya: \"Adakah semuanya betul? Katakan ya untuk sahkan, atau beritahu saya apa yang ingin diubah.\"",
@@ -483,22 +521,26 @@ export default function VoiceInterviewPage() {
           ].join("\n")
         : [
             "You are the AI interviewer for a Malaysian EV vs Hybrid decision guide.",
-            "Ask the user exactly 7 questions, one at a time, in this order:",
+            "Ask the user exactly 11 questions, one at a time, in this order:",
             "",
             "1. How many kilometres do you drive on a typical day?",
             "2. How many days a week do you usually drive?",
             "3. How often do you take long trips over 100 km? (rarely / monthly / weekly)",
             "4. Where do your long trips usually go? (Klang Valley / north / south / east coast / east Malaysia)",
             "5. Can you charge an EV at home? (yes / no)",
-            "6. What is your home postcode? (5 digits)",
-            "7. Are you considering solar panels at home? (yes / no)",
+            "6. Can you also charge at your workplace? (yes / no)",
+            "7. What is your home postcode? (5 digits)",
+            "8. Is your home on the Peninsular grid, or in East Malaysia — Sabah or Sarawak?",
+            "9. Roughly what is your monthly electricity bill in ringgit? (say zero if unsure)",
+            "10. What is your maximum budget for the car, in ringgit?",
+            "11. Are you considering solar panels at home? (yes / no)",
             "",
             "RULES:",
             "- Ask ONE question at a time. Wait for the user's answer.",
             "- After each answer, briefly confirm what you heard, then ask the next question.",
             "- Keep responses short and conversational.",
             "",
-            "AFTER all 7 questions are answered:",
+            "AFTER all 11 questions are answered:",
             "1. Say: \"Let me confirm all your answers.\"",
             "2. Read back each answer clearly.",
             "3. Ask: \"Is everything correct? Say yes to confirm, or tell me what to change.\"",
@@ -620,8 +662,8 @@ export default function VoiceInterviewPage() {
       console.log("[voice] Session ready, sending initial greeting prompt...");
 
       const initialGreeting = isBm
-        ? "Perkenalkan diri anda secara ringkas sebagai Penasihat AI VoltPilot. Sapa pengguna, beritahu mereka anda akan bertanya 7 soalan pantas untuk membantu memilih antara EV atau hibrid, kemudian terus tanya soalan pertama: Berapa kilometer anda memandu pada hari biasa?"
-        : "Introduce yourself briefly as the VoltPilot AI Advisor. Greet the user, tell them you will ask 7 quick questions to help decide between an EV or hybrid, then immediately ask the first question: How many kilometres do you drive on a typical day?";
+        ? "Perkenalkan diri anda secara ringkas sebagai Penasihat AI VoltPilot. Sapa pengguna, beritahu mereka anda akan bertanya 11 soalan pantas untuk membantu memilih antara EV atau hibrid, kemudian terus tanya soalan pertama: Berapa kilometer anda memandu pada hari biasa?"
+        : "Introduce yourself briefly as the VoltPilot AI Advisor. Greet the user, tell them you will ask 11 quick questions to help decide between an EV or hybrid, then immediately ask the first question: How many kilometres do you drive on a typical day?";
 
       session.sendClientContent({
         turns: [
@@ -644,18 +686,8 @@ export default function VoiceInterviewPage() {
     }
   };
 
-  const handleFinish = () => {
-    if (transcriptRef.current.length > 20) {
-      extractAndFinish(transcriptRef.current);
-    } else {
-      cleanupSession();
-      setStage("fallback");
-      setError("No answers collected. Please try again.");
-    }
-  };
-
   return (
-    <main className="app-shell mx-auto flex min-h-[100svh] w-full max-w-lg flex-col px-4 sm:px-6 pt-6 pb-8 bg-[#f6f5ee]">
+    <main className="app-shell thumb-zone-safe mx-auto flex min-h-[100svh] w-full max-w-lg flex-col px-4 sm:px-6 pt-6 bg-[#f6f5ee]">
       {/* Header */}
       <header className="flex items-center justify-between">
         <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-ink transition-colors flex items-center gap-1.5">
@@ -676,7 +708,7 @@ export default function VoiceInterviewPage() {
         {stage === "checking" && (
           <Card className="mt-6 p-6 text-center border-line">
             <Loader2 className="mx-auto h-6 w-6 animate-spin text-primary" />
-            <p className="mt-3 text-[14px] text-muted">{t("v.checking")}</p>
+            <p className="mt-3 text-[16px] text-muted">{t("v.checking")}</p>
           </Card>
         )}
 
@@ -687,7 +719,7 @@ export default function VoiceInterviewPage() {
               <Mic className="h-9 w-9 text-primary animate-pulse" />
             </div>
             <h2 className="apple-display-2 mt-5 text-[20px] text-ink">{t("v.readyT")}</h2>
-            <p className="mx-auto mt-2 max-w-[280px] text-[13px] sm:text-[14px] leading-relaxed text-muted">
+            <p className="mx-auto mt-2 max-w-[280px] text-[15px] sm:text-[16px] leading-relaxed text-muted">
               {t("v.readyB")}
             </p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-200/60">
@@ -708,7 +740,7 @@ export default function VoiceInterviewPage() {
                   {isAdvisorSpeaking ? <Volume2 className="relative h-4 w-4 text-primary animate-pulse" /> : <Mic className="relative h-4 w-4 text-red-500" />}
                 </span>
                 <div>
-                  <p className="text-[13px] font-semibold text-ink flex items-center gap-1.5">
+                  <p className="text-[15px] font-semibold text-ink flex items-center gap-1.5">
                     {isAdvisorSpeaking ? "AI Advisor speaking · Mic muted" : "Listening to your voice..."}
                   </p>
                   <p className="text-[11px] text-muted">
@@ -771,7 +803,7 @@ export default function VoiceInterviewPage() {
                     )}
 
                     <div
-                      className={`relative max-w-[84%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed shadow-2xs ${
+                      className={`relative max-w-[84%] rounded-2xl px-3.5 py-2.5 text-[15px] leading-relaxed shadow-2xs ${
                         isAdvisor
                           ? "bg-white border border-line text-ink rounded-bl-xs"
                           : m.isInterim
@@ -804,14 +836,6 @@ export default function VoiceInterviewPage() {
                 </div>
               )}
             </div>
-
-            {/* Conversation footer notice */}
-            <div className="border-t border-line/60 bg-white px-4 py-2 text-[11px] text-muted flex items-center justify-between">
-              <span>{t("v.echoOn")}</span>
-              <span className="flex items-center gap-1 text-emerald-600 font-medium">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> {t("v.liveStream")}
-              </span>
-            </div>
           </div>
         )}
 
@@ -820,7 +844,7 @@ export default function VoiceInterviewPage() {
           <Card className="mt-8 text-center p-8">
             <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
             <h3 className="mt-4 font-semibold text-ink text-base">{t("v.processing")}</h3>
-            <p className="mt-1 text-[13px] text-muted">{t("v.extracting")}</p>
+            <p className="mt-1 text-[15px] text-muted">{t("v.extracting")}</p>
           </Card>
         )}
 
@@ -831,7 +855,7 @@ export default function VoiceInterviewPage() {
               <Check className="h-6 w-6" />
             </div>
             <h3 className="mt-4 font-semibold text-ink text-base">{t("v.done")}</h3>
-            <p className="mt-1 text-[13px] text-muted">{t("v.doneSub")}</p>
+            <p className="mt-1 text-[15px] text-muted">{t("v.doneSub")}</p>
           </Card>
         )}
 
@@ -866,13 +890,14 @@ export default function VoiceInterviewPage() {
           </div>
         )}
         {stage === "live" && (
-          <Button size="lg" className="w-full font-semibold shadow-sm" variant="destructive" onClick={handleFinish}>
-            <MicOff className="h-5 w-5 mr-2" /> {t("v.continue")}
-          </Button>
+          <Link href="/interview/form" className="block">
+            <Button size="lg" className="w-full" variant="outline">
+              <PencilLine className="h-5 w-5 mr-2" /> {t("v.useform")}
+            </Button>
+          </Link>
         )}
         {(stage === "checking" || stage === "extracting" || stage === "done") && <div className="h-12" />}
       </div>
-      <span className="hidden">{BACKEND_URL}</span>
     </main>
   );
 }

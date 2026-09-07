@@ -12,6 +12,8 @@ import asyncio
 import json
 import logging
 import re
+import time
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from ..config import settings
@@ -173,6 +175,70 @@ def _extract_json(text: str) -> dict:
     return json.loads(text[start : end + 1])
 
 
+# --- API key rotation -------------------------------------------------------
+# The free tier meters requests per key per model per day, so one key is a hard
+# daily ceiling on the real analyst. Several keys are walked in order: when one
+# reports 429 it is put on cooldown and the next takes over. Only when every key
+# is spent do we fall back to the deterministic mock.
+
+_key_clients: dict[str, Any] = {}
+_key_cooldown: dict[str, float] = {}   # key -> unix ts before which not to retry it
+
+
+def _seconds_until_utc_midnight() -> float:
+    now = datetime.now(timezone.utc)
+    reset = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    return (reset - now).total_seconds()
+
+
+def _client_for(key: str) -> Any:
+    from google import genai
+
+    if key not in _key_clients:
+        _key_clients[key] = genai.Client(api_key=key)
+    return _key_clients[key]
+
+
+def _key_label(key: str) -> str:
+    """Identify a key in logs by position, never by value."""
+    try:
+        return f"#{settings.gemini_api_keys.index(key) + 1}/{len(settings.gemini_api_keys)}"
+    except ValueError:  # pragma: no cover - key removed from config mid-process
+        return "#?"
+
+
+def _live_keys() -> list[str]:
+    now = time.time()
+    return [k for k in settings.gemini_api_keys if _key_cooldown.get(k, 0.0) <= now]
+
+
+async def _with_key_rotation(run: Any) -> Any:
+    """Run `run(client)` against each key that still has quota.
+
+    A 429 retires that key until the daily quota resets and hands the call to the
+    next one. Any other error belongs to the request, not the key, so it is raised
+    immediately rather than burning the remaining keys on the same bad input.
+    """
+    keys = _live_keys()
+    if not keys:
+        raise RuntimeError("every Gemini key is out of quota")
+    last_exc: Exception | None = None
+    for key in keys:
+        try:
+            return await run(_client_for(key))
+        except Exception as exc:
+            code = getattr(exc, "code", None) or getattr(exc, "status_code", None)
+            if code != 429:
+                raise
+            _key_cooldown[key] = time.time() + _seconds_until_utc_midnight()
+            last_exc = exc
+            logger.warning(
+                "gemini key %s out of quota - rotating to the next key", _key_label(key)
+            )
+    logger.error("all %d gemini keys are out of quota - using mock until reset", len(keys))
+    raise last_exc  # pragma: no cover - loop raises or returns above
+
+
 # Gemini returns 503 UNAVAILABLE ("high demand") sporadically. A single blip used
 # to drop the whole recommendation to the deterministic mock, so retry transient
 # server-side errors before giving up.
@@ -224,9 +290,6 @@ async def _generate_with_retry(client: Any, *, contents: str, config: dict) -> A
 
 
 async def gemini_analyst(bundle: dict, lang: str) -> dict | None:
-    from google import genai
-
-    client = genai.Client(api_key=settings.gemini_api_key)
     payload = {
         "profile": bundle["profile"],
         "weights": bundle["weights"],
@@ -235,10 +298,12 @@ async def gemini_analyst(bundle: dict, lang: str) -> dict | None:
         "language": lang,
         "policy_context": bundle.get("policy_context", ""),
     }
-    resp = await _generate_with_retry(
-        client,
-        contents=json.dumps(payload, ensure_ascii=False),
-        config={"system_instruction": SYSTEM_PROMPT},
+    resp = await _with_key_rotation(
+        lambda client: _generate_with_retry(
+            client,
+            contents=json.dumps(payload, ensure_ascii=False),
+            config={"system_instruction": SYSTEM_PROMPT},
+        )
     )
     data = _extract_json(resp.text or "")
     if not data.get("top_hybrid_slug"):
@@ -282,24 +347,24 @@ async def chat_reply(result: dict, message: str, lang: str) -> str:
     if not settings.has_gemini:
         return _mock_chat(result, message, lang)
     try:
-        from google import genai
-
-        client = genai.Client(api_key=settings.gemini_api_key)
-        resp = await client.aio.models.generate_content(
-            model=settings.analyst_model,
-            contents=message,
-            config={
-                "system_instruction": CHAT_SYSTEM.format(lang=lang)
-                + "\n\nContext:\n"
-                + json.dumps(
-                    {
-                        "ranking_top5": result["ranking"][:5],
-                        "roadmap": result.get("roadmap"),
-                        "profile": result.get("profile"),
-                    },
-                    ensure_ascii=False,
-                )
-            },
+        config = {
+            "system_instruction": CHAT_SYSTEM.format(lang=lang)
+            + "\n\nContext:\n"
+            + json.dumps(
+                {
+                    "ranking_top5": result["ranking"][:5],
+                    "roadmap": result.get("roadmap"),
+                    "profile": result.get("profile"),
+                },
+                ensure_ascii=False,
+            )
+        }
+        resp = await _with_key_rotation(
+            lambda client: client.aio.models.generate_content(
+                model=settings.analyst_model,
+                contents=message,
+                config=config,
+            )
         )
         return (resp.text or "").strip()
     except Exception:
@@ -356,10 +421,6 @@ async def extract_interview_profile(transcript: str, lang: str) -> dict:
         return _mock_extract(transcript, lang)
 
     try:
-        from google import genai
-
-        client = genai.Client(api_key=settings.gemini_api_key)
-
         # Build the prompt with the canonical interview questions
         questions = "\n".join(
             f'- {q["key"]}: {q["en"]}'
@@ -367,7 +428,7 @@ async def extract_interview_profile(transcript: str, lang: str) -> dict:
         )
 
         prompt = f"""You are an extraction engine for an EV vs hybrid interview transcript.
-The user answered 7 questions in {lang} (mixed language is possible).
+The user answered {len(INTERVIEW_QUESTIONS)} questions in {lang} (mixed language is possible).
 Extract exactly these fields from the transcript:
 
 {questions}
@@ -379,16 +440,22 @@ Rules:
 - long_trip_frequency: "rarely" | "monthly" | "weekly"
 - destination_region: "kl" | "north" | "south" | "east_coast" | "east_malaysia"
 - can_charge_home: boolean
+- can_charge_work: boolean
 - home_postcode: 5-digit string
+- grid_region: "peninsular" | "east_malaysia"
+- monthly_electricity_bill_rm: number (RM per month, 0 if the user is unsure)
+- budget_max_rm: number (RM, the most they will spend on the car)
 - consider_solar: boolean
 
 Infer missing values from context where reasonable (e.g., city name -> region).
 Return ONLY the JSON object, no markdown, no explanation."""
 
-        resp = await client.aio.models.generate_content(
-            model=settings.analyst_model,
-            contents=prompt + "\n\nTranscript:\n" + transcript,
-            config={"system_instruction": "Return ONLY the JSON object."},
+        resp = await _with_key_rotation(
+            lambda client: client.aio.models.generate_content(
+                model=settings.analyst_model,
+                contents=prompt + "\n\nTranscript:\n" + transcript,
+                config={"system_instruction": "Return ONLY the JSON object."},
+            )
         )
         text = resp.text or ""
         # Clean up JSON
@@ -470,5 +537,35 @@ def _mock_extract(transcript: str, lang: str) -> dict:
     # consider_solar
     if any(kw in t for kw in ["solar", "yes", "ya", "pertimbang", "consider"]):
         out["consider_solar"] = True
+
+    # can_charge_work — only when the workplace is actually mentioned, so a "yes"
+    # about home charging cannot be read as a yes about work.
+    work_ctx = re.search(r"(work|office|pejabat|tempat kerja)[^.?!]{0,60}", t)
+    if work_ctx:
+        seg = work_ctx.group(0)
+        if any(kw in seg for kw in ["no", "cannot", "can't", "tidak", "tak "]):
+            out["can_charge_work"] = False
+        elif any(kw in seg for kw in ["yes", "can", "ya", "boleh"]):
+            out["can_charge_work"] = True
+
+    # grid_region — Peninsular unless East Malaysia is named.
+    if any(kw in t for kw in ["sabah", "sarawak", "east malaysia", "malaysia timur", "borneo"]):
+        out["grid_region"] = "east_malaysia"
+    elif any(kw in t for kw in ["peninsular", "semenanjung", "west malaysia"]):
+        out["grid_region"] = "peninsular"
+
+    # monthly_electricity_bill_rm — needs a bill word nearby, or any RM figure
+    # would be read as the electricity bill.
+    bill = re.search(r"(bill|elektrik|electricity|tnb)[^.?!]{0,40}?(?:rm\s*)?(\d{2,5})", t)
+    if bill:
+        out["monthly_electricity_bill_rm"] = float(bill.group(2))
+
+    # budget_max_rm — budget words, and accept "150k"/"150 ribu" shorthand.
+    bud = re.search(r"(budget|bajet|spend|belanja)[^.?!]{0,40}?(?:rm\s*)?(\d{2,7})\s*(k|ribu)?", t)
+    if bud:
+        amount = float(bud.group(2))
+        if bud.group(3):
+            amount *= 1000
+        out["budget_max_rm"] = amount
 
     return out

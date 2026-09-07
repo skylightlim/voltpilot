@@ -3,6 +3,11 @@ const BACKEND_URL =
     ? "/api/proxy"
     : process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || "http://127.0.0.1:8000";
 
+/* Exported for diagnostics only. NEVER render this into JSX: it resolves to the
+   direct backend host on the server and to "/api/proxy" on the client, so any
+   markup containing it fails hydration — and it would publish the backend's
+   internal address into the HTML of every page that did. A hidden <span> on the
+   voice page did exactly that. tests/guardrails.test.mjs now checks for it. */
 export { BACKEND_URL };
 
 export type Profile = {
@@ -66,6 +71,7 @@ const DEFAULT_WEIGHTS: Weights = {
 const PROFILE_KEY = "atp.profile";
 const WEIGHTS_KEY = "atp.weights";
 const TOKEN_KEY = "atp.token";
+const RESULTS_KEY = "atp.results";
 
 /** Wait this long before giving up. The backend is a container that cold-starts,
  *  so the first request after an idle period is legitimately slow — but not
@@ -166,6 +172,28 @@ export const SESSION = {
   loadToken: (): string | null =>
     typeof window !== "undefined" ? sessionStorage.getItem(TOKEN_KEY) : null,
   saveToken: (t: string) => sessionStorage.setItem(TOKEN_KEY, t),
+
+  /* The waiting page fetches the results payload before it hands over, so the
+     results page can paint finished content on its first frame instead of a
+     "Compiling your analysis…" spinner the user has already sat through. */
+  saveResults: (token: string, data: unknown) => {
+    try {
+      sessionStorage.setItem(RESULTS_KEY, JSON.stringify({ token, data }));
+    } catch {
+      /* quota or private mode — the results page just fetches instead */
+    }
+  },
+  loadResults: (token: string): unknown | null => {
+    if (typeof window === "undefined") return null;
+    try {
+      const raw = sessionStorage.getItem(RESULTS_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return parsed?.token === token ? parsed.data : null;
+    } catch {
+      return null;
+    }
+  },
 };
 
 export const apiService = {
@@ -216,5 +244,11 @@ export const apiService = {
     }),
   getSolar: () => api<{ solar: any }>("/config/solar"),
   getSponsor: () => api<{ sponsor: any }>("/config/sponsor"),
-  getLiveToken: () => api<{ token: string; model: string; api_version: string }>("/tokens/live", { method: "POST" }),
+  /** Same-origin edge route, not the Python backend: /tokens/live cost 8.9s on a
+   *  cold function and it sits on the session-start path. See app/api/live-token. */
+  getLiveToken: () =>
+    fetch("/api/live-token", { method: "POST" }).then(async (r) => {
+      if (!r.ok) throw new ApiError(r.status, await r.text().catch(() => ""), kindForStatus(r.status));
+      return r.json() as Promise<{ token: string; model: string; api_version: string }>;
+    }),
 };

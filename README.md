@@ -2,7 +2,7 @@
 
 Mobile-first Malaysian-market platform that helps a buyer choose between a **new EV** or a **hybrid**, computes a per-model ranked recommendation (TOPSIS + 5 domain engines), explains it with Gemini as analyst AI, and ships a PDF email report.
 
-Deployment: see `DEPLOYMENT.md`. Frontend design and motion rules: `frontend/DESIGN.md`.
+Deployment: both apps run on Vercel; see `DEPLOYMENT.md`. Frontend design and motion rules: `frontend/DESIGN.md`.
 
 An earlier specification described 108 vehicles and three TOPSIS criteria; that revision was
 superseded. The shipping framework is 184 trims on six criteria.
@@ -21,7 +21,7 @@ superseded. The shipping framework is 184 trims on six criteria.
 ```bash
 # Backend
 cd backend && python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt   # runtime deps + the test stack
 uvicorn app.main:app --reload --port 8000
 
 # Frontend

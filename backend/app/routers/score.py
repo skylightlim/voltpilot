@@ -56,4 +56,13 @@ async def run_score(body: ScoreRequest, db: AsyncSession = Depends(get_db)):
         )
     )
     await db.commit()
+
+    # Start the analyst now rather than on the first read. The client goes
+    # straight to /analysis and watches a stage animation for several seconds;
+    # generating during that window instead of after it removes the wait from
+    # the user's critical path entirely.
+    from .results import start_recommendation
+
+    start_recommendation(token)
+
     return {"token": token, "solar_eligible": bundle["solar_eligible"], "ranked": len(bundle["ranking"])}

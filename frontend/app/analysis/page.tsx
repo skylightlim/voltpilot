@@ -1,10 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { ScrollRefresh } from "@/components/motion";
-import { useT } from "@/lib/i18n";
+import { useT, type StrKey } from "@/lib/i18n";
 
 function GarageLoader() {
   const t = useT();
@@ -75,36 +75,89 @@ function AnalysisInner() {
   const params = useSearchParams();
   const token = params.get("token") || "";
   const [stage, setStage] = useState(0);
+  // useT() returns a fresh function identity every render. Holding it in the
+  // effect's dependency array restarted the whole pipeline on each render —
+  // measured eight /profile calls and two /score calls for one visit. The ref
+  // keeps the copy current without making the effect depend on it.
+  const tRef = useRef(t);
+  tRef.current = t;
   const heavyScene = useWantsHeavyScene();
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!token) {
-      router.replace("/sliders");
-      return;
-    }
     const stageTimer = setInterval(() => setStage((s) => Math.min(s + 1, STAGE_KEYS.length - 1)), 1400);
     let cancelled = false;
+    let retry: ReturnType<typeof setTimeout> | undefined;
 
-    const check = async () => {
-      if (cancelled) return;
-      try {
-        const { apiService } = await import("@/lib/api");
-        const r = await apiService.getRecommendation(token);
-        if (r?.analyst) {
-          router.replace(`/results/${token}`);
+    /* This page owns the entire wait: score the profile, wait for the analyst,
+       then fetch the results payload before handing over. Previously scoring
+       happened on /sliders (a five-second dead button) and the results page
+       fetched its own data behind a "Compiling your analysis…" spinner, so one
+       wait was split across three screens. */
+    const runPipeline = async () => {
+      const { apiService, ApiError, SESSION } = await import("@/lib/api");
+
+      // Scoring: skip when a token was passed in, so a re-visited link still works.
+      let resultToken = token || SESSION.loadToken() || "";
+      if (!token) {
+        try {
+          const profile = SESSION.loadProfile();
+          const p = await apiService.postProfile(profile);
+          if (cancelled) return;
+          if (p.missing_required.length) {
+            router.replace("/interview/form");
+            return;
+          }
+          SESSION.saveToken(p.token);
+          const r = await apiService.postScore(p.token, profile, SESSION.loadWeights());
+          if (cancelled) return;
+          resultToken = r.token;
+        } catch (e) {
+          if (cancelled) return;
+          setError(e instanceof ApiError ? tRef.current(e.messageKey as StrKey) : tRef.current("sl.err"));
+          return;
         }
-      } catch {
-        /* not ready yet */
       }
+      if (!resultToken) {
+        router.replace("/sliders");
+        return;
+      }
+
+      // Chained, not setInterval. /score starts the analyst run and the endpoint
+      // holds the connection until that run lands, so a fixed 1.5s interval
+      // piled up sixteen overlapping long-polls, each holding a database
+      // connection. Waiting for the previous answer means one request in flight.
+      const poll = async () => {
+        if (cancelled) return;
+        try {
+          const r = await apiService.getRecommendation(resultToken);
+          if (cancelled) return;
+          if (r?.analyst) {
+            // Fetch the results payload here so the next page paints finished
+            // content on its first frame rather than its own loading state.
+            try {
+              const full = await apiService.getResults(resultToken);
+              if (cancelled) return;
+              SESSION.saveResults(resultToken, full);
+            } catch {
+              /* results page will fetch it itself */
+            }
+            router.replace(`/results/${resultToken}`);
+            return;
+          }
+        } catch {
+          /* transport hiccup — fall through and ask again */
+        }
+        if (!cancelled) retry = setTimeout(poll, 1200);
+      };
+      await poll();
     };
 
-    check();
-    const poll = setInterval(check, 1500);
+    runPipeline();
     return () => {
       cancelled = true;
       clearInterval(stageTimer);
-      clearInterval(poll);
+      if (retry) clearTimeout(retry);
     };
   }, [token, router]);
 
@@ -154,7 +207,7 @@ function AnalysisInner() {
         aria-live="polite"
       >
         <p
-          className={`max-w-[30ch] text-[15px] leading-relaxed text-pearl/70 md:block [@media(max-height:560px)]:md:hidden ${
+          className={`max-w-[30ch] text-[16px] leading-relaxed text-pearl/70 md:block [@media(max-height:560px)]:md:hidden ${
             // With no car there is room on a phone for the one line that says
             // what is happening — and a data-saving visitor gets the least
             // reassurance from an otherwise empty screen.
@@ -183,7 +236,7 @@ function AnalysisInner() {
                 </span>
                 <div className="min-w-0">
                   <p
-                    className={`font-display text-[15px] font-bold leading-tight transition-colors duration-500 ${
+                    className={`font-display text-[16px] font-bold leading-tight transition-colors duration-500 ${
                       state === "pending" ? "text-pearl/35" : "text-pearl"
                     }`}
                   >
@@ -213,7 +266,7 @@ function AnalysisInner() {
         <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-pearl/35">
           {t("an.sponsor")}
         </p>
-        <p className="mt-1 font-display text-[15px] font-bold text-pearl/90">Kia EV9 GT-Line</p>
+        <p className="mt-1 font-display text-[16px] font-bold text-pearl/90">Kia EV9 GT-Line</p>
         <p className="mt-0.5 max-w-[22ch] text-[12px] leading-snug text-pearl/45">
           {t("lie.tagline")}
         </p>

@@ -38,8 +38,14 @@ export function getPostcodeArea(postcode: string): string | null {
     const entry = LOOKUP[postcode];
     if (entry) {
       const [area, state] = entry.split(", ");
-      const fullState = STATE_FULL[state] ?? state;
-      return `${area}, ${fullState}`;
+      // Federal territories and single-city states repeat themselves: the raw
+      // entries are "Kuala Lumpur, Wp Kuala Lumpur" and "Pulau Pinang, Pulau
+      // Pinang", which rendered as "Kuala Lumpur, Wilayah Persekutuan Kuala
+      // Lumpur" and wrapped the field readout onto a second line. Dropping the
+      // Wp/Wilayah Persekutuan prefix before comparing catches all four.
+      const bare = state.replace(/^(Wp|Wilayah Persekutuan)\s+/i, "");
+      if (area === bare) return area;
+      return `${area}, ${STATE_FULL[state] ?? state}`;
     }
     return null;
   }

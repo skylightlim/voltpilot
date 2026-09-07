@@ -7,12 +7,17 @@
  * particular is the kind of arithmetic that fails silently rather than loudly.
  */
 
-// Ultra-low latency AudioWorklet (512-sample buffer = ~10.6ms latency at 48kHz)
+// Ultra-low latency AudioWorklet. 480 samples, not 512: at the usual 48kHz mic
+// rate 480 resamples to exactly 160 samples at 16kHz, whereas 512 gives 170.667
+// which rounds to 171 — declaring 16000Hz while actually sending 16031Hz. That
+// 0.195% overspeed accumulated roughly a quarter-second of buffer at the far end
+// every two minutes, so replies drifted later the longer the call ran.
+// 480 is also 10.0ms exactly, marginally tighter than 10.67ms.
 const WORKLET_CODE = `
 class MicProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
-    this.buffer = new Float32Array(512);
+    this.buffer = new Float32Array(480);
     this.bufferIndex = 0;
   }
   process(inputs) {
@@ -27,7 +32,7 @@ class MicProcessor extends AudioWorkletProcessor {
         if (this.bufferIndex >= this.buffer.length) {
           const chunk = new Float32Array(this.buffer);
           this.port.postMessage({ audio: chunk, level: sum / channelData.length }, [chunk.buffer]);
-          this.buffer = new Float32Array(512);
+          this.buffer = new Float32Array(480);
           this.bufferIndex = 0;
           sum = 0;
         }

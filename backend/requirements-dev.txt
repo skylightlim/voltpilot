@@ -1,0 +1,6 @@
+# Local development and CI only. Vercel installs requirements.txt, and every
+# megabyte there counts against the function bundle limit, so the test stack
+# lives here instead.
+-r requirements.txt
+pytest>=8.3
+pytest-asyncio>=0.24

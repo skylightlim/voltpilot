@@ -61,18 +61,18 @@ export function BatteryDegradationChart({
   }`;
 
   return (
-    <div className={`rounded-[22px] border border-line bg-white p-5 sm:p-7 card-highlight ${className}`}>
+    <div className={`rounded-lg border border-line bg-white p-5 sm:p-7 card-highlight ${className}`}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-line">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-display text-[18px] sm:text-[20px] font-semibold text-ink">
-              15-Year Battery State of Health (SoH)
+              {t("ch.sohTitle")}
             </h3>
             <span className="rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 font-mono text-[10px] font-bold">
               {chemistry} Chemistry
             </span>
           </div>
-          <p className="text-[13px] text-muted mt-0.5">
+          <p className="text-[15px] text-muted mt-0.5">
             {t("bd.sub")}
           </p>
         </div>
@@ -189,7 +189,7 @@ export function BatteryDegradationChart({
 
       {/* Interactive Year Scrubber */}
       <div className="rounded-xl bg-paper-2 p-4 border border-line">
-        <div className="flex items-center justify-between text-[13px] font-medium text-ink mb-2">
+        <div className="flex items-center justify-between text-[15px] font-medium text-ink mb-2">
           <span>{t("bd.sim")}</span>
           <span className="font-mono text-primary font-bold">{selectedYear} Years</span>
         </div>
@@ -229,16 +229,16 @@ export function BatteryDegradationChart({
             {current.inWarranty ? (
               <>
                 <ShieldCheck className="h-5 w-5 text-emerald-600 shrink-0" />
-                <span className="text-[14px] font-semibold text-emerald-700">{t("bd.covered")}</span>
+                <span className="text-[16px] font-semibold text-emerald-700">{t("bd.covered")}</span>
               </>
             ) : (
               <>
                 <BatteryWarning className="h-5 w-5 text-amber-600 shrink-0" />
-                <span className="text-[14px] font-semibold text-amber-700">{t("bd.post")}</span>
+                <span className="text-[16px] font-semibold text-amber-700">{t("bd.post")}</span>
               </>
             )}
           </div>
-          <p className="text-[12px] text-muted mt-0.5">8-Year / 160,000 km standard</p>
+          <p className="text-[12px] text-muted mt-0.5">{t("ch.warrantyStd")}</p>
         </div>
       </div>
     </div>

@@ -189,10 +189,26 @@ _STATE_RANGES: list[tuple[int, int, str, tuple[float, float]]] = [
 ]
 
 
+# Three postcodes sit inside a neighbouring state's block. Bandar Baharu is a
+# Kedah district whose codes fall in Perak's 34xxx and Penang's 14xxx ranges, so
+# a range lookup alone hands those residents the wrong state's charging network.
+# Found by cross-checking this table against the frontend's 2,925-entry exact
+# postcode map; tests/test_postcode.py keeps the two in agreement.
+_POSTCODE_OVERRIDES: dict[str, tuple[str, tuple[float, float]]] = {
+    "34950": ("Kedah", (5.18, 100.52)),
+    "14290": ("Kedah", (5.18, 100.52)),
+    "14390": ("Kedah", (5.18, 100.52)),
+}
+
+
 def state_for_postcode(postcode: str) -> tuple[str, tuple[float, float]] | None:
     """State and geographic centroid for a Malaysian postcode, if it is in range."""
+    key = str(postcode or "")[:5]
+    override = _POSTCODE_OVERRIDES.get(key)
+    if override is not None:
+        return override
     try:
-        n = int(str(postcode or "")[:5])
+        n = int(key)
     except ValueError:
         return None
     for lo, hi, name, centre in _STATE_RANGES:

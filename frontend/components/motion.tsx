@@ -10,6 +10,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const EASE_OUT = "power3.out";
 
+/** Suppress CSS transitions on elements this file is about to tween, restoring
+ *  them when the tween lands.
+ *
+ *  A card carrying `transition-all duration-200` re-interpolates every value
+ *  GSAP writes, so the two fight. Measured on /interview/form: the form card
+ *  flashed from opacity 1 down to 0.22, stalled ~200ms, then crawled back, a
+ *  497ms entrance where its three siblings took 240ms. Restoring on complete
+ *  keeps hover transitions working normally afterwards.
+ *
+ *  Entrance primitives only. The scrub primitives drive transform continuously
+ *  from scroll position, where there is no "complete" to restore on. */
+function freezeTransitions(items: Element[]) {
+  gsap.set(items, { transition: "none" });
+  return () => gsap.set(items, { clearProps: "transition" });
+}
+
 /** Fade-and-rise a block into view once, when it enters the viewport. */
 export function Reveal({
   children,
@@ -30,6 +46,7 @@ export function Reveal({
     if (!el) return;
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const restore = freezeTransitions([el]);
       gsap.fromTo(
         el,
         { autoAlpha: 0, y },
@@ -40,6 +57,7 @@ export function Reveal({
           delay,
           ease: EASE_OUT,
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
+          onComplete: restore,
         },
       );
     });
@@ -60,6 +78,7 @@ export function Stagger({
   y = 20,
   stagger = 0.09,
   duration = 0.6,
+  immediate = false,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -67,6 +86,11 @@ export function Stagger({
   y?: number;
   stagger?: number;
   duration?: number;
+  /** Above-the-fold content that should animate on mount rather than on scroll.
+   *  A ScrollTrigger parks items at autoAlpha:0 during layout and only releases
+   *  them after its own refresh pass, so on a page that opens at the top the
+   *  user sees blank content and then a late reveal. */
+  immediate?: boolean;
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
   React.useLayoutEffect(() => {
@@ -80,21 +104,28 @@ export function Stagger({
     if (!items.length) return;
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const restore = freezeTransitions(items as Element[]);
       gsap.fromTo(
         items,
-        { autoAlpha: 0, y },
+        { autoAlpha: 0, y: immediate ? Math.min(y, 10) : y },
         {
           autoAlpha: 1,
           y: 0,
-          duration,
-          stagger,
-          ease: EASE_OUT,
-          scrollTrigger: { trigger: el, start: "top 86%", once: true },
+          // A load entrance is seen on every visit, so it is held to the UI
+          // budget: 240ms per element rather than 600ms. expo.out is GSAP's
+          // equivalent of the house --ease-smooth curve.
+          duration: immediate ? 0.24 : duration,
+          stagger: immediate ? 0.04 : stagger,
+          ease: immediate ? "expo.out" : EASE_OUT,
+          onComplete: restore,
+          ...(immediate
+            ? {}
+            : { scrollTrigger: { trigger: el, start: "top 86%", once: true } }),
         },
       );
     });
     return () => mm.revert();
-  }, [selector, y, stagger, duration]);
+  }, [selector, y, stagger, duration, immediate]);
   return (
     <div ref={ref} className={className}>
       {children}
@@ -120,6 +151,7 @@ export function TextReveal({
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const lines = el.querySelectorAll<HTMLElement>("[data-line]");
       if (!lines.length) return;
+      const restore = freezeTransitions(Array.from(lines));
       gsap.fromTo(
         lines,
         { autoAlpha: 0, y: 14 },
@@ -131,6 +163,7 @@ export function TextReveal({
           delay,
           ease: EASE_OUT,
           scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          onComplete: restore,
         },
       );
     });

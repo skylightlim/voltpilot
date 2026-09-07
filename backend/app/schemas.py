@@ -10,7 +10,8 @@ Lang = Literal["en", "bm"]
 # Guided interview script — the single source of truth for BOTH the form
 # (zod mirror on the frontend) and the Gemini Live function_tool calls (D-INT).
 # Each question writes exactly one field of ProfileIn.
-# Interview trimmed 11 -> 7 questions (dropped language, long_trip_km, work_postcode, budget_max_rm)
+# 11 questions, matching /interview/form field for field. language comes from
+# the UI toggle, and long_trip_km / work_postcode are inferred rather than asked.
 # ---------------------------------------------------------------------------
 
 INTERVIEW_QUESTIONS = [
@@ -52,11 +53,44 @@ INTERVIEW_QUESTIONS = [
         "bm": "Bolehkah anda mengecas di rumah (ada soket kuasa atau pengecas di tempat letak kereta anda)?",
     },
     {
+        "key": "can_charge_work",
+        "kind": "boolean",
+        "required": False,
+        "en": "Can you also charge at your workplace?",
+        "bm": "Bolehkah anda juga mengecas di tempat kerja?",
+    },
+    {
         "key": "home_postcode",
         "kind": "postcode",
         "required": True,
         "en": "What is your home postcode? (5 digits)",
         "bm": "Apakah poskod rumah anda? (5 digit)",
+    },
+    {
+        "key": "grid_region",
+        "kind": "choice",
+        "options": ["peninsular", "east_malaysia"],
+        "required": False,
+        # Peninsular is gas/coal heavy; hydro-dominant Sarawak pulls East Malaysia
+        # to roughly half the CO2 per kWh, so this changes the environment score.
+        "en": "Is your home on the Peninsular grid, or in East Malaysia (Sabah/Sarawak)?",
+        "bm": "Adakah rumah anda di grid Semenanjung, atau di Malaysia Timur (Sabah/Sarawak)?",
+    },
+    {
+        "key": "monthly_electricity_bill_rm",
+        "kind": "number",
+        "required": False,
+        # A heavy household is already high up the TNB tariff blocks, so EV
+        # charging lands at a higher marginal rate than a light one.
+        "en": "Roughly what is your monthly electricity bill? (RM, say zero if unsure)",
+        "bm": "Lebih kurang berapa bil elektrik bulanan anda? (RM, sebut sifar jika tidak pasti)",
+    },
+    {
+        "key": "budget_max_rm",
+        "kind": "number",
+        "required": False,
+        "en": "What is your maximum budget for the car? (RM)",
+        "bm": "Berapakah bajet maksimum anda untuk kereta? (RM)",
     },
     {
         "key": "consider_solar",

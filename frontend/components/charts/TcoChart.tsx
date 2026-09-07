@@ -42,15 +42,15 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
   const maxGross = Math.max(...enriched.map((e) => e.grossCost), 1);
 
   return (
-    <div className={`rounded-[22px] border border-line bg-white p-5 sm:p-7 card-highlight ${className}`}>
+    <div className={`rounded-lg border border-line bg-white p-5 sm:p-7 card-highlight ${className}`}>
       {title && (
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h3 className="font-display text-[18px] sm:text-[20px] font-semibold text-ink">{title}</h3>
-            <p className="text-[13px] text-muted">{t("tc.sub")}</p>
+            <p className="text-[15px] text-muted">{t("tc.sub")}</p>
           </div>
           <span className="mono-label rounded-md bg-pine-tint px-2.5 py-1 text-primary border border-pine/15 self-start sm:self-auto">
-            10-Year Horizon
+            {t("ch.tcoHorizon")}
           </span>
         </div>
       )}
@@ -75,14 +75,14 @@ export function TcoChart({ items, title, className = "" }: TcoChartProps) {
                       item.type === "ev" ? "bg-emerald-500" : item.type === "hybrid" ? "bg-slate-700" : "bg-amber-600"
                     }`}
                   />
-                  <span className="font-display font-semibold text-[15px] text-ink">{item.name}</span>
+                  <span className="font-display font-semibold text-[16px] text-ink">{item.name}</span>
                   <span className="text-[11px] font-mono uppercase rounded-full bg-white px-2 py-0.5 border border-line text-muted">
                     {item.type.toUpperCase()}
                   </span>
                 </div>
                 <div className="text-right">
                   <span className="text-[11px] font-mono uppercase text-muted mr-1.5">{t("tc.net")}</span>
-                  <span className="figure text-[16px] sm:text-[18px] font-bold text-primary">
+                  <span className="figure text-[17px] sm:text-[18px] font-bold text-primary">
                     RM {Math.round(item.netCost).toLocaleString("en-MY")}
                   </span>
                 </div>

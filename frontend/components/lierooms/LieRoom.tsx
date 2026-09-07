@@ -15,19 +15,28 @@ import { useT } from "@/lib/i18n";
  * standing shapes are scaled by height, car-like shapes by length.
  */
 
-// The EV9 is a ~5 m SUV. The camera sat at z=4.4 with a 42° field of view,
-// which frames roughly 3.4 world units at the origin — so a car scaled to 4.6
-// ran off both edges. Fit the car smaller and pull the camera back.
-const FIT_LENGTH = 4.0;
-const FIT_HEIGHT = 2.4;
+// The EV9 is a ~5 m SUV. An earlier camera sat at z=4.4 with a 42° field of view,
+// framing only ~3.4 world units at the origin, so a car scaled to 4.6 ran off both
+// edges. The camera has since moved to z=8.4 at 32°, which frames ~4.8 units
+// vertically and considerably more across — the old 4.0 fit was left over from the
+// tighter lens and sat small in the frame. ResponsiveCamera still pulls back on
+// narrow viewports, so this scales down with the canvas rather than clipping.
+const FIT_LENGTH = 5.3;
+const FIT_HEIGHT = 3.2;
 const GROUND_Y = -0.62;
 const CAMERA = { position: [5.2, 1.85, 8.4] as [number, number, number], fov: 32 };
+/** A little air between the model and the frame edge. */
+const FIT_MARGIN = 1.08;
+
+/** What the camera needs to know to frame the model: how wide it can project as
+ *  it turns, and how tall it stands. Measured after scaling, in world units. */
+type Fit = { halfDiagXZ: number; halfHeight: number };
 
 /** Kia EV9 GT-Line. Draco-compressed glTF converted from the supplied FBX. */
 const MODEL_URL = "/models/kia-ev9-gt-line.glb";
 const SPONSOR_CAR = "Kia EV9 GT-Line";
 
-function Model() {
+function Model({ onFit }: { onFit: (f: Fit) => void }) {
   const gltf = useLoader(GLTFLoader, MODEL_URL, (loader) => {
     // The EV9 is Draco-compressed; the previous showroom model was meshopt.
     // Both decoders are registered so either asset loads without a code change.
@@ -38,7 +47,7 @@ function Model() {
   });
   const ref = useRef<THREE.Group>(null);
 
-  const { scale, yOffset } = useMemo(() => {
+  const { scale, yOffset, fit } = useMemo(() => {
     const box = new THREE.Box3().setFromObject(gltf.scene);
     const size = new THREE.Vector3();
     const center = new THREE.Vector3();
@@ -49,8 +58,22 @@ function Model() {
     const s = standing ? FIT_HEIGHT / size.y : FIT_LENGTH / Math.max(size.x, size.z);
     // Rest the model's LOWEST point on the floor. Offsetting by the centre put
     // the bounding box's midpoint at ground level, burying the wheels.
-    return { scale: s, yOffset: -box.min.y * s };
+    // The camera cannot frame what it cannot measure, so hand it the fitted
+    // extents. Half the XZ diagonal is the widest the model can ever project as
+    // it turns, which is the number that decides whether it clips.
+    return {
+      scale: s,
+      yOffset: -box.min.y * s,
+      fit: {
+        halfDiagXZ: 0.5 * Math.hypot(size.x * s, size.z * s),
+        halfHeight: (size.y * s) / 2,
+      },
+    };
   }, [gltf]);
+
+  useEffect(() => {
+    onFit(fit);
+  }, [fit, onFit]);
 
   useEffect(() => {
     gltf.scene.traverse((child) => {
@@ -97,23 +120,45 @@ function Environment() {
   return null;
 }
 
-/** Pull the camera back on narrow viewports.
+/** Pull the camera back far enough that the model fits the frame.
  *
- *  Horizontal FOV follows the aspect ratio, so a distance framed against a
- *  1280px canvas cuts the car off on a 390px portrait one. */
-function ResponsiveCamera() {
+ *  Horizontal FOV follows the aspect ratio, so a distance framed against a wide
+ *  canvas cuts the car off on a portrait phone. This used to be three hand-tuned
+ *  multipliers (1.75 / 1.25 / 1), which silently stopped being enough when the
+ *  model was enlarged: a portrait phone needs roughly 21.5 units of distance for
+ *  the current fit and the 1.75 step only gave 17.6, so the car ran off both
+ *  edges whenever it turned side-on.
+ *
+ *  Now the distance is solved from the model's own measured extents and the
+ *  actual aspect, so it is correct at any viewport and survives a change to
+ *  FIT_LENGTH. It never comes closer than the tuned desktop distance, so the
+ *  wide-screen composition is unchanged — it only ever pulls further back. */
+function ResponsiveCamera({ fit }: { fit: Fit | null }) {
   const { camera, size } = useThree();
   useEffect(() => {
     const aspect = size.width / size.height;
-    const pull = aspect < 1 ? 1.75 : aspect < 1.5 ? 1.25 : 1;
+    const base = Math.hypot(...CAMERA.position);
+    let dist = base;
+    if (fit) {
+      const vFov = (CAMERA.fov * Math.PI) / 180;
+      const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
+      const needed = Math.max(
+        fit.halfDiagXZ / Math.tan(hFov / 2),
+        fit.halfHeight / Math.tan(vFov / 2),
+      );
+      dist = Math.max(base, needed * FIT_MARGIN);
+    }
+    // Scale the whole vector so the viewing angle stays put as the distance
+    // changes; only the portrait lift tilts it, as before.
+    const k = dist / base;
     camera.position.set(
-      CAMERA.position[0] * pull,
-      CAMERA.position[1] * (aspect < 1 ? 1.15 : 1),
-      CAMERA.position[2] * pull,
+      CAMERA.position[0] * k,
+      CAMERA.position[1] * k * (aspect < 1 ? 1.15 : 1),
+      CAMERA.position[2] * k,
     );
     camera.lookAt(0, aspect < 1 ? 0.1 : 0, 0);
     camera.updateProjectionMatrix();
-  }, [camera, size.width, size.height]);
+  }, [camera, size.width, size.height, fit]);
   return null;
 }
 
@@ -166,6 +211,8 @@ function RoomParticles() {
 export default function LieRoom() {
   const t = useT();
   const [ready, setReady] = useState(false);
+  // Measured by <Model> once the glTF loads; the camera frames against it.
+  const [fit, setFit] = useState<Fit | null>(null);
   const introRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -196,7 +243,7 @@ export default function LieRoom() {
           {/* Specimen under examination: one warm key from above-front, a cool
               rim to separate the roofline from the dark ground, and almost no
               ambient so the environment map does the modelling. */}
-          <ResponsiveCamera />
+          <ResponsiveCamera fit={fit} />
           <ambientLight intensity={0.35} />
           <spotLight
             position={[3.5, 6.5, 4]}
@@ -209,7 +256,7 @@ export default function LieRoom() {
           <directionalLight position={[-5, 2.5, -4]} intensity={0.7} color="#7fc9a4" />
           <Suspense fallback={null}>
             <Environment />
-            <Model />
+            <Model onFit={setFit} />
           </Suspense>
           <Ground />
           <RoomParticles />

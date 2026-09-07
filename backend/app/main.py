@@ -15,9 +15,20 @@ from .routers import admin, chat, config, interview, profiles, report, results, 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await init_db()
-    async with AsyncSessionLocal() as db:
-        await seed_if_empty(db)
+    """Bring the schema up and seed, unless something else already did.
+
+    A container runs one instance, so doing this at startup was safe. A
+    serverless function is a different shape: it cold-starts repeatedly and
+    concurrently, so `alembic upgrade head` on the request path is both a
+    migration race and dead weight on every cold start. Set RUN_MIGRATIONS=0
+    where the deploy pipeline runs migrations itself (see the Vercel deploy job
+    in .github/workflows/ci.yml). It defaults to on, so local dev and any
+    container deployment behave exactly as before.
+    """
+    if os.getenv("RUN_MIGRATIONS", "1").lower() not in {"0", "false", "no"}:
+        await init_db()
+        async with AsyncSessionLocal() as db:
+            await seed_if_empty(db)
     yield
 
 

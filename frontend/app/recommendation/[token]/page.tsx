@@ -39,10 +39,10 @@ export default function RecommendationPage() {
     <main className="app-shell mx-auto min-h-[100svh] w-full max-w-xl bg-white px-5 pt-6">
       <header className="flex items-center justify-between">
         <button
-          className="text-[14px] font-medium text-muted transition-colors hover:text-ink"
+          className="text-[16px] font-medium text-muted transition-colors hover:text-ink"
           onClick={() => router.push(`/results/${token}`)}
         >
-          ← Back to results
+          {t("rc.backResults")}
         </button>
         <SectionLabel>{t("re.yours")}</SectionLabel>
       </header>
@@ -51,7 +51,7 @@ export default function RecommendationPage() {
         <div className="grid min-h-[60svh] place-items-center">
           <div className="text-center">
             <Loader2 className="mx-auto h-7 w-7 animate-spin text-primary" />
-            <p className="mt-3 animate-pulse text-[14px] text-muted">
+            <p className="mt-3 animate-pulse text-[16px] text-muted">
               {t("re.drafting")}
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function RecommendationPage() {
           <Reveal className="mt-6">
             <SectionLabel>{t("r.ai")}</SectionLabel>
             <h1 className="apple-display mt-3 text-[32px] text-ink">{rec.headline}</h1>
-            <p className="mt-3 text-[15px] leading-relaxed text-muted">{rec.summary}</p>
+            <p className="mt-3 text-[16px] leading-relaxed text-muted">{rec.summary}</p>
           </Reveal>
 
           {/* Savings summary — big numbers */}
@@ -77,7 +77,7 @@ export default function RecommendationPage() {
                   "—"
                 )}
               </p>
-              <p className="mt-1 text-[13px] leading-snug text-muted">{t("re.co2")}</p>
+              <p className="mt-1 text-[15px] leading-snug text-muted">{t("re.co2")}</p>
             </Card>
             <Card className="!p-5">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-parchment">
@@ -93,7 +93,7 @@ export default function RecommendationPage() {
                 )}
               </p>
               <p className="mt-1 text-[12px] leading-snug text-muted">
-                annual running cost (top pick)
+                {t("rc.annualRunning")}
               </p>
             </Card>
           </Stagger>
@@ -116,12 +116,12 @@ export default function RecommendationPage() {
                   >
                     Y{m.year}
                   </span>
-                  <div className="flex-1 rounded-[18px] border border-border bg-white p-5">
+                  <div className="flex-1 rounded-lg border border-border bg-white p-5">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-[15px] font-semibold text-ink">{m.title}</h3>
+                      <h3 className="text-[16px] font-semibold text-ink">{m.title}</h3>
                       <Badge tone={i === 0 ? "ev" : "default"}>{i === 0 ? "Now" : `Year ${m.year}`}</Badge>
                     </div>
-                    <p className="mt-1.5 text-[14px] leading-relaxed text-muted">{m.detail}</p>
+                    <p className="mt-1.5 text-[16px] leading-relaxed text-muted">{m.detail}</p>
                   </div>
                 </Reveal>
               ))}
@@ -136,7 +136,7 @@ export default function RecommendationPage() {
                 {rec.tradeoffs.map((t: string, i: number) => (
                   <p
                     key={i}
-                    className="flex items-start gap-3 rounded-[18px] border border-border bg-parchment/60 p-4 text-[13px] leading-snug text-muted"
+                    className="flex items-start gap-3 rounded-lg border border-border bg-parchment/60 p-4 text-[15px] leading-snug text-muted"
                   >
                     <Target className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     {t}
@@ -151,7 +151,7 @@ export default function RecommendationPage() {
             <Reveal className="mt-6">
               <Card className="border-solar/40 bg-[#fff9ec] p-5">
                 <p className="font-semibold text-ink">{t("r.solar")}</p>
-                <p className="mt-0.5 text-[14px] leading-relaxed text-muted">
+                <p className="mt-0.5 text-[16px] leading-relaxed text-muted">
                   You qualify: home charging + solar considered. Average Malaysia: capex RM
                   {rec.solar_banner.capex_rm?.toLocaleString() ?? "34,000"}, ~RM
                   {rec.solar_banner.savings_rm_per_year?.toLocaleString() ?? "4,300"}/yr savings,

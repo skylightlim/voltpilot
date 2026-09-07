@@ -1,0 +1,12 @@
+# Vercel installs dependencies and builds on its own runners, so uploading the
+# local tree wastes the whole upload budget: node_modules alone is 985 MB and a
+# plain `vercel deploy` aborted on it. Only source needs to travel.
+node_modules
+.next
+.next-*
+.vercel
+*.log
+.env
+.env.*
+!.env.example
+!.env.local.example

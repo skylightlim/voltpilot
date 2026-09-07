@@ -12,12 +12,30 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # backend/
 REPO_DIR = BASE_DIR.parent                         # repo root
-DATA_DIR = Path(os.getenv("DATA_DIR", str(REPO_DIR / "data")))
+
+# In the repository, data/ sits beside backend/. A Vercel function bundles only
+# what is under its root directory, so the build copies data/ and scripts/ in
+# beside the app; there is no level above to look at. Prefer the repo layout and
+# fall back to the bundled copy, which keeps one code path working in both
+# without a deployment-specific environment variable.
+_DEFAULT_DATA = REPO_DIR / "data"
+if not _DEFAULT_DATA.is_dir():
+    _DEFAULT_DATA = BASE_DIR / "data"
+DATA_DIR = Path(os.getenv("DATA_DIR", str(_DEFAULT_DATA)))
 
 
 class Settings:
     database_url: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./dev.db")
-    gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
+    # One key or several. GEMINI_API_KEYS takes a comma-separated list and the
+    # analyst walks it in order, moving to the next when one hits its daily cap —
+    # the free tier is a per-key, per-model daily quota, so a spare key is the
+    # only thing that keeps the real analyst running once the first is spent.
+    # GEMINI_API_KEY stays supported as the single-key form.
+    gemini_api_keys: list[str] = [
+        k.strip()
+        for k in (os.getenv("GEMINI_API_KEYS") or os.getenv("GEMINI_API_KEY", "")).split(",")
+        if k.strip()
+    ]
     # Shared secret for POST /admin/refresh. Unset disables the endpoint rather
     # than leaving an unauthenticated trigger for outbound fetches and file writes.
     admin_token: str = os.getenv("ADMIN_TOKEN", "")
@@ -33,8 +51,14 @@ class Settings:
     frontend_origin: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
 
     @property
+    def gemini_api_key(self) -> str:
+        """The first key. Gemini Live (POST /tokens/live) hands a single key to the
+        browser and cannot rotate mid-session, so it always gets the primary."""
+        return self.gemini_api_keys[0] if self.gemini_api_keys else ""
+
+    @property
     def has_gemini(self) -> bool:
-        return bool(self.gemini_api_key)
+        return bool(self.gemini_api_keys)
 
 
 settings = Settings()

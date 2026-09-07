@@ -36,14 +36,14 @@ const SDGS = [
 export function SupportingInitiatives() {
   const t = useT();
   return (
-    <section id="initiatives" className="border-t border-line bg-paper-2 py-20 sm:py-28">
+    <section id="initiatives" className="border-t border-line bg-paper-2 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
           <SectionLabel>{t("si.label")}</SectionLabel>
-          <h2 className="apple-display mt-2 text-[32px] font-bold text-ink sm:text-[42px]">
+          <h2 className="apple-display mt-2 text-[32px] text-ink sm:text-[42px]">
             {t("si.title")}
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">
+          <p className="mx-auto mt-3 max-w-2xl text-[16px] leading-relaxed text-muted">
             {t("si.sub")}
           </p>
         </Reveal>
@@ -55,7 +55,7 @@ export function SupportingInitiatives() {
               href={i.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col rounded-[20px] border border-line bg-white p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md card-highlight"
+              className="group flex flex-col rounded-lg border border-line bg-white p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md card-highlight"
             >
               {/* fixed band so a wide wordmark and a square crest read at the
                   same visual weight instead of one shrinking to fit max-width */}
@@ -70,10 +70,10 @@ export function SupportingInitiatives() {
               <h3 className="mt-5 text-[18px] font-bold leading-snug text-ink">
                 {t(`si.${i.key}.t` as StrKey)}
               </h3>
-              <p className="mt-2 flex-1 text-[14px] leading-relaxed text-muted">
+              <p className="mt-2 flex-1 text-[16px] leading-relaxed text-muted">
                 {t(`si.${i.key}.d` as StrKey)}
               </p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-bold text-primary">
+              <span className="mt-5 inline-flex items-center gap-1.5 text-[16px] font-bold text-primary">
                 {t(`si.${i.key}.cta` as StrKey)}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
               </span>
@@ -86,7 +86,7 @@ export function SupportingInitiatives() {
           {SDGS.map((s) => (
             <div
               key={s.key}
-              className="flex items-center gap-3.5 rounded-[16px] border border-line bg-parchment/60 px-5 py-3.5"
+              className="flex items-center gap-3.5 rounded-lg border border-line bg-parchment/60 px-5 py-3.5"
             >
               <img
                 src={s.logo}
@@ -95,7 +95,7 @@ export function SupportingInitiatives() {
                 className="h-12 w-12 shrink-0 object-contain"
               />
               <div>
-                <strong className="block text-[14px] font-bold text-ink">
+                <strong className="block text-[16px] font-bold text-ink">
                   {t(`si.${s.key}.t` as StrKey)}
                 </strong>
                 <span className="text-[12.5px] text-muted">{t(`si.${s.key}.d` as StrKey)}</span>
@@ -104,7 +104,7 @@ export function SupportingInitiatives() {
           ))}
         </div>
 
-        <p className="mt-7 text-center text-[13px] text-muted">
+        <p className="mt-7 text-center text-[15px] text-muted">
           {t("si.source")}{" "}
           <a
             href="https://www.carbase.my/"

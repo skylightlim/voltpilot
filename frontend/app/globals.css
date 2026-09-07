@@ -4,7 +4,7 @@
    VoltPilot design system — "field guide" identity.
    Pine green + bone paper + amber signal; grotesque display type,
    mono figures; hairline structure instead of card soup.
-   Shape rule: buttons/chips pill, inputs 14px, cards 20px.
+   Shape rule (DESIGN-figma.md): buttons/chips pill, inputs 8px, cards 24px.
    Theme lock: light. The 3D analysis scene is its own dark route.
    ———————————————————————————————————————————————————————————— */
 @theme {
@@ -53,13 +53,58 @@
   --color-chip: #cfcaba;
   --color-ring: #1c4a3a;
 
-  --radius-xl: 1.25rem;
-  --radius-lg: 1.25rem;
-  --radius-md: 0.875rem;
-  --radius-sm: 0.625rem;
+  /* ---- shape: DESIGN-figma.md `rounded` ----------------------------------
+     Crisper than the previous 10-20px range. Inputs read as cut rectangles at
+     8px, cards stay soft at 24px, and controls are true pills at 50px rather
+     than the ambiguous 20px that read as neither. */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 40px;
+  --radius-3xl: 48px;
+  --radius-pill: 50px;
+
+  /* ---- spacing: DESIGN-figma.md `spacing` --------------------------------
+     Deliberately NOT declared as --spacing-* tokens. Tailwind v4 resolves the
+     sizing utilities (w-*, min-w-*, max-w-*) through the --spacing namespace as
+     well as --container, so a token named --spacing-xl silently redefines
+     max-w-xl from 36rem to 32px and collapses every prose column on the site to
+     one word per line. Verified: that is exactly what it did.
+
+     The brief's ladder already maps one-to-one onto Tailwind's numeric scale,
+     so use that instead and leave the namespace alone:
+       4px p-1 · 8px p-2 · 12px p-3 · 16px p-4
+       24px p-6 · 32px p-8 · 48px p-12 · 96px (section) py-24
+     ---------------------------------------------------------------------- */
+
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- type scale: DESIGN-figma.md `typography` -----------------------------
+   Sizes only; the weight/tracking half of each role lives with the .apple-*
+   rules further down so there is one definition per role.
+
+   The brief's 86px display is a desktop figure that would overflow a 375px
+   viewport, so each size is clamped rather than fixed. */
+@layer base {
+  .t-display-xl { font-size: clamp(2.75rem, 7.2vw, 5.375rem); }   /* -> 86px */
+  .t-display-lg { font-size: clamp(2.125rem, 5.2vw, 4rem); }      /* -> 64px */
+  .t-headline   { font-size: clamp(1.375rem, 2.4vw, 1.625rem); }  /* -> 26px */
+  .t-card-title { font-size: 1.5rem; }                            /*    24px */
+  .t-body       { font-size: 1.125rem; }                          /*    18px */
+  .t-caption    { font-size: 0.75rem; }                           /*    12px */
+}
+
+html {
+  /* The header links to /#calculator and /#cars; without this an anchor click
+     teleports. The reduced-motion block further down resets it to auto. */
+  scroll-behavior: smooth;
+  /* Stops the sticky 56px header from covering whatever an anchor lands on. */
+  scroll-padding-top: 5rem;
 }
 
 html,
@@ -82,6 +127,35 @@ body {
 
 ::selection {
   background: rgba(28, 74, 58, 0.18);
+}
+
+/* Anything that acts like a control says so on hover. Measured: the form's
+   role="switch" toggles, the slider presets and two back links were rendering
+   with the UA default cursor because they are raw <button>s rather than the
+   Button primitive, which carries cursor-pointer itself. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+[role="switch"],
+summary,
+label[for] {
+  cursor: pointer;
+}
+
+/* Extends a small control's touch target to 44px vertically without changing
+   what it paints — the language segments are 28px by design and the nav has no
+   room to grow them. Vertical only, so adjacent segments never steal each
+   other's hit area. */
+.hit-tall {
+  position: relative;
+}
+.hit-tall::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 44px;
+  transform: translateY(-50%);
 }
 
 :focus-visible {
@@ -109,6 +183,13 @@ body {
     background: linear-gradient(to top, var(--color-background) 70%, transparent);
   }
 
+  /* A page carrying a fixed .thumb-zone must reserve its height, or the bar sits on
+     top of the last of the content. The voice page's tallest state is two stacked
+     48px buttons plus a 10px gap and the zone's own 24px padding = 130px measured. */
+  .thumb-zone-safe {
+    padding-bottom: calc(8.5rem + env(safe-area-inset-bottom));
+  }
+
   .tap-target {
     min-height: 44px;
     min-width: 44px;
@@ -125,40 +206,68 @@ body {
     backdrop-filter: saturate(160%) blur(20px);
   }
 
-  /* display type (Space Grotesk via --font-display) */
-  .apple-display {
+  /* Display type. Retuned to DESIGN-figma.md: weight 340 with tight negative
+     tracking, replacing the previous 600. Light weights only read as elegant at
+     large sizes, which is why the body classes below stay at 400 — the brief's
+     320 body weight assumes its 18px body, not this layout's 14-16px. */
+  .apple-display,
+  .t-display-xl {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.03em;
+    font-weight: 340;
+    letter-spacing: -0.02em;
     line-height: 1.02;
     text-wrap: balance;
   }
 
-  .apple-display-2 {
+  .apple-display-2,
+  .t-display-lg {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+    font-weight: 340;
+    letter-spacing: -0.018em;
     line-height: 1.1;
     text-wrap: balance;
   }
 
-  .apple-copy {
-    letter-spacing: -0.012em;
+  .t-headline {
+    font-weight: 540;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  .t-card-title {
+    font-weight: 700;
+    letter-spacing: -0.008em;
+    line-height: 1.45;
+  }
+
+  .apple-copy,
+  .t-body {
+    letter-spacing: -0.014em;
   }
 
   /* mono data labels — use sparingly (eyebrow rationing) */
-  .mono-label {
+  .mono-label,
+  .t-eyebrow {
     font-family: var(--font-mono), ui-monospace, monospace;
     font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
-  /* tabular figures for data */
+  .t-caption {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Figures carry data, so they hold more weight than display prose — a 340
+     numeral next to a 340 heading reads as decoration rather than a value. */
   .figure {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-    font-weight: 600;
+    font-weight: 460;
     letter-spacing: -0.02em;
     font-variant-numeric: tabular-nums;
   }

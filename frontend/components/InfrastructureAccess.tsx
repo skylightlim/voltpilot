@@ -51,7 +51,7 @@ function Stat({
 }) {
   const t = useT();
   return (
-    <div className="flex flex-col items-start gap-1.5 rounded-[16px] border border-white/15 bg-white/[0.07] px-5 py-4">
+    <div className="flex flex-col items-start gap-1.5 rounded-lg border border-white/15 bg-white/[0.07] px-5 py-4">
       <span className="text-[11.5px] font-bold tracking-wide text-white/70">{label}</span>
       <strong className="count-pop text-[30px] font-extrabold leading-none text-white tabular-nums">
         {loading ? "…" : value}
@@ -99,8 +99,8 @@ export function InfrastructureAccess({ token }: { token: string }) {
   );
 
   return (
-    <section className="mt-8">
-      <div className="relative overflow-hidden rounded-[26px] border border-emerald-400/25 bg-[linear-gradient(135deg,#10201a_0%,#12303f_55%,#0e2a1f_100%)] p-7 shadow-[0_24px_70px_-30px_rgba(16,185,129,0.5)] sm:p-9">
+    <section className="mb-10">
+      <div className="relative overflow-hidden rounded-lg border border-emerald-400/25 bg-[linear-gradient(135deg,#10201a_0%,#12303f_55%,#0e2a1f_100%)] p-7 shadow-[0_24px_70px_-30px_rgba(16,185,129,0.5)] sm:p-9">
         {/* corner glows, purely decorative */}
         <div
           aria-hidden
@@ -124,45 +124,28 @@ export function InfrastructureAccess({ token }: { token: string }) {
             <p className="mono-label text-[11px] tracking-widest text-emerald-300">
               {t("ia.label")}
             </p>
-            <h2 className="apple-display-2 mt-2 text-[26px] font-bold text-white sm:text-[30px]">
+            <h2 className="apple-display-2 mt-2 text-[26px] text-white sm:text-[30px]">
               {t("ia.title")}
             </h2>
 
             {failed ? (
-              <p className="mt-4 text-[15px] leading-relaxed text-white/80">{t("ia.err")}</p>
+              <p className="mt-4 text-[16px] leading-relaxed text-white/80">{t("ia.err")}</p>
             ) : (
               <>
-                <p className="mt-4 text-[16px] font-semibold leading-relaxed text-white/95">
-                  {loading || !area ? (
-                    t("ia.loadingArea")
-                  ) : (
-                    <>
-                      There {area.count === 1 ? "is" : "are"}{" "}
-                      <b className="text-emerald-300">{area.count}</b> station
-                      {area.count === 1 ? "" : "s"} within {Math.round(area.radius_km)} km of your
-                      postcode — public access here is{" "}
-                      <b className="text-emerald-300">{t(`ia.st.${area.status}` as StrKey)}</b>.
-                    </>
-                  )}
-                </p>
-
-                <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/75">
-                  {loading || !route ? (
-                    t("ia.loadingRoute")
-                  ) : localRoute ? (
-                    t("ia.localRoute")
-                  ) : (
-                    <>
-                      Along your usual {Math.round(route.route_km ?? 0)} km route, charging density
-                      is{" "}
-                      <b className="text-sky-300">{t(`ia.st.${route.status}` as StrKey)}</b> at{" "}
-                      <b className="text-sky-300">
-                        {(route.density_per_100km ?? 0).toFixed(1)}
-                      </b>{" "}
-                      stations per 100 km — the longest stretch without a charger is about{" "}
-                      {Math.round(route.max_gap_km ?? 0)} km.
-                    </>
-                  )}
+                {/* Was two paragraphs restating every number the tiles below
+                    already show, in hardcoded English so BM readers got English
+                    anyway. One translated line now carries only the facts the
+                    tiles cannot: radius, route length, longest gap. */}
+                <p className="mt-3.5 text-[15px] leading-relaxed text-white/75">
+                  {loading || !area
+                    ? t("ia.loadingArea")
+                    : localRoute || !route
+                    ? t("ia.summaryLocal", { radius: Math.round(area.radius_km) })
+                    : t("ia.summary", {
+                        radius: Math.round(area.radius_km),
+                        route: Math.round(route.route_km ?? 0),
+                        gap: Math.round(route.max_gap_km ?? 0),
+                      })}
                 </p>
 
                 <div className="mt-6 grid gap-3.5 sm:grid-cols-2">

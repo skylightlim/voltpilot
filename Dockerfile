@@ -39,4 +39,7 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD python -c "from urllib.request import urlopen; urlopen('http://localhost:8080/health', timeout=5)"
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Cloud Run injects $PORT and requires the server to bind it (8080 by default).
+# Shell form so the variable expands; `exec` so uvicorn keeps PID 1 and receives
+# SIGTERM directly, which is what lets Cloud Run drain a revision cleanly.
+CMD exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}

@@ -34,11 +34,14 @@ jobs:
 
       - name: Install dependencies
         working-directory: backend
-        run: pip install -r requirements.txt
+        # requirements.txt is the runtime set that Vercel bundles; the test
+        # stack lives in requirements-dev.txt so it never counts against the
+        # function size limit.
+        run: pip install -r requirements-dev.txt
 
-      # Proves the migrations actually apply to an empty database. The app runs
-      # `alembic upgrade head` at startup, so a broken revision is a container
-      # that boots and immediately dies.
+      # Proves the migrations actually apply to an empty database. The deploy
+      # job runs `alembic upgrade head` against the real database before the new
+      # code serves, so a broken revision must fail here rather than there.
       - name: Apply migrations to a fresh database
         working-directory: backend
         env:
@@ -91,7 +94,7 @@ jobs:
         run: npm run build
 
   deploy:
-    name: Deploy to Cloudflare
+    name: Deploy to Vercel
     runs-on: ubuntu-latest
     needs: [backend, frontend]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
@@ -99,44 +102,75 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt
+
+      # The app no longer migrates at startup (RUN_MIGRATIONS=0 on Vercel): a
+      # serverless function cold-starts repeatedly and concurrently, so running
+      # alembic on the request path is a migration race. Do it once, here,
+      # before the new code is serving.
+      - name: Apply database migrations
+        working-directory: backend
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: alembic upgrade head
+
+      # Carries any data-file changes from this commit into the live database.
+      # No-op when they already agree, so it is safe on every deploy.
+      - name: Sync seed data into the database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python scripts/sync_db.py
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
 
-      - name: Install frontend dependencies
-        working-directory: frontend
-        run: npm ci
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
 
-      # Cloudflare Pages serves the adapter's output, not `next build`'s.
-      - name: Build for Cloudflare Pages
-        working-directory: frontend
+      # Two Vercel projects, one repository: the Python API and the Next.js app
+      # build differently and scale differently, so they stay separate
+      # deployments. The backend goes first — the frontend bakes BACKEND_URL
+      # into its /api/proxy rewrite at build time and must not point at a
+      # backend that has not shipped yet.
+      - name: Deploy backend
+        working-directory: backend
         env:
-          BACKEND_URL: ${{ vars.BACKEND_URL }}
-        run: npx @cloudflare/next-on-pages@1
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BACKEND_PROJECT_ID }}
+          # The bundle is ~744 MB — scipy (via pymcdm), pandas, numpy and pillow
+          # (via reportlab) dominate — against a 500 MB standard limit, so this
+          # opts into Large Functions (up to 5 GB on Fluid compute). It is also
+          # set on the project itself; setting it here too means a build does not
+          # silently fall back to the standard limit if `vercel pull` misses it.
+          VERCEL_SUPPORT_LARGE_FUNCTIONS: "1"
+        run: |
+          vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+          vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+          # --archive=tgz because the bundle is ~16,000 files against a 15,000
+          # file-count limit on the plain upload path.
+          vercel deploy --prebuilt --prod --archive=tgz --token="${{ secrets.VERCEL_TOKEN }}"
 
       - name: Deploy frontend
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: frontend
-          command: pages deploy .vercel/output/static --project-name=voltpilot --branch=main
+        working-directory: frontend
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_FRONTEND_PROJECT_ID }}
+          BACKEND_URL: ${{ vars.BACKEND_URL }}
+        run: |
+          vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+          vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+          vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
 
-      # The backend is a container behind a Durable Object. The runner has
-      # Docker, which is what wrangler needs to build the image; the build
-      # context is the repository root because data/, scripts/ and scraper/ all
-      # live there (see Dockerfile).
-      - name: Deploy backend
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: backend
-          command: deploy
-
-      # Deploying is not the same as working. The container cold-starts on first
+      # Deploying is not the same as working. The function cold-starts on first
       # request, so retry briefly before calling it a failed release.
       - name: Smoke test the deployment
         if: ${{ vars.BACKEND_URL != '' }}

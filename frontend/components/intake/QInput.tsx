@@ -45,7 +45,7 @@ export default function QInput({
             aria-label={questionText(q, lang)}
             value={current}
             onChange={(e) => set({ trips_per_week: Number(e.target.value) } as Partial<Profile>)}
-            className="w-full appearance-none rounded-[18px] border border-line bg-card px-5 py-4 text-lg font-semibold text-ink outline-none focus:border-primary"
+            className="w-full appearance-none rounded-lg border border-line bg-card px-5 py-4 text-lg font-semibold text-ink outline-none focus:border-primary"
           >
             <option value="" disabled>
               {t("iq.selectDays")}
@@ -72,7 +72,7 @@ export default function QInput({
             <button
               key={opt}
               onClick={() => set({ [q.key]: opt } as Partial<Profile>)}
-              className={`pressable flex w-full items-center justify-between rounded-[18px] border px-5 py-4 text-left text-[15px] font-medium transition-colors ${
+              className={`pressable flex w-full items-center justify-between rounded-lg border px-5 py-4 text-left text-[16px] font-medium transition-colors ${
                 selected ? "border-primary bg-primary/[0.04]" : "border-line bg-card text-ink"
               }`}
             >
@@ -130,15 +130,15 @@ export default function QInput({
           placeholder="50400"
           defaultValue={raw}
           onChange={(e) => set({ [q.key]: e.target.value.replace(/[^0-9]/g, "") } as Partial<Profile>)}
-          className="w-full rounded-[18px] border border-line bg-card px-5 py-6 text-center text-[28px] font-semibold tracking-[0.35em] text-ink outline-none placeholder:text-[#d2d2d7] focus:border-primary"
+          className="w-full rounded-lg border border-line bg-card px-5 py-6 text-center text-[28px] font-semibold tracking-[0.35em] text-ink outline-none placeholder:text-[#d2d2d7] focus:border-primary"
         />
         {area && (
-          <p className="mt-3 text-center text-[15px] font-medium text-primary enter-rise">
+          <p className="mt-3 text-center text-[16px] font-medium text-primary enter-rise">
             {area}
           </p>
         )}
         {!area && (
-          <p className="mt-3 text-center text-[13px] text-muted">
+          <p className="mt-3 text-center text-[15px] text-muted">
             {t("iq.postcodeHint")}
           </p>
         )}
@@ -165,7 +165,7 @@ export default function QInput({
                 setRaw(String(chip));
                 set({ [q.key]: chip } as Partial<Profile>);
               }}
-              className={`pressable rounded-full border px-5 py-2.5 text-[15px] font-medium transition-colors ${
+              className={`pressable rounded-full border px-5 py-2.5 text-[16px] font-medium transition-colors ${
                 selected
                   ? "border-primary bg-primary text-white"
                   : "border-line bg-card text-ink hover:bg-parchment"
@@ -184,7 +184,7 @@ export default function QInput({
           setRaw(e.target.value);
           set({ [q.key]: parseFloat(e.target.value) || 0 } as Partial<Profile>);
         }}
-        className="w-full rounded-[18px] border border-line bg-card px-5 py-4 text-lg font-semibold text-ink outline-none placeholder:text-[#d2d2d7] focus:border-primary"
+        className="w-full rounded-lg border border-line bg-card px-5 py-4 text-lg font-semibold text-ink outline-none placeholder:text-[#d2d2d7] focus:border-primary"
       />
     </div>
   );

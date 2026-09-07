@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Button, Card, SectionLabel } from "@/components/ui";
 import { Stagger } from "@/components/motion";
+import { getPostcodeArea } from "@/lib/postcode";
 import { SESSION, type Profile } from "@/lib/api";
 import { CHOICE_LABELS } from "@/lib/interview-script";
 import { useT, useLang, type StrKey } from "@/lib/i18n";
@@ -23,14 +24,14 @@ function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.Re
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-7 first:mt-0">
-      <h2 className="border-b border-line pb-2 text-[14px] font-bold text-ink">{title}</h2>
+      <h2 className="border-b border-line pb-2 text-[16px] font-bold text-ink">{title}</h2>
       <div className="mt-4 space-y-4">{children}</div>
     </section>
   );
 }
 
 const inputCls =
-  "mt-1.5 w-full rounded-[12px] border border-transparent bg-parchment px-4 py-3 text-[15px] " +
+  "mt-1.5 w-full rounded-md border border-transparent bg-parchment px-4 py-3 text-[16px] " +
   "font-medium text-ink outline-none transition-colors focus:border-primary focus:bg-card";
 
 /**
@@ -85,7 +86,7 @@ function RangeField({
             onChange(Math.min(hardMax, Math.max(0, Number(e.target.value))))
           }
           style={{ width: `calc(${chars}ch + 1.5rem)` }}
-          className="max-w-full shrink-0 rounded-[10px] border border-transparent bg-parchment px-2.5 py-1 text-center font-mono text-[13px] font-bold text-primary tabular-nums outline-none transition-[width,background-color,border-color] duration-150 placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="max-w-full shrink-0 rounded-md border border-transparent bg-parchment px-2.5 py-1 text-center font-mono text-[15px] font-bold text-primary tabular-nums outline-none transition-[width,background-color,border-color] duration-150 placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
       </div>
       <input
@@ -144,7 +145,7 @@ function Toggle({
             }`}
           />
         </span>
-        <span className="text-[14px] font-semibold text-ink">
+        <span className="text-[16px] font-semibold text-ink">
           {checked ? t("cf.yes") : t("cf.no")}
         </span>
       </button>
@@ -156,21 +157,20 @@ export default function CalculatorFormPage() {
   const t = useT();
   const lang = useLang();
   const router = useRouter();
-  const [p, setP] = useState<Profile>(() => SESSION.loadProfile());
+  const [p, setP] = useState<Profile>(() => {
+    // A slider always shows *some* position, so an unset field would paint a
+    // thumb sitting at the minimum and a blank number box, then jump once the
+    // defaults landed. Seeding here keeps server and client in agreement and
+    // leaves a returning user's stored answers untouched. The bill legitimately
+    // stays 0 — that means "not sure", and the engine falls back to its anchor.
+    const stored = SESSION.loadProfile();
+    return {
+      ...stored,
+      daily_km: stored.daily_km || 40,
+      budget_max_rm: stored.budget_max_rm || 150000,
+    };
+  });
   const [error, setError] = useState("");
-
-  // A slider always shows *some* position, so an unset field would render a
-  // thumb that disagrees with the stored 0. Seed the mid-range defaults once,
-  // leaving a returning user's answers untouched. The bill legitimately stays
-  // 0 - that means "not sure", and the engine falls back to its anchor rate.
-  useEffect(() => {
-    setP((prev) => {
-      const seeded: Partial<Profile> = {};
-      if (!prev.daily_km) seeded.daily_km = 40;
-      if (!prev.budget_max_rm) seeded.budget_max_rm = 150000;
-      return Object.keys(seeded).length ? { ...prev, ...seeded } : prev;
-    });
-  }, []);
 
   // Persist as an effect, and patch functionally: two controls changed in the
   // same tick would otherwise both build off the same stale render value and
@@ -178,6 +178,11 @@ export default function CalculatorFormPage() {
   useEffect(() => {
     SESSION.saveProfile(p);
   }, [p]);
+
+  // "Ipoh, Perak" for 31400. Two digits already resolve to a state, so the
+  // readout appears while the user is still typing.
+  const postcodeArea =
+    (p.home_postcode || "").length >= 2 ? getPostcodeArea(p.home_postcode || "") : null;
 
   const set = (patch: Partial<Profile>) => {
     setP((prev) => ({ ...prev, ...patch }));
@@ -213,14 +218,13 @@ export default function CalculatorFormPage() {
         </Link>
       </header>
 
-      <Stagger className="flex-1" stagger={0.06}>
+      <Stagger className="flex-1" immediate>
         <SectionLabel>{t("cf.label")}</SectionLabel>
-        <h1 className="apple-display-2 mt-3 text-[32px] leading-tight text-ink">
-          {t("cf.t1")}
-          <br />
+        <h1 className="apple-display-2 mt-3 text-[30px] min-[430px]:text-[32px] leading-tight text-ink">
+          {t("cf.t1")}{" "}
           <span className="text-primary">{t("cf.t2")}</span>
         </h1>
-        <p className="mt-3 text-[14px] leading-relaxed text-muted">{t("cf.sub")}</p>
+        <p className="mt-3 text-[16px] leading-relaxed text-muted">{t("cf.sub")}</p>
 
         <Card className="mt-6 border border-line bg-card p-5">
           {/* ---------------- Driving pattern ---------------- */}
@@ -345,7 +349,25 @@ export default function CalculatorFormPage() {
                     set({ home_postcode: e.target.value.replace(/\D/g, "").slice(0, 5) })
                   }
                   className={inputCls}
+                  aria-describedby="home_postcode_area"
                 />
+                {/* Reads back the town the postcode belongs to, so a typo is
+                    caught here rather than after the engine has already scored
+                    against the wrong state's charging network. The slot keeps
+                    its height whether or not there is a match, so the grid row
+                    does not jump as the fifth digit lands. Same lookup and the
+                    same enter-rise the step-by-step intake uses. */}
+                <p
+                  id="home_postcode_area"
+                  aria-live="polite"
+                  className="mt-1.5 min-h-5 text-[13px] font-medium leading-5"
+                >
+                  {postcodeArea ? (
+                    <span className="text-primary enter-rise">{postcodeArea}</span>
+                  ) : (p.home_postcode || "").length === 5 ? (
+                    <span className="text-muted enter-rise">{t("cf.postcodeUnknown")}</span>
+                  ) : null}
+                </p>
               </div>
               <div>
                 <FieldLabel htmlFor="destination_region">{t("cf.dest")}</FieldLabel>
@@ -389,7 +411,7 @@ export default function CalculatorFormPage() {
           </Section>
 
           {error && (
-            <p role="alert" className="mt-5 text-[13px] font-medium text-warning">
+            <p role="alert" className="mt-5 text-[15px] font-medium text-warning">
               {error}
             </p>
           )}

@@ -44,6 +44,29 @@ const S = {
   "nav.voice": ["Voice Advisor", "Penasihat Suara"],
   "nav.method": ["Methodology", "Kaedah"],
   "nav.cars": ["Catalog", "Katalog"],
+  "nav.calc": ["Live Commute Savings Calculator", "Kalkulator Ulang-Alik"],
+  "cf.postcodeUnknown": ["Postcode not recognised", "Poskod tidak dikenali"],
+
+  /* Skip link, 404 and the error boundary — surfaces a visitor only ever sees
+     when something has gone wrong, which is exactly why they need real copy in
+     both languages rather than a framework default. */
+  "a11y.skip": ["Skip to content", "Langkau ke kandungan"],
+  "nf.eyebrow": ["Error 404", "Ralat 404"],
+  "nf.title": ["This page took a wrong turn.", "Halaman ini tersasar."],
+  "nf.body": [
+    "The link you followed does not lead anywhere on VoltPilot. The ranking engine is still running — start a diagnostic or head back to the front page.",
+    "Pautan yang anda ikuti tidak menuju ke mana-mana di VoltPilot. Enjin kedudukan masih berjalan — mulakan diagnostik atau kembali ke halaman utama.",
+  ],
+  "nf.home": ["Back to home", "Kembali ke utama"],
+  "nf.start": ["Start 2-min diagnostic", "Mula diagnostik 2 minit"],
+  "eb.eyebrow": ["Something broke", "Sesuatu rosak"],
+  "eb.title": ["We could not load this page.", "Kami tidak dapat memuatkan halaman ini."],
+  "eb.body": [
+    "The page failed while it was rendering. Nothing you entered has been lost — try again, and if it keeps happening the front page always works.",
+    "Halaman ini gagal semasa dipaparkan. Tiada apa yang anda masukkan hilang — cuba lagi, dan jika ia berterusan halaman utama sentiasa berfungsi.",
+  ],
+  "eb.retry": ["Try again", "Cuba lagi"],
+  "eb.ref": ["Reference", "Rujukan"],
 
   "hero.t1": ["EV or Hybrid?", "EV atau Hibrid?"],
   "hero.t2": ["Make the decision with numbers.", "Biar angka yang menentukan."],
@@ -56,7 +79,6 @@ const S = {
   "hero.trust": ["100% Free · No registration · 184 Malaysian models tested", "100% Percuma · Tanpa pendaftaran · 184 model Malaysia diuji"],
 
   "calc.title": ["Live Commute Savings Calculator", "Kalkulator Penjimatan Ulang-Alik Langsung"],
-  "calc.sub": ["Adjust your typical daily commute to preview fuel vs electricity economics", "Ubah jarak ulang-alik harian anda untuk pratonton kos petrol vs elektrik"],
   "calc.daily": ["Daily Commute", "Ulang-Alik Harian"],
   "calc.petrol": ["Petrol (RON95)", "Petrol (RON95)"],
   "calc.ev": ["TNB EV Off-Peak", "TNB EV Luar Puncak"],
@@ -68,8 +90,6 @@ const S = {
   "mq.b": ["5 decision engines", "5 enjin keputusan"],
   "mq.c": ["TOPSIS ranked", "Disusun secara TOPSIS"],
   "mq.d": ["Free, no sign-up", "Percuma, tanpa daftar"],
-  "lr.showAll": ["Show all {n} models", "Papar semua {n} model"],
-  "lr.showLess": ["Show fewer", "Papar kurang"],
   "ts.count.sub": ["Malaysian EV and Hybrid models evaluated", "Model EV dan Hibrid Malaysia dinilai"],
   "ts.yr.sub": ["Lifecycle TCO roadmap and battery health projection", "Peta jalan TCO dan unjuran kesihatan bateri"],
 
@@ -203,9 +223,16 @@ const S = {
     "Looking up public charging stations near your postcode\u2026",
     "Mencari stesen pengecasan awam berhampiran poskod anda\u2026",
   ],
-  "ia.loadingRoute": [
-    "Measuring the charging density of your travel route\u2026",
-    "Mengukur ketumpatan pengecasan laluan perjalanan anda\u2026",
+  /* One line, not two paragraphs. The tiles below already carry the counts and
+     the two status words, so the prose keeps only what they cannot show: the
+     search radius, the route length, and the longest gap between chargers. */
+  "ia.summary": [
+    "Within {radius} km of your postcode, along your {route} km route. Longest stretch without a charger: {gap} km.",
+    "Dalam lingkungan {radius} km dari poskod anda, sepanjang laluan {route} km. Jarak terpanjang tanpa pengecas: {gap} km.",
+  ],
+  "ia.summaryLocal": [
+    "Within {radius} km of your postcode. Your long trips stay inside this same area.",
+    "Dalam lingkungan {radius} km dari poskod anda. Perjalanan jauh anda kekal dalam kawasan yang sama.",
   ],
   "ia.statArea": ["Stations in your area", "Stesen di kawasan anda"],
   "ia.statRoute": ["Stations per 100 km on your route", "Stesen per 100 km di laluan anda"],
@@ -219,10 +246,6 @@ const S = {
   "ia.err": [
     "We couldn\u2019t reach the charging-station network \u2014 your ranking still accounts for access conservatively.",
     "Kami tidak dapat menghubungi rangkaian stesen \u2014 kedudukan anda tetap mengambil kira akses secara berhati-hati.",
-  ],
-  "ia.localRoute": [
-    "Your long trips stay inside your own area, so route coverage is the same local network shown here.",
-    "Perjalanan jauh anda kekal dalam kawasan sendiri, jadi liputan laluan adalah rangkaian tempatan yang sama.",
   ],
   "si.label": ["Supporting Initiatives", "Inisiatif Sokongan"],
   "si.title": ["Malaysia\u2019s clean-energy & EV plans", "Pelan tenaga bersih & EV Malaysia"],
@@ -271,8 +294,8 @@ const S = {
   ],
   "faq.q2": ["How does the post-2025 JPJ EV road tax work?", "Bagaimana cukai jalan EV JPJ selepas 2025 dikira?"],
   "faq.a2": [
-    "Under JPJ Lampiran B, EV road tax is calculated on electric motor output (kW) in tiers. Compact EVs like the BYD Dolphin pay around RM70/year, while high-performance dual-motor EVs pay significantly higher.",
-    "Mengikut JPJ Lampiran B, cukai jalan EV dikira berdasarkan output motor (kW). EV kompak seperti BYD Dolphin membayar sekitar RM70/tahun, manakala EV dwi-motor berprestasi tinggi membayar kadar lebih tinggi.",
+    "The road tax holiday ended 31 Dec 2025. From 1 Jan 2026 JPJ charges on electric motor output in kW across 11 bands: RM20/year at 50 kW or under, RM80-RM280 for the 100-210 kW band most mainstream EVs sit in, up to a RM20,000 cap for hypercars. Rates are the same nationwide. Read your exact figure in MyJPJ \u2014 it keys off the motor kW on your geran, not battery kWh.",
+    "Cuti cukai jalan tamat 31 Dis 2025. Mulai 1 Jan 2026, JPJ mengira berdasarkan output motor dalam kW merentas 11 kumpulan: RM20/tahun untuk 50 kW ke bawah, RM80-RM280 bagi kumpulan 100-210 kW yang merangkumi kebanyakan EV arus perdana, sehingga had RM20,000. Kadar sama di seluruh negara. Semak angka tepat dalam MyJPJ \u2014 ia berdasarkan kW motor pada geran, bukan kWh bateri.",
   ],
   "faq.q3": ["Can an EV handle road trips to Penang, Johor Bahru, or Kuantan?", "Bolehkah EV memandu jauh ke Pulau Pinang, Johor Bahru, atau Kuantan?"],
   "faq.a3": [
@@ -295,6 +318,56 @@ const S = {
   "ft.body2": [
     "Evaluated using official JPJ Lampiran B schedules, Suruhanjaya Tenaga tariffs, and Malaysian automotive market databases.",
     "Dinilai menggunakan jadual rasmi JPJ Lampiran B, tarif Suruhanjaya Tenaga, dan pangkalan data automotif Malaysia.",
+  ],
+  // --- Footer: regulatory context, verified Sept 2026 (see sources below) ---
+  "ft.regIntro": [
+    "Every figure below comes from a primary Malaysian source, not an estimate.",
+    "Setiap angka di bawah datang daripada sumber rasmi Malaysia, bukan anggaran.",
+  ],
+  "ft.reg1t": ["EV road tax resumed 1 Jan 2026", "Cukai jalan EV bermula 1 Jan 2026"],
+  "ft.reg1": [
+    "The 2022-2025 exemption ended 31 Dec 2025. JPJ now charges on motor output in kW across 11 bands (A-K) \u2014 RM20/year up to 50 kW, rising to a RM20,000 cap. Identical rates nationwide, including Sabah and Sarawak. Plug-in hybrids are still taxed on engine capacity.",
+    "Pengecualian 2022-2025 tamat 31 Dis 2025. JPJ kini mengenakan kadar berdasarkan output motor dalam kW merentas 11 kumpulan (A-K) \u2014 RM20/tahun sehingga 50 kW, naik ke had RM20,000. Kadar sama di seluruh negara, termasuk Sabah dan Sarawak. Hibrid plug-in masih dikira ikut kapasiti enjin.",
+  ],
+  "ft.reg2t": ["TNB Time-of-Use, domestic", "TNB Time-of-Use, domestik"],
+  "ft.reg2": [
+    "Open to households since 1 Jul 2025. Off-peak is 24.43 sen/kWh from 10pm-2pm on weekdays and all day Saturday, Sunday and public holidays; peak (2pm-10pm weekdays) is 28.52 sen/kWh. Opt-in, and it needs a smart meter.",
+    "Dibuka kepada isi rumah sejak 1 Jul 2025. Luar puncak 24.43 sen/kWh dari 10 malam-2 petang pada hari bekerja dan sepanjang Sabtu, Ahad serta cuti umum; puncak (2-10 malam hari bekerja) 28.52 sen/kWh. Perlu daftar dan meter pintar.",
+  ],
+  "ft.reg3t": ["Import and excise duty", "Duti import dan eksais"],
+  "ft.reg3": [
+    "The blanket exemption on fully imported (CBU) EVs ended 31 Dec 2025. Locally assembled (CKD) EVs stay fully exempt until 31 Dec 2027. From 1 Jul 2026 a new CBU EV must clear RM200,000 CIF and 180 kW to be imported at all.",
+    "Pengecualian menyeluruh untuk EV import penuh (CBU) tamat 31 Dis 2025. EV pasang siap tempatan (CKD) kekal dikecualikan sepenuhnya sehingga 31 Dis 2027. Mulai 1 Jul 2026, EV CBU baharu perlu mencapai CIF RM200,000 dan 180 kW untuk diimport.",
+  ],
+  "ft.reg4t": ["Charging network", "Rangkaian pengecas"],
+  "ft.reg4": [
+    "6,416 public chargers nationwide as of 31 May 2026 \u2014 2,143 DC and 4,273 AC. The national target is 30,000 by 2030. New multi-storey strata developments must set aside at least 2% of parking bays for EV charging.",
+    "6,416 pengecas awam di seluruh negara setakat 31 Mei 2026 \u2014 2,143 DC dan 4,273 AC. Sasaran nasional 30,000 menjelang 2030. Pembangunan strata bertingkat baharu wajib menyediakan sekurang-kurangnya 2% petak letak kereta untuk pengecasan EV.",
+  ],
+
+  "ft.p1": ["JPJ \u00b7 effective 1 Jan 2026", "JPJ \u00b7 berkuat kuasa 1 Jan 2026"],
+  "ft.p2": ["TNB \u00b7 effective 1 Jul 2025", "TNB \u00b7 berkuat kuasa 1 Jul 2025"],
+  "ft.p3": ["MITI \u00b7 CKD window closes 31 Dec 2027", "MITI \u00b7 tempoh CKD tamat 31 Dis 2027"],
+  "ft.p4": ["MITI \u00b7 count as at 31 May 2026", "MITI \u00b7 kiraan sehingga 31 Mei 2026"],
+  "ft.glance": ["At a glance", "Sekilas pandang"],
+  "ft.s1v": ["RM20", "RM20"],
+  "ft.s2v": ["24.43 sen", "24.43 sen"],
+  "ft.s3v": ["6,416", "6,416"],
+  "ft.s1l": ["lowest EV road tax per year, at 50 kW or under", "cukai jalan EV terendah setahun, 50 kW ke bawah"],
+  "ft.s2l": ["TNB off-peak rate per kWh, home charging", "kadar luar puncak TNB per kWh, cas di rumah"],
+  "ft.s3l": ["public chargers nationwide, May 2026", "pengecas awam seluruh negara, Mei 2026"],
+  "ft.s4v": ["Dec 2027", "Dis 2027"],
+  "ft.s4l": ["CKD EVs stay duty-free until then", "EV CKD bebas duti sehingga tarikh itu"],
+
+  "ft.sources": ["Official sources", "Sumber rasmi"],
+  "ft.srcJpj": ["Road tax and MyJPJ renewal", "Cukai jalan dan pembaharuan MyJPJ"],
+  "ft.srcTnb": ["Tariff schedule and ToU rates", "Jadual tarif dan kadar ToU"],
+  "ft.srcMiti": ["EV duty policy and charger targets", "Dasar duti EV dan sasaran pengecas"],
+  "ft.srcSt": ["EV charging system safety guideline", "Garis panduan keselamatan sistem pengecasan EV"],
+  "ft.srcPlan": ["EV charging bay planning guidelines", "Garis panduan perancangan petak pengecas EV"],
+  "ft.verified": [
+    "Regulatory figures verified September 2026. Rates and deadlines change \u2014 confirm against the primary source before you commit to a purchase.",
+    "Angka kawal selia disahkan September 2026. Kadar dan tarikh akhir berubah \u2014 sahkan dengan sumber rasmi sebelum membuat pembelian.",
   ],
   "ft.rights": ["© 2026 VoltPilot Malaysia. All rights reserved.", "© 2026 VoltPilot Malaysia. Hak cipta terpelihara."],
   "ft.disc": [
@@ -346,7 +419,7 @@ const S = {
   "iq.orNum": ["Or enter exact distance in km", "Atau masukkan jarak tepat dalam km"],
   "iq.orRM": ["Or enter budget amount in RM", "Atau masukkan jumlah bajet dalam RM"],
   "iq.postcodeHint": ["Postcode identifies regional tariffs and charging network density.", "Poskod menentukan tarif kawasan dan ketumpatan stesen pengecasan."],
-  "iq.selectDays": ["Select driving days per week", "Pilih bilangan hari memandu seminggu"],
+  "iq.selectDays": ["Select driving days per week", "Pilih hari memandu seminggu"],
   "ui.step": ["Step {n} of {t}", "Langkah {n} daripada {t}"],
 
   "sl.step": ["Step 2 · Weighting Studio", "Langkah 2 · Studio Pemberat"],
@@ -391,7 +464,6 @@ const S = {
   "re.staged": ["Staged plan — relative years", "Pelan berperingkat — tahun relatif"],
   "v.echo": ["Real-time voice with echo suppression", "Suara masa nyata dengan penindasan gema"],
   "v.speaking": ["Advisor is speaking…", "Penasihat sedang bercakap…"],
-  "v.echoOn": ["Automatic acoustic echo suppression active", "Penindasan gema akustik automatik aktif"],
   "v.processing": ["Processing your answers", "Memproses jawapan anda"],
   "v.done": ["Diagnostic complete", "Diagnostik selesai"],
   "v.doneSub": ["Profile calibrated. Taking you to scoring…", "Profil dikalibrasi. Membawa anda ke pemarkahan…"],
@@ -412,7 +484,6 @@ const S = {
   "bd.warranty": ["Factory Warranty", "Waranti Kilang"],
   "bd.covered": ["Fully Covered", "Dilindungi Sepenuhnya"],
   "bd.post": ["Post-Warranty (70%+ SoH)", "Selepas Waranti (70%+ SoH)"],
-  "hero.badge": ["Malaysian EV & Hybrid Decision Engine", "Enjin Keputusan EV & Hibrid Malaysia"],
   "lr.needSub": ["Our 5 decision engines rank all 184 Malaysian models tailored to your daily route and charging access.", "5 enjin keputusan kami menyusun 184 model Malaysia mengikut laluan harian dan akses pengecasan anda."],
   "hw.worksTitle": ["How VoltPilot works.", "Cara VoltPilot berfungsi."],
   "eng.n": ["Engine", "Enjin"],
@@ -424,7 +495,6 @@ const S = {
   "bd.sub": ["Electrochemical capacity retention curve under Malaysian tropical climate", "Lengkung pengekalan kapasiti elektrokimia dalam iklim tropika Malaysia"],
   "lie.sponsor": ["Sponsor showcase", "Pameran penaja"],
   "lie.tagline": ["Three rows, 505 km of range, and a 10-year battery warranty.", "Tiga baris, jarak 505 km, dan waranti bateri 10 tahun."],
-  "v.liveStream": ["Live Stream", "Siaran Langsung"],
   "an.working": ["Working", "Sedang berjalan"],
   "an.sub": ["Five engines are reading your answers against 184 Malaysian trims.", "Lima enjin sedang membaca jawapan anda terhadap 184 varian Malaysia."],
   "an.l1": ["Screening", "Tapisan"],
@@ -452,6 +522,19 @@ const S = {
   "r.roadmap": ["See the 10-year roadmap", "Lihat peta jalan 10 tahun"],
   "r.pdf": ["PDF report", "Laporan PDF"],
   "r.solar": ["Solar-first bonus", "Bonus solar dahulu"],
+  /* The figures stay bold, so this template is split on its placeholders at
+     render time rather than substituted into a flat string — Malay puts the
+     numbers in different places and a fixed prefix/suffix pair would break. */
+  "r.solarBody": [
+    "Add rooftop solar (average Malaysian install: capex {capex}, savings {savings}, payback {payback}). Daytime charging becomes near-free.",
+    "Tambah solar bumbung (purata pemasangan Malaysia: modal {capex}, penjimatan {savings}, bayar balik {payback}). Pengecasan waktu siang menjadi hampir percuma.",
+  ],
+  "r.energyNoteLabel": ["Energy/yr", "Tenaga/thn"],
+  "r.energyNote": [
+    "is the fuel and electricity cost of driving your stated mileage for a year — petrol for hybrids, charging for EVs, blended for PHEVs. It excludes servicing, insurance, road tax and depreciation, which are counted separately in the 10-year cost of ownership.",
+    "ialah kos bahan api dan elektrik untuk memandu jarak yang anda nyatakan selama setahun — petrol untuk hibrid, pengecasan untuk EV, gabungan untuk PHEV. Ia tidak termasuk servis, insurans, cukai jalan dan susut nilai, yang dikira berasingan dalam kos pemilikan 10 tahun.",
+  ],
+  "r.solarPayback": ["{n} years", "{n} tahun"],
   "r.dash": ["Full dashboard", "Papan pemuka penuh"],
   "r.assumed": ["Assumed battery age", "Anggaran usia bateri"],
   "r.askbat": ["Ask chatbot about battery degradation", "Tanya chatbot tentang degradasi bateri"],
@@ -478,6 +561,25 @@ const S = {
   "r.tco10": ["10-yr TCO", "TCO 10 tahun"],
   "r.co2s": ["CO₂ saved", "CO₂ dijimatkan"],
   "r.kgyr": ["kg/yr", "kg/thn"],
+  "r.perYear": ["/year", "/tahun"],
+
+  /* Strings that were sitting as plain JSX text, so BM readers got English.
+     Found by a multi-line scan; a line-based grep misses them because the tag
+     and the text sit on different lines. */
+  "hw.enginesSub": [
+    "We evaluate every car through 5 specialized domain engines before synthesizing with TOPSIS multi-criteria optimization.",
+    "Kami menilai setiap kereta melalui 5 enjin domain khusus sebelum menggabungkannya dengan pengoptimuman pelbagai kriteria TOPSIS.",
+  ],
+  "eng.insurance10": ["10-Year Insurance", "Insurans 10 Tahun"],
+  "rc.backResults": ["← Back to results", "← Kembali ke keputusan"],
+  "rc.annualRunning": ["annual running cost (top pick)", "kos operasi tahunan (pilihan utama)"],
+  "ch.sohTitle": [
+    "15-Year Battery State of Health (SoH)",
+    "Keadaan Kesihatan Bateri 15 Tahun (SoH)",
+  ],
+  "ch.warrantyStd": ["8-Year / 160,000 km standard", "Standard 8 Tahun / 160,000 km"],
+  "ch.tcoHorizon": ["10-Year Horizon", "Ufuk 10 Tahun"],
+  "nav.modelCount": ["184 Models", "184 Model"],
   "r.topsis": ["TOPSIS score", "Skor TOPSIS"],
   "r.filterBody": ["Filter by body type", "Tapis mengikut jenis badan"],
   "r.allBody": ["All body types", "Semua jenis badan"],

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import asyncio
 
 import uuid
@@ -167,7 +169,18 @@ if settings.database_url.startswith("postgresql"):
     # which surfaces as a 500 on the very next request after a quiet period.
     # pre_ping costs one cheap round trip; recycle retires sockets before the
     # typical 30-60 min server-side idle timeout can reach them.
-    _engine_kwargs.update(pool_pre_ping=True, pool_recycle=1800)
+    # pre_ping was costing far more than the "one cheap round trip" assumed
+    # above. Against Neon's pooler the ping frequently fails and SQLAlchemy
+    # transparently reconnects: measured 3462ms per session with it on versus
+    # 1630ms with it off, on a database ~15,000km from the app. Retiring
+    # sockets well inside the pooler's idle timeout prevents the stale-socket
+    # InterfaceError without paying that on every request.
+    _engine_kwargs.update(
+        pool_pre_ping=False,
+        pool_recycle=int(os.getenv("DB_POOL_RECYCLE", "240")),
+        pool_size=int(os.getenv("DB_POOL_SIZE", "10")),
+        max_overflow=int(os.getenv("DB_POOL_OVERFLOW", "5")),
+    )
 
 _engine = create_async_engine(settings.database_url, **_engine_kwargs)
 AsyncSessionLocal = async_sessionmaker(_engine, expire_on_commit=False)
