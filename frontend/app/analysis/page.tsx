@@ -26,31 +26,45 @@ const STAGE_KEYS = ["an.s1", "an.s2", "an.s3", "an.s4", "an.s5"] as const;
 
 /** The five engines, in the order they actually run. Name and what it reads. */
 /**
- * Should this device load the 9.4 MB car?
+ * Should this device load the 9.4 MB car, and should it move?
  *
  * The scene is 9.1 MB of Draco glTF plus a 250 KB decoder, and this page exists
  * only until the backend returns — often under ten seconds. On a metered
  * Malaysian mobile connection that is a large download the visitor frequently
- * navigates away from before it finishes, having paid for all of it.
+ * navigates away from before it finishes, having paid for all of it. So a
+ * genuinely constrained device still does not fetch it.
  *
- * The ledger is the content here and the car is atmosphere, so on a constrained
- * or motion-averse device we simply do not fetch it. Defaults to loading when
- * the browser tells us nothing.
+ * These used to be one boolean, and either signal alone removed the car. Both
+ * fire routinely on a Pixel, which is why the car never appeared on one:
+ *
+ * - Android's Battery Saver turns on "Remove animations", which sets
+ *   prefers-reduced-motion. That is a request not to animate, not a request to
+ *   be shown less — so the car now loads and simply holds still.
+ * - effectiveType is Chrome's estimate from measured RTT and throughput, not
+ *   the radio in the phone. It reports "3g" on perfectly serviceable 4G and 5G
+ *   connections, and on that alone the car was dropped. Only genuinely
+ *   unusable connections and an explicit Data Saver opt-out now skip it.
  */
-function useWantsHeavyScene(): boolean {
-  const [want, setWant] = useState(false);
+function useSceneMode(): { load: boolean; still: boolean } {
+  const [mode, setMode] = useState({ load: false, still: false });
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // Network Information API: Chrome and most Android browsers; absent on Safari.
     const conn = (navigator as Navigator & {
       connection?: { saveData?: boolean; effectiveType?: string };
     }).connection;
-    const slow = conn?.saveData === true ||
-      ["slow-2g", "2g", "3g"].includes(conn?.effectiveType ?? "");
-    setWant(motionOk && !slow);
+    const unusable = conn?.saveData === true ||
+      ["slow-2g", "2g"].includes(conn?.effectiveType ?? "");
+    // Logged because this decision is invisible when it goes wrong: the page
+    // looks intentionally plain rather than broken, so nobody reports it.
+    console.log("[analysis] scene:", {
+      load: !unusable, still,
+      effectiveType: conn?.effectiveType, saveData: conn?.saveData,
+    });
+    setMode({ load: !unusable, still });
   }, []);
-  return want;
+  return mode;
 }
 
 const LEDGER = [
@@ -81,7 +95,7 @@ function AnalysisInner() {
   // keeps the copy current without making the effect depend on it.
   const tRef = useRef(t);
   tRef.current = t;
-  const heavyScene = useWantsHeavyScene();
+  const scene = useSceneMode();
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -167,9 +181,9 @@ function AnalysisInner() {
 
       {/* The car is the stage, not the subject: it sits behind the ledger and
           is pushed right so the reading column never lands on bodywork. */}
-      {heavyScene ? (
+      {scene.load ? (
         <div className="pointer-events-none absolute inset-0 md:left-[26rem]">
-          <LieRoom />
+          <LieRoom still={scene.still} />
         </div>
       ) : (
         // No car: a quiet pine field so the ledger still sits on something
@@ -183,7 +197,7 @@ function AnalysisInner() {
       {/* Reading ground for the mobile ledger. The car fills the viewport
           behind it there, and rows over bodywork are unreadable. */}
       <div
-        className={`pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[62%] bg-gradient-to-t from-pine-deep via-pine-deep/95 to-transparent md:hidden ${heavyScene ? "" : "hidden"}`}
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[62%] bg-gradient-to-t from-pine-deep via-pine-deep/95 to-transparent md:hidden ${scene.load ? "" : "hidden"}`}
         aria-hidden="true"
       />
 
@@ -211,7 +225,7 @@ function AnalysisInner() {
             // With no car there is room on a phone for the one line that says
             // what is happening — and a data-saving visitor gets the least
             // reassurance from an otherwise empty screen.
-            heavyScene ? "hidden" : "mb-6 block"
+            scene.load ? "hidden" : "mb-6 block"
           }`}
         >
           {t("an.sub")}

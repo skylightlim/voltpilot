@@ -36,7 +36,7 @@ type Fit = { halfDiagXZ: number; halfHeight: number };
 const MODEL_URL = "/models/kia-ev9-gt-line.glb";
 const SPONSOR_CAR = "Kia EV9 GT-Line";
 
-function Model({ onFit }: { onFit: (f: Fit) => void }) {
+function Model({ onFit, still }: { onFit: (f: Fit) => void; still: boolean }) {
   const gltf = useLoader(GLTFLoader, MODEL_URL, (loader) => {
     // The EV9 is Draco-compressed; the previous showroom model was meshopt.
     // Both decoders are registered so either asset loads without a code change.
@@ -84,10 +84,18 @@ function Model({ onFit }: { onFit: (f: Fit) => void }) {
   }, [gltf]);
 
   useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.y = state.clock.elapsedTime * 0.4;
-      ref.current.position.y = GROUND_Y + yOffset + Math.sin(state.clock.elapsedTime * 1.1) * 0.02;
+    if (!ref.current) return;
+    if (still) {
+      // Parked at a three-quarter view, which is the angle the turntable was
+      // worth watching for anyway. Reduced motion asks for no movement, not for
+      // no car — dropping the scene entirely is what hid it on every Pixel with
+      // Battery Saver on.
+      ref.current.rotation.y = Math.PI * 0.25;
+      ref.current.position.y = GROUND_Y + yOffset;
+      return;
     }
+    ref.current.rotation.y = state.clock.elapsedTime * 0.4;
+    ref.current.position.y = GROUND_Y + yOffset + Math.sin(state.clock.elapsedTime * 1.1) * 0.02;
   });
 
   return (
@@ -184,7 +192,7 @@ function Ground() {
   );
 }
 
-function RoomParticles() {
+function RoomParticles({ still }: { still: boolean }) {
   const ref = useRef<THREE.Points>(null);
   const geo = useMemo(() => {
     const n = 40;
@@ -203,12 +211,12 @@ function RoomParticles() {
     []
   );
   useFrame((state) => {
-    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.02;
+    if (ref.current && !still) ref.current.rotation.y = state.clock.elapsedTime * 0.02;
   });
   return <points ref={ref} geometry={geo} material={mat} />;
 }
 
-export default function LieRoom() {
+export default function LieRoom({ still = false }: { still?: boolean }) {
   const t = useT();
   const [ready, setReady] = useState(false);
   // Measured by <Model> once the glTF loads; the camera frames against it.
@@ -223,14 +231,18 @@ export default function LieRoom() {
       ctx = g.gsap.context(() => {
         g.gsap.fromTo(
           ".lie-room-scene",
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.4, ease: "power3.out", delay: 0.15 }
+          // A 40px rise is movement, which is the thing reduced motion asked us
+          // not to do; a cross-fade still reveals the scene without travelling.
+          still ? { opacity: 0 } : { opacity: 0, y: 40 },
+          still
+            ? { opacity: 1, duration: 0.6, ease: "none", delay: 0.15 }
+            : { opacity: 1, y: 0, duration: 1.4, ease: "power3.out", delay: 0.15 }
         );
       }, introRef);
       setReady(true);
     });
     return () => ctx?.revert();
-  }, []);
+  }, [still]);
 
   return (
     <div className="relative h-[100svh] w-full overflow-hidden" ref={introRef}>
@@ -256,10 +268,10 @@ export default function LieRoom() {
           <directionalLight position={[-5, 2.5, -4]} intensity={0.7} color="#7fc9a4" />
           <Suspense fallback={null}>
             <Environment />
-            <Model onFit={setFit} />
+            <Model onFit={setFit} still={still} />
           </Suspense>
           <Ground />
-          <RoomParticles />
+          <RoomParticles still={still} />
         </Canvas>
       </div>
 
