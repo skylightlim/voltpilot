@@ -136,6 +136,13 @@ jobs:
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
 
+      # backend/uv.lock makes Vercel's Python builder install with uv rather
+      # than pip, and the runner has no uv: `vercel build` died with
+      # "Error: spawn uv ENOENT". The lock file is the reproducible input, so
+      # install the tool rather than drop the lock and fall back to pip.
+      - name: Install uv
+        run: pip install uv
+
       # Two Vercel projects, one repository: the Python API and the Next.js app
       # build differently and scale differently, so they stay separate
       # deployments. The backend goes first — the frontend bakes BACKEND_URL
