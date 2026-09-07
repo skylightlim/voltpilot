@@ -6,17 +6,27 @@ import { ArrowRight, Sparkles, CheckCircle2, Zap, Fuel, TrendingDown, Shield } f
 import { Button, Card } from "@/components/ui";
 import { useT } from "@/lib/i18n";
 
+/** Pump price consumers actually pay under BUDI95. Mirrors
+ *  data/fuel.json fuel.ron95_rm_per_l, which is what the scoring engine costs
+ *  fuel with; this hero renders before any API call, so it cannot read it. */
+const RON95_RM_PER_L = 1.99;
+
 export function Hero() {
   const t = useT();
   const [dailyKm, setDailyKm] = useState<number>(50);
 
   // Malaysian Cost Economics Calculation
-  // RON95 @ RM 2.05/L, average consumption 7.2 L/100km
+  // RON95 under BUDI95, average consumption 7.2 L/100km
   // TNB EV Tariff off-peak @ RM 0.25/kWh, average consumption 15.5 kWh/100km
+  //
+  // One constant, used by both the sum and the caption below it. They were
+  // separate literals, so a price change could move the figure while the
+  // caption still quoted the old rate — the arithmetic and the label
+  // contradicting each other on the same card.
   const annualKm = dailyKm * 365;
 
   const annualPetrolRm = useMemo(() => {
-    return Math.round((annualKm * 7.2) / 100 * 2.05);
+    return Math.round((annualKm * 7.2) / 100 * RON95_RM_PER_L);
   }, [annualKm]);
 
   const annualEvRm = useMemo(() => {
@@ -108,7 +118,9 @@ export function Hero() {
                   RM {annualPetrolRm.toLocaleString("en-MY")}
                   <span className="text-[11px] font-normal text-muted">/yr</span>
                 </p>
-                <p className="text-[10.5px] text-muted mt-0.5">RON95 @ RM2.05/L</p>
+                <p className="text-[10.5px] text-muted mt-0.5">
+                  RON95 @ RM{RON95_RM_PER_L.toFixed(2)}/L
+                </p>
               </div>
 
               <div className="rounded-md border border-emerald-200 bg-emerald-50/50 p-3">

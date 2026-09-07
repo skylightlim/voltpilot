@@ -16,7 +16,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from ..config import settings
+from ..config import load_fuel, settings
 from ..schemas import INTERVIEW_QUESTIONS
 
 logger = logging.getLogger(__name__)
@@ -121,7 +121,13 @@ def mock_analyst(bundle: dict, lang: str) -> dict:
         "savings": {
             "co2_saved_10yr_kg": co2_saved_10yr,
             "cost_rm_yr_top": int(top["running_cost_raw"]),
-            "cost_rm_yr_petrol_baseline": int(annual * 6.5 / 100 * 2.05),
+            # Read the price rather than restating it: this literal was RM2.05
+            # while the engines were costing fuel from data/fuel.json, so the
+            # headline baseline and the ranked results disagreed the moment the
+            # pump price moved.
+            "cost_rm_yr_petrol_baseline": int(
+                annual * 6.5 / 100 * float(load_fuel()["fuel"]["ron95_rm_per_l"])
+            ),
         },
         "tradeoffs": [
             _t(
