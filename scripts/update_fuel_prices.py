@@ -51,7 +51,11 @@ PUMP_TARGET_KEYS = {
     "diesel": "diesel_rm_per_l",
 }
 PUMP_FALLBACKS = {
-    "ron95": ["ron95_skps", "ron95"],
+    # BUDI95 first: it is the scheme most private buyers now pump under, and
+    # taking ron95_skps ahead of it wrote RM2.05 back over RM1.99 on the next
+    # nightly run. This job commits what it writes, so the price change would
+    # have undone itself in the repository within a day.
+    "ron95": ["ron95_budi95", "ron95_skps", "ron95"],
     "ron97": ["ron97"],
     "diesel": ["diesel_budi", "diesel_skds", "diesel"],
 }
