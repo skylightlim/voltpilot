@@ -2,19 +2,19 @@
   "_meta": {
     "currency": "RM",
     "updated_at": "2026-09-08",
-    "source": "data.gov.my fuel price weekly API (id=fuelprice) — updated daily via scripts/update_fuel_prices.py",
+    "source": "data.gov.my fuel price weekly API (id=fuelprice) \u2014 updated daily via scripts/update_fuel_prices.py",
     "price_date": "2026-09-03"
   },
   "fuel": {
     "ron95_rm_per_l": 1.99,
     "ron97_rm_per_l": 4.25,
     "diesel_rm_per_l": 2.1,
-    "note": "Pump prices = what consumers pay: RON95 RM1.99 (BUDI95), diesel RM2.10 (BUDI); RON97 RM4.25 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-09-03."
+    "note": "Pump prices = what consumers pay: RON95 RM1.99 (SKPS-subsidized), diesel RM2.10 (BUDI); RON97 RM4.25 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-09-03."
   },
   "co2_factors": {
     "petrol_kg_co2_per_l": 2.31,
     "grid_kg_co2_per_kwh": 0.74,
-    "note": "Grid Emission Factors: Energy Commission Malaysia / Malaysia Energy Statistics (2026 publication of provisional 2022-2024 data), 2024 values — Peninsular 0.740, Sabah 0.539, Sarawak 0.199 kg CO2e/kWh. east_malaysia is a 60/40 Sarawak/Sabah generation-weighted blend of those two sourced values (0.6*0.199 + 0.4*0.539 = 0.335), kept because the profile schema only offers peninsular/east_malaysia; sabah and sarawak are carried separately so the region can be split without re-sourcing. Replaces the previous 0.63/0.33 estimates, which this file's own note flagged for replacement once a sourced figure existed.",
+    "note": "Grid Emission Factors: Energy Commission Malaysia / Malaysia Energy Statistics (2026 publication of provisional 2022-2024 data), 2024 values \u2014 Peninsular 0.740, Sabah 0.539, Sarawak 0.199 kg CO2e/kWh. east_malaysia is a 60/40 Sarawak/Sabah generation-weighted blend of those two sourced values (0.6*0.199 + 0.4*0.539 = 0.335), kept because the profile schema only offers peninsular/east_malaysia; sabah and sarawak are carried separately so the region can be split without re-sourcing. Replaces the previous 0.63/0.33 estimates, which this file's own note flagged for replacement once a sourced figure existed.",
     "grid_kg_co2_per_kwh_by_region": {
       "peninsular": 0.74,
       "east_malaysia": 0.335,
