@@ -3,8 +3,8 @@
   "title": "Malaysia car registrations by model \u2014 paultan.org car-sales-data (source: JPJ via data.gov.my registration_transactions_car)",
   "source": "https://paultan.org/car-sales-data/",
   "api": "https://paultan.org/car-sales-data/api.php?action=rankings&group=model&format=csv&fuel=EV|Hybrid",
-  "period": "2023-09..2026-07",
-  "months_total": 35,
+  "period": "2023-09..2026-08",
+  "months_total": 36,
   "monthly_window_months": 36,
   "monthly_window_note": "Monthly history is retained for the latest 36 months only; all-time rankings cover 2000-01..current.",
   "fields": [
@@ -15,7 +15,7 @@
    "share_pct"
   ],
   "note": "Paultan aggregates the official JPJ per-transaction dataset (registration_transactions_car). EV = fuel electric; Hybrid = hybrid_petrol + hybrid_diesel (incl PHEV). share_pct is the share of that fuel class within the queried period.",
-  "retrieved_at": "2026-09-09T23:54:57+00:00"
+  "retrieved_at": "2026-09-10T23:51:16+00:00"
  },
  "all_time": {
   "EV": [
@@ -23,448 +23,448 @@
     "rank": 1,
     "make": "Proton",
     "model": "e.MAS 5",
-    "units": 13280,
-    "share_pct": 10.86
+    "units": 18050,
+    "share_pct": 13.77
    },
    {
     "rank": 2,
     "make": "BYD",
     "model": "Atto 3",
-    "units": 13003,
-    "share_pct": 10.63
+    "units": 13255,
+    "share_pct": 10.11
    },
    {
     "rank": 3,
     "make": "Proton",
     "model": "e.MAS 7",
-    "units": 12068,
-    "share_pct": 9.87
+    "units": 12681,
+    "share_pct": 9.67
    },
    {
     "rank": 4,
     "make": "Tesla",
     "model": "Model 3",
-    "units": 8678,
-    "share_pct": 7.1
+    "units": 9337,
+    "share_pct": 7.12
    },
    {
     "rank": 5,
     "make": "Tesla",
     "model": "Model Y",
-    "units": 8438,
-    "share_pct": 6.9
+    "units": 8945,
+    "share_pct": 6.82
    },
    {
     "rank": 6,
     "make": "BYD",
     "model": "Sealion",
-    "units": 6433,
-    "share_pct": 5.26
+    "units": 6551,
+    "share_pct": 5.0
    },
    {
     "rank": 7,
     "make": "BYD",
     "model": "Seal",
-    "units": 4194,
-    "share_pct": 3.43
+    "units": 4203,
+    "share_pct": 3.21
    },
    {
     "rank": 8,
     "make": "Zeekr",
     "model": "7X",
-    "units": 3651,
-    "share_pct": 2.99
+    "units": 3959,
+    "share_pct": 3.02
    },
    {
     "rank": 9,
     "make": "BMW",
     "model": "iX",
-    "units": 2886,
-    "share_pct": 2.36
+    "units": 2897,
+    "share_pct": 2.21
    },
    {
     "rank": 10,
     "make": "BYD",
     "model": "Dolphin",
     "units": 2831,
-    "share_pct": 2.32
+    "share_pct": 2.16
    },
    {
     "rank": 11,
     "make": "BYD",
     "model": "M6",
-    "units": 2740,
-    "share_pct": 2.24
+    "units": 2767,
+    "share_pct": 2.11
    },
    {
     "rank": 12,
     "make": "BYD",
     "model": "Atto 2",
-    "units": 2654,
-    "share_pct": 2.17
+    "units": 2735,
+    "share_pct": 2.09
    },
    {
     "rank": 13,
     "make": "BYD",
     "model": "Seal 6",
-    "units": 2521,
-    "share_pct": 2.06
+    "units": 2605,
+    "share_pct": 1.99
    },
    {
     "rank": 14,
     "make": "iCaur",
     "model": "iCaur V23",
-    "units": 1952,
-    "share_pct": 1.6
+    "units": 2216,
+    "share_pct": 1.69
    },
    {
     "rank": 15,
     "make": "iCaur",
     "model": "iCaur 03",
-    "units": 1949,
+    "units": 2091,
     "share_pct": 1.59
    },
    {
     "rank": 16,
     "make": "Great Wall",
     "model": "Ora",
-    "units": 1910,
-    "share_pct": 1.56
+    "units": 1951,
+    "share_pct": 1.49
    },
    {
     "rank": 17,
     "make": "Xpeng",
     "model": "G6",
-    "units": 1873,
-    "share_pct": 1.53
+    "units": 1895,
+    "share_pct": 1.45
    },
    {
     "rank": 18,
     "make": "Porsche",
     "model": "Taycan",
-    "units": 1690,
-    "share_pct": 1.38
+    "units": 1696,
+    "share_pct": 1.29
    },
    {
     "rank": 19,
     "make": "Denza",
     "model": "D9",
-    "units": 1445,
-    "share_pct": 1.18
+    "units": 1473,
+    "share_pct": 1.12
    },
    {
     "rank": 20,
     "make": "Smart",
     "model": "Brabus",
-    "units": 1394,
-    "share_pct": 1.14
+    "units": 1408,
+    "share_pct": 1.07
    },
    {
     "rank": 21,
     "make": "Zeekr",
     "model": "009",
-    "units": 1326,
-    "share_pct": 1.08
+    "units": 1354,
+    "share_pct": 1.03
    },
    {
     "rank": 22,
-    "make": "Chery",
-    "model": "Omoda 5",
-    "units": 1290,
-    "share_pct": 1.05
+    "make": "BMW",
+    "model": "iX1",
+    "units": 1300,
+    "share_pct": 0.99
    },
    {
     "rank": 23,
-    "make": "BMW",
-    "model": "iX1",
-    "units": 1282,
-    "share_pct": 1.05
+    "make": "Chery",
+    "model": "Omoda 5",
+    "units": 1300,
+    "share_pct": 0.99
    },
    {
     "rank": 24,
     "make": "MG",
     "model": "MG4",
-    "units": 1281,
-    "share_pct": 1.05
+    "units": 1283,
+    "share_pct": 0.98
    },
    {
     "rank": 25,
     "make": "Mini",
     "model": "Cooper",
-    "units": 1228,
-    "share_pct": 1.0
+    "units": 1234,
+    "share_pct": 0.94
    },
    {
     "rank": 26,
     "make": "Leapmotor",
     "model": "C10",
-    "units": 982,
-    "share_pct": 0.8
+    "units": 1107,
+    "share_pct": 0.84
    },
    {
     "rank": 27,
     "make": "BMW",
     "model": "i5",
-    "units": 966,
-    "share_pct": 0.79
+    "units": 984,
+    "share_pct": 0.75
    },
    {
     "rank": 28,
     "make": "BMW",
     "model": "i7",
     "units": 964,
-    "share_pct": 0.79
+    "share_pct": 0.74
    },
    {
     "rank": 29,
-    "make": "BMW",
-    "model": "i4",
-    "units": 937,
-    "share_pct": 0.77
+    "make": "Xpeng",
+    "model": "X9",
+    "units": 958,
+    "share_pct": 0.73
    },
    {
     "rank": 30,
     "make": "BMW",
-    "model": "iX2",
-    "units": 929,
-    "share_pct": 0.76
-   },
-   {
-    "rank": 31,
-    "make": "Xpeng",
-    "model": "X9",
-    "units": 886,
+    "model": "i4",
+    "units": 941,
     "share_pct": 0.72
    },
    {
-    "rank": 32,
+    "rank": 31,
     "make": "Leapmotor",
     "model": "B10",
-    "units": 840,
-    "share_pct": 0.69
+    "units": 934,
+    "share_pct": 0.71
+   },
+   {
+    "rank": 32,
+    "make": "BMW",
+    "model": "iX2",
+    "units": 932,
+    "share_pct": 0.71
    },
    {
     "rank": 33,
     "make": "Volvo",
     "model": "XC40",
     "units": 762,
-    "share_pct": 0.62
+    "share_pct": 0.58
    },
    {
     "rank": 34,
     "make": "Mercedes Benz",
     "model": "EQE",
     "units": 717,
-    "share_pct": 0.59
+    "share_pct": 0.55
    },
    {
     "rank": 35,
-    "make": "Mercedes Benz",
-    "model": "EQS",
-    "units": 654,
+    "make": "MG",
+    "model": "S5",
+    "units": 693,
     "share_pct": 0.53
    },
    {
     "rank": 36,
-    "make": "MG",
-    "model": "S5",
-    "units": 626,
-    "share_pct": 0.51
+    "make": "Mercedes Benz",
+    "model": "EQS",
+    "units": 654,
+    "share_pct": 0.5
    },
    {
     "rank": 37,
-    "make": "Volvo",
-    "model": "EX30",
-    "units": 572,
-    "share_pct": 0.47
+    "make": "TQ Wuling",
+    "model": "Bingo",
+    "units": 640,
+    "share_pct": 0.49
    },
    {
     "rank": 38,
-    "make": "TQ Wuling",
-    "model": "Bingo",
-    "units": 569,
-    "share_pct": 0.47
+    "make": "Volvo",
+    "model": "EX30",
+    "units": 585,
+    "share_pct": 0.45
    },
    {
     "rank": 39,
     "make": "Mini",
     "model": "Countryman",
-    "units": 567,
-    "share_pct": 0.46
+    "units": 570,
+    "share_pct": 0.43
    },
    {
     "rank": 40,
     "make": "Volvo",
     "model": "C40",
     "units": 557,
-    "share_pct": 0.46
+    "share_pct": 0.42
    },
    {
     "rank": 41,
     "make": "Dong Feng",
     "model": "Box E3",
-    "units": 514,
+    "units": 546,
     "share_pct": 0.42
    },
    {
     "rank": 42,
-    "make": "Mercedes Benz",
-    "model": "EQA",
-    "units": 497,
-    "share_pct": 0.41
+    "make": "BMW",
+    "model": "iX3",
+    "units": 545,
+    "share_pct": 0.42
    },
    {
     "rank": 43,
-    "make": "BMW",
-    "model": "iX3",
-    "units": 490,
-    "share_pct": 0.4
+    "make": "Mercedes Benz",
+    "model": "EQA",
+    "units": 497,
+    "share_pct": 0.38
    },
    {
     "rank": 44,
     "make": "Porsche",
     "model": "Macan",
-    "units": 456,
-    "share_pct": 0.37
+    "units": 468,
+    "share_pct": 0.36
    },
    {
     "rank": 45,
     "make": "Mini",
     "model": "Aceman",
-    "units": 455,
-    "share_pct": 0.37
+    "units": 463,
+    "share_pct": 0.35
    },
    {
     "rank": 46,
-    "make": "Neta",
-    "model": "V",
-    "units": 398,
-    "share_pct": 0.33
+    "make": "Perodua",
+    "model": "QV-E",
+    "units": 412,
+    "share_pct": 0.31
    },
    {
     "rank": 47,
-    "make": "Perodua",
-    "model": "QV-E",
-    "units": 356,
-    "share_pct": 0.29
+    "make": "Neta",
+    "model": "V",
+    "units": 400,
+    "share_pct": 0.31
    },
    {
     "rank": 48,
     "make": "Hyundai",
     "model": "Ioniq 5",
     "units": 348,
-    "share_pct": 0.28
+    "share_pct": 0.27
    },
    {
     "rank": 49,
-    "make": "Lotus",
-    "model": "Eletre",
-    "units": 291,
-    "share_pct": 0.24
-   },
-   {
-    "rank": 50,
-    "make": "Audi",
-    "model": "Q8",
-    "units": 284,
-    "share_pct": 0.23
-   },
-   {
-    "rank": 51,
     "make": "Honda",
     "model": "e:N1",
-    "units": 284,
-    "share_pct": 0.23
-   },
-   {
-    "rank": 52,
-    "make": "Weststar Maxus",
-    "model": "T90",
-    "units": 266,
+    "units": 295,
     "share_pct": 0.22
    },
    {
-    "rank": 53,
-    "make": "Mercedes Benz",
-    "model": "EQB",
-    "units": 256,
+    "rank": 50,
+    "make": "Lotus",
+    "model": "Eletre",
+    "units": 292,
+    "share_pct": 0.22
+   },
+   {
+    "rank": 51,
+    "make": "Audi",
+    "model": "Q8",
+    "units": 285,
+    "share_pct": 0.22
+   },
+   {
+    "rank": 52,
+    "make": "Zeekr",
+    "model": "X",
+    "units": 279,
     "share_pct": 0.21
    },
    {
+    "rank": 53,
+    "make": "Weststar Maxus",
+    "model": "T90",
+    "units": 266,
+    "share_pct": 0.2
+   },
+   {
     "rank": 54,
-    "make": "Volvo",
-    "model": "EC40",
-    "units": 244,
+    "make": "Mini",
+    "model": "John Cooper Works",
+    "units": 257,
     "share_pct": 0.2
    },
    {
     "rank": 55,
-    "make": "Mini",
-    "model": "John Cooper Works",
-    "units": 243,
+    "make": "Mercedes Benz",
+    "model": "EQB",
+    "units": 256,
     "share_pct": 0.2
    },
    {
     "rank": 56,
-    "make": "Hyundai",
-    "model": "Ioniq 6",
-    "units": 222,
-    "share_pct": 0.18
+    "make": "Volvo",
+    "model": "EC40",
+    "units": 250,
+    "share_pct": 0.19
    },
    {
     "rank": 57,
-    "make": "Zeekr",
-    "model": "X",
-    "units": 220,
-    "share_pct": 0.18
+    "make": "Hyundai",
+    "model": "Ioniq 6",
+    "units": 222,
+    "share_pct": 0.17
    },
    {
     "rank": 58,
     "make": "Hyundai",
     "model": "Kona",
     "units": 218,
-    "share_pct": 0.18
+    "share_pct": 0.17
    },
    {
     "rank": 59,
     "make": "Lexus",
     "model": "RZ",
-    "units": 195,
-    "share_pct": 0.16
+    "units": 197,
+    "share_pct": 0.15
    },
    {
     "rank": 60,
     "make": "Mercedes Benz",
     "model": "EQC",
     "units": 193,
-    "share_pct": 0.16
+    "share_pct": 0.15
    },
    {
     "rank": 61,
     "make": "Neta",
     "model": "X",
-    "units": 172,
-    "share_pct": 0.14
+    "units": 177,
+    "share_pct": 0.13
    },
    {
     "rank": 62,
     "make": "Nissan",
     "model": "Leaf",
     "units": 163,
-    "share_pct": 0.13
+    "share_pct": 0.12
    },
    {
     "rank": 63,
     "make": "MG",
     "model": "Cyberster",
-    "units": 138,
+    "units": 142,
     "share_pct": 0.11
    },
    {
     "rank": 64,
     "make": "Volvo",
     "model": "EX90",
-    "units": 136,
+    "units": 139,
     "share_pct": 0.11
    },
    {
@@ -472,7 +472,7 @@
     "make": "Kia",
     "model": "EV6",
     "units": 120,
-    "share_pct": 0.1
+    "share_pct": 0.09
    },
    {
     "rank": 66,
@@ -490,23 +490,23 @@
    },
    {
     "rank": 68,
-    "make": "GAC Aion",
-    "model": "Y Plus Standard",
-    "units": 93,
-    "share_pct": 0.08
+    "make": "Volvo",
+    "model": "ES90",
+    "units": 95,
+    "share_pct": 0.07
    },
    {
     "rank": 69,
-    "make": "Volvo",
-    "model": "ES90",
-    "units": 89,
+    "make": "GAC Aion",
+    "model": "Y Plus Standard",
+    "units": 94,
     "share_pct": 0.07
    },
    {
     "rank": 70,
     "make": "Weststar Maxus",
     "model": "MIFA 9",
-    "units": 76,
+    "units": 77,
     "share_pct": 0.06
    },
    {
@@ -518,86 +518,86 @@
    },
    {
     "rank": 72,
+    "make": "Denza",
+    "model": "Z9GT",
+    "units": 72,
+    "share_pct": 0.05
+   },
+   {
+    "rank": 73,
     "make": "Renault",
     "model": "Zoe",
     "units": 66,
     "share_pct": 0.05
    },
    {
-    "rank": 73,
+    "rank": 74,
     "make": "Tesla",
     "model": "Model X",
     "units": 64,
     "share_pct": 0.05
    },
    {
-    "rank": 74,
+    "rank": 75,
     "make": "Jaguar",
     "model": "I-Pace",
     "units": 61,
     "share_pct": 0.05
    },
    {
-    "rank": 75,
+    "rank": 76,
     "make": "Kia",
     "model": "EV9",
-    "units": 60,
+    "units": 61,
     "share_pct": 0.05
    },
    {
-    "rank": 76,
+    "rank": 77,
     "make": "Lotus",
     "model": "Emeya",
-    "units": 53,
+    "units": 54,
     "share_pct": 0.04
    },
    {
-    "rank": 77,
+    "rank": 78,
     "make": "Audi",
     "model": "RS e-tron GT",
     "units": 50,
     "share_pct": 0.04
    },
    {
-    "rank": 78,
+    "rank": 79,
     "make": "Tesla",
     "model": "Model S",
     "units": 47,
     "share_pct": 0.04
    },
    {
-    "rank": 79,
+    "rank": 80,
     "make": "Renault",
     "model": "Twizy",
     "units": 45,
-    "share_pct": 0.04
-   },
-   {
-    "rank": 80,
-    "make": "Rolls Royce",
-    "model": "Spectre",
-    "units": 42,
     "share_pct": 0.03
    },
    {
     "rank": 81,
     "make": "Toyota",
     "model": "bZ4X",
-    "units": 42,
+    "units": 45,
     "share_pct": 0.03
    },
    {
     "rank": 82,
-    "make": "Mercedes Benz",
-    "model": "E-Class",
-    "units": 37,
+    "make": "Rolls Royce",
+    "model": "Spectre",
+    "units": 42,
     "share_pct": 0.03
    },
    {
     "rank": 83,
-    "make": "Denza",
-    "model": "Z9GT",
-    "units": 36,
+    "make": "Mercedes Benz",
+    "model": "E-Class",
+    "units": 37,
     "share_pct": 0.03
    },
    {
@@ -605,14 +605,14 @@
     "make": "Mazda",
     "model": "MX-30",
     "units": 32,
-    "share_pct": 0.03
+    "share_pct": 0.02
    },
    {
     "rank": 85,
     "make": "BMW",
     "model": "i3",
     "units": 31,
-    "share_pct": 0.03
+    "share_pct": 0.02
    },
    {
     "rank": 86,
@@ -632,90 +632,90 @@
     "rank": 88,
     "make": "Dong Feng",
     "model": "007",
-    "units": 20,
+    "units": 25,
     "share_pct": 0.02
    },
    {
     "rank": 89,
-    "make": "Mercedes Benz",
-    "model": "G-Class",
-    "units": 19,
+    "make": "Dong Feng",
+    "model": "Vigo",
+    "units": 22,
     "share_pct": 0.02
    },
    {
     "rank": 90,
-    "make": "Proton",
-    "model": "Saga",
+    "make": "Mercedes Benz",
+    "model": "G-Class",
     "units": 19,
-    "share_pct": 0.02
+    "share_pct": 0.01
    },
    {
     "rank": 91,
+    "make": "Proton",
+    "model": "Saga",
+    "units": 19,
+    "share_pct": 0.01
+   },
+   {
+    "rank": 92,
     "make": "Toyota",
     "model": "Mega Cruiser",
     "units": 16,
     "share_pct": 0.01
    },
    {
-    "rank": 92,
+    "rank": 93,
     "make": "Mitsubishi",
     "model": "Pajero",
     "units": 15,
     "share_pct": 0.01
    },
    {
-    "rank": 93,
-    "make": "Dong Feng",
-    "model": "Vigo",
+    "rank": 94,
+    "make": "Mercedes Benz",
+    "model": "EQV",
     "units": 14,
     "share_pct": 0.01
    },
    {
-    "rank": 94,
+    "rank": 95,
     "make": "MG",
     "model": "ZS EV",
     "units": 13,
     "share_pct": 0.01
    },
    {
-    "rank": 95,
-    "make": "Mercedes Benz",
-    "model": "EQV",
+    "rank": 96,
+    "make": "Toyota",
+    "model": "Hilux",
     "units": 13,
     "share_pct": 0.01
    },
    {
-    "rank": 96,
+    "rank": 97,
     "make": "Chery",
     "model": "Tiggo",
     "units": 11,
     "share_pct": 0.01
    },
    {
-    "rank": 97,
+    "rank": 98,
     "make": "Ford",
     "model": "Mustang",
     "units": 11,
     "share_pct": 0.01
    },
    {
-    "rank": 98,
+    "rank": 99,
     "make": "Kia",
     "model": "Niro",
     "units": 11,
     "share_pct": 0.01
    },
    {
-    "rank": 99,
+    "rank": 100,
     "make": "Dong Feng",
     "model": "Box E2",
-    "units": 10,
-    "share_pct": 0.01
-   },
-   {
-    "rank": 100,
-    "make": "Toyota",
-    "model": "Hilux",
     "units": 10,
     "share_pct": 0.01
    },
@@ -763,64 +763,64 @@
    },
    {
     "rank": 107,
+    "make": "Mercedes Benz",
+    "model": "CLA",
+    "units": 5,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 108,
     "make": "Omoda Jaecoo",
     "model": "Jaecoo J7",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 108,
+    "rank": 109,
     "make": "Peugeot",
     "model": "2008",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 109,
+    "rank": 110,
     "make": "Polestar",
     "model": "2",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 110,
+    "rank": 111,
     "make": "Toyota",
     "model": "Urban Cruiser",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 111,
+    "rank": 112,
     "make": "Volkswagen",
     "model": "ID.Buzz",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 112,
+    "rank": 113,
     "make": "Fiat",
     "model": "500",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 113,
+    "rank": 114,
     "make": "MG",
     "model": "5",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 114,
+    "rank": 115,
     "make": "Maxus",
     "model": "eTerron 9",
-    "units": 4,
-    "share_pct": 0.0
-   },
-   {
-    "rank": 115,
-    "make": "Mercedes Benz",
-    "model": "CLA",
     "units": 4,
     "share_pct": 0.0
    },
@@ -847,349 +847,363 @@
    },
    {
     "rank": 119,
+    "make": "Jaecoo",
+    "model": "J5",
+    "units": 3,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 120,
     "make": "Toyota",
     "model": "Unknown",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 120,
+    "rank": 121,
     "make": "Vinfast",
     "model": "e34",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 121,
+    "rank": 122,
     "make": "Volkswagen",
     "model": "ID.4",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 122,
+    "rank": 123,
     "make": "Genesis",
     "model": "G80",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 123,
+    "rank": 124,
     "make": "Hycann",
     "model": "Z03",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 124,
+    "rank": 125,
     "make": "Maserati",
     "model": "GranTurismo",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 125,
+    "rank": 126,
+    "make": "Maxus",
+    "model": "MIFA 7",
+    "units": 2,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 127,
     "make": "Mercedes-Maybach",
     "model": "EQS 680",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 126,
+    "rank": 128,
     "make": "Nissan",
     "model": "Unknown",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 127,
+    "rank": 129,
     "make": "Renault",
     "model": "Fluence ZE",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 128,
+    "rank": 130,
     "make": "Smart",
     "model": "Fortwo",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 129,
+    "rank": 131,
     "make": "Tesla",
     "model": "Model P",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 130,
+    "rank": 132,
     "make": "Allenbus",
     "model": "Unknown",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 131,
+    "rank": 133,
     "make": "Audi",
     "model": "Q4",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 132,
+    "rank": 134,
     "make": "BMW",
     "model": "1 Series",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 133,
+    "rank": 135,
     "make": "BMW",
     "model": "i8",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 134,
+    "rank": 136,
     "make": "Borgward",
     "model": "BX7",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 135,
+    "rank": 137,
     "make": "Citroen",
     "model": "Ami",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 136,
+    "rank": 138,
     "make": "DFSK",
     "model": "Glory",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 137,
+    "rank": 139,
     "make": "EVEasy",
     "model": "Elight",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 138,
+    "rank": 140,
     "make": "Flistar",
     "model": "Unknown",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 139,
+    "rank": 141,
     "make": "Ford",
     "model": "Mach-E",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 140,
+    "rank": 142,
     "make": "GAC Aion",
     "model": "V Elite",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 141,
+    "rank": 143,
     "make": "GAC Aion",
     "model": "V Luxury",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 142,
+    "rank": 144,
     "make": "GAC Hyptec",
     "model": "HT Premium",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 143,
+    "rank": 145,
     "make": "GAC Hyptec",
     "model": "HT Ultra",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 144,
+    "rank": 146,
     "make": "Higer",
     "model": "H7V",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 145,
+    "rank": 147,
     "make": "Honda",
     "model": "CR-V",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 146,
+    "rank": 148,
     "make": "Hyundai",
     "model": "Ioniq 9",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 147,
+    "rank": 149,
     "make": "Jaguar",
     "model": "F-Type",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 148,
+    "rank": 150,
     "make": "Jetour",
     "model": "Kaiyi",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 149,
+    "rank": 151,
     "make": "King Long Xiamen",
     "model": "Placer",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 150,
+    "rank": 152,
     "make": "Lexus",
     "model": "RX",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 151,
+    "rank": 153,
     "make": "Lexus",
     "model": "UX",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 152,
-    "make": "Maxus",
-    "model": "MIFA 7",
-    "units": 1,
-    "share_pct": 0.0
-   },
-   {
-    "rank": 153,
+    "rank": 154,
     "make": "Mercedes Benz",
     "model": "S-Class",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 154,
+    "rank": 155,
     "make": "Mercedes Benz",
     "model": "Unknown",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 155,
+    "rank": 156,
     "make": "Microlino",
     "model": "2.0 Dolce",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 156,
+    "rank": 157,
     "make": "Microlino",
     "model": "2.0 Pioneer",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 157,
+    "rank": 158,
     "make": "Neta",
     "model": "GT",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 158,
+    "rank": 159,
     "make": "Nissan",
     "model": "Sakura",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 159,
+    "rank": 160,
     "make": "Seres",
     "model": "3",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 160,
+    "rank": 161,
     "make": "Shineray",
     "model": "X30L",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 161,
+    "rank": 162,
     "make": "Skyworth",
     "model": "RHD 620",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 162,
+    "rank": 163,
+    "make": "Suzuki",
+    "model": "e Vitara",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 164,
     "make": "Togg",
     "model": "T10X",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 163,
+    "rank": 165,
     "make": "Vinfast",
     "model": "VF5",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 164,
+    "rank": 166,
     "make": "Volkswagen",
     "model": "ID.3",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 165,
+    "rank": 167,
     "make": "Volkswagen",
     "model": "ID.5",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 166,
+    "rank": 168,
     "make": "Xinneng",
     "model": "H9",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 167,
+    "rank": 169,
     "make": "Xinneng",
     "model": "K3",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 168,
+    "rank": 170,
     "make": "Xinneng",
     "model": "K8S",
     "units": 1,
@@ -1201,1033 +1215,1089 @@
     "rank": 1,
     "make": "Toyota",
     "model": "Corolla Cross",
-    "units": 31432,
-    "share_pct": 15.43
+    "units": 32021,
+    "share_pct": 15.35
    },
    {
     "rank": 2,
     "make": "Honda",
     "model": "HR-V",
-    "units": 15230,
-    "share_pct": 7.48
+    "units": 15437,
+    "share_pct": 7.4
    },
    {
     "rank": 3,
     "make": "Honda",
     "model": "City",
-    "units": 15154,
-    "share_pct": 7.44
+    "units": 15205,
+    "share_pct": 7.29
    },
    {
     "rank": 4,
     "make": "Nissan",
     "model": "Serena",
-    "units": 14347,
-    "share_pct": 7.04
+    "units": 14551,
+    "share_pct": 6.97
    },
    {
     "rank": 5,
     "make": "Mercedes Benz",
     "model": "C-Class",
-    "units": 12114,
-    "share_pct": 5.95
+    "units": 12181,
+    "share_pct": 5.84
    },
    {
     "rank": 6,
     "make": "Honda",
     "model": "Jazz",
     "units": 11573,
-    "share_pct": 5.68
+    "share_pct": 5.55
    },
    {
     "rank": 7,
     "make": "Toyota",
     "model": "Camry",
-    "units": 10116,
-    "share_pct": 4.97
+    "units": 10142,
+    "share_pct": 4.86
    },
    {
     "rank": 8,
-    "make": "Toyota",
-    "model": "Prius",
-    "units": 7670,
-    "share_pct": 3.77
+    "make": "Great Wall",
+    "model": "Haval H6",
+    "units": 7849,
+    "share_pct": 3.76
    },
    {
     "rank": 9,
-    "make": "Great Wall",
-    "model": "Haval H6",
-    "units": 7544,
-    "share_pct": 3.7
+    "make": "Toyota",
+    "model": "Prius",
+    "units": 7671,
+    "share_pct": 3.68
    },
    {
     "rank": 10,
     "make": "Mercedes Benz",
     "model": "E-Class",
-    "units": 7491,
-    "share_pct": 3.68
+    "units": 7529,
+    "share_pct": 3.61
    },
    {
     "rank": 11,
     "make": "Honda",
     "model": "Civic",
-    "units": 7286,
-    "share_pct": 3.58
+    "units": 7318,
+    "share_pct": 3.51
    },
    {
     "rank": 12,
     "make": "Honda",
     "model": "CR-V",
-    "units": 5630,
-    "share_pct": 2.76
+    "units": 5827,
+    "share_pct": 2.79
    },
    {
     "rank": 13,
     "make": "Proton",
     "model": "e.MAS 7 PHEV",
-    "units": 4946,
-    "share_pct": 2.43
+    "units": 5562,
+    "share_pct": 2.67
    },
    {
     "rank": 14,
     "make": "Mercedes Benz",
     "model": "GLC",
-    "units": 4824,
-    "share_pct": 2.37
+    "units": 4879,
+    "share_pct": 2.34
    },
    {
     "rank": 15,
     "make": "Honda",
     "model": "CR-Z",
     "units": 4778,
-    "share_pct": 2.35
+    "share_pct": 2.29
    },
    {
     "rank": 16,
     "make": "Volvo",
     "model": "XC60",
-    "units": 4440,
-    "share_pct": 2.18
+    "units": 4455,
+    "share_pct": 2.14
    },
    {
     "rank": 17,
-    "make": "Chery",
-    "model": "Tiggo",
-    "units": 3558,
-    "share_pct": 1.75
+    "make": "Toyota",
+    "model": "Vios",
+    "units": 3750,
+    "share_pct": 1.8
    },
    {
     "rank": 18,
-    "make": "Toyota",
-    "model": "Vios",
-    "units": 3269,
-    "share_pct": 1.6
-   },
-   {
-    "rank": 19,
     "make": "Honda",
     "model": "Insight",
     "units": 2920,
-    "share_pct": 1.43
+    "share_pct": 1.4
+   },
+   {
+    "rank": 19,
+    "make": "Toyota",
+    "model": "Yaris Cross",
+    "units": 2558,
+    "share_pct": 1.23
    },
    {
     "rank": 20,
     "make": "Volvo",
     "model": "XC90",
-    "units": 2182,
-    "share_pct": 1.07
+    "units": 2214,
+    "share_pct": 1.06
    },
    {
     "rank": 21,
     "make": "Mercedes Benz",
     "model": "GLE",
-    "units": 2025,
-    "share_pct": 0.99
+    "units": 2039,
+    "share_pct": 0.98
    },
    {
     "rank": 22,
     "make": "Hyundai",
     "model": "Ioniq",
     "units": 1981,
-    "share_pct": 0.97
+    "share_pct": 0.95
    },
    {
     "rank": 23,
-    "make": "Volvo",
-    "model": "XC40",
-    "units": 1894,
+    "make": "Omoda Jaecoo",
+    "model": "Jaecoo J7",
+    "units": 1945,
     "share_pct": 0.93
    },
    {
     "rank": 24,
-    "make": "Audi",
-    "model": "A6",
-    "units": 1891,
-    "share_pct": 0.93
+    "make": "Volvo",
+    "model": "XC40",
+    "units": 1894,
+    "share_pct": 0.91
    },
    {
     "rank": 25,
-    "make": "Lexus",
-    "model": "CT",
-    "units": 1869,
-    "share_pct": 0.92
+    "make": "Audi",
+    "model": "A6",
+    "units": 1891,
+    "share_pct": 0.91
    },
    {
     "rank": 26,
-    "make": "Toyota",
-    "model": "Yaris Cross",
-    "units": 1834,
+    "make": "Lexus",
+    "model": "CT",
+    "units": 1869,
     "share_pct": 0.9
    },
    {
     "rank": 27,
-    "make": "Omoda Jaecoo",
-    "model": "Jaecoo J7",
-    "units": 1738,
+    "make": "Great Wall",
+    "model": "Wey G9",
+    "units": 1769,
     "share_pct": 0.85
    },
    {
     "rank": 28,
     "make": "Mercedes Benz",
     "model": "S-Class",
-    "units": 1694,
-    "share_pct": 0.83
+    "units": 1698,
+    "share_pct": 0.81
    },
    {
     "rank": 29,
     "make": "Nissan",
     "model": "Kicks",
-    "units": 1596,
-    "share_pct": 0.78
+    "units": 1649,
+    "share_pct": 0.79
    },
    {
     "rank": 30,
-    "make": "Great Wall",
-    "model": "Wey G9",
-    "units": 1451,
-    "share_pct": 0.71
+    "make": "Chery",
+    "model": "Tiggo",
+    "units": 1446,
+    "share_pct": 0.69
    },
    {
     "rank": 31,
     "make": "Lexus",
     "model": "RX",
-    "units": 1261,
+    "units": 1296,
     "share_pct": 0.62
    },
    {
     "rank": 32,
-    "make": "Mercedes Benz",
-    "model": "A-Class",
-    "units": 793,
-    "share_pct": 0.39
+    "make": "Chery",
+    "model": "Tiggo Cross",
+    "units": 1165,
+    "share_pct": 0.56
    },
    {
     "rank": 33,
-    "make": "Mercedes Benz",
-    "model": "GLA",
-    "units": 735,
-    "share_pct": 0.36
+    "make": "Chery",
+    "model": "Tiggo 7",
+    "units": 1050,
+    "share_pct": 0.5
    },
    {
     "rank": 34,
-    "make": "BMW",
-    "model": "X3",
-    "units": 724,
-    "share_pct": 0.36
+    "make": "Mercedes Benz",
+    "model": "A-Class",
+    "units": 794,
+    "share_pct": 0.38
    },
    {
     "rank": 35,
     "make": "BMW",
-    "model": "7 Series",
-    "units": 714,
-    "share_pct": 0.35
+    "model": "X3",
+    "units": 769,
+    "share_pct": 0.37
    },
    {
     "rank": 36,
-    "make": "Lexus",
-    "model": "LBX",
-    "units": 695,
-    "share_pct": 0.34
+    "make": "Mercedes Benz",
+    "model": "GLA",
+    "units": 747,
+    "share_pct": 0.36
    },
    {
     "rank": 37,
     "make": "BMW",
-    "model": "5 Series",
-    "units": 520,
-    "share_pct": 0.26
+    "model": "7 Series",
+    "units": 719,
+    "share_pct": 0.34
    },
    {
     "rank": 38,
-    "make": "Toyota",
-    "model": "Innova Zenix",
-    "units": 340,
-    "share_pct": 0.17
+    "make": "Lexus",
+    "model": "LBX",
+    "units": 703,
+    "share_pct": 0.34
    },
    {
     "rank": 39,
+    "make": "BMW",
+    "model": "5 Series",
+    "units": 533,
+    "share_pct": 0.26
+   },
+   {
+    "rank": 40,
+    "make": "Toyota",
+    "model": "Innova Zenix",
+    "units": 348,
+    "share_pct": 0.17
+   },
+   {
+    "rank": 41,
+    "make": "Omoda Jaecoo",
+    "model": "Omoda 9",
+    "units": 302,
+    "share_pct": 0.14
+   },
+   {
+    "rank": 42,
+    "make": "Toyota",
+    "model": "Crown",
+    "units": 286,
+    "share_pct": 0.14
+   },
+   {
+    "rank": 43,
+    "make": "Great Wall",
+    "model": "Tank 500",
+    "units": 271,
+    "share_pct": 0.13
+   },
+   {
+    "rank": 44,
+    "make": "Hyundai",
+    "model": "Santa Fe",
+    "units": 264,
+    "share_pct": 0.13
+   },
+   {
+    "rank": 45,
     "make": "Volvo",
     "model": "V60",
     "units": 264,
     "share_pct": 0.13
    },
    {
-    "rank": 40,
-    "make": "Toyota",
-    "model": "Crown",
-    "units": 260,
-    "share_pct": 0.13
-   },
-   {
-    "rank": 41,
-    "make": "Great Wall",
-    "model": "Tank 500",
-    "units": 257,
-    "share_pct": 0.13
-   },
-   {
-    "rank": 42,
-    "make": "Omoda Jaecoo",
-    "model": "Omoda 9",
-    "units": 251,
-    "share_pct": 0.12
-   },
-   {
-    "rank": 43,
+    "rank": 46,
     "make": "Porsche",
     "model": "Cayenne",
-    "units": 242,
+    "units": 254,
     "share_pct": 0.12
-   },
-   {
-    "rank": 44,
-    "make": "Hyundai",
-    "model": "Santa Fe",
-    "units": 241,
-    "share_pct": 0.12
-   },
-   {
-    "rank": 45,
-    "make": "Lexus",
-    "model": "NX",
-    "units": 133,
-    "share_pct": 0.07
-   },
-   {
-    "rank": 46,
-    "make": "Toyota",
-    "model": "Alphard",
-    "units": 119,
-    "share_pct": 0.06
    },
    {
     "rank": 47,
+    "make": "Lexus",
+    "model": "NX",
+    "units": 155,
+    "share_pct": 0.07
+   },
+   {
+    "rank": 48,
+    "make": "Chery",
+    "model": "Tiggo 8",
+    "units": 139,
+    "share_pct": 0.07
+   },
+   {
+    "rank": 49,
     "make": "Toyota",
     "model": "Harrier",
+    "units": 136,
+    "share_pct": 0.07
+   },
+   {
+    "rank": 50,
+    "make": "Toyota",
+    "model": "Alphard",
+    "units": 127,
+    "share_pct": 0.06
+   },
+   {
+    "rank": 51,
+    "make": "Volkswagen",
+    "model": "Golf",
+    "units": 120,
+    "share_pct": 0.06
+   },
+   {
+    "rank": 52,
+    "make": "Hyundai",
+    "model": "Tucson",
     "units": 115,
     "share_pct": 0.06
    },
    {
-    "rank": 48,
-    "make": "Volkswagen",
-    "model": "Golf",
-    "units": 102,
+    "rank": 53,
+    "make": "Lexus",
+    "model": "LM",
+    "units": 105,
     "share_pct": 0.05
    },
    {
-    "rank": 49,
+    "rank": 54,
     "make": "Mercedes Benz",
     "model": "G-Class",
     "units": 95,
     "share_pct": 0.05
    },
    {
-    "rank": 50,
-    "make": "Lexus",
-    "model": "LM",
+    "rank": 55,
+    "make": "Audi",
+    "model": "Q7",
     "units": 93,
-    "share_pct": 0.05
-   },
-   {
-    "rank": 51,
-    "make": "Hyundai",
-    "model": "Tucson",
-    "units": 90,
     "share_pct": 0.04
    },
    {
-    "rank": 52,
+    "rank": 56,
     "make": "Toyota",
     "model": "Vellfire",
-    "units": 83,
+    "units": 91,
     "share_pct": 0.04
    },
    {
-    "rank": 53,
+    "rank": 57,
     "make": "BMW",
     "model": "i8",
     "units": 79,
     "share_pct": 0.04
    },
    {
-    "rank": 54,
-    "make": "Audi",
-    "model": "Q7",
+    "rank": 58,
+    "make": "Mercedes Benz",
+    "model": "GLB",
     "units": 78,
     "share_pct": 0.04
    },
    {
-    "rank": 55,
-    "make": "Mercedes Benz",
-    "model": "GLB",
-    "units": 76,
+    "rank": 59,
+    "make": "Volkswagen",
+    "model": "Tayron",
+    "units": 75,
     "share_pct": 0.04
    },
    {
-    "rank": 56,
+    "rank": 60,
     "make": "Volvo",
     "model": "S60",
     "units": 74,
     "share_pct": 0.04
    },
    {
-    "rank": 57,
+    "rank": 61,
     "make": "Mazda",
     "model": "CX-8",
-    "units": 59,
+    "units": 71,
     "share_pct": 0.03
-   },
-   {
-    "rank": 58,
-    "make": "GAC",
-    "model": "M8",
-    "units": 52,
-    "share_pct": 0.03
-   },
-   {
-    "rank": 59,
-    "make": "Ferrari",
-    "model": "296",
-    "units": 42,
-    "share_pct": 0.02
-   },
-   {
-    "rank": 60,
-    "make": "Volkswagen",
-    "model": "Tayron",
-    "units": 40,
-    "share_pct": 0.02
-   },
-   {
-    "rank": 61,
-    "make": "Mercedes Benz",
-    "model": "CLE",
-    "units": 37,
-    "share_pct": 0.02
    },
    {
     "rank": 62,
-    "make": "Jetour",
-    "model": "T2",
-    "units": 36,
-    "share_pct": 0.02
+    "make": "GAC",
+    "model": "M8",
+    "units": 55,
+    "share_pct": 0.03
    },
    {
     "rank": 63,
+    "make": "Jetour",
+    "model": "T2",
+    "units": 55,
+    "share_pct": 0.03
+   },
+   {
+    "rank": 64,
+    "make": "Ferrari",
+    "model": "296",
+    "units": 43,
+    "share_pct": 0.02
+   },
+   {
+    "rank": 65,
+    "make": "Mercedes Benz",
+    "model": "CLE",
+    "units": 38,
+    "share_pct": 0.02
+   },
+   {
+    "rank": 66,
+    "make": "Honda",
+    "model": "Prelude",
+    "units": 34,
+    "share_pct": 0.02
+   },
+   {
+    "rank": 67,
     "make": "Volvo",
     "model": "S90",
     "units": 33,
     "share_pct": 0.02
    },
    {
-    "rank": 64,
-    "make": "Honda",
-    "model": "Prelude",
-    "units": 26,
+    "rank": 68,
+    "make": "Great Wall",
+    "model": "Tank 300",
+    "units": 31,
     "share_pct": 0.01
    },
    {
-    "rank": 65,
+    "rank": 69,
     "make": "Lamborghini",
     "model": "Revuelto",
     "units": 25,
     "share_pct": 0.01
    },
    {
-    "rank": 66,
+    "rank": 70,
     "make": "Toyota",
     "model": "Estima",
     "units": 25,
     "share_pct": 0.01
    },
    {
-    "rank": 67,
+    "rank": 71,
     "make": "Brabus",
     "model": "B50",
     "units": 20,
     "share_pct": 0.01
    },
    {
-    "rank": 68,
+    "rank": 72,
     "make": "Ferrari",
     "model": "SF90",
     "units": 19,
     "share_pct": 0.01
    },
    {
-    "rank": 69,
-    "make": "Great Wall",
-    "model": "Tank 300",
-    "units": 18,
-    "share_pct": 0.01
-   },
-   {
-    "rank": 70,
+    "rank": 73,
     "make": "Mercedes Benz",
     "model": "CLS",
     "units": 18,
     "share_pct": 0.01
    },
    {
-    "rank": 71,
+    "rank": 74,
     "make": "Toyota",
     "model": "Fortuner",
     "units": 18,
     "share_pct": 0.01
    },
    {
-    "rank": 72,
+    "rank": 75,
     "make": "Toyota",
     "model": "Yaris",
     "units": 18,
     "share_pct": 0.01
    },
    {
-    "rank": 73,
+    "rank": 76,
     "make": "Mazda",
     "model": "CX-60",
     "units": 17,
     "share_pct": 0.01
    },
    {
-    "rank": 74,
+    "rank": 77,
     "make": "Mercedes Benz",
     "model": "GLS",
     "units": 17,
     "share_pct": 0.01
    },
    {
-    "rank": 75,
+    "rank": 78,
     "make": "Mercedes-Maybach",
     "model": "S-Class",
     "units": 16,
     "share_pct": 0.01
    },
    {
-    "rank": 76,
+    "rank": 79,
     "make": "Denza",
     "model": "B8",
     "units": 14,
     "share_pct": 0.01
    },
    {
-    "rank": 77,
+    "rank": 80,
+    "make": "Lamborghini",
+    "model": "Urus",
+    "units": 14,
+    "share_pct": 0.01
+   },
+   {
+    "rank": 81,
     "make": "Porsche",
     "model": "Panamera",
     "units": 14,
     "share_pct": 0.01
    },
    {
-    "rank": 78,
+    "rank": 82,
     "make": "Brabus",
     "model": "B40",
     "units": 13,
     "share_pct": 0.01
    },
    {
-    "rank": 79,
-    "make": "Lamborghini",
-    "model": "Urus",
-    "units": 13,
-    "share_pct": 0.01
-   },
-   {
-    "rank": 80,
+    "rank": 83,
     "make": "Proton",
     "model": "Exora",
     "units": 13,
     "share_pct": 0.01
    },
    {
-    "rank": 81,
+    "rank": 84,
+    "make": "Lexus",
+    "model": "ES",
+    "units": 10,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 85,
     "make": "Mercedes-Maybach",
     "model": "GLS",
     "units": 10,
     "share_pct": 0.0
    },
    {
-    "rank": 82,
-    "make": "Lexus",
-    "model": "ES",
-    "units": 9,
-    "share_pct": 0.0
-   },
-   {
-    "rank": 83,
+    "rank": 86,
     "make": "Mercedes Benz",
     "model": "AMG GT",
     "units": 8,
     "share_pct": 0.0
    },
    {
-    "rank": 84,
+    "rank": 87,
     "make": "Toyota",
     "model": "Innova",
     "units": 8,
     "share_pct": 0.0
    },
    {
-    "rank": 85,
+    "rank": 88,
     "make": "Lexus",
     "model": "LS",
     "units": 6,
     "share_pct": 0.0
    },
    {
-    "rank": 86,
+    "rank": 89,
     "make": "Audi",
     "model": "RS6",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 87,
+    "rank": 90,
     "make": "Land Rover",
     "model": "Range Rover",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 88,
+    "rank": 91,
     "make": "Porsche",
     "model": "911 Carrera",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 89,
+    "rank": 92,
     "make": "Toyota",
     "model": "C-HR",
     "units": 5,
     "share_pct": 0.0
    },
    {
-    "rank": 90,
+    "rank": 93,
     "make": "Audi",
     "model": "A8",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 91,
+    "rank": 94,
     "make": "Bentley",
     "model": "Continental Flying Spur",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 92,
+    "rank": 95,
     "make": "Honda",
     "model": "STEPWGN",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 93,
+    "rank": 96,
     "make": "Infiniti",
     "model": "M35",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 94,
+    "rank": 97,
     "make": "LEVC",
     "model": "TX",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 95,
+    "rank": 98,
     "make": "Lexus",
     "model": "GS",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 96,
+    "rank": 99,
     "make": "Toyota",
     "model": "RAV4",
     "units": 4,
     "share_pct": 0.0
    },
    {
-    "rank": 97,
+    "rank": 100,
     "make": "Chery",
     "model": "Omoda 5",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 98,
+    "rank": 101,
     "make": "Honda",
     "model": "NSX",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 99,
+    "rank": 102,
+    "make": "Honda",
+    "model": "Odyssey",
+    "units": 3,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 103,
+    "make": "Land Rover",
+    "model": "Range Rover Sport",
+    "units": 3,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 104,
     "make": "McLaren",
     "model": "Artura",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 100,
+    "rank": 105,
     "make": "Omoda Jaecoo",
     "model": "Jaecoo J5",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 101,
+    "rank": 106,
     "make": "Omoda Jaecoo",
     "model": "Jaecoo J8",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 102,
+    "rank": 107,
     "make": "Suzuki",
     "model": "Hustler",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 103,
+    "rank": 108,
     "make": "Toyota",
     "model": "Century",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 104,
+    "rank": 109,
     "make": "Toyota",
     "model": "Voxy",
     "units": 3,
     "share_pct": 0.0
    },
    {
-    "rank": 105,
+    "rank": 110,
     "make": "BMW",
     "model": "i3",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 106,
+    "rank": 111,
     "make": "Honda",
     "model": "Fit",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 107,
-    "make": "Honda",
-    "model": "Odyssey",
-    "units": 2,
-    "share_pct": 0.0
-   },
-   {
-    "rank": 108,
+    "rank": 112,
     "make": "Honda",
     "model": "Vezel",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 109,
-    "make": "Land Rover",
-    "model": "Range Rover Sport",
+    "rank": 113,
+    "make": "Lexus",
+    "model": "IS",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 110,
+    "rank": 114,
     "make": "Lexus",
     "model": "LX",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 111,
+    "rank": 115,
     "make": "Mitsubishi",
     "model": "Outlander",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 112,
+    "rank": 116,
     "make": "Perodua",
     "model": "Ativa",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 113,
+    "rank": 117,
     "make": "Toyota",
     "model": "Aqua",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 114,
+    "rank": 118,
     "make": "Toyota",
     "model": "Corolla Altis",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 115,
+    "rank": 119,
     "make": "Toyota",
     "model": "Sai",
     "units": 2,
     "share_pct": 0.0
    },
    {
-    "rank": 116,
+    "rank": 120,
     "make": "Audi",
     "model": "A4",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 117,
+    "rank": 121,
     "make": "Audi",
     "model": "S5",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 118,
+    "rank": 122,
     "make": "Audi",
     "model": "TT",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 119,
+    "rank": 123,
     "make": "BMW",
     "model": "X5",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 120,
+    "rank": 124,
     "make": "BMW",
     "model": "X7",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 121,
+    "rank": 125,
     "make": "Bentley",
     "model": "Continental GT",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 122,
+    "rank": 126,
+    "make": "Chery",
+    "model": "Tiggo 7 Pro",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 127,
     "make": "Ferrari",
     "model": "Purosangue",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 123,
+    "rank": 128,
+    "make": "Ferrari",
+    "model": "Roma",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 129,
     "make": "Great Wall",
     "model": "Haval H2",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 124,
+    "rank": 130,
     "make": "Honda",
     "model": "Shuttle",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 125,
+    "rank": 131,
     "make": "Honda",
     "model": "ZR-V",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 126,
+    "rank": 132,
     "make": "Hyundai",
     "model": "Genesis G90",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 127,
+    "rank": 133,
     "make": "Jeep",
     "model": "Cherokee",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 128,
+    "rank": 134,
     "make": "Jetour",
     "model": "T1",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 129,
+    "rank": 135,
+    "make": "Lamborghini",
+    "model": "Temerario",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 136,
     "make": "Land Rover",
     "model": "Defender",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 130,
+    "rank": 137,
+    "make": "Lepas",
+    "model": "L6",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 138,
+    "make": "Lepas",
+    "model": "L8",
+    "units": 1,
+    "share_pct": 0.0
+   },
+   {
+    "rank": 139,
     "make": "Lexus",
     "model": "HS",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 131,
-    "make": "Lexus",
-    "model": "IS",
-    "units": 1,
-    "share_pct": 0.0
-   },
-   {
-    "rank": 132,
+    "rank": 140,
     "make": "Lexus",
     "model": "UX",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 133,
+    "rank": 141,
     "make": "Maserati",
     "model": "Ghibli",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 134,
+    "rank": 142,
     "make": "Mazda",
     "model": "Axela",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 135,
+    "rank": 143,
     "make": "Mini",
     "model": "Countryman",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 136,
+    "rank": 144,
     "make": "Mitsubishi",
     "model": "Delica",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 137,
+    "rank": 145,
     "make": "Nissan",
     "model": "Note",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 138,
+    "rank": 146,
     "make": "Nissan",
     "model": "Roox",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 139,
+    "rank": 147,
     "make": "Peugeot",
     "model": "3008",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 140,
+    "rank": 148,
     "make": "Porsche",
     "model": "911",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 141,
+    "rank": 149,
     "make": "Proton",
     "model": "Satria",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 142,
+    "rank": 150,
     "make": "Toyota",
     "model": "Avanza",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 143,
+    "rank": 151,
     "make": "Toyota",
     "model": "Corolla",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 144,
+    "rank": 152,
     "make": "Toyota",
     "model": "Hilux",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 145,
+    "rank": 153,
     "make": "Toyota",
     "model": "Noah",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 146,
+    "rank": 154,
     "make": "Toyota",
     "model": "Previa",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 147,
+    "rank": 155,
     "make": "Toyota",
     "model": "Sienta",
     "units": 1,
     "share_pct": 0.0
    },
    {
-    "rank": 148,
+    "rank": 156,
     "make": "Toyota",
     "model": "Vitz",
     "units": 1,
@@ -2236,8 +2306,8 @@
   ]
  },
  "all_time_totals": {
-  "EV": 122286,
-  "Hybrid": 203682
+  "EV": 131119,
+  "Hybrid": 208646
  },
  "monthly": {
   "2023-09": {
@@ -23905,6 +23975,915 @@
     },
     {
      "rank": 63,
+     "make": "Toyota",
+     "model": "Prius",
+     "units": 1,
+     "share_pct": 0.02
+    }
+   ]
+  },
+  "2026-08": {
+   "EV": [
+    {
+     "rank": 1,
+     "make": "Proton",
+     "model": "e.MAS 5",
+     "units": 4770,
+     "share_pct": 54.0
+    },
+    {
+     "rank": 2,
+     "make": "Tesla",
+     "model": "Model 3",
+     "units": 659,
+     "share_pct": 7.46
+    },
+    {
+     "rank": 3,
+     "make": "Proton",
+     "model": "e.MAS 7",
+     "units": 613,
+     "share_pct": 6.94
+    },
+    {
+     "rank": 4,
+     "make": "Tesla",
+     "model": "Model Y",
+     "units": 507,
+     "share_pct": 5.74
+    },
+    {
+     "rank": 5,
+     "make": "Zeekr",
+     "model": "7X",
+     "units": 308,
+     "share_pct": 3.49
+    },
+    {
+     "rank": 6,
+     "make": "iCaur",
+     "model": "iCaur V23",
+     "units": 264,
+     "share_pct": 2.99
+    },
+    {
+     "rank": 7,
+     "make": "BYD",
+     "model": "Atto 3",
+     "units": 252,
+     "share_pct": 2.85
+    },
+    {
+     "rank": 8,
+     "make": "iCaur",
+     "model": "iCaur 03",
+     "units": 142,
+     "share_pct": 1.61
+    },
+    {
+     "rank": 9,
+     "make": "Leapmotor",
+     "model": "C10",
+     "units": 125,
+     "share_pct": 1.42
+    },
+    {
+     "rank": 10,
+     "make": "BYD",
+     "model": "Sealion",
+     "units": 118,
+     "share_pct": 1.34
+    },
+    {
+     "rank": 11,
+     "make": "Leapmotor",
+     "model": "B10",
+     "units": 94,
+     "share_pct": 1.06
+    },
+    {
+     "rank": 12,
+     "make": "BYD",
+     "model": "Seal 6",
+     "units": 84,
+     "share_pct": 0.95
+    },
+    {
+     "rank": 13,
+     "make": "BYD",
+     "model": "Atto 2",
+     "units": 81,
+     "share_pct": 0.92
+    },
+    {
+     "rank": 14,
+     "make": "Xpeng",
+     "model": "X9",
+     "units": 72,
+     "share_pct": 0.82
+    },
+    {
+     "rank": 15,
+     "make": "TQ Wuling",
+     "model": "Bingo",
+     "units": 71,
+     "share_pct": 0.8
+    },
+    {
+     "rank": 16,
+     "make": "MG",
+     "model": "S5",
+     "units": 67,
+     "share_pct": 0.76
+    },
+    {
+     "rank": 17,
+     "make": "Zeekr",
+     "model": "X",
+     "units": 59,
+     "share_pct": 0.67
+    },
+    {
+     "rank": 18,
+     "make": "Perodua",
+     "model": "QV-E",
+     "units": 56,
+     "share_pct": 0.63
+    },
+    {
+     "rank": 19,
+     "make": "BMW",
+     "model": "iX3",
+     "units": 55,
+     "share_pct": 0.62
+    },
+    {
+     "rank": 20,
+     "make": "Great Wall",
+     "model": "Ora",
+     "units": 41,
+     "share_pct": 0.46
+    },
+    {
+     "rank": 21,
+     "make": "Denza",
+     "model": "Z9GT",
+     "units": 36,
+     "share_pct": 0.41
+    },
+    {
+     "rank": 22,
+     "make": "Dong Feng",
+     "model": "Box E3",
+     "units": 32,
+     "share_pct": 0.36
+    },
+    {
+     "rank": 23,
+     "make": "Denza",
+     "model": "D9",
+     "units": 28,
+     "share_pct": 0.32
+    },
+    {
+     "rank": 24,
+     "make": "Zeekr",
+     "model": "009",
+     "units": 28,
+     "share_pct": 0.32
+    },
+    {
+     "rank": 25,
+     "make": "BYD",
+     "model": "M6",
+     "units": 27,
+     "share_pct": 0.31
+    },
+    {
+     "rank": 26,
+     "make": "Xpeng",
+     "model": "G6",
+     "units": 22,
+     "share_pct": 0.25
+    },
+    {
+     "rank": 27,
+     "make": "BMW",
+     "model": "i5",
+     "units": 18,
+     "share_pct": 0.2
+    },
+    {
+     "rank": 28,
+     "make": "BMW",
+     "model": "iX1",
+     "units": 18,
+     "share_pct": 0.2
+    },
+    {
+     "rank": 29,
+     "make": "Mini",
+     "model": "John Cooper Works",
+     "units": 14,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 30,
+     "make": "Smart",
+     "model": "Brabus",
+     "units": 14,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 31,
+     "make": "Volvo",
+     "model": "EX30",
+     "units": 13,
+     "share_pct": 0.15
+    },
+    {
+     "rank": 32,
+     "make": "Porsche",
+     "model": "Macan",
+     "units": 12,
+     "share_pct": 0.14
+    },
+    {
+     "rank": 33,
+     "make": "BMW",
+     "model": "iX",
+     "units": 11,
+     "share_pct": 0.12
+    },
+    {
+     "rank": 34,
+     "make": "Honda",
+     "model": "e:N1",
+     "units": 11,
+     "share_pct": 0.12
+    },
+    {
+     "rank": 35,
+     "make": "Chery",
+     "model": "Omoda 5",
+     "units": 10,
+     "share_pct": 0.11
+    },
+    {
+     "rank": 36,
+     "make": "BYD",
+     "model": "Seal",
+     "units": 9,
+     "share_pct": 0.1
+    },
+    {
+     "rank": 37,
+     "make": "Dong Feng",
+     "model": "Vigo",
+     "units": 8,
+     "share_pct": 0.09
+    },
+    {
+     "rank": 38,
+     "make": "Mini",
+     "model": "Aceman",
+     "units": 8,
+     "share_pct": 0.09
+    },
+    {
+     "rank": 39,
+     "make": "Mini",
+     "model": "Cooper",
+     "units": 6,
+     "share_pct": 0.07
+    },
+    {
+     "rank": 40,
+     "make": "Porsche",
+     "model": "Taycan",
+     "units": 6,
+     "share_pct": 0.07
+    },
+    {
+     "rank": 41,
+     "make": "Volvo",
+     "model": "EC40",
+     "units": 6,
+     "share_pct": 0.07
+    },
+    {
+     "rank": 42,
+     "make": "Volvo",
+     "model": "ES90",
+     "units": 6,
+     "share_pct": 0.07
+    },
+    {
+     "rank": 43,
+     "make": "Dong Feng",
+     "model": "007",
+     "units": 5,
+     "share_pct": 0.06
+    },
+    {
+     "rank": 44,
+     "make": "Neta",
+     "model": "X",
+     "units": 5,
+     "share_pct": 0.06
+    },
+    {
+     "rank": 45,
+     "make": "BMW",
+     "model": "i4",
+     "units": 4,
+     "share_pct": 0.05
+    },
+    {
+     "rank": 46,
+     "make": "MG",
+     "model": "Cyberster",
+     "units": 4,
+     "share_pct": 0.05
+    },
+    {
+     "rank": 47,
+     "make": "BMW",
+     "model": "iX2",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 48,
+     "make": "Jaecoo",
+     "model": "J5",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 49,
+     "make": "Mini",
+     "model": "Countryman",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 50,
+     "make": "Toyota",
+     "model": "Hilux",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 51,
+     "make": "Toyota",
+     "model": "bZ4X",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 52,
+     "make": "Volvo",
+     "model": "EX90",
+     "units": 3,
+     "share_pct": 0.03
+    },
+    {
+     "rank": 53,
+     "make": "Lexus",
+     "model": "RZ",
+     "units": 2,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 54,
+     "make": "MG",
+     "model": "MG4",
+     "units": 2,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 55,
+     "make": "Neta",
+     "model": "V",
+     "units": 2,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 56,
+     "make": "Audi",
+     "model": "Q8",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 57,
+     "make": "GAC Aion",
+     "model": "Y Plus Standard",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 58,
+     "make": "Kia",
+     "model": "EV9",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 59,
+     "make": "Lotus",
+     "model": "Eletre",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 60,
+     "make": "Lotus",
+     "model": "Emeya",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 61,
+     "make": "Maxus",
+     "model": "MIFA 7",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 62,
+     "make": "Mercedes Benz",
+     "model": "CLA",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 63,
+     "make": "Mercedes Benz",
+     "model": "EQV",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 64,
+     "make": "Suzuki",
+     "model": "e Vitara",
+     "units": 1,
+     "share_pct": 0.01
+    },
+    {
+     "rank": 65,
+     "make": "Weststar Maxus",
+     "model": "MIFA 9",
+     "units": 1,
+     "share_pct": 0.01
+    }
+   ],
+   "Hybrid": [
+    {
+     "rank": 1,
+     "make": "Toyota",
+     "model": "Yaris Cross",
+     "units": 724,
+     "share_pct": 14.59
+    },
+    {
+     "rank": 2,
+     "make": "Proton",
+     "model": "e.MAS 7 PHEV",
+     "units": 616,
+     "share_pct": 12.41
+    },
+    {
+     "rank": 3,
+     "make": "Toyota",
+     "model": "Corolla Cross",
+     "units": 589,
+     "share_pct": 11.87
+    },
+    {
+     "rank": 4,
+     "make": "Toyota",
+     "model": "Vios",
+     "units": 481,
+     "share_pct": 9.69
+    },
+    {
+     "rank": 5,
+     "make": "Great Wall",
+     "model": "Wey G9",
+     "units": 318,
+     "share_pct": 6.41
+    },
+    {
+     "rank": 6,
+     "make": "Great Wall",
+     "model": "Haval H6",
+     "units": 305,
+     "share_pct": 6.14
+    },
+    {
+     "rank": 7,
+     "make": "Honda",
+     "model": "HR-V",
+     "units": 207,
+     "share_pct": 4.17
+    },
+    {
+     "rank": 8,
+     "make": "Omoda Jaecoo",
+     "model": "Jaecoo J7",
+     "units": 207,
+     "share_pct": 4.17
+    },
+    {
+     "rank": 9,
+     "make": "Nissan",
+     "model": "Serena",
+     "units": 204,
+     "share_pct": 4.11
+    },
+    {
+     "rank": 10,
+     "make": "Honda",
+     "model": "CR-V",
+     "units": 197,
+     "share_pct": 3.97
+    },
+    {
+     "rank": 11,
+     "make": "Chery",
+     "model": "Tiggo Cross",
+     "units": 132,
+     "share_pct": 2.66
+    },
+    {
+     "rank": 12,
+     "make": "Chery",
+     "model": "Tiggo 7",
+     "units": 92,
+     "share_pct": 1.85
+    },
+    {
+     "rank": 13,
+     "make": "Mercedes Benz",
+     "model": "C-Class",
+     "units": 67,
+     "share_pct": 1.35
+    },
+    {
+     "rank": 14,
+     "make": "Mercedes Benz",
+     "model": "GLC",
+     "units": 55,
+     "share_pct": 1.11
+    },
+    {
+     "rank": 15,
+     "make": "Nissan",
+     "model": "Kicks",
+     "units": 53,
+     "share_pct": 1.07
+    },
+    {
+     "rank": 16,
+     "make": "Honda",
+     "model": "City",
+     "units": 51,
+     "share_pct": 1.03
+    },
+    {
+     "rank": 17,
+     "make": "Omoda Jaecoo",
+     "model": "Omoda 9",
+     "units": 51,
+     "share_pct": 1.03
+    },
+    {
+     "rank": 18,
+     "make": "BMW",
+     "model": "X3",
+     "units": 45,
+     "share_pct": 0.91
+    },
+    {
+     "rank": 19,
+     "make": "Mercedes Benz",
+     "model": "E-Class",
+     "units": 38,
+     "share_pct": 0.77
+    },
+    {
+     "rank": 20,
+     "make": "Lexus",
+     "model": "RX",
+     "units": 35,
+     "share_pct": 0.71
+    },
+    {
+     "rank": 21,
+     "make": "Volkswagen",
+     "model": "Tayron",
+     "units": 35,
+     "share_pct": 0.71
+    },
+    {
+     "rank": 22,
+     "make": "Honda",
+     "model": "Civic",
+     "units": 32,
+     "share_pct": 0.64
+    },
+    {
+     "rank": 23,
+     "make": "Volvo",
+     "model": "XC90",
+     "units": 32,
+     "share_pct": 0.64
+    },
+    {
+     "rank": 24,
+     "make": "Toyota",
+     "model": "Camry",
+     "units": 26,
+     "share_pct": 0.52
+    },
+    {
+     "rank": 25,
+     "make": "Toyota",
+     "model": "Crown",
+     "units": 26,
+     "share_pct": 0.52
+    },
+    {
+     "rank": 26,
+     "make": "Hyundai",
+     "model": "Tucson",
+     "units": 25,
+     "share_pct": 0.5
+    },
+    {
+     "rank": 27,
+     "make": "Hyundai",
+     "model": "Santa Fe",
+     "units": 23,
+     "share_pct": 0.46
+    },
+    {
+     "rank": 28,
+     "make": "Lexus",
+     "model": "NX",
+     "units": 22,
+     "share_pct": 0.44
+    },
+    {
+     "rank": 29,
+     "make": "Toyota",
+     "model": "Harrier",
+     "units": 21,
+     "share_pct": 0.42
+    },
+    {
+     "rank": 30,
+     "make": "Chery",
+     "model": "Tiggo 8",
+     "units": 19,
+     "share_pct": 0.38
+    },
+    {
+     "rank": 31,
+     "make": "Jetour",
+     "model": "T2",
+     "units": 19,
+     "share_pct": 0.38
+    },
+    {
+     "rank": 32,
+     "make": "Volkswagen",
+     "model": "Golf",
+     "units": 18,
+     "share_pct": 0.36
+    },
+    {
+     "rank": 33,
+     "make": "Audi",
+     "model": "Q7",
+     "units": 15,
+     "share_pct": 0.3
+    },
+    {
+     "rank": 34,
+     "make": "Volvo",
+     "model": "XC60",
+     "units": 15,
+     "share_pct": 0.3
+    },
+    {
+     "rank": 35,
+     "make": "Great Wall",
+     "model": "Tank 500",
+     "units": 14,
+     "share_pct": 0.28
+    },
+    {
+     "rank": 36,
+     "make": "Mercedes Benz",
+     "model": "GLE",
+     "units": 14,
+     "share_pct": 0.28
+    },
+    {
+     "rank": 37,
+     "make": "BMW",
+     "model": "5 Series",
+     "units": 13,
+     "share_pct": 0.26
+    },
+    {
+     "rank": 38,
+     "make": "Great Wall",
+     "model": "Tank 300",
+     "units": 13,
+     "share_pct": 0.26
+    },
+    {
+     "rank": 39,
+     "make": "Lexus",
+     "model": "LM",
+     "units": 12,
+     "share_pct": 0.24
+    },
+    {
+     "rank": 40,
+     "make": "Mazda",
+     "model": "CX-8",
+     "units": 12,
+     "share_pct": 0.24
+    },
+    {
+     "rank": 41,
+     "make": "Mercedes Benz",
+     "model": "GLA",
+     "units": 12,
+     "share_pct": 0.24
+    },
+    {
+     "rank": 42,
+     "make": "Porsche",
+     "model": "Cayenne",
+     "units": 12,
+     "share_pct": 0.24
+    },
+    {
+     "rank": 43,
+     "make": "Honda",
+     "model": "Prelude",
+     "units": 8,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 44,
+     "make": "Lexus",
+     "model": "LBX",
+     "units": 8,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 45,
+     "make": "Toyota",
+     "model": "Alphard",
+     "units": 8,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 46,
+     "make": "Toyota",
+     "model": "Innova Zenix",
+     "units": 8,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 47,
+     "make": "Toyota",
+     "model": "Vellfire",
+     "units": 8,
+     "share_pct": 0.16
+    },
+    {
+     "rank": 48,
+     "make": "BMW",
+     "model": "7 Series",
+     "units": 5,
+     "share_pct": 0.1
+    },
+    {
+     "rank": 49,
+     "make": "Mercedes Benz",
+     "model": "S-Class",
+     "units": 4,
+     "share_pct": 0.08
+    },
+    {
+     "rank": 50,
+     "make": "GAC",
+     "model": "M8",
+     "units": 3,
+     "share_pct": 0.06
+    },
+    {
+     "rank": 51,
+     "make": "Mercedes Benz",
+     "model": "GLB",
+     "units": 2,
+     "share_pct": 0.04
+    },
+    {
+     "rank": 52,
+     "make": "Ferrari",
+     "model": "296",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 53,
+     "make": "Ferrari",
+     "model": "Roma",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 54,
+     "make": "Honda",
+     "model": "Odyssey",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 55,
+     "make": "Lamborghini",
+     "model": "Temerario",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 56,
+     "make": "Lamborghini",
+     "model": "Urus",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 57,
+     "make": "Land Rover",
+     "model": "Range Rover Sport",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 58,
+     "make": "Lepas",
+     "model": "L6",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 59,
+     "make": "Lepas",
+     "model": "L8",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 60,
+     "make": "Lexus",
+     "model": "ES",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 61,
+     "make": "Lexus",
+     "model": "IS",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 62,
+     "make": "Mercedes Benz",
+     "model": "A-Class",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 63,
+     "make": "Mercedes Benz",
+     "model": "CLE",
+     "units": 1,
+     "share_pct": 0.02
+    },
+    {
+     "rank": 64,
      "make": "Toyota",
      "model": "Prius",
      "units": 1,
