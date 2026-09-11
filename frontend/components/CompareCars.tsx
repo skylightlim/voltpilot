@@ -13,7 +13,7 @@ import { apiService, type ComparedCar } from "@/lib/api";
 const rm = (n: number) => `RM${Math.round(n).toLocaleString("en-MY")}`;
 
 const CRITERION: Record<string, { label: string; lowerIsBetter: boolean; fmt: (n: number) => string }> = {
-  total_cost_10yr_rm: { label: "Total cost", lowerIsBetter: true, fmt: rm },
+  total_cost_10yr_rm: { label: "Total cost, 10-year basis", lowerIsBetter: true, fmt: rm },
   resale_retained_pct: { label: "Holds value", lowerIsBetter: false, fmt: (n) => `${n.toFixed(0)}%` },
   behaviour_score: { label: "Fits your driving", lowerIsBetter: false, fmt: (n) => n.toFixed(0) },
   infrastructure_score: { label: "Refuelling access", lowerIsBetter: false, fmt: (n) => n.toFixed(0) },
@@ -101,7 +101,7 @@ export function CompareCars({
         <table className="mt-3 w-full">
           <tbody>
             <Row
-              label="Five-year cost"
+              label="Five-year cost, all in"
               a={rm(x.costs.total_rm)}
               b={rm(y.costs.total_rm)}
               better={x.costs.total_rm < y.costs.total_rm ? 0 : 1}

@@ -14,23 +14,24 @@ import { apiService, type Breakeven, type FuelScenario as Scenario } from "@/lib
  *  ownership period is long enough for that policy to change. FEATURES.md P3
  *  and P4. */
 
-const rm0 = (n: number) => `RM${Math.round(n).toLocaleString("en-MY")}`;
+const rm2 = (n: number) => `RM${n.toFixed(2)}`;
 const km = (n: number) => `${Math.round(n).toLocaleString("en-MY")} km`;
 
 function Verdict({ b }: { b: Breakeven }) {
   if (b.verdict === "ev_always") {
     return (
       <p className="text-sm text-slate-700">
-        The electric car stays cheaper at any mileage you are likely to drive.
-        {b.note && <span className="text-slate-500"> {b.note}.</span>}
+        Counting everything, the electric car still works out cheaper at any mileage you are
+        likely to drive: what it saves on price and servicing outweighs what it costs to run.
+        {b.note && <span className="text-slate-500"> The two are {b.note.replace(/^the two are /, "")}.</span>}
       </p>
     );
   }
   if (b.verdict === "hybrid_always") {
     return (
       <p className="text-sm text-slate-700">
-        The hybrid stays cheaper at any mileage you are likely to drive.
-        {b.note && <span className="text-slate-500"> {b.note}.</span>}
+        Counting everything, the hybrid stays cheaper at any mileage you are likely to drive.
+        {b.note && <span className="text-slate-500"> The two are {b.note.replace(/^the two are /, "")}.</span>}
       </p>
     );
   }
@@ -118,12 +119,12 @@ export function FuelScenarioPanel({ token }: { token: string }) {
         <div className="mt-3 space-y-2">
           <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm tabular-nums">
             <span className="text-slate-600">
-              Electric{" "}
-              <strong className="text-slate-900">{rm0(current.ev_rm_per_100km)}</strong> /100 km
+              Running cost, electric{" "}
+              <strong className="text-slate-900">{rm2(current.ev_rm_per_100km)}</strong> /100 km
             </span>
             <span className="text-slate-600">
-              Hybrid{" "}
-              <strong className="text-slate-900">{rm0(current.hybrid_rm_per_100km)}</strong> /100 km
+              hybrid{" "}
+              <strong className="text-slate-900">{rm2(current.hybrid_rm_per_100km)}</strong> /100 km
             </span>
           </div>
           <Verdict b={current} />
