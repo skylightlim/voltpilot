@@ -62,7 +62,7 @@ GOLDEN_PROFILES = {
 
 def _snapshot(profile: dict) -> dict:
     """What we record for one buyer: the shortlist, plus the state that shaped it."""
-    bundle = scoring.score_catalog(profile, DEFAULT_SLIDERS)
+    bundle = scoring.score_catalog(profile, DEFAULT_SLIDERS, with_stability=False)
     ranking = bundle["ranking"]
     gap = round(ranking[0]["topsis_score"] - ranking[1]["topsis_score"], 4)
     return {

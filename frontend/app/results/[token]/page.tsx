@@ -23,6 +23,11 @@ import {
 } from "lucide-react";
 import { Badge, Button, Card, SectionLabel } from "@/components/ui";
 import { InfrastructureAccess } from "@/components/InfrastructureAccess";
+import { CostBreakdown } from "@/components/CostBreakdown";
+import { FuelScenarioPanel } from "@/components/FuelScenario";
+import { AnswerConfidence } from "@/components/AnswerConfidence";
+import { ResaleEvidencePanel } from "@/components/ResaleEvidence";
+import { CompareCars } from "@/components/CompareCars";
 import { CountUp, ScrollRefresh, ScrubReveal, Stagger } from "@/components/motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -127,6 +132,22 @@ export default function ResultsPage() {
     () => [...new Set(ranking.map((r) => r.brand).filter(Boolean))].sort(),
     [ranking],
   );
+  // FEATURES.md P5 and P6: the picker offers only cars that survived the
+  // screens, and the confidence line needs to name a car rather than a slug.
+  const compareOptions = useMemo(
+    () =>
+      ranking.slice(0, 12).map((r) => ({
+        slug: r.slug,
+        label: `${r.brand} ${r.model}`.trim(),
+        type: r.type,
+      })),
+    [ranking],
+  );
+  const nameForSlug = useMemo(() => {
+    const bySlug = new Map(ranking.map((r) => [r.slug, `${r.brand} ${r.model}`.trim()]));
+    return (slug: string) => bySlug.get(slug) ?? slug;
+  }, [ranking]);
+
   const filteredRanking = useMemo(
     () =>
       ranking.filter(
@@ -335,6 +356,39 @@ export default function ResultsPage() {
             </details>
           )}
 
+        </ScrubReveal>
+      )}
+
+      {/* ── How firm the answer is (FEATURES P6) ──────────────────────── */}
+      {data.stability && (
+        <ScrubReveal className="mb-8">
+          <div className="rounded-lg border border-slate-200 bg-white p-4">
+            <AnswerConfidence stability={data.stability} nameFor={nameForSlug} />
+          </div>
+        </ScrubReveal>
+      )}
+
+      {/* ── Where the money actually goes (FEATURES P1) ────────────────── */}
+      <ScrubReveal className="mb-10">
+        <CostBreakdown token={token} />
+      </ScrubReveal>
+
+      {/* ── The subsidy the answer rests on (FEATURES P3 + P4) ─────────── */}
+      <ScrubReveal className="mb-10">
+        <FuelScenarioPanel token={token} />
+      </ScrubReveal>
+
+      {/* ── Two cars side by side (FEATURES P5) ────────────────────────── */}
+      {compareOptions.length >= 2 && (
+        <ScrubReveal className="mb-10">
+          <CompareCars token={token} options={compareOptions} />
+        </ScrubReveal>
+      )}
+
+      {/* ── What the top pick should still be worth (FEATURES P2) ──────── */}
+      {ranking[0] && (
+        <ScrubReveal className="mb-10">
+          <ResaleEvidencePanel token={token} slug={ranking[0].slug} />
         </ScrubReveal>
       )}
 

@@ -164,6 +164,10 @@ class ScoreRequest(BaseModel):
     token: str = Field(min_length=5, max_length=40)
     profile: ProfileIn
     weights: PreferenceWeights
+    # FEATURES P3. "subsidised" is the BUDI95 pump price of RON95 that a buyer
+    # pays today; "market" is the unsubsidised level, for asking what a ranking
+    # looks like if the subsidy does not last the five years they own the car.
+    fuel_scenario: Literal["subsidised", "market"] = "subsidised"
 
 
 class ChatRequest(BaseModel):

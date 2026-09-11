@@ -165,6 +165,35 @@ export function InfrastructureAccess({ token }: { token: string }) {
                   />
                 </div>
 
+                {/* FEATURES.md P7. The count alone says little: a corridor of
+                    22 kW destination points is not the same network as one with
+                    DC fast chargers on it. data/ev-stations-full.json carries
+                    connector, power and operator for 852 points and nothing in
+                    the scoring pipeline reads any of it. */}
+                {data?.mix && data.mix.total > 0 && (
+                  <div className="mt-4 border-t border-white/10 pt-3">
+                    <p className="text-[12.5px] text-white/70">
+                      <span className="font-semibold text-white">{data.mix.dc_fast}</span> of them
+                      are fast chargers
+                      {data.mix.fastest_kw
+                        ? `, the quickest at ${Math.round(data.mix.fastest_kw)} kW`
+                        : ""}
+                      . The other {data.mix.ac_or_slow} are slower points you would leave the car
+                      at.
+                    </p>
+                    {data.mix.networks.length > 0 && (
+                      <p className="mt-1 text-[11.5px] text-white/45">
+                        Mostly{" "}
+                        {data.mix.networks
+                          .slice(0, 2)
+                          .map((n) => `${n.name} (${n.count})`)
+                          .join(", ")}
+                        .
+                      </p>
+                    )}
+                  </div>
+                )}
+
                 {data && (
                   <p className="mt-4 text-[11.5px] text-white/45">{data.source}</p>
                 )}

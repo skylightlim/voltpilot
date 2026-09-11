@@ -7,7 +7,7 @@ reviewed: 2026-09-10
 
 # Decision engine issues
 
-Sixteen defects in the recommendation pipeline, ordered by how much each one changes the ranking a user sees. Issues 1, 2 and 3 were fixed on 2026-09-10, and issues 4, 5a, 7, 8, 10 and 13 on 2026-09-11; each carries a **Status** note recording what shipped and where it deviated from the plan below. Three produce wrong output today. Four mean the six-criteria model measures fewer than six independent things. Two make the ranking depend on cars nobody would buy. Three concern the largest ownership cost, which the engine does not model at all. One concerns the absence of any stability signal, one explains why the current test suite catches none of the others, and the last two were found while fixing the ones above them.
+Seventeen defects in the recommendation pipeline, ordered by how much each one changes the ranking a user sees. Issues 1, 2 and 3 were fixed on 2026-09-10, and issues 4, 5a, 7, 8, 10 and 13 on 2026-09-11; each carries a **Status** note recording what shipped and where it deviated from the plan below. Three produce wrong output today. Four mean the six-criteria model measures fewer than six independent things. Two make the ranking depend on cars nobody would buy. Three concern the largest ownership cost, which the engine does not model at all. One concerns the absence of any stability signal, one explains why the current test suite catches none of the others, and the last two were found while fixing the ones above them.
 
 Every finding below was measured against the shipping code, not inferred from reading it. The commands that produce each number are included so you can re-run them after a fix.
 
@@ -35,6 +35,7 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 14 | Two copies of scripts and data | `.gitignore:60`, `backend/vercel-build.sh` | A fix can land in the copy nothing runs | Open |
 | 15 | Used-market matcher makes bad joins | `scripts/used_market/matcher.py` | Diesel pickups matched to an electric Hilux | Mitigated 2026-09-11 |
 | 16 | Cost model: horizon, insurance, loan method | `backend/app/engines/engines.py:571` | Insurance overstated 2.74x, 57.6% of TCO | Researched, proposal ready |
+| 17 | Scoring the same token twice returns a 500 | `backend/app/routers/score.py:46` | A retried request fails instead of repeating | Open |
 
 ## State of play
 
@@ -1048,6 +1049,21 @@ I lean to the first, because a cost model that omits 72% of the cost is the wors
 **Expected effect on rankings.** Measured against the four golden profiles: correcting insurance alone changes nothing, 5 of 5 overlap on every profile, because it scales with price and price is already counted. Adding depreciation changes 1 to 2 of the top 5 and moves hybrids up, because Malaysian EVs currently depreciate faster than hybrids, 42.3% retained against 49.9%. That is the model telling the truth about the market rather than a regression, but it should land against the golden fixture so the movement is reviewed rather than absorbed.
 
 **What this does not fix.** Depreciation is measured for 22 of 184 trims and type-level for the rest, so within a drivetrain the criterion is nearly constant, which is the same degeneracy as issues 5b and 6. Maintenance stays a per-type constant for 162 trims, issue 11, and it becomes a larger share of a five-year total than it was of a ten-year one. Neither blocks the change.
+
+### 17. Scoring the same token twice returns a 500
+
+**Problem.** `/score` always inserts a `TopsisResult`, and `result_token` is UNIQUE, so a second call for the same token raises `sqlite3.IntegrityError` and the client sees a 500 rather than either a fresh result or a clean conflict.
+
+**How I found it.** Building the fuel-scenario feature, which makes re-scoring the obvious thing to do. Calling `/score` twice with different `fuel_scenario` values reproduces it immediately.
+
+**Why it is an issue.** A network timeout on a slow scoring call is the common path to it: the client retries, the retry is rejected, and the buyer sees an error for a request that in fact succeeded.
+
+```text
+sqlalchemy.exc.IntegrityError: UNIQUE constraint failed: topsis_results.result_token
+[SQL: INSERT INTO topsis_results (result_token, weights, ranking_json, ...)]
+```
+
+**Solution.** Make the write an upsert, replacing the row for that token, so a retry is idempotent and a re-score with different inputs does what the caller meant. Not done here: the feature work routed around it instead, with `/results/{token}/scenario` computing an alternative ranking without persisting, which is the right shape for a scenario regardless. The retry case remains.
 
 ## Suggested order of work
 

@@ -7,6 +7,8 @@ written: 2026-09-11
 
 # Feature proposals
 
+All seven are implemented as of 2026-09-11, on the `features` branch. Each entry keeps its original reasoning and carries a **Shipped** note recording what was built and where it deviated from the plan.
+
 Seven features, derived from the decision-engine work recorded in `issue.md` rather than from a wishlist. Each one names the evidence that motivates it, the data that already exists to build it, and what it depends on. Two ideas that looked good and did not survive testing are recorded at the end, because knowing why they failed is worth as much as the proposals.
 
 The ordering is by value against effort, not by ambition.
@@ -38,6 +40,9 @@ Two things follow, and most of the features below come from one or the other. Th
 
 **Size.** Small on the backend, since the numbers exist. Medium on the frontend, being one new component on `/results/[token]`.
 
+**Shipped.** `backend/app/services/costing.py` and `GET /results/{token}/costs`, rendered by `frontend/components/CostBreakdown.tsx`. Display only: the ranking still scores `total_cost_10yr_rm`, because moving it to a five-year basis forces the resale double-counting decision recorded in issue 16 and not yet taken. Insurance inside the breakdown is modelled against the NCD ladder and a declining sum insured, so the figure shown is 1.78 times the base premium over five years rather than five times it. Measured on the reference profile, depreciation is 66% of a Wuling Bingo’s five-year cost and 62% of a Yaris Cross’s; energy is 6.4% and 4.6%.
+
+
 ## P2. The real listings behind every resale number
 
 **What.** Next to each car’s retained-value figure, the evidence for it: how many used listings it was fitted from, at what ages, and what those cars are actually advertised for now.
@@ -49,6 +54,9 @@ Two things follow, and most of the features below come from one or the other. Th
 **Caveat worth surfacing rather than hiding.** Only 22 of 184 trims are measured. The interface should say ”estimated from all hybrids” where that is the case, not imply per-model precision it does not have.
 
 **Size.** Medium. Needs a read-only endpoint over the listings table and a panel to render it.
+
+**Shipped.** `backend/app/services/evidence.py` and `GET /results/{token}/evidence/{slug}`, rendered by `frontend/components/ResaleEvidence.tsx`. Shows asking prices by model year and links three real listings. A car whose figure came from its drivetrain average says so in words rather than implying per-model precision.
+
 
 ## P3. What happens when the fuel subsidy ends
 
@@ -67,6 +75,9 @@ For a low-mileage buyer the subsidy is worth less than the depreciation gap eith
 
 **Size.** Small. `energy_context` already loads the fuel figures; the scenario is a parameter, and the golden fixture will show exactly what moves.
 
+**Shipped.** `energy_context` takes a scenario, `/score` accepts `fuel_scenario`, and `GET /results/{token}/scenario` re-ranks without persisting, because a scenario is a view over the buyer’s result and writing it back would overwrite it. The panel shows both the cost per 100 km and the shortlist itself changing: the high-mileage profile goes from 3 EVs and 2 hybrids in its top five to 5 EVs when RON95 is priced at RM3.77.
+
+
 ## P4. Break-even mileage
 
 **What.** For the top EV and the top hybrid, the annual mileage at which the EV’s total cost overtakes the hybrid’s, and where the user sits on that line.
@@ -79,6 +90,9 @@ For a low-mileage buyer the subsidy is worth less than the depreciation gap eith
 
 **Size.** Small.
 
+**Shipped.** `breakeven_km_per_year` in `costing.py` and `GET /results/{token}/breakeven`, in the same panel as P3. It refuses to report a crossover beyond 100,000 km a year: when the two cost-per-km figures are close the lines are nearly parallel and cross somewhere absurd, which is arithmetic rather than advice. For a Sarawak buyer with no home charger it returns a real answer, 62,361 km a year, against the 10,400 they drive.
+
+
 ## P5. Head-to-head comparison
 
 **What.** Pick any two cars from the ranking and see them side by side across all five criteria and the P1 cost breakdown.
@@ -88,6 +102,9 @@ For a low-mileage buyer the subsidy is worth less than the depreciation gap eith
 **Data.** Present in the existing `/results/{token}` payload.
 
 **Size.** Medium, entirely frontend.
+
+**Shipped.** `GET /results/{token}/compare` and `frontend/components/CompareCars.tsx`. Two pickers drawn from the ranking itself, so they can only offer cars that survived the budget screen and the feasibility gate.
+
 
 ## P6. How firm the answer is
 
@@ -99,6 +116,9 @@ For a low-mileage buyer the subsidy is worth less than the depreciation gap eith
 
 **Size.** Small on the backend. The wording matters more than the code.
 
+**Shipped.** `rank_stability` in `topsis.py`, stored at scoring time and rendered by `frontend/components/AnswerConfidence.tsx`. Seeded, so the same profile always reports the same confidence, and skippable via `with_stability=False` so the test suite does not pay 75 ms per call for it.
+
+
 ## P7. What the chargers near you are actually like
 
 **What.** Replace the count of nearby stations with their composition: how many are DC fast against AC, what power they deliver, which networks, and what they charge per kWh.
@@ -108,6 +128,9 @@ For a low-mileage buyer the subsidy is worth less than the depreciation gap eith
 **Depends on** issues 5b and 6, and it supplies the per-vehicle input those need, since a 50 kW car and a 250 kW car do not face the same corridor.
 
 **Size.** Medium. The data is richer than the current pipeline, so the loader changes as well as the interface.
+
+**Shipped.** `charger_mix` in `evidence.py`, folded into the existing `/results/{token}/infrastructure` response and panel. A Klang Valley postcode resolves to 300 points within 20 km of which 47 are DC fast, the quickest at 400 kW; Tawau resolves to none. It does not yet feed the infrastructure criterion, which is issues 5b and 6.
+
 
 ## Ideas that did not survive testing
 

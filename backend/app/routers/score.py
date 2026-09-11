@@ -24,7 +24,10 @@ async def run_score(body: ScoreRequest, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="profile token not found — call /profile first")
     token = profile_row.token
 
-    bundle = scoring.score_catalog(profile.model_dump(), body.weights.model_dump())
+    bundle = scoring.score_catalog(
+        profile.model_dump(), body.weights.model_dump(),
+        fuel_scenario=body.fuel_scenario,
+    )
 
     engine_scores = {
         r["slug"]: {
@@ -52,6 +55,14 @@ async def run_score(body: ScoreRequest, db: AsyncSession = Depends(get_db)):
                 "features": bundle["features"],
                 "solar_eligible": bundle["solar_eligible"],
                 "budget": bundle.get("budget", {}),
+                "stability": bundle.get("stability"),
+                "fuel_scenario": bundle.get("fuel_scenario", "subsidised"),
+                "ron95_rm_per_l": bundle.get("ron95_rm_per_l"),
+                # The raw sliders, so a scenario view can re-rank with the
+                # buyer's own priorities rather than silently falling back to
+                # the midpoint. `weights` above holds the derived criteria
+                # weights, which cannot be turned back into slider positions.
+                "sliders": body.weights.model_dump(),
             },
         )
     )

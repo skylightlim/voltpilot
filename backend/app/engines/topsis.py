@@ -200,3 +200,47 @@ def run_topsis(matrix_rows: list[dict], weights: list[float],
         d["topsis_score"] = round(float(closeness[idx]), 4)
         out.append(d)
     return out
+
+# ---------------------------------------------------------------------------
+# Rank stability (issue.md issue 12, FEATURES P6)
+# ---------------------------------------------------------------------------
+
+# How far the weights are jittered to ask whether the winner is a real winner.
+# 15% is about the width of a user's own uncertainty when they drag a slider.
+STABILITY_JITTER = 0.15
+STABILITY_DRAWS = 400
+
+# Below this share of draws the top answer is a tie being reported as a decision.
+STABILITY_FIRM = 0.80
+
+
+def rank_stability(matrix_rows: list[dict], weights: list[float],
+                   bounds: list[tuple[float, float]],
+                   draws: int = STABILITY_DRAWS) -> dict:
+    """How often each alternative ranks first under jittered weights.
+
+    A ranking is only as firm as the weights behind it, and those come from four
+    sliders a user dragged approximately. Re-running with the weights perturbed
+    says whether rank 1 is the answer or merely the first of several ties.
+    Seeded, so the same profile always reports the same confidence.
+    """
+    rng = np.random.default_rng(0)
+    base = np.array(weights, dtype=float)
+    wins: dict[str, int] = {}
+    for _ in range(draws):
+        jittered = np.clip(base * rng.normal(1.0, STABILITY_JITTER, len(base)), 1e-6, None)
+        top = run_topsis(matrix_rows, list(jittered / jittered.sum()), bounds)[0]["slug"]
+        wins[top] = wins.get(top, 0) + 1
+
+    ordered = sorted(wins.items(), key=lambda kv: -kv[1])
+    leader, count = ordered[0]
+    return {
+        "draws": draws,
+        "jitter": STABILITY_JITTER,
+        "leader": leader,
+        "leader_share": round(count / draws, 3),
+        "firm": count / draws >= STABILITY_FIRM,
+        "contenders": [
+            {"slug": slug, "share": round(n / draws, 3)} for slug, n in ordered[:4]
+        ],
+    }

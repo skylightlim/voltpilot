@@ -27,6 +27,95 @@ export type Profile = {
   monthly_electricity_bill_rm?: number;
 };
 
+/** RON95 is subsidised to RM1.99 under BUDI95; its market price is RM3.77.
+ *  Which one holds for the five years someone owns the car is a policy
+ *  question, so the ranking can be asked under either. */
+export type FuelScenario = "subsidised" | "market";
+
+export type CostLine = { key: string; amount_rm: number; share: number };
+
+export type CarCosts = {
+  slug: string;
+  brand: string;
+  model: string;
+  type: string;
+  price_rm: number;
+  years: number;
+  total_rm: number;
+  resale_value_rm: number;
+  retained_pct: number;
+  retained_basis: "measured" | "type_curve" | "fallback";
+  lines: CostLine[];
+};
+
+export type ResaleEvidence = {
+  slug: string;
+  price_rm: number;
+  retained_5yr_pct: number;
+  basis: "measured" | "type_curve" | "fallback";
+  available: boolean;
+  total_listings: number;
+  listings: {
+    title: string;
+    year: number;
+    mileage_km: number | null;
+    price_rm: number;
+    source: string;
+    url: string;
+  }[];
+  by_age: {
+    year: number;
+    count: number;
+    avg_price_rm: number;
+    min_price_rm: number;
+    max_price_rm: number;
+  }[];
+};
+
+export type Breakeven = {
+  ev_slug: string;
+  hybrid_slug: string;
+  ev_rm_per_100km: number;
+  hybrid_rm_per_100km: number;
+  your_km_per_year: number;
+  breakeven_km_per_year: number | null;
+  verdict: "crossover" | "ev_always" | "hybrid_always";
+  you_are_past_it?: boolean;
+  note?: string;
+};
+
+export type ChargerMix = {
+  radius_km: number;
+  total: number;
+  dc_fast: number;
+  ac_or_slow: number;
+  fastest_kw: number | null;
+  median_kw: number | null;
+  networks: { name: string; count: number }[];
+};
+
+export type ComparedCar = {
+  slug: string;
+  brand: string;
+  model: string;
+  variant: string;
+  type: string;
+  rank: number;
+  price_rm: number;
+  score: number;
+  criteria: Record<string, number>;
+  costs: CarCosts;
+};
+
+export type Stability = {
+  draws: number;
+  jitter: number;
+  leader: string;
+  leader_share: number;
+  firm: boolean;
+  contenders: { slug: string; share: number }[];
+};
+
 export type InfraStatus = "good" | "moderate" | "limited" | "very_poor" | "poor";
 
 export type Weights = {
@@ -202,10 +291,15 @@ export const apiService = {
       method: "POST",
       body: JSON.stringify(p),
     }),
-  postScore: (token: string, profile: Profile, weights: Weights) =>
+  postScore: (
+    token: string,
+    profile: Profile,
+    weights: Weights,
+    fuel_scenario: FuelScenario = "subsidised",
+  ) =>
     api<{ token: string; solar_eligible: boolean; ranked: number }>("/score", {
       method: "POST",
-      body: JSON.stringify({ token, profile, weights }),
+      body: JSON.stringify({ token, profile, weights, fuel_scenario }),
     }),
   getResults: (token: string) => api<any>(`/results/${token}`),
   getRecommendation: (token: string) => api<any>(`/results/${token}/recommendation`),
@@ -223,7 +317,36 @@ export const apiService = {
         corridor_km?: number;
       };
       source: string;
+      mix: ChargerMix;
     }>(`/results/${token}/infrastructure`),
+  /** Five-year cost, itemised. Depreciation is the largest line and the page
+   *  has never shown it; energy, which the product implies decides this, is
+   *  usually the smallest line but one. */
+  getCosts: (token: string, limit = 6) =>
+    api<{ cars: CarCosts[] }>(`/results/${token}/costs?limit=${limit}`),
+  /** The real used listings behind one car's resale figure. `basis` says
+   *  whether it was measured or is carrying a drivetrain average. */
+  getEvidence: (token: string, slug: string) =>
+    api<ResaleEvidence>(`/results/${token}/evidence/${slug}`),
+  /** Mileage at which the shortlist's best EV overtakes its best hybrid, under
+   *  both fuel scenarios. Often there is no crossing, which is the point. */
+  getBreakeven: (token: string) =>
+    api<{ available: boolean; reason?: string; scenarios?: Record<FuelScenario, Breakeven> }>(
+      `/results/${token}/breakeven`,
+    ),
+  /** Re-rank under a different fuel price. Does not persist: the stored result
+   *  stays the answer the buyer asked for, and a scenario is a view over it. */
+  getScenario: (token: string, fuel: FuelScenario, limit = 5) =>
+    api<{
+      fuel_scenario: FuelScenario;
+      ron95_rm_per_l: number;
+      ranking: { rank: number; slug: string; brand: string; model: string; type: string }[];
+    }>(`/results/${token}/scenario?fuel=${fuel}&limit=${limit}`),
+  /** Two cars side by side on every criterion and every cost line. */
+  getCompare: (token: string, a: string, b: string) =>
+    api<{ weights: Record<string, number>; cars: ComparedCar[] }>(
+      `/results/${token}/compare?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`,
+    ),
   postChat: (result_token: string, message: string, language: "en" | "bm") =>
     api<{ reply: string }>("/chat", {
       method: "POST",

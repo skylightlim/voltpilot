@@ -3,21 +3,28 @@ from __future__ import annotations
 from ..config import load_catalog
 from ..engines import engines
 from ..engines.engines import normalize_cost_scores
-from ..engines.topsis import CRITERIA, criteria_bounds, preference_weights, run_topsis
+from ..engines.topsis import (
+    CRITERIA,
+    criteria_bounds,
+    preference_weights,
+    rank_stability,
+    run_topsis,
+)
 from . import energy_context
 
 # How far above the stated budget a car may still be considered.
 BUDGET_STRETCH = 1.10
 
 
-def score_catalog(profile: dict, sliders: dict) -> dict:
+def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised",
+                  with_stability: bool = True) -> dict:
     """Feature engineering -> 4 engines -> TOPSIS -> full result bundle.
 
     6 criteria per catalogue row (D18): 4 engine scores (0-100, maximize)
     plus purchase price and running cost/yr (minimize). Policy engine removed.
     """
     features = engines.build_features(profile)
-    energy = energy_context()
+    energy = energy_context(fuel_scenario)
 
     # A car the buyer cannot afford is not a recommendation. Screen on budget
     # BEFORE scoring so over-budget models never reach the ranking, the analyst
@@ -150,4 +157,9 @@ def score_catalog(profile: dict, sliders: dict) -> dict:
             "catalog_total": len(catalog),
         },
         "feasibility": {**gate, "bev_removed": bev_removed},
+        # 400 re-rankings, about 75 ms. Negligible against the analyst call that
+        # follows, but worth skipping in tests that only want the ranking.
+        "stability": rank_stability(matrix_rows, weights, bounds) if with_stability else None,
+        "fuel_scenario": fuel_scenario,
+        "ron95_rm_per_l": float(energy["fuel"]["ron95_rm_per_l"]),
     }
