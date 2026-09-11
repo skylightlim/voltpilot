@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS source_runs (
     items_fetched INTEGER DEFAULT 0,
     items_matched INTEGER DEFAULT 0,
     error TEXT
-);
+) STRICT;
 
 CREATE TABLE IF NOT EXISTS listings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS listings (
     run_id INTEGER,
     raw TEXT,
     UNIQUE(source, source_id)
-);
+) STRICT;
 
 CREATE TABLE IF NOT EXISTS valuations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,12 +57,40 @@ CREATE TABLE IF NOT EXISTS valuations (
     run_id INTEGER,
     raw TEXT,
     UNIQUE(source, source_id)
-);
+) STRICT;
 
 CREATE INDEX IF NOT EXISTS idx_listings_vehicle ON listings(vehicle_id);
 CREATE INDEX IF NOT EXISTS idx_listings_source ON listings(source);
 CREATE INDEX IF NOT EXISTS idx_valuations_vehicle ON valuations(vehicle_id);
 """
+
+
+def parse_price(raw):
+    """Coerce a scraped price to a float, or None when it is unusable.
+
+    Carlist reports price as a formatted string ("79,800"). SQLite is
+    dynamically typed and the listings table is not STRICT, so that string was
+    stored verbatim in a REAL column. Every later aggregate then read it through
+    SQLite's numeric coercion, which parses the longest valid prefix and stops
+    at the comma: "79,800" became 79. That silently scaled 3,886 of 14,164
+    listings down by three orders of magnitude.
+
+    Applied in upsert_listing so every source passes through it, rather than in
+    one importer, which is how the other five sources stayed clean by luck.
+    """
+    if raw is None:
+        return None
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        value = float(raw)
+    else:
+        cleaned = str(raw).upper().replace("RM", "").replace(",", "").strip()
+        try:
+            value = float(cleaned)
+        except ValueError:
+            return None
+    return value if value > 0 else None
 
 
 def now_iso():
@@ -123,7 +151,7 @@ def upsert_listing(row: dict) -> bool:
             (
                 row.get("vehicle_id"),
                 row["title"],
-                row.get("price_rm"),
+                parse_price(row.get("price_rm")),
                 row.get("year"),
                 row.get("mileage_km"),
                 row.get("variant"),
@@ -151,7 +179,7 @@ def upsert_listing(row: dict) -> bool:
             row["source_id"],
             row.get("vehicle_id"),
             row["title"],
-            row.get("price_rm"),
+            parse_price(row.get("price_rm")),
             row.get("year"),
             row.get("mileage_km"),
             row.get("variant"),

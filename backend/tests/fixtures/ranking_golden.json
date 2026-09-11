@@ -1,0 +1,328 @@
+{
+  "_readme": "Recorded by tests/test_golden_ranking.py. Regenerate with REGEN_GOLDEN=1 pytest tests/test_golden_ranking.py and say what moved in the commit message.",
+  "catalog_rows": 184,
+  "profiles": {
+    "bev_gate_blocked": {
+      "bev_removed": 48,
+      "catalog_total": 184,
+      "considered": 33,
+      "gap_1_2": 0.0016,
+      "gate_passed": false,
+      "top": [
+        {
+          "price_rm": 99900.0,
+          "rank": 1,
+          "score": 0.6523,
+          "slug": "toyota-yaris-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 90600.0,
+          "rank": 2,
+          "score": 0.6507,
+          "slug": "toyota-vios",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 88800.0,
+          "rank": 3,
+          "score": 0.6355,
+          "slug": "chery-tiggo-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 111900.0,
+          "rank": 4,
+          "score": 0.6327,
+          "slug": "honda-city",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 112900.0,
+          "rank": 5,
+          "score": 0.6301,
+          "slug": "honda-city-hatchback",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 113800.0,
+          "rank": 6,
+          "score": 0.6111,
+          "slug": "nissan-kicks-e-power",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 109800.0,
+          "rank": 7,
+          "score": 0.6068,
+          "slug": "proton-emas-7-phev",
+          "type": "phev"
+        },
+        {
+          "price_rm": 134350.0,
+          "rank": 8,
+          "score": 0.5833,
+          "slug": "toyota-corolla-hybrid",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 137900.0,
+          "rank": 9,
+          "score": 0.5779,
+          "slug": "toyota-corolla-cross-hybrid",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 130888.0,
+          "rank": 10,
+          "score": 0.5663,
+          "slug": "suzuki-fronx",
+          "type": "hybrid"
+        }
+      ]
+    },
+    "east_no_charging": {
+      "bev_removed": 0,
+      "catalog_total": 184,
+      "considered": 81,
+      "gap_1_2": 0.0137,
+      "gate_passed": true,
+      "top": [
+        {
+          "price_rm": 67800.0,
+          "rank": 1,
+          "score": 0.7086,
+          "slug": "wuling-bingo",
+          "type": "ev"
+        },
+        {
+          "price_rm": 69999.0,
+          "rank": 2,
+          "score": 0.6949,
+          "slug": "perodua-qv-e",
+          "type": "ev"
+        },
+        {
+          "price_rm": 99900.0,
+          "rank": 3,
+          "score": 0.6645,
+          "slug": "toyota-yaris-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 90600.0,
+          "rank": 4,
+          "score": 0.6627,
+          "slug": "toyota-vios",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 5,
+          "score": 0.6623,
+          "slug": "dongfeng-box",
+          "type": "ev"
+        },
+        {
+          "price_rm": 95000.0,
+          "rank": 6,
+          "score": 0.6506,
+          "slug": "seres-3",
+          "type": "ev"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 7,
+          "score": 0.6495,
+          "slug": "byd-seal-6",
+          "type": "ev"
+        },
+        {
+          "price_rm": 88800.0,
+          "rank": 8,
+          "score": 0.6469,
+          "slug": "chery-tiggo-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 9,
+          "score": 0.6455,
+          "slug": "byd-atto-2",
+          "type": "ev"
+        },
+        {
+          "price_rm": 99800.0,
+          "rank": 10,
+          "score": 0.6452,
+          "slug": "proton-emas-5",
+          "type": "ev"
+        }
+      ]
+    },
+    "high_mileage_budget": {
+      "bev_removed": 0,
+      "catalog_total": 184,
+      "considered": 32,
+      "gap_1_2": 0.032,
+      "gate_passed": true,
+      "top": [
+        {
+          "price_rm": 67800.0,
+          "rank": 1,
+          "score": 0.683,
+          "slug": "wuling-bingo",
+          "type": "ev"
+        },
+        {
+          "price_rm": 69999.0,
+          "rank": 2,
+          "score": 0.651,
+          "slug": "perodua-qv-e",
+          "type": "ev"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 3,
+          "score": 0.6274,
+          "slug": "dongfeng-box",
+          "type": "ev"
+        },
+        {
+          "price_rm": 99900.0,
+          "rank": 4,
+          "score": 0.6146,
+          "slug": "toyota-yaris-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 90600.0,
+          "rank": 5,
+          "score": 0.6049,
+          "slug": "toyota-vios",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 6,
+          "score": 0.5951,
+          "slug": "byd-seal-6",
+          "type": "ev"
+        },
+        {
+          "price_rm": 109800.0,
+          "rank": 7,
+          "score": 0.5941,
+          "slug": "byd-m6",
+          "type": "ev"
+        },
+        {
+          "price_rm": 106800.0,
+          "rank": 8,
+          "score": 0.5935,
+          "slug": "aion-es",
+          "type": "ev"
+        },
+        {
+          "price_rm": 88800.0,
+          "rank": 9,
+          "score": 0.5902,
+          "slug": "chery-tiggo-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 111900.0,
+          "rank": 10,
+          "score": 0.5896,
+          "slug": "honda-city",
+          "type": "hybrid"
+        }
+      ]
+    },
+    "kv_home_charging": {
+      "bev_removed": 0,
+      "catalog_total": 184,
+      "considered": 97,
+      "gap_1_2": 0.0226,
+      "gate_passed": true,
+      "top": [
+        {
+          "price_rm": 67800.0,
+          "rank": 1,
+          "score": 0.7473,
+          "slug": "wuling-bingo",
+          "type": "ev"
+        },
+        {
+          "price_rm": 69999.0,
+          "rank": 2,
+          "score": 0.7247,
+          "slug": "perodua-qv-e",
+          "type": "ev"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 3,
+          "score": 0.7197,
+          "slug": "dongfeng-box",
+          "type": "ev"
+        },
+        {
+          "price_rm": 99900.0,
+          "rank": 4,
+          "score": 0.7102,
+          "slug": "toyota-yaris-cross",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 90600.0,
+          "rank": 5,
+          "score": 0.704,
+          "slug": "toyota-vios",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 106800.0,
+          "rank": 6,
+          "score": 0.6971,
+          "slug": "aion-es",
+          "type": "ev"
+        },
+        {
+          "price_rm": 100000.0,
+          "rank": 7,
+          "score": 0.6961,
+          "slug": "byd-seal-6",
+          "type": "ev"
+        },
+        {
+          "price_rm": 111900.0,
+          "rank": 8,
+          "score": 0.6952,
+          "slug": "honda-city",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 112900.0,
+          "rank": 9,
+          "score": 0.693,
+          "slug": "honda-city-hatchback",
+          "type": "hybrid"
+        },
+        {
+          "price_rm": 109800.0,
+          "rank": 10,
+          "score": 0.6925,
+          "slug": "byd-m6",
+          "type": "ev"
+        }
+      ]
+    }
+  },
+  "sliders": {
+    "convenience": 50,
+    "environment": 50,
+    "future_proofing": 50,
+    "save_money": 50
+  }
+}

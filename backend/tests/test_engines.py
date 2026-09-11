@@ -11,7 +11,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.config import load_catalog  # noqa: E402
 from app.engines import engines  # noqa: E402
-from app.engines.topsis import CRITERIA, preference_weights, run_topsis  # noqa: E402
+from app.engines.topsis import (  # noqa: E402
+    CRITERIA,
+    SLIDER_KEYS,
+    criteria_bounds,
+    preference_weights,
+    run_topsis,
+)
 from app.services import scoring  # noqa: E402
 
 
@@ -175,20 +181,42 @@ class TestScorePipeline:
 
 class TestTopsis:
     def test_run_topsis_returns_ranked(self):
+        # m0 is best on every criterion, m3 worst, so the order is unambiguous.
         rows = []
         for i in range(4):
             rows.append({
                 "slug": f"m{i}",
-                "financial_score": 90 - i * 10,
+                "total_cost_10yr_rm": 140_000 + i * 30_000,
+                "resale_retained_pct": 55 - i * 4,
                 "behaviour_score": 80 - i * 5,
                 "infrastructure_score": 70,
-                "energy_score": 60 + i * 10,
-                "purchase_price_rm": 100_000 + i * 20_000,
-                "running_cost_rm_yr": 3_000 + i * 500,
+                "co2_kg_yr": 800 + i * 200,
             })
-        out = run_topsis(rows, preference_weights(DEFAULT_SLIDERS))
+        bounds = criteria_bounds({"budget_max_rm": 250_000}, 15_000)
+        out = run_topsis(rows, preference_weights(DEFAULT_SLIDERS), bounds)
         assert [r["rank"] for r in out] == [1, 2, 3, 4]
+        assert [r["slug"] for r in out] == ["m0", "m1", "m2", "m3"]
         assert out[0]["topsis_score"] >= out[-1]["topsis_score"]
+
+    def test_ranking_is_independent_of_the_candidate_set(self):
+        """The property the bounds exist to give: a scale that other cars cannot move."""
+        rows = [{
+            "slug": f"m{i}",
+            "total_cost_10yr_rm": 130_000 + i * 20_000,
+            "resale_retained_pct": 55 - i,
+            "behaviour_score": 80 - i,
+            "infrastructure_score": 70,
+            "co2_kg_yr": 800 + i * 50,
+        } for i in range(6)]
+        bounds = criteria_bounds({"budget_max_rm": 250_000}, 15_000)
+        weights = preference_weights(DEFAULT_SLIDERS)
+        full = run_topsis(rows, weights, bounds)
+        scores = {r["slug"]: r["topsis_score"] for r in full}
+        without_worst = run_topsis(rows[:-1], weights, bounds)
+        for r in without_worst:
+            assert r["topsis_score"] == scores[r["slug"]], (
+                f"{r['slug']} changed score when another alternative was removed"
+            )
 
 # ---------------------------------------------------------------------------
 # Spec Step 02 — hard feasibility gate
@@ -227,3 +255,114 @@ def test_gate_removes_bevs_but_never_empties_the_pool():
     assert bundle["feasibility"]["bev_removed"] > 0
     assert bundle["ranking"], "gate must never hand back an empty ranking"
     assert not [r for r in bundle["ranking"] if r["type"] == "ev"]
+
+
+# ---------------------------------------------------------------------------
+# Weight-mapping properties (issue.md issues 1, 2 and 13)
+#
+# The suite tested components, not the mapping, so two defects shipped green:
+# a slider at 0 was read as 50, and slider positions 1-18 handed TOPSIS a
+# negative weight. test_weights_sum_to_one passed through both, because a sum
+# of 1 holds with a negative component present.
+# ---------------------------------------------------------------------------
+
+
+class TestWeightProperties:
+    def test_zero_slider_differs_from_midpoint(self):
+        """A slider dragged to 0 must not mean the same as leaving it centred."""
+        for key in SLIDER_KEYS:
+            low = preference_weights(dict(DEFAULT_SLIDERS, **{key: 0}))
+            mid = preference_weights(dict(DEFAULT_SLIDERS, **{key: 50}))
+            assert low != mid, f"{key}=0 produced the {key}=50 vector"
+
+    def test_weights_never_negative(self):
+        """A negative weight inverts a criterion; pymcdm only warns and ranks anyway."""
+        for key in SLIDER_KEYS:
+            for value in range(0, 101):
+                weights = preference_weights(dict(DEFAULT_SLIDERS, **{key: value}))
+                # pymcdm treats <= 0 as invalid, so require strictly positive.
+                assert all(x > 0 for x in weights), f"{key}={value} -> {weights}"
+
+    def test_weights_sum_to_one_across_the_whole_track(self):
+        for key in SLIDER_KEYS:
+            for value in (0, 1, 18, 19, 50, 99, 100):
+                weights = preference_weights(dict(DEFAULT_SLIDERS, **{key: value}))
+                assert abs(sum(weights) - 1.0) < 2e-3, f"{key}={value} -> {sum(weights)}"
+
+    def test_blank_sliders_fall_back_to_the_midpoint(self):
+        """Absent, None and empty string are unset; 0 is a real answer."""
+        midpoint = preference_weights(DEFAULT_SLIDERS)
+        assert preference_weights({}) == midpoint
+        assert preference_weights({k: None for k in SLIDER_KEYS}) == midpoint
+        assert preference_weights({k: "" for k in SLIDER_KEYS}) == midpoint
+
+    def test_environment_slider_moves_the_carbon_of_the_result(self):
+        """The carbon criterion must respond to the carbon slider, in the right direction."""
+        def mean_co2(environment: int) -> float:
+            bundle = scoring.score_catalog(
+                BASE_PROFILE, dict(DEFAULT_SLIDERS, environment=environment)
+            )
+            top5 = bundle["ranking"][:5]
+            return sum(r["co2_kg_yr"] for r in top5) / len(top5)
+
+        assert mean_co2(100) < mean_co2(0)
+
+    def test_raising_a_slider_never_lowers_its_own_criterion_weight(self):
+        """Each slider drives its criteria monotonically."""
+        pairs = [("environment", CRITERIA.index("co2_kg_yr")),
+                 ("future_proofing", CRITERIA.index("resale_retained_pct")),
+                 ("convenience", CRITERIA.index("behaviour_score")),
+                 ("convenience", CRITERIA.index("infrastructure_score"))]
+        for key, index in pairs:
+            series = [preference_weights(dict(DEFAULT_SLIDERS, **{key: v}))[index]
+                      for v in range(0, 101, 5)]
+            assert series == sorted(series), f"{key} is not monotonic: {series}"
+
+
+# ---------------------------------------------------------------------------
+# Resale retention (issue.md issues 4 and 9)
+#
+# The criterion the "Future-Proofing & Resale" slider drives. Five-year horizon:
+# no Malaysian EV listing is older than age 5, so a ten-year figure would be
+# invented. The catalogue's 22 unsourced resale_10yr_pct values were removed.
+# ---------------------------------------------------------------------------
+
+
+class TestResaleRetention:
+    def test_every_trim_gets_a_retention_and_a_basis(self, catalog):
+        for vehicle in catalog:
+            pct, basis = engines.resale_retained_pct(vehicle)
+            assert 0 < pct < 100, f"{vehicle['id']} -> {pct}"
+            assert basis in {"measured", "type_curve", "fallback"}
+
+    def test_hybrids_retain_more_than_evs_at_the_type_level(self, catalog):
+        """The signal the whole criterion exists to carry, from 3,441 listings."""
+        def type_pct(vtype):
+            v = next(x for x in catalog
+                     if x["type"] == vtype and engines.resale_retained_pct(x)[1] == "type_curve")
+            return engines.resale_retained_pct(v)[0]
+
+        assert type_pct("hybrid") > type_pct("ev"), (
+            "EVs depreciating slower than hybrids contradicts the fitted curve"
+        )
+
+    def test_the_catalogue_no_longer_carries_unsourced_resale(self, catalog):
+        """22 trims held a 10-year figure with no provenance, in a 44-57% band."""
+        assert not [v for v in catalog if (v.get("ownership") or {}).get("resale_10yr_pct")]
+
+    def test_measured_models_are_not_all_the_same(self, catalog):
+        """A criterion constant within type would be as useless as the old behaviour score."""
+        measured = {engines.resale_retained_pct(v)[0] for v in catalog
+                    if engines.resale_retained_pct(v)[1] == "measured"}
+        assert len(measured) > 5, f"only {len(measured)} distinct measured values"
+
+
+def test_future_proofing_slider_moves_resale():
+    """It used to drive the TCO criterion, moving the top-5 mean price by RM20."""
+    def mean_resale(value):
+        bundle = scoring.score_catalog(BASE_PROFILE,
+                                       dict(DEFAULT_SLIDERS, future_proofing=value))
+        top5 = bundle["ranking"][:5]
+        return sum(r["resale_retained_pct"] for r in top5) / len(top5)
+
+    assert mean_resale(100) > mean_resale(0)

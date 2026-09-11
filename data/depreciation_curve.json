@@ -1,0 +1,210 @@
+{
+  "_readme": "Retained value after HORIZON_YEARS, fitted from matched used listings by scripts/used_market/build_depreciation_curve.py. Five years, not ten: no Malaysian EV listing is older than age 5. by_model entries are measured and shrunk toward their type curve; every other trim uses by_type.",
+  "by_model": {
+    "bmw-x3": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1633,
+      "listings": 48,
+      "retained_5yr": 0.4419
+    },
+    "bmw-x5": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.1946,
+      "listings": 21,
+      "retained_5yr": 0.3779
+    },
+    "bmw-x7": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1556,
+      "listings": 42,
+      "retained_5yr": 0.4593
+    },
+    "byd-atto-3": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.2147,
+      "listings": 102,
+      "retained_5yr": 0.3418
+    },
+    "chery-tiggo-8": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.1972,
+      "listings": 35,
+      "retained_5yr": 0.3731
+    },
+    "honda-city": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1376,
+      "listings": 229,
+      "retained_5yr": 0.5025
+    },
+    "honda-city-hatchback": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.1348,
+      "listings": 91,
+      "retained_5yr": 0.5097
+    },
+    "honda-cr-v": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1354,
+      "listings": 82,
+      "retained_5yr": 0.508
+    },
+    "honda-hrv-ehev": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1465,
+      "listings": 147,
+      "retained_5yr": 0.4806
+    },
+    "hyundai-santa-fe": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1799,
+      "listings": 47,
+      "retained_5yr": 0.4068
+    },
+    "mini-countryman": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1231,
+      "listings": 97,
+      "retained_5yr": 0.5404
+    },
+    "porsche-taycan": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.2027,
+      "listings": 118,
+      "retained_5yr": 0.3629
+    },
+    "smart-1": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.1086,
+      "listings": 64,
+      "retained_5yr": 0.5811
+    },
+    "tesla-model-y": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1272,
+      "listings": 60,
+      "retained_5yr": 0.5295
+    },
+    "toyota-corolla-cross-hybrid": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1169,
+      "listings": 202,
+      "retained_5yr": 0.5574
+    },
+    "toyota-harrier": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1622,
+      "listings": 198,
+      "retained_5yr": 0.4444
+    },
+    "toyota-innova-zenix": {
+      "basis": "measured",
+      "cells": 3,
+      "k_per_year": 0.104,
+      "listings": 102,
+      "retained_5yr": 0.5944
+    },
+    "toyota-vellfire": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1609,
+      "listings": 106,
+      "retained_5yr": 0.4473
+    },
+    "toyota-vios": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.0971,
+      "listings": 177,
+      "retained_5yr": 0.6155
+    },
+    "volvo-xc40": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1789,
+      "listings": 92,
+      "retained_5yr": 0.4088
+    },
+    "volvo-xc60": {
+      "basis": "measured",
+      "cells": 4,
+      "k_per_year": 0.1983,
+      "listings": 43,
+      "retained_5yr": 0.371
+    },
+    "volvo-xc90": {
+      "basis": "measured",
+      "cells": 5,
+      "k_per_year": 0.1951,
+      "listings": 74,
+      "retained_5yr": 0.377
+    }
+  },
+  "by_type": {
+    "ev": {
+      "basis": "fitted",
+      "cells": 82,
+      "k_per_year": 0.1722,
+      "listings": 1462,
+      "retained_5yr": 0.4228
+    },
+    "hybrid": {
+      "basis": "fitted",
+      "cells": 79,
+      "k_per_year": 0.139,
+      "listings": 1979,
+      "retained_5yr": 0.4991
+    },
+    "phev": {
+      "basis": "fitted",
+      "cells": 28,
+      "k_per_year": 0.193,
+      "listings": 264,
+      "retained_5yr": 0.381
+    }
+  },
+  "cells_used": 189,
+  "horizon_years": 5,
+  "models_rejected_as_bad_joins": {
+    "honda-civic-ehev": {
+      "retention_vs_type_median": 1.48
+    },
+    "lexus-lbx": {
+      "retention_vs_type_median": 1.4
+    },
+    "lexus-lm": {
+      "retention_vs_type_median": 0.71
+    },
+    "mg4": {
+      "retention_vs_type_median": 1.8
+    },
+    "porsche-cayenne-coupe": {
+      "retention_vs_type_median": 1.44
+    },
+    "tesla-model-3": {
+      "retention_vs_type_median": 1.65
+    },
+    "toyota-hilux": {
+      "retention_vs_type_median": 0.69
+    },
+    "volkswagen-golf": {
+      "retention_vs_type_median": 1.37
+    }
+  }
+}

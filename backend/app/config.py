@@ -83,6 +83,18 @@ def load_catalog() -> list[dict]:
     return load_data_json("catalog_vehicles.json")["vehicles"]
 
 
+def load_depreciation_curve() -> dict:
+    """Retained-value curves fitted from matched used listings (5-year horizon).
+
+    Built by scripts/used_market/build_depreciation_curve.py. Absent in a fresh
+    checkout that has never run the scraper, so callers must tolerate {}.
+    """
+    try:
+        return load_data_json("depreciation_curve.json")
+    except FileNotFoundError:
+        return {}
+
+
 def load_tariff() -> dict:
     return load_data_json("tariff.json")
 

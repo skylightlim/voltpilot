@@ -88,7 +88,10 @@ INTERVIEW_QUESTIONS = [
     {
         "key": "budget_max_rm",
         "kind": "number",
-        "required": False,
+        # Required since 2026-09-11. Without a budget the engine has no idea
+        # what is relevant to this buyer, so a RM2.2m Maybach stays a candidate
+        # and the price scale is anchored on an assumption. See issue.md issue 8.
+        "required": True,
         "en": "What is your maximum budget for the car? (RM)",
         "bm": "Berapakah bajet maksimum anda untuk kereta? (RM)",
     },
@@ -126,13 +129,27 @@ class ProfileIn(BaseModel):
     monthly_electricity_bill_rm: float = Field(default=0, ge=0, le=100000)
 
     def missing_required(self) -> list[str]:
-        # "blank" means None/empty for strings, default-unset for numbers.
+        """Required answers still blank, as field names.
+
+        The previous version tested `k == "budget_max_rm" and v == 0` and then
+        gated every append behind a whitelist that did not contain
+        budget_max_rm, so that branch could never fire. Budget was asked and
+        then silently allowed to stay empty, which is how a RM2.24m car stayed
+        in the running for someone who never touched the slider.
+
+        A required number is blank when it is 0: none of them has a meaningful
+        zero, since nobody drives 0 km or budgets RM0. Booleans are exempt,
+        because can_charge_home is required and False is a real answer.
+        """
         missing = []
-        for k in REQUIRED_KEYS:
+        for k in sorted(REQUIRED_KEYS):
             v = getattr(self, k, None)
-            if v is None or v == "" or (k == "home_postcode" and len(str(v)) != 5) or (k == "budget_max_rm" and v == 0):
-                if k in ("language", "daily_km", "trips_per_week", "long_trip_frequency", "destination_region", "can_charge_home", "home_postcode"):
-                    missing.append(k)
+            if v is None or v == "":
+                missing.append(k)
+            elif k == "home_postcode" and len(str(v)) != 5:
+                missing.append(k)
+            elif isinstance(v, (int, float)) and not isinstance(v, bool) and v == 0:
+                missing.append(k)
         return missing
 
 

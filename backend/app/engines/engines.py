@@ -17,7 +17,7 @@ import math
 import re
 from collections import defaultdict
 
-from ..config import DATA_DIR
+from ..config import DATA_DIR, load_depreciation_curve
 
 # ---------------------------------------------------------------------------
 # Feature engineering
@@ -601,11 +601,79 @@ def financial_tco_excluding(vehicle: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Resale engine - how much of the purchase price survives five years
+# ---------------------------------------------------------------------------
+
+# Used when the curve file is missing entirely. Deliberately pessimistic and
+# type-blind, so a fresh checkout ranks on the other criteria rather than on a
+# guess that pretends to know EV from hybrid.
+RESALE_FALLBACK_PCT = 45.0
+
+
+def resale_retained_pct(vehicle: dict) -> tuple[float, str]:
+    """Percentage of purchase price still standing after 5 years, and its basis.
+
+    FIVE years, not ten. Malaysia's first mass-market EVs arrived around 2021,
+    so no listing in the corpus is older than age 5 and a ten-year figure would
+    be invented. The catalogue used to carry `resale_10yr_pct` on 22 trims with
+    no provenance at all, in a suspiciously narrow 44-57% band; those were
+    removed rather than trusted. The frontend already promises the right
+    horizon: "5-year used market resale retention".
+
+    Returns the basis alongside the number so the results page can distinguish a
+    model measured from its own listings from one carrying its drivetrain's
+    average. 22 of 184 trims are measured; the rest are type-level.
+    """
+    curve = load_depreciation_curve()
+    if not curve:
+        return RESALE_FALLBACK_PCT, "fallback"
+    by_model = curve.get("by_model") or {}
+    entry = by_model.get(vehicle.get("id"))
+    if entry:
+        return float(entry["retained_5yr"]) * 100.0, "measured"
+    by_type = (curve.get("by_type") or {}).get(vehicle.get("type"))
+    if by_type:
+        return float(by_type["retained_5yr"]) * 100.0, "type_curve"
+    return RESALE_FALLBACK_PCT, "fallback"
+
+
+# ---------------------------------------------------------------------------
 # Behaviour engine — driving pattern, range suitability (D18)
 # ---------------------------------------------------------------------------
 
 
+# Fuelling convenience reference for a plain hybrid: petrol is everywhere, but
+# you still make a dedicated trip to a station most weeks, so it is high rather
+# than perfect. Every hybrid scores the same here because on THIS criterion they
+# genuinely are the same; a Yaris and a Maybach refuel identically. The value is
+# not load-bearing: sweeping it from 70 to 95 leaves the top 5 unchanged for all
+# four golden profiles, because the profile-derived bounds let price and running
+# cost discriminate properly (see tests/test_golden_ranking.py).
+HYBRID_CONVENIENCE = 88.0
+
+# Rated range is optimistic and nobody drives to 0%. 80% is what you plan around.
+USABLE_RANGE_FRACTION = 0.80
+
+# Cost of each charging stop a long trip forces, as a fraction of the trip term.
+STOP_PENALTY = 0.22
+
+
 def behaviour_engine(vehicle: dict, profile: dict, feature: dict) -> float:
+    """How little hassle it is to keep THIS car fuelled, for THIS driver (0-100).
+
+    Rewritten 2026-09-11. The previous version could not be satisfied: range_fit
+    was `range / needed / 2.5`, so a perfect score demanded 2.5x the longest
+    trip in range. For a 365 km trip that is 912 km, and the longest-range EV in
+    the catalogue is 782 km. It then deducted the SAME long trip twice more via
+    road_penalty and stops_penalty. Measured result: 0 of 102 EVs could reach
+    range_fit 1.0, and 0 of 102 could out-score the flat 90.0 handed to every
+    hybrid, for any buyer. The criterion could only ever say "buy a hybrid".
+
+    It also scored home charging as a deficit. Starting full every morning and
+    never visiting a station is the largest day-to-day advantage an EV has, and
+    it earned nothing. Here the daily and long-trip terms are separate, the long
+    trip is charged once, and each drivetrain is measured against the driver.
+    """
     annual = feature["annual_km"]
     vtype = vehicle["type"]
     specs = vehicle.get("specs", {})
@@ -613,33 +681,43 @@ def behaviour_engine(vehicle: dict, profile: dict, feature: dict) -> float:
     if annual <= 0:
         return 60.0
 
-    if vtype == "ev":
-        range_km = float(specs.get("range_km", 300) or 300)
-        daily = float(profile.get("daily_km", 0) or 0)
-        longest_trip = max(float(profile.get("long_trip_km", 0) or 0), feature["destination_km"])
-        needed = max(daily * 1.4, longest_trip, 100)
+    if vtype == "hybrid":
+        return HYBRID_CONVENIENCE
 
-        # range_fit near 1 when range >> need; near 0 when range << need
-        ratio = range_km / max(needed, 1.0)
-        range_fit = max(0.0, min(1.0, ratio / 2.5))
+    daily = max(float(profile.get("daily_km", 0) or 0), 1.0)
+    longest_trip = max(float(profile.get("long_trip_km", 0) or 0), feature["destination_km"])
+    can_charge_home = bool(profile.get("can_charge_home"))
+    trip_weight = feature["long_trip_weight"]
+    access = feature["charging_convenience"] / 100
 
-        home_bonus = 0.9 if profile.get("can_charge_home") else 0.35
-        convenience = feature["charging_convenience"] / 100
-        # weekly long trips on a station-only EV hurt a lot
-        road_penalty = feature["long_trip_weight"] * (1 - home_bonus) * 0.5
+    if vtype == "phev":
+        # A PHEV runs the commute on electricity and the long trip on petrol, so
+        # it pays NO charging stop on a long trip. That is the whole point of the
+        # drivetrain and the previous engine gave it none of the credit, lumping
+        # it in with plain hybrids at a flat 90. Floored at the hybrid value
+        # because a PHEV nobody charges is exactly a hybrid, never worse.
+        ev_range = float(specs.get("range_km", 0) or 0)
+        if ev_range <= 0:
+            return HYBRID_CONVENIENCE
+        daily_fit = min(1.0, ev_range / daily)
+        if not can_charge_home:
+            daily_fit *= 0.45 + 0.55 * access
+        score = 100.0 * ((1 - trip_weight) * daily_fit + trip_weight * 1.0)
+        return max(HYBRID_CONVENIENCE, min(100.0, score))
 
-        # NEW: stops term - penalty when longest trip > 0.5 * range
-        # up to 20% penalty (longer range keeps scoring higher)
-        stops_ratio = longest_trip / max(range_km, 1.0)
-        stops_penalty = 0.0
-        if stops_ratio > 0.5:
-            stops_penalty = min(0.20, (stops_ratio - 0.5) * 0.4)
-
-        score = 100 * ((range_fit * 0.55) + (convenience * 0.45)) * (1 - road_penalty) * (1 - stops_penalty)
+    usable_range = float(specs.get("range_km", 300) or 300) * USABLE_RANGE_FRACTION
+    covers_day = usable_range / daily
+    if can_charge_home:
+        # Plugged in overnight, so the daily need is met without ever stopping.
+        daily_fit = 1.0 if covers_day >= 1.0 else max(0.0, covers_day)
     else:
-        # Hybrids: range anxiety irrelevant (petrol everywhere).
-        score = 90.0
+        # Every charge is a trip out, and how good a trip depends on the network.
+        daily_fit = min(1.0, covers_day / 3.0) * (0.45 + 0.55 * access)
 
+    stops = max(0, math.ceil(longest_trip / max(usable_range, 1.0)) - 1)
+    trip_fit = max(0.0, 1.0 - STOP_PENALTY * stops)
+
+    score = 100.0 * ((1 - trip_weight) * daily_fit + trip_weight * trip_fit)
     return max(0.0, min(100.0, score))
 
 

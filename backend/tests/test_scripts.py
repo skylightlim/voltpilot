@@ -11,6 +11,8 @@ import contextlib
 import importlib.util
 import json
 import io
+import re
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -331,3 +333,51 @@ def test_no_sync_only_database_driver_is_required():
     reqs = (REPO / "backend" / "requirements.txt").read_text(encoding="utf-8")
     assert not any(l.strip().startswith("psycopg2") for l in reqs.splitlines()), \
         "psycopg2 is declared as a dependency again"
+
+
+# ---------------------------------------------------------------------------
+# Used-market price integrity (issue.md issue 3)
+#
+# carlist reports price as "79,800". listings.price_rm is declared REAL but the
+# table was not STRICT, so SQLite stored the string verbatim and every later
+# aggregate read it as 79 through numeric-prefix coercion. 3,886 of 14,164 rows
+# were scaled down by three orders of magnitude, and nothing failed.
+# ---------------------------------------------------------------------------
+
+USED_MARKET_DB = _import(REPO / "scripts" / "used_market" / "db.py")
+
+
+@pytest.mark.parametrize("raw,expected", [
+    ("79,800", 79800.0),         # the exact shape that broke
+    ("1,948,888", 1948888.0),
+    ("RM 128,500", 128500.0),
+    ("  72,800  ", 72800.0),
+    (26800.0, 26800.0),
+    (26800, 26800.0),
+    (None, None),
+    ("", None),
+    ("n/a", None),
+    ("0", None),                 # a zero price is missing data, not a free car
+    ("-5", None),
+    (True, None),                # bool is an int subclass; must not become 1.0
+])
+def test_parse_price_coerces_or_rejects(raw, expected):
+    assert USED_MARKET_DB.parse_price(raw) == expected
+
+
+def test_listings_schema_is_strict():
+    """STRICT is what stops a text price being stored in a REAL column at all."""
+    for table in ("listings", "valuations", "source_runs"):
+        block = re.search(rf"CREATE TABLE IF NOT EXISTS {table} \(.*?\n\) STRICT;",
+                          USED_MARKET_DB.SCHEMA, re.S)
+        assert block, f"{table} is not declared STRICT"
+
+
+def test_strict_schema_rejects_a_formatted_price(tmp_path):
+    """The regression itself: replay the carlist write against the new schema."""
+    con = sqlite3.connect(tmp_path / "t.db")
+    con.executescript(USED_MARKET_DB.SCHEMA)
+    with pytest.raises(sqlite3.IntegrityError, match="cannot store TEXT value"):
+        con.execute("INSERT INTO listings (source, title, price_rm, fetched_at) "
+                    "VALUES ('carlist', 'x', '79,800', 'now')")
+    con.close()

@@ -59,3 +59,6 @@ backend/_scratch.db
 # scripts/ into backend/ for a Vercel project rooted there.
 backend/data/
 backend/scripts/
+
+# Database backups from scripts/used_market/migrate_strict.py (7-8 MB binaries)
+*.bak-*
