@@ -3,7 +3,7 @@
   "dataset": "registrations_type_fuel",
   "frequency": "MONTHLY",
   "data_as_of": "2026-08-01",
-  "retrieved_at": "2026-09-11T23:58:54+00:00",
+  "retrieved_at": "2026-09-12T23:51:51+00:00",
   "note": "PHEV is merged into the hybrid total (JPJ does not publish a separate PHEV field).",
   "national_registered": {
     "ev_cars": 131120,

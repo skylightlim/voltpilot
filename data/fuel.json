@@ -1,7 +1,7 @@
 {
   "_meta": {
     "currency": "RM",
-    "updated_at": "2026-09-11",
+    "updated_at": "2026-09-12",
     "source": "data.gov.my fuel price weekly API (id=fuelprice) \u2014 updated daily via scripts/update_fuel_prices.py",
     "price_date": "2026-09-10"
   },
