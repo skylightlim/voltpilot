@@ -36,10 +36,10 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 15 | Used-market matcher makes bad joins | `scripts/used_market/matcher.py` | Diesel pickups matched to an electric Hilux | Fixed 2026-09-14 |
 | 16 | Cost model: horizon, insurance, loan method | `backend/app/engines/engines.py:571` | Insurance overstated 2.74x, 57.6% of TCO | Fixed 2026-09-14 |
 | 17 | Scoring the same token twice returns a 500 | `backend/app/routers/score.py:46` | A retried request fails instead of repeating | Fixed 2026-09-14 |
-| 18 | Interview cannot express a Singapore trip | `backend/app/schemas.py:106` | A Johor buyer's commonest long trip is unsayable | Open |
-| 19 | Annual mileage has no sanity check | `backend/app/engines/engines.py:67` | A misread of question 1 is a 5x error, silently | Open |
+| 18 | Interview cannot express a Singapore trip | `backend/app/schemas.py:106` | A Johor buyer's commonest long trip is unsayable | Fixed 2026-09-15 |
+| 19 | Annual mileage has no sanity check | `backend/app/engines/engines.py:67` | A misread of question 1 is a 5x error, silently | Fixed 2026-09-15 |
 | 20 | Interview asked for the grid region it could derive | `backend/app/schemas.py:70` | A question whose answer the postcode already held | Fixed 2026-09-14 |
-| 21 | Nothing tests the interface in a browser | `frontend/tests/` | A page that renders but fetches nothing passes every gate | Open |
+| 21 | Nothing tests the interface in a browser | `frontend/tests/` | A page that renders but fetches nothing passes every gate | Fixed 2026-09-15 |
 | 22 | Interface accessibility defects | `frontend/app/layout.tsx:74` | Malay pages declared English; no way to switch language mid-interview | Fixed 2026-09-15 |
 | 23 | Voice advisor holds a third copy of the interview script | `frontend/app/interview/voice/page.tsx:596` | Kept asking a question removed on 2026-09-14 | Fixed 2026-09-15 |
 | 24 | Link previews pointed at a host the project left | `frontend/app/layout.tsx:36` | Every shared link's preview image resolved to a dead Cloudflare domain | Fixed 2026-09-15 |
@@ -1290,8 +1290,21 @@ A postcode says where someone lives, not where they drive.
 **Solution.** Add `singapore` to question 4's options and to `CHOICE_LABELS` in
 `frontend/lib/interview-script.ts`. It is a new option on an existing question,
 so it does not lengthen the interview — the constraint that governs every change
-to this script. Check what `destination_distance_km` currently returns for it
-before shipping: the centroid needs to be the crossing, not the island.
+to this script.
+
+**Status. Fixed 2026-09-15.** One line in `schemas.py`, which was the only place
+withholding it: `interview-script.ts` already listed the option and already had
+the label "Cross-border to Singapore", unreachable. The voice prompt's own copy
+of question 4 gained it in both languages.
+
+The centroid needed no change, contrary to the caution written above. Measured
+before shipping: from Kuala Lumpur, `south` returns 368 km and `singapore` 389
+km, which is the island being genuinely further than Johor Bahru; from a Johor
+postcode both floor at the 30 km minimum, which is right for a crossing.
+
+The `south` label was also reworded. It read "South (JB / Singapore)" and named
+a destination the question could not express; it now reads "South (JB /
+Melaka)".
 
 ### 19. Annual mileage has no sanity check
 
@@ -1310,9 +1323,19 @@ fails visibly when it is wrong.
 
 **Solution.** Not a validation rule — 52,000 km a year is a real e-hailing
 figure and must stay allowed. Show the derived annual figure back to the buyer
-at the point of entry ("about 52,000 km a year"), so an implausible number is
-visible as a number rather than buried in a multiplication they never see. The
-intake already echoes a postcode back as a town name for exactly this reason.
+at the point of entry, so an implausible number is visible as a number rather
+than buried in a multiplication they never see. The intake already echoes a
+postcode back as a town name for exactly this reason.
+
+**Status. Fixed 2026-09-15.** `AnnualEcho` in `QInput.tsx` renders under both
+mileage questions, and only once both are known — question 1 alone cannot
+compute a year. Above 40,000 km it turns amber and names the misreading
+outright: "high, but real for e-hailing. Check question 1 asks about a DAY, not
+a week."
+
+Measured in a browser: 40 km x 5 days reads "about 10,400 km a year"; the same
+question answered 200 as a weekly total reads "about 52,000 km a year" in
+amber.
 
 ### 20. The interview asked for the grid region it could already derive
 
@@ -1362,11 +1385,35 @@ It is that an interface which renders but does not work passes every gate this
 repository has. Six of the seven features in `FEATURES.md` are panels on one
 page; none of them has a test that asserts a number ever appears in one.
 
-**Solution.** A smoke test that loads the pages that matter, waits for the
-network to settle, and asserts each panel contains a digit. It does not need a
-full end-to-end framework: `/calculators`, `/`, `/intake/1` and a scored
-`/results/{token}` would have caught this in seconds. Keep it separate from the
-`node --test` guardrails so the fast suite stays fast.
+**Solution.** A smoke test that loads the pages that matter and asserts each
+panel renders a figure. Keep it separate from the `node --test` guardrails so
+the fast suite stays fast.
+
+**Status. Fixed 2026-09-15.** Playwright, six specs in `frontend/tests/e2e/`,
+11 seconds, wired into CI ahead of the build. Backend responses are intercepted
+rather than served, so it needs no FastAPI process and no database — and that
+is also what makes it precise, because the failure being guarded against is the
+page not calling the API, or calling it and rendering nothing, and both are
+visible without a real backend.
+
+**Proven against the defect, not just written.** Setting the affordability
+panel's `enabled` to false reproduces the blank card, and the suite fails on it.
+
+Three things the writing of it surfaced, each worth more than the test:
+
+- **A weak assertion passes on a broken page.** The first version asserted
+  `/RM[\d,]+/` somewhere in the body, which the slider captions "RM500" and
+  "RM6,000+" satisfy as static text. It therefore never waited for the network
+  and went green against the blank page. It now asserts `RM127,249` and
+  `28 / 184`, figures only the stubbed API can produce.
+- **Playwright globs treat `?` as a single-character wildcard,** so
+  `**/api/proxy/calculators/**` matched `/vehicles` and silently missed every
+  URL with a query string, letting those requests reach the real backend. The
+  matcher is a URL predicate now.
+- **Two Next processes must not share `.next`.** The runner's dev server
+  corrupted the one already on port 3000, which then served 500s from a
+  half-written manifest. `next.config.ts` has `NEXT_DIST_DIR` for exactly this;
+  the Playwright `webServer` now sets it.
 
 ### 22. Interface accessibility defects
 

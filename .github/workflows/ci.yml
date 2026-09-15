@@ -84,6 +84,19 @@ jobs:
         working-directory: frontend
         run: npm test
 
+      # The suite above reads source files and asserts about their text, which
+      # cannot see a page that renders and then does nothing — how a blank
+      # calculators page shipped on 2026-09-14 past green tests, clean types and
+      # a successful build. These load the pages in a browser with the backend
+      # stubbed, so they need no FastAPI process and no database.
+      - name: Install browser for smoke tests
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser smoke tests
+        working-directory: frontend
+        run: npm run test:e2e
+
       - name: Build
         working-directory: frontend
         # Baked into the /api/proxy rewrite at build time, so it must be set

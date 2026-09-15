@@ -38,9 +38,13 @@ INTERVIEW_QUESTIONS = [
         "bm": "Berapa kerap anda buat perjalanan jauh (lebih 100 km)?",
     },
     {
+        # "singapore" was accepted by ProfileIn and scored by
+        # destination_distance_km, but never offered here, so a Johor buyer
+        # whose commonest long trip is the crossing had to answer "south"
+        # and be scored against a domestic destination. issue.md issue 18.
         "key": "destination_region",
         "kind": "choice",
-        "options": ["kl", "north", "south", "east_coast", "east_malaysia"],
+        "options": ["kl", "north", "south", "east_coast", "east_malaysia", "singapore"],
         "required": True,
         "en": "Where do your long trips usually go?",
         "bm": "Biasanya perjalanan jauh anda pergi ke mana?",

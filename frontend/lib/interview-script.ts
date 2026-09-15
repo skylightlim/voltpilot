@@ -35,7 +35,7 @@ export const CHOICE_LABELS: Record<string, Record<string, { en: string; bm: stri
   destination_region: {
     kl: { en: "Around Klang Valley", bm: "Keliling Lembah Klang" },
     north: { en: "North (Penang / Perak)", bm: "Utara (Pulau Pinang / Perak)" },
-    south: { en: "South (JB / Singapore)", bm: "Selatan (JB / Singapura)" },
+    south: { en: "South (JB / Melaka)", bm: "Selatan (JB / Melaka)" },
     east_coast: { en: "East Coast (Kuantan / Kota Bharu)", bm: "Pantai Timur (Kuantan / Kota Bharu)" },
     east_malaysia: { en: "East Malaysia", bm: "Malaysia Timur" },
     singapore: { en: "Cross-border to Singapore", bm: "Lintas sempadan ke Singapura" },

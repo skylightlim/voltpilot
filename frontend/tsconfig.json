@@ -34,10 +34,11 @@
     ".next-ci/types/**/*.ts",
     ".next-ci2/types/**/*.ts",
     ".next-perf/types/**/*.ts",
+    ".next-v/types/**/*.ts",
     ".next-verify/types/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    ".next-v/types/**/*.ts"
+    ".next-e2e/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

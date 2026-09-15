@@ -15,6 +15,33 @@ const CHIP_SETS: Record<string, { values: number[]; unit: "km" | "rm" }> = {
   budget_max_rm: { values: [100000, 150000, 200000, 250000, 300000], unit: "rm" },
 };
 
+/* Annual mileage is daily_km x trips_per_week x 52, and nothing shows a buyer
+   that product. Reading question 1 as a weekly total turns 10,400 km a year
+   into 52,000 — a 5x error on the multiplier behind every running-cost figure,
+   invisible in the answer. Echoing the derived number makes an implausible one
+   look implausible, the way the postcode already echoes a town name back.
+   Not validation: 52,000 km a year is a real e-hailing figure. issue.md 19. */
+const PLAUSIBLE_ANNUAL_KM = 40_000;
+
+function AnnualEcho({ value }: { value: Profile }) {
+  const t = useT();
+  const daily = Number((value as Record<string, unknown>).daily_km) || 0;
+  const days = Number((value as Record<string, unknown>).trips_per_week) || 0;
+  if (daily <= 0 || days <= 0) return null;
+
+  const km = Math.round(daily * days * 52);
+  const key = km > PLAUSIBLE_ANNUAL_KM ? "iq.annualHigh" : "iq.annualHint";
+  return (
+    <p
+      className={`mt-3 text-center text-[15px] leading-relaxed ${
+        km > PLAUSIBLE_ANNUAL_KM ? "font-medium text-amber-700" : "text-muted"
+      }`}
+    >
+      {t(key).replace("{km}", km.toLocaleString("en-MY"))}
+    </p>
+  );
+}
+
 export default function QInput({
   q,
   value,
@@ -58,6 +85,7 @@ export default function QInput({
           </select>
           <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
         </div>
+        <AnnualEcho value={value} />
       </div>
     );
   }
@@ -189,6 +217,7 @@ export default function QInput({
         }}
         className="w-full rounded-lg border border-line bg-card px-5 py-4 text-lg font-semibold text-ink outline-none placeholder:text-[#d2d2d7] focus:border-primary"
       />
+      {q.key === "daily_km" && <AnnualEcho value={value} />}
     </div>
   );
 }
