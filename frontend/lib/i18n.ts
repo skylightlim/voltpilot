@@ -39,6 +39,15 @@ export function useLang(): Lang {
 type Entry = readonly [string, string];
 
 const S = {
+  "dc.title": ["WHERE TO BUY", "DI MANA UNTUK MEMBELI"],
+  "dc.heading": ["Talk to the official {brand} distributor", "Hubungi pengedar rasmi {brand}"],
+  "dc.headingModel": ["Talk to the official distributor for the {model}", "Hubungi pengedar rasmi untuk {model}"],
+  "dc.distributor": ["Official distributor", "Pengedar rasmi"],
+  "dc.findShowroom": ["Find your nearest showroom", "Cari bilik pameran terdekat"],
+  "dc.note": [
+    "VoltPilot is not a dealer and earns nothing from this introduction. The ranking above was produced before we looked up who sells the car.",
+    "VoltPilot bukan pengedar dan tidak memperoleh apa-apa daripada perkenalan ini. Kedudukan di atas dihasilkan sebelum kami mencari siapa yang menjual kereta itu.",
+  ],
   "nav.cta": ["Get your ranking", "Dapatkan kedudukan anda"],
   "nav.ctaShort": ["Start", "Mula"],
   "nav.voice": ["Voice Advisor", "Penasihat Suara"],

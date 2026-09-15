@@ -33,6 +33,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ApiError, SESSION, apiService } from "@/lib/api";
 import { useT, type StrKey } from "@/lib/i18n";
+import { Slider } from "@/components/Slider";
+import { DealerContact } from "@/components/DealerContact";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,7 +262,7 @@ export default function ResultsPage() {
               <Stagger className="mt-7 flex flex-wrap gap-2.5" selector="> *" stagger={0.06}>
                 <button
                   onClick={() => router.push(`/recommendation/${token}`)}
-                  className="pressable tap-target group/btn relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 py-3 text-[16px] font-semibold text-pine-deep transition-all hover:shadow-lg hover:shadow-white/10 active:scale-[0.97]"
+                  className="pressable tap-target group/btn relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 py-3 text-[16px] font-semibold text-pine-deep hover:shadow-lg hover:shadow-white/10 active:scale-[0.97]"
                 >
                   {t("r.roadmap")}
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-pine-deep/10 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
@@ -269,13 +271,13 @@ export default function ResultsPage() {
                 </button>
                 <button
                   onClick={() => router.push(`/chat/${token}`)}
-                  className="pressable tap-target inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[16px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 active:scale-[0.97]"
+                  className="pressable tap-target inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[16px] font-medium text-white backdrop-blur-sm hover:bg-white/10 active:scale-[0.97]"
                 >
                   <MessageCircle className="h-4 w-4" /> Ask AI
                 </button>
                 <button
                   onClick={() => setShowPdf(true)}
-                  className="pressable tap-target inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[16px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 active:scale-[0.97]"
+                  className="pressable tap-target inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[16px] font-medium text-white backdrop-blur-sm hover:bg-white/10 active:scale-[0.97]"
                 >
                   <Download className="h-4 w-4" /> {t("r.pdf")}
                 </button>
@@ -291,7 +293,7 @@ export default function ResultsPage() {
           <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
             {/* Price card — spans full width */}
             <div className="col-span-2">
-              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all hover:border-primary/20 hover:shadow-md">
+              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm hover:border-primary/20 hover:shadow-md">
                 <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/[0.03]" />
                 <p className="mono-label text-fog">{t("r.price")}</p>
                 <p className="figure mt-2 text-[36px] sm:text-[44px] text-ink leading-none">
@@ -307,7 +309,7 @@ export default function ResultsPage() {
 
             {/* CO₂ savings */}
             <div className="col-span-1">
-              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all hover:border-emerald-500/20 hover:shadow-md">
+              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm hover:border-emerald-500/20 hover:shadow-md">
                 <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/[0.03]" />
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20">
                   <Leaf className="h-5 w-5 text-emerald-600" />
@@ -321,7 +323,7 @@ export default function ResultsPage() {
 
             {/* TOPSIS score */}
             <div className="col-span-1">
-              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all hover:border-violet-500/20 hover:shadow-md">
+              <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 p-4 sm:p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm hover:border-violet-500/20 hover:shadow-md">
                 <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/[0.03]" />
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-violet-500/10 ring-1 ring-violet-500/20">
                   <Sparkles className="h-5 w-5 text-violet-600" />
@@ -410,6 +412,16 @@ export default function ResultsPage() {
       {ranking[0] && (
         <ScrubReveal className="mb-10">
           <ResaleEvidencePanel token={token} slug={ranking[0].slug} />
+        </ScrubReveal>
+      )}
+
+      {/* ── Where to actually buy it ───────────────────────────────────── */}
+      {ranking[0] && (
+        <ScrubReveal className="mb-10">
+          <DealerContact
+            contact={data.brand_contacts?.[ranking[0].brand]}
+            model={`${ranking[0].brand} ${ranking[0].model}`.trim()}
+          />
         </ScrubReveal>
       )}
 
@@ -652,12 +664,11 @@ export default function ResultsPage() {
               <span className="text-muted">{t("r.assumed")}</span>
               <span className="figure text-ink">{batteryAge} yrs</span>
             </div>
-            <input
-              type="range"
+            <Slider
               min={0}
               max={15}
               step={1}
-              className="slider mt-3"
+              className="mt-3"
               aria-label={t("r.batteryAge")}
               value={batteryAge}
               onChange={(e) => setBatteryAge(Number(e.target.value))}
@@ -670,7 +681,7 @@ export default function ResultsPage() {
             </div>
             <button
               onClick={() => router.push(`/chat/${token}?ask=battery`)}
-              className="pressable tap-target mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-[16px] font-medium text-ink transition-colors hover:bg-parchment/50 active:scale-[0.98]"
+              className="pressable tap-target mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-[16px] font-medium text-ink hover:bg-parchment/50 active:scale-[0.98]"
             >
               <MessageCircle className="h-4 w-4" /> {t("r.askbat")}
             </button>
@@ -715,7 +726,7 @@ export default function ResultsPage() {
             <div className="flex items-center justify-between">
               <h2 className="apple-display-2 text-[22px] text-ink">{t("r.emailT")}</h2>
               <button
-                className="tap-target -mr-2 grid h-10 w-10 place-items-center rounded-full bg-parchment/60 text-muted transition-colors hover:bg-parchment hover:text-ink cursor-pointer"
+                className="tap-target -mr-2 grid h-10 w-10 place-items-center rounded-full bg-parchment/60 text-muted hover:bg-parchment hover:text-ink cursor-pointer"
                 onClick={() => setShowPdf(false)}
               >
                 <X className="h-5 w-5" />
@@ -730,7 +741,7 @@ export default function ResultsPage() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-5 w-full rounded-lg border border-border bg-parchment/40 px-4 py-3.5 text-[16px] text-ink outline-none placeholder:text-line-strong/70 focus:border-primary/50 focus:bg-white transition-colors"
+              className="mt-5 w-full rounded-lg border border-border bg-parchment/40 px-4 py-3.5 text-[16px] text-ink outline-none placeholder:text-line-strong/70 focus:border-primary/50 focus:bg-white"
             />
             {emailError && <p className="mt-2 text-[15px] font-medium text-red-600">{emailError}</p>}
             <button
@@ -743,7 +754,7 @@ export default function ResultsPage() {
                 }
                 await sendReport();
               }}
-              className="pressable tap-target mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[16px] font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary-hover active:bg-primary-hover disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+              className="pressable tap-target mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[16px] font-semibold text-primary-foreground shadow-sm hover:bg-primary-hover active:bg-primary-hover disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
             >
               {pdfBusy ? (
                 <>
@@ -790,7 +801,7 @@ function DashboardCard({
   onClick?: () => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 backdrop-blur-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all hover:shadow-md">
+    <div className="overflow-hidden rounded-lg sm:rounded-lg border border-white/40 bg-white/70 backdrop-blur-sm shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-md">
       <button
         className="tap-target flex w-full items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 text-left cursor-pointer"
         onClick={onClick}

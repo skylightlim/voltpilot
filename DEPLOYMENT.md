@@ -75,7 +75,10 @@ On the **backend** project (`Settings → Environment Variables`):
 | `GEMINI_API_KEYS` | comma-separated keys | the analyst rotates through them on quota exhaustion |
 | `ADMIN_TOKEN` | leave unset | `/admin/refresh` cannot work here; the refresh runs in Actions |
 | `SMTP_HOST` / `SMTP_USER` / `SMTP_PASSWORD` / `SMTP_FROM` | your mail provider | PDF report delivery |
-| `FRONTEND_ORIGIN` | the frontend's URL | CORS |
+| `FRONTEND_ORIGIN` | the frontend's URL | CORS; also the default for the report's website line |
+| `REPORT_AGENT_PHONE` | your advisor / dealership number | printed in the PDF footer and its contact panel. **Unset means the phone is omitted entirely** — a customer-facing document is the wrong place for a placeholder number |
+| `REPORT_AGENT_NAME` | who answers that number | optional, shown under the number |
+| `REPORT_WEBSITE` | e.g. `https://voltpilot.my` | optional; falls back to `FRONTEND_ORIGIN` |
 | `ENV` | `production` | drops the localhost CORS origins |
 
 On the **frontend** project:

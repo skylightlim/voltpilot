@@ -1,0 +1,466 @@
+{
+  "_note": "Official Malaysian distributor contacts per catalogue brand. Every website was fetched and confirmed to return a real page on `as_of` (domain-parking pages answer 200 and were rejected by content check). A phone number appears ONLY with the official page it was read from: this data reaches customers in an emailed PDF that cannot be recalled, so an unsourced number must never be added here. Brands with website:null need manual entry — see tests/test_brand_contacts.py, which reports coverage.",
+  "as_of": "2026-09-15",
+  "contacts": [
+    {
+      "brand": "Aion",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Audi",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.audi.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "BMW",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.bmw.com.my/en/index.html",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "BYD",
+      "distributor": "Sime Darby Motors",
+      "distributor_source": "https://byd.simemotors.my/",
+      "website": "https://byd.simemotors.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Chery",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.cherymotor.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Denza",
+      "distributor": "Sime Darby Motors",
+      "distributor_source": "https://denza.simemotors.my/",
+      "website": "https://denza.simemotors.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Dongfeng",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Ford",
+      "distributor": "Sime Darby Motors",
+      "distributor_source": "https://ford.simemotors.my/",
+      "website": "https://ford.simemotors.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Foton",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.fotonmalaysia.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "GWM",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.gwm.com.my/en",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Gac",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://gacmotor.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Higer",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Honda",
+      "distributor": "Honda Malaysia Sdn Bhd (532120-D)",
+      "distributor_source": "https://www.honda.com.my/contact-us",
+      "website": "https://www.honda.com.my/",
+      "phone": "1-800-88-2020",
+      "phone_source": "https://www.honda.com.my/customer-service",
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Hyundai",
+      "distributor": "Sime Darby Motors",
+      "distributor_source": "https://hyundai.simemotors.my/",
+      "website": "https://hyundai.simemotors.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "JAC",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Jaecoo",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.jaecoomalaysia.com/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Jaguar",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.jaguar.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Kia",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.kia.com/my/en",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Leapmotor",
+      "distributor": "Cycle & Carriage Malaysia (with Stellantis Malaysia)",
+      "distributor_source": "https://paultan.org/2026/04/09/cycle-carriage-opens-flagship-leapmotor-glenmarie-outlet-the-ev-brands-first-full-fledged-3s-dealership/",
+      "website": "https://leapmotor.cyclecarriage.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Lexus",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.lexus.com.my/en.html",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Lotus",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.lotuscars.com/en-MY",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "MG",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.mgmalaysia.com/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "MINI",
+      "distributor": "Sime Darby Motors / Auto Bavaria",
+      "distributor_source": "https://paultan.org/2024/01/05/sime-darby-motors-opens-pop-up-store-in-1-utama-bmw-mini-bmw-motorrad-byd-hyundai-and-ford/",
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Maxus",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Mazda",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://mazda.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Mercedes-Benz",
+      "distributor": "Mercedes-Benz Malaysia Sdn Bhd (596096-H)",
+      "distributor_source": "https://www.mercedes-benz.com.my/",
+      "website": "https://www.mercedes-benz.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Mitsubishi",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.mitsubishi-motors.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Neta",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Nissan",
+      "distributor": "Edaran Tan Chong Motor Sdn Bhd",
+      "distributor_source": "https://nissan.com.my/v2/",
+      "website": "https://nissan.com.my/v2/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Omoda",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.omodajaecoo.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Perodua",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.perodua.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Porsche",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.porsche.com/pap/_malaysia_/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Proton",
+      "distributor": "Proton Holdings Berhad (623177-A)",
+      "distributor_source": "https://www.proton.com/en/contact-us",
+      "website": "https://www.proton.com/",
+      "phone": "1-800-88-8398",
+      "phone_source": "https://www.proton.com/en/contact-us",
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Renault",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Rolls-Royce",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.rolls-roycemotorcars.com/en_GB/home.html",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Seres",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "Suzuki",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.suzuki.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Tesla",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.tesla.com/en_MY",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Toyota",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.toyota.com.my/en.html",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Volkswagen",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.volkswagen.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Volvo",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.volvocars.com/my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Wuling",
+      "distributor": null,
+      "distributor_source": null,
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    },
+    {
+      "brand": "XPeng",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.xpeng.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "Zeekr",
+      "distributor": "Zeekr Intelligent Technology (Malaysia) Sdn Bhd",
+      "distributor_source": "https://paultan.org/2025/06/30/zeekr-intelligent-technology-malaysia-established-principal-takes-over-as-ev-brands-official-distributor/",
+      "website": "https://www.zeekrmalaysia.com/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "iCaur",
+      "distributor": null,
+      "distributor_source": null,
+      "website": "https://www.icaur.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "http_200"
+    },
+    {
+      "brand": "smart",
+      "distributor": "Pro-Net (Proton New Energy Technology Sdn Bhd)",
+      "distributor_source": "https://paultan.org/2023/05/10/hap-seng-smart-appointed-pro-net-dealer-in-malaysia/",
+      "website": null,
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-09-15",
+      "verified": "unresolved"
+    }
+  ]
+}

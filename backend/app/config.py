@@ -50,6 +50,20 @@ class Settings:
     enable_email: bool = os.getenv("ENABLE_EMAIL", "true").lower() == "true"
     frontend_origin: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
 
+    # Contact block printed in the emailed PDF report — footer on every page and
+    # the "talk to us" panel at the end.
+    #
+    # Deliberately empty by default. An unset line is omitted from the report
+    # rather than printed as a placeholder: this document is emailed to a
+    # customer and cannot be recalled, so a plausible-looking phone number that
+    # nobody answers is worse than no phone number at all.
+    report_agent_name: str = os.getenv("REPORT_AGENT_NAME", "")
+    report_agent_phone: str = os.getenv("REPORT_AGENT_PHONE", "")
+    # Falls back to the site the frontend is served from, which is already
+    # configured per environment — so the website line is right without a second
+    # variable to keep in step.
+    report_website: str = os.getenv("REPORT_WEBSITE", "") or frontend_origin
+
     @property
     def gemini_api_key(self) -> str:
         """The first key. Gemini Live (POST /tokens/live) hands a single key to the
@@ -113,6 +127,34 @@ def load_solar() -> dict:
 
 def load_sponsor() -> dict:
     return load_data_json("ad_sponsors.json")["sponsor"]
+
+
+@lru_cache(maxsize=None)
+def load_brand_contacts() -> dict[str, dict]:
+    """Official Malaysian distributor contact per catalogue brand, keyed by the
+    brand string the catalogue uses, case-folded.
+
+    Lower-cased keys because the lookup side is a vehicle row's `brand`, and a
+    catalogue that spells one brand "Gac" and another "GWM" would otherwise miss
+    on capitalisation alone.
+    """
+    rows = load_data_json("brand_contacts.json")["contacts"]
+    return {r["brand"].casefold(): r for r in rows}
+
+
+def brand_contact(brand: str | None) -> dict | None:
+    """The contact for a brand, or None when we have nothing useful to show.
+
+    An entry whose website and phone are both unset is treated as absent: it
+    exists in the file only to record that the gap is known, and rendering it
+    would put an empty contact card in front of a reader.
+    """
+    if not brand:
+        return None
+    row = load_brand_contacts().get(str(brand).casefold())
+    if not row or not (row.get("website") or row.get("phone")):
+        return None
+    return row
 
 
 def load_policy_markdown() -> str:

@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..config import load_policy_markdown, load_solar, settings
+from ..config import brand_contact, load_policy_markdown, load_solar, settings
 from ..db import AsyncSessionLocal, Profile, Recommendation, TopsisResult, get_db
 
 logger = logging.getLogger(__name__)
@@ -84,6 +84,16 @@ async def get_results(token: str, db: AsyncSession = Depends(get_db)):
         "solar": load_solar() if result.overview_json.get("solar_eligible") else None,
         "profile": profile_row.profile_json if profile_row else None,
         "recommendation": recommendation.analyst_json if recommendation else None,
+        # Where to actually go and buy the thing. Attached per ranked row rather
+        # than only for the top pick, because the page lets the reader compare —
+        # a contact that only exists for rank 1 is useless the moment they look
+        # at rank 2. Brands with nothing verified are simply absent from the map,
+        # and the UI renders nothing for them.
+        "brand_contacts": {
+            row["brand"]: contact
+            for row in (result.ranking_json or [])
+            if (contact := brand_contact(row.get("brand")))
+        },
     }
 
 
