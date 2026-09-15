@@ -41,8 +41,9 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 20 | Interview asked for the grid region it could derive | `backend/app/schemas.py:70` | A question whose answer the postcode already held | Fixed 2026-09-14 |
 | 21 | Nothing tests the interface in a browser | `frontend/tests/` | A page that renders but fetches nothing passes every gate | Fixed 2026-09-15 |
 | 22 | Interface accessibility defects | `frontend/app/layout.tsx:74` | Malay pages declared English; no way to switch language mid-interview | Fixed 2026-09-15 |
-| 23 | Voice advisor holds a third copy of the interview script | `frontend/app/interview/voice/page.tsx:596` | Kept asking a question removed on 2026-09-14 | Fixed 2026-09-15 |
+| 23 | Voice advisor holds a third copy of the interview script | `frontend/app/interview/voice/page.tsx:596` | Kept asking a question removed on 2026-09-14 | Fixed 2026-09-15, copy removed |
 | 24 | Link previews pointed at a host the project left | `frontend/app/layout.tsx:36` | Every shared link's preview image resolved to a dead Cloudflare domain | Fixed 2026-09-15 |
+| 25 | Voice Advisor needs a key the deploy guide never mentions | `frontend/app/api/live-token/route.ts:20` | Follow DEPLOYMENT.md exactly and voice is silently offline | Fixed 2026-09-15 |
 
 ## State of play
 
@@ -1467,11 +1468,35 @@ collected and then ignored. Wasting a question is still the defect.
 remaining ten renumbered, and every count corrected. A comment now marks the
 list as a copy so the next person knows what it shadows.
 
-**The real fix, not done.** Build the prompt from `/config/interview` the way
-the intake flow does, and this cannot drift again. Left open because the voice
-prompt is not a list of questions alone — it carries per-question phrasing,
-answer formats and confirmation rules that the config does not model, and
-inventing that schema to remove one copy is a bigger change than it looks.
+**The copy is gone, 2026-09-15.** The reservation written above was wrong. The
+prompt is not a list of questions plus a schema the config cannot model: `kind`
+already gives the answer format, `options` with `CHOICE_LABELS` already give the
+readable choices, and `en`/`bm` already give the wording. Only the
+conversational rules are genuinely prompt-only, and not one of them names a
+question.
+
+`lib/voice-prompt.ts` builds the prompt and the greeting from the script, and
+the voice page fetches `/config/interview` the way the intake flow does. The
+hardcoded list, in both languages, is deleted. Adding a question to the backend
+now reaches the advisor with no frontend change at all — which is the property
+being bought, not the deleted lines.
+
+**A fourth copy surfaced while doing it.** `FALLBACK_SCRIPT`, the offline
+fallback shared by the intake flow and now the advisor, had drifted too: it
+carried `long_trip_km` and `work_postcode`, which the backend never asks, and
+omitted `can_charge_work` and `monthly_electricity_bill_rm`, which it does — so
+a failed fetch collected fields the engine ignores and skipped ones
+`charging_convenience_score` reads. It is aligned, and
+`TestInterviewScriptCopies` in `backend/tests/test_postcode.py` fails if the two
+diverge again.
+
+**Both guards were proven, not just written.** Adding a question to the script
+alone leaves the builder tests passing — the prompt follows automatically, which
+is the point — and fails the backend drift test, because the two copies then
+disagree. The two frontend guardrail tests that used to scan the prompt text
+for a self-consistent numbered list were replaced: a derived prompt cannot be
+inconsistent with itself, so what is worth asserting is that it is still
+derived, and that the conversational rules survived the deletion.
 
 ### 24. Link previews pointed at a host the project had left
 
@@ -1495,6 +1520,29 @@ domain and is now documented in `.env.local.example`.
 
 Found alongside it: the meta description had claimed "Answer 8 quick questions"
 since before the script was eleven. It is ten, and says so.
+
+### 25. The Voice Advisor needs a key the deploy guide never mentions
+
+**Problem.** `frontend/app/api/live-token/route.ts` reads `GEMINI_API_KEYS` from
+the **frontend's** environment: Gemini Live connects from the browser, so that
+route mints the ephemeral per-session token itself. `DEPLOYMENT.md` listed
+`GEMINI_API_KEYS` only under the backend project, and gave the frontend a single
+line naming `BACKEND_URL`.
+
+**Why it is an issue.** Following the guide exactly leaves the frontend without
+the key, and the advisor renders "Voice Mode Offline — Gemini Live key is not
+configured on this server" and falls back to text. It is linked from the navbar
+on every page, so a headline feature is off with no error anywhere: the backend
+is healthy, `/health` reports `gemini: true`, and nothing fails.
+
+**How I found it.** Opening `/interview/voice` while checking something else and
+reading the offline banner rather than assuming it was local-only. It is local
+here because `frontend/.env.local` has no key, which is the same shape as the
+production gap.
+
+**Status. Fixed 2026-09-15.** `DEPLOYMENT.md` now carries a frontend environment
+table covering `BACKEND_URL`, `GEMINI_API_KEYS`, `GEMINI_LIVE_MODEL` and
+`NEXT_PUBLIC_SITE_URL`, and says why the frontend needs a Gemini key of its own.
 
 ## Suggested order of work
 

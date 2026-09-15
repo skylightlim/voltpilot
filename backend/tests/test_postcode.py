@@ -132,3 +132,35 @@ class TestGridRegionFromPostcode:
             return next(r for r in out["ranking"] if r["type"] == "ev")["co2_kg_yr"]
 
         assert first_ev_co2("88000") < first_ev_co2("50400") * 0.75
+
+
+class TestInterviewScriptCopies:
+    """The interview script exists in more than one place. They must not drift.
+
+    `INTERVIEW_QUESTIONS` is the source of truth: the intake flow and the voice
+    advisor both fetch it from /config/interview. `FALLBACK_SCRIPT` in the
+    frontend covers a failed fetch only, but a fallback asking different
+    questions is worse than none — it collects fields the engine never reads and
+    skips ones it does. issue.md issue 23.
+    """
+
+    SCRIPT_TS = Path(__file__).resolve().parents[2] / "frontend" / "lib" / "interview-script.ts"
+
+    def _fallback_keys(self) -> list[str]:
+        src = self.SCRIPT_TS.read_text(encoding="utf-8")
+        block = src[src.index("FALLBACK_SCRIPT"): src.index("];", src.index("FALLBACK_SCRIPT"))]
+        return re.findall(r'key:\s*"([a-z_]+)"', block)
+
+    def test_the_frontend_fallback_asks_the_same_questions_in_the_same_order(self):
+        from app.schemas import INTERVIEW_QUESTIONS
+
+        assert self._fallback_keys() == [q["key"] for q in INTERVIEW_QUESTIONS]
+
+    def test_the_voice_advisor_does_not_keep_its_own_copy(self):
+        """It held a third copy in both languages and went stale the day a
+        question was removed, asking for the grid region for a full day after
+        the postcode began deriving it."""
+        voice = (self.SCRIPT_TS.parent.parent / "app" / "interview" / "voice" / "page.tsx").read_text(encoding="utf-8")
+        numbered = re.findall(r'"\d+\.\s+[A-Z]', voice)
+        assert not numbered, f"voice page hardcodes {len(numbered)} numbered questions again"
+        assert "buildInterviewPrompt" in voice, "the prompt must be derived from the script"

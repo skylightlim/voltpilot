@@ -78,8 +78,19 @@ On the **backend** project (`Settings → Environment Variables`):
 | `FRONTEND_ORIGIN` | the frontend's URL | CORS |
 | `ENV` | `production` | drops the localhost CORS origins |
 
-On the **frontend** project, set `BACKEND_URL` to the same value as the GitHub
-variable so that Vercel-triggered builds match CI-triggered ones.
+On the **frontend** project:
+
+| Variable | Value | Why |
+|---|---|---|
+| `BACKEND_URL` | same as the GitHub variable | so Vercel-triggered builds match CI-triggered ones |
+| `GEMINI_API_KEYS` | the same comma-separated keys | **required for the Voice Advisor.** `app/api/live-token/route.ts` runs on the frontend and mints the ephemeral Live token itself, so the backend having the keys is not enough. Without it the advisor renders "Voice Mode Offline" and falls back to text — a navbar feature, silently off |
+| `GEMINI_LIVE_MODEL` | optional | defaults to `gemini-3.1-flash-live-preview` |
+| `NEXT_PUBLIC_SITE_URL` | optional | only for a custom domain. Vercel supplies `VERCEL_PROJECT_PRODUCTION_URL`, which `metadataBase` uses to resolve the Open Graph image |
+
+The Live key reaching the browser is the point rather than a leak: Gemini Live
+connects from the client, so the route mints a short-lived token per session.
+It is still a key on a public surface — keep the frontend's list to keys you are
+willing to rotate.
 
 > **The function filesystem is ephemeral and read-only.** `DATABASE_URL` must
 > point at managed Postgres. SQLite on the function's own disk loses every

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { buildGreeting, buildInterviewPrompt } from "@/lib/voice-prompt";
+import { FALLBACK_SCRIPT, type IQuestion } from "@/lib/interview-script";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mic, PencilLine, PenLine, Radio, Check, Loader2, Sparkles, User, Bot, Volume2 } from "lucide-react";
@@ -42,8 +44,21 @@ export default function VoiceInterviewPage() {
   const [liveModel, setLiveModel] = useState("gemini-2.5-flash-native-audio-latest");
   const [liveApiVersion, setLiveApiVersion] = useState("v1beta");
   const [liveVoice, setLiveVoice] = useState("Puck");
+  /* The interview script, fetched so the spoken questions cannot drift from the
+     ones the backend actually scores. FALLBACK_SCRIPT only covers a failed
+     fetch; it is the same fallback the intake flow uses. issue.md issue 23. */
+  const [script, setScript] = useState<IQuestion[]>(FALLBACK_SCRIPT);
   const [micLevel, setMicLevel] = useState(0);
   const [isAdvisorSpeaking, setIsAdvisorSpeaking] = useState(false);
+
+  useEffect(() => {
+    apiService
+      .getInterviewScript()
+      .then((r) => {
+        if (Array.isArray(r.questions) && r.questions.length) setScript(r.questions as IQuestion[]);
+      })
+      .catch(() => {});
+  }, []);
 
   const streamRef = useRef<MediaStream | null>(null);
   const micCtxRef = useRef<AudioContext | null>(null);
@@ -559,70 +574,10 @@ export default function VoiceInterviewPage() {
       // the transcript still fills in as the user speaks.
 
       // --- Build system prompt ---
-      const isBm = lang === "bm";
-      const systemPrompt = isBm
-        ? [
-            "Anda adalah penasihat AI untuk panduan keputusan EV vs Hibrid Malaysia.",
-            "Tanya pengguna tepat 10 soalan, satu demi satu, dalam urutan ini:",
-            "",
-            "1. Berapa kilometer anda memandu pada hari biasa?",
-            "2. Berapa hari seminggu anda biasanya memandu?",
-            "3. Berapa kerap anda memandu perjalanan jauh melebihi 100 km? (jarang / bulanan / mingguan)",
-            "4. Ke mana destinasi perjalanan jauh anda biasanya? (Lembah Klang / utara / selatan / pantai timur / Malaysia timur / merentas ke Singapura)",
-            "5. Bolehkah anda mengecas EV di rumah? (ya / tidak)",
-            "6. Bolehkah anda juga mengecas di tempat kerja? (ya / tidak)",
-            "7. Apakah poskod rumah anda? (5 digit)",
-            "8. Lebih kurang berapa bil elektrik bulanan anda dalam RM? (sebut sifar jika tidak pasti)",
-            "9. Berapakah bajet maksimum anda untuk kereta dalam RM?",
-            "10. Adakah anda mempertimbangkan panel solar di rumah? (ya / tidak)",
-            "",
-            "PERATURAN:",
-            "- Tanya SATU soalan pada satu masa. Tunggu jawapan pengguna.",
-            "- Selepas setiap jawapan, sahkan secara ringkas apa yang anda dengar, kemudian tanya soalan seterusnya.",
-            "- Pastikan respons pendek dan mesra.",
-            "",
-            "SELEPAS semua 10 soalan dijawab:",
-            "1. Katakan: \"Biar saya sahkan semua jawapan anda.\"",
-            "2. Bacakan setiap jawapan dengan jelas.",
-            "3. Tanya: \"Adakah semuanya betul? Katakan ya untuk sahkan, atau beritahu saya apa yang ingin diubah.\"",
-            "4. Jika pengguna kata ya/sahkan/betul → mesej TERAKHIR anda mestilah tepat: INTERVIEW_COMPLETE",
-            "5. Jika pengguna ingin ubah jawapan → kemas kini dan sahkan semula.",
-            "",
-            "PENTING: Apabila disahkan, tamatkan dengan tepat perkataan ini sahaja: INTERVIEW_COMPLETE",
-          ].join("\n")
-        : [
-            /* A THIRD copy of the interview script, after schemas.INTERVIEW_QUESTIONS
-               and the manual form. It went stale the moment the grid-region question
-               was derived from the postcode and removed on 2026-09-14: the advisor
-               kept asking for it and announcing eleven. issue.md issue 23. */
-            "You are the AI interviewer for a Malaysian EV vs Hybrid decision guide.",
-            "Ask the user exactly 10 questions, one at a time, in this order:",
-            "",
-            "1. How many kilometres do you drive on a typical day?",
-            "2. How many days a week do you usually drive?",
-            "3. How often do you take long trips over 100 km? (rarely / monthly / weekly)",
-            "4. Where do your long trips usually go? (Klang Valley / north / south / east coast / east Malaysia / across to Singapore)",
-            "5. Can you charge an EV at home? (yes / no)",
-            "6. Can you also charge at your workplace? (yes / no)",
-            "7. What is your home postcode? (5 digits)",
-            "8. Roughly what is your monthly electricity bill in ringgit? (say zero if unsure)",
-            "9. What is your maximum budget for the car, in ringgit?",
-            "10. Are you considering solar panels at home? (yes / no)",
-            "",
-            "RULES:",
-            "- Ask ONE question at a time. Wait for the user's answer.",
-            "- After each answer, briefly confirm what you heard, then ask the next question.",
-            "- Keep responses short and conversational.",
-            "",
-            "AFTER all 10 questions are answered:",
-            "1. Say: \"Let me confirm all your answers.\"",
-            "2. Read back each answer clearly.",
-            "3. Ask: \"Is everything correct? Say yes to confirm, or tell me what to change.\"",
-            "4. If user says yes/confirm/correct → your VERY LAST message must be exactly: INTERVIEW_COMPLETE",
-            "5. If user wants changes → update and re-confirm.",
-            "",
-            "IMPORTANT: When confirmed, end with exactly this word and nothing else: INTERVIEW_COMPLETE",
-          ].join("\n");
+      // Derived from the interview script rather than written out here. This
+      // was a third copy of that script and went stale the day a question was
+      // removed: the advisor kept asking for it. issue.md issue 23.
+      const systemPrompt = buildInterviewPrompt(script, lang);
 
       // --- Import SDK and connect ---
       console.log("[voice] Importing @google/genai...");
@@ -744,9 +699,7 @@ export default function VoiceInterviewPage() {
       sessionReadyRef.current = true;
       console.log("[voice] Session ready, sending initial greeting prompt...");
 
-      const initialGreeting = isBm
-        ? "Perkenalkan diri anda secara ringkas sebagai Penasihat AI VoltPilot. Sapa pengguna, beritahu mereka anda akan bertanya 10 soalan pantas untuk membantu memilih antara EV atau hibrid, kemudian terus tanya soalan pertama: Berapa kilometer anda memandu pada hari biasa?"
-        : "Introduce yourself briefly as the VoltPilot AI Advisor. Greet the user, tell them you will ask 10 quick questions to help decide between an EV or hybrid, then immediately ask the first question: How many kilometres do you drive on a typical day?";
+      const initialGreeting = buildGreeting(script, lang);
 
       session.sendClientContent({
         turns: [

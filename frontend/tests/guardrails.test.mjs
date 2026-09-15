@@ -149,28 +149,17 @@ describe("design system", () => {
 describe("voice interview", () => {
   const src = read(join(ROOT, "app", "interview", "voice", "page.tsx"));
 
-  test("the announced question count matches the questions actually scripted", () => {
-    // The script grew 7 -> 11 and both prompt arrays were rewritten, but the
-    // spoken greeting still promised "7 quick questions". The advisor opened by
-    // announcing a count it contradicted four questions later, and users who
-    // took it at its word hung up before the budget question.
-    const numbered = [...src.matchAll(/"(\d+)\.\s/g)].map((m) => Number(m[1]));
-    const asked = Math.max(...numbered);
-    const announced = [
-      ...src.matchAll(
-        /(?:exactly|all|tepat|semua)\s+(\d+)\s+(?:questions|soalan)|(\d+)\s+(?:quick questions|soalan pantas)/g,
-      ),
-    ].map((m) => Number(m[1] ?? m[2]));
-
-    // en + bm, each stating the count when opening the list, when closing it,
-    // and once more in the greeting.
-    assert.ok(announced.length >= 6, `only ${announced.length} count statements found`);
-    for (const n of announced) {
-      assert.equal(n, asked, `prompt announces ${n} questions but scripts ${asked}`);
-    }
-    for (let i = 1; i <= asked; i++) {
-      assert.ok(numbered.filter((n) => n === i).length >= 2, `question ${i} missing from a language`);
-    }
+  test("the prompt is derived from the interview script, not written out here", () => {
+    // It used to be a third copy of the script, after INTERVIEW_QUESTIONS and the
+    // manual form, spelled out in both languages. It went stale the day the
+    // grid-region question was derived from the postcode and removed: the advisor
+    // kept asking for it and announcing eleven questions in four places. A copy
+    // that cannot be written cannot go stale. issue.md issue 23.
+    const hardcoded = src.match(/"\d+\.\s+[A-Z]/g) ?? [];
+    assert.deepEqual(hardcoded, [], "the voice page numbers its own questions again");
+    assert.match(src, /buildInterviewPrompt\(script, lang\)/, "prompt is not built from the script");
+    assert.match(src, /buildGreeting\(script, lang\)/, "greeting is not built from the script");
+    assert.match(src, /getInterviewScript\(\)/, "the voice page never fetches /config/interview");
   });
 
   test("no second speech recognizer runs alongside Gemini's transcription", () => {
@@ -260,24 +249,16 @@ describe("voice interview", () => {
     assert.match(src, /src\.onended =/, "finished nodes are never released");
   });
 
-  test("the voice script covers every field /interview/form collects", () => {
-    // The two intakes feed the same scoring engine. A field the form asks for
-    // and the voice interview does not is not a missing question — it is a
-    // profile that scores against the engine's fallback anchor instead of the
-    // user's own numbers, silently, with no way to tell from the result.
-    // grid_region was here until 2026-09-14 and is deliberately gone: the form
-    // stopped asking it once engines.grid_region derived it from home_postcode,
-    // which is required. It is not a field voice fails to collect, it is a field
-    // nothing collects any more — so asking for it would be the defect.
-    const topics = {
-      workplace_charging: [/charge at your workplace/i, /mengecas di tempat kerja/i],
-      electricity_bill: [/monthly electricity bill/i, /bil elektrik bulanan/i],
-      budget: [/maximum budget/i, /bajet maksimum/i],
-    };
-    const missing = Object.entries(topics)
-      .filter(([, [en, bm]]) => !en.test(src) || !bm.test(src))
-      .map(([k]) => k);
-    assert.deepEqual(missing, [], "asked on the form but not in the voice script");
+  test("the conversational rules survive, since only they are prompt-only", () => {
+    // Deriving the questions removed the copy; these rules are the part the
+    // interview script genuinely cannot model, so they stay written out — in
+    // the builder now, not the page. This checks they were not lost with the list.
+    const prompt = read(join(ROOT, "lib", "voice-prompt.ts"));
+    for (const rule of [/ONE question at a time|SATU soalan pada satu masa/,
+                        /INTERVIEW_COMPLETE/,
+                        /Read back each answer|Bacakan setiap jawapan/]) {
+      assert.match(prompt, rule, `a conversational rule went missing: ${rule}`);
+    }
   });
 });
 
