@@ -6,6 +6,7 @@ would be wrong if the test failed.
 
 from __future__ import annotations
 
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -23,6 +24,7 @@ from app.services.costing import (  # noqa: E402
     five_year_breakdown,
     insurance_paid,
 )
+from app.services import evidence  # noqa: E402
 from app.services.evidence import charger_mix, used_listings  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -120,19 +122,72 @@ class TestBreakeven:
         assert "note" in out
 
 
+@pytest.fixture
+def used_market_db(tmp_path, monkeypatch):
+    """A stand-in for data/used_market.db.
+
+    The real file is ~14k scraped listings and is gitignored (`*.db`), so it
+    exists on a developer's machine and on no CI runner. These two tests asserted
+    against it directly: one failed on every runner, and the other passed
+    vacuously there because iterating an empty list asserts nothing — which made
+    the guard for the corrupted-price bug (issue 3) worthless in exactly the
+    place it needed to run.
+
+    Building the fixture instead means the query logic is tested everywhere, and
+    the corruption row below is a real assertion rather than an absent one.
+    """
+    db = tmp_path / "used_market.db"
+    con = sqlite3.connect(db)
+    con.execute(
+        """CREATE TABLE listings (
+               vehicle_id TEXT, title TEXT, year INTEGER, mileage_km INTEGER,
+               price_rm REAL, source TEXT, url TEXT)"""
+    )
+    rows = [
+        ("byd-atto-3", f"BYD Atto 3 Extended {2022 + (i % 3)}", 2022 + (i % 3),
+         30_000 + i * 900, 96_000 + i * 700, "carlist", f"https://example.test/a{i}")
+        for i in range(24)
+    ]
+    # The shape issue 3 was about: "RM79,800" parsed as 79. Must be filtered out
+    # by MIN_PLAUSIBLE_PRICE_RM, not surfaced as an astonishing bargain.
+    rows.append(("byd-atto-3", "BYD Atto 3 (corrupted price)", 2023, 40_000, 79.0,
+                 "carlist", "https://example.test/corrupt"))
+    # A row with no year: the query requires `year IS NOT NULL`.
+    rows.append(("byd-atto-3", "BYD Atto 3 (no year)", None, 50_000, 101_000.0,
+                 "carlist", "https://example.test/noyear"))
+    con.executemany("INSERT INTO listings VALUES (?,?,?,?,?,?,?)", rows)
+    con.commit()
+    con.close()
+    monkeypatch.setattr(evidence, "USED_DB", db)
+    return db
+
+
 class TestEvidence:
     """P2 and P7. Two data assets the platform collected and never showed."""
 
-    def test_a_measured_model_has_listings_behind_it(self):
+    def test_a_measured_model_has_listings_behind_it(self, used_market_db):
         out = used_listings("byd-atto-3")
         assert out["available"] and out["total_listings"] > 20
         assert all(l["price_rm"] > 5_000 for l in out["listings"])
 
-    def test_listings_are_never_the_corrupted_prices(self):
+    def test_listings_are_never_the_corrupted_prices(self, used_market_db):
         """Carlist stored prices as text until issue 3; 'RM79,800' read as 79."""
-        for slug in ("byd-atto-3", "honda-city", "toyota-vios"):
-            for listing in used_listings(slug)["listings"]:
-                assert listing["price_rm"] >= 5_000, listing
+        out = used_listings("byd-atto-3")
+        assert out["listings"], "fixture produced nothing, so this asserts nothing"
+        for listing in out["listings"]:
+            assert listing["price_rm"] >= 5_000, listing
+
+    def test_a_model_with_no_listings_reports_unavailable(self, used_market_db):
+        out = used_listings("no-such-model")
+        assert out["available"] is False and out["listings"] == []
+
+    def test_a_missing_database_is_not_an_error(self, tmp_path, monkeypatch):
+        """Production has the file; a fresh checkout does not. The endpoint must
+        say "no evidence" rather than raise."""
+        monkeypatch.setattr(evidence, "USED_DB", tmp_path / "absent.db")
+        assert used_listings("byd-atto-3") == {
+            "available": False, "listings": [], "by_age": []
+        }
 
     def test_charger_mix_separates_fast_from_slow(self):
         mix = charger_mix(home_coordinates("50400"), 20.0)
