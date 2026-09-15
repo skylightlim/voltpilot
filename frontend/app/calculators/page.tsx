@@ -142,19 +142,37 @@ function Unavailable({ text }: { text: string }) {
   );
 }
 
-/** Fetch into state while `enabled`, null otherwise.
+/* How long the inputs must sit still before a request goes out.
  *
- *  The `live` flag is not ceremony: every input here is a slider, so dragging
- *  one fires a request per step and a slow early response would otherwise land
- *  after a fast late one and show a figure for a value nobody is looking at.
+ * Every input on this page is a slider, and one drag from RM30,000 to RM500,000
+ * in RM1,000 steps is 470 changes — each of which used to fire loan, insurance
+ * and depreciation at once. That is over a thousand requests for one gesture,
+ * against a 120/minute limit, so the backend started answering 429 and every
+ * panel on the page went blank for the 47 seconds the Retry-After asked for.
+ *
+ * 250ms is under the ~300ms a deliberate pause takes, so a settled slider still
+ * feels immediate, and a drag now costs one request instead of hundreds.
  */
+const SETTLE_MS = 250;
+
+/** Fetch into state while `enabled`, null otherwise. */
 function useCalc<T>(enabled: boolean, fetcher: () => Promise<T>, deps: unknown[]) {
   const [data, setData] = React.useState<T | null>(null);
   React.useEffect(() => {
     if (!enabled) { setData(null); return; }
     let live = true;
-    fetcher().then((d) => live && setData(d)).catch(() => live && setData(null));
-    return () => { live = false; };
+    // The timer is the debounce; `live` also drops a response from a superseded
+    // render, so a slow early reply cannot overwrite a fast late one.
+    const timer = setTimeout(() => {
+      fetcher()
+        .then((d) => { if (live) setData(d); })
+        // Keep the last good figure. Nulling here is what turned a transient
+        // 429 into an empty card: the number on screen was still correct for
+        // the inputs that produced it, and throwing it away told the user the
+        // calculator was broken rather than busy.
+        .catch(() => {});
+    }, SETTLE_MS);
+    return () => { live = false; clearTimeout(timer); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, ...deps]);
   return data;

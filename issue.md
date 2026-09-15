@@ -44,6 +44,7 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 23 | Voice advisor holds a third copy of the interview script | `frontend/app/interview/voice/page.tsx:596` | Kept asking a question removed on 2026-09-14 | Fixed 2026-09-15, copy removed |
 | 24 | Link previews pointed at a host the project left | `frontend/app/layout.tsx:36` | Every shared link's preview image resolved to a dead Cloudflare domain | Fixed 2026-09-15 |
 | 25 | Voice Advisor needs a key the deploy guide never mentions | `frontend/app/api/live-token/route.ts:20` | Follow DEPLOYMENT.md exactly and voice is silently offline | Fixed 2026-09-15 |
+| 26 | Calculators broke when used quickly | `frontend/app/calculators/page.tsx:156` | One slider drag exhausted the rate limit and blanked every panel for 47s | Fixed 2026-09-15 |
 
 ## State of play
 
@@ -1543,6 +1544,41 @@ production gap.
 **Status. Fixed 2026-09-15.** `DEPLOYMENT.md` now carries a frontend environment
 table covering `BACKEND_URL`, `GEMINI_API_KEYS`, `GEMINI_LIVE_MODEL` and
 `NEXT_PUBLIC_SITE_URL`, and says why the frontend needs a Gemini key of its own.
+
+### 26. The calculators broke when used quickly
+
+**Problem.** Reported as "the calculator breaks when I press the button too
+often". Every input on the page is a slider, and each change fired its
+calculators immediately: moving the price drove loan, insurance and
+depreciation at once. One drag from RM30,000 to RM500,000 in RM1,000 steps is
+470 changes, so over a thousand requests for a single gesture.
+
+`RATE_LIMIT_DEFAULT` is 120 a minute. Measured: 150 rapid calls returned 60 OK
+and **90 rejected**, with `Retry-After: 47`.
+
+**Why it was an issue.** Two faults compounded, and the second is the one the
+user saw. `useCalc` caught the failure and set its state to `null`, so a 429
+did not merely fail to update a panel — it **erased the figure already on
+screen**, for every calculator at once, for the 47 seconds the backend asked
+for. The number being discarded was still correct for the inputs that produced
+it. The page looked broken when it was only busy.
+
+**Status. Fixed 2026-09-15.** Both in `useCalc`, which is where all six
+calculators route through:
+
+- Inputs must sit still for 250ms before a request goes out. Measured in a
+  browser: a 120-step drag fires **3 requests** where it fired hundreds. 250ms
+  is under the pause a deliberate adjustment takes, so a settled slider still
+  answers immediately.
+- A failed request keeps the last good figure instead of nulling. A transient
+  rejection now leaves the answer standing until a later one replaces it.
+
+**The first version of the guard tested nothing.** It drove 120 slider events
+in a synchronous loop, which React batches into one update — so it fired few
+requests even with the debounce removed and passed against the defect. Spaced
+across task ticks, the way a drag actually arrives, it reports **123 requests**
+undebounced and fails. Both tests were then checked against the old behaviour
+before being kept.
 
 ## Suggested order of work
 

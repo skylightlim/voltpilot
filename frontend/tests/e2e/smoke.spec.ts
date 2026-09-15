@@ -145,3 +145,67 @@ test("the language toggle reaches the interview and sets the lang attribute", as
   await page.getByRole("button", { name: "Bahasa Melayu" }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "ms");
 });
+
+test.describe("under abuse", () => {
+  /* Reported as "the calculator breaks when I press the button too often".
+   * Every input is a slider, so one drag was hundreds of requests against a
+   * 120/minute limit, and each 429 blanked a panel for the 47 seconds the
+   * Retry-After asked for. */
+
+  test("a hard drag costs a handful of requests, not hundreds", async ({ page }) => {
+    const called = await stubBackend(page);
+    await page.goto("/calculators");
+    await page.selectOption("select", "custom");
+    await page.waitForTimeout(600);
+
+    const before = called.length;
+    // Spaced across task ticks, the way a real drag arrives. A synchronous loop
+    // is not a faithful simulation: React batches it into a single update, so
+    // it fires few requests even with no debounce at all and guards nothing.
+    await page.locator("#calc-price").evaluate(async (el: HTMLInputElement) => {
+      const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+      for (let v = 60_000; v <= 100_000; v += 1_000) {
+        set.call(el, String(v));
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        await new Promise((r) => setTimeout(r, 10));
+      }
+    });
+    await page.waitForTimeout(1_200);
+
+    // 40 steps drive loan, insurance and depreciation — 120 requests undebounced
+    const fired = called.length - before;
+    expect(fired, `a 40-step drag fired ${fired} requests`).toBeLessThan(15);
+  });
+
+  test("a rate-limited reply keeps the figure already on screen", async ({ page }) => {
+    let reject = false;
+    await page.route(
+      (url) => url.pathname.startsWith("/api/proxy/calculators/"),
+      async (route) => {
+        const name = new URL(route.request().url()).pathname.split("/").pop()!;
+        if (reject) {
+          return route.fulfill({
+            status: 429,
+            contentType: "application/json",
+            body: JSON.stringify({ detail: "Too many requests.", retry_after_seconds: 47 }),
+          });
+        }
+        const body = STUBS[name];
+        if (!body) return route.fulfill({ status: 404, body: "{}" });
+        await route.fulfill({ contentType: "application/json", body: JSON.stringify(body) });
+      },
+    );
+
+    await page.goto("/calculators");
+    await page.selectOption("select", "toyota-vios");
+    const loan = page.locator("div.rounded-lg")
+      .filter({ has: page.getByRole("heading", { name: /Car loan/i }) });
+    await expect(loan).toContainText("RM1,106.61");
+
+    // every further request now fails; moving an input must not erase the answer
+    reject = true;
+    await page.locator("#calc-down").fill("30000");
+    await page.waitForTimeout(1_500);
+    await expect(loan).toContainText("RM1,106.61");
+  });
+});
