@@ -1,149 +1,157 @@
 rank,make,model,units,share_pct
-1,Toyota,Corolla Cross,31432,15.43
-2,Honda,HR-V,15230,7.48
-3,Honda,City,15154,7.44
-4,Nissan,Serena,14347,7.04
-5,Mercedes Benz,C-Class,12114,5.95
-6,Honda,Jazz,11573,5.68
-7,Toyota,Camry,10116,4.97
-8,Toyota,Prius,7670,3.77
-9,Great Wall,Haval H6,7544,3.7
-10,Mercedes Benz,E-Class,7491,3.68
-11,Honda,Civic,7286,3.58
-12,Honda,CR-V,5630,2.76
-13,Proton,e.MAS 7 PHEV,4946,2.43
-14,Mercedes Benz,GLC,4824,2.37
-15,Honda,CR-Z,4778,2.35
-16,Volvo,XC60,4440,2.18
-17,Chery,Tiggo,3558,1.75
-18,Toyota,Vios,3269,1.6
-19,Honda,Insight,2920,1.43
-20,Volvo,XC90,2182,1.07
-21,Mercedes Benz,GLE,2025,0.99
-22,Hyundai,Ioniq,1981,0.97
-23,Volvo,XC40,1894,0.93
-24,Audi,A6,1891,0.93
-25,Lexus,CT,1869,0.92
-26,Toyota,Yaris Cross,1834,0.9
-27,Omoda Jaecoo,Jaecoo J7,1738,0.85
-28,Mercedes Benz,S-Class,1694,0.83
-29,Nissan,Kicks,1596,0.78
-30,Great Wall,Wey G9,1451,0.71
-31,Lexus,RX,1261,0.62
-32,Mercedes Benz,A-Class,793,0.39
-33,Mercedes Benz,GLA,735,0.36
-34,BMW,X3,724,0.36
-35,BMW,7 Series,714,0.35
-36,Lexus,LBX,695,0.34
-37,BMW,5 Series,520,0.26
-38,Toyota,Innova Zenix,340,0.17
-39,Volvo,V60,264,0.13
-40,Toyota,Crown,260,0.13
-41,Great Wall,Tank 500,257,0.13
-42,Omoda Jaecoo,Omoda 9,251,0.12
-43,Porsche,Cayenne,242,0.12
-44,Hyundai,Santa Fe,241,0.12
-45,Lexus,NX,133,0.07
-46,Toyota,Alphard,119,0.06
-47,Toyota,Harrier,115,0.06
-48,Volkswagen,Golf,102,0.05
-49,Mercedes Benz,G-Class,95,0.05
-50,Lexus,LM,93,0.05
-51,Hyundai,Tucson,90,0.04
-52,Toyota,Vellfire,83,0.04
-53,BMW,i8,79,0.04
-54,Audi,Q7,78,0.04
-55,Mercedes Benz,GLB,76,0.04
-56,Volvo,S60,74,0.04
-57,Mazda,CX-8,59,0.03
-58,GAC,M8,52,0.03
-59,Ferrari,296,42,0.02
-60,Volkswagen,Tayron,40,0.02
-61,Mercedes Benz,CLE,37,0.02
-62,Jetour,T2,36,0.02
-63,Volvo,S90,33,0.02
-64,Honda,Prelude,26,0.01
-65,Lamborghini,Revuelto,25,0.01
-66,Toyota,Estima,25,0.01
-67,Brabus,B50,20,0.01
-68,Ferrari,SF90,19,0.01
-69,Great Wall,Tank 300,18,0.01
-70,Mercedes Benz,CLS,18,0.01
-71,Toyota,Fortuner,18,0.01
-72,Toyota,Yaris,18,0.01
-73,Mazda,CX-60,17,0.01
-74,Mercedes Benz,GLS,17,0.01
-75,Mercedes-Maybach,S-Class,16,0.01
-76,Denza,B8,14,0.01
-77,Porsche,Panamera,14,0.01
-78,Brabus,B40,13,0.01
-79,Lamborghini,Urus,13,0.01
-80,Proton,Exora,13,0.01
-81,Mercedes-Maybach,GLS,10,0.0
-82,Lexus,ES,9,0.0
-83,Mercedes Benz,AMG GT,8,0.0
-84,Toyota,Innova,8,0.0
-85,Lexus,LS,6,0.0
-86,Audi,RS6,5,0.0
-87,Land Rover,Range Rover,5,0.0
-88,Porsche,911 Carrera,5,0.0
-89,Toyota,C-HR,5,0.0
-90,Audi,A8,4,0.0
-91,Bentley,Continental Flying Spur,4,0.0
-92,Honda,STEPWGN,4,0.0
-93,Infiniti,M35,4,0.0
-94,LEVC,TX,4,0.0
-95,Lexus,GS,4,0.0
-96,Toyota,RAV4,4,0.0
-97,Chery,Omoda 5,3,0.0
-98,Honda,NSX,3,0.0
-99,McLaren,Artura,3,0.0
-100,Omoda Jaecoo,Jaecoo J5,3,0.0
-101,Omoda Jaecoo,Jaecoo J8,3,0.0
-102,Suzuki,Hustler,3,0.0
-103,Toyota,Century,3,0.0
-104,Toyota,Voxy,3,0.0
-105,BMW,i3,2,0.0
-106,Honda,Fit,2,0.0
-107,Honda,Odyssey,2,0.0
-108,Honda,Vezel,2,0.0
-109,Land Rover,Range Rover Sport,2,0.0
-110,Lexus,LX,2,0.0
-111,Mitsubishi,Outlander,2,0.0
-112,Perodua,Ativa,2,0.0
-113,Toyota,Aqua,2,0.0
-114,Toyota,Corolla Altis,2,0.0
-115,Toyota,Sai,2,0.0
-116,Audi,A4,1,0.0
-117,Audi,S5,1,0.0
-118,Audi,TT,1,0.0
-119,BMW,X5,1,0.0
-120,BMW,X7,1,0.0
-121,Bentley,Continental GT,1,0.0
-122,Ferrari,Purosangue,1,0.0
-123,Great Wall,Haval H2,1,0.0
-124,Honda,Shuttle,1,0.0
-125,Honda,ZR-V,1,0.0
-126,Hyundai,Genesis G90,1,0.0
-127,Jeep,Cherokee,1,0.0
-128,Jetour,T1,1,0.0
-129,Land Rover,Defender,1,0.0
-130,Lexus,HS,1,0.0
-131,Lexus,IS,1,0.0
-132,Lexus,UX,1,0.0
-133,Maserati,Ghibli,1,0.0
-134,Mazda,Axela,1,0.0
-135,Mini,Countryman,1,0.0
-136,Mitsubishi,Delica,1,0.0
-137,Nissan,Note,1,0.0
-138,Nissan,Roox,1,0.0
-139,Peugeot,3008,1,0.0
-140,Porsche,911,1,0.0
-141,Proton,Satria,1,0.0
-142,Toyota,Avanza,1,0.0
-143,Toyota,Corolla,1,0.0
-144,Toyota,Hilux,1,0.0
-145,Toyota,Noah,1,0.0
-146,Toyota,Previa,1,0.0
-147,Toyota,Sienta,1,0.0
-148,Toyota,Vitz,1,0.0
+1,Toyota,Corolla Cross,32021,15.35
+2,Honda,HR-V,15437,7.4
+3,Honda,City,15205,7.29
+4,Nissan,Serena,14551,6.97
+5,Mercedes Benz,C-Class,12181,5.84
+6,Honda,Jazz,11573,5.55
+7,Toyota,Camry,10142,4.86
+8,Great Wall,Haval H6,7849,3.76
+9,Toyota,Prius,7671,3.68
+10,Mercedes Benz,E-Class,7529,3.61
+11,Honda,Civic,7318,3.51
+12,Honda,CR-V,5827,2.79
+13,Proton,e.MAS 7 PHEV,5562,2.67
+14,Mercedes Benz,GLC,4879,2.34
+15,Honda,CR-Z,4778,2.29
+16,Volvo,XC60,4455,2.14
+17,Toyota,Vios,3750,1.8
+18,Honda,Insight,2920,1.4
+19,Toyota,Yaris Cross,2558,1.23
+20,Volvo,XC90,2214,1.06
+21,Mercedes Benz,GLE,2039,0.98
+22,Hyundai,Ioniq,1981,0.95
+23,Omoda Jaecoo,Jaecoo J7,1945,0.93
+24,Volvo,XC40,1894,0.91
+25,Audi,A6,1891,0.91
+26,Lexus,CT,1869,0.9
+27,Great Wall,Wey G9,1769,0.85
+28,Mercedes Benz,S-Class,1698,0.81
+29,Nissan,Kicks,1649,0.79
+30,Chery,Tiggo,1446,0.69
+31,Lexus,RX,1296,0.62
+32,Chery,Tiggo Cross,1165,0.56
+33,Chery,Tiggo 7,1050,0.5
+34,Mercedes Benz,A-Class,794,0.38
+35,BMW,X3,769,0.37
+36,Mercedes Benz,GLA,747,0.36
+37,BMW,7 Series,719,0.34
+38,Lexus,LBX,703,0.34
+39,BMW,5 Series,533,0.26
+40,Toyota,Innova Zenix,348,0.17
+41,Omoda Jaecoo,Omoda 9,302,0.14
+42,Toyota,Crown,286,0.14
+43,Great Wall,Tank 500,271,0.13
+44,Hyundai,Santa Fe,264,0.13
+45,Volvo,V60,264,0.13
+46,Porsche,Cayenne,254,0.12
+47,Lexus,NX,155,0.07
+48,Chery,Tiggo 8,139,0.07
+49,Toyota,Harrier,136,0.07
+50,Toyota,Alphard,127,0.06
+51,Volkswagen,Golf,120,0.06
+52,Hyundai,Tucson,115,0.06
+53,Lexus,LM,105,0.05
+54,Mercedes Benz,G-Class,95,0.05
+55,Audi,Q7,93,0.04
+56,Toyota,Vellfire,91,0.04
+57,BMW,i8,79,0.04
+58,Mercedes Benz,GLB,78,0.04
+59,Volkswagen,Tayron,75,0.04
+60,Volvo,S60,74,0.04
+61,Mazda,CX-8,71,0.03
+62,GAC,M8,55,0.03
+63,Jetour,T2,55,0.03
+64,Ferrari,296,43,0.02
+65,Mercedes Benz,CLE,38,0.02
+66,Honda,Prelude,34,0.02
+67,Volvo,S90,33,0.02
+68,Great Wall,Tank 300,31,0.01
+69,Lamborghini,Revuelto,25,0.01
+70,Toyota,Estima,25,0.01
+71,Brabus,B50,20,0.01
+72,Ferrari,SF90,19,0.01
+73,Mercedes Benz,CLS,18,0.01
+74,Toyota,Fortuner,18,0.01
+75,Toyota,Yaris,18,0.01
+76,Mazda,CX-60,17,0.01
+77,Mercedes Benz,GLS,17,0.01
+78,Mercedes-Maybach,S-Class,16,0.01
+79,Denza,B8,14,0.01
+80,Lamborghini,Urus,14,0.01
+81,Porsche,Panamera,14,0.01
+82,Brabus,B40,13,0.01
+83,Proton,Exora,13,0.01
+84,Lexus,ES,10,0.0
+85,Mercedes-Maybach,GLS,10,0.0
+86,Mercedes Benz,AMG GT,8,0.0
+87,Toyota,Innova,8,0.0
+88,Lexus,LS,6,0.0
+89,Audi,RS6,5,0.0
+90,Land Rover,Range Rover,5,0.0
+91,Porsche,911 Carrera,5,0.0
+92,Toyota,C-HR,5,0.0
+93,Audi,A8,4,0.0
+94,Bentley,Continental Flying Spur,4,0.0
+95,Honda,STEPWGN,4,0.0
+96,Infiniti,M35,4,0.0
+97,LEVC,TX,4,0.0
+98,Lexus,GS,4,0.0
+99,Toyota,RAV4,4,0.0
+100,Chery,Omoda 5,3,0.0
+101,Honda,NSX,3,0.0
+102,Honda,Odyssey,3,0.0
+103,Land Rover,Range Rover Sport,3,0.0
+104,McLaren,Artura,3,0.0
+105,Omoda Jaecoo,Jaecoo J5,3,0.0
+106,Omoda Jaecoo,Jaecoo J8,3,0.0
+107,Suzuki,Hustler,3,0.0
+108,Toyota,Century,3,0.0
+109,Toyota,Voxy,3,0.0
+110,BMW,i3,2,0.0
+111,Honda,Fit,2,0.0
+112,Honda,Vezel,2,0.0
+113,Lexus,IS,2,0.0
+114,Lexus,LX,2,0.0
+115,Mitsubishi,Outlander,2,0.0
+116,Perodua,Ativa,2,0.0
+117,Toyota,Aqua,2,0.0
+118,Toyota,Corolla Altis,2,0.0
+119,Toyota,Sai,2,0.0
+120,Audi,A4,1,0.0
+121,Audi,S5,1,0.0
+122,Audi,TT,1,0.0
+123,BMW,X5,1,0.0
+124,BMW,X7,1,0.0
+125,Bentley,Continental GT,1,0.0
+126,Chery,Tiggo 7 Pro,1,0.0
+127,Ferrari,Purosangue,1,0.0
+128,Ferrari,Roma,1,0.0
+129,Great Wall,Haval H2,1,0.0
+130,Honda,Shuttle,1,0.0
+131,Honda,ZR-V,1,0.0
+132,Hyundai,Genesis G90,1,0.0
+133,Jeep,Cherokee,1,0.0
+134,Jetour,T1,1,0.0
+135,Lamborghini,Temerario,1,0.0
+136,Land Rover,Defender,1,0.0
+137,Lepas,L6,1,0.0
+138,Lepas,L8,1,0.0
+139,Lexus,HS,1,0.0
+140,Lexus,UX,1,0.0
+141,Maserati,Ghibli,1,0.0
+142,Mazda,Axela,1,0.0
+143,Mini,Countryman,1,0.0
+144,Mitsubishi,Delica,1,0.0
+145,Nissan,Note,1,0.0
+146,Nissan,Roox,1,0.0
+147,Peugeot,3008,1,0.0
+148,Porsche,911,1,0.0
+149,Proton,Satria,1,0.0
+150,Toyota,Avanza,1,0.0
+151,Toyota,Corolla,1,0.0
+152,Toyota,Hilux,1,0.0
+153,Toyota,Noah,1,0.0
+154,Toyota,Previa,1,0.0
+155,Toyota,Sienta,1,0.0
+156,Toyota,Vitz,1,0.0
