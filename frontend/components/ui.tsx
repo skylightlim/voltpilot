@@ -276,6 +276,12 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
             {t("nav.cars")}
           </a>
           <a
+            href="/calculators"
+            className={`${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
+          >
+            {t("nav.calcs")}
+          </a>
+          <a
             href="/methodology"
             className={`${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
           >
@@ -490,6 +496,11 @@ export function Footer({ dark = false }: { dark?: boolean }) {
                 <li>
                   <a className="hover:underline text-ink/80" href="/#cars">
                     {t("ft.cars")}
+                  </a>
+                </li>
+                <li>
+                  <a className="hover:underline text-ink/80" href="/calculators">
+                    {t("nav.calcs")}
                   </a>
                 </li>
                 <li>

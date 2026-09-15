@@ -9,16 +9,8 @@ import { Stagger } from "@/components/motion";
 import { getPostcodeArea } from "@/lib/postcode";
 import { SESSION, type Profile } from "@/lib/api";
 import { CHOICE_LABELS } from "@/lib/interview-script";
-import { useT, useLang, type StrKey } from "@/lib/i18n";
-
-/** Small-caps field label sitting above every control. */
-function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
-  return (
-    <label htmlFor={htmlFor} className="block text-[12px] font-semibold text-muted">
-      {children}
-    </label>
-  );
-}
+import { useT, useLang } from "@/lib/i18n";
+import { FieldLabel, RangeField } from "@/components/RangeField";
 
 /** Section heading with the hairline rule that separates the form's three groups. */
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -34,81 +26,8 @@ const inputCls =
   "mt-1.5 w-full rounded-md border border-transparent bg-parchment px-4 py-3 text-[16px] " +
   "font-medium text-ink outline-none transition-colors focus:border-primary focus:bg-card";
 
-/**
- * Slider-first numeric field, shaped like the weighting studio's sliders:
- * label + value on top, track, then the band's end captions. The value itself
- * stays editable so the rare driver outside the band (an e-hailing 300 km day,
- * a RM 750k budget) is never locked out by the track's ends.
- */
-function RangeField({
-  id,
-  label,
-  min,
-  max,
-  step,
-  hardMax,
-  value,
-  onChange,
-  caption,
-  zeroLabel,
-}: {
-  id: string;
-  label: string;
-  min: number;
-  max: number;
-  step: number;
-  hardMax: number;
-  value: number;
-  onChange: (v: number) => void;
-  caption: (v: number) => string;
-  zeroLabel?: string;
-}) {
-  /* The box hugs its value instead of sitting in a fixed 128px well. The face is
-     mono with tabular-nums, so every digit is exactly 1ch and this is exact
-     rather than approximate. 1.5rem covers px-2.5 on both sides plus the border. */
-  const shown = value ? String(value) : (zeroLabel ?? "");
-  const chars = Math.max(shown.length, 3);
 
-  return (
-    <div>
-      <div className="flex items-center justify-between gap-3">
-        <FieldLabel htmlFor={id}>{label}</FieldLabel>
-        <input
-          type="number"
-          inputMode="numeric"
-          aria-label={label}
-          min={0}
-          max={hardMax}
-          step={step}
-          placeholder={zeroLabel}
-          value={value || ""}
-          onChange={(e) =>
-            onChange(Math.min(hardMax, Math.max(0, Number(e.target.value))))
-          }
-          style={{ width: `calc(${chars}ch + 1.5rem)` }}
-          className="max-w-full shrink-0 rounded-md border border-transparent bg-parchment px-2.5 py-1 text-center font-mono text-[15px] font-bold text-primary tabular-nums outline-none transition-[width,background-color,border-color] duration-150 placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-        />
-      </div>
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        aria-label={label}
-        // a value typed past the band pins the thumb at that end
-        value={Math.min(max, Math.max(min, value))}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="slider mt-3"
-      />
-      <div className="mt-1.5 flex justify-between font-mono text-[10px] uppercase tracking-wider text-muted">
-        <span>{caption(min)}</span>
-        <span>{caption(max)}+</span>
-      </div>
-    </div>
-  );
-}
-
+/** Small-caps field label sitting above every control. */
 /** Pill switch — the yes/no controls VoltPilot uses for the three charging flags. */
 function Toggle({
   id,
@@ -291,24 +210,11 @@ export default function CalculatorFormPage() {
               />
             </div>
 
+            {/* The Peninsular / East Malaysia selector was removed: the grid is
+                derived from home_postcode, which is required and maps to exactly
+                one state (engines.grid_region). Asking made two answers that
+                cannot disagree in reality able to contradict each other. */}
             <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <FieldLabel htmlFor="grid_region">{t("cf.region")}</FieldLabel>
-                <select
-                  id="grid_region"
-                  value={p.grid_region}
-                  onChange={(e) =>
-                    set({ grid_region: e.target.value as Profile["grid_region"] })
-                  }
-                  className={inputCls}
-                >
-                  {(["peninsular", "east_malaysia"] as const).map((r) => (
-                    <option key={r} value={r}>
-                      {t(`cf.region.${r}` as StrKey)}
-                    </option>
-                  ))}
-                </select>
-              </div>
               <Toggle
                 id="can_charge_work"
                 label={t("cf.work")}

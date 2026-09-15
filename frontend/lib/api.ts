@@ -30,6 +30,51 @@ export type Profile = {
 /** RON95 is subsidised to RM1.99 under BUDI95; its market price is RM3.77.
  *  Which one holds for the five years someone owns the car is a policy
  *  question, so the ranking can be asked under either. */
+/* --- calculators (stateless; no token, no profile) --------------------- */
+export type LoanResult = {
+  price_rm: number; down_payment_rm: number; down_payment_pct: number;
+  financed_rm: number; flat_rate_pct: number; tenure_years: number;
+  monthly_rm: number; total_interest_rm: number; total_payable_rm: number;
+  effective_rate_pct: number; basis: string;
+};
+export type InsuranceResult = {
+  sum_insured_rm: number; vehicle_type: string; region: string;
+  policy_year: number; ncd_pct: number; premium_rm: number; basis: string;
+};
+export type RoadTaxResult = {
+  road_tax_rm: number | null; basis: string;
+  engine_cc?: number; non_saloon?: boolean; slug?: string; type?: string;
+};
+export type Affordability = {
+  monthly_budget_rm: number; down_payment_rm: number; tenure_years: number;
+  flat_rate_pct: number; max_price_rm: number; financed_rm: number;
+  total_interest_rm: number; cars_in_range: number; catalog_total: number;
+  examples: { slug: string; label: string; type: string; price_rm: number }[];
+  basis: string;
+};
+export type DepreciationYear = {
+  year: number; retained_pct: number; value_rm: number; lost_rm: number;
+};
+export type DepreciationResult = {
+  price_rm: number; vehicle_type: string; slug: string | null; years: number;
+  k_per_year: number; basis: "measured" | "type_curve" | "fallback";
+  schedule: DepreciationYear[]; value_rm: number;
+  total_depreciation_rm: number; basis_note: string;
+};
+export type OwnershipResult = {
+  slug: string; label: string; type: string; price_rm: number; annual_km: number;
+  can_charge_home: boolean; fuel_scenario: string; running_cost_rm_yr: number;
+  co2_kg_yr: number; years: number; total_rm: number; per_month_rm: number;
+  per_km_rm: number; resale_value_rm: number; retained_pct: number;
+  retained_basis: string; maintenance_basis: string; lines: CostLine[];
+};
+
+export type CalcVehicle = {
+  slug: string; label: string; type: "ev" | "hybrid" | "phev";
+  price_rm: number; engine_cc: number; road_tax_rm: number | null;
+  loan_rate_pct: number | null;
+};
+
 export type FuelScenario = "subsidised" | "market";
 
 export type CostLine = { key: string; amount_rm: number; share: number };
@@ -209,6 +254,14 @@ function kindForStatus(status: number): ApiErrorKind {
   return "unknown";
 }
 
+function qs(params: Record<string, string | number | boolean | undefined>): string {
+  const out = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== null && v !== "") out.set(k, String(v));
+  }
+  return out.toString();
+}
+
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
@@ -302,6 +355,29 @@ export const apiService = {
       body: JSON.stringify({ token, profile, weights, fuel_scenario }),
     }),
   getResults: (token: string) => api<any>(`/results/${token}`),
+
+  /* Calculators. Stateless, so they take plain numbers rather than a token. */
+  getCalcVehicles: () => api<{ vehicles: CalcVehicle[]; count: number }>("/calculators/vehicles"),
+  getLoan: (q: {
+    price_rm: number; vehicle_type: string; down_payment_rm?: number;
+    tenure_years?: number; flat_rate_pct?: number;
+  }) => api<LoanResult>(`/calculators/loan?${qs(q)}`),
+  getInsurance: (q: {
+    sum_insured_rm: number; vehicle_type: string; engine_cc?: number;
+    policy_year?: number; east_malaysia?: boolean;
+  }) => api<InsuranceResult>(`/calculators/insurance?${qs(q)}`),
+  getRoadTax: (q: { engine_cc?: number; non_saloon?: boolean; slug?: string }) =>
+    api<RoadTaxResult>(`/calculators/road-tax?${qs(q)}`),
+  getAffordability: (q: {
+    monthly_budget_rm: number; vehicle_type: string; tenure_years?: number;
+    down_payment_rm?: number;
+  }) => api<Affordability>(`/calculators/affordability?${qs(q)}`),
+  getDepreciation: (q: {
+    price_rm: number; vehicle_type: string; slug?: string; years?: number;
+  }) => api<DepreciationResult>(`/calculators/depreciation?${qs(q)}`),
+  getOwnership: (q: {
+    slug: string; annual_km?: number; can_charge_home?: boolean; fuel_scenario?: string;
+  }) => api<OwnershipResult>(`/calculators/ownership?${qs(q)}`),
   getRecommendation: (token: string) => api<any>(`/results/${token}/recommendation`),
   getInfrastructure: (token: string) =>
     api<{
