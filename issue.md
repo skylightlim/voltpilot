@@ -45,6 +45,7 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 24 | Link previews pointed at a host the project left | `frontend/app/layout.tsx:36` | Every shared link's preview image resolved to a dead Cloudflare domain | Fixed 2026-09-15 |
 | 25 | Voice Advisor needs a key the deploy guide never mentions | `frontend/app/api/live-token/route.ts:20` | Follow DEPLOYMENT.md exactly and voice is silently offline | Fixed 2026-09-15 |
 | 26 | Calculators broke when used quickly | `frontend/app/calculators/page.tsx:156` | One slider drag exhausted the rate limit and blanked every panel for 47s | Fixed 2026-09-15 |
+| 27 | Home-charging control shown where it cannot act | `frontend/app/calculators/page.tsx:561` | A hybrid's total is identical either way, so the control read as broken | Fixed 2026-09-15 |
 
 ## State of play
 
@@ -1579,6 +1580,36 @@ requests even with the debounce removed and passed against the defect. Spaced
 across task ticks, the way a drag actually arrives, it reports **123 requests**
 undebounced and fails. Both tests were then checked against the old behaviour
 before being kept.
+
+### 27. The home-charging control was shown where it cannot act
+
+**Problem.** Reported as "this element does not change anything", pointing at
+the "I can charge at home" checkbox in the five-year ownership panel.
+
+It was wired correctly and did change the answer. It was shown for every
+drivetrain, including the one it cannot affect. Measured at 15,000 km a year:
+
+| | can charge at home | cannot |
+| --- | --- | --- |
+| BYD M6, EV | RM96,361 | RM102,476 |
+| BMW 7 Series, PHEV | RM591,236 | RM591,821 |
+| Toyota Vios, hybrid | RM67,484 | RM67,484 |
+
+**Why it was an issue.** A hybrid runs on petrol, so `energy_engine` never reads
+`can_charge_home` for one and the total is identical to the ringgit. Offering a
+control that provably cannot move the number teaches a user that the page is
+broken — and the first thing they will then distrust is the figures that are
+correct. It is the same fault as scoring a seat count nobody asked about: the
+interface claiming something the model does not do.
+
+**Status. Fixed 2026-09-15.** The checkbox appears for `ev` and `phev`, the two
+drivetrains that take a charge. A hybrid gets one line instead: "This one runs
+on petrol, so home charging does not change its cost." Hiding it silently would
+have left the same question unanswered, one switch later.
+
+The stubbed backend in the browser test had to be taught to vary with
+`can_charge_home` first. A fixed stub returns the same total whatever is ticked,
+so a test of this control would have passed against the defect.
 
 ## Suggested order of work
 

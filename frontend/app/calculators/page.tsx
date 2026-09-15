@@ -558,14 +558,26 @@ export default function CalculatorsPage() {
                   value={annualKm} onChange={setAnnualKm}
                   caption={(v) => `${Math.round(v / 1000)}k`}
                 />
-                <label className="flex items-center gap-2 self-end pb-2.5 text-[14px] text-ink">
-                  <input
-                    type="checkbox"
-                    checked={homeCharge}
-                    onChange={(e) => setHomeCharge(e.target.checked)}
-                  />
-                  {t("calcs.homeCharge")}
-                </label>
+                {/* Only a car that can take a charge is affected by this.
+                    Measured at 15,000 km a year: a BYD M6 moves RM96,361 to
+                    RM102,476 and a PHEV moves RM591,236 to RM591,821, while a
+                    Toyota Vios is RM67,484 either way — it runs on petrol. The
+                    control was shown for all three, so on a hybrid it looked
+                    broken, which is how this was reported. */}
+                {selected.type === "hybrid" ? (
+                  <p className="self-end pb-2.5 text-[12.5px] leading-relaxed text-muted">
+                    {t("calcs.petrolOnly")}
+                  </p>
+                ) : (
+                  <label className="flex items-center gap-2 self-end pb-2.5 text-[14px] text-ink">
+                    <input
+                      type="checkbox"
+                      checked={homeCharge}
+                      onChange={(e) => setHomeCharge(e.target.checked)}
+                    />
+                    {t("calcs.homeCharge")}
+                  </label>
+                )}
               </div>
               {own && (
                 <div className="mt-5">

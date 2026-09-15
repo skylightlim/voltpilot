@@ -66,8 +66,14 @@ async function stubBackend(page: Page): Promise<string[]> {
     async (route) => {
       const name = new URL(route.request().url()).pathname.split("/").pop()!;
       called.push(name);
-      const body = STUBS[name];
+      let body = STUBS[name];
       if (!body) return route.fulfill({ status: 404, body: "{}" });
+      // Vary with the input, or a test of the home-charging control asserts
+      // nothing: a fixed stub returns the same total whatever is ticked.
+      if (name === "ownership") {
+        const home = new URL(route.request().url()).searchParams.get("can_charge_home") !== "false";
+        body = { ...(body as object), total_rm: home ? 67484 : 73599, can_charge_home: home };
+      }
       await route.fulfill({ contentType: "application/json", body: JSON.stringify(body) });
     },
   );
@@ -207,5 +213,39 @@ test.describe("under abuse", () => {
     await page.locator("#calc-down").fill("30000");
     await page.waitForTimeout(1_500);
     await expect(loan).toContainText("RM1,106.61");
+  });
+});
+
+
+test.describe("home charging", () => {
+  /* Reported as "this element does not change anything". It was wired
+   * correctly and did change an EV's total; it was shown on hybrids too, where
+   * it provably cannot act, because a hybrid runs on petrol. Measured at
+   * 15,000 km/yr: BYD M6 RM96,361 -> RM102,476, a PHEV RM591,236 -> RM591,821,
+   * Toyota Vios RM67,484 either way. */
+
+  const fiveYear = (page: Page) =>
+    page.locator("div.rounded-lg").filter({ has: page.getByRole("heading", { name: /Five-year cost/i }) });
+
+  test("an electric car offers it, and it moves the total", async ({ page }) => {
+    await stubBackend(page);
+    await page.goto("/calculators");
+    await page.selectOption("select", "byd-m6");
+
+    const box = fiveYear(page).locator('input[type="checkbox"]');
+    await expect(box).toBeChecked();
+    await expect(fiveYear(page)).toContainText("RM67,484");
+
+    await box.uncheck();
+    await expect(fiveYear(page)).toContainText("RM73,599");
+  });
+
+  test("a hybrid is told why it is not offered, rather than shown a dead control", async ({ page }) => {
+    await stubBackend(page);
+    await page.goto("/calculators");
+    await page.selectOption("select", "toyota-vios");
+
+    await expect(fiveYear(page).locator('input[type="checkbox"]')).toHaveCount(0);
+    await expect(fiveYear(page)).toContainText(/runs on petrol/i);
   });
 });

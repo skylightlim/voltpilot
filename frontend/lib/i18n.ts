@@ -632,6 +632,10 @@ const S = {
   "calcs.ownership": ["Five-year cost of ownership", "Kos pemilikan lima tahun"],
   "calcs.annualKm": ["Annual mileage (km)", "Jarak tahunan (km)"],
   "calcs.homeCharge": ["I can charge at home", "Saya boleh mengecas di rumah"],
+  "calcs.petrolOnly": [
+    "This one runs on petrol, so home charging does not change its cost.",
+    "Kereta ini menggunakan petrol, jadi pengecasan di rumah tidak mengubah kosnya.",
+  ],
   "calcs.fiveYearTotal": ["Five-year total", "Jumlah lima tahun"],
   "calcs.perKm": ["Cost per km", "Kos sekilometer"],
   "calcs.pickFirst": ["Pick a car above to see this.", "Pilih kereta di atas untuk melihat ini."],
