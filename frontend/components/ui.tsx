@@ -20,7 +20,7 @@ export function Button({
   size?: "sm" | "md" | "lg" | "xl" | "icon";
 }) {
   const base =
-    "group pressable tap-target inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-[480] tracking-[-0.005em] transition-[background-color,color,border-color,box-shadow] duration-200 disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer";
+    "group pressable tap-target inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-[480] tracking-[-0.005em] disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer";
 
   const variants = {
     primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover shadow-sm hover:shadow-md",
@@ -70,7 +70,7 @@ export function Card({
   return (
     <div
       onClick={onClick}
-      className={`rounded-lg border ${tones[tone]} transition-[background-color,border-color,box-shadow,color] duration-200 ${onClick ? "cursor-pointer pressable hover:border-line-strong" : ""} ${className}`}
+      className={`rounded-lg border ${tones[tone]} transition-[background-color,border-color,box-shadow,color] ${onClick ? "cursor-pointer pressable hover:border-line-strong" : ""} ${className}`}
     >
       {children}
     </div>
@@ -262,10 +262,23 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
           />
         </Link>
 
+        {/* Nothing here can wrap or shrink (flex-nowrap + whitespace-nowrap), so
+            the row must be made to FIT rather than be allowed to overflow. At
+            1024 it needed 1151px in EN and 1078px in BM, and the excess was
+            clipped off the right edge rather than scrolled to — which is what
+            "the site is offset to the right" looked like.
+
+            The fix is not to raise this group to xl: there is no mobile menu,
+            so below the breakpoint these four links do not exist at all, and
+            xl would blank the nav for every 1024-1280 laptop. Instead only the
+            long one steps back. "Live Commute Savings Calculator" is ~245px
+            against 60-100px for its siblings, and it is an anchor to a widget
+            already on screen on the homepage — the cheapest of the four to
+            drop, and the only one that has to go for the row to fit. */}
         <div className="hidden lg:flex flex-nowrap items-center gap-6 whitespace-nowrap text-[16px] font-medium">
           <a
             href="/#calculator"
-            className={`${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
+            className={`hidden xl:block ${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
           >
             {t("nav.calc")}
           </a>

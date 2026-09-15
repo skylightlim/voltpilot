@@ -79,6 +79,8 @@ export function Stagger({
   stagger = 0.09,
   duration = 0.6,
   immediate = false,
+  from = "start",
+  jitter = 0,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -86,6 +88,14 @@ export function Stagger({
   y?: number;
   stagger?: number;
   duration?: number;
+  /** Where the cascade originates, as anime.js parameterises it. "start" walks
+   *  the DOM order; "center" and "edges" read as the row assembling itself
+   *  rather than sweeping past, which suits a symmetric band of 3 equal tiles
+   *  far better than a left-to-right wipe. GSAP takes the same vocabulary. */
+  from?: "start" | "end" | "center" | "edges" | "random";
+  /** Seconds of randomness added per item, to break the metronome on longer
+   *  lists. Keep small — past ~0.06 the cascade stops reading as one gesture. */
+  jitter?: number;
   /** Above-the-fold content that should animate on mount rather than on scroll.
    *  A ScrollTrigger parks items at autoAlpha:0 during layout and only releases
    *  them after its own refresh pass, so on a page that opens at the top the
@@ -115,8 +125,16 @@ export function Stagger({
           // budget: 240ms per element rather than 600ms. expo.out is GSAP's
           // equivalent of the house --ease-smooth curve.
           duration: immediate ? 0.24 : duration,
-          stagger: immediate ? 0.04 : stagger,
+          stagger: {
+            each: immediate ? 0.04 : stagger,
+            // GSAP shares anime.js's vocabulary here, except that "start" is
+            // spelled as the index 0.
+            from: from === "start" ? 0 : from,
+          },
           ease: immediate ? "expo.out" : EASE_OUT,
+          ...(jitter
+            ? { delay: () => gsap.utils.random(0, jitter) }
+            : {}),
           onComplete: restore,
           ...(immediate
             ? {}
@@ -125,7 +143,7 @@ export function Stagger({
       );
     });
     return () => mm.revert();
-  }, [selector, y, stagger, duration, immediate]);
+  }, [selector, y, stagger, duration, immediate, from, jitter]);
   return (
     <div ref={ref} className={className}>
       {children}
@@ -536,5 +554,70 @@ export function ScrubStagger({
     <div ref={ref} className={className}>
       {children}
     </div>
+  );
+}
+
+/**
+ * A figure that glides to its new value instead of snapping.
+ *
+ * Every number on the commute widget is downstream of a slider, so dragging
+ * repaints them all on every input event. Jumping is what makes a live readout
+ * feel like a spreadsheet recalculating rather than a dial responding — the
+ * numbers arrive before the eye can follow them anywhere.
+ *
+ * The tween retargets rather than restarting: `overwrite: "auto"` kills the
+ * in-flight tween and the next one starts from wherever the value had got to,
+ * so a continuous drag reads as one smooth follow rather than a stack of
+ * competing 300ms animations. That is the whole trick; without it a drag
+ * queues dozens of tweens and the figure visibly stutters.
+ */
+const groupedInt = (n: number) => Math.round(n).toLocaleString("en-MY");
+
+export function AnimatedNumber({
+  value,
+  format = groupedInt,
+  duration = 0.34,
+  className = "",
+}: {
+  value: number;
+  format?: (n: number) => string;
+  duration?: number;
+  className?: string;
+}) {
+  const ref = React.useRef<HTMLSpanElement>(null);
+  // Not state: this is the tween's own scratch value, and putting it in state
+  // would re-render on every frame to write a string a ref can write directly.
+  const shown = React.useRef(value);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      shown.current = value;
+      el.textContent = format(value);
+      return;
+    }
+    const proxy = { n: shown.current };
+    const tween = gsap.to(proxy, {
+      n: value,
+      duration,
+      ease: "power2.out",
+      overwrite: "auto",
+      onUpdate: () => {
+        shown.current = proxy.n;
+        el.textContent = format(proxy.n);
+      },
+    });
+    return () => {
+      tween.kill();
+    };
+  }, [value, duration, format]);
+
+  // Rendered with the current value so SSR and the first paint agree; the
+  // effect takes over from there.
+  return (
+    <span ref={ref} className={className}>
+      {format(value)}
+    </span>
   );
 }

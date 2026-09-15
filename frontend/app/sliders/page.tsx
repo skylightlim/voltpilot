@@ -8,6 +8,7 @@ import { ScrollRefresh } from "@/components/motion";
 import { RadarChart } from "@/components/charts/RadarChart";
 import { useT, type StrKey } from "@/lib/i18n";
 import { ApiError, SESSION, apiService, type Weights } from "@/lib/api";
+import { Slider } from "@/components/Slider";
 
 const SLIDERS: { key: keyof Weights; icon: React.ReactNode; p: string; color: string }[] = [
   { key: "future_proofing", icon: <ShieldCheck className="h-4.5 w-4.5" />, p: "fut", color: "text-amber-600" },
@@ -85,7 +86,7 @@ export default function SlidersPage() {
           of each breaking mid-phrase. */}
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5">
         <button
-          className="pressable tap-target -ml-1 flex shrink-0 items-center gap-1.5 whitespace-nowrap px-1 text-[16px] font-medium text-muted transition-colors hover:text-ink"
+          className="pressable tap-target -ml-1 flex shrink-0 items-center gap-1.5 whitespace-nowrap px-1 text-[16px] font-medium text-muted hover:text-ink"
           onClick={() => router.push("/interview/form")}
         >
           <ArrowLeft className="h-4 w-4 shrink-0" /> {t("sl.back")}
@@ -118,7 +119,7 @@ export default function SlidersPage() {
               <button
                 key={key}
                 onClick={() => setWeights(p.values)}
-                className={`pressable inline-flex min-h-11 items-center rounded-full px-4 text-[13px] font-semibold transition-all border ${
+                className={`pressable inline-flex min-h-11 items-center rounded-full px-4 text-[13px] font-semibold border ${
                   isActive
                     ? "bg-primary border-primary text-white"
                     : "bg-white border-line text-muted hover:text-ink"
@@ -148,14 +149,13 @@ export default function SlidersPage() {
                 {Math.round(weights[s.key])}%
               </span>
             </div>
-            <input
-              type="range"
+            <Slider
               min={0}
               max={100}
               step={1}
               aria-label={plain(t(`sl.${s.p}.t` as StrKey))}
               value={weights[s.key]}
-              className="slider mt-4"
+              className="mt-4"
               onChange={(e) => setWeights((w) => ({ ...w, [s.key]: Number(e.target.value) }))}
             />
             <div className="mt-1.5 flex justify-between font-mono text-[10px] uppercase text-muted tracking-wider">

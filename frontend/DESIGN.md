@@ -62,8 +62,12 @@ scroll" means scrub.
 ### Forbidden
 - **Pinned sections.** No `ScrollTrigger.pin`, no scroll-jacking, no `scroller-proxy`
   smooth-scroll hijack. Decided explicitly: the page must scroll at native speed.
-- New animation dependencies. GSAP 3.15 + ScrollTrigger are installed and registered;
-  they are sufficient.
+- New animation dependencies. GSAP 3.13 + ScrollTrigger are installed and registered;
+  they are sufficient. **Evaluated 2026-09-15 and declined:** `motion.dev` and `anime.js`
+  are both runtime deps and neither buys anything GSAP does not already do here. What was
+  taken from them is design, not code — see §8. `rareui.com` ships shadcn-CLI vendored
+  source rather than a package dependency, so it remains compatible with §6; nothing has
+  been pulled from it yet.
 - New WebGL beyond the existing `/analysis` scene.
 - Animating anything but `transform` / `opacity` / `clip-path` in a scroll handler.
 
@@ -134,6 +138,15 @@ session logic: `/interview/voice` (1,066 lines, live Gemini audio), `/interview/
   Desktop is the enhancement, not the design target.
 - **Bilingual parity.** Every new string lands in `lib/i18n.ts` as `[EN, BM]` or it does
   not ship. Malay runs ~15–20% longer — layouts must not assume English width.
+- **No horizontal overflow, at any width, in either language.** Checked by
+  `tests/e2e/layout.spec.ts` across 14 widths × 3 routes × 2 languages.
+  Two things that make this easy to miss, both found on 2026-09-15:
+  *Check the widths either side of a breakpoint* — the navbar overflowed only between
+  1024 and 1103px, because `lg:` gave it four more links without giving it more room. A
+  375px check and a 1440px screenshot both pass straight over that band.
+  *A clipped layout reports no overflow* — when the excess is cut off rather than
+  scrolled to, `scrollWidth === clientWidth` and the page looks fine to a script while a
+  user sees the CTA sliced in half. Assert on element edges as well as document width.
 - **Budget.** No new runtime deps. `framer-motion` removed (was imported nowhere).
   `three` + `@react-three/fiber` stay, `dynamic()`-imported on `/analysis` only —
   `/` must never pull them.
@@ -151,3 +164,90 @@ That file does not exist anywhere in this repo. So the spec's math assumes 108 w
 running site advertises 184 from a different file. `/methodology` therefore states no
 vehicle count at all — it describes the method, not the inventory. Someone needs to decide
 which database is authoritative before that page or the landing copy claims a number.
+
+## 8. Motion craft (2026-09-15)
+
+Added after a review of `motion.dev`, `anime.js` and `rareui.com`. Neither library was
+installed (§3, §6); both were read for their *models*, which is the part worth having.
+
+### Springs — `lib/spring.ts`
+
+motion.dev's real contribution is not its solver, it is its parameters. Classic springs are
+specced as stiffness/damping/mass, which nobody can picture: "stiffness 320, damping 28"
+predicts nothing about what you will see. Motion lets you write **`bounce`** (how far it
+overshoots) and **`visualDuration`** (when it looks like it arrived). That model is
+borrowed; the solver is the ordinary closed form for a damped oscillator, ~40 lines.
+
+Two outputs, because the two halves of the UI need different things:
+
+- `springEase({ bounce })` → a function, for GSAP's `ease` option.
+- `springLinear({ bounce, steps })` → a CSS `linear()` string, for transitions that never
+  touch JS. **A cubic-bezier cannot overshoot its endpoint and return**, so a press that
+  settles rather than merely decelerating can only be expressed as sampled points.
+
+Three tokens are checked into `globals.css`: `--ease-spring` (0.3), `--ease-spring-soft`
+(0.12), `--ease-spring-firm` (0). `tests/spring.test.mjs` asserts the checked-in strings
+still equal what the generator produces, because they are pasted, not built.
+
+**Each token holds a cubic-bezier and is upgraded under `@supports`.** This is not
+belt-and-braces, it is required: a `var()` whose substituted value does not parse makes the
+*whole declaration* invalid at computed-value time. A `transition` shorthand carrying an
+unsupported `linear()` does not fall back to an earlier entry in the list — it drops every
+transition on the element. Exactly the trap §1 records for the font shorthand.
+
+### What the press is actually doing
+
+`.pressable` compresses to 0.96 instantly and springs back over 340ms. Being honest about
+the scale: travel is 4%, and the spring peaks at 4.45% of travel, so the overshoot is
+~0.0018 of size — sub-pixel. **What reads is the velocity profile, not the bounce**: fast
+away from the press, decelerating long into the settle. That asymmetry is the thing a
+cubic-bezier cannot do. The overshoot only becomes visible on larger travels.
+
+**`.pressable` must own the whole `transition` declaration.** It sits in the components
+layer, so any `transition-colors` / `transition-all` / `duration-*` utility on the same
+element outranks it — and those utilities do not name `transform`, so the press silently
+stops moving while still changing colour. This was live on **11 elements**, including every
+`Button` on the site, which had carried its own
+`transition-[background-color,color,border-color,box-shadow]` since it was written: the
+press scale had never once animated. Guarded now by a browser test that walks `.pressable`
+on three routes and fails if `transform` is missing from the computed transition list.
+
+### Sliders
+
+A native range input gives CSS no handle on its own position, so the track could not show
+how far along the value was. `components/Slider.tsx` writes it out as `--slider-p`.
+
+**The fill is corrected for the thumb's real travel.** A thumb's centre does not move
+0%→100%; it is inset by half a thumb at each end. Filling to a raw percentage misses the
+centre by up to 14px — visible only at the extremes, which is where a reviewer is least
+likely to drag. Hence `--slider-p` is a bare number, not a percentage: the correction
+needs to scale a px term as well as a percentage.
+
+`--slider-p` is **not** transitioned, though registering it with `@property` makes that
+possible. The browser moves the thumb the instant the value changes and offers no way to
+ease it, so easing the fill only desyncs the two. The fill's job is to agree with the thumb.
+
+### Staggers
+
+`Stagger` takes `from` ("start" / "center" / "edges" / "random") and `jitter`, anime.js's
+vocabulary, which GSAP already shares. A symmetric row of three equal tiles assembles from
+its centre rather than being wiped left-to-right.
+
+### Live figures
+
+`AnimatedNumber` glides a figure to its new value. The tween **retargets rather than
+restarting** (`overwrite: "auto"`), so a continuous drag reads as one smooth follow instead
+of a stack of competing 340ms tweens. Without that, dragging visibly stutters. It holds the
+tween's value in a ref, not state — state would re-render every frame to write a string.
+
+### Reduced motion
+
+Every one of the above is covered by the global `prefers-reduced-motion` reset or its own
+guard, and `tests/e2e/motion.spec.ts` asserts it under `reducedMotion: "reduce"`. Note the
+reset neutralises transitions by collapsing the duration to 1e-5s rather than zeroing it,
+so assert "effectively off", not `=== 0`.
+
+**One trap worth repeating:** a selector list containing an unknown pseudo-element is
+dropped *in its entirety*. Pairing `::-moz-range-thumb` with a plain `input` in one list
+makes Chromium discard the input's rule too — which is how the slider's reduced-motion rule
+silently did nothing until a test caught it. Write them as separate rules.

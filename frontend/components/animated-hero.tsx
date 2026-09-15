@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import { ArrowRight, Sparkles, CheckCircle2, Zap, Fuel, TrendingDown, Shield } from "lucide-react";
 import { Button, Card } from "@/components/ui";
+import { AnimatedNumber } from "@/components/motion";
 import { useT } from "@/lib/i18n";
+import { Slider } from "@/components/Slider";
 
 /** Pump price consumers actually pay under BUDI95. Mirrors
  *  data/fuel.json fuel.ron95_rm_per_l, which is what the scoring engine costs
@@ -85,17 +87,15 @@ export function Hero() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[15px] font-semibold text-ink">{t("calc.daily")}</span>
                 <span className="figure text-[20px] font-bold text-primary">
-                  {dailyKm} <span className="text-[15px] font-normal text-muted">km/day</span>
+                  <AnimatedNumber value={dailyKm} duration={0.18} /> <span className="text-[15px] font-normal text-muted">km/day</span>
                 </span>
               </div>
-              <input
-                type="range"
+              <Slider
                 min={10}
                 max={200}
                 step={5}
                 value={dailyKm}
                 onChange={(e) => setDailyKm(Number(e.target.value))}
-                className="slider"
                 aria-label={t("calc.aria")}
               />
               {/* mono is wider than the old serif fallback these were sized
@@ -115,7 +115,7 @@ export function Hero() {
                   <span className="text-[11px] font-mono uppercase">{t("calc.petrol")}</span>
                 </div>
                 <p className="figure text-[18px] font-bold text-ink">
-                  RM {annualPetrolRm.toLocaleString("en-MY")}
+                  RM <AnimatedNumber value={annualPetrolRm} />
                   <span className="text-[11px] font-normal text-muted">/yr</span>
                 </p>
                 <p className="text-[10.5px] text-muted mt-0.5">
@@ -129,7 +129,7 @@ export function Hero() {
                   <span className="text-[11px] font-mono uppercase">{t("calc.ev")}</span>
                 </div>
                 <p className="figure text-[18px] font-bold text-emerald-800">
-                  RM {annualEvRm.toLocaleString("en-MY")}
+                  RM <AnimatedNumber value={annualEvRm} />
                   <span className="text-[11px] font-normal text-emerald-700">/yr</span>
                 </p>
                 <p className="text-[10.5px] text-emerald-700 mt-0.5">TNB ToU @ RM0.25/kWh</p>
@@ -144,7 +144,7 @@ export function Hero() {
                     {t("calc.annualSave")}
                   </p>
                   <p className="figure text-[26px] sm:text-[30px] font-bold text-white mt-0.5">
-                    RM {annualSavingsRm.toLocaleString("en-MY")}
+                    RM <AnimatedNumber value={annualSavingsRm} />
                     <span className="text-[15px] font-normal text-white/70"> / year</span>
                   </p>
                 </div>
@@ -154,8 +154,8 @@ export function Hero() {
               </div>
 
               <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[12px] text-white/80">
-                <span>{t("calc.tenYearSave")}: <b>RM {tenYearSavingsRm.toLocaleString("en-MY")}</b></span>
-                <span className="text-emerald-400">-{annualCo2Kg.toLocaleString("en-MY")} kg CO₂/yr</span>
+                <span>{t("calc.tenYearSave")}: <b>RM <AnimatedNumber value={tenYearSavingsRm} /></b></span>
+                <span className="text-emerald-400">-<AnimatedNumber value={annualCo2Kg} /> kg CO₂/yr</span>
               </div>
             </div>
 

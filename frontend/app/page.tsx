@@ -163,7 +163,7 @@ export default function LandingPage() {
       {/* Trust & Telemetry Strip */}
       <section className="border-y border-line bg-paper-2">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Stagger className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-line">
+          <Stagger from="center" className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-line">
             <div className="px-6 py-8 sm:py-10 text-center">
               <p className="apple-display text-[38px] sm:text-[44px] text-ink">
                 <ScrubCount value={184} />

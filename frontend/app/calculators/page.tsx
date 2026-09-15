@@ -122,7 +122,7 @@ function Pills({
           key={o.value}
           type="button"
           onClick={() => onChange(o.value)}
-          className={`pressable rounded-full border px-3.5 py-1.5 text-[13px] font-semibold transition-colors ${
+          className={`pressable rounded-full border px-3.5 py-1.5 text-[13px] font-semibold ${
             value === o.value
               ? "border-primary bg-primary text-white"
               : "border-line bg-parchment text-ink hover:border-line-strong"

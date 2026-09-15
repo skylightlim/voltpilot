@@ -14,6 +14,7 @@
  */
 
 import * as React from "react";
+import { Slider } from "@/components/Slider";
 
 export function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
   return (
@@ -78,9 +79,8 @@ export function RangeField({
           className="max-w-full shrink-0 rounded-md border border-transparent bg-parchment px-2.5 py-1 text-center font-mono text-[15px] font-bold text-primary tabular-nums outline-none transition-[width,background-color,border-color] duration-150 placeholder:font-semibold placeholder:text-muted focus:border-primary focus:bg-card [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
       </div>
-      <input
+      <Slider
         id={id}
-        type="range"
         min={min}
         max={max}
         step={step}
@@ -88,7 +88,7 @@ export function RangeField({
         // a value typed past the band pins the thumb at that end
         value={Math.min(max, Math.max(min, value))}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="slider mt-3"
+        className="mt-3"
       />
       <div className="mt-1.5 flex justify-between font-mono text-[10px] uppercase tracking-wider text-muted">
         <span>{caption(min)}</span>

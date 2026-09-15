@@ -100,7 +100,7 @@ export default function QInput({
             <button
               key={opt}
               onClick={() => set({ [q.key]: opt } as Partial<Profile>)}
-              className={`pressable flex w-full items-center justify-between rounded-lg border px-5 py-4 text-left text-[16px] font-medium transition-colors ${
+              className={`pressable flex w-full items-center justify-between rounded-lg border px-5 py-4 text-left text-[16px] font-medium ${
                 selected ? "border-primary bg-primary/[0.04]" : "border-line bg-card text-ink"
               }`}
             >
@@ -133,7 +133,7 @@ export default function QInput({
             <button
               key={val}
               onClick={() => set({ [q.key]: val === "yes" } as Partial<Profile>)}
-              className={`pressable rounded-full border px-4 py-4 text-center text-[17px] font-medium transition-colors ${
+              className={`pressable rounded-full border px-4 py-4 text-center text-[17px] font-medium ${
                 selected
                   ? "border-primary bg-primary text-white"
                   : "border-line bg-card text-ink hover:bg-parchment"
@@ -193,7 +193,7 @@ export default function QInput({
                 setRaw(String(chip));
                 set({ [q.key]: chip } as Partial<Profile>);
               }}
-              className={`pressable rounded-full border px-5 py-2.5 text-[16px] font-medium transition-colors ${
+              className={`pressable rounded-full border px-5 py-2.5 text-[16px] font-medium ${
                 selected
                   ? "border-primary bg-primary text-white"
                   : "border-line bg-card text-ink hover:bg-parchment"
