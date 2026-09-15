@@ -186,7 +186,7 @@ class TestTopsis:
         for i in range(4):
             rows.append({
                 "slug": f"m{i}",
-                "total_cost_10yr_rm": 140_000 + i * 30_000,
+                "total_cost_5yr_rm": 140_000 + i * 30_000,
                 "resale_retained_pct": 55 - i * 4,
                 "behaviour_score": 80 - i * 5,
                 "infrastructure_score": 70,
@@ -202,7 +202,7 @@ class TestTopsis:
         """The property the bounds exist to give: a scale that other cars cannot move."""
         rows = [{
             "slug": f"m{i}",
-            "total_cost_10yr_rm": 130_000 + i * 20_000,
+            "total_cost_5yr_rm": 130_000 + i * 20_000,
             "resale_retained_pct": 55 - i,
             "behaviour_score": 80 - i,
             "infrastructure_score": 70,
@@ -366,3 +366,98 @@ def test_future_proofing_slider_moves_resale():
         return sum(r["resale_retained_pct"] for r in top5) / len(top5)
 
     assert mean_resale(100) > mean_resale(0)
+
+
+class TestMaintenanceModel:
+    """issue.md issue 11: servicing was three constants keyed on drivetrain.
+
+    162 of 184 trims took one of them, so a RM68,000 Wuling and a RM2.2m
+    Maybach were charged the same servicing. It is now fitted log-linearly on
+    price with a per-type intercept.
+    """
+
+    def _measured(self):
+        from app.config import load_catalog
+        return [
+            v for v in load_catalog()
+            if (v.get("ownership") or {}).get("maintenance_rm_yr")
+        ]
+
+    def test_fit_reproduces_the_measured_rows_it_was_calibrated_on(self):
+        """Guards the constants against drifting away from their own fit."""
+        rows = self._measured()
+        assert len(rows) >= 20, "calibration set shrank; refit before trusting this"
+        errors = [
+            abs(engines._maintenance_fallback(v) - float(v["ownership"]["maintenance_rm_yr"]))
+            for v in rows
+        ]
+        assert max(errors) <= 200, f"worst residual RM{max(errors):.0f}"
+        assert sum(errors) / len(errors) <= 60, f"mean residual RM{sum(errors)/len(errors):.0f}"
+
+    def test_servicing_rises_with_price_within_a_drivetrain(self):
+        """The whole point: a dearer car in the same drivetrain services dearer."""
+        cheap = {"type": "ev", "price_rm": 70_000}
+        dear = {"type": "ev", "price_rm": 700_000}
+        assert engines._maintenance_fallback(dear) > engines._maintenance_fallback(cheap) + 200
+
+    def test_a_hybrid_services_dearer_than_an_ev_at_the_same_price(self):
+        """Drivetrain still dominates price, which is why both terms are needed."""
+        price = 150_000
+        ev = engines._maintenance_fallback({"type": "ev", "price_rm": price})
+        hybrid = engines._maintenance_fallback({"type": "hybrid", "price_rm": price})
+        assert hybrid > ev
+
+    def test_a_measured_row_is_never_overwritten_by_the_fit(self):
+        measured = self._measured()[0]
+        value, basis = engines.maintenance_rm_yr(measured)
+        assert basis == "measured"
+        assert value == float(measured["ownership"]["maintenance_rm_yr"])
+
+    def test_an_unmeasured_row_is_reported_as_estimated(self):
+        value, basis = engines.maintenance_rm_yr({"type": "ev", "price_rm": 120_000})
+        assert basis == "estimated"
+        assert value > 0
+
+
+class TestPracticality:
+    """issue.md issues 5b and 6: convenience could not separate two hybrids.
+
+    behaviour_engine returned a flat constant for everything that was not a
+    battery EV, so within-group standard deviation was 0.0 for both hybrids and
+    PHEVs and the convenience slider only tilted EV against non-EV.
+    """
+
+    def test_a_bigger_boot_scores_higher(self):
+        small = {"type": "hybrid", "specs": {"boot_l": 250}}
+        large = {"type": "hybrid", "specs": {"boot_l": 650}}
+        assert engines.practicality_factor(large) > engines.practicality_factor(small)
+
+    def test_an_unknown_boot_is_neutral_not_penalised(self):
+        """Absent data must not read as a small boot; 17 of 184 trims have none."""
+        assert engines.practicality_factor({"type": "hybrid", "specs": {}}) == 1.0
+
+    def test_seat_count_does_not_move_the_score(self):
+        """Seats are a results-page filter, not a criterion.
+
+        How many seats a buyer needs cannot be inferred from the rest of the
+        interview, and the interview is not being lengthened to ask. Scoring
+        seat count without knowing the requirement would rank a seven-seat MPV
+        above a hatchback for a solo commuter.
+        """
+        four = {"type": "hybrid", "specs": {"seats": 4, "boot_l": 400}}
+        seven = {"type": "hybrid", "specs": {"seats": 7, "boot_l": 400}}
+        assert engines.practicality_factor(four) == engines.practicality_factor(seven)
+
+    def test_convenience_now_separates_two_hybrids(self):
+        """The degeneracy this issue is about: was std 0.0 within every group."""
+        from app.config import load_catalog
+        from app.services import scoring
+        from tests.test_golden_ranking import GOLDEN_PROFILES, DEFAULT_SLIDERS
+        import statistics
+
+        rows = scoring.score_catalog(GOLDEN_PROFILES["kv_home_charging"], DEFAULT_SLIDERS)["ranking"]
+        for vtype in ("hybrid", "phev"):
+            scores = [r["behaviour_score"] for r in rows if r["type"] == vtype]
+            if len(scores) < 3:
+                continue
+            assert statistics.pstdev(scores) > 0.5, f"{vtype} convenience is still flat"

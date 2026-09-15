@@ -198,3 +198,39 @@ def test_ranking_survives_removal_of_irrelevant_alternatives(monkeypatch):
     survivors = [s for s in before if s in set(after)]
     moved = sum(1 for s in survivors if survivors.index(s) != after.index(s))
     assert moved <= 5, f"{moved} of {len(survivors)} alternatives reordered"
+
+
+@pytest.mark.parametrize("daily_km", [10, 40, 100, 200])
+def test_no_budget_path_clips_nothing(daily_km):
+    """No catalogue vehicle may exceed the cost ceiling when no budget is given.
+
+    A ceiling below the dearest car makes everything above it clip to the same
+    worst value, so price stops separating them. At the old RM400,000 stand-in
+    that was 26 cars from RM625,888 to RM2,238,888 scoring within 0.0731, with a
+    RM2m Rolls-Royce Spectre ahead of a RM635,800 BMW X7 — issue.md issue 7's
+    compression, mirrored onto the expensive end.
+
+    Parametrised over mileage because the ceiling carries a running-cost term:
+    low mileage makes it tightest, so that is where a new car clips first. If a
+    dearer vehicle enters the catalogue this fails, and NO_BUDGET_CEILING_RM in
+    topsis.py needs raising — which is the point of asserting it here rather
+    than trusting the constant to stay calibrated.
+    """
+    from app.engines import engines as engines_mod
+    from app.engines import topsis as topsis_mod
+
+    profile = GOLDEN_PROFILES["kv_home_charging"] | {
+        "budget_max_rm": 0, "daily_km": daily_km,
+    }
+    rows = scoring.score_catalog(profile, DEFAULT_SLIDERS)["ranking"]
+    _, ceiling = topsis_mod.criteria_bounds(
+        profile, engines_mod.annual_mileage_km(profile)
+    )[0]
+
+    over = [r for r in rows if r["total_cost_5yr_rm"] > ceiling]
+    assert not over, (
+        f"{len(over)} vehicles clip the cost ceiling (RM{ceiling:,.0f}); "
+        f"dearest is {max(over, key=lambda r: r['total_cost_5yr_rm'])['slug']} "
+        f"at RM{max(r['total_cost_5yr_rm'] for r in over):,.0f}. "
+        "Raise NO_BUDGET_CEILING_RM."
+    )

@@ -173,6 +173,11 @@ def match_title(title, catalog=None, brand=None, model=None):
             continue
         if year is not None and year < 2021:
             continue
+        # Drivetrain screen (issue.md issue 15). Only EV rows are screened:
+        # a hybrid genuinely has an engine, so "1.5" or "turbo" in its title is
+        # a correct match, not a contradiction.
+        if v.get("type") == "ev" and _title_is_ice(title):
+            continue
         variant_confirmed = False
         if v.get("variant"):
             var_t = set(normalize(v["variant"]).split())
@@ -206,14 +211,57 @@ def match_title(title, catalog=None, brand=None, model=None):
     }
 
 
+# Bare "turbo" is deliberately NOT here. Porsche names its fastest battery EVs
+# "Turbo" and "Turbo S" — Taycan Turbo, Macan Turbo Electric — so the word marks
+# a trim level as often as a turbocharger, and screening on it threw away 25
+# genuine EV listings (24 Taycans). Every marker below is unambiguous, and the
+# combustion cars this exists to catch carry an engine displacement anyway:
+# "Hilux 2.4 VNT TURBO" is rejected on the 2.4, not the TURBO.
 _ICE_MARKERS = {
-    "turbo", "tfsi", "tsi", "gdi", "dci", "tdi", "tdci", "cdi", "ecoboost",
-    "diesel", "d4d", "hdi", "bluehdi", "twinpower", "mhev",
+    "tfsi", "tsi", "gdi", "dci", "tdi", "tdci", "cdi", "ecoboost",
+    "diesel", "disel", "d4d", "hdi", "bluehdi", "twinpower", "mhev", "vgt",
 }
 
 
 def _has_ice_marker(text):
     return bool(_ICE_MARKERS & set(normalize(text).split()))
+
+
+# Engine displacement in a title, e.g. "Hilux 2.4 V D/C". Malaysian listing
+# sites fill this field with 0.0 or 1.0 for battery EVs, so only 1.2 and above
+# is evidence of an actual engine — see _title_is_ice.
+_DISPLACEMENT = re.compile(r"\b([0-9]\.[0-9])\b")
+_EV_PLACEHOLDER_DISPLACEMENTS = {"0.0", "1.0"}
+_MIN_REAL_DISPLACEMENT_L = 1.2
+
+
+def _title_is_ice(title):
+    """Does this listing title describe a combustion car?
+
+    Only meaningful against an EV catalog row. Several nameplates in the
+    catalogue exist mostly as petrol or diesel in the used market — the MINI
+    Countryman and the Toyota Hilux above all — so a title-only match joined 83
+    petrol Countrymans to the electric one and 58 diesel Hiluxes to the BEV.
+
+    Displacement is the strong signal, but it cannot be read naively: the sites
+    write 0.0 or 1.0 where an EV has no engine, so those two values mean the
+    opposite of what they look like. Measured across the corpus, titles matched
+    to an EV row carry only 0.0 and 1.0 (71 listings, all genuine) or 1.5 and
+    above (154 listings, all but one a bad join).
+
+    The exception is a BYD Seal listed as "SEAL PERFORMANCE 3.8", where 3.8 is
+    the 0-100 time. One false rejection against 153 true ones is the right side
+    of that trade, and dropping a good listing costs far less than fitting a
+    depreciation curve through diesel pickups.
+    """
+    if _has_ice_marker(title):
+        return True
+    for raw in _DISPLACEMENT.findall(title or ""):
+        if raw in _EV_PLACEHOLDER_DISPLACEMENTS:
+            continue
+        if float(raw) >= _MIN_REAL_DISPLACEMENT_L:
+            return True
+    return False
 
 
 def match_brand_model(brand, model, variant=None, catalog=None):

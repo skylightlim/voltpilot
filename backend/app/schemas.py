@@ -67,16 +67,6 @@ INTERVIEW_QUESTIONS = [
         "bm": "Apakah poskod rumah anda? (5 digit)",
     },
     {
-        "key": "grid_region",
-        "kind": "choice",
-        "options": ["peninsular", "east_malaysia"],
-        "required": False,
-        # Peninsular is gas/coal heavy; hydro-dominant Sarawak pulls East Malaysia
-        # to roughly half the CO2 per kWh, so this changes the environment score.
-        "en": "Is your home on the Peninsular grid, or in East Malaysia (Sabah/Sarawak)?",
-        "bm": "Adakah rumah anda di grid Semenanjung, atau di Malaysia Timur (Sabah/Sarawak)?",
-    },
-    {
         "key": "monthly_electricity_bill_rm",
         "kind": "number",
         "required": False,
@@ -123,6 +113,10 @@ class ProfileIn(BaseModel):
     # Which grid supplies the home charger. Peninsular is gas/coal heavy; East
     # Malaysia is pulled down by hydro-dominant Sarawak, so the same kWh carries
     # roughly half the CO2 (see data/fuel.json co2_factors).
+    # No longer asked: engines.grid_region derives it from home_postcode, which
+    # is required and maps to exactly one state. Kept on the model because the
+    # voice interview can extract a region from speech before a postcode is
+    # captured, and that is the one case where a stated value still applies.
     grid_region: Literal["peninsular", "east_malaysia"] = "peninsular"
     # Existing household draw. TNB Domestic ToU is blocked, so a heavy household
     # pays a higher MARGINAL rate once EV charging is added on top.

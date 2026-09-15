@@ -56,6 +56,8 @@ type Row = {
   energy_score: number;
   co2_kg_yr: number;
   source?: string;
+  /** Sent by the API; `seats` drives the results-page filter. */
+  specs?: { seats?: number; boot_l?: number };
 };
 
 const CRITERIA: { key: keyof Row; label: string; icon: typeof Calculator; accent: string }[] = [
@@ -94,6 +96,10 @@ export default function ResultsPage() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [bodyFilter, setBodyFilter] = useState("all");
   const [brandFilter, setBrandFilter] = useState("all");
+  // Seat count is a filter rather than a criterion. How many seats a buyer
+  // needs cannot be inferred from the rest of the interview, and the interview
+  // is not being lengthened to ask — a buyer who needs seven picks seven here.
+  const [seatsFilter, setSeatsFilter] = useState("all");
 
   useEffect(() => {
     let cancelled = false;
@@ -132,6 +138,15 @@ export default function ResultsPage() {
     () => [...new Set(ranking.map((r) => r.brand).filter(Boolean))].sort(),
     [ranking],
   );
+  // Ascending, and "N+" rather than exactly N: someone who needs 5 seats is not
+  // served by hiding the 7-seaters.
+  const seatOptions = useMemo(
+    () =>
+      [...new Set(ranking.map((r) => r.specs?.seats).filter((n): n is number => !!n))].sort(
+        (a, b) => a - b,
+      ),
+    [ranking],
+  );
   // FEATURES.md P5 and P6: the picker offers only cars that survived the
   // screens, and the confidence line needs to name a car rather than a slug.
   const compareOptions = useMemo(
@@ -153,11 +168,17 @@ export default function ResultsPage() {
       ranking.filter(
         (r) =>
           (bodyFilter === "all" || r.body === bodyFilter) &&
-          (brandFilter === "all" || r.brand === brandFilter),
+          (brandFilter === "all" || r.brand === brandFilter) &&
+          // A car with no published seat count is kept rather than hidden: 5 of
+          // 184 trims have none, and absent data is not evidence of too few.
+          (seatsFilter === "all" ||
+            !r.specs?.seats ||
+            r.specs.seats >= Number(seatsFilter)),
       ),
-    [ranking, bodyFilter, brandFilter],
+    [ranking, bodyFilter, brandFilter, seatsFilter],
   );
-  const filtersOn = bodyFilter !== "all" || brandFilter !== "all";
+  const filtersOn =
+    bodyFilter !== "all" || brandFilter !== "all" || seatsFilter !== "all";
 
   const top: Row | undefined = data?.ranking?.[0];
   const rec = data?.recommendation;
@@ -486,6 +507,19 @@ export default function ResultsPage() {
                 </option>
               ))}
             </select>
+            <select
+              aria-label={t("r.filterSeats")}
+              value={seatsFilter}
+              onChange={(e) => setSeatsFilter(e.target.value)}
+              className="rounded-full border border-line bg-parchment px-3.5 py-1.5 text-[12.5px] font-semibold text-ink outline-none focus:border-primary"
+            >
+              <option value="all">{t("r.allSeats")}</option>
+              {seatOptions.map((n) => (
+                <option key={n} value={n}>
+                  {t("r.seatsPlus").replace("{n}", String(n))}
+                </option>
+              ))}
+            </select>
             {filtersOn && (
               <>
                 <span className="text-[12.5px] text-muted">
@@ -495,6 +529,7 @@ export default function ResultsPage() {
                   onClick={() => {
                     setBodyFilter("all");
                     setBrandFilter("all");
+                    setSeatsFilter("all");
                   }}
                   className="pressable rounded-full px-3 py-1.5 text-[12.5px] font-semibold text-primary hover:underline"
                 >

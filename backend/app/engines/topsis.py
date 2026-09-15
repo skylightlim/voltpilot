@@ -25,7 +25,7 @@ import numpy as np
 # changed the winner. Scoring the raw quantities against profile-derived bounds
 # removes the dependency entirely (measured: 0 of 182 move).
 CRITERIA = [
-    "total_cost_10yr_rm",
+    "total_cost_5yr_rm",
     "resale_retained_pct",
     "behaviour_score",
     "infrastructure_score",
@@ -39,7 +39,7 @@ TYPES = [-1, 1, 1, 1, -1]  # min cost and emissions, max resale and fit
 # accident rather than by choice. Cost and resale now total 0.50, which is a
 # deliberate figure for a purchase this size.
 BASE_WEIGHTS = {
-    "total_cost_10yr_rm": 0.34,
+    "total_cost_5yr_rm": 0.34,
     "resale_retained_pct": 0.16,
     "behaviour_score": 0.17,
     "infrastructure_score": 0.14,
@@ -93,7 +93,7 @@ def preference_weights(sliders: dict) -> list[float]:
     # price by RM20. It drives resale retention now, which is what the label,
     # and the hint about "5-year used market resale retention", promise.
     w = dict(BASE_WEIGHTS)
-    w["total_cost_10yr_rm"] *= _clamp(1.0 + 1.0 * (s["save_money"] - 1))
+    w["total_cost_5yr_rm"] *= _clamp(1.0 + 1.0 * (s["save_money"] - 1))
     w["resale_retained_pct"] *= _clamp(1.0 + 1.2 * (s["future_proofing"] - 1))
     w["co2_kg_yr"] *= _clamp(1.0 + 1.6 * (s["environment"] - 1))
     w["behaviour_score"] *= _clamp(1.0 + 0.7 * (s["convenience"] - 1))
@@ -115,9 +115,30 @@ def preference_weights(sliders: dict) -> list[float]:
 # to be.
 PRICE_FLOOR_RM = 30_000.0
 
-# Used when the buyer states no budget. Only reachable while budget stays
-# optional; see issue.md issue 8.
-ASSUMED_BUDGET_RM = 400_000.0
+# Stands in for the budget when the buyer states none. It has to be the top of
+# the market rather than a typical spend: the figure is used as a CAP, and a
+# cap below what the catalogue actually contains makes every vehicle above it
+# clip to the same worst value. At the old RM400,000 that was 26 cars from
+# RM625,888 to RM2,238,888 scoring within 0.0731 of each other — a RM2m
+# Rolls-Royce Spectre out-ranking a RM635,800 BMW X7, because once the cost
+# criterion saturates only the other four separate them. That is issue 7's
+# compression again, mirrored onto the expensive end of the axis.
+#
+# Calibrated so no catalogue vehicle clips: the dearest 10-year cost is
+# RM3,265,309 (at low mileage, where the running-cost term adds least), which
+# needs RM1,628,364 here. test_no_budget_path_clips_nothing holds the margin,
+# so a pricier car entering the catalogue fails a test rather than silently
+# re-creating the tie.
+#
+# Only the no-budget path uses this. /score requires budget_max_rm, so it is
+# reachable from library callers such as backend/repro.py, not from the app.
+NO_BUDGET_CEILING_RM = 2_000_000.0
+
+# Five-year fixed cost as a multiple of the stated budget. The dearest ratio in
+# the catalogue is 0.903 x price (denza-z9-gt) and the filter admits up to
+# BUDGET_STRETCH x budget, so 0.903 x 1.10 = 0.993 is the binding case; 1.05
+# carries it with margin. test_no_budget_path_clips_nothing holds the line.
+FIVE_YR_COST_X_BUDGET = 1.05
 
 # Ceilings as multiples of a profile input, calibrated against the catalogue so
 # no real vehicle clips: the highest observed 10-yr TCO is 0.67x price, the
@@ -144,12 +165,14 @@ def criteria_bounds(profile: dict, annual_km: float) -> list[tuple[float, float]
     exactly the buyers most sensitive to it. Anchoring the ceiling on their own
     budget restores 58-83% axis usage across the golden profiles.
     """
-    budget = float(profile.get("budget_max_rm") or 0) or ASSUMED_BUDGET_RM
+    budget = float(profile.get("budget_max_rm") or 0) or NO_BUDGET_CEILING_RM
     km = max(float(annual_km or 0), 1000.0)
-    # Ceiling on total cost: the dearest car the filter admits is
-    # BUDGET_STRETCH x budget, its ownership costs add at most
-    # TCO_CEILING_X_BUDGET of that, and ten years of running cost adds the rest.
-    cost_ceiling = 2.0 * budget + 10.0 * RUNNING_CEILING_RM_PER_KM * km
+    # Ceiling on the five-year cost. The dearest car the filter admits is
+    # BUDGET_STRETCH x budget; its five-year fixed cost (depreciation, interest,
+    # insurance, maintenance, road tax, opportunity) tops out at 0.903 x price
+    # across the catalogue, so FIVE_YR_COST_X_BUDGET covers that with margin.
+    # Five years of running cost adds the rest.
+    cost_ceiling = FIVE_YR_COST_X_BUDGET * budget + 5.0 * RUNNING_CEILING_RM_PER_KM * km
     return [
         (PRICE_FLOOR_RM, cost_ceiling),
         (0.0, 100.0),

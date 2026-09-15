@@ -381,3 +381,101 @@ def test_strict_schema_rejects_a_formatted_price(tmp_path):
         con.execute("INSERT INTO listings (source, title, price_rm, fetched_at) "
                     "VALUES ('carlist', 'x', '79,800', 'now')")
     con.close()
+
+
+class TestMatcherDrivetrain:
+    """issue.md issue 15: match_title joined listings to the wrong drivetrain.
+
+    _has_ice_marker existed but was wired only into match_brand_model, the
+    structured path. Free-text titles went unscreened, so 83 petrol MINI
+    Countrymans joined the electric Countryman and 58 diesel Hiluxes joined the
+    BEV Hilux — then fed the depreciation curve those EVs are priced from.
+    """
+
+    @pytest.fixture(scope="class")
+    def matcher(self):
+        sys.path.insert(0, str(REPO / "scripts"))
+        from used_market import matcher as m
+        return m
+
+    @pytest.fixture(scope="class")
+    def catalog(self):
+        return json.loads((REPO / "data" / "catalog_vehicles.json").read_text())["vehicles"]
+
+    @pytest.mark.parametrize("title", [
+        "2021 MINI Countryman 2.0 Cooper S (A) S COUNTRYMAN",
+        "2021 TOYOTA HILUX V D/C 2.4 AT",
+        "2021 Toyota Hilux 2.4 V (A) D/C VNT TURBO INTERCOOLER 4X4",
+        "2026 Toyota Dyna 2.5 KDY230 CREW CAB",
+    ])
+    def test_a_combustion_listing_never_matches_an_ev_row(self, matcher, catalog, title):
+        got = matcher.match_title(title, catalog=catalog)
+        if got is not None:
+            matched = next(v for v in catalog if v["id"] == got["vehicle_id"])
+            assert matched["type"] != "ev", f"{title!r} joined to EV {got['vehicle_id']}"
+
+    @pytest.mark.parametrize("title,expected", [
+        ("2024 Tesla MODEL 3 1.0 LONG RANGE AWD", "tesla-model-3"),
+        ("2025 Icaur 03 0.0 2WD CBU FREE WALL BOX V2L", "icaur-03"),
+        ("Byd M6 1.0 EXTENDED F.S.R 530KM Sunroof", "byd-m6"),
+        ("2023 Bmw IX1 1.0 XDRIVE30 M SPORT MY23 U11 (A)", "bmw-ix1"),
+    ])
+    def test_the_ev_placeholder_displacement_is_not_read_as_an_engine(
+        self, matcher, catalog, title, expected
+    ):
+        """Malaysian listing sites write 0.0 or 1.0 where an EV has no engine.
+
+        Treating those as evidence of a combustion car would reject 71 genuine
+        EV listings — the opposite of the defect being fixed.
+        """
+        got = matcher.match_title(title, catalog=catalog)
+        assert got and got["vehicle_id"] == expected
+
+    @pytest.mark.parametrize("title,expected", [
+        ("2024 Toyota Corolla Cross 1.8 Hybrid", "toyota-corolla-cross-hybrid"),
+        ("2023 Honda Civic 1.5 e:HEV RS", "honda-civic-ehev"),
+    ])
+    def test_a_hybrid_keeps_its_engine(self, matcher, catalog, title, expected):
+        """The screen is EV-only: a hybrid's displacement is a correct match."""
+        got = matcher.match_title(title, catalog=catalog)
+        assert got and got["vehicle_id"] == expected
+
+
+class TestNoStaleBuildCopies:
+    """issue.md issue 14: data/ and scripts/ exist twice, and only root is canonical.
+
+    `backend/vercel-build.sh` copies the root trees into backend/ at build time,
+    because a Vercel project rooted at backend/ cannot see its parent. Those
+    copies are gitignored build output, but they survive in a working tree and
+    then rot: by 2026-09-14 the backend copy of `matcher.py` was a fix behind,
+    and `depreciation_curve.json` was missing from it entirely.
+
+    Nothing reads them locally — `config.py` prefers the root tree whenever it
+    exists — so editing one is a silent no-op, which is the wasted fix this
+    issue is about. These tests skip when the copies are absent, which is the
+    normal state, and fail loudly when a stale one has drifted.
+    """
+
+    @pytest.mark.parametrize("tree", ["data", "scripts"])
+    def test_a_leftover_build_copy_has_not_drifted_from_root(self, tree):
+        copy = REPO / "backend" / tree
+        if not copy.is_dir():
+            pytest.skip(f"backend/{tree}/ absent, which is the normal state")
+
+        root = REPO / tree
+        drifted = []
+        for src in root.rglob("*"):
+            if not src.is_file() or "__pycache__" in src.parts:
+                continue
+            mirror = copy / src.relative_to(root)
+            if not mirror.exists():
+                drifted.append(f"{src.relative_to(REPO)} missing from the copy")
+            elif src.read_bytes() != mirror.read_bytes():
+                drifted.append(f"{src.relative_to(REPO)} differs from the copy")
+
+        assert not drifted, (
+            f"backend/{tree}/ is a stale build copy ({len(drifted)} files). "
+            "Edit the root tree, not this one; delete it with "
+            f"`rm -rf backend/{tree}` (vercel-build.sh regenerates it). "
+            + "; ".join(drifted[:5])
+        )

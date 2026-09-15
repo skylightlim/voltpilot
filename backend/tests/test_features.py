@@ -149,7 +149,17 @@ class TestStability:
     """P6. Rank 1 is only an answer if it survives the weights moving."""
 
     def test_a_firm_profile_is_reported_firm(self):
-        out = scoring.score_catalog(GOLDEN_PROFILES["kv_home_charging"],
+        """Uses high_mileage_budget, whose leader holds 0.98 under jitter.
+
+        This was kv_home_charging until 2026-09-14, when it fell to 0.79 and
+        stopped being a firm example. That is the model reporting a real change
+        rather than a fault: its top two are separated by 0.0093, and the
+        criteria that used to be constants now move under re-weighting. The
+        assertion here is about the firm PATH working, so it needs a profile
+        that is actually firm; test_a_tied_profile_is_not_reported_firm covers
+        the other branch.
+        """
+        out = scoring.score_catalog(GOLDEN_PROFILES["high_mileage_budget"],
                                     DEFAULT_SLIDERS)["stability"]
         assert out["firm"] and out["leader_share"] >= 0.8
 
@@ -256,3 +266,36 @@ class TestFeatureEndpoints:
         body = client.get(f"/results/{scored}").json()
         assert body["stability"]["leader"]
         assert 0 < body["stability"]["leader_share"] <= 1
+
+
+class TestScoreIsIdempotent:
+    """Issue 17: /score inserted unconditionally into a UNIQUE column.
+
+    A second call for the same token raised IntegrityError and the client saw a
+    500 for a request that had already succeeded. A timeout-then-retry is the
+    common way to reach it.
+    """
+
+    def test_scoring_the_same_token_twice_succeeds(self, client):
+        profile = dict(GOLDEN_PROFILES["kv_home_charging"])
+        token = client.post("/profile", json=profile).json()["token"]
+        body = {"token": token, "profile": profile, "weights": DEFAULT_SLIDERS}
+
+        first = client.post("/score", json=body)
+        second = client.post("/score", json=body)
+
+        assert first.status_code == 200, first.text
+        assert second.status_code == 200, second.text
+
+    def test_rescoring_replaces_the_stored_result(self, client):
+        profile = dict(GOLDEN_PROFILES["kv_home_charging"])
+        token = client.post("/profile", json=profile).json()["token"]
+        body = {"token": token, "profile": profile, "weights": DEFAULT_SLIDERS}
+
+        assert client.post("/score", json=body).status_code == 200
+        second = client.post("/score", json={**body, "fuel_scenario": "market"})
+        assert second.status_code == 200, second.text
+
+        # the stored row reflects the second call rather than the first
+        stored = client.get(f"/results/{token}").json()
+        assert stored["fuel_scenario"] == "market"

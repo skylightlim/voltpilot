@@ -1094,7 +1094,10 @@
         "battery_kwh": 37.9,
         "range_km": 337.0,
         "power_hp": 67,
-        "energy_kwh_per_100km": 10.1
+        "energy_kwh_per_100km": 10.1,
+        "charge_power_kw_dc": 50.0,
+        "boot_l": 395,
+        "seats": 4
       },
       "price_display": "RM67,800 –RM72,800",
       "registered_my": 569,
@@ -1121,6 +1124,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1154,7 +1169,10 @@
         "battery_kwh": 52.5,
         "range_km": 370.0,
         "power_hp": 201,
-        "energy_kwh_per_100km": 12.8
+        "energy_kwh_per_100km": 12.8,
+        "charge_power_kw_dc": 60.0,
+        "boot_l": 320,
+        "seats": 5
       },
       "price_display": "RM69,999 –RM93,999",
       "registered_my": 356,
@@ -1181,6 +1199,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1214,7 +1244,10 @@
         "battery_kwh": 53.6,
         "range_km": 340.0,
         "power_hp": 161,
-        "energy_kwh_per_100km": 14.2
+        "energy_kwh_per_100km": 14.2,
+        "charge_power_kw_dc": 60.0,
+        "boot_l": 525,
+        "seats": 5
       },
       "price_display": "RM95,000",
       "registered_my": 1,
@@ -1241,6 +1274,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1274,7 +1319,10 @@
         "battery_kwh": 51.1,
         "range_km": 345.0,
         "power_hp": 174,
-        "energy_kwh_per_100km": 13.3
+        "energy_kwh_per_100km": 13.3,
+        "charge_power_kw_dc": 82.0,
+        "boot_l": 380,
+        "seats": 5
       },
       "price_display": "RM100,000",
       "registered_my": 2654,
@@ -1301,6 +1349,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1334,7 +1394,10 @@
         "battery_kwh": 56.64,
         "range_km": 410.0,
         "power_hp": 129,
-        "energy_kwh_per_100km": 12.4
+        "energy_kwh_per_100km": 12.4,
+        "charge_power_kw_dc": 100.0,
+        "boot_l": 460,
+        "seats": 5
       },
       "price_display": "RM100,000 –RM115,800",
       "registered_my": 2521,
@@ -1361,6 +1424,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1394,7 +1469,10 @@
         "battery_kwh": 42.3,
         "range_km": 430.0,
         "power_hp": 94,
-        "energy_kwh_per_100km": 8.9
+        "energy_kwh_per_100km": 8.9,
+        "charge_power_kw_dc": 70.0,
+        "boot_l": 326,
+        "seats": 5
       },
       "price_display": "RM100,000",
       "registered_my": 524,
@@ -1421,6 +1499,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1454,7 +1544,10 @@
         "battery_kwh": 60.22,
         "range_km": 410.0,
         "power_hp": 215,
-        "energy_kwh_per_100km": 13.2
+        "energy_kwh_per_100km": 13.2,
+        "charge_power_kw_dc": 80.0,
+        "boot_l": 461,
+        "seats": 5
       },
       "price_display": "RM103,800 –RM125,800",
       "registered_my": 12068,
@@ -1481,6 +1574,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1514,7 +1619,10 @@
         "battery_kwh": 55.2,
         "range_km": 442.0,
         "power_hp": 136,
-        "energy_kwh_per_100km": 11.2
+        "energy_kwh_per_100km": 11.2,
+        "charge_power_kw_dc": 60.0,
+        "boot_l": 450,
+        "seats": 5
       },
       "price_display": "RM106,800",
       "registered_my": 3,
@@ -1541,6 +1649,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1574,7 +1694,10 @@
         "battery_kwh": 67.1,
         "range_km": 434.0,
         "power_hp": 215,
-        "energy_kwh_per_100km": 13.9
+        "energy_kwh_per_100km": 13.9,
+        "charge_power_kw_dc": 168.0,
+        "boot_l": 430,
+        "seats": 5
       },
       "price_display": "RM107,800 –RM118,800",
       "registered_my": 840,
@@ -1601,6 +1724,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "Leapmotor Malaysia brochure + paultan.org launch report, 67.1 kWh"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1634,7 +1769,10 @@
         "battery_kwh": 51.87,
         "range_km": 380.0,
         "power_hp": 161,
-        "energy_kwh_per_100km": 12.3
+        "energy_kwh_per_100km": 12.3,
+        "charge_power_kw_dc": 167.0,
+        "boot_l": 500,
+        "seats": 5
       },
       "price_display": "RM108,888",
       "registered_my": 14,
@@ -1661,6 +1799,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1694,7 +1844,10 @@
         "battery_kwh": 71.8,
         "range_km": 530.0,
         "power_hp": 161,
-        "energy_kwh_per_100km": 12.2
+        "energy_kwh_per_100km": 12.2,
+        "charge_power_kw_dc": 115.0,
+        "boot_l": 580,
+        "seats": 7
       },
       "price_display": "RM109,800 –RM123,800",
       "registered_my": 2740,
@@ -1721,6 +1874,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "BYD Malaysia (Sime Darby) spec table, Extended Range 71.8 kWh"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1754,7 +1919,10 @@
         "battery_kwh": 62.0,
         "range_km": 430.0,
         "power_hp": 202,
-        "energy_kwh_per_100km": 13.0
+        "energy_kwh_per_100km": 13.0,
+        "charge_power_kw_dc": 150.0,
+        "boot_l": 453,
+        "seats": 5
       },
       "price_display": "RM117,528",
       "registered_my": 626,
@@ -1781,6 +1949,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "MG Malaysia spec table, LUX Long Range 62 kWh"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1814,7 +1994,10 @@
         "battery_kwh": 69.77,
         "range_km": 342.0,
         "power_hp": 181,
-        "energy_kwh_per_100km": 18.4
+        "energy_kwh_per_100km": 18.4,
+        "charge_power_kw_dc": 80.0,
+        "boot_l": 264,
+        "seats": 5
       },
       "price_display": "RM119,800 –RM129,800",
       "registered_my": 1949,
@@ -1841,6 +2024,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1874,7 +2069,10 @@
         "battery_kwh": 52.49,
         "range_km": 401.0,
         "power_hp": 160,
-        "energy_kwh_per_100km": 11.8
+        "energy_kwh_per_100km": 11.8,
+        "charge_power_kw_dc": 100.0,
+        "seats": 5,
+        "boot_l": 508
       },
       "price_display": "RM119,900",
       "registered_my": 172,
@@ -1901,6 +2099,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "Neta Malaysia model page, 52.49 kWh (single source)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1934,7 +2144,10 @@
         "battery_kwh": 69.9,
         "range_km": 420.0,
         "power_hp": 215,
-        "energy_kwh_per_100km": 15.0
+        "energy_kwh_per_100km": 15.0,
+        "charge_power_kw_dc": 84.0,
+        "boot_l": 435,
+        "seats": 5
       },
       "price_display": "RM129,000 –RM139,000",
       "registered_my": 982,
@@ -1961,6 +2174,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -1994,7 +2219,10 @@
         "battery_kwh": 81.76,
         "range_km": 430.0,
         "power_hp": 208,
-        "energy_kwh_per_100km": 17.1
+        "energy_kwh_per_100km": 17.1,
+        "charge_power_kw_dc": 104.0,
+        "boot_l": 234,
+        "seats": 4
       },
       "price_display": "RM132,780",
       "registered_my": 1952,
@@ -2021,6 +2249,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2052,7 +2292,10 @@
       },
       "specs": {
         "range_km": 410.0,
-        "power_hp": 201
+        "power_hp": 201,
+        "charge_power_kw_dc": 78.0,
+        "seats": 5,
+        "boot_l": 361
       },
       "price_display": "RM149,900",
       "registered_my": 284,
@@ -2075,6 +2318,18 @@
         "loan_total_interest_rm": {
           "method": "computed",
           "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market); matches EV Database"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "Honda Europe press specification (e:Ny1), VDA rear-seat-up"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "Honda Europe press specification (e:Ny1), VDA rear-seat-up"
         }
       }
     },
@@ -2108,7 +2363,10 @@
         "battery_kwh": 66.0,
         "range_km": 445.0,
         "power_hp": 335,
-        "energy_kwh_per_100km": 13.3
+        "energy_kwh_per_100km": 13.3,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 404,
+        "seats": 5
       },
       "price_display": "RM158,800 –RM175,800",
       "registered_my": 220,
@@ -2135,6 +2393,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2168,7 +2438,10 @@
         "battery_kwh": 82.5,
         "range_km": 542.0,
         "power_hp": 228,
-        "energy_kwh_per_100km": 13.7
+        "energy_kwh_per_100km": 13.7,
+        "charge_power_kw_dc": 110.0,
+        "boot_l": 500,
+        "seats": 5
       },
       "price_display": "RM163,800 –RM203,800",
       "registered_my": 6433,
@@ -2195,6 +2468,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2228,7 +2513,10 @@
         "battery_kwh": 52.0,
         "range_km": 386.0,
         "power_hp": 108,
-        "energy_kwh_per_100km": 12.1
+        "energy_kwh_per_100km": 12.1,
+        "charge_power_kw_dc": 50.0,
+        "boot_l": 338,
+        "seats": 5
       },
       "price_display": "RM165,000 –RM179,000",
       "registered_my": 66,
@@ -2255,6 +2543,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2288,7 +2588,10 @@
         "battery_kwh": 40.0,
         "range_km": 270.0,
         "power_hp": 148,
-        "energy_kwh_per_100km": 13.3
+        "energy_kwh_per_100km": 13.3,
+        "charge_power_kw_dc": 50.0,
+        "boot_l": 435,
+        "seats": 5
       },
       "price_display": "RM168,888",
       "registered_my": 163,
@@ -2315,6 +2618,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2348,7 +2663,10 @@
         "battery_kwh": 66.0,
         "range_km": 440.0,
         "power_hp": 268,
-        "energy_kwh_per_100km": 13.5
+        "energy_kwh_per_100km": 13.5,
+        "charge_power_kw_dc": 150.0,
+        "seats": 5,
+        "boot_l": 313
       },
       "price_display": "RM169,000 –RM249,000",
       "registered_my": 1394,
@@ -2375,6 +2693,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "EV Database, smart #1 Premium 66 kWh"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "smart UK specification table, Premium 66 kWh"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "smart UK specification table, Premium 66 kWh"
         }
       }
     },
@@ -2408,7 +2738,10 @@
         "battery_kwh": 73.48,
         "range_km": 463.0,
         "power_hp": 268,
-        "energy_kwh_per_100km": 14.3
+        "energy_kwh_per_100km": 14.3,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 452,
+        "seats": 5
       },
       "price_display": "RM169,888 –RM195,888",
       "registered_my": 20,
@@ -2435,6 +2768,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2468,7 +2813,10 @@
         "battery_kwh": 100.0,
         "range_km": 543.0,
         "power_hp": 416,
-        "energy_kwh_per_100km": 16.6
+        "energy_kwh_per_100km": 16.6,
+        "charge_power_kw_dc": 450.0,
+        "boot_l": 539,
+        "seats": 5
       },
       "price_display": "RM182,800 –RM235,000",
       "registered_my": 3651,
@@ -2495,6 +2843,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2528,7 +2888,10 @@
         "battery_kwh": 61.1,
         "range_km": 426.0,
         "power_hp": 172,
-        "energy_kwh_per_100km": 12.9
+        "energy_kwh_per_100km": 12.9,
+        "charge_power_kw_dc": 67.0,
+        "boot_l": 306,
+        "seats": 5
       },
       "price_display": "RM188,000",
       "registered_my": 0,
@@ -2555,6 +2918,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2588,7 +2963,10 @@
         "battery_kwh": 54.2,
         "range_km": 371.0,
         "power_hp": 215,
-        "energy_kwh_per_100km": 13.1
+        "energy_kwh_per_100km": 13.1,
+        "charge_power_kw_dc": 95.0,
+        "boot_l": 210,
+        "seats": 4
       },
       "price_display": "RM193,888 –RM218,888",
       "registered_my": 1228,
@@ -2615,6 +2993,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2648,7 +3038,10 @@
         "battery_kwh": 61.1,
         "range_km": 426.0,
         "power_hp": 172,
-        "energy_kwh_per_100km": 12.9
+        "energy_kwh_per_100km": 12.9,
+        "charge_power_kw_dc": 67.0,
+        "boot_l": 306,
+        "seats": 5
       },
       "price_display": "RM198,000",
       "registered_my": 5,
@@ -2675,6 +3068,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2708,7 +3113,9 @@
         "battery_kwh": 88.0,
         "range_km": 340.0,
         "power_hp": 288,
-        "energy_kwh_per_100km": 23.3
+        "energy_kwh_per_100km": 23.3,
+        "charge_power_kw_dc": 88.0,
+        "seats": 5
       },
       "price_display": "RM199,888",
       "registered_my": 5,
@@ -2735,6 +3142,14 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2768,7 +3183,10 @@
         "battery_kwh": 100.0,
         "range_km": 540.0,
         "power_hp": 358,
-        "energy_kwh_per_100km": 16.7
+        "energy_kwh_per_100km": 16.7,
+        "charge_power_kw_dc": 250.0,
+        "seats": 5,
+        "boot_l": 630
       },
       "price_display": "RM209,800 –RM259,800",
       "registered_my": 0,
@@ -2795,6 +3213,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "EV Database, smart #5 Premium 100 kWh"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "smart UK specification table"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "smart UK specification table"
         }
       }
     },
@@ -2828,7 +3258,10 @@
         "battery_kwh": 54.2,
         "range_km": 355.0,
         "power_hp": 215,
-        "energy_kwh_per_100km": 13.7
+        "energy_kwh_per_100km": 13.7,
+        "charge_power_kw_dc": 95.0,
+        "boot_l": 300,
+        "seats": 5
       },
       "price_display": "RM213,888 –RM233,888",
       "registered_my": 455,
@@ -2855,6 +3288,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2888,7 +3333,10 @@
         "battery_kwh": 73.1,
         "range_km": 525.0,
         "power_hp": 224,
-        "energy_kwh_per_100km": 12.5
+        "energy_kwh_per_100km": 12.5,
+        "charge_power_kw_dc": 150.0,
+        "boot_l": 452,
+        "seats": 5
       },
       "price_display": "RM220,000",
       "registered_my": 42,
@@ -2915,6 +3363,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -2948,7 +3408,9 @@
         "battery_kwh": 59.2,
         "range_km": 257.0,
         "power_hp": 193,
-        "energy_kwh_per_100km": 20.7
+        "energy_kwh_per_100km": 20.7,
+        "charge_power_kw_dc": 125.0,
+        "seats": 5
       },
       "price_display": "RM226,300",
       "registered_my": 10,
@@ -2975,6 +3437,14 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3008,7 +3478,9 @@
         "battery_kwh": 102.2,
         "range_km": 430.0,
         "power_hp": 435,
-        "energy_kwh_per_100km": 21.4
+        "energy_kwh_per_100km": 21.4,
+        "charge_power_kw_dc": 115.0,
+        "seats": 5
       },
       "price_display": "RM228,888 –RM246,888",
       "registered_my": 4,
@@ -3035,6 +3507,14 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3068,7 +3548,10 @@
         "battery_kwh": 78.0,
         "range_km": 440.0,
         "power_hp": 235,
-        "energy_kwh_per_100km": 16.0
+        "energy_kwh_per_100km": 16.0,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 413,
+        "seats": 5
       },
       "price_display": "RM248,888 –RM288,888",
       "registered_my": 801,
@@ -3095,6 +3578,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3128,7 +3623,10 @@
         "battery_kwh": 64.7,
         "range_km": 438.0,
         "power_hp": 204,
-        "energy_kwh_per_100km": 13.3
+        "energy_kwh_per_100km": 13.3,
+        "charge_power_kw_dc": 130.0,
+        "boot_l": 490,
+        "seats": 5
       },
       "price_display": "RM250,800",
       "registered_my": 1282,
@@ -3155,6 +3653,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3188,7 +3698,10 @@
         "battery_kwh": 66.5,
         "range_km": 433.0,
         "power_hp": 201,
-        "energy_kwh_per_100km": 13.8
+        "energy_kwh_per_100km": 13.8,
+        "charge_power_kw_dc": 130.0,
+        "boot_l": 490,
+        "seats": 5
       },
       "price_display": "RM252,800",
       "registered_my": 1282,
@@ -3215,6 +3728,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3248,7 +3773,10 @@
         "battery_kwh": 66.5,
         "range_km": 432.0,
         "power_hp": 201,
-        "energy_kwh_per_100km": 13.9
+        "energy_kwh_per_100km": 13.9,
+        "charge_power_kw_dc": 130.0,
+        "boot_l": 460,
+        "seats": 5
       },
       "price_display": "RM258,888 –RM389,888",
       "registered_my": 567,
@@ -3275,6 +3803,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3306,7 +3846,9 @@
       },
       "specs": {
         "range_km": 430.0,
-        "power_hp": 241
+        "power_hp": 241,
+        "charge_power_kw_dc": 120.0,
+        "seats": 7
       },
       "price_display": "RM269,888 –RM289,888",
       "registered_my": 76,
@@ -3329,6 +3871,14 @@
         "loan_total_interest_rm": {
           "method": "computed",
           "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3362,7 +3912,10 @@
         "battery_kwh": 110.0,
         "range_km": 580.0,
         "power_hp": 315,
-        "energy_kwh_per_100km": 17.1
+        "energy_kwh_per_100km": 17.1,
+        "charge_power_kw_dc": 537.0,
+        "boot_l": 721,
+        "seats": 7
       },
       "price_display": "RM281,073 –RM335,573",
       "registered_my": 886,
@@ -3389,6 +3942,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3422,7 +3987,10 @@
         "battery_kwh": 64.7,
         "range_km": 417.0,
         "power_hp": 308,
-        "energy_kwh_per_100km": 14.0
+        "energy_kwh_per_100km": 14.0,
+        "charge_power_kw_dc": 130.0,
+        "boot_l": 525,
+        "seats": 5
       },
       "price_display": "RM283,800",
       "registered_my": 929,
@@ -3449,6 +4017,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3482,7 +4062,10 @@
         "battery_kwh": 70.3,
         "range_km": 500.0,
         "power_hp": 282,
-        "energy_kwh_per_100km": 12.7
+        "energy_kwh_per_100km": 12.7,
+        "charge_power_kw_dc": 180.0,
+        "boot_l": 470,
+        "seats": 5
       },
       "price_display": "RM294,800",
       "registered_my": 937,
@@ -3509,6 +4092,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3542,7 +4137,10 @@
         "battery_kwh": 66.5,
         "range_km": 429.0,
         "power_hp": 188,
-        "energy_kwh_per_100km": 14.0
+        "energy_kwh_per_100km": 14.0,
+        "charge_power_kw_dc": 100.0,
+        "seats": 5,
+        "boot_l": 340
       },
       "price_display": "RM296,888",
       "registered_my": 497,
@@ -3569,6 +4167,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "EV Database / evspecs.org, EQA 250 66.5 kWh (three sources agree)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "Mercedes EQA specification, corroborated by evspecs.org"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "Mercedes EQA specification, corroborated by evspecs.org"
         }
       }
     },
@@ -3602,7 +4212,10 @@
         "battery_kwh": 103.36,
         "range_km": 490.0,
         "power_hp": 308,
-        "energy_kwh_per_100km": 19.0
+        "energy_kwh_per_100km": 19.0,
+        "charge_power_kw_dc": 166.0,
+        "boot_l": 410,
+        "seats": 7
       },
       "price_display": "RM299,000 –RM355,000",
       "registered_my": 1445,
@@ -3629,6 +4242,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3662,7 +4287,10 @@
         "battery_kwh": 116.0,
         "range_km": 582.0,
         "power_hp": 335,
-        "energy_kwh_per_100km": 17.9
+        "energy_kwh_per_100km": 17.9,
+        "charge_power_kw_dc": 150.0,
+        "boot_l": 574,
+        "seats": 7
       },
       "price_display": "RM299,800 –RM359,800",
       "registered_my": 1326,
@@ -3689,6 +4317,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3722,7 +4362,10 @@
         "battery_kwh": 77.0,
         "range_km": 446.0,
         "power_hp": 338,
-        "energy_kwh_per_100km": 15.5
+        "energy_kwh_per_100km": 15.5,
+        "charge_power_kw_dc": 144.0,
+        "boot_l": 249,
+        "seats": 2
       },
       "price_display": "RM299,900 –RM319,900",
       "registered_my": 138,
@@ -3749,6 +4392,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3782,7 +4437,10 @@
         "battery_kwh": 92.0,
         "range_km": 651.0,
         "power_hp": 329,
-        "energy_kwh_per_100km": 12.7
+        "energy_kwh_per_100km": 12.7,
+        "charge_power_kw_dc": 350.0,
+        "boot_l": 424,
+        "seats": 5
       },
       "price_display": "RM339,888",
       "registered_my": 89,
@@ -3809,6 +4467,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3842,7 +4512,10 @@
         "battery_kwh": 99.8,
         "range_km": 505.0,
         "power_hp": 380,
-        "energy_kwh_per_100km": 17.8
+        "energy_kwh_per_100km": 17.8,
+        "charge_power_kw_dc": 350.0,
+        "boot_l": 333,
+        "seats": 7
       },
       "price_display": "RM368,668 –RM374,668",
       "registered_my": 60,
@@ -3869,6 +4542,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3902,7 +4587,10 @@
         "battery_kwh": 122.49,
         "range_km": 600.0,
         "power_hp": 1140,
-        "energy_kwh_per_100km": 18.4
+        "energy_kwh_per_100km": 18.4,
+        "charge_power_kw_dc": 500.0,
+        "boot_l": 495,
+        "seats": 5
       },
       "price_display": "RM368,690",
       "registered_my": 36,
@@ -3929,6 +4617,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -3962,7 +4662,10 @@
         "battery_kwh": 81.2,
         "range_km": 582.0,
         "power_hp": 335,
-        "energy_kwh_per_100km": 12.6
+        "energy_kwh_per_100km": 12.6,
+        "charge_power_kw_dc": 205.0,
+        "boot_l": 490,
+        "seats": 5
       },
       "price_display": "RM368,800 –RM479,800",
       "registered_my": 966,
@@ -3989,6 +4692,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4022,7 +4737,10 @@
         "battery_kwh": 113.4,
         "range_km": 726.0,
         "power_hp": 463,
-        "energy_kwh_per_100km": 14.1
+        "energy_kwh_per_100km": 14.1,
+        "charge_power_kw_dc": 400.0,
+        "boot_l": 520,
+        "seats": 5
       },
       "price_display": "RM378,800",
       "registered_my": 490,
@@ -4049,6 +4767,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4082,7 +4812,10 @@
         "battery_kwh": 90.6,
         "range_km": 669.0,
         "power_hp": 288,
-        "energy_kwh_per_100km": 12.2
+        "energy_kwh_per_100km": 12.2,
+        "charge_power_kw_dc": 170.0,
+        "boot_l": 430,
+        "seats": 5
       },
       "price_display": "RM379,888 –RM429,888",
       "registered_my": 717,
@@ -4109,6 +4842,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4142,7 +4887,10 @@
         "battery_kwh": 90.6,
         "range_km": 552.0,
         "power_hp": 288,
-        "energy_kwh_per_100km": 14.8
+        "energy_kwh_per_100km": 14.8,
+        "charge_power_kw_dc": 170.0,
+        "boot_l": 520,
+        "seats": 5
       },
       "price_display": "RM398,888 –RM485,888",
       "registered_my": 717,
@@ -4169,6 +4917,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4202,7 +4962,10 @@
         "battery_kwh": 111.5,
         "range_km": 701.0,
         "power_hp": 402,
-        "energy_kwh_per_100km": 14.3
+        "energy_kwh_per_100km": 14.3,
+        "charge_power_kw_dc": 175.0,
+        "boot_l": 500,
+        "seats": 5
       },
       "price_display": "RM425,800 –RM487,800",
       "registered_my": 2886,
@@ -4229,6 +4992,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4262,7 +5037,10 @@
         "battery_kwh": 71.4,
         "range_km": 440.0,
         "power_hp": 308,
-        "energy_kwh_per_100km": 14.6
+        "energy_kwh_per_100km": 14.6,
+        "charge_power_kw_dc": 150.0,
+        "boot_l": 522,
+        "seats": 5
       },
       "price_display": "RM429,888",
       "registered_my": 195,
@@ -4289,6 +5067,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4322,7 +5112,10 @@
         "battery_kwh": 83.9,
         "range_km": 510.0,
         "power_hp": 537,
-        "energy_kwh_per_100km": 14.8
+        "energy_kwh_per_100km": 14.8,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 470,
+        "seats": 5
       },
       "price_display": "RM430,800",
       "registered_my": 937,
@@ -4349,6 +5142,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4382,7 +5187,10 @@
         "battery_kwh": 111.0,
         "range_km": 600.0,
         "power_hp": 510,
-        "energy_kwh_per_100km": 16.7
+        "energy_kwh_per_100km": 16.7,
+        "charge_power_kw_dc": 350.0,
+        "boot_l": 310,
+        "seats": 7
       },
       "price_display": "RM442,888",
       "registered_my": 136,
@@ -4409,6 +5217,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4442,7 +5262,9 @@
         "battery_kwh": 84.0,
         "range_km": 448.0,
         "power_hp": 601,
-        "energy_kwh_per_100km": 16.9
+        "energy_kwh_per_100km": 16.9,
+        "charge_power_kw_dc": 350.0,
+        "seats": 5
       },
       "price_display": "RM443,888",
       "registered_my": 348,
@@ -4469,6 +5291,14 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4502,7 +5332,9 @@
         "battery_kwh": 84.0,
         "range_km": 487.0,
         "power_hp": 601,
-        "energy_kwh_per_100km": 15.5
+        "energy_kwh_per_100km": 15.5,
+        "charge_power_kw_dc": 350.0,
+        "seats": 5
       },
       "price_display": "RM449,888",
       "registered_my": 222,
@@ -4529,6 +5361,14 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4562,7 +5402,10 @@
         "battery_kwh": 90.0,
         "range_km": 374.0,
         "power_hp": 201,
-        "energy_kwh_per_100km": 21.7
+        "energy_kwh_per_100km": 21.7,
+        "charge_power_kw_dc": 110.0,
+        "boot_l": 610,
+        "seats": 7
       },
       "price_display": "RM450,350",
       "registered_my": 13,
@@ -4589,6 +5432,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4622,7 +5477,10 @@
         "battery_kwh": 102.0,
         "range_km": 485.0,
         "power_hp": 603,
-        "energy_kwh_per_100km": 18.9
+        "energy_kwh_per_100km": 18.9,
+        "charge_power_kw_dc": 420.0,
+        "boot_l": 509,
+        "seats": 5
       },
       "price_display": "RM459,000 –RM729,000",
       "registered_my": 53,
@@ -4649,6 +5507,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4682,7 +5552,10 @@
         "battery_kwh": 114.0,
         "range_km": 582.0,
         "power_hp": 402,
-        "energy_kwh_per_100km": 17.6
+        "energy_kwh_per_100km": 17.6,
+        "charge_power_kw_dc": 170.0,
+        "boot_l": 569,
+        "seats": 5
       },
       "price_display": "RM465,990",
       "registered_my": 284,
@@ -4709,6 +5582,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4742,7 +5627,10 @@
         "battery_kwh": 114.0,
         "range_km": 600.0,
         "power_hp": 402,
-        "energy_kwh_per_100km": 17.1
+        "energy_kwh_per_100km": 17.1,
+        "charge_power_kw_dc": 170.0,
+        "boot_l": 528,
+        "seats": 5
       },
       "price_display": "RM474,990",
       "registered_my": 284,
@@ -4769,6 +5657,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4802,7 +5702,10 @@
         "battery_kwh": 112.0,
         "range_km": 580.0,
         "power_hp": 603,
-        "energy_kwh_per_100km": 17.4
+        "energy_kwh_per_100km": 17.4,
+        "charge_power_kw_dc": 350.0,
+        "boot_l": 688,
+        "seats": 5
       },
       "price_display": "RM499,000 –RM839,000",
       "registered_my": 291,
@@ -4829,6 +5732,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4862,7 +5777,10 @@
         "battery_kwh": 100.0,
         "range_km": 591.0,
         "power_hp": 355,
-        "energy_kwh_per_100km": 15.2
+        "energy_kwh_per_100km": 15.2,
+        "charge_power_kw_dc": 270.0,
+        "boot_l": 540,
+        "seats": 5
       },
       "price_display": "RM575,000 –RM845,000",
       "registered_my": 456,
@@ -4889,6 +5807,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4922,7 +5852,10 @@
         "battery_kwh": 118.0,
         "range_km": 673.0,
         "power_hp": 355,
-        "energy_kwh_per_100km": 15.8
+        "energy_kwh_per_100km": 15.8,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 195,
+        "seats": 7
       },
       "price_display": "RM625,888 –RM699,888",
       "registered_my": 654,
@@ -4949,6 +5882,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -4982,7 +5927,10 @@
         "battery_kwh": 107.8,
         "range_km": 782.0,
         "power_hp": 328,
-        "energy_kwh_per_100km": 12.4
+        "energy_kwh_per_100km": 12.4,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 610,
+        "seats": 5
       },
       "price_display": "RM648,888",
       "registered_my": 654,
@@ -5009,6 +5957,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5042,7 +6002,10 @@
         "battery_kwh": 90.6,
         "range_km": 527.0,
         "power_hp": 617,
-        "energy_kwh_per_100km": 15.5
+        "energy_kwh_per_100km": 15.5,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 430,
+        "seats": 5
       },
       "price_display": "RM649,888",
       "registered_my": 717,
@@ -5069,6 +6032,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5100,7 +6075,10 @@
       },
       "specs": {
         "range_km": 625.0,
-        "power_hp": 536
+        "power_hp": 536,
+        "charge_power_kw_dc": 195.0,
+        "boot_l": 525,
+        "seats": 5
       },
       "price_display": "RM714,800",
       "registered_my": 964,
@@ -5123,6 +6101,18 @@
         "loan_total_interest_rm": {
           "method": "computed",
           "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5156,7 +6146,10 @@
         "battery_kwh": 108.4,
         "range_km": 571.0,
         "power_hp": 649,
-        "energy_kwh_per_100km": 17.1
+        "energy_kwh_per_100km": 17.1,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 610,
+        "seats": 5
       },
       "price_display": "RM798,888",
       "registered_my": 654,
@@ -5183,6 +6176,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5216,7 +6221,10 @@
         "battery_kwh": 116.0,
         "range_km": 473.0,
         "power_hp": 579,
-        "energy_kwh_per_100km": 22.1
+        "energy_kwh_per_100km": 22.1,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 667,
+        "seats": 5
       },
       "price_display": "RM958,888 –RM998,888",
       "registered_my": 19,
@@ -5243,6 +6251,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5276,7 +6296,10 @@
         "battery_kwh": 118.0,
         "range_km": 560.0,
         "power_hp": 649,
-        "energy_kwh_per_100km": 19.0
+        "energy_kwh_per_100km": 19.0,
+        "charge_power_kw_dc": 200.0,
+        "boot_l": 440,
+        "seats": 4
       },
       "price_display": "RM1,088,888",
       "registered_my": 2,
@@ -5303,6 +6326,18 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "charge_power_kw_dc": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
+        },
+        "seats": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -5477,7 +6512,8 @@
         "fuel_src": "official",
         "fuel_source_url": "https://emas.proton.com/e-mas-7-phev/",
         "fuel_as_of_date": "2026-08-13",
-        "fuel_notes": "4.4 L/100km in battery-depleted condition (NEDC; 29.8kWh Premium Plus tier; Prime/Premium 4.3)"
+        "fuel_notes": "4.4 L/100km in battery-depleted condition (NEDC; 29.8kWh Premium Plus tier; Prime/Premium 4.3)",
+        "engine_cc": 1498
       },
       "price_display": "RM109,800–RM129,800",
       "registered_my": 4946,
@@ -5510,6 +6546,10 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "engine_cc": {
+          "method": "measured",
+          "basis": "recovered from the insurance computation's own record of the capacity it used"
         }
       }
     },
@@ -5822,7 +6862,8 @@
         "fuel_src": "paultan",
         "fuel_source_url": "https://paultan.org/2026/05/20/foton-tunland-v7-v9-in-malaysia-full-size-mild-hybrid-pick-up-with-ford-ram-styling-priced-fr-rm122k/",
         "fuel_as_of_date": "2026-08-13",
-        "fuel_notes": "2.0L Aucan 4F20 turbodiesel 48V MHEV rated 8.1 L/100km at launch (Foton AU sheet 8.0 NEDC)"
+        "fuel_notes": "2.0L Aucan 4F20 turbodiesel 48V MHEV rated 8.1 L/100km at launch (Foton AU sheet 8.0 NEDC)",
+        "engine_cc": 1968
       },
       "price_display": "RM123,800–RM143,800",
       "registered_my": 0,
@@ -5851,6 +6892,10 @@
           "basis": "paultan",
           "as_of": "2026-08-13",
           "url": "https://paultan.org/2026/05/20/foton-tunland-v7-v9-in-malaysia-full-size-mild-hybrid-pick-up-with-ford-ram-styling-priced-fr-rm122k/"
+        },
+        "engine_cc": {
+          "method": "measured",
+          "basis": "recovered from the insurance computation's own record of the capacity it used"
         }
       }
     },
@@ -7407,7 +8452,8 @@
         "fuel_src": "official",
         "fuel_source_url": "https://gacmotor.com.my/product/m8-phev/",
         "fuel_as_of_date": "2026-08-13",
-        "fuel_notes": "2.0T PHEV hybrid consumption combined 1.1 L/100km NEDC (official GAC MY; petrol-only 6.1; 120km EV range)"
+        "fuel_notes": "2.0T PHEV hybrid consumption combined 1.1 L/100km NEDC (official GAC MY; petrol-only 6.1; 120km EV range)",
+        "engine_cc": 1991
       },
       "price_display": "RM328,800–RM388,800",
       "registered_my": 52,
@@ -7439,6 +8485,10 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "engine_cc": {
+          "method": "measured",
+          "basis": "recovered from the insurance computation's own record of the capacity it used"
         }
       }
     },
@@ -11147,7 +12197,8 @@
         "fuel_src": "official",
         "fuel_source_url": "https://www.mitsubishi-motors.com.au/vehicles/outlander-plug-in-hybrid-ev.html",
         "fuel_as_of_date": "2026-08-13",
-        "fuel_notes": "25MY refresh 22.7kWh/86km: weighted combined 1.2 L/100km (Mitsubishi AU official; Condition B 6.2)"
+        "fuel_notes": "25MY refresh 22.7kWh/86km: weighted combined 1.2 L/100km (Mitsubishi AU official; Condition B 6.2)",
+        "engine_cc": 2360
       },
       "registered_my": 2,
       "popularity_rating": 1,
@@ -11178,6 +12229,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "engine_cc": {
+          "method": "measured",
+          "basis": "recovered from the insurance computation's own record of the capacity it used"
         }
       }
     },
@@ -11344,7 +12399,8 @@
         "motor_kw": 215,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 110,
-        "seats": 7
+        "seats": 7,
+        "boot_l": 405
       },
       "registered_my": 256,
       "popularity_rating": 2,
@@ -11370,6 +12426,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11409,7 +12469,8 @@
         "energy_kwh_per_100km": 19.8,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 110,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 495
       },
       "registered_my": 193,
       "popularity_rating": 2,
@@ -11435,6 +12496,10 @@
         "energy_kwh_per_100km": {
           "method": "measured",
           "basis": "manufacturer figure"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11471,7 +12536,8 @@
         "motor_kw": 100,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 72,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 332
       },
       "registered_my": 218,
       "popularity_rating": 2,
@@ -11497,6 +12563,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11594,7 +12664,8 @@
         "motor_kw": 129,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 76,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 448
       },
       "registered_my": 126,
       "popularity_rating": 2,
@@ -11620,6 +12691,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11716,7 +12791,8 @@
         "motor_kw": 370,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 170,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 569
       },
       "registered_my": 7,
       "popularity_rating": 1,
@@ -11742,6 +12818,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11778,7 +12858,8 @@
         "motor_kw": 107,
         "charge_power_kw_ac": 6.6,
         "charge_power_kw_dc": 50,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 332
       },
       "registered_my": 32,
       "popularity_rating": 1,
@@ -11804,6 +12885,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     },
@@ -11906,7 +12991,8 @@
         "motor_kw": 150,
         "charge_power_kw_ac": 11,
         "charge_power_kw_dc": 80,
-        "seats": 5
+        "seats": 5,
+        "boot_l": 475
       },
       "registered_my": 11,
       "popularity_rating": 1,
@@ -11932,6 +13018,10 @@
         "energy_kwh_per_100km": {
           "method": "computed",
           "basis": "battery_kwh / range_km"
+        },
+        "boot_l": {
+          "method": "measured",
+          "basis": "paultan.org research spec (Malaysian market)"
         }
       }
     }

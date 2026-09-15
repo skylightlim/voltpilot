@@ -84,6 +84,7 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
     k = _decay_k(vehicle)
 
     retained_pct, retained_basis = engines.resale_retained_pct(vehicle)
+    maintenance_yr, maintenance_basis = engines.maintenance_rm_yr(vehicle)
     financed, rate, tenure, down = engines._loan_parameters(vehicle)
 
     lines = {
@@ -94,10 +95,7 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
             float(own.get("insurance_rm_yr") or price * 0.015), k
         ),
         "energy": float(running_cost_rm_yr) * OWNERSHIP_YEARS,
-        "maintenance": float(
-            own.get("maintenance_rm_yr") or engines._maintenance_fallback(vehicle)
-        )
-        * OWNERSHIP_YEARS,
+        "maintenance": maintenance_yr * OWNERSHIP_YEARS,
         "road_tax": float(own.get("road_tax_rm", 0)) * OWNERSHIP_YEARS,
         "opportunity_cost": down * 0.035 * OWNERSHIP_YEARS,
     }
@@ -109,6 +107,9 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
         "resale_value_rm": round(price * retained_pct / 100.0, 0),
         "retained_pct": round(retained_pct, 1),
         "retained_basis": retained_basis,
+        # 22 of 184 trims carry a measured servicing figure; the rest are fitted
+        # from drivetrain and price band. Surfaced so the page can say which.
+        "maintenance_basis": maintenance_basis,
         "lines": [
             {
                 "key": key,

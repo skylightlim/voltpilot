@@ -45,27 +45,46 @@ async def run_score(body: ScoreRequest, db: AsyncSession = Depends(get_db)):
     # it back — it duplicated TopsisResult.engine_scores_json byte for byte
     # (~20 KB per scoring request). The model stays in db.py so the existing
     # table is untouched; it just has no writer any more.
-    db.add(
-        TopsisResult(
-            result_token=token,
-            weights=bundle["weights"],
-            ranking_json=bundle["ranking"],
-            engine_scores_json=engine_scores,
-            overview_json={
-                "features": bundle["features"],
-                "solar_eligible": bundle["solar_eligible"],
-                "budget": bundle.get("budget", {}),
-                "stability": bundle.get("stability"),
-                "fuel_scenario": bundle.get("fuel_scenario", "subsidised"),
-                "ron95_rm_per_l": bundle.get("ron95_rm_per_l"),
-                # The raw sliders, so a scenario view can re-rank with the
-                # buyer's own priorities rather than silently falling back to
-                # the midpoint. `weights` above holds the derived criteria
-                # weights, which cannot be turned back into slider positions.
-                "sliders": body.weights.model_dump(),
-            },
-        )
+    overview = {
+        "features": bundle["features"],
+        "solar_eligible": bundle["solar_eligible"],
+        "budget": bundle.get("budget", {}),
+        "stability": bundle.get("stability"),
+        "fuel_scenario": bundle.get("fuel_scenario", "subsidised"),
+        "ron95_rm_per_l": bundle.get("ron95_rm_per_l"),
+        # The raw sliders, so a scenario view can re-rank with the buyer's own
+        # priorities rather than silently falling back to the midpoint.
+        # `weights` above holds the derived criteria weights, which cannot be
+        # turned back into slider positions.
+        "sliders": body.weights.model_dump(),
+    }
+
+    # Upsert rather than insert. `result_token` is UNIQUE, so a second /score
+    # for the same token used to raise IntegrityError and hand the client a 500
+    # for a request that had in fact succeeded — the common path being a
+    # timeout on a slow scoring call followed by a retry. Re-scoring with
+    # different inputs (a different fuel_scenario, say) hit the same wall.
+    # Replacing the row makes a retry idempotent and a re-score do what the
+    # caller meant. Kept as select-then-write rather than a dialect ON CONFLICT
+    # because this runs on both SQLite and Postgres.
+    existing = await db.scalar(
+        select(TopsisResult).where(TopsisResult.result_token == token)
     )
+    if existing is None:
+        db.add(
+            TopsisResult(
+                result_token=token,
+                weights=bundle["weights"],
+                ranking_json=bundle["ranking"],
+                engine_scores_json=engine_scores,
+                overview_json=overview,
+            )
+        )
+    else:
+        existing.weights = bundle["weights"]
+        existing.ranking_json = bundle["ranking"]
+        existing.engine_scores_json = engine_scores
+        existing.overview_json = overview
     await db.commit()
 
     # Start the analyst now rather than on the first read. The client goes

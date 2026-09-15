@@ -17,6 +17,7 @@ from pathlib import Path
 
 import pytest
 
+from app.engines import engines
 from app.engines.engines import state_for_postcode
 
 LOOKUP_TS = Path(__file__).resolve().parents[2] / "frontend" / "lib" / "postcode-lookup.ts"
@@ -67,3 +68,67 @@ def test_known_postcodes(postcode, state):
     resolved = state_for_postcode(postcode)
     assert resolved is not None, f"{postcode} resolved to nothing"
     assert resolved[0] == state
+
+
+class TestGridRegionFromPostcode:
+    """The interview no longer asks which grid the buyer is on.
+
+    It was a question about something already known: `home_postcode` is
+    required and maps to exactly one state. Asking cost a step and invited a
+    contradiction between two answers that cannot disagree in reality.
+    """
+
+    @pytest.mark.parametrize("postcode,expected", [
+        ("88000", "east_malaysia"),   # Kota Kinabalu, Sabah
+        ("91000", "east_malaysia"),   # Tawau, Sabah
+        ("93000", "east_malaysia"),   # Kuching, Sarawak
+        ("98000", "east_malaysia"),   # Miri, Sarawak
+        ("87000", "east_malaysia"),   # Labuan, supplied from the Sabah grid
+        ("50400", "peninsular"),      # Kuala Lumpur
+        ("10000", "peninsular"),      # Penang
+        ("79000", "peninsular"),      # Johor
+        ("01000", "peninsular"),      # Perlis
+    ])
+    def test_the_grid_is_derived_from_the_postcode(self, postcode, expected):
+        assert engines.grid_region_for_postcode(postcode) == expected
+
+    @pytest.mark.parametrize("postcode", ["", "abcde", "99999", "00000"])
+    def test_an_unusable_postcode_derives_nothing(self, postcode):
+        """None, not a guess — so the stated value can take over."""
+        assert engines.grid_region_for_postcode(postcode) is None
+
+    def test_the_postcode_wins_over_a_contradictory_stated_region(self):
+        """Two answers cannot disagree in reality, so trust the harder evidence."""
+        profile = {"home_postcode": "50400", "grid_region": "east_malaysia"}
+        assert engines.grid_region(profile) == "peninsular"
+
+    def test_a_stated_region_still_applies_without_a_usable_postcode(self):
+        """The voice path can extract "Sabah" from speech before a postcode."""
+        profile = {"home_postcode": "", "grid_region": "east_malaysia"}
+        assert engines.grid_region(profile) == "east_malaysia"
+
+    def test_it_falls_back_to_peninsular_when_nothing_is_known(self):
+        assert engines.grid_region({}) == "peninsular"
+
+    def test_an_east_malaysian_postcode_lowers_the_emissions_figure(self):
+        """The derivation has to reach the output, not just the feature dict.
+
+        East Malaysia is pulled down by hydro-dominant Sarawak, so the same kWh
+        carries roughly half the CO2.
+        """
+        from app.services import scoring
+
+        base = {
+            "language": "en", "daily_km": 40, "trips_per_week": 5,
+            "long_trip_frequency": "monthly", "long_trip_km": 300,
+            "destination_region": "north", "can_charge_home": True,
+            "consider_solar": False, "budget_max_rm": 250_000,
+            "monthly_electricity_bill_rm": 0,
+        }
+        sliders = {"save_money": 50, "environment": 50, "convenience": 50, "future_proofing": 50}
+
+        def first_ev_co2(postcode):
+            out = scoring.score_catalog({**base, "home_postcode": postcode}, sliders)
+            return next(r for r in out["ranking"] if r["type"] == "ev")["co2_kg_yr"]
+
+        assert first_ev_co2("88000") < first_ev_co2("50400") * 0.75

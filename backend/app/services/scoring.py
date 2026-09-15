@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ..config import load_catalog
+from . import costing
 from ..engines import engines
 from ..engines.engines import normalize_cost_scores
 from ..engines.topsis import (
@@ -136,6 +137,24 @@ def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised
         r["total_cost_10yr_rm"] = (
             r["purchase_price_rm"] + float(r["tco_excluding_rm"]) + r["running_cost_rm_yr"] * 10
         )
+        # The CRITERION is the five-year figure below; total_cost_10yr_rm stays
+        # published for the results page and the report. Two changes, issue.md
+        # issues 9 and 16:
+        #
+        # Depreciation replaces purchase price. A buyer does not lose the price
+        # of the car, they lose the part of it that does not come back, and at
+        # 71% of the five-year total that is the largest cost of ownership. The
+        # engine omitted it entirely while counting the whole purchase price,
+        # which is both too big and the wrong quantity.
+        #
+        # Five years, not ten. Insurance was charged as ten repeats of a
+        # first-year premium at 0% NCD on a new-car sum insured — 2.74x too
+        # much, and 57.6% of the old total. costing.py applies the PIAM NCD
+        # ladder against a declining sum insured, and charges the 91% of a
+        # seven-year hire-purchase interest bill actually paid by year five.
+        breakdown = costing.five_year_breakdown(r, r["running_cost_rm_yr"])
+        r["total_cost_5yr_rm"] = float(breakdown["total_rm"])
+        r["cost_breakdown_5yr"] = breakdown
         matrix_rows.append(r)
 
     weights = preference_weights(sliders)

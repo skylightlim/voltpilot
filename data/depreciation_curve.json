@@ -25,9 +25,9 @@
     "byd-atto-3": {
       "basis": "measured",
       "cells": 3,
-      "k_per_year": 0.2147,
+      "k_per_year": 0.2173,
       "listings": 102,
-      "retained_5yr": 0.3418
+      "retained_5yr": 0.3373
     },
     "chery-tiggo-8": {
       "basis": "measured",
@@ -73,31 +73,31 @@
     },
     "mini-countryman": {
       "basis": "measured",
-      "cells": 5,
-      "k_per_year": 0.1231,
-      "listings": 97,
-      "retained_5yr": 0.5404
+      "cells": 4,
+      "k_per_year": 0.1565,
+      "listings": 22,
+      "retained_5yr": 0.4572
     },
     "porsche-taycan": {
       "basis": "measured",
       "cells": 5,
-      "k_per_year": 0.2027,
+      "k_per_year": 0.2051,
       "listings": 118,
-      "retained_5yr": 0.3629
+      "retained_5yr": 0.3587
     },
     "smart-1": {
       "basis": "measured",
       "cells": 3,
-      "k_per_year": 0.1086,
+      "k_per_year": 0.1122,
       "listings": 64,
-      "retained_5yr": 0.5811
+      "retained_5yr": 0.5707
     },
     "tesla-model-y": {
       "basis": "measured",
       "cells": 4,
-      "k_per_year": 0.1272,
+      "k_per_year": 0.1309,
       "listings": 60,
-      "retained_5yr": 0.5295
+      "retained_5yr": 0.5196
     },
     "toyota-corolla-cross-hybrid": {
       "basis": "measured",
@@ -160,9 +160,9 @@
     "ev": {
       "basis": "fitted",
       "cells": 82,
-      "k_per_year": 0.1722,
-      "listings": 1462,
-      "retained_5yr": 0.4228
+      "k_per_year": 0.1816,
+      "listings": 1398,
+      "retained_5yr": 0.4034
     },
     "hybrid": {
       "basis": "fitted",
@@ -191,17 +191,11 @@
     "lexus-lm": {
       "retention_vs_type_median": 0.71
     },
-    "mg4": {
-      "retention_vs_type_median": 1.8
-    },
     "porsche-cayenne-coupe": {
       "retention_vs_type_median": 1.44
     },
     "tesla-model-3": {
       "retention_vs_type_median": 1.65
-    },
-    "toyota-hilux": {
-      "retention_vs_type_median": 0.69
     },
     "volkswagen-golf": {
       "retention_vs_type_median": 1.37

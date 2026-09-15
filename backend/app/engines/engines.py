@@ -217,6 +217,44 @@ def state_for_postcode(postcode: str) -> tuple[str, tuple[float, float]] | None:
     return None
 
 
+# Sabah, Sarawak and Labuan sit on the East Malaysian grid; Labuan is supplied
+# from Sabah. Everything else is Peninsular. The split matters because East
+# Malaysia is pulled down by hydro-dominant Sarawak, so the same kWh carries
+# roughly half the CO2 — see grid_co2_factor.
+_EAST_MALAYSIA_STATES = {"Sabah", "Sarawak", "Labuan"}
+
+
+def grid_region_for_postcode(postcode: str) -> str | None:
+    """"peninsular" or "east_malaysia" from the postcode, None if unrecognised.
+
+    The interview used to ask this outright, which was a question about
+    something already known: `home_postcode` is required, and the state ranges
+    above place every valid one. Asking cost a step and invited a contradiction
+    between two answers that cannot disagree in reality.
+    """
+    found = state_for_postcode(postcode)
+    if found is None:
+        return None
+    state, _ = found
+    return "east_malaysia" if state in _EAST_MALAYSIA_STATES else "peninsular"
+
+
+def grid_region(profile: dict) -> str:
+    """The grid this buyer charges on, preferring the postcode over any stated value.
+
+    The postcode is the harder evidence: it is a required five-digit answer that
+    maps to exactly one state, where a stated region can only ever be a
+    restatement of it. A stated value still applies when the postcode is missing
+    or out of range, which is the voice-interview path — analyst.py can extract
+    "Sabah" from speech before a postcode is captured.
+    """
+    derived = grid_region_for_postcode(str(profile.get("home_postcode") or ""))
+    if derived is not None:
+        return derived
+    stated = str(profile.get("grid_region") or "")
+    return stated if stated in ("peninsular", "east_malaysia") else "peninsular"
+
+
 def home_coordinates(postcode: str) -> tuple[float, float]:
     """Best available home position.
 
@@ -445,8 +483,7 @@ def grid_co2_factor(profile: dict, co2: dict) -> float:
     Sarawak, so the same kWh carries roughly half the CO2.
     """
     by_region = co2.get("grid_by_region") or {}
-    region = str(profile.get("grid_region") or "peninsular")
-    return float(by_region.get(region, co2["grid"]))
+    return float(by_region.get(grid_region(profile), co2["grid"]))
 
 
 def estimate_household_kwh(bill_rm: float, tariff: dict) -> float:
@@ -523,7 +560,7 @@ def build_features(profile: dict) -> dict:
         "region_density": region_density_base(profile.get("home_postcode", "")),
         "can_charge_home": bool(profile.get("can_charge_home")),
         "can_charge_work": bool(profile.get("can_charge_work")),
-        "grid_region": str(profile.get("grid_region") or "peninsular"),
+        "grid_region": grid_region(profile),
     }
 
 
@@ -552,20 +589,58 @@ def _loan_parameters(vehicle: dict) -> tuple[float, float, int, float]:
     return max(0.0, price - down), rate, tenure, down
 
 
-# Servicing cost when the catalog has no measured figure. Only 22 of 184 rows
-# carry one, so the fallback decides this for most vehicles — and a single flat
-# RM600 charged a hybrid the same servicing as a battery EV, understating 50 of
-# 57 hybrids by roughly a third. These are the medians of the rows that DO carry
-# a figure (EV n=15 -> 600, hybrid n=7 -> 950). No PHEV row carries one, so PHEV
-# takes the hybrid median: it has the same engine servicing plus a drive battery,
-# making the hybrid figure a floor rather than a guess in the other direction.
+# Servicing cost when the catalog has no measured figure — 162 of 184 rows,
+# so this decides it for most of the catalogue (issue.md issue 11).
+#
+# It was three constants keyed on drivetrain, which charged a RM68,000 Wuling
+# and a RM2.2m Maybach the same servicing. Fitting the 22 rows that DO carry a
+# measured figure shows why that is wrong: within a drivetrain, cost scales with
+# price (EV r=+0.76 n=15, hybrid r=+0.78 n=7). The overall correlation is only
+# +0.20 because drivetrain dominates price, which is exactly why the model needs
+# both terms rather than either alone.
+#
+# Log-linear in price, because servicing tracks parts and labour rates of the
+# segment rather than the sticker: a car twice the price is not twice the
+# service bill. The two drivetrains fit near-identical slopes (172.1 and 172.6),
+# so the slope is pooled and only the intercept is per-type — more robust than
+# two independent fits at n=7. Pooled: R^2 0.937, mean residual RM31, worst
+# RM130 across all 22.
+#
+# No PHEV row carries a measured figure, so PHEV takes the hybrid intercept: the
+# same engine servicing plus a drive battery, which makes the hybrid figure a
+# floor rather than a guess in the other direction.
+#
 # Kept in code, not written into the catalog, so the data file holds only
 # measured values and this stays visibly an estimate.
-_MAINTENANCE_FALLBACK_RM_YR = {"ev": 600.0, "hybrid": 950.0, "phev": 950.0}
+_MAINTENANCE_LN_PRICE_SLOPE = 172.11
+_MAINTENANCE_INTERCEPT_RM_YR = {"ev": -1461.0, "hybrid": -1100.4, "phev": -1100.4}
+
+# Guards the fit against a price below anything it was fitted on. The cheapest
+# catalogue row (RM67,800) predicts RM454, so this only bites hypotheticals.
+_MAINTENANCE_FLOOR_RM_YR = 400.0
 
 
 def _maintenance_fallback(vehicle: dict) -> float:
-    return _MAINTENANCE_FALLBACK_RM_YR.get(vehicle.get("type", ""), 600.0)
+    """Estimated annual servicing from drivetrain and price band."""
+    intercept = _MAINTENANCE_INTERCEPT_RM_YR.get(
+        vehicle.get("type", ""), _MAINTENANCE_INTERCEPT_RM_YR["ev"]
+    )
+    price = max(float(vehicle.get("price_rm") or 0.0), 1.0)
+    fitted = _MAINTENANCE_LN_PRICE_SLOPE * math.log(price) + intercept
+    return max(_MAINTENANCE_FLOOR_RM_YR, fitted)
+
+
+def maintenance_rm_yr(vehicle: dict) -> tuple[float, str]:
+    """Annual servicing cost and whether it was measured or estimated.
+
+    Returns the basis alongside the number, the same shape as
+    resale_retained_pct, so the results page can tell a reader which of the two
+    it is looking at. 22 of 184 trims are measured.
+    """
+    measured = (vehicle.get("ownership") or {}).get("maintenance_rm_yr")
+    if measured:
+        return float(measured), "measured"
+    return _maintenance_fallback(vehicle), "estimated"
 
 
 def financial_tco_excluding(vehicle: dict) -> dict:
@@ -578,7 +653,7 @@ def financial_tco_excluding(vehicle: dict) -> dict:
     own = vehicle.get("ownership", {})
     financed, rate, tenure, down = _loan_parameters(vehicle)
     insurance = float(own.get("insurance_rm_yr") or (price * 0.015))
-    maintenance = float(own.get("maintenance_rm_yr") or _maintenance_fallback(vehicle))
+    maintenance, _maintenance_basis = maintenance_rm_yr(vehicle)
     road_tax = float(own.get("road_tax_rm", 0))
 
     interest = loan_interest_total(financed, tenure, rate)
@@ -658,7 +733,69 @@ USABLE_RANGE_FRACTION = 0.80
 STOP_PENALTY = 0.22
 
 
+# --- practicality (issue.md issues 5b and 6) -------------------------------
+#
+# behaviour_engine scored only how much hassle it is to keep a car fuelled, and
+# for anything that was not a battery EV that is genuinely identical — a Yaris
+# and a Maybach refuel the same way. So it returned a constant, and the
+# criterion could not separate two hybrids at all (measured std 0.0 within both
+# the hybrid and PHEV groups). The convenience slider moved EV against non-EV
+# and nothing else.
+#
+# Practicality is the part of convenience that IS per-vehicle: whether the car
+# seats the household and swallows their luggage. Applied to every drivetrain,
+# not just the hybrid branch, so it discriminates within each group rather than
+# tilting between them.
+#
+# Boot bounds are fixed domain figures, not read off the candidate set, for the
+# reason criteria_bounds exists: a scale derived from the alternatives moves
+# when the alternatives do. 300 to 600 litres spans p25 to p75 of the
+# catalogue (median 453), so most cars land inside the band and the extremes
+# (98 and 1000) clamp rather than redefine it.
+BOOT_FLOOR_L, BOOT_SATURATION_L = 300.0, 600.0
+BOOT_FACTOR_RANGE = (0.92, 1.06)
+
+
+
+def _boot_factor(vehicle: dict) -> float:
+    """0.92 at 300 litres or less, rising to 1.06 at 600 or more; 1.0 if unknown."""
+    boot = (vehicle.get("specs") or {}).get("boot_l")
+    if not boot:
+        return 1.0
+    lo, hi = BOOT_FACTOR_RANGE
+    span = BOOT_SATURATION_L - BOOT_FLOOR_L
+    scaled = lo + (hi - lo) * (float(boot) - BOOT_FLOOR_L) / span
+    return max(lo, min(hi, scaled))
+
+
+def practicality_factor(vehicle: dict) -> float:
+    """How practical the car is, as a multiplier on convenience.
+
+    Boot volume only. Seat count is deliberately NOT scored: how many seats a
+    buyer needs cannot be inferred from anything else in the interview, and
+    asking would add a twelfth question to an eleven-question script for one
+    sub-term. `seats` is exposed on the results page as a filter instead, which
+    answers the same need without lengthening the interview — a buyer who needs
+    seven seats picks seven and sees only those.
+    """
+    return _boot_factor(vehicle)
+
+
 def behaviour_engine(vehicle: dict, profile: dict, feature: dict) -> float:
+    """Convenience: how easily this car is fuelled AND how well it fits (0-100).
+
+    Fuelling is the drivetrain question and practicality is the per-vehicle one.
+    Multiplying rather than averaging keeps the fuelling result the thing being
+    adjusted: a car that cannot be kept charged does not become convenient by
+    having a big boot, and a 7-seater that seats the family does not rescue a
+    range that does not reach.
+    """
+    fuelling = _fuelling_convenience(vehicle, profile, feature)
+    adjusted = fuelling * practicality_factor(vehicle)
+    return max(0.0, min(100.0, adjusted))
+
+
+def _fuelling_convenience(vehicle: dict, profile: dict, feature: dict) -> float:
     """How little hassle it is to keep THIS car fuelled, for THIS driver (0-100).
 
     Rewritten 2026-09-11. The previous version could not be satisfied: range_fit
@@ -726,6 +863,34 @@ def behaviour_engine(vehicle: dict, profile: dict, feature: dict) -> float:
 # ---------------------------------------------------------------------------
 
 
+# How well an EV can actually use a corridor charger. Two cars face the same
+# station gaps but not the same trip: at 50 kW a 10-80% top-up is most of an
+# hour, at 150 kW it is the length of a coffee. Saturates at 150 because beyond
+# that the stopping time is set by the driver, not the car — Malaysia's public
+# DCFC fleet tops out well below the 400 kW the fastest cars here can take.
+DC_FLOOR_KW, DC_SATURATION_KW = 50.0, 150.0
+DC_FACTOR_FLOOR = 0.75
+
+
+def _dc_charge_factor(vehicle: dict) -> float:
+    """0.75 at 50 kW rising to 1.0 at 150 kW and above; 1.0 when unknown.
+
+    A missing figure returns the neutral 1.0 rather than assuming a slow car.
+    The catalogue carries a measured rate for 101 of 102 EVs, so this is the
+    Higer H7V coach alone — but defaulting it to 50 kW would mark a vehicle down
+    for absent data rather than for charging slowly, which is the same mistake
+    as scoring an unmeasured maintenance cost as zero.
+    """
+    if vehicle.get("type") != "ev":
+        return 1.0
+    dc = (vehicle.get("specs") or {}).get("charge_power_kw_dc")
+    if not dc:
+        return 1.0
+    span = DC_SATURATION_KW - DC_FLOOR_KW
+    scaled = DC_FACTOR_FLOOR + (1.0 - DC_FACTOR_FLOOR) * (float(dc) - DC_FLOOR_KW) / span
+    return max(DC_FACTOR_FLOOR, min(1.0, scaled))
+
+
 def infrastructure_engine(vehicle: dict, profile: dict, feature: dict) -> float:
     density = region_density_base(profile.get("home_postcode", ""))
     road_factor = feature["long_trip_weight"]
@@ -737,6 +902,10 @@ def infrastructure_engine(vehicle: dict, profile: dict, feature: dict) -> float:
     corridor = min(100.0, density + trip_boost)
 
     if vehicle["type"] == "ev":
+        # How fast the car charges only matters for the part of the criterion
+        # that is about corridors; it says nothing about the station density
+        # near home, so it scales the corridor term rather than the result.
+        corridor *= _dc_charge_factor(vehicle)
         if profile.get("can_charge_home"):
             return corridor
         # no home charger: a workplace charger covers most of the daily need
