@@ -265,9 +265,12 @@ describe("voice interview", () => {
     // and the voice interview does not is not a missing question — it is a
     // profile that scores against the engine's fallback anchor instead of the
     // user's own numbers, silently, with no way to tell from the result.
+    // grid_region was here until 2026-09-14 and is deliberately gone: the form
+    // stopped asking it once engines.grid_region derived it from home_postcode,
+    // which is required. It is not a field voice fails to collect, it is a field
+    // nothing collects any more — so asking for it would be the defect.
     const topics = {
       workplace_charging: [/charge at your workplace/i, /mengecas di tempat kerja/i],
-      grid_region: [/Peninsular grid/i, /grid Semenanjung/i],
       electricity_bill: [/monthly electricity bill/i, /bil elektrik bulanan/i],
       budget: [/maximum budget/i, /bajet maksimum/i],
     };

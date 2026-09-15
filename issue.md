@@ -41,6 +41,8 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 20 | Interview asked for the grid region it could derive | `backend/app/schemas.py:70` | A question whose answer the postcode already held | Fixed 2026-09-14 |
 | 21 | Nothing tests the interface in a browser | `frontend/tests/` | A page that renders but fetches nothing passes every gate | Open |
 | 22 | Interface accessibility defects | `frontend/app/layout.tsx:74` | Malay pages declared English; no way to switch language mid-interview | Fixed 2026-09-15 |
+| 23 | Voice advisor holds a third copy of the interview script | `frontend/app/interview/voice/page.tsx:596` | Kept asking a question removed on 2026-09-14 | Fixed 2026-09-15 |
+| 24 | Link previews pointed at a host the project left | `frontend/app/layout.tsx:36` | Every shared link's preview image resolved to a dead Cloudflare domain | Fixed 2026-09-15 |
 
 ## State of play
 
@@ -1394,6 +1396,58 @@ one `h1`, no unnamed buttons, no unlabelled inputs, no missing alt text, and the
 **What the audit did not find,** which is worth recording so it is not re-run:
 no console errors on any page, and no horizontal overflow at 375 px, which is
 the viewport `frontend/DESIGN.md` treats as primary.
+
+### 23. The voice advisor holds a third copy of the interview script
+
+**Problem.** `INTERVIEW_QUESTIONS` in `schemas.py` is the script, and the intake
+flow renders it from `/config/interview`. The manual form held a second copy of
+one control, fixed with issue 20. The Gemini Live system prompt in
+`voice/page.tsx` holds a **third**, written out in full in English and Malay,
+reading nothing from the backend.
+
+**Why it is an issue.** It went stale the same day it could: issue 20 derived
+the grid region from the postcode and removed the question, and the voice
+advisor carried on asking "Is your home on the Peninsular grid, or in East
+Malaysia?" and announcing eleven questions in four places across two languages.
+A buyer using voice was asked for something the product already knew, and told a
+number that had been wrong since the script changed.
+
+Not fatal, because `analyst.py` still extracts `grid_region` and
+`engines.grid_region` prefers the postcode over it — so the answer was
+collected and then ignored. Wasting a question is still the defect.
+
+**Status. Fixed 2026-09-15.** The question is gone from both prompts, the
+remaining ten renumbered, and every count corrected. A comment now marks the
+list as a copy so the next person knows what it shadows.
+
+**The real fix, not done.** Build the prompt from `/config/interview` the way
+the intake flow does, and this cannot drift again. Left open because the voice
+prompt is not a list of questions alone — it carries per-question phrasing,
+answer formats and confirmation rules that the config does not model, and
+inventing that schema to remove one copy is a bigger change than it looks.
+
+### 24. Link previews pointed at a host the project had left
+
+**Problem.** `metadataBase` in `layout.tsx` fell back to
+`https://voltpilot.pages.dev`, a Cloudflare Pages host, when
+`NEXT_PUBLIC_SITE_URL` was unset. That variable is set nowhere: not in
+`.github/workflows/`, not in `.env.local.example`, not in `DEPLOYMENT.md`. So
+the fallback is what shipped, and `DEPLOYMENT.md` has described Vercel as the
+only deploy target since 2026-09-07.
+
+**Why it is an issue.** `metadataBase` resolves the relative Open Graph image to
+an absolute URL, so every shared link asked scrapers for an image on a domain
+the project no longer serves. For a Malaysian consumer product whose
+distribution is WhatsApp and Facebook, the preview card is the first
+impression, and it was broken everywhere.
+
+**Status. Fixed 2026-09-15.** Falls back to `VERCEL_PROJECT_PRODUCTION_URL`,
+which Vercel supplies at build time and which needs no configuration, then to
+localhost for development. `NEXT_PUBLIC_SITE_URL` still overrides for a custom
+domain and is now documented in `.env.local.example`.
+
+Found alongside it: the meta description had claimed "Answer 8 quick questions"
+since before the script was eleven. It is ten, and says so.
 
 ## Suggested order of work
 

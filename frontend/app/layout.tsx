@@ -27,15 +27,25 @@ const mono = JetBrains_Mono({
 });
 
 const DESCRIPTION =
-  "Answer 8 quick questions. Get a ranked EV vs hybrid recommendation, roadmap, and CO₂ savings — built on Malaysian prices, tariffs and incentives.";
+  "Answer 10 quick questions. Get a ranked EV vs hybrid recommendation, roadmap, and CO₂ savings — built on Malaysian prices, tariffs and incentives.";
 
 /* metadataBase resolves the relative OG image path to an absolute URL, which is
-   what every scraper requires. It reads the deployment URL rather than a
-   hardcoded host so the same build works on preview and production. */
+   what every scraper requires.
+   The fallback used to be voltpilot.pages.dev, a Cloudflare Pages host this
+   project stopped deploying to — and NEXT_PUBLIC_SITE_URL was set nowhere, in
+   CI or in any example env, so that dead host is what actually shipped. Every
+   link preview pointed its image at a domain that no longer serves the site,
+   which for a product shared on WhatsApp is the whole first impression.
+   VERCEL_PROJECT_PRODUCTION_URL is set by Vercel at build time and needs no
+   configuration; NEXT_PUBLIC_SITE_URL still overrides it for a custom domain. */
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://voltpilot.pages.dev",
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "VoltPilot — Malaysia's AI car decision guide",
     template: "%s · VoltPilot",

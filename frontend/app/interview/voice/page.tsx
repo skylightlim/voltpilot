@@ -563,7 +563,7 @@ export default function VoiceInterviewPage() {
       const systemPrompt = isBm
         ? [
             "Anda adalah penasihat AI untuk panduan keputusan EV vs Hibrid Malaysia.",
-            "Tanya pengguna tepat 11 soalan, satu demi satu, dalam urutan ini:",
+            "Tanya pengguna tepat 10 soalan, satu demi satu, dalam urutan ini:",
             "",
             "1. Berapa kilometer anda memandu pada hari biasa?",
             "2. Berapa hari seminggu anda biasanya memandu?",
@@ -572,17 +572,16 @@ export default function VoiceInterviewPage() {
             "5. Bolehkah anda mengecas EV di rumah? (ya / tidak)",
             "6. Bolehkah anda juga mengecas di tempat kerja? (ya / tidak)",
             "7. Apakah poskod rumah anda? (5 digit)",
-            "8. Adakah rumah anda di grid Semenanjung atau di Malaysia Timur, Sabah atau Sarawak?",
-            "9. Lebih kurang berapa bil elektrik bulanan anda dalam RM? (sebut sifar jika tidak pasti)",
-            "10. Berapakah bajet maksimum anda untuk kereta dalam RM?",
-            "11. Adakah anda mempertimbangkan panel solar di rumah? (ya / tidak)",
+            "8. Lebih kurang berapa bil elektrik bulanan anda dalam RM? (sebut sifar jika tidak pasti)",
+            "9. Berapakah bajet maksimum anda untuk kereta dalam RM?",
+            "10. Adakah anda mempertimbangkan panel solar di rumah? (ya / tidak)",
             "",
             "PERATURAN:",
             "- Tanya SATU soalan pada satu masa. Tunggu jawapan pengguna.",
             "- Selepas setiap jawapan, sahkan secara ringkas apa yang anda dengar, kemudian tanya soalan seterusnya.",
             "- Pastikan respons pendek dan mesra.",
             "",
-            "SELEPAS semua 11 soalan dijawab:",
+            "SELEPAS semua 10 soalan dijawab:",
             "1. Katakan: \"Biar saya sahkan semua jawapan anda.\"",
             "2. Bacakan setiap jawapan dengan jelas.",
             "3. Tanya: \"Adakah semuanya betul? Katakan ya untuk sahkan, atau beritahu saya apa yang ingin diubah.\"",
@@ -592,8 +591,12 @@ export default function VoiceInterviewPage() {
             "PENTING: Apabila disahkan, tamatkan dengan tepat perkataan ini sahaja: INTERVIEW_COMPLETE",
           ].join("\n")
         : [
+            /* A THIRD copy of the interview script, after schemas.INTERVIEW_QUESTIONS
+               and the manual form. It went stale the moment the grid-region question
+               was derived from the postcode and removed on 2026-09-14: the advisor
+               kept asking for it and announcing eleven. issue.md issue 23. */
             "You are the AI interviewer for a Malaysian EV vs Hybrid decision guide.",
-            "Ask the user exactly 11 questions, one at a time, in this order:",
+            "Ask the user exactly 10 questions, one at a time, in this order:",
             "",
             "1. How many kilometres do you drive on a typical day?",
             "2. How many days a week do you usually drive?",
@@ -602,17 +605,16 @@ export default function VoiceInterviewPage() {
             "5. Can you charge an EV at home? (yes / no)",
             "6. Can you also charge at your workplace? (yes / no)",
             "7. What is your home postcode? (5 digits)",
-            "8. Is your home on the Peninsular grid, or in East Malaysia — Sabah or Sarawak?",
-            "9. Roughly what is your monthly electricity bill in ringgit? (say zero if unsure)",
-            "10. What is your maximum budget for the car, in ringgit?",
-            "11. Are you considering solar panels at home? (yes / no)",
+            "8. Roughly what is your monthly electricity bill in ringgit? (say zero if unsure)",
+            "9. What is your maximum budget for the car, in ringgit?",
+            "10. Are you considering solar panels at home? (yes / no)",
             "",
             "RULES:",
             "- Ask ONE question at a time. Wait for the user's answer.",
             "- After each answer, briefly confirm what you heard, then ask the next question.",
             "- Keep responses short and conversational.",
             "",
-            "AFTER all 11 questions are answered:",
+            "AFTER all 10 questions are answered:",
             "1. Say: \"Let me confirm all your answers.\"",
             "2. Read back each answer clearly.",
             "3. Ask: \"Is everything correct? Say yes to confirm, or tell me what to change.\"",
@@ -743,8 +745,8 @@ export default function VoiceInterviewPage() {
       console.log("[voice] Session ready, sending initial greeting prompt...");
 
       const initialGreeting = isBm
-        ? "Perkenalkan diri anda secara ringkas sebagai Penasihat AI VoltPilot. Sapa pengguna, beritahu mereka anda akan bertanya 11 soalan pantas untuk membantu memilih antara EV atau hibrid, kemudian terus tanya soalan pertama: Berapa kilometer anda memandu pada hari biasa?"
-        : "Introduce yourself briefly as the VoltPilot AI Advisor. Greet the user, tell them you will ask 11 quick questions to help decide between an EV or hybrid, then immediately ask the first question: How many kilometres do you drive on a typical day?";
+        ? "Perkenalkan diri anda secara ringkas sebagai Penasihat AI VoltPilot. Sapa pengguna, beritahu mereka anda akan bertanya 10 soalan pantas untuk membantu memilih antara EV atau hibrid, kemudian terus tanya soalan pertama: Berapa kilometer anda memandu pada hari biasa?"
+        : "Introduce yourself briefly as the VoltPilot AI Advisor. Greet the user, tell them you will ask 10 quick questions to help decide between an EV or hybrid, then immediately ask the first question: How many kilometres do you drive on a typical day?";
 
       session.sendClientContent({
         turns: [
