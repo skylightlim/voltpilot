@@ -65,6 +65,38 @@ function Fact({ label, value }: { label: string; value: string }) {
   );
 }
 
+/** One labelled bar. Used by the depreciation schedule and the cost breakdown. */
+function Bar({ label, pct, value, wide = false }: {
+  label: string; pct: number; value: string; wide?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`${wide ? "w-28 text-[11.5px] capitalize" : "w-8 font-mono text-[11px]"} shrink-0 text-muted`}>
+        {label}
+      </span>
+      <div className="h-4 flex-1 overflow-hidden rounded-full bg-line/40">
+        <div className="h-full rounded-full bg-primary/70" style={{ width: `${Math.max(1, pct)}%` }} />
+      </div>
+      <span className="w-24 shrink-0 text-right font-mono text-[11.5px] tabular-nums text-ink">{value}</span>
+    </div>
+  );
+}
+
+/** Card + heading, the shape every calculator shares. */
+function Panel({ icon: Icon, title, className = "", children }: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string; className?: string; children: React.ReactNode;
+}) {
+  return (
+    <Card className={`mt-5 p-5 ${className}`}>
+      <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
+        <Icon className="h-4.5 w-4.5 text-primary" /> {title}
+      </h2>
+      {children}
+    </Card>
+  );
+}
+
 function Basis({ text }: { text: string }) {
   return <p className="mt-3 text-[11.5px] leading-relaxed text-muted">{text}</p>;
 }
@@ -110,6 +142,24 @@ function Unavailable({ text }: { text: string }) {
   );
 }
 
+/** Fetch into state while `enabled`, null otherwise.
+ *
+ *  The `live` flag is not ceremony: every input here is a slider, so dragging
+ *  one fires a request per step and a slow early response would otherwise land
+ *  after a fast late one and show a figure for a value nobody is looking at.
+ */
+function useCalc<T>(enabled: boolean, fetcher: () => Promise<T>, deps: unknown[]) {
+  const [data, setData] = React.useState<T | null>(null);
+  React.useEffect(() => {
+    if (!enabled) { setData(null); return; }
+    let live = true;
+    fetcher().then((d) => live && setData(d)).catch(() => live && setData(null));
+    return () => { live = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled, ...deps]);
+  return data;
+}
+
 export default function CalculatorsPage() {
   const t = useT();
   const [cars, setCars] = React.useState<CalcVehicle[]>([]);
@@ -140,12 +190,6 @@ export default function CalculatorsPage() {
   const [affordDown, setAffordDown] = React.useState(15_000);
   const [affordTenure, setAffordTenure] = React.useState(7);
 
-  const [afford, setAfford] = React.useState<Affordability | null>(null);
-  const [loan, setLoan] = React.useState<LoanResult | null>(null);
-  const [ins, setIns] = React.useState<InsuranceResult | null>(null);
-  const [tax, setTax] = React.useState<RoadTaxResult | null>(null);
-  const [dep, setDep] = React.useState<DepreciationResult | null>(null);
-  const [own, setOwn] = React.useState<OwnershipResult | null>(null);
 
   const DRIVETRAINS: { value: Drivetrain; label: string }[] = [
     { value: "ev", label: t("calcs.ev") },
@@ -176,61 +220,34 @@ export default function CalculatorsPage() {
      model — so a custom EV genuinely cannot be answered. */
   const taxAvailable = hasCar && (vtype !== "ev" ? cc > 0 : Boolean(selected));
 
-  React.useEffect(() => {
-    apiService
-      .getAffordability({
-        monthly_budget_rm: budget, vehicle_type: affordType,
-        tenure_years: affordTenure, down_payment_rm: affordDown,
-      })
-      .then(setAfford)
-      .catch(() => setAfford(null));
-  }, [budget, affordType, affordTenure, affordDown]);
+  const afford = useCalc(true, () => apiService.getAffordability({
+    monthly_budget_rm: budget, vehicle_type: affordType,
+    tenure_years: affordTenure, down_payment_rm: affordDown,
+  }), [budget, affordType, affordTenure, affordDown]);
 
-  React.useEffect(() => {
-    if (!hasCar) { setLoan(null); return; }
-    apiService
-      .getLoan({ price_rm: price, vehicle_type: vtype, down_payment_rm: down, tenure_years: tenure })
-      .then(setLoan)
-      .catch(() => setLoan(null));
-  }, [hasCar, price, vtype, down, tenure]);
+  const loan = useCalc(hasCar, () => apiService.getLoan({
+    price_rm: price, vehicle_type: vtype, down_payment_rm: down, tenure_years: tenure,
+  }), [price, vtype, down, tenure]);
 
-  React.useEffect(() => {
-    if (!hasCar) { setIns(null); return; }
-    apiService
-      .getInsurance({
-        sum_insured_rm: price, vehicle_type: vtype, engine_cc: cc,
-        policy_year: policyYear, east_malaysia: east,
-      })
-      .then(setIns)
-      .catch(() => setIns(null));
-  }, [hasCar, price, vtype, cc, policyYear, east]);
+  const ins = useCalc(hasCar, () => apiService.getInsurance({
+    sum_insured_rm: price, vehicle_type: vtype, engine_cc: cc,
+    policy_year: policyYear, east_malaysia: east,
+  }), [price, vtype, cc, policyYear, east]);
 
-  React.useEffect(() => {
-    if (!taxAvailable) { setTax(null); return; }
-    const q = vtype === "ev" ? { slug } : { engine_cc: cc, non_saloon: nonSaloon };
-    apiService.getRoadTax(q).then(setTax).catch(() => setTax(null));
-  }, [taxAvailable, vtype, slug, cc, nonSaloon]);
+  const tax = useCalc(taxAvailable, () => apiService.getRoadTax(
+    vtype === "ev" ? { slug } : { engine_cc: cc, non_saloon: nonSaloon },
+  ), [vtype, slug, cc, nonSaloon]);
 
-  React.useEffect(() => {
-    if (!hasCar) { setDep(null); return; }
-    /* The per-model curve only applies when the price is that model's price,
-       so custom figures fall back to the drivetrain curve deliberately. */
-    apiService
-      .getDepreciation({
-        price_rm: price, vehicle_type: vtype,
-        slug: selected ? selected.slug : undefined, years: 5,
-      })
-      .then(setDep)
-      .catch(() => setDep(null));
-  }, [hasCar, price, vtype, selected]);
+  /* The per-model curve only applies when the price is that model's price, so
+     custom figures fall back to the drivetrain curve deliberately. */
+  const dep = useCalc(hasCar, () => apiService.getDepreciation({
+    price_rm: price, vehicle_type: vtype,
+    slug: selected ? selected.slug : undefined, years: 5,
+  }), [price, vtype, selected]);
 
-  React.useEffect(() => {
-    if (!selected) { setOwn(null); return; }
-    apiService
-      .getOwnership({ slug: selected.slug, annual_km: annualKm, can_charge_home: homeCharge })
-      .then(setOwn)
-      .catch(() => setOwn(null));
-  }, [selected, annualKm, homeCharge]);
+  const own = useCalc(Boolean(selected), () => apiService.getOwnership({
+    slug: selected!.slug, annual_km: annualKm, can_charge_home: homeCharge,
+  }), [selected, annualKm, homeCharge]);
 
   return (
     <main className="min-h-dvh bg-parchment">
@@ -248,10 +265,7 @@ export default function CalculatorsPage() {
         <p className="mt-3 text-[15px] leading-relaxed text-muted">{t("calcs.lede")}</p>
 
         {/* ============ 1. affordability — no car; it produces one ============ */}
-        <Card className="mt-6 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <Wallet className="h-4.5 w-4.5 text-primary" /> {t("calcs.afford")}
-          </h2>
+        <Panel icon={Wallet} title={t("calcs.afford")}>
           <div className="mt-4 grid gap-5 sm:grid-cols-2">
             <RangeField
               id="calc-budget" label={t("calcs.budget")}
@@ -305,7 +319,7 @@ export default function CalculatorsPage() {
               <Basis text={`${t("calcs.basis")}: ${afford.basis}`} />
             </div>
           )}
-        </Card>
+        </Panel>
 
         {/* ============ 2. one specific car ============ */}
         <div id="a-specific-car" className="mt-10 scroll-mt-24">
@@ -385,10 +399,7 @@ export default function CalculatorsPage() {
         </Card>
 
         {/* ---- car loan ---- */}
-        <Card className="mt-5 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <Landmark className="h-4.5 w-4.5 text-primary" /> {t("calcs.loan")}
-          </h2>
+        <Panel icon={Landmark} title={t("calcs.loan")}>
           {!hasCar ? (
             <Unavailable text={t("calcs.pickFirst")} />
           ) : (
@@ -422,13 +433,10 @@ export default function CalculatorsPage() {
               )}
             </>
           )}
-        </Card>
+        </Panel>
 
         {/* ---- insurance ---- */}
-        <Card className="mt-5 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <ShieldCheck className="h-4.5 w-4.5 text-primary" /> {t("calcs.insurance")}
-          </h2>
+        <Panel icon={ShieldCheck} title={t("calcs.insurance")}>
           {!hasCar ? (
             <Unavailable text={t("calcs.pickFirst")} />
           ) : (
@@ -456,13 +464,10 @@ export default function CalculatorsPage() {
               )}
             </>
           )}
-        </Card>
+        </Panel>
 
         {/* ---- road tax ---- */}
-        <Card className="mt-5 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <ReceiptText className="h-4.5 w-4.5 text-primary" /> {t("calcs.roadTax")}
-          </h2>
+        <Panel icon={ReceiptText} title={t("calcs.roadTax")}>
           {!hasCar ? (
             <Unavailable text={t("calcs.pickFirst")} />
           ) : !taxAvailable ? (
@@ -490,13 +495,10 @@ export default function CalculatorsPage() {
               )}
             </>
           )}
-        </Card>
+        </Panel>
 
         {/* ---- depreciation ---- */}
-        <Card className="mt-5 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <TrendingDown className="h-4.5 w-4.5 text-primary" /> {t("calcs.depreciation")}
-          </h2>
+        <Panel icon={TrendingDown} title={t("calcs.depreciation")}>
           <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{t("calcs.depNote")}</p>
           {!hasCar ? (
             <Unavailable text={t("calcs.pickFirst")} />
@@ -511,18 +513,7 @@ export default function CalculatorsPage() {
                 />
                 <div className="mt-4 space-y-1.5">
                   {dep.schedule.map((y) => (
-                    <div key={y.year} className="flex items-center gap-2">
-                      <span className="w-8 shrink-0 font-mono text-[11px] text-muted">Y{y.year}</span>
-                      <div className="h-4 flex-1 overflow-hidden rounded-full bg-line/40">
-                        <div
-                          className="h-full rounded-full bg-primary/70"
-                          style={{ width: `${Math.max(2, y.retained_pct)}%` }}
-                        />
-                      </div>
-                      <span className="w-24 shrink-0 text-right font-mono text-[11.5px] tabular-nums text-ink">
-                        {rm(y.value_rm)}
-                      </span>
-                    </div>
+                    <Bar key={y.year} label={`Y${y.year}`} pct={y.retained_pct} value={rm(y.value_rm)} />
                   ))}
                 </div>
                 <Basis
@@ -533,13 +524,10 @@ export default function CalculatorsPage() {
               </div>
             )
           )}
-        </Card>
+        </Panel>
 
         {/* ---- five-year total: the summary the rest builds to ---- */}
-        <Card className="mt-5 border-primary/30 p-5">
-          <h2 className="flex items-center gap-2 text-[17px] font-bold text-ink">
-            <Coins className="h-4.5 w-4.5 text-primary" /> {t("calcs.ownership")}
-          </h2>
+        <Panel icon={Coins} title={t("calcs.ownership")} className="border-primary/30">
           {!selected ? (
             <Unavailable text={custom ? t("calcs.needsCatalogCar") : t("calcs.pickFirst")} />
           ) : (
@@ -569,20 +557,13 @@ export default function CalculatorsPage() {
                   <Readout label={t("calcs.valueThen")} value={rm(own.resale_value_rm)} />
                   <div className="mt-4 space-y-1.5">
                     {own.lines.map((l) => (
-                      <div key={l.key} className="flex items-center gap-2">
-                        <span className="w-28 shrink-0 text-[11.5px] capitalize text-muted">
-                          {l.key.replace(/_/g, " ")}
-                        </span>
-                        <div className="h-4 flex-1 overflow-hidden rounded-full bg-line/40">
-                          <div
-                            className="h-full rounded-full bg-primary/70"
-                            style={{ width: `${Math.max(1, l.share * 100)}%` }}
-                          />
-                        </div>
-                        <span className="w-24 shrink-0 text-right font-mono text-[11.5px] tabular-nums text-ink">
-                          {rm(l.amount_rm)}
-                        </span>
-                      </div>
+                      <Bar
+                        key={l.key}
+                        wide
+                        label={l.key.replace(/_/g, " ")}
+                        pct={l.share * 100}
+                        value={rm(l.amount_rm)}
+                      />
                     ))}
                   </div>
                   <Basis
@@ -592,7 +573,7 @@ export default function CalculatorsPage() {
               )}
             </>
           )}
-        </Card>
+        </Panel>
       </div>
       <Footer />
     </main>
