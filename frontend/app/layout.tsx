@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { HtmlLang } from "@/components/HtmlLang";
 import { Figtree, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SkipLabel } from "@/components/skip-label";
@@ -73,6 +74,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
+        {/* lang="en" above is the server default; this corrects it to the
+            language actually being rendered. See components/HtmlLang.tsx. */}
+        <HtmlLang />
         {/* Keyboard users land on the nav first and would otherwise tab through
             every link on the page to reach the content. Visually hidden until
             focused, then it becomes an ordinary button in the top-left. */}

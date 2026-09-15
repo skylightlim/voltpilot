@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button, StepDots } from "@/components/ui";
+import { Button, LangToggle, StepDots } from "@/components/ui";
 import QInput from "@/components/intake/QInput";
 import { SESSION, apiService, type Profile } from "@/lib/api";
 import { FALLBACK_SCRIPT, questionText, type IQuestion } from "@/lib/interview-script";
@@ -59,7 +59,11 @@ export default function IntakeStepPage({ step }: { step: number }) {
           <ArrowLeft className="h-5 w-5" />
         </button>
         <StepDots total={total} current={Math.min(step - 1, total - 1)} />
-        <span className="w-11" aria-hidden />
+        {/* The Navbar is deliberately hidden in this flow, and it was the only
+            place the language could be switched — so a buyer who started in
+            English was held in English for all ten questions, which is the core
+            flow of a bilingual product. */}
+        <LangToggle />
       </header>
 
       <section key={step} className="enter-rise mt-10 flex-1">

@@ -178,6 +178,9 @@ export default function QInput({
       </div>
       <input
         inputMode="numeric"
+        /* A placeholder is not a label: it is dropped by some screen readers
+           and disappears for everyone the moment typing starts. */
+        aria-label={q.key === "budget_max_rm" ? t("iq.orRM") : t("iq.orNum")}
         placeholder={q.key === "budget_max_rm" ? t("iq.orRM") : t("iq.orNum")}
         value={raw}
         onChange={(e) => {

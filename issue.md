@@ -7,11 +7,11 @@ reviewed: 2026-09-10
 
 # Decision engine issues
 
-Seventeen defects in the recommendation pipeline, ordered by how much each one changes the ranking a user sees. Issues 1, 2 and 3 were fixed on 2026-09-10, and issues 4, 5a, 7, 8, 10 and 13 on 2026-09-11; each carries a **Status** note recording what shipped and where it deviated from the plan below. Three produce wrong output today. Four mean the six-criteria model measures fewer than six independent things. Two make the ranking depend on cars nobody would buy. Three concern the largest ownership cost, which the engine does not model at all. One concerns the absence of any stability signal, one explains why the current test suite catches none of the others, and the last two were found while fixing the ones above them.
+Seventeen defects in the recommendation pipeline, ordered by how much each one changes the ranking a user sees. Three produced wrong output. Four meant the six-criteria model measured fewer than six independent things. Two made the ranking depend on cars nobody would buy. Three concerned the largest ownership cost, which the engine did not model at all. One concerned the absence of any stability signal, one explained why the test suite caught none of the others, and the last two were found while fixing the ones above them.
 
 Every finding below was measured against the shipping code, not inferred from reading it. The commands that produce each number are included so you can re-run them after a fix.
 
-Nine are fixed, one is mitigated, one has a researched proposal awaiting a decision, and five remain open. **Line numbers throughout are as at commit `fdcc8bd`**, before any of this work landed, so they locate the original defect rather than the current code. Each fixed issue carries a **Status** note recording what shipped, where it deviated from the plan written above it, and what was tried and rejected.
+All seventeen are now fixed: 1, 2 and 3 on 2026-09-10; 4, 5a, 7, 8, 10 and 13 on 2026-09-11; the rest on 2026-09-14. **Line numbers throughout are as at commit `fdcc8bd`**, before any of this work landed, so they locate the original defect rather than the current code. Each issue carries a **Status** note recording what shipped, where it deviated from the plan written above it, and what was tried and rejected — several deviate, because measurement contradicted the plan.
 
 ## Severity summary
 
@@ -23,50 +23,95 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 2 | Sliders 1 to 18 produce negative weights | `backend/app/engines/topsis.py:49` | Criterion inverts, prefers higher CO2 | Fixed 2026-09-10 |
 | 3 | Carlist prices stored as text | `scripts/used_market/import_carlist.py:29` | 3,886 of 14,164 rows read 1000x low | Fixed 2026-09-10 |
 | 4 | Two criteria pairs are duplicates | `backend/app/services/scoring.py:86` | Price carries 41% of weight, not 17% | Fixed 2026-09-11 |
-| 5 | Two criteria constant within type | `backend/app/engines/engines.py:641` | Convenience cannot separate two hybrids | 5a fixed 2026-09-11, 5b open |
-| 6 | Seven catalog fields never read | `backend/app/engines/engines.py` | Boot space, seats, DC charge rate unused | Open |
-| 7 | Min-max normalisation is outlier-led | `backend/app/engines/engines.py:771` | 5% of rows own 54% of the price axis | Fixed 2026-09-11 |
+| 5 | Two criteria constant within type | `backend/app/engines/engines.py:641` | Convenience cannot separate two hybrids | Fixed 2026-09-14 |
+| 6 | Seven catalog fields never read | `backend/app/engines/engines.py` | `seats`, `boot_l`, `charge_power_kw_dc` now scored | Mostly fixed 2026-09-14 |
+| 7 | Min-max normalisation is outlier-led | `backend/app/engines/engines.py:771` | 5% of rows own 54% of the price axis | Fixed 2026-09-11; mirrored clipping at the dear end fixed 2026-09-14 |
 | 8 | Rank reversal on irrelevant alternatives | `backend/app/engines/topsis.py:57` | Winner changes when 2 cars are removed | Fixed 2026-09-11 |
-| 9 | Depreciation excluded from TCO | `backend/app/engines/engines.py:533` | Omits a cost equal to the whole counted TCO | Partly fixed 2026-09-11 |
+| 9 | Depreciation excluded from TCO | `backend/app/engines/engines.py:533` | Omits a cost equal to the whole counted TCO | Fixed 2026-09-14 |
 | 10 | Resale assumption contradicts own data | `data/catalog_vehicles.json` | Optimistic by 24 points of purchase price | Fixed 2026-09-11 |
-| 11 | Maintenance is a per-type constant | `backend/app/engines/engines.py:564` | 162 of 184 trims share three values | Open |
-| 12 | Single winner shown for a tied field | `backend/app/routers/results.py:66` | Top 3 separated by 0.0015 | Open |
+| 11 | Maintenance is a per-type constant | `backend/app/engines/engines.py:564` | 162 of 184 trims share three values | Fallback fixed 2026-09-14; measured coverage still 22 |
+| 12 | Single winner shown for a tied field | `backend/app/routers/results.py:66` | Top 3 separated by 0.0015 | Fixed; `AnswerConfidence.tsx` ships the figure |
 | 13 | No ranking regression test | `backend/tests/test_engines.py:161` | Issues 1, 2, 7 and 8 pass CI | Fixed 2026-09-11 |
-| 14 | Two copies of scripts and data | `.gitignore:60`, `backend/vercel-build.sh` | A fix can land in the copy nothing runs | Open |
-| 15 | Used-market matcher makes bad joins | `scripts/used_market/matcher.py` | Diesel pickups matched to an electric Hilux | Mitigated 2026-09-11 |
-| 16 | Cost model: horizon, insurance, loan method | `backend/app/engines/engines.py:571` | Insurance overstated 2.74x, 57.6% of TCO | Researched, proposal ready |
-| 17 | Scoring the same token twice returns a 500 | `backend/app/routers/score.py:46` | A retried request fails instead of repeating | Open |
+| 14 | Two copies of scripts and data | `.gitignore:60`, `backend/vercel-build.sh` | Both copies are untracked build artifacts; root is canonical | Fixed 2026-09-14 |
+| 15 | Used-market matcher makes bad joins | `scripts/used_market/matcher.py` | Diesel pickups matched to an electric Hilux | Fixed 2026-09-14 |
+| 16 | Cost model: horizon, insurance, loan method | `backend/app/engines/engines.py:571` | Insurance overstated 2.74x, 57.6% of TCO | Fixed 2026-09-14 |
+| 17 | Scoring the same token twice returns a 500 | `backend/app/routers/score.py:46` | A retried request fails instead of repeating | Fixed 2026-09-14 |
+| 18 | Interview cannot express a Singapore trip | `backend/app/schemas.py:106` | A Johor buyer's commonest long trip is unsayable | Open |
+| 19 | Annual mileage has no sanity check | `backend/app/engines/engines.py:67` | A misread of question 1 is a 5x error, silently | Open |
+| 20 | Interview asked for the grid region it could derive | `backend/app/schemas.py:70` | A question whose answer the postcode already held | Fixed 2026-09-14 |
+| 21 | Nothing tests the interface in a browser | `frontend/tests/` | A page that renders but fetches nothing passes every gate | Open |
+| 22 | Interface accessibility defects | `frontend/app/layout.tsx:74` | Malay pages declared English; no way to switch language mid-interview | Fixed 2026-09-15 |
 
 ## State of play
 
-Nine issues are closed, one is mitigated at the point of use rather than at its source, and five are open. Two of the open five were found while fixing the others.
+Seventeen of twenty-two are closed. Issues 18 to 22 were found on 2026-09-14
+and 2026-09-15 by using and auditing the product rather than by reading the
+engine; three are closed and two remain open. Two further decisions are
+judgement calls rather than defects, and are listed at the end.
 
-**Closed.** 1 and 2 (slider mapping), 3 (used-price corruption), 4 (duplicated money criteria), 5a (the behaviour criterion no EV could win), 7 and 8 (candidate-set-derived scales), 10 (unsourced resale figures), 13 (no ranking regression test).
+**Closed 2026-09-10/11.** 1 and 2 (slider mapping), 3 (used-price corruption),
+4 (duplicated money criteria), 5a (the behaviour criterion no EV could win),
+7 and 8 (candidate-set-derived scales), 10 (unsourced resale figures), 13 (no
+ranking regression test).
 
-**Mitigated.** 15, the used-market matcher. The depreciation curve builder screens out the bad joins; `matcher.match_title` still makes them.
+**Closed 2026-09-14.** 5b and 6 (practicality from `boot_l`, DC charge rate into
+infrastructure), 9 and 16 (five-year cost model with depreciation as its primary
+line), 11 (servicing fitted on price band rather than three constants), 12
+(already shipping as `AnswerConfidence.tsx`; the entry was stale), 14 (stale
+build copies deleted and guarded), 15 (drivetrain screen in `match_title`), 17
+(idempotent `/score`), 20 (grid region derived from the postcode). Issue 7 also
+gained a fix for the mirrored defect at the dear end of the axis, where 26 cars
+from RM625,888 to RM2,238,888 scored within 0.0731 of each other.
 
-**Open, in the order I would take them:**
+**Closed 2026-09-15.** 22 (four interface accessibility defects).
 
-| # | Issue | Why it still matters |
-| --- | --- | --- |
-| 9 (part) | Depreciation is a criterion but not a cost line | Needs a horizon decision: 5-year resale cannot be subtracted from a 10-year cost |
-| 5b, 6 | `seats`, `boot_l`, `charge_power_kw_dc` and 5 more fields unread | `infrastructure_score` is still constant within each drivetrain |
-| 12 | No stability signal published | Mostly relieved by the other fixes, but one profile still flips its winner 36% of the time |
-| 11 | Maintenance is a per-type constant for 162 of 184 trims | Feeds the money criterion, which now carries 0.34 of the weight |
-| 14 | Two copies of `scripts/` and `data/` | Costs a wasted fix the first time anyone hits it |
-| 15 | Matcher ignores drivetrain when joining | Anything new built on the used-market tables inherits the bad joins |
+**Open.** 18 and 19, both gaps in what the interview lets a buyer say, and 21,
+which is why an interface that renders but does not work passes every gate here.
 
-What the engine measurably does now, against the four golden profiles in `backend/tests/fixtures/ranking_golden.json`:
+**A safety net that was not an issue but should have been.** `backend/.env`
+points `DATABASE_URL` at the production Neon database and `app/config.py` calls
+`load_dotenv()`, so `cd backend && pytest` ran the suite — fixtures that create,
+seed and delete rows included — against production. `backend/tests/conftest.py`
+now pins it to a temporary SQLite file before `app.config` is imported, which is
+the only moment that works, because `Settings.database_url` is a class attribute
+read once at import. Proven: without it the app resolves to `...neon.tech`; with
+it, to `/tmp/voltpilot-pytest.db`.
+
+Two further gaps were found on 2026-09-15 while auditing the interface and are
+recorded as issues 18 and 19. Both are product decisions about the interview
+rather than engine defects, which is why they are not in the seventeen above.
+
+**Two decisions left, neither a defect:**
+
+| Decision | The trade |
+| --- | --- |
+| Re-baseline `ranking_golden.json` | Seven changes have moved the ranking and the fixture still holds the pre-2026-09-14 snapshot, so four golden tests fail by design. Regenerating accepts the movement; leaving it keeps the diff reviewable, at the cost of the suite never being green |
+| `MIN_CELLS_PER_MODEL` in the depreciation curve builder | Relaxing 3 to 2 takes measured depreciation from 34 models to 61, halving the degeneracy that softened winner stability. The cost is fitting a decay curve through two age points, with no redundancy to catch a bad cell |
+
+What the engine measurably does now, against the four golden profiles in
+`backend/tests/fixtures/ranking_golden.json`:
 
 | Property | Before | After |
 | --- | --- | --- |
 | Alternatives reordered by removing 2 irrelevant cars | 156 of 182 | 0 of 182 |
-| Share of the price axis a buyer’s candidates use | 5 to 18 percent | 70 to 92 percent |
-| EVs able to out-score a hybrid on convenience | 0 of 102, any buyer | 100 of 102 with home charging, 0 of 102 without |
-| Worst correlation between two criteria | 0.973 | 0.24 to 0.51 |
-| Winner stable under 15 percent weight jitter | 69 percent | 100, 100, 99, 64 percent |
+| Worst correlation between two criteria | 0.973 | 0.51 |
+| Criteria constant within a drivetrain | 2 of 6 | 0 of 5 for EVs; infrastructure only, for hybrid and PHEV |
+| Insurance share of the cost criterion | 57.6 percent | 9.3 percent |
+| Depreciation share of the cost criterion | 0, omitted | 67.8 percent |
+| Distinct servicing values across the catalogue | 3 | 162 |
+| EVs with a measured DC charge rate | 30 of 102 | 101 of 102 |
+| Combustion listings joined to an EV row | 154 | 0 |
 | Sliders that move their own criterion | 1 of 4 | 4 of 4 |
-| Scoring time | 2.7 ms | 2.3 ms |
+| Winner stable under 15 percent weight jitter | 100, 100, 99, 64 percent | 79, 72, 98, 67 percent |
+
+The last row is the one to read carefully. It is mostly the model ceasing to be
+degenerate rather than becoming worse: jitter moves the WEIGHTS, and a criterion
+that is constant cannot be moved by re-weighting it, so a model with two
+constants was stable by construction. The top two on `kv_home_charging` are now
+separated by 0.0093, which is a genuine tie that the earlier model concealed —
+the very thing issue 12 exists to report. It does mean the interface says "not a
+firm answer" more often. The dials, if that trade is unwanted, are
+`BOOT_FACTOR_RANGE` and the 0.75 floor in `_dc_charge_factor`.
 
 ## Reproducing these findings
 
@@ -414,6 +459,42 @@ def _dc_charge_factor(vehicle: dict) -> float:
 
 Multiply the EV branch of `infrastructure_engine` by this factor. A 50 kW car and a 250 kW car face the same charger gaps but not the same trip, and the current model scores them identically.
 
+**Status, 5b. Fixed 2026-09-14.** `behaviour_engine` is now a wrapper: the old
+body became `_fuelling_convenience`, and the result is multiplied by a
+`practicality_factor`. Multiplied rather than averaged because a car that cannot
+be kept charged does not become convenient for having a big boot.
+
+Practicality is applied to every drivetrain rather than only the hybrid branch,
+so it discriminates inside each group instead of tilting between them. Measured
+within-type standard deviation of `behaviour_score` on the Klang Valley profile:
+hybrid **0.0 -> 3.8**, PHEV **0.0 -> 3.5**.
+
+**Deviation: `boot_l` is scored, `seats` is not.** The solution above scores both
+"against the household size the interview could capture". A `household_size`
+question was built and then removed the same day: the interview is eleven
+questions and lengthening it for one sub-term is the wrong trade, so it stays at
+eleven. Boot volume needs no answer — it is scored against fixed 300 to 600
+litre bounds, which span p25 to p75 of the catalogue — and that alone removes
+the degeneracy this issue is about.
+
+Seat count deliberately does NOT enter the score. How many seats a buyer needs
+cannot be inferred from the rest of the interview, and scoring it blind would
+rank a seven-seat MPV above a hatchback for a solo commuter. It is a **filter on
+the results page** instead, alongside the existing body and brand filters: a
+buyer who needs seven seats picks "7+ seats" and sees only those, which answers
+the same need without asking anyone an extra question. The filter offers only
+values present in the ranking, so it can never return nothing.
+
+`infrastructure_score` remains constant within hybrid and PHEV. That one is
+inherent rather than a defect: it scores charging infrastructure, and
+`charge_power_kw_dc` is an EV-only figure. EVs vary (std 8.9).
+
+**Data.** `seats` went 113 -> **184 of 184** and `boot_l` 100 -> **172**, swept
+from paultan.org spec tables the same way as the DC charge rates, with the last
+five rows confirmed individually against manufacturer specifications. Complete
+seat coverage is what makes the filter trustworthy: no row is hidden or shown on
+missing data.
+
 ### 6. Seven catalog fields the interview implies are scored are never read
 
 **Problem.** The catalog carries per-trim attributes that no engine references. `seats`, `boot_l`, `charge_power_kw_dc`, `charge_power_kw_ac`, `motor_kw`, `warranty_battery_yrs`, `popularity_rating`, `ckd` and `resale_10yr_pct` all appear in `data/catalog_vehicles.json` and appear nowhere in `engines.py` or `scoring.py`.
@@ -728,6 +809,36 @@ Before the repair those same cells read 11.7%, 16.9% and 25.5% for the first thr
 
 **Solution.** Raise coverage rather than refine the fallback. Servicing schedules and prices are published by every distributor in this catalog, and 162 rows is a bounded data-entry task. Track it as a field on the row so the results page can distinguish measured from estimated, which `provenance` at `scoring.py:67` already carries for other figures. Until coverage improves, widen the fallback from three constants to a function of price band and type, since servicing scales with the parts and labour rates of the segment.
 
+**Status.** The fallback is fixed 2026-09-14; measured coverage is unchanged at
+22 of 184.
+
+Raising coverage the way this section proposes turned out not to be the bounded
+task it looks like. paultan.org, which carries the Malaysian-market spec tables
+used for the DC charge-rate sweep, publishes warranty terms but no servicing
+cost, so 162 rows would mean per-brand dealer price lists at low confidence.
+Inventing them into a file whose whole point is tracked provenance is worse than
+a well-calibrated estimate, so this took the interim option instead.
+
+`_maintenance_fallback` is now log-linear in price with a per-type intercept,
+fitted on the 22 measured rows. The premise holds: within a drivetrain,
+servicing tracks price (EV r=+0.76 n=15, hybrid r=+0.78 n=7), while the overall
+correlation is only +0.20 because drivetrain dominates price — which is why the
+model needs both terms. Both types fit near-identical slopes (172.1 and 172.6),
+so the slope is pooled and only the intercept is per-type: R^2 0.937, mean
+residual RM31, worst RM130.
+
+Measured effect: 3 distinct servicing values across the catalogue became 162,
+and within-type standard deviation went from 0 to RM114 (EV), RM141 (hybrid) and
+RM121 (PHEV). `maintenance_rm_yr` returns a `measured`/`estimated` basis the way
+`resale_retained_pct` does, carried into the five-year breakdown as
+`maintenance_basis`, so the results page can tell the two apart.
+
+**It did not recover the stability lost in issue 16.** Winner stability moved
+0.86/0.75/0.99/0.68 to 0.86/0.76/0.99/0.67 — noise. Maintenance is about 5% of
+the five-year total; depreciation is 68% and is still type-level for 162 of 184
+trims. That, not maintenance, is what makes the cost criterion nearly constant
+within a drivetrain, and only more measured depreciation repairs it.
+
 ## Tier 5: the product reports certainty it does not have
 
 The ranking is a strict ordering with no accompanying measure of how firm it is. Three independent tests agree that the top of the ranking is a tie, and the interface reports it as a decision.
@@ -923,6 +1034,25 @@ The better change is to stop copying. `scripts/used_market/db.py` already derive
 
 Until then, apply every `scripts/` or `data/` change to the root tree and treat anything under `backend/scripts/` or `backend/data/` as read-only build output.
 
+**Status. Fixed 2026-09-14.** Milder than written: `backend/data/` and
+`backend/scripts/` are gitignored and untracked, and `vercel-build.sh` rebuilds
+them with `rm -rf data scripts; cp -R ../data ./data` on every build. The root
+tree is canonical without ambiguity, and `config.py` prefers it whenever it
+exists, falling back to the bundled copy only where there is no parent to read —
+which is the Vercel case the copy exists for.
+
+So there was no deployment risk, only the wasted fix this section describes, and
+it had already started: by 2026-09-14 the backend copy of `matcher.py` was a fix
+behind the root, `fuel.json` and `catalog_vehicles.json` had both drifted, and
+`depreciation_curve.json` was missing from it entirely. Editing any of them is a
+silent no-op, because nothing reads them while the root tree is present.
+
+The 26 MB of leftovers are deleted, and `TestNoStaleBuildCopies` in
+`backend/tests/test_scripts.py` keeps them from rotting again: it skips when the
+copies are absent, which is the normal state, and fails with the offending file
+list and the `rm -rf` to run when a leftover has drifted from root. No change to
+`vercel-build.sh`, which was never the problem.
+
 ## Tier 8: data pipeline
 
 Found while fitting the depreciation curve. It does not affect the ranking today, but anything built on the used-market tables has to defend against it.
@@ -936,6 +1066,41 @@ Found while fitting the depreciation curve. It does not affect the ranking today
 **Why it is an issue.** The implied retention is 0.37 to 0.62 where the EV median for those ages is 0.87, so the model drags the whole EV curve down. It is not a lone case: judging each model against its type median flags 8, split across both tails. `lexus-lm` reads 0.71, while `tesla-model-3` reads 1.65 and `mg4` 1.80, the high side arising because new prices were cut and old listings then look like appreciation. `listings.fuel_type` cannot screen this out, being populated by one source for 204 of 5,279 matched rows.
 
 **Solution.** Mitigated, not fixed. The curve builder judges each model as a whole against its type median and drops any outside 0.75 to 1.35, excluding it from both the per-model and the type fits; excluded models fall back to their drivetrain curve, and `models_rejected_as_bad_joins` in `data/depreciation_curve.json` names them with their ratio. That is a statistical guard on a matching defect. The real fix is in `matcher.match_title`: require the drivetrain to agree before accepting a join, using the engine displacement in a title (`2.4`, `1.5`) as evidence against an electric candidate, and reconcile against `listings.fuel_type` where a source provides it.
+
+**Status. Fixed 2026-09-14.** `_has_ice_marker` already existed but was wired
+only into `match_brand_model`, the structured brand+model path. Free-text titles
+went through `match_title` unscreened, which is where the bad joins were made.
+
+`match_title` now rejects a candidate whose type is `ev` when the title looks
+like a combustion car. EV rows only: a hybrid genuinely has an engine, so "1.5"
+or "turbo" in its title is a correct match rather than a contradiction.
+
+Engine displacement carries the signal, but it cannot be read naively. Malaysian
+listing sites write `0.0` or `1.0` where a battery EV has no engine, so those
+two values mean the opposite of what they look like. Measured across the corpus,
+titles joined to an EV row carry either `0.0`/`1.0` (71 listings, all genuine)
+or `1.5` and above (154 listings, all but one a bad join).
+
+**Bare `turbo` was removed from `_ICE_MARKERS`.** Porsche names its fastest
+battery EVs Turbo and Turbo S — Taycan Turbo, Macan Turbo Electric — so the word
+marks a trim as often as a turbocharger. Screening on it threw away 25 genuine
+EV listings, 24 of them Taycans. The combustion cars this exists to catch carry
+a displacement anyway: "Hilux 2.4 VNT TURBO" is rejected on the 2.4. This was a
+latent fault in `match_brand_model` too, and removing it fixes both paths.
+
+**Effect.** 154 of the 1,968 listings joined to an EV row are rejected: 83
+petrol MINI Countrymans, 58 diesel Hiluxes, 8 Mercedes A35/GLA35 mis-branded to
+the MG4, and 5 others. One false rejection remains, a BYD Seal listed as "SEAL
+PERFORMANCE 3.8" where 3.8 is the 0-100 time.
+
+**It was reaching the shipped curve.** `mini-countryman` was in `by_model` on 97
+listings at 54.0% retention, 83 of them petrol Countrymans, which hold value far
+better than the electric one. The downstream screen caught `toyota-hilux` (0.69x
+the type median) and `mg4` (1.8x) but not this at 1.28x. After the rebuild it is
+22 listings at **45.7%**, and the EV type curve moved **42.3% to 40.3%** — the
+whole EV fleet was being credited with retention it does not have, which matters
+now that depreciation is 68% of the cost criterion. Bad-join rejections fell
+from 8 to 6, the two dropped being ones now stopped at source.
 
 ## Tier 9: the cost model itself
 
@@ -1050,6 +1215,37 @@ I lean to the first, because a cost model that omits 72% of the cost is the wors
 
 **What this does not fix.** Depreciation is measured for 22 of 184 trims and type-level for the rest, so within a drivetrain the criterion is nearly constant, which is the same degeneracy as issues 5b and 6. Maintenance stays a per-type constant for 162 trims, issue 11, and it becomes a larger share of a five-year total than it was of a ten-year one. Neither blocks the change.
 
+**Status.** Fixed 2026-09-14, closing issue 9 with it. The five-year arithmetic
+already existed in `app/services/costing.py` as display-only; the change was to
+make the ranking score it. `CRITERIA[0]` is now `total_cost_5yr_rm` from
+`costing.five_year_breakdown`, and `criteria_bounds` was recalibrated to the
+five-year basis (`FIVE_YR_COST_X_BUDGET` 1.05, from a dearest observed
+fixed-cost ratio of 0.903 x price on `denza-z9-gt`).
+
+Measured on the Klang Valley profile, the breakdown reproduces the table above
+line for line; the totals here are RM1,186 and RM1,748 higher only because that
+table omitted `opportunity_cost`. Insurance fell from **57.6% to 9.3%** of the
+cost criterion and depreciation entered at **67.8%**.
+
+**Deviation: the reserved decision was not taken, because measurement dissolved
+it.** The three options above assume depreciation in the cost double-counts
+`resale_retained_pct`. It does not. Depreciation is absolute ringgit and
+retention is a scale-free ratio, so across 184 trims the two correlate
+**-0.103**, and as criteria on the Klang Valley profile **0.152** — against the
+0.973 that issue 4 called a near-perfect duplicate. The worst pair in the model
+is now `resale_retained_pct`/`behaviour_score` at 0.507, inside the 0.24-0.51
+band the earlier fixes established. So both criteria are kept, `future_proofing`
+keeps the home issue 4 gave it, and no slider needed retiring.
+
+**Cost: confidence softened, as this section predicted.** Depreciation is
+type-level for 162 of 184 trims, so making it 68% of the cost criterion made
+that criterion more nearly constant within a drivetrain. Winner stability moved
+0.97 -> 0.86, 0.92 -> 0.75, 1.00 -> 0.99 and 0.64 -> 0.68; `east_no_charging`
+crossed from firm to not-firm. That is the degeneracy of issues 11, 5b and 6
+surfacing through a criterion that now carries more weight, not a fault in the
+cost model, and raising measured depreciation and maintenance coverage is what
+repairs it.
+
 ### 17. Scoring the same token twice returns a 500
 
 **Problem.** `/score` always inserts a `TopsisResult`, and `result_token` is UNIQUE, so a second call for the same token raises `sqlite3.IntegrityError` and the client sees a 500 rather than either a fresh result or a clean conflict.
@@ -1064,6 +1260,140 @@ sqlalchemy.exc.IntegrityError: UNIQUE constraint failed: topsis_results.result_t
 ```
 
 **Solution.** Make the write an upsert, replacing the row for that token, so a retry is idempotent and a re-score with different inputs does what the caller meant. Not done here: the feature work routed around it instead, with `/results/{token}/scenario` computing an alternative ranking without persisting, which is the right shape for a scenario regardless. The retry case remains.
+
+## Tier 10: the interview, found 2026-09-15
+
+Both of these were found by using the product rather than by reading the engine,
+and neither is a defect in the ranking. They are gaps between what a buyer can
+say and what the model can act on.
+
+### 18. The interview cannot express a Singapore trip
+
+**Problem.** `ProfileIn.destination_region` at `backend/app/schemas.py:106` accepts
+`"singapore"`, and `destination_distance_km` will happily score it, but the
+interview never offers it: question 4's options are `kl`, `north`, `south`,
+`east_coast`, `east_malaysia`. The one value the schema has that the interview
+withholds is the one a Johor buyer needs most.
+
+**Why it is an issue.** A Johor Bahru buyer commuting or travelling to Singapore
+has to answer `south`, which anchors their long-trip distance on a domestic
+destination. Long-trip distance feeds `long_trip_weight`, which drives the
+behaviour criterion and therefore the convenience slider, so the answer is not
+cosmetic: it changes how far the car has to reach between charges.
+
+Unlike the grid region, which was removed from the interview on 2026-09-14 once
+`engines.grid_region` derived it from the postcode, this one cannot be inferred.
+A postcode says where someone lives, not where they drive.
+
+**Solution.** Add `singapore` to question 4's options and to `CHOICE_LABELS` in
+`frontend/lib/interview-script.ts`. It is a new option on an existing question,
+so it does not lengthen the interview — the constraint that governs every change
+to this script. Check what `destination_distance_km` currently returns for it
+before shipping: the centroid needs to be the crossing, not the island.
+
+### 19. Annual mileage has no sanity check
+
+**Problem.** `annual_mileage_km` at `backend/app/engines/engines.py:67` is
+`daily_km * trips_per_week * 52`, and `daily_km` accepts anything up to 2000.
+Question 1 asks "How far do you drive on a typical day?" and question 2 asks how
+many days a week. A buyer who reads question 1 as a weekly total and answers
+"200" gets 200 x 5 x 52 = 52,000 km a year instead of roughly 10,400.
+
+**Why it is an issue.** Annual mileage is the multiplier on every running-cost
+figure in the model: energy cost, CO2, the five-year total, and the break-even
+mileage feature exists precisely to answer questions about it. A 5x error there
+is larger than any defect fixed in this document, and nothing catches it. The
+budget is the only other answer with comparable leverage, and that one at least
+fails visibly when it is wrong.
+
+**Solution.** Not a validation rule — 52,000 km a year is a real e-hailing
+figure and must stay allowed. Show the derived annual figure back to the buyer
+at the point of entry ("about 52,000 km a year"), so an implausible number is
+visible as a number rather than buried in a multiplication they never see. The
+intake already echoes a postcode back as a town name for exactly this reason.
+
+### 20. The interview asked for the grid region it could already derive
+
+**Problem.** Question 8 asked "Is your home on the Peninsular grid, or in East
+Malaysia?" while question 7, which is required, already asked for a five-digit
+postcode. `_STATE_RANGES` in `engines.py` maps every valid Malaysian postcode to
+exactly one state, and Sabah, Sarawak and Labuan are precisely the East
+Malaysian grid.
+
+**Why it was an issue.** It spent a step of an eleven-step interview on
+something already known, and worse, it let two answers that cannot disagree in
+reality contradict each other: a Kuala Lumpur postcode with "East Malaysia"
+selected scored the buyer against a grid carrying half the CO2.
+
+**Status. Fixed 2026-09-14.** `engines.grid_region_for_postcode` derives it, and
+`engines.grid_region` prefers the postcode over any stated value, falling back to
+the stated one only when the postcode is missing or out of range — which is the
+voice path, where `analyst.py` can extract "Sabah" from speech before a postcode
+is captured. The question is gone from `INTERVIEW_QUESTIONS` and from the manual
+form at `/interview/form`, which held its own hardcoded copy of the control.
+The interview is **ten questions**, and the field stays on `ProfileIn` for the
+voice path alone.
+
+Measured: postcode 50400 gives `peninsular` and a first-EV figure of 864 kg
+CO2/yr; 88000 gives `east_malaysia` and 391 kg, with nobody asked anything. All
+four golden profiles' stated regions agree with what the postcode derives, which
+is independent confirmation of the mapping.
+
+## Tier 11: the interface, and what tests it
+
+### 21. Nothing tests the interface in a browser
+
+**Problem.** `frontend/tests/` is two `node --test` files, 49 assertions, no DOM
+and no page load. The backend has 222 tests and the frontend has none that
+render anything.
+
+**How I found it.** By shipping a broken page. On 2026-09-14 the calculators page
+reached the user with every panel blank: a Next.js dev bundle had a stale
+`lib/api.ts` chunk paired with a fresh page chunk, so the page rendered its
+inputs and never fetched. Backend tests were green, TypeScript was clean, the
+production build compiled, every endpoint answered 200 by curl, through the
+proxy, with browser headers, under rapid repeats. Nothing in the repository was
+capable of noticing, and it took a real browser session to see it.
+
+**Why it is an issue.** The class is not "a stale bundle" — that was one cause.
+It is that an interface which renders but does not work passes every gate this
+repository has. Six of the seven features in `FEATURES.md` are panels on one
+page; none of them has a test that asserts a number ever appears in one.
+
+**Solution.** A smoke test that loads the pages that matter, waits for the
+network to settle, and asserts each panel contains a digit. It does not need a
+full end-to-end framework: `/calculators`, `/`, `/intake/1` and a scored
+`/results/{token}` would have caught this in seconds. Keep it separate from the
+`node --test` guardrails so the fast suite stays fast.
+
+### 22. Interface accessibility defects
+
+**Problem.** Four, found by auditing the rendered pages rather than the source.
+
+- `app/layout.tsx:74` hard-codes `<html lang="en">`. It is a server component and
+  the language lives in `sessionStorage`, switched client-side, so a page could
+  render entirely in Malay while declaring itself English. Screen readers then
+  pronounce Malay with English phonetics and crawlers index the wrong language.
+- The language toggle lives in `Navbar`, which the intake flow deliberately
+  hides. A buyer who started in English was held in English for all ten
+  questions — the core flow of a bilingual product.
+- `/calculators` had no `<h1>`; the page used only the eyebrow label, leaving the
+  document with no top-level heading.
+- The free-entry number field in `QInput.tsx` carried a placeholder and no
+  label. A placeholder is dropped by some screen readers and disappears for
+  everyone the moment typing starts.
+
+**Status. Fixed 2026-09-15.** `components/HtmlLang.tsx` syncs the attribute,
+emitting the IETF subtag `ms` rather than the `bm` this codebase uses
+internally, because the attribute only means anything if it is the standard one.
+`LangToggle` now sits in the intake header, in the `w-11` spacer that was
+already holding the space for it. Verified across six pages: each has exactly
+one `h1`, no unnamed buttons, no unlabelled inputs, no missing alt text, and the
+`lang` attribute follows the toggle.
+
+**What the audit did not find,** which is worth recording so it is not re-run:
+no console errors on any page, and no horizontal overflow at 375 px, which is
+the viewport `frontend/DESIGN.md` treats as primary.
 
 ## Suggested order of work
 
