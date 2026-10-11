@@ -1,110 +1,110 @@
 rank,make,model,units,share_pct
-1,Proton,e.MAS 5,18050,13.77
-2,BYD,Atto 3,13255,10.11
-3,Proton,e.MAS 7,12681,9.67
-4,Tesla,Model 3,9337,7.12
-5,Tesla,Model Y,8945,6.82
-6,BYD,Sealion,6551,5.0
-7,BYD,Seal,4203,3.21
-8,Zeekr,7X,3959,3.02
-9,BMW,iX,2897,2.21
-10,BYD,Dolphin,2831,2.16
-11,BYD,M6,2767,2.11
-12,BYD,Atto 2,2735,2.09
-13,BYD,Seal 6,2605,1.99
-14,iCaur,iCaur V23,2216,1.69
-15,iCaur,iCaur 03,2091,1.59
-16,Great Wall,Ora,1951,1.49
-17,Xpeng,G6,1895,1.45
-18,Porsche,Taycan,1696,1.29
-19,Denza,D9,1473,1.12
-20,Smart,Brabus,1408,1.07
-21,Zeekr,009,1354,1.03
-22,BMW,iX1,1300,0.99
-23,Chery,Omoda 5,1300,0.99
-24,MG,MG4,1283,0.98
-25,Mini,Cooper,1234,0.94
-26,Leapmotor,C10,1107,0.84
-27,BMW,i5,984,0.75
-28,BMW,i7,964,0.74
-29,Xpeng,X9,958,0.73
-30,BMW,i4,941,0.72
-31,Leapmotor,B10,934,0.71
-32,BMW,iX2,932,0.71
-33,Volvo,XC40,762,0.58
-34,Mercedes Benz,EQE,717,0.55
-35,MG,S5,693,0.53
-36,Mercedes Benz,EQS,654,0.5
-37,TQ Wuling,Bingo,640,0.49
-38,Volvo,EX30,585,0.45
-39,Mini,Countryman,570,0.43
-40,Volvo,C40,557,0.42
-41,Dong Feng,Box E3,546,0.42
-42,BMW,iX3,545,0.42
-43,Mercedes Benz,EQA,497,0.38
-44,Porsche,Macan,468,0.36
-45,Mini,Aceman,463,0.35
-46,Perodua,QV-E,412,0.31
-47,Neta,V,400,0.31
-48,Hyundai,Ioniq 5,348,0.27
-49,Honda,e:N1,295,0.22
-50,Lotus,Eletre,292,0.22
-51,Audi,Q8,285,0.22
-52,Zeekr,X,279,0.21
-53,Weststar Maxus,T90,266,0.2
-54,Mini,John Cooper Works,257,0.2
-55,Mercedes Benz,EQB,256,0.2
-56,Volvo,EC40,250,0.19
-57,Hyundai,Ioniq 6,222,0.17
-58,Hyundai,Kona,218,0.17
-59,Lexus,RZ,197,0.15
-60,Mercedes Benz,EQC,193,0.15
-61,Neta,X,177,0.13
-62,Nissan,Leaf,163,0.12
-63,MG,Cyberster,142,0.11
-64,Volvo,EX90,139,0.11
-65,Kia,EV6,120,0.09
-66,MG,ZS,113,0.09
-67,GAC Aion,Y Plus Premium,99,0.08
-68,Volvo,ES90,95,0.07
-69,GAC Aion,Y Plus Standard,94,0.07
-70,Weststar Maxus,MIFA 9,77,0.06
-71,Audi,E-tron,75,0.06
-72,Denza,Z9GT,72,0.05
+1,Proton,e.MAS 5,20540,14.98
+2,BYD,Atto 3,13463,9.82
+3,Proton,e.MAS 7,13207,9.63
+4,Tesla,Model 3,9660,7.04
+5,Tesla,Model Y,9323,6.8
+6,BYD,Sealion,6705,4.89
+7,Zeekr,7X,4306,3.14
+8,BYD,Seal,4242,3.09
+9,BMW,iX,2906,2.12
+10,BYD,M6,2857,2.08
+11,BYD,Dolphin,2831,2.06
+12,BYD,Atto 2,2783,2.03
+13,BYD,Seal 6,2681,1.95
+14,iCaur,iCaur 03,2328,1.7
+15,iCaur,iCaur V23,2249,1.64
+16,Great Wall,Ora,1988,1.45
+17,Xpeng,G6,1980,1.44
+18,Porsche,Taycan,1714,1.25
+19,Denza,D9,1541,1.12
+20,Zeekr,009,1417,1.03
+21,Smart,Brabus,1413,1.03
+22,BMW,iX1,1312,0.96
+23,Chery,Omoda 5,1311,0.96
+24,MG,MG4,1284,0.94
+25,Mini,Cooper,1240,0.9
+26,Leapmotor,C10,1231,0.9
+27,Xpeng,X9,1006,0.73
+28,BMW,i5,997,0.73
+29,Leapmotor,B10,977,0.71
+30,BMW,i7,966,0.7
+31,BMW,i4,944,0.69
+32,BMW,iX2,937,0.68
+33,Volvo,XC40,762,0.56
+34,MG,S5,760,0.55
+35,Mercedes Benz,EQE,717,0.52
+36,TQ Wuling,Bingo,714,0.52
+37,Mercedes Benz,EQS,654,0.48
+38,Volvo,EX30,621,0.45
+39,Mini,Countryman,571,0.42
+40,Volvo,C40,557,0.41
+41,Dong Feng,Box E3,556,0.41
+42,BMW,iX3,554,0.4
+43,Perodua,QV-E,498,0.36
+44,Mercedes Benz,EQA,497,0.36
+45,Porsche,Macan,481,0.35
+46,Mini,Aceman,469,0.34
+47,Neta,V,403,0.29
+48,Hyundai,Ioniq 5,348,0.25
+49,Zeekr,X,314,0.23
+50,Honda,e:N1,297,0.22
+51,Lotus,Eletre,294,0.21
+52,Audi,Q8,288,0.21
+53,Mini,John Cooper Works,266,0.19
+54,Weststar Maxus,T90,266,0.19
+55,Volvo,EC40,260,0.19
+56,Mercedes Benz,EQB,256,0.19
+57,Hyundai,Ioniq 6,222,0.16
+58,Hyundai,Kona,218,0.16
+59,Lexus,RZ,197,0.14
+60,GAC Aion,Y Plus,193,0.14
+61,Mercedes Benz,EQC,193,0.14
+62,Neta,X,177,0.13
+63,Nissan,Leaf,163,0.12
+64,Volvo,EX90,148,0.11
+65,MG,Cyberster,147,0.11
+66,Kia,EV6,120,0.09
+67,MG,ZS,113,0.08
+68,Volvo,ES90,109,0.08
+69,Denza,Z9GT,91,0.07
+70,Weststar Maxus,MIFA 9,79,0.06
+71,Omoda Jaecoo,Jaecoo J5,78,0.06
+72,Audi,E-tron,75,0.05
 73,Renault,Zoe,66,0.05
 74,Tesla,Model X,64,0.05
-75,Jaguar,I-Pace,61,0.05
-76,Kia,EV9,61,0.05
-77,Lotus,Emeya,54,0.04
-78,Audi,RS e-tron GT,50,0.04
-79,Tesla,Model S,47,0.04
-80,Renault,Twizy,45,0.03
-81,Toyota,bZ4X,45,0.03
+75,Jaguar,I-Pace,61,0.04
+76,Kia,EV9,61,0.04
+77,Toyota,bZ4X,61,0.04
+78,Lotus,Emeya,55,0.04
+79,Audi,RS e-tron GT,50,0.04
+80,Tesla,Model S,47,0.03
+81,Renault,Twizy,45,0.03
 82,Rolls Royce,Spectre,42,0.03
 83,Mercedes Benz,E-Class,37,0.03
 84,Mazda,MX-30,32,0.02
 85,BMW,i3,31,0.02
-86,Honda,E Advance,29,0.02
-87,Higer,H5C,27,0.02
-88,Dong Feng,007,25,0.02
-89,Dong Feng,Vigo,22,0.02
+86,Dong Feng,Vigo,31,0.02
+87,Dong Feng,007,29,0.02
+88,Honda,E Advance,29,0.02
+89,Higer,H5C,27,0.02
 90,Mercedes Benz,G-Class,19,0.01
 91,Proton,Saga,19,0.01
-92,Toyota,Mega Cruiser,16,0.01
-93,Mitsubishi,Pajero,15,0.01
+92,Mitsubishi,Pajero,15,0.01
+93,Toyota,Hilux,15,0.01
 94,Mercedes Benz,EQV,14,0.01
 95,MG,ZS EV,13,0.01
-96,Toyota,Hilux,13,0.01
-97,Chery,Tiggo,11,0.01
-98,Ford,Mustang,11,0.01
-99,Kia,Niro,11,0.01
-100,Dong Feng,Box E2,10,0.01
-101,Toyota,Mirai,9,0.01
-102,Audi,SQ8,7,0.01
-103,BYD,e6,7,0.01
-104,Cam,EA4,5,0.0
-105,Dong Feng,Motor,5,0.0
-106,JAC,T9,5,0.0
+96,Chery,Tiggo Cross,11,0.01
+97,Ford,Mustang,11,0.01
+98,Kia,Niro,11,0.01
+99,Dong Feng,Box E2,10,0.01
+100,JAC,T9,10,0.01
+101,Luxeed,R7,9,0.01
+102,Toyota,Mirai,9,0.01
+103,Audi,SQ8,7,0.01
+104,BYD,e6,7,0.01
+105,Cam,EA4,5,0.0
+106,Dong Feng,Motor,5,0.0
 107,Mercedes Benz,CLA,5,0.0
 108,Omoda Jaecoo,Jaecoo J7,5,0.0
 109,Peugeot,2008,5,0.0
@@ -115,41 +115,41 @@ rank,make,model,units,share_pct
 114,MG,5,4,0.0
 115,Maxus,eTerron 9,4,0.0
 116,Mini,Convertible,4,0.0
-117,Chery,Jaecoo J6,3,0.0
-118,GAC,Aion ES,3,0.0
-119,Jaecoo,J5,3,0.0
-120,Toyota,Unknown,3,0.0
-121,Vinfast,e34,3,0.0
-122,Volkswagen,ID.4,3,0.0
-123,Genesis,G80,2,0.0
-124,Hycann,Z03,2,0.0
-125,Maserati,GranTurismo,2,0.0
-126,Maxus,MIFA 7,2,0.0
-127,Mercedes-Maybach,EQS 680,2,0.0
-128,Nissan,Unknown,2,0.0
-129,Renault,Fluence ZE,2,0.0
-130,Smart,Fortwo,2,0.0
-131,Tesla,Model P,2,0.0
-132,Allenbus,Unknown,1,0.0
-133,Audi,Q4,1,0.0
-134,BMW,1 Series,1,0.0
-135,BMW,i8,1,0.0
-136,Borgward,BX7,1,0.0
-137,Citroen,Ami,1,0.0
-138,DFSK,Glory,1,0.0
-139,EVEasy,Elight,1,0.0
-140,Flistar,Unknown,1,0.0
-141,Ford,Mach-E,1,0.0
-142,GAC Aion,V Elite,1,0.0
-143,GAC Aion,V Luxury,1,0.0
-144,GAC Hyptec,HT Premium,1,0.0
-145,GAC Hyptec,HT Ultra,1,0.0
-146,Higer,H7V,1,0.0
-147,Honda,CR-V,1,0.0
-148,Hyundai,Ioniq 9,1,0.0
-149,Jaguar,F-Type,1,0.0
-150,Jetour,Kaiyi,1,0.0
-151,King Long Xiamen,Placer,1,0.0
+117,GAC Aion,ES,3,0.0
+118,Omoda Jaecoo,Jaecoo J6,3,0.0
+119,Toyota,Unknown,3,0.0
+120,Vinfast,e34,3,0.0
+121,Volkswagen,ID.4,3,0.0
+122,GAC Aion,V,2,0.0
+123,GAC Hyptec,HT,2,0.0
+124,Genesis,G80,2,0.0
+125,Hycann,Z03,2,0.0
+126,Maserati,GranTurismo,2,0.0
+127,Maxus,MIFA 7,2,0.0
+128,Mercedes-Maybach,EQS 680,2,0.0
+129,Nissan,Unknown,2,0.0
+130,Porsche,Cayenne,2,0.0
+131,Renault,Fluence ZE,2,0.0
+132,Smart,Fortwo,2,0.0
+133,Tesla,Model P,2,0.0
+134,iCaur,iCaur V25,2,0.0
+135,Allenbus,Unknown,1,0.0
+136,Audi,Q4,1,0.0
+137,BMW,1 Series,1,0.0
+138,BMW,i8,1,0.0
+139,Borgward,BX7,1,0.0
+140,Citroen,Ami,1,0.0
+141,DFSK,Glory,1,0.0
+142,EVEasy,Elight,1,0.0
+143,Flistar,Unknown,1,0.0
+144,Ford,Mach-E,1,0.0
+145,Higer,H7V,1,0.0
+146,Honda,CR-V,1,0.0
+147,Hyundai,Ioniq 9,1,0.0
+148,Jaguar,F-Type,1,0.0
+149,Jetour,Kaiyi,1,0.0
+150,King Long Xiamen,Placer,1,0.0
+151,Lepas,L4,1,0.0
 152,Lexus,RX,1,0.0
 153,Lexus,UX,1,0.0
 154,Mercedes Benz,S-Class,1,0.0
