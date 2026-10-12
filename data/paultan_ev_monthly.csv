@@ -1,38 +1,4 @@
 month,rank,make,model,units,share_pct
-2023-09,1,BYD,Atto 3,198,22.05
-2023-09,2,BYD,Dolphin,120,13.36
-2023-09,3,BMW,iX,119,13.25
-2023-09,4,BMW,i7,103,11.47
-2023-09,5,Porsche,Taycan,71,7.91
-2023-09,6,Mini,Cooper,41,4.57
-2023-09,7,Great Wall,Ora,38,4.23
-2023-09,8,BMW,i4,22,2.45
-2023-09,9,Tesla,Model 3,21,2.34
-2023-09,10,BMW,iX1,20,2.23
-2023-09,11,Volvo,XC40,20,2.23
-2023-09,12,Audi,Q8,15,1.67
-2023-09,13,Tesla,Model Y,15,1.67
-2023-09,14,Volvo,C40,15,1.67
-2023-09,15,Mercedes Benz,EQE,14,1.56
-2023-09,16,Mercedes Benz,EQS,10,1.11
-2023-09,17,Mercedes Benz,EQA,9,1.0
-2023-09,18,Mercedes Benz,EQC,6,0.67
-2023-09,19,Audi,E-tron,5,0.56
-2023-09,20,BMW,iX3,5,0.56
-2023-09,21,Hyundai,Kona,5,0.56
-2023-09,22,Hyundai,Ioniq 5,4,0.45
-2023-09,23,Peugeot,2008,4,0.45
-2023-09,24,Hyundai,Ioniq 6,3,0.33
-2023-09,25,Honda,E Advance,2,0.22
-2023-09,26,Jaguar,I-Pace,2,0.22
-2023-09,27,Mercedes Benz,E-Class,2,0.22
-2023-09,28,Mercedes Benz,EQB,2,0.22
-2023-09,29,Nissan,Leaf,2,0.22
-2023-09,30,Audi,RS e-tron GT,1,0.11
-2023-09,31,Citroen,Ami,1,0.11
-2023-09,32,Ford,Mustang,1,0.11
-2023-09,33,Higer,H5C,1,0.11
-2023-09,34,Kia,Niro,1,0.11
 2023-10,1,BYD,Dolphin,441,32.14
 2023-10,2,BYD,Atto 3,204,14.87
 2023-10,3,BMW,iX,124,9.04

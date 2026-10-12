@@ -6,7 +6,7 @@
       "https://api.data.gov.my/data-catalogue?id=registrations_type_fuel (national totals, official)",
       "https://data.gov.my/data-catalogue/registration_transactions_car (underlying JPJ data)"
     ],
-    "data_as_of": "2023-09..2026-09",
+    "data_as_of": "2023-10..2026-09",
     "caveat": "Per-model figures come from paultan.org car-sales-data, which aggregates the official JPJ per-transaction dataset. 'rank' and 'share_pct' are within the vehicle's fuel class (EV or Hybrid incl PHEV) for the all-time period. 'registered_basis' is paultan_exact when a single catalog model maps to paultan rows, paultan_family_shared when several catalog entries share one paultan family row (each reports the family total; see registered_note), and paultan_no_records when the model has no records at all."
   },
   "national_official": {
