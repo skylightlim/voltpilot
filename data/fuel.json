@@ -1,7 +1,7 @@
 {
   "_meta": {
     "currency": "RM",
-    "updated_at": "2026-10-29",
+    "updated_at": "2026-10-30",
     "source": "data.gov.my fuel price weekly API (id=fuelprice) \u2014 updated daily via scripts/update_fuel_prices.py",
     "price_date": "2026-10-29"
   },
@@ -30,6 +30,6 @@
     "diesel_budi": 2.1,
     "diesel_skds": 2.15,
     "ron95_budi95": 1.99,
-    "diesel_eastmsia": 2.15
+    "diesel_eastmsia": 5.27
   }
 }
