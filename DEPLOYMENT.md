@@ -131,7 +131,16 @@ demand from the Actions tab (`Run workflow`, optionally naming a single source).
 
 It runs `scripts/daily_update.py`, validates the result, commits any changed
 files under `data/`, and then runs `scripts/sync_db.py` to push those changes
-into the live database. The commit to `main` triggers CI, which redeploys.
+into the live database, and finally starts CI with `gh workflow run ci.yml`,
+which redeploys with the new files.
+
+**Why it starts CI explicitly.** A push made with the workflow's `GITHUB_TOKEN`
+starts no other workflow runs, so the refresh commit alone never reached CI:
+from 2026-09-15 to 2026-11-11, 56 refreshes deployed nothing, and everything the
+backend reads from `data/` at runtime (the results pages' and calculators' copy
+of the catalogue) stayed at the last human push while the database moved on.
+`workflow_dispatch` is GitHub's documented exception. The dispatch comes after
+the database step, so a failed sync ships nothing.
 
 **Why it moved out of the backend.** It used to be a Cloudflare cron calling
 `POST /admin/refresh`, and the container rewrote `data/` in place. A Vercel
@@ -148,7 +157,9 @@ in a row.
     # see what a sync would change, without writing
     DATABASE_URL=… python3 scripts/sync_db.py --dry-run
 
-Point an uptime check at **`/health/data`**. It returns 503 when the refresh has
+Point an uptime check at **`/health/data`**. It reads `data/refresh-state.json`
+from the deployed bundle, which the refresh commits (force-added: the file stays
+gitignored so a local run is never committed by accident). It returns 503 when the refresh has
 failed or has not run within 36 hours, which catches a schedule that has quietly
 stopped firing. `/health` stays a plain liveness check.
 

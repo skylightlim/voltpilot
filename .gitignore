@@ -39,9 +39,10 @@ playwright-report/
 .DS_Store
 *.log
 
-# Written by scripts/daily_update.py on every run — runtime state, not source.
-# Absent in a fresh container, which is exactly why /health/data reports red
-# until the first refresh has happened.
+# Written by scripts/daily_update.py on every run. Ignored so that a local run,
+# whose output carries the developer's paths, is never committed by accident.
+# daily-refresh.yml force-adds the runner's copy, which is how /health/data in
+# the deployed bundle learns when the last refresh ran.
 data/refresh-state.json
 
 # Superseded render frames; the shipping 3D asset is

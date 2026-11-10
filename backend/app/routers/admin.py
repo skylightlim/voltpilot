@@ -129,7 +129,7 @@ def refresh_health() -> tuple[bool, dict]:
     """
     if not REFRESH_STATE.exists():
         return False, {"reason": "no refresh has ever been recorded",
-                       "hint": "POST /admin/refresh, or wait for the daily cron"}
+                       "hint": "run the Daily data refresh workflow, or POST /admin/refresh where data/ is writable"}
     try:
         state = json.loads(REFRESH_STATE.read_text())
     except (OSError, ValueError) as exc:

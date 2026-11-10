@@ -7,8 +7,9 @@ name: Daily data refresh
 #
 # So the job moves here. The runner has a writable checkout, commits the
 # refreshed data files (which is what makes the change reviewable and
-# revertable), and then pushes them into the live database. Committing to main
-# also triggers CI, which redeploys with the new data baked in.
+# revertable), pushes them into the live database, and then starts CI, which
+# redeploys with the new files baked in. The commit alone does not start CI:
+# see the last step.
 
 on:
   schedule:
@@ -27,6 +28,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write   # to start ci.yml, see "Redeploy with the refreshed files"
 
 jobs:
   refresh:
@@ -60,12 +62,16 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- data/; then
+          git add data/
+          # The run record behind /health/data. It is gitignored so that a local
+          # run, whose output carries the developer's paths, is never committed by
+          # accident; the runner adds it on purpose so it reaches the deploy.
+          git add -f data/refresh-state.json
+          if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No data changes — every source was already current."
             exit 0
           fi
-          git add data/
           git commit -m "chore(data): daily refresh $(date -u +%Y-%m-%d)"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -83,8 +89,20 @@ jobs:
           fi
           python scripts/sync_db.py
 
+      # A push made with GITHUB_TOKEN starts no workflow runs, so the commit above
+      # never reached CI on its own: the 56 refreshes after 2026-09-15 deployed
+      # nothing, and the site kept serving the files of the last human push.
+      # workflow_dispatch is GitHub's documented exception to that rule. It runs
+      # after the database step so that a failed sync does not ship either.
+      - name: Redeploy with the refreshed files
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci.yml --ref main --repo "$GITHUB_REPOSITORY"
+
       - name: Summary
         run: |
           echo "### Daily refresh" >> "$GITHUB_STEP_SUMMARY"
           echo "- data files committed: ${{ steps.commit.outputs.changed }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- database sync: see the step above" >> "$GITHUB_STEP_SUMMARY"
+          echo "- redeploy started: ${{ steps.commit.outputs.changed }}" >> "$GITHUB_STEP_SUMMARY"

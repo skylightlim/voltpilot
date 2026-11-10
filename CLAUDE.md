@@ -50,7 +50,8 @@ cd frontend && npx tsc --noEmit -p tsconfig.json && npm test && npm run test:e2e
 - `npm run test:e2e` starts its own Next server on :3100 with dist dir `.next-e2e`, so it
   runs beside a dev server. The backend is stubbed.
 - `github-actions[bot]` commits refreshed `data/` to `main` daily at 06:00 MYT
-  (`daily-refresh.yml`). Pull before pushing, especially when touching `data/`.
+  (`daily-refresh.yml`), then dispatches CI, which deploys. Pull before pushing,
+  especially when touching `data/`.
 
 ## Voice interview
 
