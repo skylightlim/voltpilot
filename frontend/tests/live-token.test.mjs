@@ -72,7 +72,7 @@ describe("POST /api/live-token", () => {
     assert.equal(new Headers(calls[0].init.headers).get("x-goog-api-key"), KEY);
     const sent = JSON.parse(calls[0].init.body);
     assert.equal(sent.uses, 1);
-    assert.deepEqual(sent.bidiGenerateContentSetup, { model: "models/gemini-3.1-flash-live-preview" });
+    assert.deepEqual(sent.bidiGenerateContentSetup, { model: "models/gemini-3.8-live" });
     // Without the mask every setup field is locked, and the server drops the
     // page's AUDIO modality and closes the socket with 1007.
     assert.equal(sent.fieldMask, "model");
@@ -81,12 +81,12 @@ describe("POST /api/live-token", () => {
   });
 
   test("the model follows GEMINI_LIVE_MODEL", async () => {
-    process.env.GEMINI_LIVE_MODEL = "gemini-3.8-live";
+    process.env.GEMINI_LIVE_MODEL = "gemini-3.1-flash-live-preview";
     stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
     const body = await (await POST(mintRequest())).json();
 
-    assert.equal(body.model, "gemini-3.8-live");
-    assert.equal(JSON.parse(calls[0].init.body).bidiGenerateContentSetup.model, "models/gemini-3.8-live");
+    assert.equal(body.model, "gemini-3.1-flash-live-preview");
+    assert.equal(JSON.parse(calls[0].init.body).bidiGenerateContentSetup.model, "models/gemini-3.1-flash-live-preview");
   });
 
   test("a refused mint is a 502 that does not echo the key", async () => {

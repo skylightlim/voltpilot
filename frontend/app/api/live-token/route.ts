@@ -93,7 +93,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const model = process.env.GEMINI_LIVE_MODEL || "gemini-3.1-flash-live-preview";
+  // gemini-3.1-flash-live-preview is a legacy preview. 3.8 Live took the page's
+  // config and token unchanged (checked 2026-11-11 with a scripted session:
+  // greeting, a spoken answer heard and transcribed, a spoken reply). Setting
+  // GEMINI_LIVE_MODEL back to the old name is the rollback.
+  const model = process.env.GEMINI_LIVE_MODEL || "gemini-3.8-live";
   const now = Date.now();
   const res = await fetch(TOKEN_SERVICE, {
     method: "POST",

@@ -87,7 +87,7 @@ On the **frontend** project:
 |---|---|---|
 | `BACKEND_URL` | same as the GitHub variable | so Vercel-triggered builds match CI-triggered ones |
 | `GEMINI_API_KEYS` | the same comma-separated keys | **required for the Voice Advisor.** `app/api/live-token/route.ts` runs on the frontend and mints the ephemeral Live token itself, so the backend having the keys is not enough. Without it the advisor renders "Voice Mode Offline" and falls back to text — a navbar feature, silently off |
-| `GEMINI_LIVE_MODEL` | optional | defaults to `gemini-3.1-flash-live-preview` |
+| `GEMINI_LIVE_MODEL` | optional | defaults to `gemini-3.8-live`; leave unset unless rolling back to `gemini-3.1-flash-live-preview` |
 | `NEXT_PUBLIC_SITE_URL` | optional | only for a custom domain. Vercel supplies `VERCEL_PROJECT_PRODUCTION_URL`, which `metadataBase` uses to resolve the Open Graph image |
 
 The Live key reaching the browser is the point rather than a leak: Gemini Live

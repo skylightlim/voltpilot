@@ -36,7 +36,7 @@ Optional `GEMINI_API_KEY` in `backend/.env` powers the real Gemini analyst; with
 
 - Decision method: TOPSIS (`pymcdm`) over 184 catalog trims on six criteria, weighted by four user
   sliders. See `/methodology` and `frontend/DESIGN.md`.
-- Voice: Gemini 3.1 Flash Live (`gemini-3.1-flash-live-preview`) native audio — LiveKit deleted.
+- Voice: Gemini 3.8 Live (`gemini-3.8-live`) native audio — LiveKit deleted.
 - Solar = conditional banner only (static avg-Malaysia). Battery degradation = warning only.
 - No auth: anonymous profile token. PDF email: single-send + email bind.
 - Mobile is the primary viewport. Touch-first, thumb-zone, 48px tap targets.
