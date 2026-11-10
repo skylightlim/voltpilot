@@ -178,11 +178,11 @@ export default function VoiceInterviewPage() {
     return () => document.removeEventListener("visibilitychange", onVisibilityChange);
   }, [requestWakeLock]);
 
-  // Whether voice is configured at all. The token minted here is not kept: it
-  // must open its session within a minute, which someone reading this page
-  // rarely does, so startLive mints its own at the moment it connects.
+  // Whether voice is configured at all. No token is minted here: one must open
+  // its session within a minute, which someone reading this page rarely does, so
+  // startLive mints its own at the moment it connects.
   useEffect(() => {
-    apiService.getLiveToken()
+    apiService.checkLive()
       .then(() => {
         setLiveAvailable(true);
         setStage("ready");

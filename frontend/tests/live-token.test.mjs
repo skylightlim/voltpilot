@@ -12,12 +12,22 @@
 import { test, describe, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";
 
-import { POST } from "../app/api/live-token/route.ts";
+import { GET, POST } from "../app/api/live-token/route.ts";
 
 const KEY = "AIza-test-primary-key";
 const realFetch = globalThis.fetch;
 const realError = console.error;
 let calls;
+
+// The route caps mints per client IP in module memory, so every call gets an
+// address of its own unless a test is about that cap.
+let nextIp = 0;
+function mintRequest(ip = `198.51.100.${++nextIp}`) {
+  return new Request("https://voltpilot.test/api/live-token", {
+    method: "POST",
+    headers: { "x-real-ip": ip },
+  });
+}
 
 function stubTokenService(respond) {
   calls = [];
@@ -42,7 +52,7 @@ describe("POST /api/live-token", () => {
 
   test("returns a minted token, never the key", async () => {
     stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
-    const res = await POST();
+    const res = await POST(mintRequest());
     const body = await res.json();
 
     assert.equal(res.status, 200);
@@ -55,7 +65,7 @@ describe("POST /api/live-token", () => {
   test("mints with the primary key: single use, model locked and nothing else", async () => {
     stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
     const before = Date.now();
-    await POST();
+    await POST(mintRequest());
 
     assert.equal(calls.length, 1);
     assert.match(calls[0].url, /\/v1alpha\/auth_tokens$/);
@@ -73,7 +83,7 @@ describe("POST /api/live-token", () => {
   test("the model follows GEMINI_LIVE_MODEL", async () => {
     process.env.GEMINI_LIVE_MODEL = "gemini-3.8-live";
     stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
-    const body = await (await POST()).json();
+    const body = await (await POST(mintRequest())).json();
 
     assert.equal(body.model, "gemini-3.8-live");
     assert.equal(JSON.parse(calls[0].init.body).bidiGenerateContentSetup.model, "models/gemini-3.8-live");
@@ -83,7 +93,7 @@ describe("POST /api/live-token", () => {
     stubTokenService(() =>
       Response.json({ error: { message: `API key ${KEY} not valid` } }, { status: 400 }),
     );
-    const res = await POST();
+    const res = await POST(mintRequest());
     const text = await res.text();
 
     assert.equal(res.status, 502);
@@ -92,15 +102,53 @@ describe("POST /api/live-token", () => {
 
   test("an unreachable token service is a 502, not a throw", async () => {
     globalThis.fetch = async () => { throw new TypeError("fetch failed"); };
-    assert.equal((await POST()).status, 502);
+    assert.equal((await POST(mintRequest())).status, 502);
   });
 
   test("no key configured is a 501, so the page falls back to the form", async () => {
     delete process.env.GEMINI_API_KEYS;
     stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
-    const res = await POST();
+    const res = await POST(mintRequest());
 
     assert.equal(res.status, 501);
     assert.equal(calls.length, 0);
+  });
+
+  test("the cap holds per address: the eleventh mint in ten minutes is a 429", async () => {
+    stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
+    const statuses = [];
+    for (let i = 0; i < 11; i++) statuses.push((await POST(mintRequest("203.0.113.7"))).status);
+
+    assert.deepEqual(statuses, [...Array(10).fill(200), 429]);
+    assert.equal(calls.length, 10, "a refused mint must not reach Google");
+    const refused = await POST(mintRequest("203.0.113.7"));
+    assert.ok(Number(refused.headers.get("retry-after")) > 0);
+    // Someone else is unaffected.
+    assert.equal((await POST(mintRequest("203.0.113.8"))).status, 200);
+  });
+});
+
+describe("GET /api/live-token", () => {
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+    delete process.env.GEMINI_API_KEYS;
+  });
+
+  test("says voice is available and mints nothing", async () => {
+    process.env.GEMINI_API_KEYS = KEY;
+    stubTokenService(() => Response.json({ name: "auth_tokens/minted" }));
+    const res = await GET();
+    const text = await res.text();
+
+    assert.equal(res.status, 200);
+    assert.deepEqual(JSON.parse(text), { available: true });
+    assert.equal(calls.length, 0);
+    assert.ok(!text.includes("AIza"));
+  });
+
+  test("is a 501 without a key, which the page reads as voice offline", async () => {
+    delete process.env.GEMINI_API_KEYS;
+    delete process.env.GEMINI_API_KEY;
+    assert.equal((await GET()).status, 501);
   });
 });

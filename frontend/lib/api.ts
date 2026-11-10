@@ -443,8 +443,15 @@ export const apiService = {
     }),
   getSolar: () => api<{ solar: any }>("/config/solar"),
   getSponsor: () => api<{ sponsor: any }>("/config/sponsor"),
+  /** Whether voice is configured; mints nothing. 501 when it is not. */
+  checkLive: () =>
+    fetch("/api/live-token").then(async (r) => {
+      if (!r.ok) throw new ApiError(r.status, await r.text().catch(() => ""), kindForStatus(r.status));
+      return r.json() as Promise<{ available: true }>;
+    }),
   /** Same-origin edge route, not the Python backend: /tokens/live cost 8.9s on a
-   *  cold function and it sits on the session-start path. See app/api/live-token. */
+   *  cold function and it sits on the session-start path. See app/api/live-token.
+   *  Single-use and must open its session within a minute: call it at connect. */
   getLiveToken: () =>
     fetch("/api/live-token", { method: "POST" }).then(async (r) => {
       if (!r.ok) throw new ApiError(r.status, await r.text().catch(() => ""), kindForStatus(r.status));

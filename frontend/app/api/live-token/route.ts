@@ -19,24 +19,77 @@
  * bidiGenerateContentSetup without a fieldMask locks every setup field, so the
  * server replaces the page's responseModalities: [AUDIO] with its TEXT default
  * and closes the socket with 1007.
+ *
+ * GET only says whether voice is configured, and mints nothing. The page asks on
+ * load, and until 2026-11-11 it asked with POST, so merely opening
+ * /interview/voice spent a token.
  */
 export const runtime = "edge";
 
 const TOKEN_SERVICE = "https://generativelanguage.googleapis.com/v1alpha/auth_tokens";
 const NO_STORE = { "cache-control": "no-store" };
+const NOT_CONFIGURED = "GEMINI_API_KEYS not configured — voice disabled, use text mode";
 
-export async function POST() {
+/* Each token is a voice session billed to the key, and this route is public, so
+   minting is capped per client IP. The counters live in this edge isolate's
+   memory: the cap holds per instance, not globally, which stops a script looping
+   from one address but not a distributed one. A hard global ceiling needs a
+   Vercel Firewall rate-limit rule on this path. 10 per 10 minutes leaves room
+   for retries and for several people behind one campus NAT. */
+const WINDOW_MS = 10 * 60_000;
+const MAX_MINTS_PER_WINDOW = 10;
+const recentMints = new Map<string, number[]>();
+
+function admit(ip: string, now: number): number | null {
+  const hits = (recentMints.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  if (hits.length >= MAX_MINTS_PER_WINDOW) {
+    recentMints.set(ip, hits);
+    return Math.ceil((hits[0] + WINDOW_MS - now) / 1000); // seconds until a slot frees
+  }
+  hits.push(now);
+  recentMints.set(ip, hits);
+  if (recentMints.size > 5_000) {
+    for (const [k, v] of recentMints) if (now - v[v.length - 1] >= WINDOW_MS) recentMints.delete(k);
+  }
+  return null;
+}
+
+function clientIp(request: Request): string {
+  // Vercel sets both and overwrites anything the client sent.
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+    "unknown"
+  );
+}
+
+function liveKeys(): string[] {
   // GEMINI_API_KEYS is the comma-separated rotation list; Live cannot rotate
   // mid-session, so it always gets the primary, exactly as the backend did.
-  const keys = (process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY || "")
+  return (process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY || "")
     .split(",")
     .map((k) => k.trim())
     .filter(Boolean);
+}
 
+export async function GET() {
+  if (liveKeys().length === 0) {
+    return Response.json({ detail: NOT_CONFIGURED }, { status: 501, headers: NO_STORE });
+  }
+  return Response.json({ available: true }, { headers: NO_STORE });
+}
+
+export async function POST(request: Request) {
+  const keys = liveKeys();
   if (keys.length === 0) {
+    return Response.json({ detail: NOT_CONFIGURED }, { status: 501 });
+  }
+
+  const retryAfter = admit(clientIp(request), Date.now());
+  if (retryAfter !== null) {
     return Response.json(
-      { detail: "GEMINI_API_KEYS not configured — voice disabled, use text mode" },
-      { status: 501 },
+      { detail: "too many voice sessions from this network; try again in a few minutes" },
+      { status: 429, headers: { ...NO_STORE, "retry-after": String(retryAfter) } },
     );
   }
 
