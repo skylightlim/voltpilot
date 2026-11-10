@@ -40,7 +40,6 @@ class Settings:
     # than leaving an unauthenticated trigger for outbound fetches and file writes.
     admin_token: str = os.getenv("ADMIN_TOKEN", "")
     analyst_model: str = os.getenv("GEMINI_ANALYST_MODEL", "gemini-3.7-flash")
-    live_model: str = os.getenv("GEMINI_LIVE_MODEL", "gemini-3.1-flash-live-preview")
     smtp_host: str = os.getenv("SMTP_HOST", "localhost")
     smtp_port: int = int(os.getenv("SMTP_PORT", "1025"))
     smtp_user: str = os.getenv("SMTP_USER", "")
@@ -63,12 +62,6 @@ class Settings:
     # configured per environment — so the website line is right without a second
     # variable to keep in step.
     report_website: str = os.getenv("REPORT_WEBSITE", "") or frontend_origin
-
-    @property
-    def gemini_api_key(self) -> str:
-        """The first key. Gemini Live (POST /tokens/live) hands a single key to the
-        browser and cannot rotate mid-session, so it always gets the primary."""
-        return self.gemini_api_keys[0] if self.gemini_api_keys else ""
 
     @property
     def has_gemini(self) -> bool:

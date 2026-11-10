@@ -40,9 +40,7 @@ export default function VoiceInterviewPage() {
   const [stage, setStage] = useState<Stage>("checking");
   const [messages, setMessages] = useState<ChatMsg[]>([]);
   const [error, setError] = useState("");
-  const [liveToken, setLiveToken] = useState<string | null>(null);
-  const [liveModel, setLiveModel] = useState("gemini-2.5-flash-native-audio-latest");
-  const [liveApiVersion, setLiveApiVersion] = useState("v1beta");
+  const [liveAvailable, setLiveAvailable] = useState(false);
   const [liveVoice, setLiveVoice] = useState("Puck");
   /* The interview script, fetched so the spoken questions cannot drift from the
      ones the backend actually scores. FALLBACK_SCRIPT only covers a failed
@@ -180,13 +178,13 @@ export default function VoiceInterviewPage() {
     return () => document.removeEventListener("visibilitychange", onVisibilityChange);
   }, [requestWakeLock]);
 
-  // Fetch live token
+  // Whether voice is configured at all. The token minted here is not kept: it
+  // must open its session within a minute, which someone reading this page
+  // rarely does, so startLive mints its own at the moment it connects.
   useEffect(() => {
     apiService.getLiveToken()
-      .then((r) => {
-        setLiveToken(r.token);
-        if (r.model) setLiveModel(r.model);
-        if (r.api_version) setLiveApiVersion(r.api_version);
+      .then(() => {
+        setLiveAvailable(true);
         setStage("ready");
       })
       .catch((e: unknown) => {
@@ -421,7 +419,7 @@ export default function VoiceInterviewPage() {
   // --- Start Live Interview ---
 
   const startLive = async () => {
-    if (!liveToken) return;
+    if (!liveAvailable) return;
     setStage("live");
     logRef.current = [{ id: "open", role: "system", text: t("v.connecting"), time: formatTime() }];
     setMessages(logRef.current);
@@ -579,19 +577,24 @@ export default function VoiceInterviewPage() {
       // removed: the advisor kept asking for it. issue.md issue 23.
       const systemPrompt = buildInterviewPrompt(script, lang);
 
-      // --- Import SDK and connect ---
-      console.log("[voice] Importing @google/genai...");
-      const { GoogleGenAI, Modality } = await import("@google/genai");
+      // --- Mint a token, import SDK and connect ---
+      // Minted after the mic prompt, not on page load: the token is single-use
+      // and must open its session within a minute (app/api/live-token).
+      console.log("[voice] Minting token and importing @google/genai...");
+      const [live, { GoogleGenAI, Modality }] = await Promise.all([
+        apiService.getLiveToken(),
+        import("@google/genai"),
+      ]);
       console.log("[voice] Creating client...");
 
       const client = new GoogleGenAI({
-        apiKey: liveToken,
-        httpOptions: { apiVersion: liveApiVersion },
+        apiKey: live.token,
+        httpOptions: { apiVersion: live.api_version },
       });
 
-      console.log("[voice] Connecting to Live API...", { model: liveModel, apiVersion: liveApiVersion });
+      console.log("[voice] Connecting to Live API...", { model: live.model, apiVersion: live.api_version });
       const session = await client.live.connect({
-        model: liveModel,
+        model: live.model,
         config: {
           responseModalities: [Modality.AUDIO],
           inputAudioTranscription: {},

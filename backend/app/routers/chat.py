@@ -13,7 +13,7 @@ router = APIRouter(prefix="/chat", tags=["chat"])
 
 @router.post("")
 async def chat(body: ChatRequest, db: AsyncSession = Depends(get_db)):
-    """Text chat against the analyst (voice path handled by the client via /tokens)."""
+    """Text chat against the analyst (voice runs in the browser; see frontend/app/api/live-token)."""
     result = await db.scalar(select(TopsisResult).where(TopsisResult.result_token == body.result_token))
     recommendation = await db.scalar(
         select(Recommendation).where(Recommendation.result_token == body.result_token)

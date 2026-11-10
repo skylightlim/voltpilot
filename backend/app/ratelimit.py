@@ -31,7 +31,6 @@ LIMITS: dict[str, int] = {
     "/score": int(os.getenv("RATE_LIMIT_SCORE", "10")),
     "/chat": int(os.getenv("RATE_LIMIT_CHAT", "20")),
     "/report": int(os.getenv("RATE_LIMIT_REPORT", "5")),
-    "/tokens/live": int(os.getenv("RATE_LIMIT_TOKENS", "10")),
 }
 
 # Never throttled: monitors poll these, and rate-limiting a health check turns a

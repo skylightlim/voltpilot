@@ -11,7 +11,7 @@ from .config import settings
 from .db import AsyncSessionLocal, init_db, seed_if_empty
 from .ratelimit import rate_limit_middleware
 from .routers import (admin, calculators, chat, config, interview, profiles, report,
-                      results, score, tokens)
+                      results, score)
 
 
 @asynccontextmanager
@@ -84,7 +84,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-for r in (profiles.router, score.router, results.router, chat.router, tokens.router, report.router, config.router, interview.router, calculators.router, admin.router):
+for r in (profiles.router, score.router, results.router, chat.router, report.router, config.router, interview.router, calculators.router, admin.router):
     app.include_router(r)
 
 
