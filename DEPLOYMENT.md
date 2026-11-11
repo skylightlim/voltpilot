@@ -78,7 +78,8 @@ On the **backend** project (`Settings → Environment Variables`):
 | `FRONTEND_ORIGIN` | the frontend's URL | CORS; also the default for the report's website line |
 | `REPORT_AGENT_PHONE` | your advisor / dealership number | printed in the PDF footer and its contact panel. **Unset means the phone is omitted entirely** — a customer-facing document is the wrong place for a placeholder number |
 | `REPORT_AGENT_NAME` | who answers that number | optional, shown under the number |
-| `REPORT_WEBSITE` | e.g. `https://voltpilot.my` | optional; falls back to `FRONTEND_ORIGIN` |
+| `REPORT_WEBSITE` | e.g. `https://voltpilot.space` | optional; falls back to `FRONTEND_ORIGIN`. Printed bare (no `https://`) in the PDF masthead, footer and contact panel |
+| `REPORT_EMAIL` | e.g. `hello@voltpilot.space` | optional; printed in the PDF masthead and contact panel. Unset means no email line |
 | `ENV` | `production` | drops the localhost CORS origins |
 
 On the **frontend** project:

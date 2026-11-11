@@ -60,6 +60,8 @@ class Settings:
     # nobody answers is worse than no phone number at all.
     report_agent_name: str = os.getenv("REPORT_AGENT_NAME", "")
     report_agent_phone: str = os.getenv("REPORT_AGENT_PHONE", "")
+    # Optional contact email printed in the report masthead and contact panel.
+    report_email: str = os.getenv("REPORT_EMAIL", "")
     # Falls back to the site the frontend is served from, which is already
     # configured per environment — so the website line is right without a second
     # variable to keep in step.

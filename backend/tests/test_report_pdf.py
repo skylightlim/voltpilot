@@ -156,6 +156,51 @@ def test_the_cost_column_is_the_five_year_total_the_ranking_scores():
     assert "33,724" not in text and "TCO" not in text
 
 
+def _pages(pdf: bytes) -> list[str]:
+    """The drawn text split by page. The footer is stamped last on every page,
+    so each page's text ends at its own "Page i of n"."""
+    text = _pdf_text(pdf)
+    return [chunk for chunk in re.split(r"(?:Page|Muka) \d+ (?:of|drpd) \d+", text)][:-1]
+
+
+def test_page_one_is_the_summary_and_the_roadmap_opens_page_two(contactable):
+    pages = _pages(build_pdf(_ctx()))
+    first, second = pages[0], pages[1]
+    assert "Top 10 of 37 ranked" in first
+    assert "BYD M9 X" in first and "BYD M10 X" not in first, "page 1 should list exactly ten cars"
+    assert "Your roadmap" not in first
+    assert "Your roadmap" in second
+    assert second.index("Your roadmap") < second.index("How to get there")
+
+
+def test_a_long_analysis_still_leaves_the_roadmap_on_page_two(contactable):
+    """Page 1 is scaled to fit rather than allowed to spill: a spill would carry
+    the ranking onto page 2 and push the roadmap to page 3."""
+    ctx = _ctx()
+    ctx["recommendation"]["summary"] = "A long analyst summary sentence. " * 40
+    ctx["recommendation"]["tradeoffs"] = ["A long trade-off that runs over two lines. " * 3] * 6
+    pages = _pages(build_pdf(ctx))
+    assert "BYD M9 X" in pages[0] and "Your roadmap" not in pages[0]
+    assert "Your roadmap" in pages[1]
+
+
+def test_the_masthead_lists_the_website_details(contactable, monkeypatch):
+    from app.config import load_catalog
+
+    monkeypatch.setattr(report_pdf.settings, "report_email", "hello@voltpilot.my", raising=False)
+    first = _pages(build_pdf(_ctx()))[0]
+    for expected in ("Website", "Call / WhatsApp", "+60 12-345 6789", "Email",
+                     "hello@voltpilot.my", "Cars compared", str(len(load_catalog()))):
+        assert expected in first, f"masthead missing: {expected}"
+    # The site is printed bare, the way a reader types it.
+    assert "https://" not in first
+
+
+def test_an_unset_email_prints_no_email_line(contactable, monkeypatch):
+    monkeypatch.setattr(report_pdf.settings, "report_email", "", raising=False)
+    assert "Email" not in _pdf_text(build_pdf(_ctx()))
+
+
 def test_the_roadmap_and_its_how_to_reach_the_document():
     text = _pdf_text(build_pdf(_ctx()))
     for expected in ("Your roadmap", "Before you sign", "The crossover",
