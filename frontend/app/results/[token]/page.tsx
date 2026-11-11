@@ -33,9 +33,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ApiError, SESSION, apiService } from "@/lib/api";
 import { useT, type StrKey } from "@/lib/i18n";
-import { Slider } from "@/components/Slider";
 import { DealerContact } from "@/components/DealerContact";
 import { MindChangeCard } from "@/components/MindChange";
+import { BatteryAge } from "@/components/BatteryAge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,7 +61,7 @@ type Row = {
   co2_kg_yr: number;
   source?: string;
   /** Sent by the API; `seats` drives the results-page filter. */
-  specs?: { seats?: number; boot_l?: number };
+  specs?: { seats?: number; boot_l?: number; range_km?: number; battery_kwh?: number };
 };
 
 const CRITERIA: { key: keyof Row; label: string; icon: typeof Calculator; accent: string }[] = [
@@ -90,7 +90,6 @@ export default function ResultsPage() {
   }, [token]);
   const [error, setError] = useState("");
   const [open, setOpen] = useState<Record<string, boolean>>({});
-  const [batteryAge, setBatteryAge] = useState(0);
   const [pdfBusy, setPdfBusy] = useState(false);
   const [pdfError, setPdfError] = useState("");
   const [email, setEmail] = useState("");
@@ -187,13 +186,9 @@ export default function ResultsPage() {
   const top: Row | undefined = data?.ranking?.[0];
   const rec = data?.recommendation;
 
-  const batteryWarning = useMemo(() => {
-    const estLoss = Math.min(35, Math.round(batteryAge * 1.6));
-    return {
-      loss: estLoss,
-      text: `After roughly ${batteryAge || 0} years a lithium pack typically holds ~${Math.max(65, 100 - estLoss)}% of original capacity. This is a warning only — your ranking above does not change.`,
-    };
-  }, [batteryAge]);
+  // The battery card scales a real car rather than an abstract pack. A hybrid
+  // pick has no range to lose, so it uses the best EV still in the list.
+  const topEv = ranking.find((r) => r.type === "ev");
 
   const sendReport = async () => {
     setPdfBusy(true);
@@ -673,38 +668,22 @@ export default function ResultsPage() {
 
         {/* Battery Age Visualiser */}
         <DashboardCard
-          label="Battery-age visualiser"
+          label={t("bat.title")}
           icon={<BatteryWarning className="h-4 w-4" />}
           isOpen={!!open.battery}
           onClick={() => toggle("battery")}
         >
-          <div className="mt-4">
-            <div className="flex items-center justify-between text-[16px]">
-              <span className="text-muted">{t("r.assumed")}</span>
-              <span className="figure text-ink">{batteryAge} yrs</span>
-            </div>
-            <Slider
-              min={0}
-              max={15}
-              step={1}
-              className="mt-3"
-              aria-label={t("r.batteryAge")}
-              value={batteryAge}
-              onChange={(e) => setBatteryAge(Number(e.target.value))}
-            />
-            <div className="mt-4 flex items-start gap-3 rounded-lg border border-amber-300/40 bg-amber-50/60 p-4">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-amber-500/15">
-                <BatteryWarning className="h-4 w-4 text-amber-700" />
-              </span>
-              <p className="text-[15px] leading-relaxed text-ink">{batteryWarning.text}</p>
-            </div>
-            <button
-              onClick={() => router.push(`/chat/${token}?ask=battery`)}
-              className="pressable tap-target mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-[16px] font-medium text-ink hover:bg-parchment/50 active:scale-[0.98]"
-            >
-              <MessageCircle className="h-4 w-4" /> {t("r.askbat")}
-            </button>
-          </div>
+          <BatteryAge
+            car={topEv ? `${topEv.brand} ${topEv.model}`.trim() : undefined}
+            rangeKm={topEv?.specs?.range_km}
+            batteryKwh={topEv?.specs?.battery_kwh}
+          />
+          <button
+            onClick={() => router.push(`/chat/${token}?ask=battery`)}
+            className="pressable tap-target mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-[16px] font-medium text-ink hover:bg-parchment/50 active:scale-[0.98]"
+          >
+            <MessageCircle className="h-4 w-4" /> {t("r.askbat")}
+          </button>
         </DashboardCard>
 
         {/* AI Trade-off Notes */}
