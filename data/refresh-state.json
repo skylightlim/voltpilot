@@ -1,0 +1,54 @@
+{
+ "validation": {
+  "errors": [],
+  "warnings": 4
+ },
+ "started_at": "2026-11-11T01:45:42.747765+00:00",
+ "finished_at": "2026-11-11T01:46:13.390185+00:00",
+ "succeeded": [
+  "fuel",
+  "registrations"
+ ],
+ "failed": [
+  "ev_stations"
+ ],
+ "results": [
+  {
+   "source": "fuel",
+   "script": "scripts/update_fuel_prices.py",
+   "ok": true,
+   "exit_code": 0,
+   "output": [
+    "market:      ron95 RM4.27 | ron97 RM4.70 | diesel RM5.12 (SKPS 2.05 / BUDI 2.10 / SKDS 2.15)",
+    "updated /home/runner/work/voltpilot/voltpilot/data/fuel.json",
+    "Done. Cron: 0 6 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_fuel_prices.py"
+   ],
+   "seconds": 3.92
+  },
+  {
+   "source": "registrations",
+   "script": "scripts/update_vehicle_registrations.py",
+   "ok": true,
+   "exit_code": 0,
+   "output": [
+    "  rating 9: 1 vehicles",
+    "",
+    "Done. Cron: 0 7 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_vehicle_registrations.py"
+   ],
+   "seconds": 5.11
+  },
+  {
+   "source": "ev_stations",
+   "script": "scraper/ev_stations.py",
+   "ok": false,
+   "error": "SSLError: HTTPSConnectionPool(host='tools.evcharge.my', port=443): Max retries exceeded with url: /_api/ev-stations (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)')))",
+   "traceback": [
+    "  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/adapters.py\", line 727, in send",
+    "    raise SSLError(e, request=request)",
+    "requests.exceptions.SSLError: HTTPSConnectionPool(host='tools.evcharge.my', port=443): Max retries exceeded with url: /_api/ev-stations (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)')))"
+   ],
+   "seconds": 21.59
+  }
+ ],
+ "status": "ok"
+}
