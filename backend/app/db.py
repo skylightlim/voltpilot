@@ -140,6 +140,24 @@ class ReportRequest(Base):
     send_count: Mapped[int] = mapped_column(Integer, default=1)
 
 
+class MindChange(Base):
+    """The results page's "did this change your mind?" answer.
+
+    leaning_before is copied from the profile's prior_leaning, asked on /sliders
+    before the result existed, so one table answers how many minds moved
+    without reading JSON. NULL when the buyer skipped that question.
+    """
+
+    __tablename__ = "mind_changes"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    result_token: Mapped[str] = mapped_column(String(40), unique=True, index=True)
+    leaning_before: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    leaning_after: Mapped[str] = mapped_column(String(10))
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
 class BlockedSite(Base):
     __tablename__ = "blocked_sites"
 

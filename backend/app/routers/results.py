@@ -3,13 +3,15 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
+from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..config import brand_contact, load_policy_markdown, load_solar, settings
-from ..db import AsyncSessionLocal, Profile, Recommendation, TopsisResult, get_db
+from ..db import AsyncSessionLocal, MindChange, Profile, Recommendation, TopsisResult, get_db
+from ..schemas import MindChangeIn
 
 logger = logging.getLogger(__name__)
 
@@ -358,3 +360,27 @@ async def get_scenario(token: str, fuel: str = "market", limit: int = 8,
             for r in bundle["ranking"][:limit]
         ],
     }
+
+
+@router.post("/{token}/mind")
+async def record_mind_change(token: str, body: MindChangeIn, db: AsyncSession = Depends(get_db)):
+    """Which way the buyer leans now that they have seen the result.
+
+    Stored beside the leaning they gave on /sliders before the result existed,
+    so "how many people changed their mind" is a count of rows where the two
+    differ. Answering again replaces the earlier answer: a tap is not a vote.
+    """
+    profile_row = await db.scalar(select(Profile).where(Profile.token == token))
+    has_result = await db.scalar(select(TopsisResult.id).where(TopsisResult.result_token == token))
+    if not (profile_row and has_result):
+        raise HTTPException(status_code=404, detail="no result for this token")
+
+    before = (profile_row.profile_json or {}).get("prior_leaning")
+    row = await db.scalar(select(MindChange).where(MindChange.result_token == token))
+    if row is None:
+        db.add(MindChange(result_token=token, leaning_before=before, leaning_after=body.leaning))
+    else:
+        row.leaning_after = body.leaning
+        row.updated_at = datetime.utcnow()
+    await db.commit()
+    return {"token": token, "before": before, "after": body.leaning}

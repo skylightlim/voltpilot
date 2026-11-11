@@ -101,7 +101,7 @@ S: dict[str, tuple[str, str]] = {
     "c_type": ("Type", "Jenis"),
     "c_price": ("Price (RM)", "Harga (RM)"),
     "c_run": ("Running / yr (RM)", "Kos tahunan (RM)"),
-    "c_tco": ("10-yr TCO (RM)", "TCO 10 tahun (RM)"),
+    "c_cost5": ("5-yr cost (RM)", "Kos 5 tahun (RM)"),
     "road_h": ("Your roadmap", "Pelan tindakan anda"),
     "road_year": ("Year {n}", "Tahun {n}"),
     "road_now": ("Now", "Sekarang"),
@@ -296,7 +296,7 @@ def _profile_table(prof: dict, lang: str, st: dict) -> Table:
 
 
 def _ranking_table(ranking: list[dict], lang: str, st: dict) -> Table:
-    head = [t(k, lang) for k in ("c_rank", "c_model", "c_type", "c_price", "c_run", "c_tco")]
+    head = [t(k, lang) for k in ("c_rank", "c_model", "c_type", "c_price", "c_run", "c_cost5")]
     data = [head]
     for r in ranking[:5]:
         data.append([
@@ -306,7 +306,12 @@ def _ranking_table(ranking: list[dict], lang: str, st: dict) -> Table:
             str(r.get("type", "")).upper(),
             _rm(r.get("price_rm")),
             _rm(r.get("running_cost_rm_yr")),
-            _rm(r.get("tco_excluding_rm")),
+            # The five-year total the ranking scores (depreciation, interest,
+            # insurance, energy, servicing, road tax). This column used to print
+            # tco_excluding_rm as "10-yr TCO", which leaves out the car itself and
+            # its energy: a RM67,800 car showed RM33,724, under its own price,
+            # beside analyst text quoting RM60,538 for the same car.
+            _rm(r.get("total_cost_5yr_rm")),
         ])
     tbl = Table(data, repeatRows=1, colWidths=[0.9 * cm, 5.6 * cm, 1.5 * cm, 2.5 * cm, 3.0 * cm, 3.0 * cm])
     tbl.setStyle(TableStyle([

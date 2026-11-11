@@ -5,6 +5,8 @@ from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 Lang = Literal["en", "bm"]
+# Which way a buyer leans, asked once before the result and once after it.
+Leaning = Literal["ev", "hybrid", "unsure"]
 
 # ---------------------------------------------------------------------------
 # Guided interview script — the single source of truth for BOTH the form
@@ -125,6 +127,10 @@ class ProfileIn(BaseModel):
     # Existing household draw. TNB Domestic ToU is blocked, so a heavy household
     # pays a higher MARGINAL rate once EV charging is added on top.
     monthly_electricity_bill_rm: float = Field(default=0, ge=0, le=100000)
+    # Asked on /sliders, before any result is shown, so the results page can
+    # ask "did this change your mind?" against an answer given beforehand
+    # rather than one remembered afterwards. Optional, and never scored.
+    prior_leaning: Optional[Leaning] = None
 
     def missing_required(self) -> list[str]:
         """Required answers still blank, as field names.
@@ -172,6 +178,10 @@ class ChatRequest(BaseModel):
     result_token: str
     message: str
     language: Lang = "en"
+
+
+class MindChangeIn(BaseModel):
+    leaning: Leaning
 
 
 class ReportRequest(BaseModel):

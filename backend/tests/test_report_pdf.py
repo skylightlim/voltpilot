@@ -144,6 +144,18 @@ def test_the_ranking_total_is_the_ranking_it_was_given():
     assert "167" not in text
 
 
+def test_the_cost_column_is_the_five_year_total_the_ranking_scores():
+    """It printed tco_excluding_rm under "10-yr TCO". That figure leaves out the
+    car and its energy, so a RM67,800 Wuling Bingo read RM33,724, below its own
+    price, beside analyst text quoting its five-year total of RM60,538."""
+    row = {"rank": 1, "brand": "Wuling", "model": "Bingo", "variant": "", "type": "ev",
+           "price_rm": 67800, "running_cost_rm_yr": 899, "tco_excluding_rm": 33724,
+           "total_cost_5yr_rm": 60538, "total_cost_10yr_rm": 110514}
+    text = _pdf_text(build_pdf(_ctx(ranking=[row])))
+    assert "5-yr cost" in text and "60,538" in text
+    assert "33,724" not in text and "TCO" not in text
+
+
 def test_the_roadmap_and_its_how_to_reach_the_document():
     text = _pdf_text(build_pdf(_ctx()))
     for expected in ("Your roadmap", "Before you sign", "The crossover",

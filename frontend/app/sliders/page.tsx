@@ -1,13 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Banknote, Leaf, Gauge, ShieldCheck, Sparkles } from "lucide-react";
 import { Button, Card, SectionLabel } from "@/components/ui";
 import { ScrollRefresh } from "@/components/motion";
 import { RadarChart } from "@/components/charts/RadarChart";
 import { useT, type StrKey } from "@/lib/i18n";
-import { ApiError, SESSION, apiService, type Weights } from "@/lib/api";
+import { ApiError, SESSION, apiService, type Leaning, type Weights } from "@/lib/api";
+import { LeaningPicker } from "@/components/MindChange";
 import { Slider } from "@/components/Slider";
 
 const SLIDERS: { key: keyof Weights; icon: React.ReactNode; p: string; color: string }[] = [
@@ -28,6 +29,17 @@ export default function SlidersPage() {
   const [weights, setWeights] = useState<Weights>(() => SESSION.loadWeights());
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [leaning, setLeaning] = useState<Leaning | undefined>();
+
+  // Read after mount, like the language: sessionStorage does not exist on the server.
+  useEffect(() => setLeaning(SESSION.loadProfile().prior_leaning), []);
+
+  /* The "before" half of the results page's "did this change your mind?".
+     It rides in the profile, which /analysis posts as it stands. */
+  const pickLeaning = (l: Leaning) => {
+    setLeaning(l);
+    SESSION.saveProfile({ ...SESSION.loadProfile(), prior_leaning: l });
+  };
 
   const profile = useMemo(() => SESSION.loadProfile(), []);
 
@@ -103,6 +115,17 @@ export default function SlidersPage() {
         </h1>
         <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("sl.sub")}</p>
       </section>
+
+      {/* Asked here because both the form and the voice interview pass through
+          this page, and it is the last one before any result is shown. */}
+      <Card className="mt-6 !p-5 border-line bg-card">
+        <p className="mono-label text-[10px] text-muted tracking-widest uppercase">{t("mind.preLabel")}</p>
+        <h2 className="mt-1.5 text-[16px] font-bold text-ink">{t("mind.preH")}</h2>
+        <div className="mt-3">
+          <LeaningPicker value={leaning} onPick={pickLeaning} label={t("mind.preH")} />
+        </div>
+        <p className="mt-2.5 text-[14px] leading-relaxed text-muted">{t("mind.preHint")}</p>
+      </Card>
 
       {/* Radar Chart Weight Visualization */}
       <Card className="mt-6 flex flex-col items-center justify-center bg-card p-4 overflow-hidden border border-line">

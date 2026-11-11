@@ -20,14 +20,15 @@ from ..services.report_pdf import MYT, build_pdf
 router = APIRouter(prefix="/report", tags=["report"])
 
 
-def send_email(to: str, subject: str, body_text: str, pdf: bytes) -> None:
-    msg = MIMEMultipart("alternative")
+def send_email(to: str, subject: str, body_text: str, pdf: bytes,
+               filename: str = "voltpilot-report.pdf") -> None:
+    msg = MIMEMultipart("mixed")
     msg["Subject"] = subject
     msg["From"] = settings.smtp_from
     msg["To"] = to
     msg.attach(MIMEText(body_text, "plain", "utf-8"))
     part = MIMEApplication(pdf, _subtype="pdf")
-    part.add_header("Content-Disposition", "attachment", filename="ai-transport-report.pdf")
+    part.add_header("Content-Disposition", "attachment", filename=filename)
     msg.attach(part)
 
     context = ssl.create_default_context()
@@ -78,8 +79,10 @@ async def email_report(body: ReportRequestSchema, db: AsyncSession = Depends(get
     try:
         await run_in_threadpool(
             send_email, body.email, subject,
-            "Your personalised EV vs hybrid decision report is attached.\n\n— VoltPilot Malaysia",
-            pdf)
+            ("Laporan keputusan EV lawan hibrid anda dilampirkan.\n\n— VoltPilot Malaysia"
+             if lang == "bm" else
+             "Your personalised EV vs hybrid decision report is attached.\n\n— VoltPilot Malaysia"),
+            pdf, f"voltpilot-report-{body.result_token[:8]}.pdf")
     except Exception as exc:  # pragma: no cover - SMTP varies per environment
         raise HTTPException(status_code=502, detail=f"email send failed: {exc}")
 

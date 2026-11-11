@@ -10,6 +10,9 @@ const BACKEND_URL =
    voice page did exactly that. tests/guardrails.test.mjs now checks for it. */
 export { BACKEND_URL };
 
+/** Which way a buyer leans: asked on /sliders before the result, and again after it. */
+export type Leaning = "ev" | "hybrid" | "unsure";
+
 export type Profile = {
   language: "en" | "bm";
   daily_km: number;
@@ -25,6 +28,7 @@ export type Profile = {
   budget_max_rm?: number;
   grid_region: "peninsular" | "east_malaysia";
   monthly_electricity_bill_rm?: number;
+  prior_leaning?: Leaning;
 };
 
 /** RON95 is subsidised to RM1.99 under BUDI95; its market price is RM3.77.
@@ -434,6 +438,12 @@ export const apiService = {
     api<{ sent: boolean; first: boolean; email: string }>("/report", {
       method: "POST",
       body: JSON.stringify({ result_token, email }),
+    }),
+  /** The results page's "did this change your mind?" answer. Answering again replaces it. */
+  postMindChange: (token: string, leaning: Leaning) =>
+    api<{ token: string; before: Leaning | null; after: Leaning }>(`/results/${token}/mind`, {
+      method: "POST",
+      body: JSON.stringify({ leaning }),
     }),
   getInterviewScript: () => api<{ questions: InterviewQuestion[] }>("/config/interview"),
   extractInterview: (transcript: string, lang: string = "en") =>

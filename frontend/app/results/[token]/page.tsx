@@ -35,6 +35,7 @@ import { ApiError, SESSION, apiService } from "@/lib/api";
 import { useT, type StrKey } from "@/lib/i18n";
 import { Slider } from "@/components/Slider";
 import { DealerContact } from "@/components/DealerContact";
+import { MindChangeCard } from "@/components/MindChange";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,6 +52,7 @@ type Row = {
   price_rm: number;
   running_cost_rm_yr: number;
   tco_excluding_rm: number;
+  total_cost_5yr_rm?: number;
   topsis_score: number;
   financial_score: number;
   behaviour_score: number;
@@ -301,8 +303,15 @@ export default function ResultsPage() {
                 </p>
                 <p className="mt-2 text-[15px] text-muted">
                   {t("r.energy")} <span className="font-semibold text-ink">RM{top.running_cost_rm_yr.toLocaleString()}/yr</span>
-                  {" · "}
-                  {t("r.tco10")} <span className="font-semibold text-ink">RM{top.tco_excluding_rm.toLocaleString()}</span>
+                  {/* Was "10-yr TCO" over tco_excluding_rm, which leaves out the car and its
+                      energy: a RM67,800 car read RM33,724. This is the five-year total the
+                      ranking scores, the same figure the PDF and the cost breakdown use. */}
+                  {top.total_cost_5yr_rm != null && (
+                    <>
+                      {" · "}
+                      {t("r.cost5")} <span className="font-semibold text-ink">RM{Math.round(top.total_cost_5yr_rm).toLocaleString()}</span>
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -380,6 +389,16 @@ export default function ResultsPage() {
           )}
 
         </ScrubReveal>
+      )}
+
+      {/* ── Did this change your mind? ────────────────────────────────── */}
+      {/* Right after the headline and the numbers, while the answer is fresh.
+          Not in a ScrubReveal: a scrub ties opacity to scroll position, and a
+          control the reader is meant to tap must not sit half transparent. */}
+      {top && (
+        <div className="mb-8">
+          <MindChangeCard token={token} before={data.profile?.prior_leaning ?? null} />
+        </div>
       )}
 
       {/* ── How firm the answer is (FEATURES P6) ──────────────────────── */}
