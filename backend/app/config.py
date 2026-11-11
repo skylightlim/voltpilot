@@ -39,7 +39,9 @@ class Settings:
     # Shared secret for POST /admin/refresh. Unset disables the endpoint rather
     # than leaving an unauthenticated trigger for outbound fetches and file writes.
     admin_token: str = os.getenv("ADMIN_TOKEN", "")
-    analyst_model: str = os.getenv("GEMINI_ANALYST_MODEL", "gemini-3.7-flash")
+    # gemini-3.7-flash and 3.8-flash hung past 60s on every free-tier key on
+    # 2026-11-11 while 3.6 answered in 7-11s; see _CALL_TIMEOUT_S in analyst.py.
+    analyst_model: str = os.getenv("GEMINI_ANALYST_MODEL", "gemini-3.6-flash")
     smtp_host: str = os.getenv("SMTP_HOST", "localhost")
     smtp_port: int = int(os.getenv("SMTP_PORT", "1025"))
     smtp_user: str = os.getenv("SMTP_USER", "")

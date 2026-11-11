@@ -262,15 +262,32 @@ def _is_daily_quota(exc: Exception) -> bool:
     return False
 
 
+# Free-tier calls run on capacity Google may shed, and a shed call does not fail:
+# it just stays open. On 2026-11-11 gemini-3.7-flash held every call past 60s on
+# all three keys, so /chat died as a Vercel 504 and the recommendation never left
+# "not ready", because the mock fallbacks wait for an exception that never came.
+# Normal answers take 7-11s. Past this, give up and serve the mock. A timeout is
+# neither retried nor rotated: the other keys would hang on the same model, and
+# the recommendation poll only waits 25s.
+_CALL_TIMEOUT_S = 20.0
+
+
+async def _generate_once(client: Any, *, contents: str, config: dict) -> Any:
+    return await asyncio.wait_for(
+        client.aio.models.generate_content(
+            model=settings.analyst_model,
+            contents=contents,
+            config=config,
+        ),
+        _CALL_TIMEOUT_S,
+    )
+
+
 async def _generate_with_retry(client: Any, *, contents: str, config: dict) -> Any:
     last_exc: Exception | None = None
     for attempt, delay in enumerate((*_RETRY_DELAYS, None)):
         try:
-            return await client.aio.models.generate_content(
-                model=settings.analyst_model,
-                contents=contents,
-                config=config,
-            )
+            return await _generate_once(client, contents=contents, config=config)
         except Exception as exc:
             code = getattr(exc, "code", None) or getattr(exc, "status_code", None)
             if code not in _TRANSIENT_STATUS or delay is None:
@@ -366,14 +383,15 @@ async def chat_reply(result: dict, message: str, lang: str) -> str:
             )
         }
         resp = await _with_key_rotation(
-            lambda client: client.aio.models.generate_content(
-                model=settings.analyst_model,
-                contents=message,
-                config=config,
-            )
+            lambda client: _generate_once(client, contents=message, config=config)
         )
         return (resp.text or "").strip()
-    except Exception:
+    except Exception as exc:
+        logger.warning(
+            "chat model %s failed (%s) - falling back to mock",
+            settings.analyst_model,
+            type(exc).__name__,
+        )
         return _mock_chat(result, message, lang)
 
 
@@ -457,8 +475,8 @@ Infer missing values from context where reasonable (e.g., city name -> region).
 Return ONLY the JSON object, no markdown, no explanation."""
 
         resp = await _with_key_rotation(
-            lambda client: client.aio.models.generate_content(
-                model=settings.analyst_model,
+            lambda client: _generate_once(
+                client,
                 contents=prompt + "\n\nTranscript:\n" + transcript,
                 config={"system_instruction": "Return ONLY the JSON object."},
             )
