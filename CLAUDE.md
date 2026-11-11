@@ -14,7 +14,7 @@ gets an explicit local database:
 # backend on :8000
 cd backend
 DATABASE_URL=sqlite+aiosqlite:///./dev_local.db ENABLE_EMAIL=false \
-  .venv/bin/uvicorn app.main:app --reload --port 8000
+  .venv/bin/python -m uvicorn app.main:app --reload --port 8000
 
 # frontend on :3000
 cd frontend && npm run dev
