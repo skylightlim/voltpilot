@@ -49,6 +49,9 @@ export default function VoiceInterviewPage() {
   const [micLevel, setMicLevel] = useState(0);
   const [isAdvisorSpeaking, setIsAdvisorSpeaking] = useState(false);
 
+  // Start of the interview-to-result clock; /analysis stops it.
+  useEffect(() => SESSION.markStarted("voice"), []);
+
   useEffect(() => {
     apiService
       .getInterviewScript()

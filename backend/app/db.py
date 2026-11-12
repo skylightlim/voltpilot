@@ -158,6 +158,24 @@ class MindChange(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
+class ResultTiming(Base):
+    """How long one buyer took from opening the interview to seeing the result.
+
+    Measured in the browser, on one clock, and posted once as the waiting page
+    hands over: the server never sees the moment the interview opened. `via` is
+    the interview they started in. This is the number set against how long the
+    same decision takes by searching by hand.
+    """
+
+    __tablename__ = "result_timings"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    result_token: Mapped[str] = mapped_column(String(40), unique=True, index=True)
+    seconds: Mapped[float] = mapped_column(Float)
+    via: Mapped[str] = mapped_column(String(10))
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
 class BlockedSite(Base):
     __tablename__ = "blocked_sites"
 

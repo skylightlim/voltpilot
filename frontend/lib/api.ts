@@ -210,6 +210,7 @@ const PROFILE_KEY = "atp.profile";
 const WEIGHTS_KEY = "atp.weights";
 const TOKEN_KEY = "atp.token";
 const RESULTS_KEY = "atp.results";
+const STARTED_KEY = "atp.started";
 
 /** Wait this long before giving up. The backend is a container that cold-starts,
  *  so the first request after an idle period is legitimately slow — but not
@@ -307,6 +308,24 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const SESSION = {
+  /* When this buyer opened the interview, and which one. Stamped once: going
+     back from /sliders, or from the voice interview on to the form for a
+     missing postcode, is the same sitting and must not restart the clock. */
+  markStarted: (via: "form" | "voice") => {
+    if (!sessionStorage.getItem(STARTED_KEY)) {
+      sessionStorage.setItem(STARTED_KEY, JSON.stringify({ at: Date.now(), via }));
+    }
+  },
+  /** Reads the stamp and removes it, so one sitting is reported once. */
+  takeStarted: (): { at: number; via: "form" | "voice" } | null => {
+    try {
+      const raw = sessionStorage.getItem(STARTED_KEY);
+      sessionStorage.removeItem(STARTED_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  },
   loadProfile: (): Profile =>
     JSON.parse(typeof window !== "undefined" ? sessionStorage.getItem(PROFILE_KEY) || "null" : "null") ||
     DEFAULT_PROFILE,
@@ -444,6 +463,12 @@ export const apiService = {
     api<{ token: string; before: Leaning | null; after: Leaning }>(`/results/${token}/mind`, {
       method: "POST",
       body: JSON.stringify({ leaning }),
+    }),
+  /** Seconds from opening the interview to the result. Posted once, by /analysis. */
+  postTiming: (token: string, seconds: number, via: "form" | "voice") =>
+    api<{ token: string; seconds: number; via: string }>(`/results/${token}/timing`, {
+      method: "POST",
+      body: JSON.stringify({ seconds, via }),
     }),
   getInterviewScript: () => api<{ questions: InterviewQuestion[] }>("/config/interview"),
   extractInterview: (transcript: string, lang: string = "en") =>

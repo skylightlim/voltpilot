@@ -271,8 +271,8 @@ export default function CalculatorsPage() {
     <main className="min-h-dvh bg-parchment">
       <Navbar />
       <div className="mx-auto w-full max-w-3xl px-5 pb-24 pt-8">
-        <SectionLabel>
-          <Calculator className="h-4 w-4" /> {t("calcs.title")}
+        <SectionLabel className="flex items-center gap-2">
+          <Calculator className="h-4 w-4 shrink-0" /> {t("calcs.title")}
         </SectionLabel>
         {/* Every other page has an h1; this one had only the eyebrow, which
             left the document with no top-level heading for assistive tech or
@@ -341,8 +341,8 @@ export default function CalculatorsPage() {
 
         {/* ============ 2. one specific car ============ */}
         <div id="a-specific-car" className="mt-10 scroll-mt-24">
-          <SectionLabel>
-            <Car className="h-4 w-4" /> {t("calcs.sectionCar")}
+          <SectionLabel className="flex items-center gap-2">
+            <Car className="h-4 w-4 shrink-0" /> {t("calcs.sectionCar")}
           </SectionLabel>
         </div>
 

@@ -10,8 +10,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..config import brand_contact, load_policy_markdown, load_solar, settings
-from ..db import AsyncSessionLocal, MindChange, Profile, Recommendation, TopsisResult, get_db
-from ..schemas import MindChangeIn
+from ..db import (
+    AsyncSessionLocal, MindChange, Profile, Recommendation, ResultTiming, TopsisResult, get_db,
+)
+from ..schemas import MindChangeIn, ResultTimingIn
 
 logger = logging.getLogger(__name__)
 
@@ -384,3 +386,21 @@ async def record_mind_change(token: str, body: MindChangeIn, db: AsyncSession = 
         row.updated_at = datetime.utcnow()
     await db.commit()
     return {"token": token, "before": before, "after": body.leaning}
+
+
+@router.post("/{token}/timing")
+async def record_timing(token: str, body: ResultTimingIn, db: AsyncSession = Depends(get_db)):
+    """Seconds from opening the interview to the result, as the browser timed it.
+
+    The first figure for a token stands. Reopening a result link is not a
+    second, faster run, so a later post is acknowledged and ignored.
+    """
+    has_result = await db.scalar(select(TopsisResult.id).where(TopsisResult.result_token == token))
+    if not has_result:
+        raise HTTPException(status_code=404, detail="no result for this token")
+    row = await db.scalar(select(ResultTiming).where(ResultTiming.result_token == token))
+    if row is None:
+        row = ResultTiming(result_token=token, seconds=round(body.seconds, 1), via=body.via)
+        db.add(row)
+        await db.commit()
+    return {"token": token, "seconds": row.seconds, "via": row.via}

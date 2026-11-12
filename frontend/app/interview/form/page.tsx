@@ -98,6 +98,9 @@ export default function CalculatorFormPage() {
     SESSION.saveProfile(p);
   }, [p]);
 
+  // Start of the interview-to-result clock; /analysis stops it.
+  useEffect(() => SESSION.markStarted("form"), []);
+
   // "Ipoh, Perak" for 31400. Two digits already resolve to a state, so the
   // readout appears while the user is still typing.
   const postcodeArea =

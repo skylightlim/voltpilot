@@ -159,6 +159,7 @@ Given a user profile, preference weights, per-model engine scores, and a TOPSIS 
 over the catalogue, write the headline recommendation and a staged roadmap.
 Rules:
 - Use relative years (Year 1, Year 3, Year 5). Never hardcode calendar years.
+- The roadmap covers five years: no milestone later than Year 5.
 - Reply in the requested language (en or bm).
 - Battery degradation stays a warning, never part of the core reasoning.
 - Solar banner only if solar_banner is not null.

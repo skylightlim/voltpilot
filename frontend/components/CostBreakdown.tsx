@@ -67,7 +67,6 @@ function Car({ car }: { car: CarCosts }) {
         </div>
         <div className="text-right">
           <div className="text-lg font-semibold tabular-nums text-slate-900">{rm(car.total_rm)}</div>
-          <div className="text-xs text-slate-500">over {car.years} years</div>
         </div>
       </div>
 
@@ -142,7 +141,7 @@ export function CostBreakdown({ token }: { token: string }) {
       <header>
         <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
           <TrendingDown className="h-5 w-5 text-rose-500" />
-          What each one actually costs you
+          What each one actually costs you over 5 years
         </h2>
         <p className="mt-1 text-sm text-slate-600">
           Five years of ownership, every ringgit accounted for. The largest cost of running a car in

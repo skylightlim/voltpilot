@@ -156,6 +156,14 @@ function AnalysisInner() {
             } catch {
               /* results page will fetch it itself */
             }
+            // The result is ready: stop the clock the interview started. Only
+            // for a run scored on this visit; a reopened link has no start.
+            // Not awaited, because a lost figure must not hold the result back.
+            const started = token ? null : SESSION.takeStarted();
+            if (started) {
+              const seconds = (Date.now() - started.at) / 1000;
+              apiService.postTiming(resultToken, seconds, started.via).catch(() => {});
+            }
             router.replace(`/results/${resultToken}`);
             return;
           }

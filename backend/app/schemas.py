@@ -184,6 +184,13 @@ class MindChangeIn(BaseModel):
     leaning: Leaning
 
 
+class ResultTimingIn(BaseModel):
+    # Two hours is the ceiling: past that the tab was left open, and the figure
+    # says nothing about how long the interview takes.
+    seconds: float = Field(gt=0, le=7200)
+    via: Literal["form", "voice"]
+
+
 class ReportRequest(BaseModel):
     result_token: str
     email: str = Field(min_length=5, max_length=254)
