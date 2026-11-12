@@ -39,6 +39,13 @@ class Settings:
     # Shared secret for POST /admin/refresh. Unset disables the endpoint rather
     # than leaving an unauthenticated trigger for outbound fetches and file writes.
     admin_token: str = os.getenv("ADMIN_TOKEN", "")
+    # Passphrase for the /dashboard page's numbers. Unset disables GET
+    # /dashboard/stats entirely, so a deploy without it exposes nothing.
+    dashboard_passphrase: str = os.getenv("DASHBOARD_PASSPHRASE", "")
+    # Optional PostHog "shared dashboard" link, embedded in /dashboard after the
+    # passphrase is accepted. Public by design, so it is only ever returned
+    # behind the passphrase.
+    posthog_share_url: str = os.getenv("POSTHOG_SHARE_URL", "")
     # gemini-3.7-flash and 3.8-flash hung past 60s on every free-tier key on
     # 2026-11-11 while 3.6 answered in 7-11s; see _CALL_TIMEOUT_S in analyst.py.
     analyst_model: str = os.getenv("GEMINI_ANALYST_MODEL", "gemini-3.6-flash")

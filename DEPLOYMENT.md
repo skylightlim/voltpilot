@@ -74,6 +74,8 @@ On the **backend** project (`Settings → Environment Variables`):
 | `RUN_MIGRATIONS` | `0` | **required.** See "Migrations" below. |
 | `GEMINI_API_KEYS` | comma-separated keys | the analyst rotates through them on quota exhaustion |
 | `ADMIN_TOKEN` | leave unset | `/admin/refresh` cannot work here; the refresh runs in Actions |
+| `DASHBOARD_PASSPHRASE` | a long passphrase | switches on `/dashboard` (stats behind this passphrase). Unset = the dashboard endpoint is off |
+| `POSTHOG_SHARE_URL` | PostHog shared-dashboard embed link | optional; shown on `/dashboard` after the passphrase |
 | `SMTP_HOST` / `SMTP_USER` / `SMTP_PASSWORD` / `SMTP_FROM` | your mail provider | PDF report delivery |
 | `FRONTEND_ORIGIN` | the frontend's URL | CORS; also the default for the report's website line |
 | `REPORT_AGENT_PHONE` | your advisor / dealership number | printed in the PDF footer and its contact panel. **Unset means the phone is omitted entirely** — a customer-facing document is the wrong place for a placeholder number |

@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .db import AsyncSessionLocal, init_db, seed_if_empty
 from .ratelimit import rate_limit_middleware
-from .routers import (admin, calculators, chat, config, interview, profiles, report,
+from .routers import (admin, calculators, chat, config, dashboard, interview, profiles, report,
                       results, score)
 
 
@@ -84,7 +84,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-for r in (profiles.router, score.router, results.router, chat.router, report.router, config.router, interview.router, calculators.router, admin.router):
+for r in (profiles.router, score.router, results.router, chat.router, report.router, config.router, interview.router, calculators.router, admin.router, dashboard.router):
     app.include_router(r)
 
 
