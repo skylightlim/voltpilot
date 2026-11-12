@@ -25,7 +25,8 @@ call proves both servers and the proxy between them.
 
 - Startup runs `alembic upgrade head` and seeds an empty database (`RUN_MIGRATIONS`
   defaults on). With `.env` in effect, that migrates production.
-- `dev_local.db` is the local database to use: 184 trims, alembic-tracked. `dev.db` is stale.
+- `dev_local.db` is the local database to use, alembic-tracked. `dev.db` is stale. Scoring reads
+  the catalog file, not the database, so a stale local vehicles table does not change rankings.
 - `ENABLE_EMAIL=false` because `.env` carries real Gmail SMTP; the report endpoint would
   email a real PDF. Drop the flag only to test email.
 - The same `DATABASE_URL` override applies to any script that opens the database
@@ -68,10 +69,22 @@ Android is accepted as the cost of leaving a working path alone.
 
 ## Catalog data
 
-`data/catalog_vehicles.json` holds 184 trims. paultan.org is the source of record
-(`registered_basis: paultan_exact`), and catalog `id`s are paultan slugs. Its compare pages
-order columns by price, not URL order, and show each model's entry variant, so match
-`battery_kwh` to the variant before trusting a figure.
+`data/catalog_vehicles.json` holds 170 trims (EV, hybrid, PHEV only; no petrol-only cars).
+paultan.org is the source of record (`registered_basis: paultan_exact`), and most catalog
+`id`s are paultan slugs (about 25 are not, e.g. `mg4` = `mg-4`, `smart-1` = `smart-smart-1`).
+Its compare pages order columns by price, not URL order, and show each model's entry variant,
+so match `battery_kwh` to the variant before trusting a figure.
+
+One row is one variant: its price must be the price of the variant its specs describe. On
+2026-11-12 a dozen rows carried a plug-in's specs at the mild hybrid's price, or a hybrid's
+specs at the petrol base price; check the variant table on the model's paultan page
+(`/research/<brand>/<model>/`). After changing a price or power, rerun
+`scripts/used_market/compute_insurance.py`, `compute_insurance_ev.py`, `compute_car_loan.py`
+(each with `--apply`) and `scripts/build_provenance.py --apply`. Do not `--apply`
+`compute_road_tax.py`: it needs a JPJ per-variant EV export that is not in the repo. Its
+`ev_road_tax_from_schedule(kw)` reproduces every EV's `road_tax_rm`, but only from the
+certified kW (the figure in each `road_tax_note`); a horsepower conversion lands on the wrong
+side of a 10 kW band edge. Hybrids and PHEVs use `ice_road_tax(cc, non_saloon)`.
 
 ## Docs
 

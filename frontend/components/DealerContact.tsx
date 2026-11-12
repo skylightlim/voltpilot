@@ -2,7 +2,7 @@
 
 /* Where to actually go and buy the recommended car.
  *
- * The site ranks 184 cars and then leaves the reader holding a name. This is
+ * The site ranks 170 cars and then leaves the reader holding a name. This is
  * the step after the decision: the official Malaysian distributor for the
  * brand that won, with a route to its nearest showroom.
  *

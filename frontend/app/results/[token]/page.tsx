@@ -64,6 +64,11 @@ type Row = {
   specs?: { seats?: number; boot_l?: number; range_km?: number; battery_kwh?: number };
 };
 
+/** "price_rm" reads as "price", "insurance_rm_yr" as "insurance yr": the keys are
+ *  the catalogue's column names, and a reader wants the words, not the schema. */
+const fieldLabel = (field: string) =>
+  field.split("_").filter((w) => w !== "rm").join(" ");
+
 const CRITERIA: { key: keyof Row; label: string; icon: typeof Calculator; accent: string }[] = [
   { key: "financial_score", label: "Financial", icon: Calculator, accent: "text-emerald-600" },
   { key: "behaviour_score", label: "Range fit", icon: TrendingDown, accent: "text-blue-600" },
@@ -91,10 +96,11 @@ export default function ResultsPage() {
   const [error, setError] = useState("");
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [pdfBusy, setPdfBusy] = useState(false);
-  const [pdfError, setPdfError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [pdfSent, setPdfSent] = useState<null | { first: boolean; email: string }>(null);
+  // The modal closes the moment Send is pressed; this small toast carries the
+  // outcome instead, and clears itself.
+  const [pdfToast, setPdfToast] = useState<null | "sending" | "sent">(null);
   const [showPdf, setShowPdf] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [bodyFilter, setBodyFilter] = useState("all");
@@ -128,6 +134,12 @@ export default function ResultsPage() {
       clearInterval(iv);
     };
   }, [token]);
+
+  useEffect(() => {
+    if (pdfToast !== "sent") return;
+    const id = setTimeout(() => setPdfToast(null), 3500);
+    return () => clearTimeout(id);
+  }, [pdfToast]);
 
   const ranking: Row[] = data?.ranking ?? [];
 
@@ -172,8 +184,8 @@ export default function ResultsPage() {
         (r) =>
           (bodyFilter === "all" || r.body === bodyFilter) &&
           (brandFilter === "all" || r.brand === brandFilter) &&
-          // A car with no published seat count is kept rather than hidden: 5 of
-          // 184 trims have none, and absent data is not evidence of too few.
+          // A car with no published seat count is kept rather than hidden:
+          // absent data is not evidence of too few.
           (seatsFilter === "all" ||
             !r.specs?.seats ||
             r.specs.seats >= Number(seatsFilter)),
@@ -192,13 +204,17 @@ export default function ResultsPage() {
 
   const sendReport = async () => {
     setPdfBusy(true);
-    setPdfError("");
+    setEmailError("");
+    setShowPdf(false);
+    setPdfToast("sending");
     try {
-      const r = await apiService.postReport(token, email);
-      setPdfSent(r);
-      setShowPdf(false);
+      await apiService.postReport(token, email);
+      setPdfToast("sent");
     } catch (e) {
-      setPdfError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("err.unknown"));
+      // A failed send reopens the card with the reason, the address still typed in.
+      setPdfToast(null);
+      setEmailError(e instanceof ApiError ? t(e.messageKey as StrKey) : t("err.unknown"));
+      setShowPdf(true);
     } finally {
       setPdfBusy(false);
     }
@@ -351,13 +367,12 @@ export default function ResultsPage() {
                   ›
                 </span>
               </summary>
-              <p className="mt-1 text-[12px] text-muted">{t("r.provSub")}</p>
               <ul className="mt-3 space-y-2 border-t border-line/60 pt-3">
                 {Object.entries(
                   top.provenance as Record<string, { method: string; basis?: string; caveat?: boolean }>
                 ).map(([field, e]) => (
                   <li key={field} className="grid grid-cols-1 gap-x-4 gap-y-0.5 text-[12px] sm:grid-cols-[11.5rem_1fr]">
-                    <span className="break-all font-mono text-[11px] leading-5 text-primary">{field}</span>
+                    <span className="font-mono text-[11px] leading-5 text-primary">{fieldLabel(field)}</span>
                     <span className="text-muted">
                       <b
                         className={`font-semibold ${
@@ -651,13 +666,7 @@ export default function ResultsPage() {
                       <span className="figure text-[16px] text-ink">{value}</span>
                     </div>
                     <div className="h-1.5 overflow-hidden rounded-full bg-[#e8e8ed]">
-                      <div
-                        className="h-full rounded-full transition-all duration-700 ease-out"
-                        style={{
-                          width: `${value}%`,
-                          background: `linear-gradient(90deg, var(--color-primary), var(--color-emerald-500, #10b981))`,
-                        }}
-                      />
+                      <GrowBar value={value} />
                     </div>
                   </div>
                 );
@@ -730,9 +739,6 @@ export default function ResultsPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <p className="mt-1.5 text-[16px] leading-relaxed text-muted">
-              {t("r.emailSub")}
-            </p>
             <input
               type="email"
               inputMode="email"
@@ -766,21 +772,44 @@ export default function ResultsPage() {
         </div>
       )}
 
-      {/* ── PDF Sent Toast ────────────────────────────────────────────── */}
-      {pdfSent && (
-        <div className="fixed inset-x-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-50 flex items-start gap-3 rounded-lg bg-pine-deep px-5 py-4 text-white shadow-2xl shadow-black/20 enter-rise">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-emerald-500/20 ring-1 ring-emerald-500/30">
-            <Leaf className="h-4 w-4 text-emerald-400" />
-          </span>
-          <div>
-            <p className="text-[16px] font-semibold">
-              {pdfSent.first ? "Report sent" : "Re-sent to the bound address"}
-            </p>
-            <p className="text-[15px] text-white/60">The PDF went to {pdfSent.email}.</p>
-          </div>
+      {/* ── Report toast ──────────────────────────────────────────────── */}
+      {pdfToast && (
+        <div
+          role="status"
+          className="fixed inset-x-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-50 mx-auto flex max-w-sm items-center gap-3 rounded-full bg-pine-deep px-5 py-3 text-white shadow-2xl shadow-black/20 enter-rise"
+        >
+          {pdfToast === "sending" ? (
+            <Loader2 className="h-4 w-4 shrink-0 animate-spin text-emerald-400" />
+          ) : (
+            <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+          )}
+          <p className="text-[16px] font-semibold">
+            {t(pdfToast === "sending" ? "r.reportSending" : "r.reportSent")}
+          </p>
         </div>
       )}
     </main>
+  );
+}
+
+/* ── Criteria bar ──────────────────────────────────────────────────────── */
+/** Fills from empty to its score when the card opens. It starts at 0 and takes
+ *  its width a frame later, so the CSS transition has something to run from;
+ *  a reduced-motion reader gets the finished bar at once. */
+function GrowBar({ value }: { value: number }) {
+  const [shown, setShown] = useState(0);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setShown(value));
+    return () => cancelAnimationFrame(id);
+  }, [value]);
+  return (
+    <div
+      className="h-full rounded-full transition-[width] duration-[900ms] ease-out motion-reduce:transition-none"
+      style={{
+        width: `${shown}%`,
+        background: `linear-gradient(90deg, var(--color-primary), var(--color-emerald-500, #10b981))`,
+      }}
+    />
   );
 }
 

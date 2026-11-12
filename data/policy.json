@@ -1,31 +1,29 @@
 {
   "_meta": {
-    "updated_at": "2026-08-09",
+    "updated_at": "2026-11-12",
     "note": "Incentives snapshot for the Policy engine. Static JSON; update manually on change (TNB + MAV review), scraper polls announcements."
   },
   "incentives": {
-    "chert": {
-      "note": "Full import duty + excise + 50% SST exemption for CKD kits, full exemption for CBU imports",
-      "import_duty": "exempt (CKD & CBU)",
-      "excise": "exempt",
-      "sst": "exempt (EV), 50% for CKD EV kits",
+    "ev_duty_exemption": {
+      "note": "CBU (imported) EV import + excise duty exemption ended 31 Dec 2025. CKD (locally assembled) EVs keep the excise duty and sales tax exemption.",
+      "cbu": "ended 2025-12-31",
+      "ckd": "excise duty + sales tax exempt",
       "applies_until": "2027-12-31"
     },
     "ev_road_tax": {
-      "note": "Special RM- annual flat rate; phased return to 10% of ICE from 2026 (RMDB5).",
+      "note": "From 1 Jan 2026 EVs pay the JPJ power-based (kW) schedule; the RM2 flat rate ended 2025. Per-car figures are in catalog ownership.road_tax_rm.",
       "applicable_through": "2025",
-      "phase_in_pct": 10
+      "from_2026": "JPJ kW schedule"
     },
-    "tokopedia": {},
     "myev": {
       "note": "GoM programmes: NEM 3.0 rooftop solar net metering, charging-point development incentives"
     },
     "ev_charging_grant": {
-      "note": "Individual income-tax relief up to RM2,500 for EV charging equipment (2023 onward)"
+      "note": "Individual income-tax relief up to RM2,500 for EV charging equipment."
     },
     "hybrid": {
       "note": "Hybrids: standard import duty + excise (CKD). No special EV incentives; road tax standard formula. Hybrid incentives were removed after 2022 for most models."
     }
   },
-  "notes": "Source: MAV + JPJ + Ministry of Finance announcements. Manual review on change."
+  "notes": "Source: MITI/MoF announcements (CBU exemption end 2025, CKD to 2027), JPJ 2026 EV road tax, Budget 2027 (9 Oct 2026: no new private-buyer EV incentive). Manual review on change."
 }

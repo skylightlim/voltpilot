@@ -10,6 +10,7 @@ Sources:
 Usage: python3 compute_road_tax.py [--apply]
 """
 import json
+import math
 import os
 import re
 import sys
@@ -86,8 +87,30 @@ def parse_rm(s):
     return int(re.sub(r"[^0-9]", "", str(s)))
 
 
+# JPJ 2026 EV schedule as (band low kW, band high kW, fee for the first 10 kW step,
+# increase per further 10 kW step); each step's upper bound is inclusive. Rebuilt on
+# 2026-11-12 from the catalog itself, because the JPJ export below never reached the
+# repo: it reproduces road_tax_rm for all 102 EV rows that then carried one.
+EV_SCHEDULE = [
+    (50, 100, 30, 10), (100, 210, 80, 20), (210, 310, 305, 30), (310, 410, 615, 50),
+    (410, 510, 1140, 100), (510, 610, 2165, 150), (610, 710, 3690, 200),
+    (710, 810, 5715, 250), (810, 910, 8240, 300), (910, 1010, 11265, 350),
+]
+
+
+def ev_road_tax_from_schedule(kw):
+    if kw <= 50:
+        return 20
+    for lo, hi, first, step in EV_SCHEDULE:
+        if kw <= hi:
+            return first + step * (math.ceil(round((kw - lo) / 10, 6)) - 1)
+    return 20000
+
+
 def ev_road_tax_from_brackets(watts):
     """JPJ 2026 EV schedule: base rate of the band whose max >= watts (inclusive upper bound)."""
+    if not EV_BRACKETS_PATH.exists():
+        return ev_road_tax_from_schedule(watts / 1000)
     for b in json.loads(EV_BRACKETS_PATH.read_text()):
         if watts <= parse_w(b["electric_motor_maximum_power_w"]):
             return parse_rm(b["road_tax_fee"])

@@ -9,7 +9,7 @@ import { apiService, type ResaleEvidence as Evidence } from "@/lib/api";
  *  Resale retention is a scored criterion, so this number already moves the
  *  ranking. The platform holds 14,164 scraped listings and has never shown a
  *  user one of them. Showing them turns an assertion into evidence, and makes
- *  the coverage honest: only 22 of 184 trims are fitted from their own
+ *  the coverage honest: only 22 of 170 trims are fitted from their own
  *  listings, and the rest carry their drivetrain's average. FEATURES.md P2. */
 
 const rm = (n: number) => `RM${Math.round(n).toLocaleString("en-MY")}`;

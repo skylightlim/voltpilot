@@ -231,7 +231,7 @@ async def get_evidence(token: str, slug: str, db: AsyncSession = Depends(get_db)
 
     Resale is a scored criterion, so this number already moves recommendations.
     `basis` says whether it was measured from this model's own listings or is
-    carrying its drivetrain average, which is the honest answer for 162 of 184
+    carrying its drivetrain average, which is the honest answer for 148 of 170
     trims.
     """
     result = await db.scalar(select(TopsisResult).where(TopsisResult.result_token == token))
@@ -296,7 +296,7 @@ async def get_breakeven(token: str, db: AsyncSession = Depends(get_db)):
 async def get_compare(token: str, a: str, b: str, db: AsyncSession = Depends(get_db)):
     """FEATURES P5: two cars side by side on every criterion and every cost line.
 
-    The product asks a binary question and answers it with a ranked list of 184.
+    The product asks a binary question and answers it with a ranked list of 170.
     Nothing in the interface lets a buyer hold two candidates against each other,
     which is how the decision is actually made.
     """

@@ -25,12 +25,12 @@
     "Hybrid": 214094
   },
   "catalog_covered": {
-    "ev": 134692,
-    "hybrid": 175224
+    "ev": 130831,
+    "hybrid": 175620
   },
   "coverage_of_national": {
-    "ev": "98.2%",
-    "hybrid": "81.8%"
+    "ev": "95.4%",
+    "hybrid": "82.0%"
   },
   "models": [
     {
@@ -54,7 +54,7 @@
       "id": "byd-atto-3",
       "brand": "BYD",
       "model": "Atto 3",
-      "variant": "Standard Range",
+      "variant": "Ultra",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -71,7 +71,7 @@
       "id": "byd-seal",
       "brand": "BYD",
       "model": "Seal",
-      "variant": "Premium AWD",
+      "variant": "Performance AWD",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -105,7 +105,7 @@
       "id": "tesla-model-y",
       "brand": "Tesla",
       "model": "Model Y",
-      "variant": "Rear-Wheel Drive",
+      "variant": "Rear-wheel Drive",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -122,7 +122,7 @@
       "id": "xpeng-g6",
       "brand": "XPeng",
       "model": "G6",
-      "variant": "Standard Range",
+      "variant": "RWD Standard Range",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -139,7 +139,7 @@
       "id": "volvo-ex30",
       "brand": "Volvo",
       "model": "EX30",
-      "variant": "Ultra Twin",
+      "variant": "Cross Country (Twin Motor)",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -156,7 +156,7 @@
       "id": "mg4",
       "brand": "MG",
       "model": "4",
-      "variant": "Lux Extended Range",
+      "variant": "Lux",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -173,7 +173,7 @@
       "id": "gac-aion-y-plus",
       "brand": "Aion",
       "model": "Y Plus",
-      "variant": "Standard",
+      "variant": "Elite",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -191,7 +191,7 @@
       "id": "ora-good-cat",
       "brand": "GWM",
       "model": "Ora Good Cat",
-      "variant": "Pro",
+      "variant": "Ultra",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -208,7 +208,7 @@
       "id": "chery-omoda-e5",
       "brand": "Chery",
       "model": "Omoda E5",
-      "variant": "Premium",
+      "variant": "2WD",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -242,7 +242,7 @@
       "id": "toyota-corolla-cross-hybrid",
       "brand": "Toyota",
       "model": "Corolla Cross",
-      "variant": "1.8 Hybrid",
+      "variant": "1.8 HEV",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -259,7 +259,7 @@
       "id": "toyota-camry-hybrid",
       "brand": "Toyota",
       "model": "Camry",
-      "variant": "2.5 Hybrid",
+      "variant": "2.5 HEV",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -276,7 +276,7 @@
       "id": "honda-hrv-ehev",
       "brand": "Honda",
       "model": "HR-V",
-      "variant": "RS e:HEV",
+      "variant": "1.5 e:HEV RS",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -293,7 +293,7 @@
       "id": "honda-civic-ehev",
       "brand": "Honda",
       "model": "Civic",
-      "variant": "2.0L e:HEV",
+      "variant": "2.0 RS e:HEV",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -327,7 +327,7 @@
       "id": "perodua-qv-e",
       "brand": "Perodua",
       "model": "QV-E",
-      "variant": null,
+      "variant": "FWD (with battery)",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -447,7 +447,7 @@
       "id": "leapmotor-b10",
       "brand": "Leapmotor",
       "model": "B10",
-      "variant": null,
+      "variant": "Design",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -515,7 +515,7 @@
       "id": "icaur-03",
       "brand": "iCaur",
       "model": "03",
-      "variant": null,
+      "variant": "RWD",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -760,23 +760,6 @@
       "units": 5,
       "rank": 105,
       "share_pct": 0.0,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "jac-t9-ev",
-      "brand": "JAC",
-      "model": "T9 EV",
-      "variant": null,
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|JAC|T9"
-      ],
-      "units": 10,
-      "rank": 99,
-      "share_pct": 0.01,
       "registered_basis": "paultan_exact",
       "registered_note": null,
       "popularity_rating": 1
@@ -1039,7 +1022,7 @@
       "id": "zeekr-009",
       "brand": "Zeekr",
       "model": "009",
-      "variant": null,
+      "variant": "Executive",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -1243,7 +1226,7 @@
       "id": "volvo-ex90",
       "brand": "Volvo",
       "model": "EX90",
-      "variant": null,
+      "variant": "Ultra Twin",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -1270,7 +1253,7 @@
       "rank": 48,
       "share_pct": 0.25,
       "registered_basis": "paultan_family_shared",
-      "registered_note": "Hyundai Ioniq 5 (same family as Ioniq 5)",
+      "registered_note": "Hyundai Ioniq 5 (paultan counts the Ioniq 5 and 5 N together)",
       "popularity_rating": 2
     },
     {
@@ -1287,7 +1270,7 @@
       "rank": 57,
       "share_pct": 0.16,
       "registered_basis": "paultan_family_shared",
-      "registered_note": "Hyundai Ioniq 6 (same family as Ioniq 6)",
+      "registered_note": "Hyundai Ioniq 6 (paultan counts the Ioniq 6 and 6 N together)",
       "popularity_rating": 2
     },
     {
@@ -1515,7 +1498,7 @@
       "id": "chery-tiggo-cross",
       "brand": "Chery",
       "model": "Tiggo Cross",
-      "variant": null,
+      "variant": "Hybrid",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1532,7 +1515,7 @@
       "id": "toyota-vios",
       "brand": "Toyota",
       "model": "Vios",
-      "variant": null,
+      "variant": "Hybrid",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1566,7 +1549,7 @@
       "id": "toyota-yaris-cross",
       "brand": "Toyota",
       "model": "Yaris Cross",
-      "variant": null,
+      "variant": "1.5S Hybrid",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1659,7 +1642,7 @@
       "rank": 0,
       "share_pct": 0.0,
       "registered_basis": "paultan_no_records",
-      "registered_note": "Chery Tiggo (family shared with Tiggo Cross / Tiggo 8 / Tiggo 8 Pro PHEV)",
+      "registered_note": "Chery Tiggo (family shared with Tiggo Cross / Tiggo 8)",
       "popularity_rating": 1
     },
     {
@@ -1725,7 +1708,7 @@
       "rank": 0,
       "share_pct": 0.0,
       "registered_basis": "paultan_no_records",
-      "registered_note": "Chery Tiggo (family shared with Tiggo Cross / Tiggo 7 / Tiggo 8 Pro PHEV)",
+      "registered_note": "Chery Tiggo (family shared with Tiggo Cross / Tiggo 7)",
       "popularity_rating": 1
     },
     {
@@ -1783,7 +1766,7 @@
       "id": "hyundai-tucson",
       "brand": "Hyundai",
       "model": "Tucson",
-      "variant": null,
+      "variant": "1.6T Prestige Hybrid",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1800,7 +1783,7 @@
       "id": "toyota-innova-zenix",
       "brand": "Toyota",
       "model": "Innova Zenix",
-      "variant": null,
+      "variant": "2.0 HEV",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1851,7 +1834,7 @@
       "id": "mazda-cx-60",
       "brand": "Mazda",
       "model": "CX-60",
-      "variant": null,
+      "variant": "3.3G M Hybrid AWD High Plus",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1868,7 +1851,7 @@
       "id": "great-wall-tank-300",
       "brand": "GWM",
       "model": "Tank 300",
-      "variant": null,
+      "variant": "HEV",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1885,7 +1868,7 @@
       "id": "mercedes-benz-a-class-sedan",
       "brand": "Mercedes-Benz",
       "model": "A-Class Sedan",
-      "variant": null,
+      "variant": "A 250 4Matic AMG Line",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -1970,7 +1953,7 @@
       "id": "mercedes-benz-c-class",
       "brand": "Mercedes-Benz",
       "model": "C-Class",
-      "variant": null,
+      "variant": "C350e AMG Line",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2053,7 +2036,7 @@
       "id": "volvo-xc60",
       "brand": "Volvo",
       "model": "XC60",
-      "variant": null,
+      "variant": "T8 Ultra",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2070,7 +2053,7 @@
       "id": "mercedes-benz-glc",
       "brand": "Mercedes-Benz",
       "model": "GLC",
-      "variant": null,
+      "variant": "GLC 350e 4Matic AMG Line",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2138,7 +2121,7 @@
       "id": "mercedes-benz-e-class",
       "brand": "Mercedes-Benz",
       "model": "E-Class",
-      "variant": null,
+      "variant": "E350e AMG Line",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2189,7 +2172,7 @@
       "id": "volvo-xc90",
       "brand": "Volvo",
       "model": "XC90",
-      "variant": null,
+      "variant": "Ultra T8",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2238,7 +2221,7 @@
       "id": "mercedes-benz-amg-c-class",
       "brand": "Mercedes-Benz",
       "model": "AMG C-Class",
-      "variant": null,
+      "variant": "C63 S E Performance F1 Edition",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2289,7 +2272,7 @@
       "id": "bmw-x5",
       "brand": "BMW",
       "model": "X5",
-      "variant": null,
+      "variant": "xDrive50e M Sport",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2306,7 +2289,7 @@
       "id": "lexus-rx",
       "brand": "Lexus",
       "model": "RX",
-      "variant": null,
+      "variant": "RX 500h F Sport",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2374,7 +2357,7 @@
       "id": "toyota-vellfire",
       "brand": "Toyota",
       "model": "Vellfire",
-      "variant": null,
+      "variant": "Hybrid Electric Executive Lounge",
       "type": "hybrid",
       "fuel_class": "hybrid",
       "paultan_keys": [
@@ -2508,7 +2491,7 @@
       "id": "mercedes-benz-amg-sl",
       "brand": "Mercedes-Benz",
       "model": "AMG SL",
-      "variant": null,
+      "variant": "SL 63 S E Performance",
       "type": "phev",
       "fuel_class": "hybrid",
       "paultan_keys": [],
@@ -2654,74 +2637,6 @@
       "popularity_rating": 4
     },
     {
-      "id": "jaecoo-j5",
-      "brand": "Jaecoo",
-      "model": "J5",
-      "variant": null,
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Omoda Jaecoo|Jaecoo J5"
-      ],
-      "units": 3,
-      "rank": 101,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "jaecoo-j7",
-      "brand": "Jaecoo",
-      "model": "J7",
-      "variant": null,
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Omoda Jaecoo|Jaecoo J7"
-      ],
-      "units": 2189,
-      "rank": 22,
-      "share_pct": 1.02,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 5
-    },
-    {
-      "id": "jaecoo-j8",
-      "brand": "Jaecoo",
-      "model": "J8",
-      "variant": null,
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Omoda Jaecoo|Jaecoo J8"
-      ],
-      "units": 3,
-      "rank": 101,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "omoda-c9",
-      "brand": "Omoda",
-      "model": "C9",
-      "variant": null,
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Omoda Jaecoo|Omoda 9"
-      ],
-      "units": 0,
-      "rank": 0,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_no_records",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
       "id": "jaecoo-j7-phev",
       "brand": "Jaecoo",
       "model": "J7 PHEV",
@@ -2734,8 +2649,8 @@
       "units": 2189,
       "rank": 22,
       "share_pct": 1.02,
-      "registered_basis": "paultan_family_shared",
-      "registered_note": "Omoda Jaecoo Jaecoo J7 (same family as Jaecoo J7)",
+      "registered_basis": "paultan_exact",
+      "registered_note": null,
       "popularity_rating": 5
     },
     {
@@ -2752,124 +2667,6 @@
       "rank": 0,
       "share_pct": 0.0,
       "registered_basis": "paultan_no_records",
-      "registered_note": "Omoda Jaecoo Omoda 9 (same family as Omoda C9)",
-      "popularity_rating": 1
-    },
-    {
-      "id": "byd-dolphin",
-      "brand": "BYD",
-      "model": "Dolphin",
-      "variant": "Extended Range",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|BYD|Dolphin"
-      ],
-      "units": 2831,
-      "rank": 11,
-      "share_pct": 2.06,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 5
-    },
-    {
-      "id": "hyundai-ioniq-5",
-      "brand": "Hyundai",
-      "model": "Ioniq 5",
-      "variant": "Plus AWD Long Range",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Hyundai|Ioniq 5"
-      ],
-      "units": 348,
-      "rank": 48,
-      "share_pct": 0.25,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 2
-    },
-    {
-      "id": "kia-ev6",
-      "brand": "Kia",
-      "model": "EV6",
-      "variant": "GT-Line AWD",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Kia|EV6"
-      ],
-      "units": 120,
-      "rank": 66,
-      "share_pct": 0.09,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 2
-    },
-    {
-      "id": "toyota-corolla-hybrid",
-      "brand": "Toyota",
-      "model": "Corolla Hybrid",
-      "variant": "1.8 Hybrid",
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Toyota|Corolla",
-        "Hybrid|Toyota|Corolla Altis"
-      ],
-      "units": 3,
-      "rank": 101,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "honda-accord-ehev",
-      "brand": "Honda",
-      "model": "Accord e:HEV",
-      "variant": "RS e:HEV",
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [],
-      "units": 0,
-      "rank": 0,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_no_records",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "cherry-tiggo8-pro-phev",
-      "brand": "Chery",
-      "model": "Tiggo 8 Pro PHEV",
-      "variant": "Flagship",
-      "type": "hybrid",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Chery|Tiggo"
-      ],
-      "units": 0,
-      "rank": 0,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_no_records",
-      "registered_note": "Chery Tiggo (family shared with Tiggo Cross / Tiggo 7 / Tiggo 8)",
-      "popularity_rating": 1
-    },
-    {
-      "id": "jaguar-i-pace",
-      "brand": "Jaguar",
-      "model": "I-PACE",
-      "variant": "EV400 Black LE",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Jaguar|I-Pace"
-      ],
-      "units": 61,
-      "rank": 75,
-      "share_pct": 0.04,
-      "registered_basis": "paultan_exact",
       "registered_note": null,
       "popularity_rating": 1
     },
@@ -2925,23 +2722,6 @@
       "popularity_rating": 1
     },
     {
-      "id": "mitsubishi-outlander-phev",
-      "brand": "Mitsubishi",
-      "model": "Outlander PHEV",
-      "variant": "PHEV (expected 2026 launch)",
-      "type": "phev",
-      "fuel_class": "hybrid",
-      "paultan_keys": [
-        "Hybrid|Mitsubishi|Outlander"
-      ],
-      "units": 2,
-      "rank": 111,
-      "share_pct": 0.0,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
       "id": "ford-mustang-mach-e",
       "brand": "Ford",
       "model": "Mustang Mach-E",
@@ -2977,173 +2757,149 @@
       "popularity_rating": 4
     },
     {
-      "id": "mercedes-benz-eqb",
-      "brand": "Mercedes-Benz",
-      "model": "EQB",
-      "variant": "EQB 300 AMG Line (7-seat)",
+      "id": "lexus-es",
+      "brand": "Lexus",
+      "model": "ES",
+      "variant": "ES 350h Luxury",
+      "type": "hybrid",
+      "fuel_class": "hybrid",
+      "paultan_keys": [
+        "Hybrid|Lexus|ES"
+      ],
+      "units": 10,
+      "rank": 83,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_exact",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "mg-zs",
+      "brand": "MG",
+      "model": "ZS Hybrid+",
+      "variant": null,
+      "type": "hybrid",
+      "fuel_class": "hybrid",
+      "paultan_keys": [],
+      "units": 0,
+      "rank": 0,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_no_records",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "wuling-porta-ev",
+      "brand": "Wuling",
+      "model": "Porta EV",
+      "variant": "300KM",
+      "type": "ev",
+      "fuel_class": "ev",
+      "paultan_keys": [],
+      "units": 0,
+      "rank": 0,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_no_records",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "jaecoo-j5-ev",
+      "brand": "Jaecoo",
+      "model": "J5 EV",
+      "variant": null,
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
-        "EV|Mercedes Benz|EQB"
+        "EV|Omoda Jaecoo|Jaecoo J5"
       ],
-      "units": 256,
-      "rank": 56,
+      "units": 78,
+      "rank": 71,
+      "share_pct": 0.06,
+      "registered_basis": "paultan_exact",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "porsche-cayenne-electric",
+      "brand": "Porsche",
+      "model": "Cayenne Electric",
+      "variant": null,
+      "type": "ev",
+      "fuel_class": "ev",
+      "paultan_keys": [
+        "EV|Porsche|Cayenne"
+      ],
+      "units": 2,
+      "rank": 122,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_family_shared",
+      "registered_note": "Porsche Cayenne EV (shared with Cayenne Coupe Electric)",
+      "popularity_rating": 1
+    },
+    {
+      "id": "porsche-cayenne-coupe-electric",
+      "brand": "Porsche",
+      "model": "Cayenne Coupe Electric",
+      "variant": null,
+      "type": "ev",
+      "fuel_class": "ev",
+      "paultan_keys": [
+        "EV|Porsche|Cayenne"
+      ],
+      "units": 2,
+      "rank": 122,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_family_shared",
+      "registered_note": "Porsche Cayenne EV (shared with Cayenne Electric)",
+      "popularity_rating": 1
+    },
+    {
+      "id": "mercedes-benz-cla-electric",
+      "brand": "Mercedes-Benz",
+      "model": "CLA Electric",
+      "variant": "CLA250+ AMG Line",
+      "type": "ev",
+      "fuel_class": "ev",
+      "paultan_keys": [
+        "EV|Mercedes Benz|CLA"
+      ],
+      "units": 5,
+      "rank": 105,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_exact",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "jetour-t2",
+      "brand": "Jetour",
+      "model": "T2 i-DM",
+      "variant": null,
+      "type": "phev",
+      "fuel_class": "hybrid",
+      "paultan_keys": [
+        "Hybrid|Jetour|T2"
+      ],
+      "units": 397,
+      "rank": 39,
       "share_pct": 0.19,
       "registered_basis": "paultan_exact",
       "registered_note": null,
       "popularity_rating": 2
     },
     {
-      "id": "mercedes-benz-eqc",
-      "brand": "Mercedes-Benz",
-      "model": "EQC",
-      "variant": "EQC 400 4Matic",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Mercedes Benz|EQC"
-      ],
-      "units": 193,
-      "rank": 60,
-      "share_pct": 0.14,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 2
-    },
-    {
-      "id": "hyundai-kona-electric",
-      "brand": "Hyundai",
-      "model": "Kona Electric",
-      "variant": "Standard (39.2 kWh)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Hyundai|Kona"
-      ],
-      "units": 218,
-      "rank": 58,
-      "share_pct": 0.16,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 2
-    },
-    {
-      "id": "hyundai-kona-electric-emax",
-      "brand": "Hyundai",
-      "model": "Kona Electric",
-      "variant": "e-Max Long Range (64 kWh)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Hyundai|Kona"
-      ],
-      "units": 218,
-      "rank": 58,
-      "share_pct": 0.16,
-      "registered_basis": "paultan_family_shared",
-      "registered_note": "Hyundai Kona (same family as Kona Electric)",
-      "popularity_rating": 2
-    },
-    {
-      "id": "mg-zs-ev",
-      "brand": "MG",
-      "model": "ZS EV",
-      "variant": "ZS EV (51.1 kWh)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|MG|ZS",
-        "EV|MG|ZS EV"
-      ],
-      "units": 126,
-      "rank": 66,
-      "share_pct": 0.09,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 2
-    },
-    {
-      "id": "audi-rs-e-tron-gt",
-      "brand": "Audi",
-      "model": "RS e-tron GT",
-      "variant": "RS e-tron GT (facelift)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Audi|RS e-tron GT"
-      ],
-      "units": 50,
-      "rank": 79,
-      "share_pct": 0.04,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "audi-sq8-e-tron",
-      "brand": "Audi",
-      "model": "SQ8 e-tron",
-      "variant": "SQ8 e-tron (Mk1)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Audi|SQ8"
-      ],
-      "units": 7,
-      "rank": 103,
-      "share_pct": 0.01,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "mazda-mx-30",
-      "brand": "Mazda",
-      "model": "MX-30",
-      "variant": "MX-30 (35.5 kWh)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Mazda|MX-30"
-      ],
-      "units": 32,
-      "rank": 84,
-      "share_pct": 0.02,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "bmw-i3s",
-      "brand": "BMW",
-      "model": "i3s",
-      "variant": "i3s eDrive (120 Ah)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|BMW|i3"
-      ],
-      "units": 31,
-      "rank": 85,
-      "share_pct": 0.02,
-      "registered_basis": "paultan_exact",
-      "registered_note": null,
-      "popularity_rating": 1
-    },
-    {
-      "id": "kia-niro-ev",
-      "brand": "Kia",
-      "model": "Niro EV",
-      "variant": "Niro EV (64.8 kWh)",
-      "type": "ev",
-      "fuel_class": "ev",
-      "paultan_keys": [
-        "EV|Kia|Niro"
-      ],
-      "units": 11,
-      "rank": 96,
-      "share_pct": 0.01,
-      "registered_basis": "paultan_exact",
+      "id": "jac-t9",
+      "brand": "JAC",
+      "model": "T9 PHEV",
+      "variant": null,
+      "type": "phev",
+      "fuel_class": "hybrid",
+      "paultan_keys": [],
+      "units": 0,
+      "rank": 0,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_no_records",
       "registered_note": null,
       "popularity_rating": 1
     }

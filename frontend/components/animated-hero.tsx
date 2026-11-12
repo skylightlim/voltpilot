@@ -162,7 +162,7 @@ export function Hero() {
             <div className="mt-4">
               <Link href="/interview/form" className="block w-full">
                 <Button variant="primary" size="md" className="w-full text-[16px]">
-                  <span>{t("calc.cta184")}</span>
+                  <span>{t("calc.ctaModels")}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>

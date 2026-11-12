@@ -589,7 +589,7 @@ def _loan_parameters(vehicle: dict) -> tuple[float, float, int, float]:
     return max(0.0, price - down), rate, tenure, down
 
 
-# Servicing cost when the catalog has no measured figure — 162 of 184 rows,
+# Servicing cost when the catalog has no measured figure — 154 of 170 rows,
 # so this decides it for most of the catalogue (issue.md issue 11).
 #
 # It was three constants keyed on drivetrain, which charged a RM68,000 Wuling
@@ -604,7 +604,9 @@ def _loan_parameters(vehicle: dict) -> tuple[float, float, int, float]:
 # service bill. The two drivetrains fit near-identical slopes (172.1 and 172.6),
 # so the slope is pooled and only the intercept is per-type — more robust than
 # two independent fits at n=7. Pooled: R^2 0.937, mean residual RM31, worst
-# RM130 across all 22.
+# RM130 across all 22. Those 22 points are frozen in
+# tests/fixtures/maintenance_calibration.json: six of the cars left the catalog on
+# 2026-11-12 (no longer sold new), which does not change what the fit was fitted on.
 #
 # No PHEV row carries a measured figure, so PHEV takes the hybrid intercept: the
 # same engine servicing plus a drive battery, which makes the hybrid figure a
@@ -635,7 +637,7 @@ def maintenance_rm_yr(vehicle: dict) -> tuple[float, str]:
 
     Returns the basis alongside the number, the same shape as
     resale_retained_pct, so the results page can tell a reader which of the two
-    it is looking at. 22 of 184 trims are measured.
+    it is looking at. 16 of 170 trims are measured.
     """
     measured = (vehicle.get("ownership") or {}).get("maintenance_rm_yr")
     if measured:
@@ -697,7 +699,7 @@ def resale_retained_pct(vehicle: dict) -> tuple[float, str]:
 
     Returns the basis alongside the number so the results page can distinguish a
     model measured from its own listings from one carrying its drivetrain's
-    average. 22 of 184 trims are measured; the rest are type-level.
+    average. 22 of 170 trims are measured; the rest are type-level.
     """
     curve = load_depreciation_curve()
     if not curve:

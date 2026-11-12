@@ -13,7 +13,7 @@ import {
 import { useT, type StrKey } from "@/lib/i18n";
 
 /* Documents the SHIPPING implementation, which is the current revision of the
-   framework: 184 trims and six TOPSIS criteria driven by four user sliders.
+   framework: 170 trims and six TOPSIS criteria driven by four user sliders.
    An earlier unrevised specification described 108 vehicles and three criteria
    (money / environment / convenience) plus a payback screen; that revision was
    superseded and is deliberately not what this page describes.

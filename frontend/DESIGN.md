@@ -35,7 +35,7 @@ impartial rather than promotional.
 
 ## 2. Why we did NOT adopt the reference site's look
 
-iCAUR is a manufacturer marketing two of its own cars. VoltPilot ranks 184 trims —
+iCAUR is a manufacturer marketing two of its own cars. VoltPilot ranks 170 trims —
 iCAUR's included — and also runs sponsor slots (`ad_sponsors.json`, `PartnerMarquee`).
 Dressing an impartial ranking engine in a car brand's brochure aesthetic invites the
 question of who paid for the ranking.
@@ -153,15 +153,17 @@ session logic: `/interview/voice` (1,066 lines, live Gemini audio), `/interview/
 
 ## 7. Data claims
 
-The catalog is **184 trims** (`data/catalog_vehicles.json` → `vehicles[]`). Copy across
-`app/` and `lib/i18n.ts` says 184 and is correct. The root `README.md` still says 23 —
-the README is stale, not the UI.
+The catalog is **170 trims** (`data/catalog_vehicles.json` → `vehicles[]`; 184 until
+2026-11-12, when 23 discontinued or mistyped rows left and 9 launches came in). Copy across
+`app/` and `lib/i18n.ts` says 170, and `tests/guardrails.test.mjs` fails if any "N models"
+claim stops matching the catalogue. The root `README.md` still says 23 — the README is
+stale, not the UI.
 
 **Unresolved conflict.** The technical specification is written against a *different*
 vehicle universe: it repeatedly cites `voltpilot_vehicle_full_database.json` and states
 "the 108 vehicles in the given database", and Eq. 9 bounds candidates at Max 109 (108 + 1).
 That file does not exist anywhere in this repo. So the spec's math assumes 108 while the
-running site advertises 184 from a different file. `/methodology` therefore states no
+running site advertises 170 from a different file. `/methodology` therefore states no
 vehicle count at all — it describes the method, not the inventory. Someone needs to decide
 which database is authoritative before that page or the landing copy claims a number.
 

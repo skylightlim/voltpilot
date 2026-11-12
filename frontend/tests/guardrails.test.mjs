@@ -339,3 +339,27 @@ describe("api error handling", () => {
     }
   });
 });
+
+describe("catalogue size in the copy", () => {
+  // The site claimed 184 models for two months after the catalogue changed size
+  // (2026-11-12: 23 discontinued or mistyped rows out, 9 launches in). The count is
+  // marketing copy in a dozen places, so it drifts unless something compares it.
+  const catalog = JSON.parse(read(join(ROOT, "..", "data", "catalog_vehicles.json")));
+  const total = catalog.vehicles.length;
+
+  test("every 'N models / trims' claim matches the catalogue", () => {
+    const files = ["lib/i18n.ts", "app/page.tsx", "app/opengraph-image.tsx"].map((f) => join(ROOT, f));
+    const claims = [];
+    for (const f of files) {
+      const text = read(f);
+      // "170 Malaysian models", "170 varian", "170 Model", <ScrubCount value={170} />
+      for (const m of text.matchAll(/(\d{2,4})\s+(?:Malaysian\s+|exact\s+)?(?:models?|trims|varian|Models?)\b/g)) {
+        claims.push({ file: rel(f), n: Number(m[1]) });
+      }
+      for (const m of text.matchAll(/<ScrubCount value=\{(\d+)\}/g)) claims.push({ file: rel(f), n: Number(m[1]) });
+    }
+    assert.ok(claims.length >= 10, `found only ${claims.length} count claims; the pattern has stopped matching`);
+    const wrong = claims.filter((c) => c.n !== total);
+    assert.deepEqual(wrong, [], `catalogue holds ${total} trims`);
+  });
+});

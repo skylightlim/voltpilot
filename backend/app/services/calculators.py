@@ -271,7 +271,7 @@ def depreciation(price_rm: float, *, vehicle_type: str = "ev", slug: str | None 
     Exponential decay on the fitted `k_per_year`, which is how the curve was
     built: value(t) = price * exp(-k*t). A per-model curve is used when the
     used market has enough listings for one, and the drivetrain's curve
-    otherwise — 22 of 184 trims are measured, so most cars carry an average and
+    otherwise — 22 of 170 trims are measured, so most cars carry an average and
     the response says which, rather than implying precision it does not have.
     """
     from ..config import load_depreciation_curve

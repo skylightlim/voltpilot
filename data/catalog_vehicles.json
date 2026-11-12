@@ -6,33 +6,34 @@
    "model": "eMas 5",
    "variant": "Premium",
    "type": "ev",
-   "price_rm": 99800,
-   "source": "official",
-   "as_of_date": "2026-06-01",
+   "price_rm": 72800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "ckd": true,
    "specs": {
-    "battery_kwh": 49.92,
-    "range_km": 353,
+    "battery_kwh": 40.16,
+    "range_km": 325,
     "energy_kwh_per_100km": 13.5,
-    "motor_kw": 120,
+    "motor_kw": 85.0,
     "seats": 5,
-    "boot_l": 380,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 80
+    "boot_l": 375,
+    "charge_power_kw_ac": 6.6,
+    "charge_power_kw_dc": 71.0,
+    "power_hp": 114
    },
    "ownership": {
     "warranty_battery_yrs": 8,
     "maintenance_rm_yr": 650,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 85 kW)",
     "road_tax_rm": 60,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM99,800 @ 2.60%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM72,800 @ 2.60%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 9980,
-    "loan_monthly_rm": 1200.27,
-    "loan_total_interest_rm": 11003,
+    "loan_down_payment_rm": 7280,
+    "loan_monthly_rm": 875.55,
+    "loan_total_interest_rm": 8026,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2812
+    "insurance_rm_yr": 2054
    },
    "registered_my": 20540,
    "popularity_rating": 8,
@@ -65,41 +66,45 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/proton/emas-5/",
+   "price_display": "RM59,800–RM72,800",
+   "monthly_rm": 745
   },
   {
    "id": "byd-atto-3",
    "brand": "BYD",
    "model": "Atto 3",
-   "variant": "Standard Range",
+   "variant": "Ultra",
    "type": "ev",
-   "price_rm": 149800,
-   "source": "official",
-   "as_of_date": "2026-05-01",
+   "price_rm": 125800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "ownership": {
     "warranty_battery_yrs": 8,
     "warranty_battery_km": 150000,
     "maintenance_rm_yr": 600,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM125,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 14980,
-    "loan_monthly_rm": 1801.61,
-    "loan_total_interest_rm": 16515,
+    "loan_down_payment_rm": 12580,
+    "loan_monthly_rm": 1512.97,
+    "loan_total_interest_rm": 13869,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4055
+    "insurance_rm_yr": 3407
    },
    "specs": {
-    "battery_kwh": 49.92,
-    "range_km": 345,
+    "battery_kwh": 60.48,
+    "range_km": 420,
     "energy_kwh_per_100km": 13.4,
     "motor_kw": 150,
-    "charge_power_kw_ac": 7,
-    "charge_power_kw_dc": 70,
+    "charge_power_kw_ac": 7.0,
+    "charge_power_kw_dc": 110.0,
     "seats": 5,
-    "boot_l": 440
+    "boot_l": 434,
+    "power_hp": 201
    },
    "registered_my": 13463,
    "popularity_rating": 7,
@@ -132,26 +137,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/byd/atto-3/",
+   "price_display": "RM125,800–RM138,800",
+   "monthly_rm": 1285
   },
   {
    "id": "byd-seal",
    "brand": "BYD",
    "model": "Seal",
-   "variant": "Premium AWD",
+   "variant": "Performance AWD",
    "type": "ev",
-   "price_rm": 213800,
-   "source": "official",
-   "as_of_date": "2026-05-01",
+   "price_rm": 191800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
     "battery_kwh": 82.56,
-    "range_km": 510,
+    "range_km": 520,
     "energy_kwh_per_100km": 14.9,
     "motor_kw": 390,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 150,
+    "charge_power_kw_ac": 7.0,
+    "charge_power_kw_dc": 150.0,
     "seats": 5,
-    "boot_l": 400
+    "boot_l": 400,
+    "power_hp": 523
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -159,14 +168,14 @@
     "maintenance_rm_yr": 650,
     "road_tax_rm": 965,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 390 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM213,800 @ 2.40%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM191,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 21380,
-    "loan_monthly_rm": 2571.33,
-    "loan_total_interest_rm": 23571,
+    "loan_down_payment_rm": 19180,
+    "loan_monthly_rm": 2306.74,
+    "loan_total_interest_rm": 21146,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5552
+    "insurance_rm_yr": 5189
    },
    "registered_my": 4242,
    "popularity_rating": 6,
@@ -199,7 +208,10 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/byd/seal/",
+   "price_display": "RM171,800–RM191,800",
+   "monthly_rm": 1960
   },
   {
    "id": "tesla-model-3",
@@ -272,20 +284,21 @@
    "id": "tesla-model-y",
    "brand": "Tesla",
    "model": "Model Y",
-   "variant": "Rear-Wheel Drive",
+   "variant": "Rear-wheel Drive",
    "type": "ev",
-   "price_rm": 195000,
-   "source": "official",
-   "as_of_date": "2026-04-15",
+   "price_rm": 198000,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 60,
-    "range_km": 430,
+    "battery_kwh": 60.0,
+    "range_km": 466,
     "energy_kwh_per_100km": 13.9,
     "motor_kw": 220,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 200,
+    "charge_power_kw_ac": 11.0,
+    "charge_power_kw_dc": 175.0,
     "seats": 5,
-    "boot_l": 854
+    "boot_l": 854,
+    "power_hp": 295
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -293,14 +306,14 @@
     "maintenance_rm_yr": 550,
     "road_tax_rm": 305,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 220 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM195,000 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM198,000 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 19500,
-    "loan_monthly_rm": 2345.22,
-    "loan_total_interest_rm": 21499,
+    "loan_down_payment_rm": 19800,
+    "loan_monthly_rm": 2381.3,
+    "loan_total_interest_rm": 21830,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5275
+    "insurance_rm_yr": 5356
    },
    "registered_my": 9323,
    "popularity_rating": 7,
@@ -333,41 +346,45 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/tesla/model-y/",
+   "price_display": "RM198,000–RM263,000",
+   "monthly_rm": 2020
   },
   {
    "id": "xpeng-g6",
    "brand": "XPeng",
    "model": "G6",
-   "variant": "Standard Range",
+   "variant": "RWD Standard Range",
    "type": "ev",
-   "price_rm": 159900,
-   "source": "official",
-   "as_of_date": "2026-03-01",
+   "price_rm": 159948,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 66,
-    "range_km": 450,
+    "battery_kwh": 68.5,
+    "range_km": 480,
     "energy_kwh_per_100km": 14.1,
-    "motor_kw": 218,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 215,
+    "motor_kw": 185,
+    "charge_power_kw_ac": 11.0,
+    "charge_power_kw_dc": 382.0,
     "seats": 5,
-    "boot_l": 580
+    "boot_l": 571,
+    "power_hp": 248
    },
    "ownership": {
     "warranty_battery_yrs": 8,
     "warranty_battery_km": 160000,
     "maintenance_rm_yr": 600,
-    "road_tax_rm": 305,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 218 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM159,900 @ 2.50%)",
+    "road_tax_rm": 240,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 185 kW)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM159,948 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 15990,
-    "loan_monthly_rm": 1923.08,
-    "loan_total_interest_rm": 17629,
+    "loan_down_payment_rm": 15995,
+    "loan_monthly_rm": 1923.66,
+    "loan_total_interest_rm": 17634,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4327
+    "insurance_rm_yr": 4329
    },
    "registered_my": 1980,
    "popularity_rating": 4,
@@ -400,26 +417,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/xpeng/g6/",
+   "price_display": "RM159,948–RM190,708",
+   "monthly_rm": 1635
   },
   {
    "id": "volvo-ex30",
    "brand": "Volvo",
    "model": "EX30",
-   "variant": "Ultra Twin",
+   "variant": "Cross Country (Twin Motor)",
    "type": "ev",
-   "price_rm": 188888,
-   "source": "official",
-   "as_of_date": "2026-02-01",
+   "price_rm": 218888,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 69,
-    "range_km": 460,
+    "battery_kwh": 69.0,
+    "range_km": 437,
     "energy_kwh_per_100km": 14.9,
     "motor_kw": 315,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 153,
+    "charge_power_kw_ac": 11.0,
+    "charge_power_kw_dc": 175.0,
     "seats": 5,
-    "boot_l": 318
+    "boot_l": 318,
+    "power_hp": 422
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -427,14 +448,14 @@
     "maintenance_rm_yr": 650,
     "road_tax_rm": 615,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 315 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM188,888 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM218,888 @ 2.40%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 18889,
-    "loan_monthly_rm": 2271.72,
-    "loan_total_interest_rm": 20825,
+    "loan_down_payment_rm": 21889,
+    "loan_monthly_rm": 2632.52,
+    "loan_total_interest_rm": 24132,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5110
+    "insurance_rm_yr": 5684
    },
    "registered_my": 621,
    "popularity_rating": 3,
@@ -467,26 +488,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/volvo/ex30/",
+   "price_display": "RM198,888–RM218,888",
+   "monthly_rm": 2235
   },
   {
    "id": "mg4",
    "brand": "MG",
    "model": "4",
-   "variant": "Lux Extended Range",
+   "variant": "Lux",
    "type": "ev",
-   "price_rm": 129000,
-   "source": "unofficial",
-   "as_of_date": "2026-05-20",
+   "price_rm": 100888,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 64,
+    "battery_kwh": 64.0,
     "range_km": 435,
     "energy_kwh_per_100km": 14.5,
     "motor_kw": 150,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 150,
+    "charge_power_kw_ac": 11.0,
+    "charge_power_kw_dc": 150.0,
     "seats": 5,
-    "boot_l": 363
+    "boot_l": 363,
+    "power_hp": 200
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -494,14 +519,14 @@
     "maintenance_rm_yr": 600,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM129,000 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM100,888 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 12900,
-    "loan_monthly_rm": 1551.46,
-    "loan_total_interest_rm": 14222,
+    "loan_down_payment_rm": 10089,
+    "loan_monthly_rm": 1213.36,
+    "loan_total_interest_rm": 11123,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3493
+    "insurance_rm_yr": 2734
    },
    "registered_my": 1284,
    "popularity_rating": 4,
@@ -534,26 +559,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/mg/4/",
+   "price_display": "RM100,888–RM138,888",
+   "monthly_rm": 1030
   },
   {
    "id": "gac-aion-y-plus",
    "brand": "Aion",
    "model": "Y Plus",
-   "variant": "Standard",
+   "variant": "Elite",
    "type": "ev",
-   "price_rm": 138800,
-   "source": "official",
-   "as_of_date": "2026-04-01",
+   "price_rm": 119800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 49.75,
-    "range_km": 365,
+    "battery_kwh": 63.2,
+    "range_km": 430,
     "energy_kwh_per_100km": 13.6,
     "motor_kw": 150,
     "charge_power_kw_ac": 6.6,
-    "charge_power_kw_dc": 80,
+    "charge_power_kw_dc": 80.0,
     "seats": 5,
-    "boot_l": 400
+    "boot_l": 405,
+    "power_hp": 201
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -561,14 +590,14 @@
     "maintenance_rm_yr": 550,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM138,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 13880,
-    "loan_monthly_rm": 1669.32,
-    "loan_total_interest_rm": 15303,
+    "loan_down_payment_rm": 11980,
+    "loan_monthly_rm": 1440.81,
+    "loan_total_interest_rm": 13208,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3758
+    "insurance_rm_yr": 3245
    },
    "registered_my": 0,
    "popularity_rating": 1,
@@ -601,26 +630,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/aion/y-plus/",
+   "price_display": "RM119,800–RM135,800",
+   "monthly_rm": 1225
   },
   {
    "id": "ora-good-cat",
    "brand": "GWM",
    "model": "Ora Good Cat",
-   "variant": "Pro",
+   "variant": "Ultra",
    "type": "ev",
-   "price_rm": 119800,
-   "source": "unofficial",
-   "as_of_date": "2026-04-10",
+   "price_rm": 109800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 47.8,
-    "range_km": 340,
+    "battery_kwh": 57.7,
+    "range_km": 400,
     "energy_kwh_per_100km": 13.2,
     "motor_kw": 105,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 80,
+    "charge_power_kw_ac": 6.6,
+    "charge_power_kw_dc": 60.0,
     "seats": 5,
-    "boot_l": 350
+    "boot_l": 250,
+    "power_hp": 143
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -628,14 +661,14 @@
     "maintenance_rm_yr": 500,
     "road_tax_rm": 80,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 105 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM109,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 11980,
-    "loan_monthly_rm": 1440.81,
-    "loan_total_interest_rm": 13208,
+    "loan_down_payment_rm": 10980,
+    "loan_monthly_rm": 1320.54,
+    "loan_total_interest_rm": 12105,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3245
+    "insurance_rm_yr": 2975
    },
    "registered_my": 1988,
    "popularity_rating": 4,
@@ -668,26 +701,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/great-wall/ora-good-cat/",
+   "price_display": "RM109,800–RM119,800",
+   "monthly_rm": 1120
   },
   {
    "id": "chery-omoda-e5",
    "brand": "Chery",
    "model": "Omoda E5",
-   "variant": "Premium",
+   "variant": "2WD",
    "type": "ev",
-   "price_rm": 108800,
-   "source": "official",
-   "as_of_date": "2026-02-15",
+   "price_rm": 146800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 61.06,
+    "battery_kwh": 61.0,
     "range_km": 430,
     "energy_kwh_per_100km": 14.6,
     "motor_kw": 150,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 90,
+    "charge_power_kw_ac": 9.9,
+    "charge_power_kw_dc": 80.0,
     "seats": 5,
-    "boot_l": 380
+    "boot_l": 378,
+    "power_hp": 201
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -695,14 +732,14 @@
     "maintenance_rm_yr": 500,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM108,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM146,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 10880,
-    "loan_monthly_rm": 1308.51,
-    "loan_total_interest_rm": 11995,
+    "loan_down_payment_rm": 14680,
+    "loan_monthly_rm": 1765.53,
+    "loan_total_interest_rm": 16185,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2948
+    "insurance_rm_yr": 3974
    },
    "registered_my": 1311,
    "popularity_rating": 4,
@@ -735,7 +772,10 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/chery/omoda-e5/",
+   "price_display": "RM146,800",
+   "monthly_rm": 1500
   },
   {
    "id": "smart-3",
@@ -743,18 +783,19 @@
    "model": "#3",
    "variant": "Brabus",
    "type": "ev",
-   "price_rm": 218888,
-   "source": "unofficial",
-   "as_of_date": "2026-03-25",
+   "price_rm": 255000,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
-    "battery_kwh": 66,
-    "range_km": 470,
+    "battery_kwh": 66.0,
+    "range_km": 415,
     "energy_kwh_per_100km": 15.0,
     "motor_kw": 315,
-    "charge_power_kw_ac": 22,
-    "charge_power_kw_dc": 150,
+    "charge_power_kw_ac": 22.0,
+    "charge_power_kw_dc": 150.0,
     "seats": 5,
-    "boot_l": 370
+    "boot_l": 370,
+    "power_hp": 422
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -762,14 +803,14 @@
     "maintenance_rm_yr": 700,
     "road_tax_rm": 615,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 315 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM218,888 @ 2.40%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM255,000 @ 2.40%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 21889,
-    "loan_monthly_rm": 2632.52,
-    "loan_total_interest_rm": 24132,
+    "loan_down_payment_rm": 25500,
+    "loan_monthly_rm": 3066.83,
+    "loan_total_interest_rm": 28114,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5684
+    "insurance_rm_yr": 6620
    },
    "registered_my": 1413,
    "popularity_rating": 4,
@@ -802,24 +843,29 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/smart/-3/",
+   "price_display": "RM175,000–RM255,000",
+   "monthly_rm": 2605
   },
   {
    "id": "toyota-corolla-cross-hybrid",
    "brand": "Toyota",
    "model": "Corolla Cross",
-   "variant": "1.8 Hybrid",
+   "variant": "1.8 HEV",
    "type": "hybrid",
    "fuel": "petrol",
-   "price_rm": 137900,
-   "source": "official",
-   "as_of_date": "2026-06-10",
+   "price_rm": 140800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
     "fuel_l_per_100km": 4.3,
     "engine_cc": 1798,
     "motor_kw": 80,
     "seats": 5,
-    "boot_l": 448
+    "boot_l": 440,
+    "power_hp": 97,
+    "motor_hp": 71
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -827,14 +873,14 @@
     "maintenance_rm_yr": 900,
     "road_tax_rm": 359,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1798cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1798cc band3 x RM137,900)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1798cc band3 x RM140,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 13790,
-    "loan_monthly_rm": 1684.35,
-    "loan_total_interest_rm": 17375,
+    "loan_down_payment_rm": 14080,
+    "loan_monthly_rm": 1719.77,
+    "loan_total_interest_rm": 17741,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3898
+    "insurance_rm_yr": 3974
    },
    "registered_my": 32614,
    "popularity_rating": 9,
@@ -867,24 +913,29 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/toyota/corolla-cross/",
+   "price_display": "RM133,800–RM148,800",
+   "monthly_rm": 1435
   },
   {
    "id": "toyota-camry-hybrid",
    "brand": "Toyota",
    "model": "Camry",
-   "variant": "2.5 Hybrid",
+   "variant": "2.5 HEV",
    "type": "hybrid",
    "fuel": "petrol",
-   "price_rm": 199800,
-   "source": "official",
-   "as_of_date": "2026-05-05",
+   "price_rm": 248800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
     "fuel_l_per_100km": 4.3,
     "engine_cc": 2487,
     "motor_kw": 180,
     "seats": 5,
-    "boot_l": 440
+    "boot_l": 524,
+    "power_hp": 185,
+    "motor_hp": 134
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -892,14 +943,14 @@
     "maintenance_rm_yr": 1000,
     "road_tax_rm": 867,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (2487cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2487cc band4 x RM199,800)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2487cc band4 x RM248,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 19980,
-    "loan_monthly_rm": 2440.41,
-    "loan_total_interest_rm": 25175,
+    "loan_down_payment_rm": 24880,
+    "loan_monthly_rm": 3038.91,
+    "loan_total_interest_rm": 31349,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5541
+    "insurance_rm_yr": 6815
    },
    "registered_my": 10171,
    "popularity_rating": 7,
@@ -932,24 +983,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/toyota/camry/",
+   "price_display": "RM221,800–RM248,800",
+   "monthly_rm": 2540
   },
   {
    "id": "honda-hrv-ehev",
    "brand": "Honda",
    "model": "HR-V",
-   "variant": "RS e:HEV",
+   "variant": "1.5 e:HEV RS",
    "type": "hybrid",
    "fuel": "petrol",
-   "price_rm": 148900,
-   "source": "official",
-   "as_of_date": "2026-04-01",
+   "price_rm": 143900,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
     "fuel_l_per_100km": 4.9,
     "engine_cc": 1498,
     "motor_kw": 125,
     "seats": 5,
-    "boot_l": 435
+    "boot_l": 319,
+    "power_hp": 105,
+    "motor_hp": 129,
+    "battery_kwh": 1.1
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -957,14 +1014,14 @@
     "maintenance_rm_yr": 950,
     "road_tax_rm": 120,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM148,900)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM143,900)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 14890,
-    "loan_monthly_rm": 1818.71,
-    "loan_total_interest_rm": 18761,
+    "loan_down_payment_rm": 14390,
+    "loan_monthly_rm": 1757.64,
+    "loan_total_interest_rm": 18131,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4151
+    "insurance_rm_yr": 4021
    },
    "registered_my": 15774,
    "popularity_rating": 7,
@@ -997,24 +1054,30 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/honda/hr-v/",
+   "price_display": "RM115,900–RM143,900",
+   "monthly_rm": 1470
   },
   {
    "id": "honda-civic-ehev",
    "brand": "Honda",
    "model": "Civic",
-   "variant": "2.0L e:HEV",
+   "variant": "2.0 RS e:HEV",
    "type": "hybrid",
    "fuel": "petrol",
-   "price_rm": 163800,
-   "source": "official",
-   "as_of_date": "2026-04-01",
+   "price_rm": 167900,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
    "specs": {
     "fuel_l_per_100km": 4.5,
     "engine_cc": 1993,
     "motor_kw": 135,
     "seats": 5,
-    "boot_l": 404
+    "boot_l": 497,
+    "power_hp": 141,
+    "motor_hp": 181,
+    "battery_kwh": 1.1
    },
    "ownership": {
     "warranty_battery_yrs": 8,
@@ -1022,14 +1085,14 @@
     "maintenance_rm_yr": 950,
     "road_tax_rm": 376,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1993cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1993cc band3 x RM163,800)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1993cc band3 x RM167,900)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 16380,
-    "loan_monthly_rm": 2000.7,
-    "loan_total_interest_rm": 20639,
+    "loan_down_payment_rm": 16790,
+    "loan_monthly_rm": 2050.78,
+    "loan_total_interest_rm": 21155,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4572
+    "insurance_rm_yr": 4678
    },
    "registered_my": 7344,
    "popularity_rating": 6,
@@ -1062,7 +1125,10 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/honda/civic/",
+   "price_display": "RM133,900–RM167,900",
+   "monthly_rm": 1715
   },
   {
    "id": "wuling-bingo",
@@ -1132,26 +1198,26 @@
    "brand": "Perodua",
    "model": "QV-E",
    "type": "ev",
-   "price_rm": 69999,
+   "price_rm": 87499,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "source_url": "https://paultan.org/research/perodua/qv-e/",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/2026/09/15/perodua-qv-e-gets-an-additional-rm10k-rebate-now-priced-from-rm53499-with-baas-rm77499-full-purchase/",
    "body": "SUV",
    "segment": "B-Segment",
    "launch": "2025-12-01",
-   "monthly_rm": 715,
+   "monthly_rm": 892,
    "ownership": {
     "road_tax_yr": 160,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM69,999 @ 2.60%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM87,499 @ 2.60%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 7000,
-    "loan_monthly_rm": 841.86,
-    "loan_total_interest_rm": 7717,
+    "loan_down_payment_rm": 8750,
+    "loan_monthly_rm": 1052.33,
+    "loan_total_interest_rm": 9647,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 1976
+    "insurance_rm_yr": 2467
    },
    "specs": {
     "battery_kwh": 52.5,
@@ -1162,7 +1228,7 @@
     "boot_l": 320,
     "seats": 5
    },
-   "price_display": "RM69,999 –RM93,999",
+   "price_display": "RM87,499",
    "registered_my": 498,
    "popularity_rating": 2,
    "registered_basis": "paultan_exact",
@@ -1188,7 +1254,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "FWD (with battery)"
   },
   {
    "id": "seres-3",
@@ -1573,37 +1640,37 @@
    "brand": "Leapmotor",
    "model": "B10",
    "type": "ev",
-   "price_rm": 107800,
+   "price_rm": 118800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/leapmotor/b10/",
    "body": "SUV",
    "segment": "C-Segment",
    "launch": "2025-12-10",
-   "monthly_rm": 1100,
+   "monthly_rm": 1215,
    "ownership": {
-    "road_tax_yr": 200,
+    "road_tax_yr": 180,
     "road_tax_rm": 180,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 160 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM107,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM118,800 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 10780,
-    "loan_monthly_rm": 1296.49,
-    "loan_total_interest_rm": 11885,
+    "loan_down_payment_rm": 11880,
+    "loan_monthly_rm": 1428.78,
+    "loan_total_interest_rm": 13098,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2921
+    "insurance_rm_yr": 3218
    },
    "specs": {
     "battery_kwh": 67.1,
-    "range_km": 434.0,
+    "range_km": 434,
     "power_hp": 215,
     "energy_kwh_per_100km": 13.9,
     "charge_power_kw_dc": 168.0,
     "boot_l": 430,
     "seats": 5
    },
-   "price_display": "RM107,800 –RM118,800",
+   "price_display": "RM118,800",
    "registered_my": 977,
    "popularity_rating": 3,
    "registered_basis": "paultan_exact",
@@ -1629,7 +1696,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Design"
   },
   {
    "id": "dongfeng-vigo",
@@ -1825,37 +1893,37 @@
    "brand": "iCaur",
    "model": "03",
    "type": "ev",
-   "price_rm": 119800,
+   "price_rm": 119740,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/icaur/03/",
    "body": "SUV",
    "segment": "C-Segment",
    "launch": "2025-09-09",
-   "monthly_rm": 1225,
+   "monthly_rm": 1220,
    "ownership": {
     "road_tax_yr": 140,
     "road_tax_rm": 140,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 135 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,800 @ 2.50%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,740 @ 2.50%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 11980,
-    "loan_monthly_rm": 1440.81,
-    "loan_total_interest_rm": 13208,
+    "loan_down_payment_rm": 11974,
+    "loan_monthly_rm": 1440.09,
+    "loan_total_interest_rm": 13201,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3245
+    "insurance_rm_yr": 3243
    },
    "specs": {
-    "battery_kwh": 69.77,
-    "range_km": 342.0,
+    "battery_kwh": 65.69,
+    "range_km": 426,
     "power_hp": 181,
     "energy_kwh_per_100km": 18.4,
     "charge_power_kw_dc": 80.0,
-    "boot_l": 264,
+    "boot_l": 450,
     "seats": 5
    },
-   "price_display": "RM119,800 –RM129,800",
+   "price_display": "RM119,740–RM129,800",
    "registered_my": 2328,
    "popularity_rating": 5,
    "registered_basis": "paultan_exact",
@@ -1881,7 +1949,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "RWD"
   },
   {
    "id": "neta-x",
@@ -2733,68 +2802,6 @@
    },
    "price_display": "RM198,000",
    "registered_my": 5,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "jac-t9-ev",
-   "brand": "JAC",
-   "model": "T9 EV",
-   "type": "ev",
-   "price_rm": 199888,
-   "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "source_url": "https://paultan.org/research/jac/t9-ev/",
-   "body": "Pickup",
-   "segment": "Truck/4X4",
-   "launch": "2025-03-05",
-   "monthly_rm": 2040,
-   "ownership": {
-    "road_tax_yr": 305,
-    "road_tax_rm": 305,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 214.8 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM199,888 @ 2.50%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 19989,
-    "loan_monthly_rm": 2404.01,
-    "loan_total_interest_rm": 22038,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5407
-   },
-   "specs": {
-    "battery_kwh": 88.0,
-    "range_km": 340.0,
-    "power_hp": 288,
-    "energy_kwh_per_100km": 23.3,
-    "charge_power_kw_dc": 88.0,
-    "seats": 5
-   },
-   "price_display": "RM199,888",
-   "registered_my": 10,
    "popularity_rating": 1,
    "registered_basis": "paultan_exact",
    "registered_as_of": "2026-09",
@@ -3762,37 +3769,37 @@
    "brand": "Zeekr",
    "model": "009",
    "type": "ev",
-   "price_rm": 299800,
+   "price_rm": 304800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/zeekr/009/",
    "body": "MPV",
    "segment": "Executive",
    "launch": "2024-12-06",
-   "monthly_rm": 3060,
+   "monthly_rm": 3110,
    "ownership": {
     "road_tax_yr": 395,
     "road_tax_rm": 395,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 250 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM299,800 @ 2.40%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM304,800 @ 2.38%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 29980,
-    "loan_monthly_rm": 3605.63,
-    "loan_total_interest_rm": 33053,
+    "loan_down_payment_rm": 30480,
+    "loan_monthly_rm": 3665.76,
+    "loan_total_interest_rm": 33604,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 7781
+    "insurance_rm_yr": 7845
    },
    "specs": {
     "battery_kwh": 116.0,
-    "range_km": 582.0,
+    "range_km": 604,
     "power_hp": 335,
     "energy_kwh_per_100km": 17.9,
     "charge_power_kw_dc": 150.0,
     "boot_l": 574,
     "seats": 7
    },
-   "price_display": "RM299,800 –RM359,800",
+   "price_display": "RM304,800–RM359,800",
    "registered_my": 1417,
    "popularity_rating": 4,
    "registered_basis": "paultan_exact",
@@ -3818,7 +3825,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Executive"
   },
   {
    "id": "mg-cyberster",
@@ -4518,37 +4526,37 @@
    "brand": "Volvo",
    "model": "EX90",
    "type": "ev",
-   "price_rm": 442888,
+   "price_rm": 428888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/volvo/ex90/",
    "body": "SUV",
    "segment": "Executive",
    "launch": "2025-04-10",
-   "monthly_rm": 4520,
+   "monthly_rm": 4380,
    "ownership": {
-    "road_tax_yr": 965,
-    "road_tax_rm": 915,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 380 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM442,888 @ 2.35%)",
+    "road_tax_yr": 1940,
+    "road_tax_rm": 1940,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 500 kW)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM428,888 @ 2.35%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 44289,
-    "loan_monthly_rm": 5326.52,
-    "loan_total_interest_rm": 48828,
+    "loan_down_payment_rm": 42889,
+    "loan_monthly_rm": 5158.14,
+    "loan_total_interest_rm": 47285,
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 11250
+    "insurance_rm_yr": 10895
    },
    "specs": {
-    "battery_kwh": 111.0,
-    "range_km": 600.0,
-    "power_hp": 510,
+    "battery_kwh": 106.0,
+    "range_km": 617,
+    "power_hp": 671,
     "energy_kwh_per_100km": 16.7,
     "charge_power_kw_dc": 350.0,
     "boot_l": 310,
     "seats": 7
    },
-   "price_display": "RM442,888",
+   "price_display": "RM428,888",
    "registered_my": 148,
    "popularity_rating": 2,
    "registered_basis": "paultan_exact",
@@ -4574,7 +4582,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Ultra Twin"
   },
   {
    "id": "hyundai-ioniq-5-n",
@@ -5518,26 +5527,26 @@
    "brand": "Chery",
    "model": "Tiggo Cross",
    "type": "hybrid",
-   "price_rm": 88800,
+   "price_rm": 99800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/chery/tiggo-cross/",
    "body": "SUV",
    "segment": "B-Segment",
    "launch": "2025-07-09",
-   "monthly_rm": 905,
+   "monthly_rm": 1020,
    "ownership": {
     "road_tax_yr": 120,
     "road_tax_rm": 120,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM88,800)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM99,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 8880,
-    "loan_monthly_rm": 1084.63,
-    "loan_total_interest_rm": 11189,
+    "loan_down_payment_rm": 9980,
+    "loan_monthly_rm": 1218.99,
+    "loan_total_interest_rm": 12575,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2588
+    "insurance_rm_yr": 2874
    },
    "specs": {
     "battery_kwh": 1.83,
@@ -5552,7 +5561,7 @@
     "fuel_as_of_date": "2026-08-13",
     "fuel_notes": "1.5L CSH hybrid combined 5.4 L/100km (manufacturer claim per bitauto MY; 1.5 Turbo 6.3)"
    },
-   "price_display": "RM99,800",
+   "price_display": "RM88,800–RM99,800",
    "registered_my": 0,
    "popularity_rating": 1,
    "registered_basis": "paultan_no_records",
@@ -5580,34 +5589,35 @@
      "as_of": "2026-08-13",
      "url": "https://www.bitauto.my/en/chery/tiggo-cross/config-53/"
     }
-   }
+   },
+   "variant": "Hybrid"
   },
   {
    "id": "toyota-vios",
    "brand": "Toyota",
    "model": "Vios",
    "type": "hybrid",
-   "price_rm": 90600,
+   "price_rm": 103900,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/toyota/vios/",
    "body": "Sedan",
    "segment": "B-Segment",
    "launch": "2023-03-20",
-   "monthly_rm": 925,
+   "monthly_rm": 1060,
    "ownership": {
     "road_tax_yr": 90,
     "fuel_rm_yr": 2070,
     "road_tax_rm": 90,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1496cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1496cc band2 x RM90,600)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1496cc band2 x RM103,900)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 9060,
-    "loan_monthly_rm": 1106.61,
-    "loan_total_interest_rm": 11416,
+    "loan_down_payment_rm": 10390,
+    "loan_monthly_rm": 1269.06,
+    "loan_total_interest_rm": 13091,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2635
+    "insurance_rm_yr": 2981
    },
    "specs": {
     "fuel_l_per_100km": 5.2,
@@ -5616,9 +5626,9 @@
     "power_hp": 90,
     "motor_hp": 79,
     "seats": 5,
-    "boot_l": 475
+    "boot_l": 465
    },
-   "price_display": "RM103,900–RM109,900",
+   "price_display": "RM90,600–RM109,900",
    "registered_my": 4271,
    "popularity_rating": 6,
    "registered_basis": "paultan_exact",
@@ -5644,7 +5654,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Hybrid"
   },
   {
    "id": "proton-emas-7-phev",
@@ -5726,26 +5737,26 @@
    "brand": "Toyota",
    "model": "Yaris Cross",
    "type": "hybrid",
-   "price_rm": 99900,
+   "price_rm": 109900,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/toyota/yaris-cross/",
    "body": "SUV",
    "segment": "B-Segment",
    "launch": "2026-05-08",
-   "monthly_rm": 1020,
+   "monthly_rm": 1120,
    "ownership": {
     "road_tax_yr": 120,
     "road_tax_rm": 120,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1496cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1496cc band2 x RM99,900)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1496cc band2 x RM109,900)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 9990,
-    "loan_monthly_rm": 1220.21,
-    "loan_total_interest_rm": 12587,
+    "loan_down_payment_rm": 10990,
+    "loan_monthly_rm": 1342.35,
+    "loan_total_interest_rm": 13847,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2877
+    "insurance_rm_yr": 3137
    },
    "specs": {
     "battery_kwh": 0.8,
@@ -5759,7 +5770,7 @@
     "fuel_source_url": "https://www.toyota.com.my/brochure/yaris-cross",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM109,900",
+   "price_display": "RM99,900–RM109,900",
    "registered_my": 3190,
    "popularity_rating": 5,
    "registered_basis": "paultan_exact",
@@ -5787,7 +5798,8 @@
      "as_of": "2026-08-13",
      "url": "https://www.toyota.com.my/brochure/yaris-cross"
     }
-   }
+   },
+   "variant": "1.5S Hybrid"
   },
   {
    "id": "honda-city",
@@ -6608,31 +6620,31 @@
    "brand": "Hyundai",
    "model": "Tucson",
    "type": "hybrid",
-   "price_rm": 143888,
+   "price_rm": 189800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/hyundai/tucson/",
    "body": "SUV",
    "segment": "C-Segment",
    "launch": "2025-07-02",
-   "monthly_rm": 1470,
+   "monthly_rm": 1940,
    "ownership": {
-    "road_tax_yr": 440,
+    "road_tax_yr": 120,
     "road_tax_rm": 120,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1598cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1598cc band2 x RM143,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1598cc band2 x RM189,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 14389,
-    "loan_monthly_rm": 1757.49,
-    "loan_total_interest_rm": 18130,
+    "loan_down_payment_rm": 18980,
+    "loan_monthly_rm": 2318.27,
+    "loan_total_interest_rm": 23915,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4021
+    "insurance_rm_yr": 5214
    },
    "specs": {
     "battery_kwh": 1.49,
     "engine_cc": 1598,
-    "power_hp": 154,
+    "power_hp": 178,
     "motor_hp": 64,
     "seats": 5,
     "boot_l": 582,
@@ -6641,7 +6653,7 @@
     "fuel_source_url": "https://www.hyundai.com/content/dam/hyundai/au/en/models/my26-tucson/MY26-TUCSON_Specification-Sheet_26.pdf",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM197,888",
+   "price_display": "RM159,800–RM189,800",
    "registered_my": 128,
    "popularity_rating": 2,
    "registered_basis": "paultan_exact",
@@ -6669,33 +6681,34 @@
      "as_of": "2026-08-13",
      "url": "https://www.hyundai.com/content/dam/hyundai/au/en/models/my26-tucson/MY26-TUCSON_Specification-Sheet_26.pdf"
     }
-   }
+   },
+   "variant": "1.6T Prestige Hybrid"
   },
   {
    "id": "toyota-innova-zenix",
    "brand": "Toyota",
    "model": "Innova Zenix",
    "type": "hybrid",
-   "price_rm": 165000,
+   "price_rm": 202000,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/toyota/innova-zenix/",
    "body": "MPV",
    "segment": "D-Segment",
    "launch": "2023-06-21",
-   "monthly_rm": 1685,
+   "monthly_rm": 2060,
    "ownership": {
-    "road_tax_yr": 435,
+    "road_tax_yr": 434,
     "road_tax_rm": 434,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1987cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1987cc band3 x RM165,000)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1987cc band3 x RM202,000)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 16500,
-    "loan_monthly_rm": 2015.36,
-    "loan_total_interest_rm": 20790,
+    "loan_down_payment_rm": 20200,
+    "loan_monthly_rm": 2467.29,
+    "loan_total_interest_rm": 25452,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4603
+    "insurance_rm_yr": 5565
    },
    "specs": {
     "engine_cc": 1987,
@@ -6708,7 +6721,7 @@
     "fuel_source_url": "https://www.toyota.com.my/content/dam/malaysia/model-brochures/brochures/All-New-Zenix-e-Brochure-04.pdf",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM202,000",
+   "price_display": "RM165,000–RM202,000",
    "registered_my": 363,
    "popularity_rating": 2,
    "registered_basis": "paultan_exact",
@@ -6736,7 +6749,8 @@
      "as_of": "2026-08-13",
      "url": "https://www.toyota.com.my/content/dam/malaysia/model-brochures/brochures/All-New-Zenix-e-Brochure-04.pdf"
     }
-   }
+   },
+   "variant": "2.0 HEV"
   },
   {
    "id": "hyundai-santa-fe",
@@ -6880,31 +6894,31 @@
    "brand": "Mazda",
    "model": "CX-60",
    "type": "hybrid",
-   "price_rm": 200510,
+   "price_rm": 252872,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mazda/cx-60/",
    "body": "SUV",
    "segment": "Compact Executive",
    "launch": "2025-09-03",
-   "monthly_rm": 2045,
+   "monthly_rm": 2580,
    "ownership": {
-    "road_tax_yr": 830,
+    "road_tax_yr": 2092,
     "road_tax_rm": 2092,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (3283cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (3283cc band5 x RM200,510)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (3283cc band5 x RM252,872)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 20051,
-    "loan_monthly_rm": 2449.09,
-    "loan_total_interest_rm": 25264,
+    "loan_down_payment_rm": 25287,
+    "loan_monthly_rm": 3088.65,
+    "loan_total_interest_rm": 31862,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5592
+    "insurance_rm_yr": 6953
    },
    "specs": {
     "battery_kwh": 0.33,
     "engine_cc": 3283,
-    "power_hp": 189,
+    "power_hp": 280,
     "motor_hp": 16,
     "seats": 5,
     "boot_l": 570,
@@ -6915,7 +6929,7 @@
     "fuel_as_of_date": "2026-08-13",
     "fuel_notes": "3.3G M Hybrid Boost (48V MHEV) combined 7.5 L/100km ADR 81/02 (Mazda AU official brochure; MY spec sheet omits figure)"
    },
-   "price_display": "RM252,872",
+   "price_display": "RM200,510–RM252,872",
    "registered_my": 19,
    "popularity_rating": 1,
    "registered_basis": "paultan_exact",
@@ -6943,38 +6957,39 @@
      "as_of": "2026-08-13",
      "url": "https://www.mazda.com.au/491d44/globalassets/brochures/cx-60-digital-brochure.pdf"
     }
-   }
+   },
+   "variant": "3.3G M Hybrid AWD High Plus"
   },
   {
    "id": "great-wall-tank-300",
    "brand": "GWM",
    "model": "Tank 300",
    "type": "hybrid",
-   "price_rm": 250000,
+   "price_rm": 259800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/great-wall/tank-300/",
    "body": "SUV",
    "segment": "C-Segment",
    "launch": "2024-07-12",
-   "monthly_rm": 2550,
+   "monthly_rm": 2650,
    "ownership": {
-    "road_tax_yr": 440,
+    "road_tax_yr": 439,
     "road_tax_rm": 439,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1999cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM250,000)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM259,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 25000,
-    "loan_monthly_rm": 3053.57,
-    "loan_total_interest_rm": 31500,
+    "loan_down_payment_rm": 25980,
+    "loan_monthly_rm": 3173.27,
+    "loan_total_interest_rm": 32735,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 6813
+    "insurance_rm_yr": 7068
    },
    "specs": {
     "battery_kwh": 1.67,
     "engine_cc": 1999,
-    "power_hp": 217,
+    "power_hp": 241,
     "motor_hp": 105,
     "seats": 5,
     "boot_l": 400,
@@ -6984,7 +6999,7 @@
     "fuel_source_url": "https://www.pcauto.com/my/cars/tank/300/fuel-consumption",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM259,800",
+   "price_display": "RM250,000–RM259,800",
    "registered_my": 39,
    "popularity_rating": 1,
    "registered_basis": "paultan_exact",
@@ -7012,37 +7027,38 @@
      "as_of": "2026-08-13",
      "url": "https://www.pcauto.com/my/cars/tank/300/fuel-consumption"
     }
-   }
+   },
+   "variant": "HEV"
   },
   {
    "id": "mercedes-benz-a-class-sedan",
    "brand": "Mercedes-Benz",
    "model": "A-Class Sedan",
    "type": "hybrid",
-   "price_rm": 238888,
+   "price_rm": 263888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/a-class-sedan/",
    "body": "Sedan",
    "segment": "C-Segment",
    "launch": "2023-06-14",
-   "monthly_rm": 2440,
+   "monthly_rm": 2695,
    "ownership": {
-    "road_tax_yr": 70,
+    "road_tax_yr": 375,
     "road_tax_rm": 375,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1991cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1991cc band3 x RM238,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1991cc band3 x RM263,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 23889,
-    "loan_monthly_rm": 2917.85,
-    "loan_total_interest_rm": 30100,
+    "loan_down_payment_rm": 26389,
+    "loan_monthly_rm": 3223.2,
+    "loan_total_interest_rm": 33250,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 6524
+    "insurance_rm_yr": 7174
    },
    "specs": {
     "engine_cc": 1991,
-    "power_hp": 161,
+    "power_hp": 221,
     "motor_hp": 14,
     "seats": 5,
     "boot_l": 420,
@@ -7052,7 +7068,7 @@
     "fuel_source_url": "https://www.mercedes-benz.com.my/passengercars/models/saloon/a-class/overview.html",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM263,888",
+   "price_display": "RM238,888–RM263,888",
    "registered_my": 801,
    "popularity_rating": 3,
    "registered_basis": "paultan_exact",
@@ -7080,7 +7096,8 @@
      "as_of": "2026-08-13",
      "url": "https://www.mercedes-benz.com.my/passengercars/models/saloon/a-class/overview.html"
     }
-   }
+   },
+   "variant": "A 250 4Matic AMG Line"
   },
   {
    "id": "volvo-xc40",
@@ -7367,38 +7384,38 @@
    "brand": "Mercedes-Benz",
    "model": "C-Class",
    "type": "phev",
-   "price_rm": 292888,
+   "price_rm": 338888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/c-class/",
    "body": "Sedan",
    "segment": "Compact Executive",
    "launch": "2022-02-25",
-   "monthly_rm": 2990,
+   "monthly_rm": 3460,
    "ownership": {
-    "road_tax_yr": 90,
+    "road_tax_yr": 379,
     "fuel_rm_yr": 2627,
     "road_tax_rm": 379,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1999cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM292,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM338,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 29289,
-    "loan_monthly_rm": 3577.42,
-    "loan_total_interest_rm": 36904,
+    "loan_down_payment_rm": 33889,
+    "loan_monthly_rm": 4139.27,
+    "loan_total_interest_rm": 42700,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 7928
+    "insurance_rm_yr": 9124
    },
    "specs": {
     "fuel_l_per_100km": 2.3,
     "battery_kwh": 25.4,
     "range_km": 117,
     "engine_cc": 1999,
-    "power_hp": 201,
-    "motor_hp": 20,
+    "power_hp": 204,
+    "motor_hp": 129,
     "seats": 5,
-    "boot_l": 455,
-    "accel_0_100_s": 6.0,
+    "boot_l": 355,
+    "accel_0_100_s": 6.1,
     "energy_kwh_per_100km": 0.8,
     "fuel_src": "official",
     "fuel_source_url": "https://www.mercedes-benz.de/passengercars/models/saloon/c-class/overview.html",
@@ -7435,7 +7452,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "C350e AMG Line"
   },
   {
    "id": "mazda-cx-80",
@@ -7725,32 +7743,32 @@
    "brand": "Volvo",
    "model": "XC60",
    "type": "phev",
-   "price_rm": 328888,
+   "price_rm": 362888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/volvo/xc60/",
    "body": "SUV",
    "segment": "Compact Executive",
    "launch": "2025-09-09",
-   "monthly_rm": 3355,
+   "monthly_rm": 3705,
    "ownership": {
-    "road_tax_yr": 428,
+    "road_tax_yr": 427,
     "road_tax_rm": 427,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1969cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1969cc band3 x RM328,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1969cc band3 x RM362,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 32889,
-    "loan_monthly_rm": 4017.13,
-    "loan_total_interest_rm": 41440,
+    "loan_down_payment_rm": 36289,
+    "loan_monthly_rm": 4432.42,
+    "loan_total_interest_rm": 45724,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 8864
+    "insurance_rm_yr": 9748
    },
    "specs": {
     "battery_kwh": 19.0,
     "range_km": 89,
     "engine_cc": 1969,
-    "power_hp": 246,
+    "power_hp": 317,
     "motor_hp": 143,
     "seats": 5,
     "boot_l": 483,
@@ -7793,33 +7811,34 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "T8 Ultra"
   },
   {
    "id": "mercedes-benz-glc",
    "brand": "Mercedes-Benz",
    "model": "GLC",
    "type": "phev",
-   "price_rm": 329888,
+   "price_rm": 398888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/glc/",
    "body": "SUV",
    "segment": "Compact Executive",
    "launch": "2023-04-07",
-   "monthly_rm": 3370,
+   "monthly_rm": 4070,
    "ownership": {
-    "road_tax_yr": 440,
+    "road_tax_yr": 439,
     "road_tax_rm": 439,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1999cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM329,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM398,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 32989,
-    "loan_monthly_rm": 4029.35,
-    "loan_total_interest_rm": 41566,
+    "loan_down_payment_rm": 39889,
+    "loan_monthly_rm": 4872.13,
+    "loan_total_interest_rm": 50260,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 8890
+    "insurance_rm_yr": 10684
    },
    "specs": {
     "fuel_l_per_100km": 2.25,
@@ -7827,10 +7846,10 @@
     "range_km": 131,
     "engine_cc": 1999,
     "power_hp": 201,
-    "motor_hp": 23,
+    "motor_hp": 134,
     "seats": 5,
     "boot_l": 620,
-    "accel_0_100_s": 6.2,
+    "accel_0_100_s": 6.7,
     "energy_kwh_per_100km": 0.7,
     "fuel_src": "official",
     "fuel_source_url": "https://www.mercedes-benz.de/passengercars/models/suv/glc/overview.html",
@@ -7867,7 +7886,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "GLC 350e 4Matic AMG Line"
   },
   {
    "id": "bmw-5-series",
@@ -8078,26 +8098,26 @@
    "brand": "Mercedes-Benz",
    "model": "E-Class",
    "type": "phev",
-   "price_rm": 367888,
+   "price_rm": 418888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/e-class/",
    "body": "Sedan",
    "segment": "Executive",
    "launch": "2024-09-12",
-   "monthly_rm": 3755,
+   "monthly_rm": 4275,
    "ownership": {
-    "road_tax_yr": 380,
+    "road_tax_yr": 379,
     "road_tax_rm": 379,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1999cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM367,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM418,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 36789,
-    "loan_monthly_rm": 4493.49,
-    "loan_total_interest_rm": 46354,
+    "loan_down_payment_rm": 41889,
+    "loan_monthly_rm": 5116.42,
+    "loan_total_interest_rm": 52780,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 9878
+    "insurance_rm_yr": 11204
    },
    "specs": {
     "battery_kwh": 25.4,
@@ -8145,7 +8165,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "E350e AMG Line"
   },
   {
    "id": "lexus-nx",
@@ -8289,32 +8310,32 @@
    "brand": "Volvo",
    "model": "XC90",
    "type": "phev",
-   "price_rm": 418888,
+   "price_rm": 434888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/volvo/xc90/",
    "body": "SUV",
    "segment": "Executive",
    "launch": "2025-04-10",
-   "monthly_rm": 4275,
+   "monthly_rm": 4440,
    "ownership": {
-    "road_tax_yr": 428,
+    "road_tax_yr": 427,
     "road_tax_rm": 427,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1969cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1969cc band3 x RM418,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1969cc band3 x RM434,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 41889,
-    "loan_monthly_rm": 5116.42,
-    "loan_total_interest_rm": 52780,
+    "loan_down_payment_rm": 43489,
+    "loan_monthly_rm": 5311.85,
+    "loan_total_interest_rm": 54796,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 11204
+    "insurance_rm_yr": 11620
    },
    "specs": {
     "battery_kwh": 18.8,
     "range_km": 77,
     "engine_cc": 1969,
-    "power_hp": 249,
+    "power_hp": 317,
     "motor_hp": 145,
     "seats": 7,
     "boot_l": 451,
@@ -8357,7 +8378,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Ultra T8"
   },
   {
    "id": "mercedes-benz-glc-coupe",
@@ -8502,32 +8524,32 @@
    "brand": "Mercedes-Benz",
    "model": "AMG C-Class",
    "type": "phev",
-   "price_rm": 443888,
+   "price_rm": 958888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/c-class-amg/",
    "body": "Sedan",
    "segment": "Compact Executive",
    "launch": "2024-06-21",
-   "monthly_rm": 4530,
+   "monthly_rm": 9790,
    "ownership": {
-    "road_tax_yr": 380,
+    "road_tax_yr": 375,
     "road_tax_rm": 375,
     "road_tax_note": "phev road tax by engine cc (JPJ) (1991cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1991cc band3 x RM443,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1991cc band3 x RM958,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 44389,
-    "loan_monthly_rm": 5421.77,
-    "loan_total_interest_rm": 55930,
+    "loan_down_payment_rm": 95889,
+    "loan_monthly_rm": 11712.13,
+    "loan_total_interest_rm": 120820,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 11854
+    "insurance_rm_yr": 25244
    },
    "specs": {
     "battery_kwh": 6.1,
     "range_km": 11,
     "engine_cc": 1991,
-    "power_hp": 402,
+    "power_hp": 469,
     "motor_hp": 201,
     "seats": 5,
     "boot_l": 455,
@@ -8570,7 +8592,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "C63 S E Performance F1 Edition"
   },
   {
    "id": "denza-b8",
@@ -8721,26 +8744,26 @@
    "brand": "BMW",
    "model": "X5",
    "type": "phev",
-   "price_rm": 470800,
+   "price_rm": 494800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/bmw/x5/",
    "body": "SUV",
    "segment": "Executive",
    "launch": "2024-01-19",
-   "monthly_rm": 4805,
+   "monthly_rm": 5050,
    "ownership": {
-    "road_tax_yr": 1637,
+    "road_tax_yr": 1636,
     "road_tax_rm": 1636,
     "road_tax_note": "phev road tax by engine cc (JPJ) (2998cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2998cc band4 x RM470,800)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2998cc band4 x RM494,800)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 47080,
-    "loan_monthly_rm": 5750.49,
-    "loan_total_interest_rm": 59321,
+    "loan_down_payment_rm": 49480,
+    "loan_monthly_rm": 6043.63,
+    "loan_total_interest_rm": 62345,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 12587
+    "insurance_rm_yr": 13211
    },
    "specs": {
     "battery_kwh": 29.5,
@@ -8788,33 +8811,34 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "xDrive50e M Sport"
   },
   {
    "id": "lexus-rx",
    "brand": "Lexus",
    "model": "RX",
    "type": "hybrid",
-   "price_rm": 468888,
+   "price_rm": 498888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/lexus/rx/",
    "body": "SUV",
    "segment": "Executive",
    "launch": "2023-05-16",
-   "monthly_rm": 4785,
+   "monthly_rm": 5095,
    "ownership": {
     "road_tax_yr": 754,
     "road_tax_rm": 754,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (2393cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2393cc band4 x RM468,888)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2393cc band4 x RM498,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 46889,
-    "loan_monthly_rm": 5727.13,
-    "loan_total_interest_rm": 59080,
+    "loan_down_payment_rm": 49889,
+    "loan_monthly_rm": 6093.56,
+    "loan_total_interest_rm": 62860,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 12538
+    "insurance_rm_yr": 13318
    },
    "specs": {
     "engine_cc": 2393,
@@ -8828,7 +8852,7 @@
     "fuel_source_url": "https://www.pcauto.com/my/cars/lexus/rx/fuel-consumption",
     "fuel_as_of_date": "2026-08-13"
    },
-   "price_display": "RM498,888–RM512,888",
+   "price_display": "RM468,888–RM512,888",
    "registered_my": 1336,
    "popularity_rating": 4,
    "registered_basis": "paultan_exact",
@@ -8856,7 +8880,8 @@
      "as_of": "2026-08-13",
      "url": "https://www.pcauto.com/my/cars/lexus/rx/fuel-consumption"
     }
-   }
+   },
+   "variant": "RX 500h F Sport"
   },
   {
    "id": "mercedes-benz-gle",
@@ -9076,37 +9101,37 @@
    "brand": "Toyota",
    "model": "Vellfire",
    "type": "hybrid",
-   "price_rm": 448000,
+   "price_rm": 549900,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/toyota/vellfire/",
    "body": "MPV",
    "segment": "Executive",
    "launch": "2023-10-23",
-   "monthly_rm": 4575,
+   "monthly_rm": 5615,
    "ownership": {
-    "road_tax_yr": 835,
+    "road_tax_yr": 829,
     "fuel_rm_yr": 3622,
-    "road_tax_rm": 835,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (2494cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2494cc band4 x RM448,000)",
+    "road_tax_rm": 829,
+    "road_tax_note": "hybrid road tax by engine cc (JPJ) (2487cc non-saloon)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2487cc band4 x RM549,900)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 44800,
-    "loan_monthly_rm": 5472.0,
-    "loan_total_interest_rm": 56448,
+    "loan_down_payment_rm": 54990,
+    "loan_monthly_rm": 6716.64,
+    "loan_total_interest_rm": 69287,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 11995
+    "insurance_rm_yr": 14644
    },
    "specs": {
     "fuel_l_per_100km": 9.1,
-    "engine_cc": 2494,
-    "power_hp": 180,
+    "engine_cc": 2487,
+    "power_hp": 185,
     "motor_hp": 180,
     "seats": 7,
     "boot_l": 510
    },
-   "price_display": "RM549,900",
+   "price_display": "RM448,000–RM549,900",
    "registered_my": 98,
    "popularity_rating": 1,
    "registered_basis": "paultan_exact",
@@ -9132,7 +9157,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Hybrid Electric Executive Lounge"
   },
   {
    "id": "bmw-x7",
@@ -9643,36 +9669,36 @@
    "brand": "Mercedes-Benz",
    "model": "AMG SL",
    "type": "phev",
-   "price_rm": 999888,
+   "price_rm": 2168888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-12",
    "source_url": "https://paultan.org/research/mercedes-benz/amg-sl/",
    "body": "Convertible",
    "segment": "Grand Tourer",
    "launch": "2023-08-09",
-   "monthly_rm": 10205,
+   "monthly_rm": 22140,
    "ownership": {
-    "road_tax_yr": 376,
-    "road_tax_rm": 375,
-    "road_tax_note": "phev road tax by engine cc (JPJ) (1991cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1991cc band3 x RM999,888)",
+    "road_tax_yr": 6549,
+    "road_tax_rm": 6549,
+    "road_tax_note": "phev road tax by engine cc (JPJ) (3982cc saloon)",
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (3982cc band5 x RM2,168,888)",
     "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 99989,
-    "loan_monthly_rm": 12212.92,
-    "loan_total_interest_rm": 125986,
+    "loan_down_payment_rm": 216889,
+    "loan_monthly_rm": 26491.42,
+    "loan_total_interest_rm": 273280,
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 26310
+    "insurance_rm_yr": 56769
    },
    "specs": {
-    "battery_kwh": 1.0,
+    "battery_kwh": 6.1,
     "range_km": 13,
-    "engine_cc": 1991,
-    "power_hp": 375,
-    "motor_hp": 13,
+    "engine_cc": 3982,
+    "power_hp": 577,
+    "motor_hp": 201,
     "seats": 4,
     "boot_l": 240,
-    "accel_0_100_s": 4.9,
+    "accel_0_100_s": 2.9,
     "energy_kwh_per_100km": 6.9,
     "fuel_l_per_100km": 9.15,
     "fuel_src": "official",
@@ -9711,7 +9737,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "SL 63 S E Performance"
   },
   {
    "id": "mercedes-benz-amg-gle",
@@ -10271,258 +10298,6 @@
   },
   {
    "brand": "Jaecoo",
-   "model": "J5",
-   "type": "hybrid",
-   "price_rm": 108000,
-   "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "body": "SUV",
-   "segment": "B-Segment",
-   "monthly_rm": 1157,
-   "ownership": {
-    "road_tax_yr": 120,
-    "road_tax_rm": 120,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM108,000)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 10800,
-    "loan_monthly_rm": 1319.14,
-    "loan_total_interest_rm": 13608,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3088
-   },
-   "specs": {
-    "engine_cc": 1498,
-    "power_hp": 145,
-    "torque_nm": 230,
-    "seats": 5,
-    "boot_l": 400,
-    "accel_0_100_s": 9.7,
-    "driveline": "Front Wheel Drive",
-    "transmission": "CVT Automatic",
-    "fuel_l_per_100km": 7.5
-   },
-   "price_display": "RM108,000",
-   "id": "jaecoo-j5",
-   "registered_my": 3,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "brand": "Jaecoo",
-   "model": "J7",
-   "type": "hybrid",
-   "price_rm": 138800,
-   "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "body": "SUV",
-   "segment": "C-Segment",
-   "monthly_rm": 1487,
-   "ownership": {
-    "road_tax_yr": 120,
-    "road_tax_rm": 120,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1598cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1598cc band2 x RM138,800)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 13880,
-    "loan_monthly_rm": 1695.34,
-    "loan_total_interest_rm": 17489,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3888
-   },
-   "specs": {
-    "engine_cc": 1598,
-    "power_hp": 194,
-    "torque_nm": 290,
-    "seats": 5,
-    "boot_l": 412,
-    "accel_0_100_s": 9.9,
-    "driveline": "All Wheel Drive",
-    "transmission": "Dual-clutch Automatic (Wet)",
-    "fuel_l_per_100km": 8.5
-   },
-   "price_display": "RM138,800",
-   "id": "jaecoo-j7",
-   "registered_my": 2189,
-   "popularity_rating": 5,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "brand": "Jaecoo",
-   "model": "J8",
-   "type": "hybrid",
-   "price_rm": 178800,
-   "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "body": "SUV",
-   "segment": "D-Segment",
-   "monthly_rm": 1916,
-   "ownership": {
-    "road_tax_yr": 439,
-    "road_tax_rm": 439,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1998cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1998cc band3 x RM178,800)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 17880,
-    "loan_monthly_rm": 2183.91,
-    "loan_total_interest_rm": 22529,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4962
-   },
-   "specs": {
-    "engine_cc": 1998,
-    "power_hp": 246,
-    "torque_nm": 385,
-    "seats": 5,
-    "boot_l": 540,
-    "accel_0_100_s": 8.6,
-    "driveline": "All Wheel Drive",
-    "transmission": "Conventional Automatic",
-    "fuel_l_per_100km": 9.0
-   },
-   "price_display": "RM178,800",
-   "id": "jaecoo-j8",
-   "registered_my": 3,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "brand": "Omoda",
-   "model": "C9",
-   "type": "hybrid",
-   "price_rm": 168800,
-   "source": "paultan",
-   "as_of_date": "2026-08-10",
-   "body": "SUV",
-   "segment": "D-Segment",
-   "monthly_rm": 1809,
-   "ownership": {
-    "road_tax_yr": 439,
-    "road_tax_rm": 120,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1598cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1598cc band2 x RM168,800)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 16880,
-    "loan_monthly_rm": 2061.77,
-    "loan_total_interest_rm": 21269,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4668
-   },
-   "specs": {
-    "engine_cc": 1598,
-    "power_hp": 194,
-    "torque_nm": 290,
-    "seats": 5,
-    "boot_l": 660,
-    "accel_0_100_s": 8.8,
-    "driveline": "Front Wheel Drive",
-    "transmission": "Conventional Automatic",
-    "fuel_l_per_100km": 8.5
-   },
-   "price_display": "RM168,800",
-   "id": "omoda-c9",
-   "registered_my": 0,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_no_records",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "brand": "Jaecoo",
    "model": "J7 PHEV",
    "type": "phev",
    "price_rm": 158800,
@@ -10566,7 +10341,7 @@
    "id": "jaecoo-j7-phev",
    "registered_my": 2189,
    "popularity_rating": 5,
-   "registered_basis": "paultan_family_shared",
+   "registered_basis": "paultan_exact",
    "registered_as_of": "2026-09",
    "provenance": {
     "price_rm": {
@@ -10662,468 +10437,6 @@
     "fuel_l_per_100km": {
      "method": "measured",
      "basis": "manufacturer figure"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "byd-dolphin",
-   "brand": "BYD",
-   "model": "Dolphin",
-   "variant": "Extended Range",
-   "type": "ev",
-   "price_rm": 119900,
-   "source": "official",
-   "as_of_date": "2026-05-01",
-   "specs": {
-    "battery_kwh": 60.48,
-    "range_km": 427,
-    "energy_kwh_per_100km": 11.3,
-    "motor_kw": 150,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 80,
-    "seats": 5,
-    "boot_l": 345
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "maintenance_rm_yr": 550,
-    "road_tax_rm": 160,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM119,900 @ 2.50%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 11990,
-    "loan_monthly_rm": 1442.01,
-    "loan_total_interest_rm": 13219,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3247
-   },
-   "registered_my": 2831,
-   "popularity_rating": 5,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "body": "Hatchback",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "hyundai-ioniq-5",
-   "brand": "Hyundai",
-   "model": "Ioniq 5",
-   "variant": "Plus AWD Long Range",
-   "type": "ev",
-   "price_rm": 249888,
-   "source": "official",
-   "as_of_date": "2026-03-15",
-   "specs": {
-    "battery_kwh": 84,
-    "range_km": 430,
-    "energy_kwh_per_100km": 17.0,
-    "motor_kw": 225,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 240,
-    "seats": 5,
-    "boot_l": 527
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "maintenance_rm_yr": 700,
-    "road_tax_rm": 335,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 225 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM249,888 @ 2.40%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 24989,
-    "loan_monthly_rm": 3005.35,
-    "loan_total_interest_rm": 27550,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 6487
-   },
-   "registered_my": 348,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "body": "SUV",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "kia-ev6",
-   "brand": "Kia",
-   "model": "EV6",
-   "variant": "GT-Line AWD",
-   "type": "ev",
-   "price_rm": 318888,
-   "source": "official",
-   "as_of_date": "2026-03-15",
-   "specs": {
-    "battery_kwh": 77.4,
-    "range_km": 470,
-    "energy_kwh_per_100km": 16.5,
-    "motor_kw": 239,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 240,
-    "seats": 5,
-    "boot_l": 490
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "maintenance_rm_yr": 750,
-    "road_tax_rm": 365,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 239 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM318,888 @ 2.38%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 31889,
-    "loan_monthly_rm": 3835.2,
-    "loan_total_interest_rm": 35157,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 8207
-   },
-   "registered_my": 120,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "body": "SUV",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "toyota-corolla-hybrid",
-   "brand": "Toyota",
-   "model": "Corolla Hybrid",
-   "variant": "1.8 Hybrid",
-   "type": "hybrid",
-   "fuel": "petrol",
-   "price_rm": 134350,
-   "source": "official",
-   "as_of_date": "2026-04-10",
-   "specs": {
-    "fuel_l_per_100km": 4.0,
-    "engine_cc": 1798,
-    "motor_kw": 100,
-    "seats": 5,
-    "boot_l": 471
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 150000,
-    "maintenance_rm_yr": 950,
-    "road_tax_rm": 279,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1798cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1798cc band3 x RM134,350)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 13435,
-    "loan_monthly_rm": 1640.99,
-    "loan_total_interest_rm": 16928,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3806
-   },
-   "registered_my": 3,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "body": "Sedan",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "honda-accord-ehev",
-   "brand": "Honda",
-   "model": "Accord e:HEV",
-   "variant": "RS e:HEV",
-   "type": "hybrid",
-   "fuel": "petrol",
-   "price_rm": 195900,
-   "source": "official",
-   "as_of_date": "2026-04-01",
-   "specs": {
-    "fuel_l_per_100km": 4.8,
-    "engine_cc": 1993,
-    "motor_kw": 158,
-    "seats": 5,
-    "boot_l": 502
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 150000,
-    "maintenance_rm_yr": 1000,
-    "road_tax_rm": 376,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1993cc saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1993cc band3 x RM195,900)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 19590,
-    "loan_monthly_rm": 2392.78,
-    "loan_total_interest_rm": 24683,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5406
-   },
-   "registered_my": 0,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_no_records",
-   "registered_as_of": "2026-09",
-   "body": "Sedan",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "cherry-tiggo8-pro-phev",
-   "brand": "Chery",
-   "model": "Tiggo 8 Pro PHEV",
-   "variant": "Flagship",
-   "type": "hybrid",
-   "fuel": "petrol",
-   "price_rm": 148300,
-   "source": "official",
-   "as_of_date": "2026-03-10",
-   "specs": {
-    "fuel_l_per_100km": 5.3,
-    "engine_cc": 1498,
-    "motor_kw": 384,
-    "seats": 7,
-    "boot_l": 336
-   },
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 150000,
-    "maintenance_rm_yr": 980,
-    "road_tax_rm": 120,
-    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM148,300)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 14830,
-    "loan_monthly_rm": 1811.38,
-    "loan_total_interest_rm": 18686,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4135
-   },
-   "registered_my": 0,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_no_records",
-   "registered_as_of": "2026-09",
-   "body": "SUV",
-   "body_source": "researched-2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "maintenance_rm_yr": {
-     "method": "measured",
-     "basis": "published service schedule"
-    },
-    "fuel_l_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "jaguar-i-pace",
-   "brand": "Jaguar",
-   "model": "I-PACE",
-   "variant": "EV400 Black LE",
-   "type": "ev",
-   "price_rm": 460800,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/2023/03/28/jaguar-i-pace-ev-in-malaysia-dual-motor-awd-400-ps-0-100-in-4-8s-470-km-range-from-rm460800/",
-   "body": "SUV",
-   "segment": "D-Segment",
-   "launch": "2023-03-28",
-   "price_display": "RM460,800 (Black LE) – RM498,800 (HSE)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 294 kW)",
-    "road_tax_rm": 545,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM460,800 @ 2.35%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 46080,
-    "loan_monthly_rm": 5541.94,
-    "loan_total_interest_rm": 50803,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 11705
-   },
-   "specs": {
-    "battery_kwh": 90.0,
-    "range_km": 470.0,
-    "power_hp": 400,
-    "motor_kw": 294,
-    "energy_kwh_per_100km": 19.2,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 100,
-    "seats": 5,
-    "boot_l": 505
-   },
-   "registered_my": 61,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
     },
     "energy_kwh_per_100km": {
      "method": "measured",
@@ -11322,77 +10635,6 @@
    }
   },
   {
-   "id": "mitsubishi-outlander-phev",
-   "brand": "Mitsubishi",
-   "model": "Outlander PHEV",
-   "variant": "PHEV (expected 2026 launch)",
-   "type": "phev",
-   "price_rm": 162000,
-   "source": "unofficial",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/2024/10/02/2025-mitsubishi-outlander-phev-debuts/",
-   "body": "SUV",
-   "segment": "D-Segment",
-   "price_display": "est. RM162,000 (4th-gen; no official MY launch price yet)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "road_tax_rm": 728,
-    "road_tax_note": "phev road tax by engine cc (JPJ) (2360cc non-saloon)",
-    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2360cc band4 x RM162,000)",
-    "loan_rate_pct": 2.0,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 16200,
-    "loan_monthly_rm": 1978.71,
-    "loan_total_interest_rm": 20412,
-    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4559
-   },
-   "specs": {
-    "battery_kwh": 22.7,
-    "range_km": 86.0,
-    "power_hp": 248,
-    "motor_kw": 232,
-    "seats": 7,
-    "fuel_l_per_100km": 1.2,
-    "fuel_src": "official",
-    "fuel_source_url": "https://www.mitsubishi-motors.com.au/vehicles/outlander-plug-in-hybrid-ev.html",
-    "fuel_as_of_date": "2026-08-13",
-    "fuel_notes": "25MY refresh 22.7kWh/86km: weighted combined 1.2 L/100km (Mitsubishi AU official; Condition B 6.2)",
-    "engine_cc": 2360
-   },
-   "registered_my": 2,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
-    },
-    "fuel_l_per_100km": {
-     "method": "estimated",
-     "basis": "WLTP combined, not charge-sustaining — understates petrol use",
-     "caveat": true
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
    "id": "ford-mustang-mach-e",
    "brand": "Ford",
    "model": "Mustang Mach-E",
@@ -11522,46 +10764,417 @@
    }
   },
   {
-   "id": "mercedes-benz-eqb",
-   "brand": "Mercedes-Benz",
-   "model": "EQB",
-   "variant": "EQB 300 AMG Line (7-seat)",
-   "type": "ev",
-   "price_rm": 338888,
+   "id": "lexus-es",
+   "brand": "Lexus",
+   "model": "ES",
+   "type": "hybrid",
+   "price_rm": 366888,
    "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/mercedes-benz/eqb/",
-   "body": "SUV",
-   "segment": "C-Segment",
-   "price_display": "RM338,888 (X243, single variant; discontinued)",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/lexus/es/",
+   "body": "Sedan",
+   "segment": "Executive",
+   "launch": "2026-11-02",
+   "monthly_rm": 3745,
    "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 215 kW)",
-    "road_tax_rm": 305,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM338,888 @ 2.38%)",
-    "loan_rate_pct": 1.75,
+    "road_tax_rm": 867,
+    "road_tax_note": "hybrid road tax by engine cc (JPJ) (2487cc saloon)",
+    "insurance_rm_yr": 9886,
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (2487cc band4 x RM366,888)",
+    "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 33889,
-    "loan_monthly_rm": 4075.73,
-    "loan_total_interest_rm": 37362,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 8721
+    "loan_down_payment_rm": 36689,
+    "loan_monthly_rm": 4481.27,
+    "loan_total_interest_rm": 46228,
+    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
    },
    "specs": {
-    "battery_kwh": 66.5,
-    "range_km": 423.0,
-    "power_hp": 288,
-    "motor_kw": 215,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 110,
-    "seats": 7,
+    "engine_cc": 2487,
+    "power_hp": 186,
+    "motor_hp": 201,
+    "seats": 5,
+    "boot_l": 493,
+    "fuel_l_per_100km": 4.4,
+    "fuel_src": "paultan",
+    "fuel_source_url": "https://paultan.org/research/lexus/es/xz20/es-350h-luxury-2026/",
+    "fuel_as_of_date": "2026-11-12"
+   },
+   "price_display": "RM366,888",
+   "variant": "ES 350h Luxury",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+    },
+    "fuel_l_per_100km": {
+     "method": "measured",
+     "basis": "paultan",
+     "as_of": "2026-11-12",
+     "url": "https://paultan.org/research/lexus/es/xz20/es-350h-luxury-2026/"
+    }
+   },
+   "registered_my": 10,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_exact",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "mg-zs",
+   "brand": "MG",
+   "model": "ZS Hybrid+",
+   "type": "hybrid",
+   "price_rm": 109900,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/mg/zs/",
+   "body": "SUV",
+   "segment": "B-Segment",
+   "launch": "2026-10-29",
+   "monthly_rm": 1120,
+   "ownership": {
+    "road_tax_rm": 120,
+    "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
+    "insurance_rm_yr": 3137,
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM109,900)",
+    "loan_rate_pct": 2.0,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 10990,
+    "loan_monthly_rm": 1342.35,
+    "loan_total_interest_rm": 13847,
+    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "engine_cc": 1498,
+    "power_hp": 101,
+    "motor_hp": 134,
+    "battery_kwh": 1.83,
+    "seats": 5,
+    "boot_l": 443,
+    "fuel_l_per_100km": 4.7,
+    "fuel_src": "paultan",
+    "fuel_source_url": "https://paultan.org/research/mg/zs/zs32/hybrid+-2026/",
+    "fuel_as_of_date": "2026-11-12"
+   },
+   "price_display": "RM103,900–RM109,900",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+    },
+    "fuel_l_per_100km": {
+     "method": "measured",
+     "basis": "paultan",
+     "as_of": "2026-11-12",
+     "url": "https://paultan.org/research/mg/zs/zs32/hybrid+-2026/"
+    }
+   },
+   "registered_my": 0,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_no_records",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "wuling-porta-ev",
+   "brand": "Wuling",
+   "model": "Porta EV",
+   "type": "ev",
+   "price_rm": 99800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/wuling/porta-ev/",
+   "body": "Van",
+   "segment": "Commercial EV",
+   "launch": "2026-10-13",
+   "monthly_rm": 1020,
+   "ownership": {
+    "road_tax_rm": 50,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 75 kW)",
+    "insurance_rm_yr": 2812,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM99,800 @ 2.60%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 9980,
+    "loan_monthly_rm": 1200.27,
+    "loan_total_interest_rm": 11003,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 41.9,
+    "range_km": 300,
+    "power_hp": 101,
+    "seats": 2
+   },
+   "price_display": "RM99,800–RM105,800",
+   "variant": "300KM",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   },
+   "registered_my": 0,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_no_records",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "jaecoo-j5-ev",
+   "brand": "Jaecoo",
+   "model": "J5 EV",
+   "type": "ev",
+   "price_rm": 118800,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/jaecoo/j5-ev/",
+   "body": "SUV",
+   "segment": "B-Segment",
+   "launch": "2026-09-02",
+   "monthly_rm": 1215,
+   "ownership": {
+    "road_tax_rm": 180,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 155 kW)",
+    "insurance_rm_yr": 3218,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM118,800 @ 2.50%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 11880,
+    "loan_monthly_rm": 1428.78,
+    "loan_total_interest_rm": 13098,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 58.9,
+    "range_km": 402,
+    "power_hp": 208,
+    "charge_power_kw_dc": 130.0,
+    "seats": 5,
+    "boot_l": 480
+   },
+   "price_display": "RM118,800",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   },
+   "registered_my": 78,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_exact",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "porsche-cayenne-electric",
+   "brand": "Porsche",
+   "model": "Cayenne Electric",
+   "type": "ev",
+   "price_rm": 699000,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/porsche/cayenne-electric/",
+   "body": "SUV",
+   "segment": "Executive",
+   "launch": "2026-08-23",
+   "monthly_rm": 7135,
+   "ownership": {
+    "road_tax_rm": 665,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 325 kW)",
+    "insurance_rm_yr": 17751,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM699,000 @ 2.35%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 69900,
+    "loan_monthly_rm": 8406.72,
+    "loan_total_interest_rm": 77065,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 113.0,
+    "range_km": 642,
+    "power_hp": 436,
+    "charge_power_kw_dc": 390.0,
+    "seats": 5,
+    "boot_l": 781
+   },
+   "price_display": "RM699,000–RM969,999",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   },
+   "registered_my": 2,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_family_shared",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "porsche-cayenne-coupe-electric",
+   "brand": "Porsche",
+   "model": "Cayenne Coupe Electric",
+   "type": "ev",
+   "price_rm": 749000,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/porsche/cayenne-coupe-electric/",
+   "body": "Coupe",
+   "segment": "Executive",
+   "launch": "2026-08-23",
+   "monthly_rm": 7645,
+   "ownership": {
+    "road_tax_rm": 665,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 325 kW)",
+    "insurance_rm_yr": 19020,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM749,000 @ 2.35%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 74900,
+    "loan_monthly_rm": 9008.06,
+    "loan_total_interest_rm": 82577,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 113.0,
+    "range_km": 661,
+    "power_hp": 436,
+    "charge_power_kw_dc": 390.0,
+    "seats": 5,
+    "boot_l": 534
+   },
+   "price_display": "RM749,000–RM999,999",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   },
+   "registered_my": 2,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_family_shared",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "mercedes-benz-cla-electric",
+   "brand": "Mercedes-Benz",
+   "model": "CLA Electric",
+   "type": "ev",
+   "price_rm": 274888,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/mercedes-benz/cla-electric/",
+   "body": "Sedan",
+   "segment": "C-Segment",
+   "launch": "2026-08-14",
+   "monthly_rm": 2805,
+   "ownership": {
+    "road_tax_rm": 260,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 200 kW)",
+    "insurance_rm_yr": 7135,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM274,888 @ 2.40%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 27489,
+    "loan_monthly_rm": 3306.02,
+    "loan_total_interest_rm": 30306,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 85.0,
+    "range_km": 748,
+    "power_hp": 268,
+    "charge_power_kw_dc": 320.0,
+    "seats": 5,
     "boot_l": 405
    },
-   "registered_my": 256,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
+   "price_display": "RM274,888",
+   "variant": "CLA250+ AMG Line",
    "provenance": {
     "price_rm": {
      "method": "measured",
@@ -11583,553 +11196,47 @@
      "method": "computed",
      "basis": "battery_kwh / range_km"
     }
-   }
-  },
-  {
-   "id": "mercedes-benz-eqc",
-   "brand": "Mercedes-Benz",
-   "model": "EQC",
-   "variant": "EQC 400 4Matic",
-   "type": "ev",
-   "price_rm": 393888,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/mercedes-benz/eqc/",
-   "body": "SUV",
-   "segment": "D-Segment",
-   "launch": "2022-06",
-   "price_display": "RM393,888 (RM388,888 at 2022 launch; discontinued)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 300 kW)",
-    "road_tax_rm": 545,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM393,888 @ 2.38%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 39389,
-    "loan_monthly_rm": 4737.21,
-    "loan_total_interest_rm": 43426,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 10134
    },
-   "specs": {
-    "battery_kwh": 80.0,
-    "range_km": 437.0,
-    "power_hp": 408,
-    "motor_kw": 300,
-    "energy_kwh_per_100km": 19.8,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 110,
-    "seats": 5,
-    "boot_l": 495
-   },
-   "registered_my": 193,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "measured",
-     "basis": "manufacturer figure"
-    }
-   }
-  },
-  {
-   "id": "hyundai-kona-electric",
-   "brand": "Hyundai",
-   "model": "Kona Electric",
-   "variant": "Standard (39.2 kWh)",
-   "type": "ev",
-   "price_rm": 149888,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/hyundai/kona-electric/",
-   "body": "SUV",
-   "segment": "B-Segment",
-   "price_display": "from RM149,888 (6-variant line-up up to RM208,348)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 100 kW)",
-    "road_tax_rm": 70,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM149,888 @ 2.50%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 14989,
-    "loan_monthly_rm": 1802.67,
-    "loan_total_interest_rm": 16525,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 4057
-   },
-   "specs": {
-    "battery_kwh": 39.2,
-    "range_km": 305.0,
-    "power_hp": 134,
-    "motor_kw": 100,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 72,
-    "seats": 5,
-    "boot_l": 332
-   },
-   "registered_my": 218,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "hyundai-kona-electric-emax",
-   "brand": "Hyundai",
-   "model": "Kona Electric",
-   "variant": "e-Max Long Range (64 kWh)",
-   "type": "ev",
-   "price_rm": 208348,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/hyundai/kona-electric/",
-   "body": "SUV",
-   "segment": "B-Segment",
-   "price_display": "RM208,348 (e-Max; discontinued 2023)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "road_tax_rm": 160,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM208,348 @ 2.40%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 20835,
-    "loan_monthly_rm": 2505.76,
-    "loan_total_interest_rm": 22970,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5410
-   },
-   "specs": {
-    "battery_kwh": 64.0,
-    "range_km": 484.0,
-    "power_hp": 201,
-    "motor_kw": 150,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 100,
-    "seats": 5
-   },
-   "registered_my": 218,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_family_shared",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "mg-zs-ev",
-   "brand": "MG",
-   "model": "ZS EV",
-   "variant": "ZS EV (51.1 kWh)",
-   "type": "ev",
-   "price_rm": 125999,
-   "source": "zigwheels",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://www.zigwheels.my/new-cars/mg/zs-ev",
-   "body": "SUV",
-   "segment": "B-Segment",
-   "price_display": "RM125,999 OTR (was RM148,888 at launch)",
-   "ownership": {
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 130 kW)",
-    "road_tax_rm": 120,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM125,999 @ 2.50%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 12600,
-    "loan_monthly_rm": 1515.36,
-    "loan_total_interest_rm": 13891,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 3412
-   },
-   "specs": {
-    "battery_kwh": 51.1,
-    "range_km": 320.0,
-    "power_hp": 174,
-    "motor_kw": 129,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 76,
-    "seats": 5,
-    "boot_l": 448
-   },
-   "registered_my": 126,
-   "popularity_rating": 2,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "audi-rs-e-tron-gt",
-   "brand": "Audi",
-   "model": "RS e-tron GT",
-   "variant": "RS e-tron GT (facelift)",
-   "type": "ev",
-   "price_rm": 793790,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/audi/e-tron-gt/",
-   "body": "Sedan",
-   "segment": "E-Segment",
-   "price_display": "RM793,790 (Mk1 range RM399,990–RM793,790; RS was RM499,990 in 2023)",
-   "ownership": {
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 680 kW)",
-    "road_tax_rm": 4890,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM793,790 @ 2.35%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 79379,
-    "loan_monthly_rm": 9546.74,
-    "loan_total_interest_rm": 87515,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 20156
-   },
-   "specs": {
-    "battery_kwh": 93.4,
-    "range_km": 495.0,
-    "power_hp": 912,
-    "motor_kw": 680,
-    "charge_power_kw_ac": 22,
-    "charge_power_kw_dc": 270,
-    "seats": 4
-   },
-   "registered_my": 50,
+   "registered_my": 5,
    "popularity_rating": 1,
    "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
+   "registered_as_of": "2026-09"
   },
   {
-   "id": "audi-sq8-e-tron",
-   "brand": "Audi",
-   "model": "SQ8 e-tron",
-   "variant": "SQ8 e-tron (Mk1)",
-   "type": "ev",
-   "price_rm": 519990,
+   "id": "jetour-t2",
+   "brand": "Jetour",
+   "model": "T2 i-DM",
+   "type": "phev",
+   "price_rm": 162800,
    "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/audi/sq8-e-tron/",
-   "body": "SUV",
-   "segment": "E-Segment",
-   "price_display": "RM519,990 (discontinued)",
-   "ownership": {
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 370 kW)",
-    "road_tax_rm": 865,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM519,990 @ 2.35%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 51999,
-    "loan_monthly_rm": 6253.81,
-    "loan_total_interest_rm": 57329,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 13207
-   },
-   "specs": {
-    "battery_kwh": 106.0,
-    "range_km": 458.0,
-    "power_hp": 496,
-    "motor_kw": 370,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 170,
-    "seats": 5,
-    "boot_l": 569
-   },
-   "registered_my": 7,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "mazda-mx-30",
-   "brand": "Mazda",
-   "model": "MX-30",
-   "variant": "MX-30 (35.5 kWh)",
-   "type": "ev",
-   "price_rm": 198980,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/mazda/mx-30/",
-   "body": "SUV",
-   "segment": "B-Segment",
-   "price_display": "RM198,980 (single variant; discontinued)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 107 kW)",
-    "road_tax_rm": 80,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM198,980 @ 2.50%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 19898,
-    "loan_monthly_rm": 2393.09,
-    "loan_total_interest_rm": 21938,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 5382
-   },
-   "specs": {
-    "battery_kwh": 35.5,
-    "range_km": 199.0,
-    "power_hp": 143,
-    "motor_kw": 107,
-    "charge_power_kw_ac": 6.6,
-    "charge_power_kw_dc": 50,
-    "seats": 5,
-    "boot_l": 332
-   },
-   "registered_my": 32,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "bmw-i3s",
-   "brand": "BMW",
-   "model": "i3s",
-   "variant": "i3s eDrive (120 Ah)",
-   "type": "ev",
-   "price_rm": 278800,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/2019/08/02/bmw-i3s-ev-official-pricing-revealed-rm278800-otr/",
-   "body": "Hatchback",
-   "segment": "B-Segment",
-   "launch": "2019-04-11",
-   "price_display": "RM278,800 OTR (first premium BEV in Malaysia; discontinued)",
-   "ownership": {
-    "warranty_battery_yrs": 8,
-    "warranty_battery_km": 160000,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 135 kW)",
-    "road_tax_rm": 140,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM278,800 @ 2.40%)",
-    "loan_rate_pct": 1.75,
-    "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 27880,
-    "loan_monthly_rm": 3353.07,
-    "loan_total_interest_rm": 30738,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 7236
-   },
-   "specs": {
-    "battery_kwh": 42.2,
-    "range_km": 345.0,
-    "power_hp": 181,
-    "motor_kw": 135,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 50,
-    "seats": 4,
-    "boot_l": 260
-   },
-   "registered_my": 31,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
-   "provenance": {
-    "price_rm": {
-     "method": "measured",
-     "basis": "published on-the-road price"
-    },
-    "road_tax_rm": {
-     "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
-    },
-    "insurance_rm_yr": {
-     "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
-    },
-    "loan_total_interest_rm": {
-     "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
-    },
-    "energy_kwh_per_100km": {
-     "method": "computed",
-     "basis": "battery_kwh / range_km"
-    }
-   }
-  },
-  {
-   "id": "kia-niro-ev",
-   "brand": "Kia",
-   "model": "Niro EV",
-   "variant": "Niro EV (64.8 kWh)",
-   "type": "ev",
-   "price_rm": 256668,
-   "source": "paultan",
-   "as_of_date": "2026-08-11",
-   "source_url": "https://paultan.org/research/kia/niro-ev/",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/jetour/t2/",
    "body": "SUV",
    "segment": "C-Segment",
-   "launch": "2023-07-05",
-   "price_display": "RM256,668 (debut RM255,888, Jul 2023)",
+   "launch": "2026-03-13",
+   "monthly_rm": 1660,
    "ownership": {
-    "warranty_battery_yrs": 8,
-    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "road_tax_rm": 160,
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM256,668 @ 2.40%)",
-    "loan_rate_pct": 1.75,
+    "road_tax_rm": 120,
+    "road_tax_note": "phev road tax by engine cc (JPJ) (1499cc non-saloon)",
+    "insurance_rm_yr": 4512,
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1499cc band2 x RM162,800)",
+    "loan_rate_pct": 2.0,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 25667,
-    "loan_monthly_rm": 3086.89,
-    "loan_total_interest_rm": 28298,
-    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 6663
+    "loan_down_payment_rm": 16280,
+    "loan_monthly_rm": 1988.49,
+    "loan_total_interest_rm": 20513,
+    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
    },
    "specs": {
-    "battery_kwh": 64.8,
-    "range_km": 460.0,
-    "power_hp": 201,
-    "motor_kw": 150,
-    "charge_power_kw_ac": 11,
-    "charge_power_kw_dc": 80,
+    "engine_cc": 1499,
+    "power_hp": 134,
+    "motor_hp": 221,
+    "battery_kwh": 18.4,
+    "range_km": 100,
     "seats": 5,
-    "boot_l": 475
+    "boot_l": 580
    },
-   "registered_my": 11,
-   "popularity_rating": 1,
-   "registered_basis": "paultan_exact",
-   "registered_as_of": "2026-09",
+   "price_display": "RM156,800–RM162,800",
    "provenance": {
     "price_rm": {
      "method": "measured",
@@ -12137,21 +11244,86 @@
     },
     "road_tax_rm": {
      "method": "computed",
-     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
     },
     "insurance_rm_yr": {
      "method": "computed",
-     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
     },
     "loan_total_interest_rm": {
      "method": "computed",
-     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
     },
     "energy_kwh_per_100km": {
      "method": "computed",
      "basis": "battery_kwh / range_km"
     }
-   }
+   },
+   "registered_my": 397,
+   "popularity_rating": 2,
+   "registered_basis": "paultan_exact",
+   "registered_as_of": "2026-09"
+  },
+  {
+   "id": "jac-t9",
+   "brand": "JAC",
+   "model": "T9 PHEV",
+   "type": "phev",
+   "price_rm": 156028,
+   "source": "paultan",
+   "as_of_date": "2026-11-12",
+   "source_url": "https://paultan.org/research/jac/t9/",
+   "body": "Pickup",
+   "segment": "Truck/4X4",
+   "launch": "2025-03-06",
+   "monthly_rm": 1595,
+   "ownership": {
+    "road_tax_rm": 439,
+    "road_tax_note": "phev road tax by engine cc (JPJ) (1999cc non-saloon)",
+    "insurance_rm_yr": 4370,
+    "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1999cc band3 x RM156,028)",
+    "loan_rate_pct": 2.0,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 15603,
+    "loan_monthly_rm": 1905.77,
+    "loan_total_interest_rm": 19660,
+    "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "power_hp": 208,
+    "motor_hp": 376,
+    "battery_kwh": 31.2,
+    "range_km": 100,
+    "seats": 5,
+    "engine_cc": 1999
+   },
+   "price_display": "RM119,888–RM164,028",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Budget-2009 engine-cc schedule, Peninsular private"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "carbase.my comprehensive formula, Peninsular, 0% NCD"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   },
+   "registered_my": 0,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_no_records",
+   "registered_as_of": "2026-09"
   }
  ]
 }

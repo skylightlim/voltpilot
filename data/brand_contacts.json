@@ -173,6 +173,16 @@
       "verified": "http_200"
     },
     {
+      "brand": "Jetour",
+      "distributor": "Jetour Automobile Malaysia Sdn Bhd",
+      "distributor_source": "https://jetour.com.my/",
+      "website": "https://jetour.com.my/",
+      "phone": null,
+      "phone_source": null,
+      "as_of": "2026-11-12",
+      "verified": "http_200"
+    },
+    {
       "brand": "Kia",
       "distributor": null,
       "distributor_source": null,

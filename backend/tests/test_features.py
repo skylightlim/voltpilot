@@ -219,9 +219,17 @@ class TestStability:
         assert out["firm"] and out["leader_share"] >= 0.8
 
     def test_a_tied_profile_is_not_reported_firm(self):
-        """After the gate removes 42 EVs the survivors are barely separated."""
+        """After the gate removes the EVs, a money-first buyer's cheap hybrids are
+        barely separated.
+
+        Default sliders until 2026-11-12, when re-pricing the hybrids to their
+        hybrid variants (they had carried the petrol price) left this profile with
+        a firm leader at 0.82. Weighting money at 80 brings back the tie (0.475,
+        Yaris Cross / Vios / Tiggo Cross): the branch under test is the tied one.
+        """
+        sliders = dict(DEFAULT_SLIDERS, save_money=80)
         out = scoring.score_catalog(GOLDEN_PROFILES["bev_gate_blocked"],
-                                    DEFAULT_SLIDERS)["stability"]
+                                    sliders)["stability"]
         assert not out["firm"]
         assert len(out["contenders"]) >= 2
 

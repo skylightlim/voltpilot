@@ -21,7 +21,7 @@ def catalog():
 
 class TestLoanMatchesCatalog:
     def test_every_stored_instalment_is_reproduced(self, catalog):
-        """The catalogue stores loan_monthly_rm for all 184 trims."""
+        """The catalogue stores loan_monthly_rm for every trim."""
         off = []
         for v in catalog:
             own = v.get("ownership") or {}
@@ -78,7 +78,7 @@ class TestLoanMatchesCatalog:
 
 class TestInsuranceMatchesCatalog:
     def test_every_stored_premium_is_reproduced(self, catalog):
-        """184 of 184 rows carry insurance_rm_yr, computed at 0% NCD."""
+        """Every row carries insurance_rm_yr, computed at 0% NCD."""
         off = []
         for v in catalog:
             own = v.get("ownership") or {}
@@ -181,7 +181,7 @@ class TestDepreciation:
         assert values == sorted(values, reverse=True)
 
     def test_a_measured_model_is_labelled_measured(self):
-        """22 of 184 trims have their own curve; the rest must not claim one."""
+        """22 of 170 trims have their own curve; the rest must not claim one."""
         from app.config import load_depreciation_curve
 
         measured = next(iter(load_depreciation_curve()["by_model"]))

@@ -6,7 +6,7 @@ import { apiService, type ComparedCar } from "@/lib/api";
 
 /** Two cars held against each other, which is how the decision is made.
  *
- *  The product asks a binary question and answers it with a ranked list of 184.
+ *  The product asks a binary question and answers it with a ranked list of 170.
  *  Nothing in the interface let a buyer put two candidates side by side.
  *  FEATURES.md P5. */
 

@@ -7,7 +7,7 @@ scoring pipeline reads none of.
 
 Resale is now a scored criterion, so the retained-value figure already moves
 recommendations. Showing the listings it was fitted from turns an assertion into
-evidence, and makes the 22-of-184 measurement coverage visible rather than
+evidence, and makes the 22-of-170 measurement coverage visible rather than
 implied.
 """
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -81,7 +82,7 @@ class TestFinancialEngine:
     def test_loan_uses_catalog_flat_rate(self, catalog):
         ev = _by_slug(catalog, "proton-emas-5")
         out = engines.financial_tco_excluding(ev)
-        financed = 99_800 - 9_980
+        financed = ev["price_rm"] * 0.90  # 10% down, read from the row so a re-price does not break it
         assert out["components"]["loan_interest_rm"] == round(financed * 0.0175 * 7, 0)
 
     def test_loan_interest_positive(self):
@@ -90,7 +91,7 @@ class TestFinancialEngine:
 
 class TestEnergyEngine:
     def test_home_split_80_20_cheaper_than_station_only(self, catalog):
-        ev = _by_slug(catalog, "byd-dolphin")
+        ev = _by_slug(catalog, "byd-atto-3")
         energy = scoring.energy_context()
         home = engines.energy_engine(ev, BASE_PROFILE, engines.build_features(BASE_PROFILE), energy)
         nohome = engines.energy_engine(
@@ -383,10 +384,24 @@ class TestMaintenanceModel:
             if (v.get("ownership") or {}).get("maintenance_rm_yr")
         ]
 
+    def _calibration(self):
+        """The 22 points the constants were fitted on, frozen at fit time.
+
+        Read from the live catalog until 2026-11-12, when six of these cars left it
+        (no longer sold new) and others were re-priced to their current variant.
+        Their measured servicing costs are still the data the fit describes.
+        """
+        path = Path(__file__).parent / "fixtures" / "maintenance_calibration.json"
+        return json.loads(path.read_text())["rows"]
+
     def test_fit_reproduces_the_measured_rows_it_was_calibrated_on(self):
         """Guards the constants against drifting away from their own fit."""
-        rows = self._measured()
-        assert len(rows) >= 20, "calibration set shrank; refit before trusting this"
+        rows = [
+            {"type": r["type"], "price_rm": r["price_rm"],
+             "ownership": {"maintenance_rm_yr": r["maintenance_rm_yr"]}}
+            for r in self._calibration()
+        ]
+        assert len(rows) == 22, "calibration set changed; refit before trusting this"
         errors = [
             abs(engines._maintenance_fallback(v) - float(v["ownership"]["maintenance_rm_yr"]))
             for v in rows
@@ -433,7 +448,7 @@ class TestPracticality:
         assert engines.practicality_factor(large) > engines.practicality_factor(small)
 
     def test_an_unknown_boot_is_neutral_not_penalised(self):
-        """Absent data must not read as a small boot; 17 of 184 trims have none."""
+        """Absent data must not read as a small boot; 10 of 170 trims have none."""
         assert engines.practicality_factor({"type": "hybrid", "specs": {}}) == 1.0
 
     def test_seat_count_does_not_move_the_score(self):

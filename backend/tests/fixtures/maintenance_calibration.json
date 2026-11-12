@@ -1,0 +1,137 @@
+{
+ "_readme": "The 22 measured servicing figures _maintenance_fallback was fitted on (issue.md issue 11), at the prices they were fitted against. Frozen here on 2026-11-12 when the catalog dropped six of these cars (no longer sold new) and re-priced others to their current variants: the fit is a statement about these points, so catalog churn must not move its own test.",
+ "rows": [
+  {
+   "id": "proton-emas-5",
+   "type": "ev",
+   "price_rm": 99800,
+   "maintenance_rm_yr": 650
+  },
+  {
+   "id": "byd-atto-3",
+   "type": "ev",
+   "price_rm": 149800,
+   "maintenance_rm_yr": 600
+  },
+  {
+   "id": "byd-seal",
+   "type": "ev",
+   "price_rm": 213800,
+   "maintenance_rm_yr": 650
+  },
+  {
+   "id": "tesla-model-3",
+   "type": "ev",
+   "price_rm": 149000,
+   "maintenance_rm_yr": 500
+  },
+  {
+   "id": "tesla-model-y",
+   "type": "ev",
+   "price_rm": 195000,
+   "maintenance_rm_yr": 550
+  },
+  {
+   "id": "xpeng-g6",
+   "type": "ev",
+   "price_rm": 159900,
+   "maintenance_rm_yr": 600
+  },
+  {
+   "id": "volvo-ex30",
+   "type": "ev",
+   "price_rm": 188888,
+   "maintenance_rm_yr": 650
+  },
+  {
+   "id": "mg4",
+   "type": "ev",
+   "price_rm": 129000,
+   "maintenance_rm_yr": 600
+  },
+  {
+   "id": "gac-aion-y-plus",
+   "type": "ev",
+   "price_rm": 138800,
+   "maintenance_rm_yr": 550
+  },
+  {
+   "id": "ora-good-cat",
+   "type": "ev",
+   "price_rm": 119800,
+   "maintenance_rm_yr": 500
+  },
+  {
+   "id": "chery-omoda-e5",
+   "type": "ev",
+   "price_rm": 108800,
+   "maintenance_rm_yr": 500
+  },
+  {
+   "id": "smart-3",
+   "type": "ev",
+   "price_rm": 218888,
+   "maintenance_rm_yr": 700
+  },
+  {
+   "id": "toyota-corolla-cross-hybrid",
+   "type": "hybrid",
+   "price_rm": 137900,
+   "maintenance_rm_yr": 900
+  },
+  {
+   "id": "toyota-camry-hybrid",
+   "type": "hybrid",
+   "price_rm": 199800,
+   "maintenance_rm_yr": 1000
+  },
+  {
+   "id": "honda-hrv-ehev",
+   "type": "hybrid",
+   "price_rm": 148900,
+   "maintenance_rm_yr": 950
+  },
+  {
+   "id": "honda-civic-ehev",
+   "type": "hybrid",
+   "price_rm": 163800,
+   "maintenance_rm_yr": 950
+  },
+  {
+   "id": "byd-dolphin",
+   "type": "ev",
+   "price_rm": 119900,
+   "maintenance_rm_yr": 550
+  },
+  {
+   "id": "hyundai-ioniq-5",
+   "type": "ev",
+   "price_rm": 249888,
+   "maintenance_rm_yr": 700
+  },
+  {
+   "id": "kia-ev6",
+   "type": "ev",
+   "price_rm": 318888,
+   "maintenance_rm_yr": 750
+  },
+  {
+   "id": "toyota-corolla-hybrid",
+   "type": "hybrid",
+   "price_rm": 134350,
+   "maintenance_rm_yr": 950
+  },
+  {
+   "id": "honda-accord-ehev",
+   "type": "hybrid",
+   "price_rm": 195900,
+   "maintenance_rm_yr": 1000
+  },
+  {
+   "id": "cherry-tiggo8-pro-phev",
+   "type": "hybrid",
+   "price_rm": 148300,
+   "maintenance_rm_yr": 980
+  }
+ ]
+}

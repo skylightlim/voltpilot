@@ -107,7 +107,7 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
         "resale_value_rm": round(price * retained_pct / 100.0, 0),
         "retained_pct": round(retained_pct, 1),
         "retained_basis": retained_basis,
-        # 22 of 184 trims carry a measured servicing figure; the rest are fitted
+        # 16 of 170 trims carry a measured servicing figure; the rest are fitted
         # from drivetrain and price band. Surfaced so the page can say which.
         "maintenance_basis": maintenance_basis,
         "lines": [

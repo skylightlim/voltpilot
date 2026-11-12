@@ -1,27 +1,42 @@
 # Static policy context injected into the Gemini 3.6 Flash analyst prompt (D13). No vector store; plain markdown loaded per prompt.
 
-## Malaysia EV incentives (snapshot)
+Snapshot checked 12 Nov 2026. Figures that move weekly or monthly carry their date.
 
-- **Import duty & excise**: Fully exempt for fully-electric vehicles (CBU and CKD). SST exemption is 50% for CKD kits and full for CBU EVs. Window runs until **31 Dec 2026**.
-- **Road tax**: EVs pay a flat **RM2/year** special rate; from **2026** the road tax phases back in at **10% of the ICE-equivalent rate** (RM ed announced phase-in). **Hybrids pay the standard ICE road-tax formula at all times.**
-- **Charging relief**: Income-tax relief up to **RM2,500** for home EV-charging equipment (tax years 2025-2026).
-- **Solar**: NEM Rakyat (net energy metering) lets residential solar exports offset consumption at avoided tariff.
-- **JPJ**: Green number plates for EVs.
+## Malaysia EV incentives
+
+- **Import duty & excise, imported (CBU) EVs**: the exemption **ended 31 Dec 2025**. CBU EVs sold
+  from 2026 carry import and excise duty, so do not tell a buyer an imported EV is tax-free.
+- **Locally assembled (CKD) EVs**: exempt from excise duty and sales tax until **31 Dec 2027**.
+- **Budget 2027** (tabled 9 Oct 2026) added no new purchase incentive for private EV buyers; its
+  EV measure is a tax allowance for companies that run charging stations (to 2030).
+- **Road tax**: since **1 Jan 2026** EVs pay JPJ's power-based (kW) schedule, e.g. about RM160 a
+  year at 150 kW and RM280 at 210 kW; the old RM2 flat rate is gone. **Hybrids and plug-in
+  hybrids pay the standard engine-cc formula.**
+- **Charging relief**: individual income-tax relief up to **RM2,500** for EV charging equipment.
+- **Solar**: NEM Rakyat (net energy metering) lets residential solar exports offset consumption.
+- **JPJ**: green number plates for EVs.
 
 ## Home charging
 
-- **Residential special EV tariff**: **RM 0.258/kWh** (TNB special block for EV charging).
-- **Public DC fast-charging**: average **RM 1.20/kWh** (ChargeEV / GT / JomCharge blended).
-- Home charging is the cheapest lifeline — the energy engine assumes an 80/20 home/station split when the user can charge at home.
+- There is **no special EV tariff**: the old RM0.25/kWh residential EV block no longer exists.
+  Home charging is billed under the TNB domestic tariff (since July 2025): generation 27.03 sen/kWh
+  (37.03 sen above 1,500 kWh a month), capacity 4.55 sen, network 12.85 sen; Time-of-Use energy
+  28.52 sen peak / 24.43 sen off-peak. Charging overnight off-peak is the cheapest option.
+- **AFA fuel surcharge**: +3.60 sen/kWh for November 2026; waived for households using 800 kWh a
+  month or less until Dec 2026 (600 kWh or less from Jan 2027).
+- **Public charging**: about **RM1.10/kWh AC** and **RM1.40/kWh DC** (JomCharge, Aug 2026); prices
+  differ by network.
+- Home charging is the cheapest lifeline — the energy engine assumes an 80/20 home/station split
+  when the user can charge at home.
 
-## Fuel
+## Fuel (week of 12 Nov 2026, data.gov.my; changes weekly)
 
-- **RON95**: RM 2.05/L (subsidized).
-- RON97: RM 3.35/L. Diesel: RM 2.15/L.
+- **RON95**: RM1.99/L for eligible Malaysians (BUDI95); RM3.87/L unsubsidised.
+- **RON97**: RM4.20/L. **Diesel**: RM2.10/L subsidised (BUDI, Peninsular); RM4.87/L market.
 
 ## CO2
 
-- **Grid**: ~0.63 kg CO2/kWh (Peninsular Malaysia generation mix).
+- **Grid**: 0.74 kg CO2/kWh Peninsular, 0.539 Sabah, 0.199 Sarawak (Energy Commission, 2024 data).
 - **Petrol**: 2.31 kg CO2/L.
 - EVs shift tailpipe emissions to the grid; hybrids roughly halve petrol burn.
 
