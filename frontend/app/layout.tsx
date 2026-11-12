@@ -3,6 +3,7 @@ import { HtmlLang } from "@/components/HtmlLang";
 import { Figtree, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SkipLabel } from "@/components/skip-label";
+import { Analytics } from "@/components/Analytics";
 
 /* Type follows DESIGN-figma.md, which runs ONE variable sans across display,
    body and UI and lets weight and size do the work — display at 340, body at
@@ -87,6 +88,7 @@ export default function RootLayout({
         {/* lang="en" above is the server default; this corrects it to the
             language actually being rendered. See components/HtmlLang.tsx. */}
         <HtmlLang />
+        <Analytics />
         {/* Keyboard users land on the nav first and would otherwise tab through
             every link on the page to reach the content. Visually hidden until
             focused, then it becomes an ordinary button in the top-left. */}

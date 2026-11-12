@@ -35,8 +35,14 @@ const nextConfig: NextConfig = {
         source: "/api/proxy/:path*",
         destination: `${resolved}/:path*`,
       },
+      // PostHog, proxied through our own domain so ad blockers do not drop it.
+      { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/array/:path*", destination: "https://us-assets.i.posthog.com/array/:path*" },
+      { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
     ];
   },
+  // PostHog's endpoints end in a slash; Next must not redirect them away.
+  skipTrailingSlashRedirect: true,
   env: {
     BACKEND_URL: resolved,
   },

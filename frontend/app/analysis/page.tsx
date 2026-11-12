@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { ScrollRefresh } from "@/components/motion";
 import { useT, type StrKey } from "@/lib/i18n";
+import { track } from "@/lib/track";
 
 function GarageLoader() {
   const t = useT();
@@ -163,6 +164,7 @@ function AnalysisInner() {
             if (started) {
               const seconds = (Date.now() - started.at) / 1000;
               apiService.postTiming(resultToken, seconds, started.via).catch(() => {});
+              track("result_ready", { seconds: Math.round(seconds * 10) / 10, via: started.via });
             }
             router.replace(`/results/${resultToken}`);
             return;

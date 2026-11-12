@@ -559,6 +559,7 @@ export function Footer({ dark = false }: { dark?: boolean }) {
           <div className="grid max-w-[100ch] gap-2 leading-relaxed sm:grid-cols-2 sm:gap-x-12">
             <p>{t("ft.verified")}</p>
             <p>{t("ft.disc")}</p>
+            <p>{t("ft.privacy")}</p>
           </div>
           <p className={`mt-6 border-t pt-6 ${dark ? "border-white/10" : "border-line"}`}>
             {t("ft.rights")}

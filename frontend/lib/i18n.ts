@@ -374,6 +374,10 @@ const S = {
   "ft.srcMiti": ["EV duty policy and charger targets", "Dasar duti EV dan sasaran pengecas"],
   "ft.srcSt": ["EV charging system safety guideline", "Garis panduan keselamatan sistem pengecasan EV"],
   "ft.srcPlan": ["EV charging bay planning guidelines", "Garis panduan perancangan petak pengecas EV"],
+  "ft.privacy": [
+    "We count visits and clicks with PostHog to see how the site is used. We do not record anything you type.",
+    "Kami mengira lawatan dan klik dengan PostHog untuk melihat cara laman ini digunakan. Kami tidak merekod apa-apa yang anda taip.",
+  ],
   "ft.verified": [
     "Regulatory figures verified September 2026. Rates and deadlines change \u2014 confirm against the primary source before you commit to a purchase.",
     "Angka kawal selia disahkan September 2026. Kadar dan tarikh akhir berubah \u2014 sahkan dengan sumber rasmi sebelum membuat pembelian.",
