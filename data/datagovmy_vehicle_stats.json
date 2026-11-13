@@ -2,18 +2,18 @@
   "source": "https://api.data.gov.my/data-catalogue?id=registrations_type_fuel&limit=20000",
   "dataset": "registrations_type_fuel",
   "frequency": "MONTHLY",
-  "data_as_of": "2026-09-01",
-  "retrieved_at": "2026-11-12T02:46:02+00:00",
+  "data_as_of": "2026-10-01",
+  "retrieved_at": "2026-11-13T02:28:44+00:00",
   "note": "PHEV is merged into the hybrid total (JPJ does not publish a separate PHEV field).",
   "national_registered": {
-    "ev_cars": 137149,
-    "hybrid_cars": 214105,
-    "all_cars": 16034449
+    "ev_cars": 141741,
+    "hybrid_cars": 219128,
+    "all_cars": 16109563
   },
-  "latest_month": "2026-09-01",
+  "latest_month": "2026-10-01",
   "latest_month_registrations": {
-    "ev_cars": 6029,
-    "hybrid_cars": 5452,
-    "all_cars": 74404
+    "ev_cars": 4592,
+    "hybrid_cars": 5023,
+    "all_cars": 75114
   }
 }
