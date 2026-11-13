@@ -27,7 +27,7 @@ const STAGE_KEYS = ["an.s1", "an.s2", "an.s3", "an.s4", "an.s5"] as const;
 
 /** The five engines, in the order they actually run. Name and what it reads. */
 /**
- * Should this device load the 9.4 MB car, and should it move?
+ * Should this device load the 2 MB anatomy figure, and should it move?
  *
  * The scene is 9.1 MB of Draco glTF plus a 250 KB decoder, and this page exists
  * only until the backend returns — often under ten seconds. On a metered
@@ -192,7 +192,7 @@ function AnalysisInner() {
       {/* The car is the stage, not the subject: it sits behind the ledger and
           is pushed right so the reading column never lands on bodywork. */}
       {scene.load ? (
-        <div className="pointer-events-none absolute inset-0 md:left-[26rem]">
+        <div className="pointer-events-none absolute inset-x-0 top-12 h-[46svh] md:inset-0 md:left-[26rem] md:h-auto">
           <LieRoom still={scene.still} />
         </div>
       ) : (
@@ -284,17 +284,6 @@ function AnalysisInner() {
           />
         </div>
       </section>
-
-      {/* Sponsor: bottom-right, clear of both the ledger and the car */}
-      <aside className="pointer-events-none absolute bottom-6 right-6 z-10 hidden text-right md:block">
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-pearl/35">
-          {t("an.sponsor")}
-        </p>
-        <p className="mt-1 font-display text-[16px] font-bold text-pearl/90">Kia EV9 GT-Line</p>
-        <p className="mt-0.5 max-w-[22ch] text-[12px] leading-snug text-pearl/45">
-          {t("lie.tagline")}
-        </p>
-      </aside>
 
       {error && (
         <div
