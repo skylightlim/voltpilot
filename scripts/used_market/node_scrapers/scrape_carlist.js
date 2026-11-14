@@ -1,13 +1,16 @@
 const { chromium } = require('playwright-core');
 const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const RAW = path.join(__dirname, '../../../data/used_market_raw');
 
-const OUT = '/home/skylight/ai-transport-platform/data/used_market_raw/carlist_listings.jsonl';
+const OUT = path.join(RAW, 'carlist_listings.jsonl');
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
 // catalog: read from python-generated JSON to avoid duplicating
 let catalog = [];
 try {
-  catalog = JSON.parse(fs.readFileSync('/home/skylight/ai-transport-platform/data/used_market_raw/catalog_flat.json', 'utf8'));
+  catalog = JSON.parse(fs.readFileSync(path.join(RAW, 'catalog_flat.json'), 'utf8'));
 } catch (e) {
   console.error('need catalog_flat.json:', e.message);
   process.exit(1);
@@ -15,7 +18,7 @@ try {
 
 async function makeBrowser() {
   const browser = await chromium.launch({
-    executablePath: '/home/skylight/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',
+    executablePath: path.join(os.homedir(), '.cache/ms-playwright/chromium-1234/chrome-linux64/chrome'),
     headless: true,
     args: ['--no-sandbox', '--disable-blink-features=AutomationControlled'],
   });

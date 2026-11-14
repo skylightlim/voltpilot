@@ -49,7 +49,10 @@ def _by_slug(catalog, slug):
 class TestFeatureEngineering:
     def test_annual_mileage(self):
         features = engines.build_features(BASE_PROFILE)
-        assert features["annual_km"] == 40 * 5 * 52
+        assert features["commute_km_yr"] == 40 * 5 * 52
+        # the monthly Penang run is driven too: 12 round trips
+        assert features["long_trip_km_yr"] == pytest.approx(12 * features["long_trip_round_km"])
+        assert features["annual_km"] == features["commute_km_yr"] + features["long_trip_km_yr"]
         assert features["can_charge_home"] is True
 
     def test_home_charging_dominates_convenience(self):
@@ -187,7 +190,7 @@ class TestTopsis:
         for i in range(4):
             rows.append({
                 "slug": f"m{i}",
-                "total_cost_5yr_rm": 140_000 + i * 30_000,
+                "holding_cost_5yr_rm": 40_000 + i * 10_000,
                 "resale_retained_pct": 55 - i * 4,
                 "behaviour_score": 80 - i * 5,
                 "infrastructure_score": 70,
@@ -203,7 +206,7 @@ class TestTopsis:
         """The property the bounds exist to give: a scale that other cars cannot move."""
         rows = [{
             "slug": f"m{i}",
-            "total_cost_5yr_rm": 130_000 + i * 20_000,
+            "holding_cost_5yr_rm": 40_000 + i * 6_000,
             "resale_retained_pct": 55 - i,
             "behaviour_score": 80 - i,
             "infrastructure_score": 70,
@@ -236,15 +239,18 @@ def test_postcode_falls_back_to_state_not_kl():
     assert engines.public_stations_within("91000") < engines.public_stations_within("50000")
 
 
-def test_bev_gate_blocks_only_without_any_charging_access():
+def test_gate_passes_only_on_a_charger_of_the_buyers_own():
     no_access = {**BASE_PROFILE, "home_postcode": "91000",
                  "can_charge_home": False, "can_charge_work": False}
     assert engines.bev_charging_gate(no_access)["passed"] is False
 
-    # any one of the three routes to charging is enough
-    for override in ({"can_charge_home": True}, {"can_charge_work": True},
-                     {"home_postcode": "50000"}):
+    for override in ({"can_charge_home": True}, {"can_charge_work": True}):
         assert engines.bev_charging_gate({**no_access, **override})["passed"] is True
+
+    # 290 public points around KLCC are not somewhere to charge (issue 34)
+    city = engines.bev_charging_gate({**no_access, "home_postcode": "50000"})
+    assert city["passed"] is False and city["reason"] == "public_only"
+    assert city["stations_within_radius"] >= engines.BEV_GATE_MIN_STATIONS
 
 
 def test_gate_removes_bevs_but_never_empties_the_pool():
@@ -476,3 +482,334 @@ class TestPracticality:
             if len(scores) < 3:
                 continue
             assert statistics.pstdev(scores) > 0.5, f"{vtype} convenience is still flat"
+
+
+_MID = {"save_money": 50, "environment": 50, "convenience": 50, "future_proofing": 50}
+
+
+class TestNothingFitsTheBudget:
+    """issue.md issues 28 and 29: both empty-pool fallbacks returned the catalogue.
+
+    A budget under the cheapest car fell back to every model with the cost axis
+    still anchored on the stated figure, so all of them clipped to the same
+    worst cost and a RM20,000 buyer was shown a RM648,888 EQS at rank 3.
+    """
+
+    def _cheapest(self, vehicles):
+        return min(float(v["price_rm"]) for v in vehicles)
+
+    @pytest.mark.parametrize("budget", [1, 5_000, 20_000, 60_000])
+    def test_a_budget_below_the_market_gets_the_nearest_cars(self, budget):
+        bundle = scoring.score_catalog({**BASE_PROFILE, "budget_max_rm": budget},
+                                       _MID, with_stability=False)
+        ranking = bundle["ranking"]
+        assert bundle["budget"]["applied"] is False
+        assert bundle["budget"]["fallback"] == "nearest_over_budget"
+        assert len(ranking) == scoring.NEAREST_FALLBACK
+        cheapest = sorted(float(v["price_rm"]) for v in load_catalog())
+        assert sorted(r["price_rm"] for r in ranking) == cheapest[:scoring.NEAREST_FALLBACK]
+
+    @pytest.mark.parametrize("budget", [1, 5_000, 20_000, 60_000])
+    def test_cost_still_separates_them(self, budget):
+        """The axis must neither saturate nor invert: nobody clips at either end."""
+        bundle = scoring.score_catalog({**BASE_PROFILE, "budget_max_rm": budget},
+                                       _MID, with_stability=False)
+        lo, hi = bundle["bounds"]["holding_cost_5yr_rm"]
+        assert hi > lo
+        costs = [r["holding_cost_5yr_rm"] for r in bundle["ranking"]]
+        assert all(lo < c < hi for c in costs), (lo, hi, costs)
+
+    def test_the_normal_path_reports_no_fallback(self):
+        bundle = scoring.score_catalog({**BASE_PROFILE, "budget_max_rm": 150_000},
+                                       _MID, with_stability=False)
+        assert bundle["budget"]["applied"] is True
+        assert bundle["budget"]["fallback"] is None
+        assert bundle["budget"]["scale_max_rm"] == 150_000
+
+    def test_gate_failure_never_brings_the_evs_back(self):
+        """RM80,000 plus the stretch buys three cars, all EVs, and this buyer
+        cannot charge one.
+
+        The gate used to empty the pool and then refill it with the whole
+        catalogue: the EVs it had just removed, 89 more, and every car over
+        budget, under `budget.applied: True`.
+        """
+        profile = {**BASE_PROFILE, "home_postcode": "91000", "budget_max_rm": 80_000,
+                   "can_charge_home": False, "can_charge_work": False}
+        bundle = scoring.score_catalog(profile, _MID, with_stability=False)
+        ranking = bundle["ranking"]
+        assert bundle["feasibility"]["passed"] is False
+        in_reach = [v for v in load_catalog()
+                    if float(v["price_rm"]) <= 80_000 * scoring.BUDGET_STRETCH]
+        assert in_reach and all(v["type"] == "ev" for v in in_reach)
+        assert bundle["feasibility"]["bev_removed"] == len(in_reach)
+        assert not [r for r in ranking if r["type"] == "ev"]
+        assert bundle["budget"]["applied"] is False
+        assert bundle["budget"]["fallback"] == "nearest_over_budget"
+        runnable = sorted(float(v["price_rm"]) for v in load_catalog() if v["type"] == "hybrid")
+        assert sorted(r["price_rm"] for r in ranking) == runnable[:scoring.NEAREST_FALLBACK]
+
+    @pytest.mark.parametrize("budget", [0, -5, 1, 29_999, float("inf"), float("nan"), None, "x"])
+    def test_bounds_never_invert(self, budget):
+        (lo, hi), *_ = criteria_bounds({"budget_max_rm": budget}, 10_000)
+        assert hi > lo and hi < float("inf")
+
+
+class TestTripDistanceUsesTheRealHome:
+    """issue.md issue 30: unmapped postcode prefixes were measured from KL."""
+
+    def test_an_unmapped_prefix_is_not_scored_from_kl(self):
+        # Jertih, Terengganu: no station names a 22xxx postcode, so the prefix
+        # table misses and the old lookup put this buyer in Kuala Lumpur. (18xxx
+        # was the example until 2026-11-14, when the postcode parser stopped
+        # reading Gua Musang's lot number as its postcode and mapped it.)
+        assert "22" not in engines._load_prefix_centroids()
+        km = engines.destination_distance_km(
+            {"home_postcode": "22000", "destination_region": "kl"})
+        assert km > 250
+
+    @pytest.mark.parametrize("postcode", ["50400", "18300", "22000", "02600", "91000", "96000", ""])
+    def test_it_agrees_with_the_distance_the_results_page_shows(self, postcode):
+        profile = {"home_postcode": postcode, "destination_region": "kl"}
+        route = engines.infrastructure_access(profile)["route"]
+        km = engines.destination_distance_km(profile)
+        if route.get("local"):
+            assert km < engines.LOCAL_TRIP_KM * engines.ROAD_FACTOR
+        else:
+            # haversine against the page's equirectangular projection
+            assert km == pytest.approx(route["route_km"], rel=0.02)
+
+
+class TestLongTripsAreDriven:
+    """issue.md issue 32: long trips changed convenience scores and nothing else.
+
+    Annual mileage was the commute alone, so the kilometres of a monthly or
+    weekly long trip were never costed, and never emitted any CO2.
+    """
+
+    def _energy(self, catalog, slug, profile):
+        return engines.energy_engine(_by_slug(catalog, slug), profile,
+                                     engines.build_features(profile), scoring.energy_context())
+
+    def test_more_frequent_trips_mean_more_kilometres(self):
+        km = [engines.annual_mileage_km(dict(BASE_PROFILE, long_trip_frequency=f))
+              for f in ("rarely", "monthly", "weekly")]
+        assert km[0] < km[1] < km[2]
+        assert km[0] > engines.commute_km_yr(BASE_PROFILE)
+
+    def test_a_hybrid_burns_fuel_in_proportion(self, catalog):
+        rarely = dict(BASE_PROFILE, long_trip_frequency="rarely")
+        weekly = dict(BASE_PROFILE, long_trip_frequency="weekly")
+        a = self._energy(catalog, "toyota-camry-hybrid", rarely)
+        b = self._energy(catalog, "toyota-camry-hybrid", weekly)
+        ratio = engines.annual_mileage_km(weekly) / engines.annual_mileage_km(rarely)
+        assert b["litres_yr"] / a["litres_yr"] == pytest.approx(ratio, rel=0.01)
+
+    def test_an_ev_pays_highway_rates_past_its_range(self, catalog):
+        """Trip kilometres beyond the usable range cost more per km than the commute."""
+        commute_only = dict(BASE_PROFILE, destination_region="kl", long_trip_km=0)
+        tripper = dict(BASE_PROFILE, long_trip_frequency="weekly")
+        a = self._energy(catalog, "proton-emas-5", commute_only)
+        b = self._energy(catalog, "proton-emas-5", tripper)
+        per_km_a = a["cost_rm_yr"] / engines.annual_mileage_km(commute_only)
+        per_km_b = b["cost_rm_yr"] / engines.annual_mileage_km(tripper)
+        assert per_km_b > per_km_a * 1.15
+        # CO2 does not care where the kWh was bought
+        assert (b["co2_kg_yr"] / engines.annual_mileage_km(tripper)
+                == pytest.approx(a["co2_kg_yr"] / engines.annual_mileage_km(commute_only), rel=0.01))
+
+    def test_a_trip_within_range_never_sees_a_dc_charger(self, catalog):
+        """A 60 km round trip costs less per km than one past the car's range."""
+        local = dict(BASE_PROFILE, destination_region="kl", long_trip_km=0,
+                     long_trip_frequency="weekly")
+        far = dict(BASE_PROFILE, long_trip_km=0, long_trip_frequency="weekly")
+        assert engines.build_features(local)["long_trip_round_km"] < 100
+        per_km = lambda p: (self._energy(catalog, "proton-emas-5", p)["cost_rm_yr"]  # noqa: E731
+                            / engines.annual_mileage_km(p))
+        assert per_km(local) < per_km(far)
+
+    def test_a_stated_distance_overrides_the_region_estimate(self):
+        stated = dict(BASE_PROFILE, long_trip_km=200)
+        assert engines.long_trip_one_way_km(stated) == 200
+        unstated = dict(BASE_PROFILE, long_trip_km=0)
+        assert engines.long_trip_one_way_km(unstated) == engines.destination_distance_km(unstated)
+
+    def test_a_sea_crossing_is_not_driven(self):
+        kuching = dict(BASE_PROFILE, home_postcode="93000", destination_region="kl",
+                       long_trip_km=0, long_trip_frequency="weekly")
+        assert engines.long_trip_one_way_km(kuching) == 0.0
+        assert engines.annual_mileage_km(kuching) == engines.commute_km_yr(kuching)
+        within = dict(kuching, destination_region="east_malaysia")
+        assert engines.long_trip_one_way_km(within) > 0
+
+    def test_a_sea_crossing_forces_no_charging_stop(self, catalog):
+        ev = _by_slug(catalog, "proton-emas-5")
+        fly = dict(BASE_PROFILE, home_postcode="93000", destination_region="kl", long_trip_km=0)
+        local = dict(fly, destination_region="east_malaysia")
+        score = lambda p: engines.behaviour_engine(ev, p, engines.build_features(p))  # noqa: E731
+        assert score(fly) >= score(local)
+
+    def test_rescaling_annual_km_keeps_the_driving_mix(self, catalog):
+        """breakeven_km_per_year rescales annual_km. Cost must rise with it and
+        stay near proportional: the home rate climbs with the kWh drawn (see
+        TestHomeChargingIsTheRealBill), so it is no longer exactly linear."""
+        ev = _by_slug(catalog, "proton-emas-5")
+        features = engines.build_features(BASE_PROFILE)
+        energy = scoring.energy_context()
+        at = lambda km: engines.energy_engine(  # noqa: E731
+            ev, BASE_PROFILE, {**features, "annual_km": km}, energy)["cost_rm_yr"]
+        assert at(10_000) < at(20_000) < at(30_000)
+        assert at(30_000) == pytest.approx(3 * at(10_000), rel=0.25)
+
+
+class TestDepreciationIsCountedOnce:
+    """issue.md issue 33: price voted twice, as depreciation and as resale."""
+
+    def _bundle(self, **over):
+        return scoring.score_catalog({**BASE_PROFILE, **over}, _MID, with_stability=False)
+
+    def test_the_cost_criterion_excludes_depreciation(self):
+        for row in self._bundle()["ranking"]:
+            lines = {line["key"]: line["amount_rm"] for line in row["cost_breakdown_5yr"]["lines"]}
+            assert row["holding_cost_5yr_rm"] == pytest.approx(
+                row["total_cost_5yr_rm"] - lines["depreciation"])
+            # the figure the buyer is shown still includes it
+            assert row["total_cost_5yr_rm"] > row["holding_cost_5yr_rm"]
+
+    def test_resale_is_the_only_criterion_that_sees_retention(self):
+        """Two cars identical but for what they are worth in five years must
+        differ on resale and on nothing else."""
+        from app.engines.topsis import CRITERIA
+        assert "holding_cost_5yr_rm" in CRITERIA and "total_cost_5yr_rm" not in CRITERIA
+        row = dict(self._bundle()["ranking"][0])
+        twin = dict(row, slug="twin", resale_retained_pct=row["resale_retained_pct"] - 10)
+        differing = [c for c in CRITERIA if row[c] != twin[c]]
+        assert differing == ["resale_retained_pct"]
+
+    def test_resale_bounds_cover_the_catalogue(self):
+        from app.engines.topsis import RESALE_CEILING_PCT, RESALE_FLOOR_PCT
+        values = [engines.resale_retained_pct(v)[0] for v in load_catalog()]
+        assert RESALE_FLOOR_PCT < min(values) and max(values) < RESALE_CEILING_PCT, (
+            min(values), max(values))
+
+    @pytest.mark.parametrize("budget", [80_000, 150_000, 400_000, 1_000_000])
+    def test_no_affordable_car_clips_the_cost_axis(self, budget):
+        bundle = self._bundle(budget_max_rm=budget)
+        lo, hi = bundle["bounds"]["holding_cost_5yr_rm"]
+        inside = [r for r in bundle["ranking"] if r["price_rm"] <= budget]
+        assert all(lo < r["holding_cost_5yr_rm"] < hi for r in inside)
+
+    def test_a_bigger_budget_can_change_the_answer(self):
+        """The RM67,800 Bingo used to win every budget from RM80,000 to RM250,000."""
+        winners = {self._bundle(budget_max_rm=b, daily_km=40)["ranking"][0]["slug"]
+                   for b in (80_000, 150_000, 400_000, 800_000)}
+        assert len(winners) >= 2
+
+
+class TestChargingAccessIsRespected:
+    """issue.md issue 34. The rule: never recommend a plug-in car to a buyer
+    with neither home nor workplace charging. Recommending a hybrid to someone
+    who can charge is a legitimate answer and is not tested against."""
+
+    NO_CHARGER = {"can_charge_home": False, "can_charge_work": False}
+
+    @pytest.mark.parametrize("postcode", ["50400", "10050", "80000", "93000", "91000", "18300"])
+    @pytest.mark.parametrize("budget", [1, 60_000, 80_000, 95_000, 120_000, 400_000])
+    @pytest.mark.parametrize("slider", ["save_money", "environment", "convenience", "future_proofing"])
+    def test_no_plug_in_car_is_ever_ranked(self, postcode, budget, slider):
+        profile = {**BASE_PROFILE, **self.NO_CHARGER, "home_postcode": postcode,
+                   "budget_max_rm": budget}
+        bundle = scoring.score_catalog(profile, {**_MID, slider: 100}, with_stability=False)
+        assert bundle["ranking"]
+        assert {r["type"] for r in bundle["ranking"]} == {"hybrid"}
+        assert bundle["feasibility"]["passed"] is False
+
+    @pytest.mark.parametrize("access", [{"can_charge_home": True}, {"can_charge_work": True}])
+    def test_either_private_charger_keeps_them(self, access):
+        profile = {**BASE_PROFILE, **self.NO_CHARGER, **access}
+        bundle = scoring.score_catalog(profile, _MID, with_stability=False)
+        assert {"ev", "phev", "hybrid"} <= {r["type"] for r in bundle["ranking"]}
+        assert bundle["feasibility"]["bev_removed"] == 0
+        assert bundle["feasibility"]["phev_removed"] == 0
+
+    def test_a_budget_that_only_reaches_evs_gets_the_nearest_hybrids(self):
+        """Nothing under RM99,800 is a hybrid, so this buyer is shown the ten
+        cheapest hybrids and told they are over budget, not an EV they cannot
+        charge."""
+        profile = {**BASE_PROFILE, **self.NO_CHARGER, "budget_max_rm": 80_000}
+        bundle = scoring.score_catalog(profile, _MID, with_stability=False)
+        assert bundle["budget"]["fallback"] == "nearest_over_budget"
+        hybrids = sorted(float(v["price_rm"]) for v in load_catalog() if v["type"] == "hybrid")
+        assert sorted(r["price_rm"] for r in bundle["ranking"]) == hybrids[:scoring.NEAREST_FALLBACK]
+
+
+class TestCo2CeilingIsAKnownLimit:
+    """issue.md issue 31, accepted: cars above the CO2 ceiling tie at the worst
+    value rather than the ceiling being raised for them.
+
+    Raising it from 0.23 to 0.36 kg/km would shrink the part of the axis that
+    ordinary cars occupy by a third, weakening the environment slider for every
+    buyer in order to separate a handful of cars that are already last on it.
+    This holds the cost of that choice where it is: only cars far up the market.
+    """
+
+    def test_only_top_of_market_cars_exceed_it(self, catalog):
+        from app.engines.topsis import CO2_CEILING_KG_PER_KM
+        features = engines.build_features(BASE_PROFILE)
+        energy = scoring.energy_context()
+        over = [v for v in catalog
+                if engines.energy_engine(v, BASE_PROFILE, features, energy)["co2_kg_yr"]
+                / features["annual_km"] > CO2_CEILING_KG_PER_KM]
+        assert len(over) <= 11, sorted(v["id"] for v in over)
+        assert all(float(v["price_rm"]) >= 350_000 for v in over), (
+            "a mainstream car now clips the CO2 axis; raise CO2_CEILING_KG_PER_KM")
+
+
+class TestHomeChargingIsTheRealBill:
+    """issue.md issue 35: one anchor rate, RM0.4986/kWh, for every car and
+    every mileage. The rate is now bill(household + car) - bill(household)."""
+
+    @pytest.fixture
+    def tariff(self):
+        return scoring.energy_context()["tariff"]
+
+    def test_the_bill_has_tnbs_steps_in_tnbs_places(self, tariff):
+        tou = tariff["domestic_tou"]
+        bill = lambda kwh: engines.tnb_tou_bill(kwh * 0.6, kwh * 0.4, tou)  # noqa: E731
+        # retail charge, fuel adjustment on every kWh and service tax start at 601
+        assert bill(601) - bill(600) > 10
+        # the dearer energy rate is at 1,501 kWh, not 600: 10 sen on every kWh
+        assert bill(1501) - bill(1500) > 100
+        # between steps one more kWh costs about one kWh
+        assert 0.3 < bill(520) - bill(519) < 0.6
+
+    def test_the_bill_is_monotonic(self, tariff):
+        tou = tariff["domestic_tou"]
+        bills = [engines.tnb_tou_bill(k * 0.6, k * 0.4, tou) for k in range(0, 2001, 5)]
+        assert all(b >= a for a, b in zip(bills, bills[1:]))
+
+    def test_a_stated_bill_inverts_back_to_itself(self, tariff):
+        for kwh in (180, 420, 580, 760, 1200, 1700):
+            bill = engines._household_bill(kwh, tariff)
+            assert engines.estimate_household_kwh(bill, tariff) == pytest.approx(kwh, abs=1.0)
+
+    def test_a_heavy_charger_pays_more_per_kwh(self, tariff):
+        """280 kWh a month takes a 400 kWh household past 600: about RM0.65."""
+        light = engines.home_ev_marginal_rate({}, tariff, 80)
+        heavy = engines.home_ev_marginal_rate({}, tariff, 280)
+        assert light == pytest.approx(0.50, abs=0.03)
+        assert heavy == pytest.approx(0.65, abs=0.03)
+
+    def test_it_no_longer_needs_a_stated_bill_to_notice(self, tariff):
+        with_bill = engines.home_ev_marginal_rate({"monthly_electricity_bill_rm": 111}, tariff, 280)
+        without = engines.home_ev_marginal_rate({}, tariff, 280)
+        assert with_bill == pytest.approx(without, rel=0.02)
+
+    def test_home_is_still_far_cheaper_than_public(self, tariff):
+        public = float(tariff["public_charging_rm_per_kwh"]["blended"])
+        for ev in (20, 80, 150, 280, 500, 900):
+            for bill in (0, 80, 250, 600, 1200):
+                rate = engines.home_ev_marginal_rate({"monthly_electricity_bill_rm": bill}, tariff, ev)
+                # the top of the range is a 1,170 kWh household pushed past
+                # 1,501 kWh, where every kWh in the house is re-priced
+                assert 0.30 < rate < public, (ev, bill, rate)

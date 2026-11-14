@@ -1,14 +1,13 @@
 """Five-year cost of ownership, itemised (issue.md issue 16, FEATURES P1/P3/P4).
 
-Display and analysis only. This does NOT change what the engine ranks on. The
-criteria still score `total_cost_10yr_rm`, because moving the ranking to a
-five-year basis forces a decision recorded but not taken in issue 16: putting
-depreciation into the cost criterion makes `resale_retained_pct` a second
-measurement of the same quantity, which is the double-counting issue 4 removed.
+The cost criterion is built from this: scoring.py ranks on `total_rm` LESS the
+depreciation line (as `holding_cost_5yr_rm`), because depreciation is already
+scored as `resale_retained_pct` and was being counted twice. The full total,
+depreciation included, is what the results page shows as `total_cost_5yr_rm`.
+`total_cost_10yr_rm` is still published but no longer scored.
 
-Five years is the right horizon for showing a buyer their costs even while the
-ranking stays where it is. It is where the resale data ends, since no Malaysian
-EV listing is older than age 5; it sits inside the four-to-six year window that
+Five years is the right horizon. It is where the resale data ends, since no
+Malaysian EV listing is older than age 5; it sits inside the four-to-six year window that
 is Malaysia's replacement rate; and it is roughly where a seven-year hire
 purchase has accrued 91% of its interest.
 """

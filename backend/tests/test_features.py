@@ -204,32 +204,31 @@ class TestStability:
     """P6. Rank 1 is only an answer if it survives the weights moving."""
 
     def test_a_firm_profile_is_reported_firm(self):
-        """Uses high_mileage_budget, whose leader holds 0.98 under jitter.
+        """Uses high_mileage_budget, whose leader (Yaris Cross) holds 0.96 under
+        jitter.
 
-        This was kv_home_charging until 2026-09-14, when it fell to 0.79 and
-        stopped being a firm example. That is the model reporting a real change
-        rather than a fault: its top two are separated by 0.0093, and the
-        criteria that used to be constants now move under re-weighting. The
-        assertion here is about the firm PATH working, so it needs a profile
-        that is actually firm; test_a_tied_profile_is_not_reported_firm covers
-        the other branch.
+        The example has moved with the model three times and each move is the
+        model reporting a real change: kv_home_charging until 2026-09-14,
+        high_mileage_budget after it, bev_gate_blocked briefly on 2026-11-14
+        when long trips were first counted, and high_mileage_budget again once
+        depreciation stopped being scored twice (issue.md issue 33). The
+        assertion is about the firm PATH working, so it needs a profile that is
+        actually firm.
         """
         out = scoring.score_catalog(GOLDEN_PROFILES["high_mileage_budget"],
                                     DEFAULT_SLIDERS)["stability"]
         assert out["firm"] and out["leader_share"] >= 0.8
 
     def test_a_tied_profile_is_not_reported_firm(self):
-        """After the gate removes the EVs, a money-first buyer's cheap hybrids are
-        barely separated.
+        """The Klang Valley default: Yaris Cross, Vios and Bingo share the lead
+        (0.57).
 
-        Default sliders until 2026-11-12, when re-pricing the hybrids to their
-        hybrid variants (they had carried the petrol price) left this profile with
-        a firm leader at 0.82. Weighting money at 80 brings back the tie (0.475,
-        Yaris Cross / Vios / Tiggo Cross): the branch under test is the tied one.
+        With depreciation counted once the cheapest EV no longer wins this
+        profile outright; a hybrid that holds its value is level with it, and
+        the stability check says so. The branch under test is the tied one.
         """
-        sliders = dict(DEFAULT_SLIDERS, save_money=80)
-        out = scoring.score_catalog(GOLDEN_PROFILES["bev_gate_blocked"],
-                                    sliders)["stability"]
+        out = scoring.score_catalog(GOLDEN_PROFILES["kv_home_charging"],
+                                    DEFAULT_SLIDERS)["stability"]
         assert not out["firm"]
         assert len(out["contenders"]) >= 2
 

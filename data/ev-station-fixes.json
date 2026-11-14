@@ -1,0 +1,9 @@
+{
+  "_note": "Per-station corrections applied by scraper/ev_stations.py on every rebuild, keyed by MY EV Hub id. The frozen hub snapshot is never rewritten, so fixes live here. Coordinates/postcodes verified 2026-11-14 against OpenStreetMap Nominatim.",
+  "478770": {"lat": 3.0908725, "lng": 101.7423126, "why": "Cheras Leisure Mall: feed had Mountain View, CA (37.415, -122.077); OSM position of the mall"},
+  "478773": {"lat": 2.121798, "lng": 102.793636, "why": "Shell Pagoh R&R KL-bound: feed had the same California default; approximated with the chargEV point at the same Pagoh R&R (within ~0.5 km)"},
+  "259708": {"lat": 3.8167524, "lng": 103.3295959, "why": "Empire Seafood, Lorong Tun Ismail 10, Kuantan: feed put it ~200 km away in Behrang/Perak border hills"},
+  "298145": {"postcode": "35900", "why": "JomCharge R&R Ulu Bernam: address said 50480 (KL); reverse geocode gives Hulu Bernam 35900"},
+  "62528":  {"postcode": "47500", "why": "NPE PJS10: address said 45500 (Tanjong Karang); reverse geocode gives Subang Jaya 47500"},
+  "474267": {"postcode": "48300", "why": "Lotus's Bukit Beruntung: address said 43000 (Rawang); reverse geocode gives Bukit Beruntung 48300"}
+}

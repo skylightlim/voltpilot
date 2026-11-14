@@ -44,10 +44,14 @@ def _load_prefix_centroids() -> dict:
         try:
             with open(DATA_DIR / "ev-stations.csv", encoding="utf-8") as fh:
                 for r in csv.DictReader(fh):
-                    m = re.search(r"(\d{5})\s*$", r.get("address") or "")
-                    if not m or not r.get("lat") or not r.get("lng"):
+                    # `postcode` is parsed by scraper/ev_stations.py (lot numbers skipped);
+                    # the address-tail regex is the fallback for an older CSV.
+                    pc = r.get("postcode") or (
+                        m.group(1) if (m := re.search(r"(\d{5})\s*$", r.get("address") or "")) else None
+                    )
+                    if not pc or not r.get("lat") or not r.get("lng"):
                         continue
-                    a = acc[m.group(1)[:2]]
+                    a = acc[pc[:2]]
                     a[0] += float(r["lat"])
                     a[1] += float(r["lng"])
                     a[2] += 1
@@ -64,10 +68,61 @@ def _haversine_km(a: tuple[float, float], b: tuple[float, float]) -> float:
     return 2 * R * math.asin(math.sqrt(h))
 
 
-def annual_mileage_km(profile: dict) -> float:
+def commute_km_yr(profile: dict) -> float:
+    """Everyday driving: the typical day, times the days driven, times 52."""
     daily = float(profile.get("daily_km", 0) or 0)
     days = float(profile.get("trips_per_week", 0) or 0)
     return daily * days * 52
+
+
+# Round trips a year behind each answer to "How often do you take long trips
+# (over 100 km)?". "Rarely" is the two festive journeys home that almost every
+# Malaysian car makes; it is not zero.
+LONG_TRIPS_PER_YEAR = {"rarely": 2, "monthly": 12, "weekly": 52}
+
+
+def long_trip_one_way_km(profile: dict) -> float:
+    """One-way length of the usual long trip, 0.0 if it cannot be driven.
+
+    The distance the buyer stated, or failing that the distance to the
+    destination region. The interview asks only for the region, so in the app
+    it is the region estimate.
+
+    Peninsular Malaysia (with Singapore over the causeway) and East Malaysia
+    are separate landmasses. A Kuching buyer whose long trips go to "kl" flies,
+    so the car is neither driven those 1,400 km nor asked to charge along them.
+    """
+    home_east = grid_region(profile) == "east_malaysia"
+    dest_east = profile.get("destination_region", "kl") == "east_malaysia"
+    if home_east != dest_east:
+        return 0.0
+    # A distance the buyer states is their trip; the region centroid is only the
+    # estimate for when they have not said. This used to take the larger of the
+    # two, so a buyer who said 200 km and picked "north" was scored on 367.
+    stated = float(profile.get("long_trip_km", 0) or 0)
+    return stated if stated > 0 else destination_distance_km(profile)
+
+
+def long_trip_km_yr(profile: dict) -> float:
+    """Kilometres a year driven on long trips, out and back."""
+    trips = LONG_TRIPS_PER_YEAR.get(profile.get("long_trip_frequency", "rarely"), 2)
+    return 2.0 * long_trip_one_way_km(profile) * trips
+
+
+def annual_mileage_km(profile: dict) -> float:
+    """Everything the car is driven in a year: the commute AND the long trips.
+
+    This was the commute alone. The interview asks about a "typical day" and
+    then, separately, how often the buyer takes long trips and where to, and
+    the second answer never reached the odometer: it adjusted convenience
+    scores and nothing else. For the Klang Valley profile driving to Penang
+    monthly that left out 8,900 km on top of 10,400, and for a weekly driver
+    38,500. Energy cost and CO2 are both proportional to distance, so every
+    car's running cost was understated by the same share, which narrowed the
+    gap between an efficient car and a thirsty one and shrank the criterion
+    most sensitive to drivetrain.
+    """
+    return commute_km_yr(profile) + long_trip_km_yr(profile)
 
 
 def long_trip_weight(profile: dict) -> float:
@@ -92,17 +147,21 @@ _KL = _REGION_CENTROIDS["kl"]
 def destination_distance_km(profile: dict) -> float:
     """One-way road distance from the user's home to the usual destination region.
 
-    Home position approximated by the postcode-prefix centroid of real charging
-    stations (falls back to KL); road distance approximated as 1.25x great-circle.
-    Minimum 30 km to avoid degenerate zero scores.
+    Home position from home_coordinates, the same one infrastructure_access and
+    the charging gate use; road distance approximated as ROAD_FACTOR x
+    great-circle. Minimum 30 km to avoid degenerate zero scores.
+
+    This used to look the home up in the 2-digit prefix table alone and fall
+    back to KL. Station geodata covers 51 of the ~98 live prefixes, so for the
+    rest the trip was measured from Kuala Lumpur: a Kota Bharu buyer
+    (prefix 15-18) driving to "kl" was scored on a 30 km trip instead of ~365,
+    and a Perlis buyer heading "north" on KL-to-Penang. That fed the EV
+    charging-stop count and the PHEV electric share, while the results page,
+    reading home_coordinates, showed the true distance beside them.
     """
     dest = _REGION_CENTROIDS.get(profile.get("destination_region", "kl"), _KL)
-    pfx = str(profile.get("home_postcode", ""))[:2]
-    prefix_coords = _load_prefix_centroids()
-    home = prefix_coords.get(pfx, _KL)
-    gc = _haversine_km(home, dest)
-    road = gc * 1.25
-    return max(30.0, road)
+    home = home_coordinates(str(profile.get("home_postcode") or ""))
+    return max(30.0, _haversine_km(home, dest) * ROAD_FACTOR)
 
 
 # ---------------------------------------------------------------------------
@@ -288,25 +347,35 @@ def public_stations_within(postcode: str, radius_km: float = BEV_GATE_RADIUS_KM)
 
 
 def bev_charging_gate(profile: dict) -> dict:
-    """Can this user actually charge a BEV?
+    """Does this buyer have somewhere of their own to plug in?
 
-    Spec Step 02: keep BEV candidates when home OR workplace charging is
-    available, or when at least 5 public points sit within 20 km. Only when the
-    user has neither private option AND fewer than 5 public points does the
-    specification remove every BEV.
+    Passes on home OR workplace charging and on nothing else. When it fails,
+    scoring removes every car with a plug: battery-electric and plug-in hybrid.
 
-    This screens; it does not score. The infrastructure and behaviour engines
-    still rank the survivors exactly as before.
+    Spec Step 02 also let the gate pass on five public points within 20 km,
+    which is true of every city in the country (290 around KLCC). A buyer with
+    no charger of their own was therefore recommended an EV in 863 of 3,456
+    such profiles, and in every one at RM80,000, where nothing but EVs fits the
+    budget. A public charger nearby is not a place to charge: it is RM1.25/kWh
+    against RM0.50 at home, a queue, and a detour several times a week, and it
+    is the reason this buyer said they could not charge. Public points now
+    describe the area (`stations_within_radius`, `reason: "public_only"`) and
+    decide nothing.
+
+    Plug-in hybrids used to survive on the grounds that they still run on
+    petrol. They do, as a hybrid that costs more and carries a battery it never
+    fills; the ordinary hybrid is the better answer to the same question.
+
+    This screens; it does not score.
     """
     home_ok = bool(profile.get("can_charge_home"))
     work_ok = bool(profile.get("can_charge_work"))
     stations = public_stations_within(profile.get("home_postcode", ""))
-    public_ok = stations >= BEV_GATE_MIN_STATIONS
-    passed = home_ok or work_ok or public_ok
-    if home_ok or work_ok:
+    passed = home_ok or work_ok
+    if passed:
         reason = "private_charging"
-    elif public_ok:
-        reason = "public_charging"
+    elif stations >= BEV_GATE_MIN_STATIONS:
+        reason = "public_only"
     else:
         reason = "no_charging_access"
     return {
@@ -486,73 +555,160 @@ def grid_co2_factor(profile: dict, co2: dict) -> float:
     return float(by_region.get(grid_region(profile), co2["grid"]))
 
 
+def _eei_rate(total_kwh: float, tou: dict) -> float:
+    """Energy Efficiency Incentive, RM/kWh (negative), by total monthly kWh."""
+    tiers = (tou.get("energy_efficiency_incentive") or {}).get("tiers_max_kwh_rate") or []
+    for max_kwh, rate in tiers:
+        if total_kwh <= float(max_kwh):
+            return float(rate)
+    return 0.0
+
+
+def tnb_tou_bill(peak_kwh: float, off_peak_kwh: float, tou: dict) -> float:
+    """One month's Domestic Time-of-Use bill in RM.
+
+    The same arithmetic as TNB's own calculator, which
+    scripts/used_market/compute_charging_cost.py ports line for line; this
+    drops only its per-line sen rounding. What matters for an EV is where the
+    steps are, and they are not where the engine used to put them:
+
+    * over 600 kWh: the fuel adjustment (AFA) applies to EVERY kWh, the RM10
+      retail charge appears, and 8% service tax is charged on the part above
+      600 kWh;
+    * over 300 kWh: the 1.6% KWTBB levy;
+    * up to 1,000 kWh: the efficiency incentive, a rebate on every kWh that
+      shrinks as the total grows, so an added kWh also costs part of the rebate
+      on the kWh already there;
+    * 1,501 kWh and up: the dearer energy rate, on every kWh.
+    """
+    peak = max(0.0, float(peak_kwh))
+    off = max(0.0, float(off_peak_kwh))
+    total = peak + off
+    if total <= 0:
+        return 0.0
+    threshold = float(tou.get("usage_threshold_kwh", 600) or 600)
+    high = float(tou.get("high_usage_threshold_kwh", 1501) or 1501)
+    tier = tou["energy_tier2"] if total >= high else tou["energy_tier1"]
+    rate_peak, rate_off = float(tier["peak"]), float(tier["off_peak"])
+    wires = float(tou.get("capacity_rate", 0) or 0) + float(tou.get("network_rate", 0) or 0)
+    eei = _eei_rate(total, tou)
+    over = total > threshold
+    afa = float(tou.get("afa_rm_per_kwh", 0) or 0) if over else 0.0
+    retail = float(tou.get("retail_charge_rm", 0) or 0) if over else 0.0
+
+    # Service tax falls on the usage above the threshold. TNB fills the exempt
+    # 600 kWh with peak units first, so the taxed remainder is mostly off-peak.
+    exempt_peak = min(peak, threshold)
+    exempt_off = min(off, threshold - exempt_peak)
+    taxed_peak, taxed_off = peak - exempt_peak, off - exempt_off
+    taxed_kwh = taxed_peak + taxed_off
+    taxed = (
+        taxed_peak * rate_peak + taxed_off * rate_off
+        + taxed_kwh * (afa + wires + eei) + retail
+    )
+
+    energy = peak * rate_peak + off * rate_off
+    levy_base = energy + total * (wires + eei)
+    kwtbb = (
+        levy_base * float(tou.get("kwtbb_rate", 0) or 0)
+        if total > float(tou.get("kwtbb_threshold_kwh", 300) or 300) else 0.0
+    )
+    service_tax = taxed * float(tou.get("service_tax_rate", 0) or 0)
+    return levy_base + total * afa + retail + service_tax + kwtbb
+
+
+def _household_bill(kwh: float, tariff: dict) -> float:
+    share = float((tariff.get("home_household_assumptions") or {}).get("base_peak_share", 0.6) or 0.6)
+    return tnb_tou_bill(kwh * share, kwh * (1 - share), tariff.get("domestic_tou") or {})
+
+
 def estimate_household_kwh(bill_rm: float, tariff: dict) -> float:
     """Invert a monthly TNB bill into approximate household kWh.
 
-    All-in Domestic ToU rate at a typical 60/40 peak split, plus the fixed
-    retail charge. Tier 2 applies to the whole consumption once the household
-    crosses the threshold, so the two branches are deliberately discontinuous.
+    Bisection on tnb_tou_bill at the household's 60/40 peak split. The bill
+    only ever rises with usage (in steps, at the thresholds above), so the
+    answer is the usage whose bill first reaches the stated figure.
     """
-    tou = tariff.get("domestic_tou") or {}
-    if not tou or bill_rm <= 0:
+    if not tariff.get("domestic_tou") or bill_rm <= 0:
         return 0.0
-    retail = float(tou.get("retail_charge_rm", 0) or 0)
-    fixed = float(tou.get("capacity_rate", 0)) + float(tou.get("network_rate", 0))
-    peak_share = float(
-        (tariff.get("home_household_assumptions") or {}).get("base_peak_share", 0.6) or 0.6
-    )
-    kwtbb = 1 + float(tou.get("kwtbb_rate", 0) or 0)
+    lo, hi = 0.0, 6000.0
+    for _ in range(40):
+        mid = (lo + hi) / 2
+        if _household_bill(mid, tariff) < bill_rm:
+            lo = mid
+        else:
+            hi = mid
+    return hi
 
-    def all_in(tier: str, with_extras: bool) -> float:
-        e = tou[tier]
-        rate = float(e["peak"]) * peak_share + float(e["off_peak"]) * (1 - peak_share) + fixed
-        if with_extras:
-            rate = (rate + float(tou.get("afa_rm_per_kwh", 0) or 0)) * kwtbb
-            return rate * (1 + float(tou.get("service_tax_rate", 0) or 0))
-        return rate * kwtbb
 
-    threshold = float(tou.get("usage_threshold_kwh", 600) or 600)
-    low = max(0.0, (bill_rm - retail) / all_in("energy_tier1", False))
-    if low <= threshold:
-        return low
-    return max(threshold, (bill_rm - retail) / all_in("energy_tier2", True))
+# The household's own usage is not a fixed number: it moves with the weather
+# from month to month, and when the buyer gave no bill it is an assumption.
+# The marginal cost of charging is averaged over this spread around it so that
+# a baseline which happens to sit on a tariff step does not decide the answer.
+# The default household is 400 kWh, exactly the top of an incentive band; taken
+# literally, the first kWh of charging would cost RM10.
+HOUSEHOLD_SPREAD_KWH = (-60.0, -30.0, 0.0, 30.0, 60.0)
 
 
 def home_ev_marginal_rate(profile: dict, tariff: dict, ev_kwh_month: float) -> float:
-    """RM/kWh for charging at home, given what the household already draws.
+    """RM/kWh that charging at home really adds to the household's bill.
 
-    Anchored on the validated marginal rate (computed for the reference
-    household in data/tariff.json). Adding EV load on top of an already-heavy
-    household pushes the WHOLE bill into tier 2, so the increment carries the
-    tier uplift, AFA, KWTBB and service tax on top of the anchor.
+    bill(household + car) - bill(household), per kWh charged, on TNB's own
+    bill arithmetic. This was a single anchor rate, RM0.4986, worked out once
+    for a 400 kWh household charging 150 kWh a month and applied to every car
+    at every mileage. Against the bill it stands in for:
+
+    * 80 kWh a month (a small EV on a 10,000 km year): RM0.50, the anchor holds;
+    * 150 kWh: RM0.54, the anchor is 8% low once the household is not assumed
+      to sit exactly on the 400 kWh incentive band;
+    * 280 kWh (a 37,000 km/year driver): RM0.65, the anchor is 23% low. The
+      household passes 600 kWh, which switches on the fuel adjustment for
+      every kWh in the house, the retail charge and service tax.
+
+    The old uplift for heavy households fired only when the buyer had typed a
+    bill, and then added the 10 sen energy step at 600 kWh; that step is at
+    1,501 kWh.
+
+    The 10% peak share is the overnight-charging habit in tariff.json. With no
+    stated bill the household is taken as the reference 400 kWh.
     """
     anchor = float(tariff["home_ev_marginal_rm_per_kwh"])
     tou = tariff.get("domestic_tou") or {}
+    ev = float(ev_kwh_month or 0)
+    if not tou or ev <= 0:
+        return anchor
+
+    assumptions = tariff.get("home_household_assumptions") or {}
     bill = float(profile.get("monthly_electricity_bill_rm") or 0)
-    if not tou or bill <= 0:
-        return anchor
-
-    baseline = estimate_household_kwh(bill, tariff)
-    threshold = float(tou.get("usage_threshold_kwh", 600) or 600)
-    if baseline + ev_kwh_month <= threshold:
-        return anchor
-
-    charge_peak = float(
-        (tariff.get("home_household_assumptions") or {}).get("charge_peak_share", 0.1) or 0.1
+    baseline = (
+        estimate_household_kwh(bill, tariff) if bill > 0
+        else float(assumptions.get("base_household_kwh", 400) or 400)
     )
-    t1, t2 = tou["energy_tier1"], tou["energy_tier2"]
-    uplift = (float(t2["peak"]) - float(t1["peak"])) * charge_peak + (
-        float(t2["off_peak"]) - float(t1["off_peak"])
-    ) * (1 - charge_peak)
-    uplift += float(tou.get("afa_rm_per_kwh", 0) or 0)
-    uplift *= 1 + float(tou.get("kwtbb_rate", 0) or 0)
-    uplift *= 1 + float(tou.get("service_tax_rate", 0) or 0)
-    return anchor + uplift
+    base_peak = float(assumptions.get("base_peak_share", 0.6) or 0.6)
+    charge_peak = float(assumptions.get("charge_peak_share", 0.1) or 0.1)
+
+    added = []
+    for offset in HOUSEHOLD_SPREAD_KWH:
+        house = max(0.0, baseline + offset)
+        peak, off = house * base_peak, house * (1 - base_peak)
+        before = tnb_tou_bill(peak, off, tou)
+        after = tnb_tou_bill(peak + ev * charge_peak, off + ev * (1 - charge_peak), tou)
+        added.append(after - before)
+    return max(0.0, sum(added) / len(added) / ev)
 
 
 def build_features(profile: dict) -> dict:
+    commute = commute_km_yr(profile)
+    trips = long_trip_km_yr(profile)
+    total = commute + trips
     return {
-        "annual_km": annual_mileage_km(profile),
+        "annual_km": total,
+        "commute_km_yr": commute,
+        "long_trip_km_yr": trips,
+        # Share and round-trip length rather than km, so a caller that rescales
+        # annual_km (the break-even feature does) keeps the same driving mix.
+        "long_trip_share": trips / total if total > 0 else 0.0,
+        "long_trip_round_km": 2.0 * long_trip_one_way_km(profile),
         "long_trip_weight": long_trip_weight(profile),
         "long_trip_km": float(profile.get("long_trip_km", 0) or 0),
         "destination_km": destination_distance_km(profile),
@@ -824,7 +980,9 @@ def _fuelling_convenience(vehicle: dict, profile: dict, feature: dict) -> float:
         return HYBRID_CONVENIENCE
 
     daily = max(float(profile.get("daily_km", 0) or 0), 1.0)
-    longest_trip = max(float(profile.get("long_trip_km", 0) or 0), feature["destination_km"])
+    # 0 when the usual long trip crosses the South China Sea: nobody drives it,
+    # so it forces no charging stop. See long_trip_one_way_km.
+    longest_trip = long_trip_one_way_km(profile)
     can_charge_home = bool(profile.get("can_charge_home"))
     trip_weight = feature["long_trip_weight"]
     access = feature["charging_convenience"] / 100
@@ -921,34 +1079,47 @@ def infrastructure_engine(vehicle: dict, profile: dict, feature: dict) -> float:
 # ---------------------------------------------------------------------------
 
 
-def _phev_ev_share(vehicle: dict, profile: dict) -> float:
+def _phev_ev_share(vehicle: dict, profile: dict, feature: dict | None = None) -> float:
     """Fraction of annual km the PHEV runs on battery.
 
-    Coverage = EV range / daily km. With home charging the battery tops up
-    nightly so the share equals daily coverage; without it, public charging
-    only captures about half of that.
+    Commute and long trips are covered differently, so each is worked out on
+    its own kilometres and the two are combined by distance.
+
+    Commute: coverage = EV range / daily km. With home charging the battery
+    tops up nightly so the share equals daily coverage; without it, public
+    charging only captures about half of that.
+
+    Long trips: `specs.range_km` on a PHEV is the ELECTRIC range (65-170 km
+    here), and on a round trip only the first EV-range km are electric. Without
+    this term range/daily was >= 1 for 22 of 25 PHEVs at a normal commute, which
+    pinned the share to exactly 1.0 and modelled those cars as burning no
+    petrol at all. A buyer who cannot charge at home does not leave full.
+
+    The two used to be blended by long_trip_weight (0.1 / 0.45 / 0.85), a
+    convenience weighting standing in for a distance share. A monthly Penang
+    run is 46% of the Klang Valley profile's kilometres, so 0.45 happened to be
+    right there, but "rarely" is 13% rather than 10%, and a 150 km commute with
+    weekly trips is 52% rather than 85%.
     """
+    if feature is None:
+        feature = build_features(profile)
     specs = vehicle.get("specs", {})
     range_km = float(specs.get("range_km", 0) or 0)
     daily = max(float(profile.get("daily_km", 0) or 0), 1.0)
+    home = bool(profile.get("can_charge_home"))
+
     commute_cov = min(1.0, range_km / daily) if range_km > 0 else 0.35
+    if not home:
+        # opportunistic public top-ups only
+        commute_cov = min(commute_cov, 0.5)
 
-    # Long trips are the part the commute term cannot see. `specs.range_km` on a
-    # PHEV is the ELECTRIC range (65-170 km here), so range/daily was >= 1 for 22
-    # of 25 PHEVs at a normal commute. That pinned the share to exactly 1.0, made
-    # litres_yr = l100 * (1 - 1.0) = 0, and modelled those cars as burning no
-    # petrol at all — scoring them as pure EVs on both running cost and CO2.
-    # On a round trip only the first EV-range km are electric.
-    round_trip = max(2.0 * destination_distance_km(profile), 1.0)
+    round_trip = max(float(feature.get("long_trip_round_km", 0.0) or 0.0), 1.0)
     trip_cov = min(1.0, range_km / round_trip) if range_km > 0 else 0.1
+    if not home:
+        trip_cov *= 0.5
 
-    w = long_trip_weight(profile)  # 0.1 rarely .. 0.85 weekly
-    coverage = (1.0 - w) * commute_cov + w * trip_cov
-
-    if profile.get("can_charge_home"):
-        return coverage
-    # no home charger: opportunistic public top-ups only
-    return min(coverage, 0.5)
+    share = min(1.0, max(0.0, float(feature.get("long_trip_share", 0.0) or 0.0)))
+    return (1.0 - share) * commute_cov + share * trip_cov
 
 
 def _kwh100(vehicle: dict) -> float:
@@ -976,13 +1147,20 @@ def energy_engine(vehicle: dict, profile: dict, feature: dict, energy: dict) -> 
 
     eff = _charger_efficiency(tariff)
     grid_co2 = grid_co2_factor(profile, co2)
+    public = tariff["public_charging_rm_per_kwh"]
+    station_rate = float(public["blended"])
+    dc_rate = float(public.get("dc_fast", station_rate) or station_rate)
+    home = bool(profile.get("can_charge_home"))
 
-    def _electricity_cost(drawn_kwh_yr: float) -> float:
-        """Cost of a year of charging, split home/public per the D-HC 80/20 rule."""
-        station_rate = float(tariff["public_charging_rm_per_kwh"]["blended"])
-        if not profile.get("can_charge_home"):
+    def _electricity_cost(drawn_kwh_yr: float, extra_home_kwh_yr: float = 0.0) -> float:
+        """Cost of a year of everyday charging, split home/public per the D-HC
+        80/20 rule. `extra_home_kwh_yr` is other home load on the same meter in
+        the same year, which decides the tariff tier but is billed elsewhere."""
+        if not home:
             return drawn_kwh_yr * station_rate
-        home_rate = home_ev_marginal_rate(profile, tariff, drawn_kwh_yr * 0.8 / 12)
+        home_rate = home_ev_marginal_rate(
+            profile, tariff, (drawn_kwh_yr * 0.8 + extra_home_kwh_yr) / 12
+        )
         return drawn_kwh_yr * (0.8 * home_rate + 0.2 * station_rate)
 
     if vtype == "ev":
@@ -990,10 +1168,39 @@ def energy_engine(vehicle: dict, profile: dict, feature: dict, energy: dict) -> 
         kwh_yr = (annual / 100) * kwh100
         litres_yr = 0.0
         drawn = kwh_yr / eff
-        cost = _electricity_cost(drawn)
         co2_yr = drawn * grid_co2
+
+        # Long trips are charged differently from the commute. The car leaves
+        # on whatever it charged at home (or, with no home charger, at a public
+        # station) and everything past its usable range comes from a highway
+        # DC charger at RM1.40/kWh, nearly three times the home rate. Pricing
+        # those kilometres at the commute's 80/20 mix made a 700 km round trip
+        # look as cheap per km as the school run.
+        share = min(1.0, max(0.0, float(feature.get("long_trip_share", 0.0) or 0.0)))
+        round_trip = float(feature.get("long_trip_round_km", 0.0) or 0.0)
+        trip_kwh = kwh_yr * share
+        usable = float(specs.get("range_km", 300) or 300) * USABLE_RANGE_FRACTION
+        from_departure = min(1.0, usable / round_trip) if round_trip > 0 else 1.0
+        departure_drawn = trip_kwh * from_departure / eff
+        # DC stations bill the energy delivered to the car, so the AC charger
+        # loss applies to the departure charge only.
+        en_route_cost = trip_kwh * (1.0 - from_departure) * dc_rate
+        commute_drawn = (kwh_yr - trip_kwh) / eff
+        if home:
+            departure_rate = home_ev_marginal_rate(
+                profile, tariff, (commute_drawn * 0.8 + departure_drawn) / 12
+            )
+        else:
+            departure_rate = station_rate
+        cost = (
+            _electricity_cost(commute_drawn, departure_drawn)
+            + departure_drawn * departure_rate
+            + en_route_cost
+        )
     elif vtype == "phev":
-        ev_share = _phev_ev_share(vehicle, profile)
+        # A PHEV never fast-charges on a trip: past its electric range it burns
+        # petrol, so all of its electricity is the everyday kind.
+        ev_share = _phev_ev_share(vehicle, profile, feature)
         kwh100 = _kwh100(vehicle)
         l100 = float(specs.get("fuel_l_per_100km", 5.0) or 5.0)
         kwh_yr = (annual / 100) * kwh100 * ev_share

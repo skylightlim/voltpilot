@@ -19,8 +19,14 @@
       "charger_efficiency": 0.9
     },
     "domestic_tou": {
-      "energy_tier1": {"peak": 0.2852, "off_peak": 0.2443},
-      "energy_tier2": {"peak": 0.3852, "off_peak": 0.3443},
+      "energy_tier1": {
+        "peak": 0.2852,
+        "off_peak": 0.2443
+      },
+      "energy_tier2": {
+        "peak": 0.3852,
+        "off_peak": 0.3443
+      },
       "capacity_rate": 0.0455,
       "network_rate": 0.1285,
       "afa_rm_per_kwh": 0.036,
@@ -30,7 +36,76 @@
       "service_tax_rate": 0.08,
       "kwtbb_threshold_kwh": 300,
       "kwtbb_rate": 0.016,
-      "retail_charge_rm": 10.0
+      "retail_charge_rm": 10.0,
+      "energy_efficiency_incentive": {
+        "note": "Insentif Cekap Tenaga: RM/kWh rebate on ALL usage, chosen by total monthly kWh; none above 1,000 kWh. Transcribed from TNB rates.js v1.1.65, as in scripts/used_market/compute_charging_cost.py.",
+        "tiers_max_kwh_rate": [
+          [
+            200,
+            -0.25
+          ],
+          [
+            250,
+            -0.245
+          ],
+          [
+            300,
+            -0.225
+          ],
+          [
+            350,
+            -0.21
+          ],
+          [
+            400,
+            -0.17
+          ],
+          [
+            450,
+            -0.145
+          ],
+          [
+            500,
+            -0.12
+          ],
+          [
+            550,
+            -0.105
+          ],
+          [
+            600,
+            -0.09
+          ],
+          [
+            650,
+            -0.075
+          ],
+          [
+            700,
+            -0.055
+          ],
+          [
+            750,
+            -0.045
+          ],
+          [
+            800,
+            -0.04
+          ],
+          [
+            850,
+            -0.025
+          ],
+          [
+            900,
+            -0.01
+          ],
+          [
+            1000,
+            -0.005
+          ]
+        ]
+      }
     }
   },
   "public_charging_rm_per_kwh": {

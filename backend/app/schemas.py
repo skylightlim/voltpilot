@@ -115,7 +115,10 @@ class ProfileIn(BaseModel):
     home_postcode: str = Field(default="", max_length=5)
     work_postcode: str = Field(default="", max_length=5)
     consider_solar: bool = False
-    budget_max_rm: float = Field(default=0, ge=0)
+    # Bounded above: without `le`, the JSON literal Infinity passes `ge=0`,
+    # flattens the cost axis to nothing, and then fails to serialise into the
+    # stored result. RM100m is 45x the dearest car in the catalogue.
+    budget_max_rm: float = Field(default=0, ge=0, le=100_000_000)
     # Which grid supplies the home charger. Peninsular is gas/coal heavy; East
     # Malaysia is pulled down by hydro-dominant Sarawak, so the same kWh carries
     # roughly half the CO2 (see data/fuel.json co2_factors).

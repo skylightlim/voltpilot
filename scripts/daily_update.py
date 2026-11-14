@@ -49,6 +49,8 @@ SOURCES: list[tuple[str, Path]] = [
     ("fuel", ROOT / "scripts" / "update_fuel_prices.py"),
     ("registrations", ROOT / "scripts" / "update_vehicle_registrations.py"),
     ("ev_stations", ROOT / "scraper" / "ev_stations.py"),
+    # after ev_stations: scores postcodes from the CSV it just wrote
+    ("ev_density", ROOT / "scripts" / "used_market" / "build_station_density.py"),
 ]
 
 

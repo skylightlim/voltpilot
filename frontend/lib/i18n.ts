@@ -189,7 +189,7 @@ const S = {
   "me.s2": ["Budget screen", "Tapisan bajet"],
   "me.s2d": ["Anything above your maximum is removed before scoring, so an unaffordable car is never ranked first.", "Apa-apa melebihi had anda dibuang sebelum pemarkahan, supaya kereta di luar kemampuan tidak pernah menduduki tempat pertama."],
   "me.s3": ["Charging feasibility gate", "Get kebolehlaksanaan pengecasan"],
-  "me.s3d": ["Battery-electric cars are removed when you have neither home nor workplace charging and fewer than five public points within 20 km. Plug-in hybrids stay — they still run on petrol.", "Kereta elektrik bateri dibuang apabila anda tiada pengecasan di rumah mahupun tempat kerja serta kurang lima titik awam dalam 20 km. Hibrid plug-in kekal — ia masih boleh guna petrol."],
+  "me.s3d": ["Every car with a plug — battery-electric and plug-in hybrid — is removed when you have neither home nor workplace charging. Public chargers nearby do not change that: they are not somewhere of your own to charge.", "Semua kereta berpalam — elektrik bateri dan hibrid plug-in — dibuang apabila anda tiada pengecasan di rumah mahupun di tempat kerja. Pengecas awam berdekatan tidak mengubahnya: ia bukan tempat mengecas milik anda sendiri."],
   "me.s4": ["Cost engine", "Enjin kos"],
   "me.s4d": ["Ten years of financing interest, insurance, servicing, road tax and the opportunity cost of your deposit. Purchase price and running cost are scored separately so nothing is counted twice.", "Sepuluh tahun faedah pembiayaan, insurans, servis, cukai jalan dan kos peluang deposit anda. Harga belian dan kos operasi dimarkah berasingan supaya tiada pengiraan berganda."],
   "me.s5": ["Energy engine", "Enjin tenaga"],

@@ -46,6 +46,14 @@ Each row links a defect to the file that carries it and the effect it has on out
 | 25 | Voice Advisor needs a key the deploy guide never mentions | `frontend/app/api/live-token/route.ts:20` | Follow DEPLOYMENT.md exactly and voice is silently offline | Fixed 2026-09-15 |
 | 26 | Calculators broke when used quickly | `frontend/app/calculators/page.tsx:156` | One slider drag exhausted the rate limit and blanked every panel for 47s | Fixed 2026-09-15 |
 | 27 | Home-charging control shown where it cannot act | `frontend/app/calculators/page.tsx:561` | A hybrid's total is identical either way, so the control read as broken | Fixed 2026-09-15 |
+| 28 | Budget below the cheapest car saturates or inverts the cost axis | `backend/app/services/scoring.py:46` | A RM20,000 buyer is shown a RM648,888 EQS at rank 3 | Fixed 2026-11-14 |
+| 29 | Gate fallback refills the pool with the cars it removed | `backend/app/services/scoring.py:60` | EVs and over-budget cars return under `budget.applied: True` | Fixed 2026-11-14 |
+| 30 | Trip distance measured from KL for unmapped postcodes | `backend/app/engines/engines.py:100` | Kota Bharu to KL scored as 30 km, shown as 365 km | Fixed 2026-11-14 |
+| 31 | CO2 ceiling no longer covers the catalogue | `backend/app/engines/topsis.py:148` | 11 cars above 0.23 kg/km tie at the worst value | Accepted 2026-11-14 |
+| 32 | Long trips were never driven | `backend/app/engines/engines.py:67` | 8,797 to 38,120 km a year left out of energy cost and CO2 | Fixed 2026-11-14 |
+| 33 | Depreciation scored twice; resale axis mostly empty | `backend/app/services/scoring.py:156` | Rank follows purchase price at 0.95; one RM67,800 car wins RM80k to RM250k | Mitigated 2026-11-14 |
+| 34 | Plug-in cars recommended to buyers with nowhere to charge | `backend/app/engines/engines.py:290` | An EV at rank 1 in 46% of no-charger profiles | Fixed 2026-11-14 |
+| 35 | Home charging priced at one rate for every car and mileage | `backend/app/engines/engines.py:521` | 8% low at 150 kWh a month, 23% low at 280 | Fixed 2026-11-14 |
 
 ## State of play
 
@@ -1610,6 +1618,260 @@ have left the same question unanswered, one switch later.
 The stubbed backend in the browser test had to be taught to vary with
 `can_charge_home` first. A fixed stub returns the same total whatever is ticked,
 so a test of this control would have passed against the defect.
+
+## Tier 12: the candidate pool and its fallbacks, found 2026-11-14
+
+Locations in this tier are line numbers at commit `f58d90e`. Every figure was
+measured with the Klang Valley profile from `backend/repro.py` unless it says
+otherwise.
+
+### 28. A budget below the cheapest car saturates or inverts the cost axis
+
+**Problem.** When the budget screen left nothing, `score_catalog` fell back to
+the whole catalogue but still passed the stated budget to `criteria_bounds`.
+The cost ceiling is `1.05 x budget + 5 x 0.33 x km`, so at RM20,000 it is
+RM38,160 against a cheapest five-year cost of RM59,828. All 170 cars clip to
+the same worst value and the criterion carrying 0.34 of the weight stops
+separating them. Below about RM12,000 the ceiling drops under `PRICE_FLOOR_RM`,
+`hi - lo` goes negative, and every car scores the best possible cost instead.
+
+**Why it is an issue.** The cheapest car is RM67,800, so any budget under
+RM61,637 takes this path, and `budget_max_rm` is required with no minimum.
+
+| Budget | Rank 1 to 3 before | Rank 1 to 3 after |
+| --- | --- | --- |
+| RM20,000 | Tesla Model Y RM198,000, Mercedes CLA Electric RM274,888, Mercedes EQS RM648,888 | Wuling Bingo RM67,800, Proton eMas 5 RM72,800, Perodua QV-E RM87,499 |
+| RM60,000 | Wuling Bingo, Proton eMas 5, Tesla Model Y RM198,000 | Wuling Bingo, Proton eMas 5, Perodua QV-E |
+
+**Status. Fixed 2026-11-14.** `scoring._candidates` returns the
+`NEAREST_FALLBACK` (10) cheapest cars the buyer can run and anchors the axis on
+the dearest of them. `budget.fallback` is `"nearest_over_budget"` and the
+results page says so instead of "all N models". `criteria_bounds` also floors
+its anchor at `PRICE_FLOOR_RM` and treats a non-finite budget as absent, for
+library callers. `ProfileIn.budget_max_rm` gained `le=100_000_000`: the JSON
+literal `Infinity` passed `ge=0`. The anchor on this path comes from the
+catalogue, which is the dependence issue 8 removed; it is confined to the
+fallback, where the stated figure cannot serve.
+
+### 29. The gate fallback refilled the pool with the cars it had removed
+
+**Problem.** The feasibility gate ran after the budget screen and carried its
+own `if not affordable: affordable = catalog`. A buyer who fails the gate and
+whose budget reaches only EVs (anything from RM61,637 to RM90,727, since the
+cheapest non-EV is RM99,800) had the pool emptied and then replaced with all
+170 models: 92 EVs they cannot charge and everything over budget, with
+`budget.applied` True and `bev_removed` 0.
+
+**Status. Fixed 2026-11-14**, by the same `_candidates`. The fallback draws
+only from cars that pass the gate, and `bev_removed` reports what was screened.
+`TestNothingFitsTheBudget` covers both issues.
+
+### 30. Trip distance was measured from KL for unmapped postcodes
+
+**Problem.** `destination_distance_km` looked the home up in the 2-digit prefix
+table and fell back to KL. `home_coordinates` had already been given a state
+fallback for the same reason (see `_STATE_RANGES`), and
+`infrastructure_access` uses it, so the engine scored one distance while the
+results page displayed another.
+
+| Postcode, destination `kl` | Scored before | Shown on the page | Scored after |
+| --- | --- | --- | --- |
+| 18300 Kelantan | 30 km | 365 km | 367 km |
+| 02600 Perlis | 30 km | 501 km | 503 km |
+| 35900 Perak | 30 km | 218 km | 219 km |
+
+The distance feeds the EV charging-stop count in `_fuelling_convenience` and
+the PHEV electric share in `_phev_ev_share`.
+
+**Status. Fixed 2026-11-14.** One home position for every distance. The four
+golden profiles did not move, order or score.
+
+### 31. The CO2 ceiling no longer covers the catalogue
+
+`CO2_CEILING_KG_PER_KM` is 0.23, calibrated when the dirtiest car emitted
+0.226 kg/km. Eleven cars now exceed it, from the Lexus LX at 0.231 to the
+Mercedes-AMG G-Class at 0.351, and tie at the worst value. All but one cost
+over RM450,000, so it reaches few buyers.
+
+**Status. Accepted 2026-11-14.** The ceiling stays at 0.23. Raising it to 0.36
+compresses the axis by a third for every other buyer, which weakens the
+environment slider across the board to separate eleven cars that are already
+last on it and that few buyers can afford. `TestCo2CeilingIsAKnownLimit` fails
+if a twelfth car, or any car under RM350,000, crosses the line.
+
+### 32. Long trips were never driven
+
+**Problem.** `annual_mileage_km` was `daily_km x trips_per_week x 52`: the
+commute. The interview then asks how often the buyer takes long trips and where
+to, and that answer reached `long_trip_weight`, the stop count and the PHEV
+share, but never the odometer. Energy cost and CO2 were computed on the commute
+alone.
+
+| Golden profile | Commute km/yr | Long-trip km/yr left out |
+| --- | --- | --- |
+| `kv_home_charging`, monthly to Penang | 10,400 | 8,797 |
+| `east_no_charging`, monthly | 10,400 | 12,094 |
+| `bev_gate_blocked`, monthly | 10,400 | 13,437 |
+| `high_mileage_budget`, weekly to Penang | 37,440 | 38,120 |
+
+**Why it is an issue.** Running cost and CO2 scale with distance, so every car
+was understated by the same share and the gap between an efficient car and a
+thirsty one shrank with it. It also flattered EVs specifically: the missing
+kilometres are the ones an EV cannot charge at home for. They were priced, when
+priced at all, at the commute's 80/20 home/public mix.
+
+**Status. Fixed 2026-11-14.** Three changes in `engines.py`:
+
+- `annual_mileage_km` is commute plus long trips, at 2, 12 and 52 round trips a
+  year for rarely, monthly and weekly (`LONG_TRIPS_PER_YEAR`).
+- `energy_engine` charges an EV's trip kilometres as one departure charge
+  (home rate, or the public blend without a home charger) covering the usable
+  range, and the rest at `dc_fast`, RM1.40/kWh. A Proton eMas 5 now costs
+  RM12.08 per 100 km on `kv_home_charging` and RM18.81 on `east_no_charging`.
+  The commute keeps the D-HC 80/20 rule.
+- `_phev_ev_share` combines commute and trip coverage by distance rather than
+  by `long_trip_weight`.
+
+A trip between Peninsular and East Malaysia is not driven
+(`long_trip_one_way_km` returns 0), so it adds no kilometres and forces no
+charging stop. The calculators are unchanged: there the buyer types a yearly
+total, and it stays the total.
+
+Rank 1 held on all four golden profiles. Below it, long-trippers' shortlists
+moved toward efficient hybrids: on `high_mileage_budget` the eMas 5 went from
+2nd to 8th and the Yaris Cross from 3rd to 2nd. The fixture was regenerated.
+No vehicle clips the cost ceiling across 2,160 profiles under either fuel
+scenario. `TestLongTripsAreDriven` covers it. Two stability tests changed their
+example profile, with the reason in each docstring.
+
+### 33. Depreciation was scored twice, and the resale axis was mostly empty
+
+**Problem.** Two faults that compound.
+
+`total_cost_5yr_rm` was the cost criterion, and depreciation is 68% of it.
+`resale_retained_pct` is a criterion of its own, and it is the same loss as a
+percentage. Cost at 0.34 and resale at 0.16 were mostly one quantity, purchase
+price, voting twice. Issue 16 recorded the overlap as accepted.
+
+Resale was normalised on 0 to 100. Every trim in the catalogue sits between
+33.7 and 61.6, so the criterion used 28% of its axis for every buyer and its
+0.16 weight did about 0.045 of the separating. That left cost to decide.
+
+**Why it is an issue.** Measured on the engine after issue 32, default sliders:
+
+| | Before | After |
+| --- | --- | --- |
+| Rank against price, Spearman, `kv_home_charging` | 0.95 | 0.85 |
+| Same, `east_no_charging` / `high_mileage_budget` / `bev_gate_blocked` | 0.93 / 0.63 / 0.84 | 0.79 / 0.36 / 0.71 |
+| Same, mean over 144 profiles | 0.76 | 0.58 |
+| Share of wins taken by the top three cars, 11,520 profile and slider combinations | 75% | 69% |
+| Winner with "save money" at 0, RM400,000 budget | Yaris Cross, RM109,900 | Corolla Cross Hybrid, RM140,800 |
+
+**Status. Mitigated 2026-11-14, not solved.**
+
+- The criterion is now `holding_cost_5yr_rm`: the five-year total less the
+  depreciation line. `total_cost_5yr_rm` is still computed and still what the
+  buyer is shown. Bounds were recalibrated to the holding-cost ratio, 0.193 to
+  0.326 of price (`HOLDING_COST_X_BUDGET`, `HOLDING_COST_X_PRICE_MIN`).
+- Resale is normalised on 30 to 65 (`RESALE_FLOOR_PCT`, `RESALE_CEILING_PCT`),
+  a property of the depreciation data and not of any shortlist.
+- Convenience and infrastructure were left at 0 to 100 on purpose. Within one
+  shortlist they use 19% and 25% of the axis, but across buyers they run from
+  9.7 and 3.9 up to 100. A 60-to-100 convenience range would clip one buyer in
+  twenty.
+
+Rank 1 changed on three of four golden profiles, from the Wuling Bingo to the
+Toyota Yaris Cross; `bev_gate_blocked` kept the Yaris Cross. The fixture was
+regenerated. `TestDepreciationIsCountedOnce` covers it.
+
+**What is left, and why it stays.** Three cars still take 69% of wins, and the
+Yaris Cross wins every budget from RM250,000 to RM800,000. Nothing in the model
+rewards what a dearer car buys. A capability criterion (power, boot, seats) was
+considered and declined on 2026-11-14 for the reason `practicality_factor`
+already gives for not scoring seats: what a buyer needs cannot be inferred from
+the interview, and scoring horsepower without knowing it is wanted would rank a
+300 hp car above a hatchback for a solo commuter. With no stated need, the
+cheapest efficient car that holds its value IS the right answer; the buyer who
+wants seven seats or an SUV says so through the results-page filters. Budget
+sensitivity belongs in the interview (ask what the car is for), not in a sixth
+weight. Separately, 148 of 170 trims carry a drivetrain-average resale figure,
+so with resale now pulling its weight, "future-proofing" leans further toward
+"prefer hybrid"; only more listings data fixes that.
+
+### 34. Plug-in cars were recommended to buyers with nowhere to charge
+
+**Problem.** `bev_charging_gate` passed on home charging, workplace charging,
+or five public points within 20 km. The third route is open in every city (290
+points around KLCC), so an urban buyer with no charger of their own kept every
+EV in the ranking, and at a low budget an EV was all that fitted.
+
+**Why it is an issue.** The rule checked: the top recommendation must not be a
+plug-in car when the buyer has neither home nor workplace charging. Measured
+over 3,456 such profiles (16 postcodes, 4 budgets, 3 mileages, 3 trip
+frequencies, 6 slider settings):
+
+| Rank 1 | At `f58d90e` | After issues 28 to 33 | After this fix |
+| --- | --- | --- | --- |
+| Hybrid | 1,853 | 2,565 | 3,456 |
+| EV | 1,602 | 863 | 0 |
+| Plug-in hybrid | 1 | 28 | 0 |
+
+At RM80,000, where the cheapest hybrid (RM99,800) is out of reach, an EV won
+all 450 runs in areas with public chargers.
+
+**Status. Fixed 2026-11-14.** The gate passes on a home or workplace charger
+and nothing else; public points are still counted and reported
+(`reason: "public_only"`) but decide nothing. When it fails, `_candidates`
+removes every plug-in car, PHEVs included (`feasibility.phev_removed`): a PHEV
+that is never plugged in is a dearer hybrid. A buyer whose budget reaches only
+EVs gets the ten cheapest hybrids through the `nearest_over_budget` fallback
+of issue 28, labelled as over budget. This departs from Spec Step 02, which
+names the public-points route. `TestChargingAccessIsRespected` holds the rule
+across 144 profile and slider combinations.
+
+The check is one-directional by design: a hybrid recommended to a buyer who can
+charge is a legitimate answer and is not treated as a failure.
+
+On the golden profiles, `east_no_charging` went from 69 candidates to 19 and
+lost the Wuling Bingo from fifth place; rank 1 did not change on any profile.
+
+### 35. Home charging was priced at one rate for every car and mileage
+
+**Problem.** `home_ev_marginal_rate` returned `home_ev_marginal_rm_per_kwh`,
+RM0.4986, computed once for a 400 kWh household drawing 150 kWh a month. It was
+adjusted only when the buyer typed a bill AND the total passed 600 kWh, and the
+adjustment added TNB's 10 sen tier-2 energy step there. That step is at 1,501
+kWh. What starts at 601 kWh is the fuel adjustment on every kWh, the RM10
+retail charge and 8% service tax on the excess.
+
+An external check of seven EV cost figures found the same thing from the
+outside: the home rate 6 to 8% under a TNB marginal-cost reference at ordinary
+mileage and about 23% under at 37,440 km a year.
+
+**Status. Fixed 2026-11-14.** The rate is now
+`bill(household + car) - bill(household)` per kWh charged. `tnb_tou_bill` is
+TNB's Domestic ToU arithmetic, the same as
+`scripts/used_market/compute_charging_cost.py`, and agrees with it to the sen
+on six test bills. The efficiency-incentive bands it needs were added to
+`data/tariff.json`. With no stated bill the household is the reference 400
+kWh; either way the cost is averaged over the household running 60 kWh either
+side, because 400 sits exactly on an incentive band edge.
+
+| Car's home draw, kWh a month | Before | After |
+| --- | --- | --- |
+| 80 | 0.499 | 0.500 |
+| 150 | 0.499 | 0.542 |
+| 280 | 0.499 | 0.653 |
+
+`estimate_household_kwh` now inverts the same bill function. Break-even still
+measures its rate at 10,000 km and extrapolates; the rate now rises with
+mileage, so a crossing far from 10,000 km is approximate.
+`TestHomeChargingIsTheRealBill` covers it.
+
+The same check found the missing long-trip kilometres (issue 32, already
+fixed). One difference remains with it: a stated `long_trip_km` is read as one
+way and doubled, where the check counted it once per trip. A stated distance
+now also overrides the region estimate rather than losing to it when shorter.
 
 ## Suggested order of work
 

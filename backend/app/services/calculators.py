@@ -348,6 +348,10 @@ def ownership(slug: str, *, annual_km: float = 15_000.0, can_charge_home: bool =
         "monthly_electricity_bill_rm": 0,
     }
     features = engines.build_features(profile)
+    # The buyer typed a yearly total, so it is the total: no long trips are
+    # added on top of it and none are priced at highway DC rates.
+    features = {**features, "annual_km": km, "commute_km_yr": km,
+                "long_trip_km_yr": 0.0, "long_trip_share": 0.0}
     energy = energy_context(fuel_scenario)
     eng = engines.energy_engine(vehicle, profile, features, energy)
     breakdown = costing.five_year_breakdown(vehicle, eng["cost_rm_yr"])
