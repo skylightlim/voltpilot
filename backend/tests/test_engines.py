@@ -432,7 +432,12 @@ class TestMaintenanceModel:
         measured = self._measured()[0]
         value, basis = engines.maintenance_rm_yr(measured)
         assert basis == "measured"
-        assert value == float(measured["ownership"]["maintenance_rm_yr"])
+        own = measured["ownership"]
+        # A published five-year total is the figure; the annual key is its
+        # rounded copy for readers of the file.
+        expected = (own["maintenance_5yr_rm"] / 5 if own.get("maintenance_5yr_rm")
+                    else own["maintenance_rm_yr"])
+        assert value == pytest.approx(float(expected))
 
     def test_an_unmeasured_row_is_reported_as_estimated(self):
         value, basis = engines.maintenance_rm_yr({"type": "ev", "price_rm": 120_000})

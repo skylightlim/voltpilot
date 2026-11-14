@@ -211,6 +211,11 @@ def road_tax_for_catalog_vehicle(slug: str) -> dict | None:
 
 
 # --- affordability (the loan, solved backwards) --------------------------
+# The drivetrains the catalogue holds; anything else (a custom "ice" car) is
+# not filtered, since the catalogue has no petrol-only rows to match it to.
+DRIVETRAINS = ("ev", "hybrid", "phev")
+
+
 def affordability(monthly_budget_rm: float, *, vehicle_type: str = "ev",
                   tenure_years: int = DEFAULT_TENURE_YEARS,
                   down_payment_rm: float = 0.0,
@@ -237,7 +242,14 @@ def affordability(monthly_budget_rm: float, *, vehicle_type: str = "ev",
     financed = monthly * months / (1 + (rate_pct / 100) * years)
     price = financed + down
 
-    affordable = [v for v in load_catalog() if float(v["price_rm"]) <= price]
+    # The drivetrain chosen on the page decides the list, not only the loan
+    # rate. It used to filter on price alone, so the plug-in hybrid tab listed
+    # the dearest cars of any kind under the price (a Hilux EV, a Lexus LBX
+    # hybrid) and the count covered all 170 trims whatever was selected.
+    catalog = load_catalog()
+    if vehicle_type in DRIVETRAINS:
+        catalog = [v for v in catalog if v.get("type") == vehicle_type]
+    affordable = [v for v in catalog if float(v["price_rm"]) <= price]
     affordable.sort(key=lambda v: -float(v["price_rm"]))
 
     return {
@@ -248,8 +260,9 @@ def affordability(monthly_budget_rm: float, *, vehicle_type: str = "ev",
         "max_price_rm": _half_up(price),
         "financed_rm": _half_up(financed),
         "total_interest_rm": _half_up(financed * (rate_pct / 100) * years),
+        "vehicle_type": vehicle_type,
         "cars_in_range": len(affordable),
-        "catalog_total": len(load_catalog()),
+        "catalog_total": len(catalog),
         "examples": [
             {"slug": v["id"],
              "label": " ".join(x for x in (v["brand"], v["model"], v.get("variant") or "") if x).strip(),

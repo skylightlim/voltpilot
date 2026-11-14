@@ -1,15 +1,28 @@
 {
   "_meta": {
     "currency": "RM",
-    "note": "Static average-Malaysia residential solar return (D6). No irradiance model, no Open-Meteo. Used ONLY for the conditional savings banner (D-SOLAR). Auto-hidden if home charging is unavailable or user did not tick 'consider solar'."
+    "updated_at": "2026-11-14",
+    "note": "Inputs for the solar banner (D6, D-SOLAR), shown only when the buyer ticked 'consider solar' AND can charge at home. These are ASSUMPTIONS for one reference household, not figures: backend/app/services/solar.py turns them into capex, yearly savings and payback by billing the household on TNB's own arithmetic (engines.tnb_tou_bill over tariff.json), with and without the panels, under Solar ATAP rules. So the banner follows tariff.json when the tariff or AFA moves. Replaces the NEM-era static 'RM34,000 / RM4,300 a year / 7.9 years', which credited every exported kWh at the full retail rate; NEM 3.0 closed to new applications on 30 Jun 2025.",
+    "scheme": "Solar ATAP (Energy Commission guideline GP/ST/No.60/2025, in force 1 Jan 2026, Peninsular Malaysia): domestic exports are credited at the Energy Charge only (no capacity, network, retail or AFA), only up to what the house imports that month, and the remainder is forfeited with no carry-forward. Credits run 10 years from commencement; after that the system is self-consumption only. Single-phase homes up to 5 kW without a connection check."
   },
   "solar": {
-    "system_kw_peak": 5,
-    "capex_rm": 34000,
-    "savings_rm_per_year": 4300,
-    "payback_years": 7.9,
+    "system_kw": 5,
+    "capex_rm_per_kw": 3750,
+    "capex_source": "Installer pricing RM3,500-4,000 per kW installed, residential, 2026 (solaratap.com.my calculator); midpoint taken.",
+    "yield_kwh_per_kwp_yr": 1350,
+    "yield_source": "Peninsular rooftop planning range 1,300-1,450 kWh/kWp/yr after system losses (installer and calculator guides, 2026).",
+    "household_kwh_month": 400,
+    "household_peak_share": 0.6,
+    "household_daytime_share": 0.35,
+    "household_note": "The engine's reference household (tariff.json home_household_assumptions: 400 kWh a month). daytime_share is the part of the household's own use that happens while the panels generate; a house that is empty on weekdays sits near a third.",
+    "ev_kwh_month": 150,
+    "ev_note": "The reference EV draw in tariff.json, charged overnight, so none of it comes straight off the panels.",
+    "battery_kwh": 10,
+    "battery_capex_rm": 25000,
+    "battery_round_trip": 0.9,
+    "battery_source": "Installed home batteries RM23,999 (7 kWh) to RM35,999 (14 kWh), RM24,999 (16 kWh) (trexon.my 2026 price list); RM25,000 for a 10 kWh unit taken.",
+    "credit_years": 10,
     "lifetime_years": 25,
-    "savings_10yr_rm": 43000,
-    "note": "Typical 5kWp system, average Malaysian insolation, net-metering (NEM) rooftop program."
+    "rebate_note": "SuRIA Home pays RM600 per kWac, up to RM3,000, to Solar ATAP homes commissioned with TNB by 31 Dec 2026 or until its 250 MW quota is used. Not subtracted from capex: it ends inside the year."
   }
 }

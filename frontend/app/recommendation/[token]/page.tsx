@@ -8,6 +8,7 @@ import Link from "next/link";
 import { ArrowDown, Coins, Leaf, Loader2, MessageCircle, Target } from "lucide-react";
 import { Badge, Button, Card, SectionLabel } from "@/components/ui";
 import { CountUp, Reveal, Stagger } from "@/components/motion";
+import { SolarBanner } from "@/components/SolarBanner";
 import { apiService } from "@/lib/api";
 import { useT } from "@/lib/i18n";
 
@@ -149,15 +150,7 @@ export default function RecommendationPage() {
           {/* Solar banner (eligible only) */}
           {rec.solar_banner && (
             <Reveal className="mt-6">
-              <Card className="border-solar/40 bg-[#fff9ec] p-5">
-                <p className="font-semibold text-ink">{t("r.solar")}</p>
-                <p className="mt-0.5 text-[16px] leading-relaxed text-muted">
-                  You qualify: home charging + solar considered. Average Malaysia: capex RM
-                  {rec.solar_banner.capex_rm?.toLocaleString() ?? "34,000"}, ~RM
-                  {rec.solar_banner.savings_rm_per_year?.toLocaleString() ?? "4,300"}/yr savings,
-                  ~{rec.solar_banner.payback_years ?? "7.9"}-year payback.
-                </p>
-              </Card>
+              <SolarBanner solar={rec.solar_banner} token={token} />
             </Reveal>
           )}
 

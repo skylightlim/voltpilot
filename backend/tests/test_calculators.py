@@ -156,9 +156,26 @@ class TestAffordability:
 
     def test_it_reports_what_is_actually_in_range(self, catalog):
         out = calc.affordability(1_500, down_payment_rm=20_000)
-        expected = sum(1 for v in catalog if v["price_rm"] <= out["max_price_rm"])
+        expected = sum(1 for v in catalog
+                       if v["type"] == "ev" and v["price_rm"] <= out["max_price_rm"])
         assert out["cars_in_range"] == expected
+        assert out["catalog_total"] == sum(1 for v in catalog if v["type"] == "ev")
         assert all(e["price_rm"] <= out["max_price_rm"] for e in out["examples"])
+
+    @pytest.mark.parametrize("drivetrain", ["ev", "hybrid", "phev"])
+    def test_the_list_follows_the_chosen_drivetrain(self, catalog, drivetrain):
+        """The plug-in hybrid tab once listed a Hilux EV and a Lexus LBX hybrid:
+        the drivetrain changed the loan rate and nothing else."""
+        out = calc.affordability(4_000, vehicle_type=drivetrain, down_payment_rm=30_000)
+        assert out["examples"], drivetrain
+        assert {e["type"] for e in out["examples"]} == {drivetrain}
+        expected = sum(1 for v in catalog
+                       if v["type"] == drivetrain and v["price_rm"] <= out["max_price_rm"])
+        assert out["cars_in_range"] == expected
+
+    def test_the_hilux_is_never_offered_as_a_plug_in_hybrid(self):
+        out = calc.affordability(4_000, vehicle_type="phev", down_payment_rm=30_000)
+        assert "toyota-hilux" not in {e["slug"] for e in out["examples"]}
 
     def test_a_zero_budget_reaches_only_the_deposit(self):
         assert calc.affordability(0, down_payment_rm=50_000)["max_price_rm"] == 50_000

@@ -313,8 +313,10 @@ export default function CalculatorsPage() {
           {afford && (
             <div className="mt-5">
               <Readout label={t("calcs.maxPrice")} value={rm(afford.max_price_rm)} big />
+              {/* Scoped to the drivetrain chosen above: the count and the
+                  cars below are that drivetrain's, so the label names it. */}
               <Readout
-                label={t("calcs.inRange")}
+                label={`${t("calcs.inRange")} · ${t(`calcs.${affordType}` as StrKey)}`}
                 value={`${afford.cars_in_range} / ${afford.catalog_total}`}
               />
               {afford.examples.length > 0 && (

@@ -166,7 +166,7 @@ export default function LandingPage() {
           <Stagger from="center" className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-line">
             <div className="px-6 py-8 sm:py-10 text-center">
               <p className="apple-display text-[38px] sm:text-[44px] text-ink">
-                <ScrubCount value={170} />
+                <ScrubCount value={171} />
               </p>
               <p className="mx-auto mt-1 max-w-[240px] text-[15px] text-muted">
                 {t("ts.count.sub")}
@@ -175,7 +175,7 @@ export default function LandingPage() {
 
             <div className="px-6 py-8 sm:py-10 text-center">
               <p className="apple-display text-[38px] sm:text-[44px] text-primary">
-                10 Years
+                5 Years
               </p>
               <p className="mx-auto mt-1 max-w-[240px] text-[15px] text-muted">
                 {t("ts.yr.sub")}
@@ -383,7 +383,7 @@ export default function LandingPage() {
                   {t("eng.t1b")}
                 </span>
                 <span className="rounded-full bg-paper-2 border border-line px-3 py-1 text-xs font-medium text-ink">
-                  {t("eng.insurance10")}
+                  {t("eng.insurance5")}
                 </span>
               </div>
             </div>

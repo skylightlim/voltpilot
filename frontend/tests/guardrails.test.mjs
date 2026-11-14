@@ -263,7 +263,7 @@ describe("voice interview", () => {
 });
 
 describe("routes", () => {
-  const ROUTES = ["/", "/methodology", "/analysis", "/sliders", "/interview/form"];
+  const ROUTES = ["/", "/method", "/analysis", "/sliders", "/interview/form"];
   let up = false;
 
   before(async () => {

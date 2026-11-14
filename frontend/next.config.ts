@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Lets a build run without clobbering the .next a dev server is holding open.
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  // The methodology page became "Method & sources" at /method once it also held
+  // the regulatory figures and official sources; old links keep working.
+  async redirects() {
+    return [{ source: "/methodology", destination: "/method", permanent: true }];
+  },
   async rewrites() {
     return [
       {

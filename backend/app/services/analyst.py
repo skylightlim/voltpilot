@@ -16,7 +16,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from ..config import load_fuel, settings
+from ..config import load_fuel, load_policy_markdown, settings
 from ..schemas import INTERVIEW_QUESTIONS
 
 logger = logging.getLogger(__name__)
@@ -330,6 +330,9 @@ async def gemini_analyst(bundle: dict, lang: str) -> dict | None:
         )
     )
     data = _extract_json(resp.text or "")
+    # The banner's figures are computed (services/solar.py), so they are copied
+    # in rather than trusted to the model, which had been inventing its own.
+    data["solar_banner"] = bundle.get("solar") or None
     if not data.get("top_hybrid_slug"):
         hybrid = next((r for r in bundle["ranking"] if r["type"] == "hybrid"), None)
         if hybrid:
@@ -362,9 +365,69 @@ async def build_recommendation(bundle: dict, lang: str) -> dict:
 # ---------------------------------------------------------------------------
 
 CHAT_SYSTEM = """You are the friendly analyst for the Malaysian EV-vs-hybrid platform.
-You see the user's profile, ranking and roadmap. Answer concisely (under 150 words).
-If asked about battery degradation, explain it as a warning only (it does not change the
-score). Reply in the user's language ({lang})."""
+You see the user's profile, their top five cars and the roadmap, plus a policy brief.
+Answer concisely (under 150 words) and reply in the user's language ({lang}).
+
+- Use the numbers you are given. Each car carries body, specs (seats, boot_l, range_km,
+  battery_kwh, fuel_l_per_100km) and cost_breakdown_5yr: the five-year cost lines in RM,
+  including "maintenance". cost_breakdown_5yr.maintenance_basis says whether servicing is
+  the brand's published schedule ("measured", source in maintenance_note) or the engine's
+  estimate from drivetrain and price ("estimated"); say which when you quote it. litres_yr
+  is the car's yearly petrol at the buyer's mileage.
+- Family questions: compare seats, boot_l and body across the top five, then say which fits.
+- Policy, tariffs, fuel quota, ToU, solar schemes (NEM, Solar ATAP) and home batteries:
+  answer from the policy brief only. If it does not cover the question, say you do not know
+  rather than guess, and point to TNB, SEDA or the Energy Commission.
+- Battery degradation is a warning only; it does not change the score.
+- Never invent prices, rebates or dates."""
+
+
+_CHAT_SPECS = ("seats", "boot_l", "range_km", "battery_kwh", "energy_kwh_per_100km",
+               "fuel_l_per_100km", "charge_power_kw_dc", "power_hp")
+
+
+def _chat_car(row: dict) -> dict:
+    """The part of a ranking row the chat answers from.
+
+    A full row is about 3,400 characters, most of it provenance strings and
+    insurance and loan notes no buyer asks about, and five of them made the
+    chat prompt slow enough to brush the 20 s call limit and fall back to the
+    canned reply. This keeps what the system prompt promises the model.
+    """
+    specs = row.get("specs") or {}
+    breakdown = row.get("cost_breakdown_5yr") or {}
+    own = row.get("ownership") or {}
+    return {
+        "rank": row.get("rank"),
+        "car": " ".join(str(x) for x in (row.get("brand"), row.get("model"), row.get("variant")) if x),
+        "type": row.get("type"),
+        "body": row.get("body"),
+        "price_rm": row.get("price_rm"),
+        "specs": {k: specs[k] for k in _CHAT_SPECS if specs.get(k) is not None},
+        "running_cost_rm_yr": row.get("running_cost_rm_yr"),
+        "litres_yr": row.get("litres_yr"),
+        "kwh_yr": row.get("kwh_yr"),
+        "co2_kg_yr": row.get("co2_kg_yr"),
+        "total_cost_5yr_rm": row.get("total_cost_5yr_rm"),
+        "resale_retained_pct": row.get("resale_retained_pct"),
+        "road_tax_rm": own.get("road_tax_rm"),
+        "warranty_battery_yrs": own.get("warranty_battery_yrs"),
+        "cost_breakdown_5yr": {
+            "lines": {ln["key"]: ln["amount_rm"] for ln in breakdown.get("lines") or []},
+            "maintenance_basis": breakdown.get("maintenance_basis"),
+            "maintenance_note": breakdown.get("maintenance_note"),
+        },
+    }
+
+
+def _solar_reference() -> dict | None:
+    try:
+        from .solar import solar_estimate
+
+        return solar_estimate()
+    except Exception:  # the chat must answer even if the solar inputs are broken
+        logger.exception("solar estimate failed; chat continues without it")
+        return None
 
 
 async def chat_reply(result: dict, message: str, lang: str) -> str:
@@ -376,12 +439,20 @@ async def chat_reply(result: dict, message: str, lang: str) -> str:
             + "\n\nContext:\n"
             + json.dumps(
                 {
-                    "ranking_top5": result["ranking"][:5],
+                    "ranking_top5": [_chat_car(r) for r in result["ranking"][:5]],
                     "roadmap": result.get("roadmap"),
                     "profile": result.get("profile"),
+                    # The banner's figures for its reference home, so a solar
+                    # answer quotes them instead of inventing a payback.
+                    "solar_reference": _solar_reference(),
                 },
                 ensure_ascii=False,
             )
+            # The chat used to see no policy brief at all, only the ranking, so
+            # questions on ToU, the BUDI95 quota or NEM against ATAP were
+            # answered from the model's own (dated) memory.
+            + "\n\nPolicy brief:\n"
+            + load_policy_markdown()
         }
         resp = await _with_key_rotation(
             lambda client: _generate_once(client, contents=message, config=config)
@@ -399,6 +470,26 @@ async def chat_reply(result: dict, message: str, lang: str) -> str:
 def _mock_chat(result: dict, message: str, lang: str) -> str:
     top = result["ranking"][0]
     msg = message.lower()
+    # Solar first: "is a battery worth it?" is a solar question, not degradation.
+    if any(k in msg for k in ("solar", "atap")) or re.search(r"\bnem\b", msg):
+        from .solar import solar_estimate
+
+        s = solar_estimate()
+        return _t(
+            f"Pemasangan baharu kini di bawah Solar ATAP (NEM ditutup kepada pemohon baharu pada "
+            f"30 Jun 2025). Sistem {s['system_kw_peak']} kW: kira-kira RM{s['capex_rm']:,.0f}, "
+            f"jimat ~RM{s['savings_rm_per_year']:,.0f} setahun, bayar balik ~{s['payback_years']} "
+            f"tahun. Eksport hanya dikreditkan pada caj tenaga, jadi cas kereta pada waktu siang "
+            f"bila boleh. Bateri {s['battery']['kwh']} kWh menambah ~RM{s['battery']['capex_rm']:,.0f} "
+            f"untuk ~RM{s['battery']['extra_savings_rm_per_year']:,.0f} setahun.",
+            f"New installs now go on Solar ATAP (NEM closed to new applicants on 30 Jun 2025). "
+            f"A {s['system_kw_peak']} kW system: about RM{s['capex_rm']:,.0f}, saving "
+            f"~RM{s['savings_rm_per_year']:,.0f} a year, paying back in ~{s['payback_years']} years. "
+            f"Exports earn only the energy charge, so charge the car in daylight when you can. "
+            f"A {s['battery']['kwh']} kWh battery adds ~RM{s['battery']['capex_rm']:,.0f} for "
+            f"~RM{s['battery']['extra_savings_rm_per_year']:,.0f} a year more.",
+            lang,
+        )
     if any(k in msg for k in ("battery", "bateri", "degrad", "degradasi")):
         return _t(
             "Bateri EV merosot ~1-2% setahun secara purata. Jaminan bateri biasanya 8 tahun / "
@@ -408,12 +499,55 @@ def _mock_chat(result: dict, message: str, lang: str) -> str:
             "(warning only).",
             lang,
         )
-    if any(k in msg for k in ("solar")):
+    if any(k in msg for k in ("family", "keluarga", "seat", "tempat duduk")):
+        top5 = result["ranking"][:5]
+        roomy = max(
+            top5,
+            key=lambda r: (
+                (r.get("specs") or {}).get("seats") or 0,
+                (r.get("specs") or {}).get("boot_l") or 0,
+            ),
+        )
+        sp = roomy.get("specs") or {}
         return _t(
-            "Dengan panel solar di rumah, kos pengecasan boleh turun ke hampir sifar pada siang "
-            "hari. Pulangan purata Malaysia: bayar balik ~7-8 tahun.",
-            "With rooftop solar at home your daytime charging cost can drop toward zero. "
-            "Average Malaysia payback is around 7-8 years.",
+            f"Untuk keluarga, {roomy['brand']} {roomy['model']} paling luas antara lima teratas "
+            f"anda: {sp.get('seats', '?')} tempat duduk, but {sp.get('boot_l', '?')} L.",
+            f"For a family, the {roomy['brand']} {roomy['model']} is the roomiest of your top "
+            f"five: {sp.get('seats', '?')} seats and a {sp.get('boot_l', '?')} L boot.",
+            lang,
+        )
+    if any(k in msg for k in ("servic", "maintenance", "servis", "penyelenggaraan")):
+        def five_yr(r: dict) -> float:
+            lines = (r.get("cost_breakdown_5yr") or {}).get("lines") or []
+            return next((ln["amount_rm"] for ln in lines if ln["key"] == "maintenance"), 0.0)
+
+        top5 = [r for r in result["ranking"][:5] if five_yr(r) > 0]
+        if top5:
+            cheap = min(top5, key=five_yr)
+            return _t(
+                f"Paling murah diservis dalam lima tahun: {cheap['brand']} {cheap['model']}, "
+                f"kira-kira RM{five_yr(cheap):,.0f}.",
+                f"Cheapest to service over five years: the {cheap['brand']} {cheap['model']}, "
+                f"about RM{five_yr(cheap):,.0f}.",
+                lang,
+            )
+    if any(k in msg for k in ("budi95", "quota", "kuota", "subsid")):
+        quota = int((load_fuel().get("budi95") or {}).get("quota_l_per_month") or 300)
+        return _t(
+            f"BUDI95 memberi {quota} liter RON95 sebulan pada RM1.99 kepada rakyat Malaysia yang "
+            "layak; liter selebihnya dibayar pada harga tanpa subsidi. Enjin kos kami sudah "
+            "mengambil kira had ini untuk perbatuan anda.",
+            f"BUDI95 gives eligible Malaysians {quota} litres of RON95 a month at RM1.99; litres "
+            "beyond that are paid at the unsubsidised price. Our cost engine already applies "
+            "that cap to your mileage.",
+            lang,
+        )
+    if re.search(r"\btou\b|time.of.use|cheapest time|masa paling murah|off.peak|luar puncak", msg):
+        return _t(
+            "Dengan tarif ToU TNB (pilihan, perlu meter pintar), waktu luar puncak ialah 10 malam "
+            "hingga 2 petang hari bekerja dan sepanjang hujung minggu: cas kereta selepas 10 malam.",
+            "On TNB's Time-of-Use tariff (opt-in, needs a smart meter) off-peak is 10pm to 2pm on "
+            "weekdays and all weekend: schedule charging to start after 10pm.",
             lang,
         )
     if any(k in msg for k in ("hybrid", "hibrid", "why", "kenapa")):

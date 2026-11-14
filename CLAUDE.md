@@ -70,7 +70,7 @@ Android is accepted as the cost of leaving a working path alone.
 
 ## Catalog data
 
-`data/catalog_vehicles.json` holds 170 trims (EV, hybrid, PHEV only; no petrol-only cars).
+`data/catalog_vehicles.json` holds 171 trims (EV, hybrid, PHEV only; no petrol-only cars).
 paultan.org is the source of record (`registered_basis: paultan_exact`), and most catalog
 `id`s are paultan slugs (about 25 are not, e.g. `mg4` = `mg-4`, `smart-1` = `smart-smart-1`).
 Its compare pages order columns by price, not URL order, and show each model's entry variant,
@@ -87,12 +87,26 @@ specs at the petrol base price; check the variant table on the model's paultan p
 certified kW (the figure in each `road_tax_note`); a horsepower conversion lands on the wrong
 side of a 10 kW band edge. Hybrids and PHEVs use `ice_road_tax(cc, non_saloon)`.
 
+Servicing: 24 rows carry a published figure; the rest use the price-band fit in
+`engines._maintenance_fallback`. Rows filled from 2026-11-14 hold `maintenance_5yr_rm` (the
+distributor's own schedule or prepaid package over five years / 100,000 km, which the engine
+reads), `maintenance_rm_yr` (its rounded fifth) and `maintenance_note` (what was counted, the
+document and its date). Sources that work: honda.com.my/doc/maintenance/<id> PDFs, the
+emas.proton.com/services-e-mas-*/ tables, UMW Toyota price lists (Toyota Service Savers).
+Run `scripts/build_provenance.py --apply` after adding one so the note reaches provenance.
+
 ## Docs
 
 - `DEPLOYMENT.md`: Vercel projects, secrets, migrations (`RUN_MIGRATIONS=0` on Vercel),
   Large Functions, the daily refresh.
 - `frontend/DESIGN.md`: the design and motion contract. Read before any UI or animation
   change; the visual identity is preserved, not replaced.
+- `data/policy/*.md`: the analyst's and the chat's policy brief, loaded whole into both prompts.
+  `home-energy.md` holds TNB ToU, NEM vs Solar ATAP and solar with a battery;
+  `malaysia-incentives.md` holds incentives, fuel and the BUDI95 quota. Dated; recheck before
+  quoting. The solar banner is computed by `backend/app/services/solar.py` from
+  `data/solar_avg.json` assumptions and `tariff.json`, and the BUDI95 quota lives in
+  `data/fuel.json` under `budi95` (set by hand: the daily fuel refresh leaves it alone).
 - `issue.md`: the measured defect log for the TOPSIS engine (`backend/app/engines/`,
   `backend/app/services/scoring.py`). Read before changing scoring.
 - `FEATURES.md`: proposed features, in suggested order.

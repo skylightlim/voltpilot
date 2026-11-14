@@ -86,7 +86,7 @@ export default async function Image() {
             Make the decision with numbers.
           </div>
           <div style={{ display: "flex", marginTop: 26, fontSize: 27, fontWeight: 300, color: FOG }}>
-            170 Malaysian models ranked on your budget, routes and electricity tariff.
+            171 Malaysian models ranked on your budget, routes and electricity tariff.
           </div>
         </div>
 

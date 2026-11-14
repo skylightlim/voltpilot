@@ -793,9 +793,19 @@ def maintenance_rm_yr(vehicle: dict) -> tuple[float, str]:
 
     Returns the basis alongside the number, the same shape as
     resale_retained_pct, so the results page can tell a reader which of the two
-    it is looking at. 16 of 170 trims are measured.
+    it is looking at. 24 of 171 trims are measured (14 Nov 2026), and those are
+    the ones most buyers are looking at: the best-selling models were filled
+    first.
     """
-    measured = (vehicle.get("ownership") or {}).get("maintenance_rm_yr")
+    own = vehicle.get("ownership") or {}
+    # A published five-year total (the distributor's schedule or prepaid
+    # package, with its source in maintenance_note) is the figure itself; the
+    # annual one is that divided by five, so read it here rather than the
+    # rounded annual copy beside it.
+    five_year = own.get("maintenance_5yr_rm")
+    if five_year:
+        return float(five_year) / 5.0, "measured"
+    measured = own.get("maintenance_rm_yr")
     if measured:
         return float(measured), "measured"
     return _maintenance_fallback(vehicle), "estimated"
@@ -1137,6 +1147,35 @@ def _charger_efficiency(tariff: dict) -> float:
     return float(tariff.get("home_household_assumptions", {}).get("charger_efficiency", 0.9) or 0.9)
 
 
+def petrol_cost_rm(litres_yr: float, fuel: dict) -> float:
+    """A year of RON95, with BUDI95's monthly quota.
+
+    BUDI95 sells an eligible Malaysian RON95 at the subsidised pump price only
+    up to a monthly quota (300 L since 1 Sep 2026); every litre past it is paid
+    at the unsubsidised price. Pricing every litre at RM1.99 told a high-mileage
+    buyer of a thirsty hybrid that petrol stays cheap however far they drive,
+    and that is the case where the cap bites: a 9 L/100 km car passes 3,600 L at
+    40,000 km a year.
+
+    The quota is applied to the year's litres averaged over twelve months. A
+    month with a long trip can pass the quota in a year that does not, so this
+    slightly understates the cost for lumpy driving. It assumes the buyer is
+    eligible and that this car has their whole quota to itself; both are in
+    data/policy/malaysia-incentives.md for the analyst to say out loud.
+
+    `fuel` is the scenario block from services.energy_context. The "market"
+    scenario carries no quota, since every litre is already at market price.
+    """
+    litres = max(0.0, float(litres_yr))
+    subsidised = float(fuel["ron95_rm_per_l"])
+    quota = fuel.get("ron95_quota_l_yr")
+    over = fuel.get("ron95_over_quota_rm_per_l")
+    if not quota or over is None:
+        return litres * subsidised
+    within = min(litres, float(quota))
+    return within * subsidised + (litres - within) * float(over)
+
+
 def energy_engine(vehicle: dict, profile: dict, feature: dict, energy: dict) -> dict:
     annual = feature["annual_km"]
     tariff = energy["tariff"]
@@ -1206,13 +1245,13 @@ def energy_engine(vehicle: dict, profile: dict, feature: dict, energy: dict) -> 
         kwh_yr = (annual / 100) * kwh100 * ev_share
         litres_yr = (annual / 100) * l100 * (1 - ev_share)
         drawn = kwh_yr / eff
-        cost = _electricity_cost(drawn) + litres_yr * float(fuel["ron95_rm_per_l"])
+        cost = _electricity_cost(drawn) + petrol_cost_rm(litres_yr, fuel)
         co2_yr = drawn * grid_co2 + litres_yr * float(co2["petrol"])
     else:
         l100 = float(specs.get("fuel_l_per_100km", 5.0) or 5.0)
         kwh_yr = 0.0
         litres_yr = (annual / 100) * l100
-        cost = litres_yr * float(fuel["ron95_rm_per_l"])
+        cost = petrol_cost_rm(litres_yr, fuel)
         co2_yr = litres_yr * float(co2["petrol"])
 
     return {

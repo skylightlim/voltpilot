@@ -16,7 +16,9 @@ const INITIATIVES: Initiative[] = [
   },
   {
     key: "nem",
-    href: "https://www.seda.gov.my/reportal/nem/",
+    // NEM 3.0 closed to new applications on 30 Jun 2025; Solar ATAP replaced it
+    // on 1 Jan 2026. The key stays "nem" so the i18n keys did not churn.
+    href: "https://www.mytnb.com.my/renewable-energy/solar-accelerated-transition-action-programme",
     logo: "/initiatives/seda_malaysia_logo.png",
     alt: "SEDA Malaysia logo",
   },

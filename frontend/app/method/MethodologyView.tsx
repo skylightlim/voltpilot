@@ -11,13 +11,19 @@ import {
   ScrubStagger,
 } from "@/components/motion";
 import { useT, type StrKey } from "@/lib/i18n";
+import { OfficialSources, RulesAtAGlance } from "@/components/RulesAndSources";
 
-/* Documents the SHIPPING implementation, which is the current revision of the
-   framework: 170 trims and six TOPSIS criteria driven by four user sliders.
-   An earlier unrevised specification described 108 vehicles and three criteria
-   (money / environment / convenience) plus a payback screen; that revision was
-   superseded and is deliberately not what this page describes.
+/* Documents the SHIPPING implementation: 171 trims and the five TOPSIS
+   criteria in backend/app/engines/topsis.py (CRITERIA, BASE_WEIGHTS), driven by
+   four user sliders. An earlier specification described 108 vehicles, three
+   criteria (money / environment / convenience), vector normalisation and an
+   ideal read off the alternatives; the engine replaced all of that with fixed
+   bounds, and this page describes the engine, not the old spec.
+   The equations are typeset by KaTeX in page.tsx, a server component, so the
+   library never ships to the browser; this file receives finished HTML.
    Notation is never translated — see the i18n note on the "me.*" block. */
+
+export type TexRow = { n: string; label: string; html: string };
 
 type Step = {
   key: StrKey;
@@ -34,22 +40,13 @@ const STEPS: Step[] = [
   { key: "me.s5", body: "me.s5d" },
   { key: "me.s6", body: "me.s6d" },
   { key: "me.s7", body: "me.s7d" },
-  { key: "me.s8", body: "me.s8d", eq: "6 criteria" },
+  { key: "me.s8", body: "me.s8d", eq: "5 criteria" },
 ];
 
 const GRID = [
   { region: "Peninsular Malaysia", factor: 0.74 },
   { region: "Sabah", factor: 0.539 },
   { region: "Sarawak", factor: 0.199 },
-];
-
-const TOPSIS_MATH = [
-  { eq: "43", label: "Vector normalisation", f: "rᵢⱼ = xᵢⱼ / √( Σᵢ xᵢⱼ² )" },
-  { eq: "44", label: "Apply your weights", f: "vᵢⱼ = wⱼ × rᵢⱼ" },
-  { eq: "46", label: "Ideal solution", f: "A⁺ = { min v_money , min v_env , max v_conv }" },
-  { eq: "47", label: "Anti-ideal solution", f: "A⁻ = { max v_money , max v_env , min v_conv }" },
-  { eq: "48", label: "Distance to ideal", f: "Dᵢ⁺ = √[ Σⱼ ( vᵢⱼ − vⱼ⁺ )² ]" },
-  { eq: "49", label: "Distance to anti-ideal", f: "Dᵢ⁻ = √[ Σⱼ ( vᵢⱼ − vⱼ⁻ )² ]" },
 ];
 
 const SOURCES = [
@@ -119,7 +116,13 @@ function Formula({ eq, children }: { eq?: string; children: React.ReactNode }) {
   );
 }
 
-export default function MethodologyPage() {
+export default function MethodologyView({
+  math,
+  closeness,
+}: {
+  math: TexRow[];
+  closeness: string;
+}) {
   const t = useT();
 
   return (
@@ -155,12 +158,12 @@ export default function MethodologyPage() {
           <ScrubStagger className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" selector="> div">
             {(
               [
-                ["me.c1", "me.c1d", "me.cost", "tco_excluding_rm", "0.24"],
-                ["me.c2", "me.c2d", "me.benefit", "behaviour_score", "0.15"],
-                ["me.c3", "me.c3d", "me.benefit", "infrastructure_score", "0.13"],
-                ["me.c4", "me.c4d", "me.cost", "co2_kg_yr", "0.15"],
-                ["me.c5", "me.c5d", "me.cost", "purchase_price_rm", "0.17"],
-                ["me.c6", "me.c6d", "me.cost", "running_cost_rm_yr", "0.16"],
+                // Mirrors CRITERIA / BASE_WEIGHTS in backend/app/engines/topsis.py.
+                ["me.c1", "me.c1d", "me.cost", "holding_cost_5yr_rm", "0.34"],
+                ["me.c5", "me.c5d", "me.benefit", "resale_retained_pct", "0.16"],
+                ["me.c2", "me.c2d", "me.benefit", "behaviour_score", "0.17"],
+                ["me.c3", "me.c3d", "me.benefit", "infrastructure_score", "0.14"],
+                ["me.c4", "me.c4d", "me.cost", "co2_kg_yr", "0.19"],
               ] as const
             ).map(([name, desc, dir, variable, weight]) => (
               <div
@@ -272,17 +275,18 @@ export default function MethodologyPage() {
           </ScrubReveal>
 
           <ScrubStagger className="mt-10 space-y-px" selector="> div" each={0.07}>
-            {TOPSIS_MATH.map((m) => (
+            {math.map((m) => (
               <div
-                key={m.eq}
-                className="grid grid-cols-1 gap-1 border-t border-white/12 py-4 sm:grid-cols-[1fr_1.4fr] sm:gap-6"
+                key={m.n}
+                className="grid grid-cols-1 items-center gap-2 border-t border-white/12 py-4 sm:grid-cols-[1fr_1.4fr] sm:gap-6"
               >
                 <p className="font-mono text-[10px] uppercase tracking-wider text-pearl/50">
-                  <span className="text-amber">Eq. {m.eq}</span> · {m.label}
+                  <span className="text-amber">Eq. {m.n}</span> · {m.label}
                 </p>
-                <code className="overflow-x-auto whitespace-nowrap font-mono text-[15px] text-pearl sm:text-[16px]">
-                  {m.f}
-                </code>
+                <div
+                  className="tex overflow-x-auto overflow-y-hidden py-1 text-[14px] text-pearl sm:text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: m.html }}
+                />
               </div>
             ))}
           </ScrubStagger>
@@ -291,11 +295,12 @@ export default function MethodologyPage() {
           <ScrubReveal y={26}>
             <div className="mt-10 rounded-lg border border-amber/30 bg-white/[0.04] px-5 py-8 text-center sm:px-8 sm:py-10">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber">
-                Eq. 50 · Closeness coefficient
+                Eq. {math.length + 1} · Closeness coefficient
               </p>
-              <code className="mt-5 block overflow-x-auto whitespace-nowrap font-mono text-[20px] font-bold text-pearl sm:text-[30px]">
-                TOPSISᵢ = Dᵢ⁻ / ( Dᵢ⁺ + Dᵢ⁻ )
-              </code>
+              <div
+                className="tex mt-5 overflow-x-auto overflow-y-hidden py-1 text-[19px] text-pearl sm:text-[26px]"
+                dangerouslySetInnerHTML={{ __html: closeness }}
+              />
               <div className="mt-7 flex flex-col items-center justify-center gap-2 border-t border-white/10 pt-5 text-[12px] text-pearl/60 sm:flex-row sm:gap-6">
                 <span className="font-mono">{t("me.n1")}</span>
                 <span className="hidden h-1 w-1 rounded-full bg-amber sm:block" aria-hidden="true" />
@@ -306,14 +311,32 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* ---------- Sources ---------- */}
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+      {/* ---------- The rules the engine works from (moved from the footer) ---------- */}
+      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
+        <ScrubReveal>
+          <SectionLabel>{t("ft.glance")}</SectionLabel>
+          <h2 className="apple-display mt-3 text-[26px] text-ink sm:text-[34px]">{t("me.glanceH")}</h2>
+          <p className="mt-2 max-w-2xl text-[16px] leading-relaxed text-muted">{t("ft.regIntro")}</p>
+        </ScrubReveal>
+        <div className="mt-9">
+          <RulesAtAGlance />
+        </div>
+      </section>
+
+      {/* ---------- Sources: official first, then research ---------- */}
+      <section className="border-t border-line">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
         <ScrubReveal>
           <h2 className="apple-display text-[24px] text-ink sm:text-[30px]">{t("me.srcH")}</h2>
-          <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("me.srcSub")}</p>
         </ScrubReveal>
 
-        <ScrubStagger className="mt-8" selector="> li" each={0.05}>
+        <h3 className="mono-label mt-10 pb-4 text-fog">{t("ft.sources")}</h3>
+        <OfficialSources />
+
+        <h3 className="mono-label mt-14 text-fog">{t("me.researchH")}</h3>
+        <p className="mt-2 text-[16px] leading-relaxed text-muted">{t("me.srcSub")}</p>
+
+        <ScrubStagger className="mt-6" selector="> li" each={0.05}>
           <ol className="space-y-px">
             {SOURCES.map((s) => (
               <li
@@ -343,6 +366,7 @@ export default function MethodologyPage() {
             ))}
           </ol>
         </ScrubStagger>
+      </div>
       </section>
 
       {/* ---------- Back into the funnel ---------- */}
