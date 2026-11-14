@@ -1,23 +1,4 @@
 month,rank,make,model,units,share_pct
-2023-10,1,Toyota,Corolla Cross,773,34.71
-2023-10,2,Honda,HR-V,457,20.52
-2023-10,3,Honda,City,292,13.11
-2023-10,4,Mercedes Benz,GLC,254,11.41
-2023-10,5,Honda,Civic,121,5.43
-2023-10,6,Mercedes Benz,C-Class,101,4.54
-2023-10,7,Volvo,XC40,36,1.62
-2023-10,8,Volvo,XC90,33,1.48
-2023-10,9,Volvo,XC60,31,1.39
-2023-10,10,Mercedes Benz,A-Class,28,1.26
-2023-10,11,Lexus,RX,23,1.03
-2023-10,12,BMW,7 Series,19,0.85
-2023-10,13,Mercedes Benz,S-Class,19,0.85
-2023-10,14,Toyota,Innova Zenix,17,0.76
-2023-10,15,Mercedes Benz,GLE,16,0.72
-2023-10,16,Volvo,V60,3,0.13
-2023-10,17,Toyota,Vios,2,0.09
-2023-10,18,Lexus,IS,1,0.04
-2023-10,19,Nissan,Note,1,0.04
 2023-11,1,Toyota,Corolla Cross,904,34.16
 2023-11,2,Honda,HR-V,648,24.49
 2023-11,3,Honda,City,270,10.2
