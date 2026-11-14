@@ -46,8 +46,9 @@ cd frontend && npx tsc --noEmit -p tsconfig.json && npm test && npm run test:e2e
 
 - `backend/tests/conftest.py` pins pytest to a temp SQLite file, which is what makes the
   suite safe with `.env` present. Keep it.
-- `tests/test_golden_ranking.py` records which cars rank where. A scoring change that moves
-  it is accepted with `REGEN_GOLDEN=1`, and the commit message says what moved and why.
+- `tests/test_golden_ranking.py` holds the shared buyer profiles and ranking property tests.
+  The recorded top-ten fixture was removed 2026-11-14, so a scoring change no longer needs a
+  regeneration; check what it moved yourself.
 - `npm run test:e2e` starts its own Next server on :3100 with dist dir `.next-e2e`, so it
   runs beside a dev server. The backend is stubbed.
 - `github-actions[bot]` commits refreshed `data/` to `main` daily at 06:00 MYT

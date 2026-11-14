@@ -507,7 +507,11 @@ export default function ResultsPage() {
               ? `TOPSIS ranking — ${ranking.length} models within RM${Number(
                   data.budget.max_rm,
                 ).toLocaleString()}`
-              : `TOPSIS ranking — all ${ranking.length} models`
+              : data.budget?.fallback === "nearest_over_budget"
+                ? `TOPSIS ranking — the ${ranking.length} closest models above RM${Number(
+                    data.budget.max_rm,
+                  ).toLocaleString()}`
+                : `TOPSIS ranking — all ${ranking.length} models`
           }
           icon={<Sparkles className="h-4 w-4" />}
           isOpen={!!open.ranking}
@@ -517,6 +521,13 @@ export default function ResultsPage() {
             <p className="mt-3 text-[12.5px] leading-relaxed text-muted">
               {data.budget.catalog_total - ranking.length} of {data.budget.catalog_total} models
               cost more than your budget and were excluded before ranking.
+            </p>
+          )}
+
+          {data.budget?.fallback === "nearest_over_budget" && (
+            <p className="mt-3 text-[12.5px] leading-relaxed text-muted">
+              No model you can run fits your budget, so these are the {ranking.length} lowest-priced
+              ones instead. Every one of them costs more than you said you would spend.
             </p>
           )}
 

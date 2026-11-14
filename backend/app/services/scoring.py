@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 from ..config import load_catalog
 from . import costing
 from ..engines import engines
@@ -16,21 +18,85 @@ from . import energy_context
 # How far above the stated budget a car may still be considered.
 BUDGET_STRETCH = 1.10
 
+# How many cars to show a buyer whose budget buys nothing they can run. The
+# cheapest feasible ones, because "closest to what you said" is the only honest
+# answer left; see _candidates.
+NEAREST_FALLBACK = 10
+
+
+# Cars that need somewhere to plug in. Removed together when the buyer has
+# neither home nor workplace charging; see engines.bev_charging_gate.
+PLUG_IN_TYPES = ("ev", "phev")
+
+
+def _stated_budget(profile: dict) -> float:
+    """The stated budget in RM, or 0.0 when absent, negative or not finite."""
+    try:
+        budget = float(profile.get("budget_max_rm") or 0)
+    except (TypeError, ValueError):
+        return 0.0
+    return budget if math.isfinite(budget) and budget > 0 else 0.0
+
+
+def _candidates(catalog: list[dict], budget: float, gate_passed: bool) -> dict:
+    """Who gets scored, and the budget the cost axis is anchored on.
+
+    Budget screen, then the feasibility gate, then one fallback. Both screens
+    used to carry their own `if not affordable: affordable = catalog`, and each
+    undid work the other had done:
+
+    * A budget below the cheapest car fell back to all 170 models while the
+      cost axis stayed anchored on the stated figure. Every car then clipped to
+      the same worst cost, so the largest criterion stopped separating them and
+      a RM20,000 buyer was shown a RM648,888 Mercedes EQS at rank 3. Below
+      about RM12,000 the ceiling dropped under PRICE_FLOOR_RM, the axis
+      inverted, and every car scored the BEST possible cost instead.
+    * A buyer who could afford only EVs and failed the charging gate got the
+      whole catalogue back: the EVs the gate had just removed, plus everything
+      over budget, with `budget.applied` still reporting True.
+
+    The fallback now is the NEAREST_FALLBACK cheapest cars the buyer can
+    actually run, with the axis anchored on the dearest of them so cost keeps
+    discriminating. That anchor depends on the catalogue and the gate only, not
+    on the stated budget, and only on this path: the normal path is still
+    anchored on what the buyer said, as criteria_bounds requires.
+    """
+    runnable = catalog if gate_passed else [v for v in catalog if v.get("type") not in PLUG_IN_TYPES]
+    if not runnable:  # a catalogue with nothing but plug-ins: nothing else to offer
+        runnable = catalog
+    screened = len(runnable) != len(catalog)
+
+    cap = budget * BUDGET_STRETCH
+    within = [v for v in catalog if float(v["price_rm"]) <= cap] if budget > 0 else list(catalog)
+    chosen = [v for v in within if not screened or v.get("type") not in PLUG_IN_TYPES]
+    removed = [v for v in within if screened and v.get("type") in PLUG_IN_TYPES]
+    out = {
+        "bev_removed": sum(1 for v in removed if v.get("type") == "ev"),
+        "phev_removed": sum(1 for v in removed if v.get("type") == "phev"),
+        "fallback": None,
+        "scale_budget": budget,
+    }
+    if not chosen:
+        chosen = sorted(runnable, key=lambda v: (float(v["price_rm"]), v["id"]))[:NEAREST_FALLBACK]
+        out["fallback"] = "nearest_over_budget"
+        out["scale_budget"] = max(float(v["price_rm"]) for v in chosen)
+    out["vehicles"] = chosen
+    return out
+
 
 def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised",
                   with_stability: bool = True) -> dict:
-    """Feature engineering -> 4 engines -> TOPSIS -> full result bundle.
+    """Feature engineering -> engines -> TOPSIS -> full result bundle.
 
-    6 criteria per catalogue row (D18): 4 engine scores (0-100, maximize)
-    plus purchase price and running cost/yr (minimize). Policy engine removed.
+    Five criteria per candidate (topsis.CRITERIA): five-year holding cost and
+    CO2 to minimise; resale retention, convenience and infrastructure to maximise.
     """
     features = engines.build_features(profile)
     energy = energy_context(fuel_scenario)
 
     # A car the buyer cannot afford is not a recommendation. Screen on budget
     # BEFORE scoring so over-budget models never reach the ranking, the analyst
-    # or the page. If nothing qualifies we keep the full catalogue rather than
-    # hand back an empty result, and say so in the overview.
+    # or the page.
     #
     # The cap allows BUDGET_STRETCH above the stated figure. A hard cutoff made
     # a RM255k car invisible to a RM250k buyer while a RM249k car ranked, and
@@ -38,28 +104,26 @@ def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised
     # pass: criteria_bounds anchors the price axis on the STATED budget, so
     # anything above it scores 0 on price and has to win on other criteria.
     # Ranking it seventh is a better answer than pretending it does not exist.
+    #
+    # Feasibility gate. A buyer with neither home nor workplace charging has
+    # nowhere of their own to plug in, so every plug-in car, battery-electric
+    # and plug-in hybrid, is removed before scoring rather than ranked low.
+    # Public chargers nearby do not change that. Screening only: the criteria
+    # are untouched.
+    #
+    # If the two screens leave nothing, _candidates returns the nearest cars
+    # the buyer can run and says so in `budget.fallback`.
     catalog = load_catalog()
-    budget = float(profile.get("budget_max_rm") or 0)
+    budget = _stated_budget(profile)
     cap = budget * BUDGET_STRETCH
-    affordable = [v for v in catalog if float(v["price_rm"]) <= cap] if budget > 0 else catalog
-    budget_applied = bool(budget > 0 and affordable)
-    if not affordable:
-        affordable = catalog
-
-    # Spec Step 02 — hard feasibility gate. A buyer with no home charging, no
-    # workplace charging and fewer than 5 public points within 20 km cannot run
-    # a battery-electric car, so those candidates are removed before scoring
-    # rather than merely ranked low. PHEVs survive: they still drive on petrol.
-    # Screening only — the six criteria are untouched.
     gate = engines.bev_charging_gate(profile)
-    bev_removed = 0
-    if not gate["passed"]:
-        before = len(affordable)
-        affordable = [v for v in affordable if v.get("type") != "ev"]
-        bev_removed = before - len(affordable)
-        if not affordable:  # never hand back nothing
-            affordable = catalog
-            bev_removed = 0
+    picked = _candidates(catalog, budget, gate["passed"])
+    affordable = picked["vehicles"]
+    bev_removed = picked["bev_removed"]
+    budget_applied = bool(budget > 0 and picked["fallback"] is None)
+    # What the cost axis is anchored on: the stated budget, except on the
+    # fallback path where the stated figure buys nothing and would saturate it.
+    scale_profile = {**profile, "budget_max_rm": picked["scale_budget"]}
 
     rows = []
     for raw in affordable:
@@ -154,11 +218,24 @@ def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised
         # seven-year hire-purchase interest bill actually paid by year five.
         breakdown = costing.five_year_breakdown(r, r["running_cost_rm_yr"])
         r["total_cost_5yr_rm"] = float(breakdown["total_rm"])
+        # The CRITERION is the total less depreciation. Depreciation was being
+        # scored twice: as 68% of this total, and again as resale_retained_pct,
+        # which is the same loss as a percentage. Cost's 0.34 and resale's 0.16
+        # were therefore mostly one quantity, price, voting twice, and rank
+        # tracked purchase price at 0.93-0.95 on the Klang Valley profiles
+        # (issue.md issue 33; this reverses the overlap issue 16 accepted).
+        # Holding cost is what the car costs to keep; resale is what comes back.
+        # The total, depreciation included, is still what the buyer is shown.
+        depreciation = next(
+            (line["amount_rm"] for line in breakdown["lines"] if line["key"] == "depreciation"),
+            0.0,
+        )
+        r["holding_cost_5yr_rm"] = r["total_cost_5yr_rm"] - float(depreciation)
         r["cost_breakdown_5yr"] = breakdown
         matrix_rows.append(r)
 
     weights = preference_weights(sliders)
-    bounds = criteria_bounds(profile, features["annual_km"])
+    bounds = criteria_bounds(scale_profile, features["annual_km"])
     ranking = run_topsis(matrix_rows, weights, bounds)
 
     return {
@@ -172,10 +249,17 @@ def score_catalog(profile: dict, sliders: dict, fuel_scenario: str = "subsidised
             "cap_rm": cap if budget > 0 else 0.0,
             "stretch": BUDGET_STRETCH,
             "applied": budget_applied,
+            # None on the normal path. "nearest_over_budget" when nothing the
+            # buyer can run fits the budget and the ranking is the closest
+            # NEAREST_FALLBACK cars instead; `scale_max_rm` is then the figure
+            # the cost axis was anchored on in place of the stated budget.
+            "fallback": picked["fallback"],
+            "scale_max_rm": picked["scale_budget"],
             "considered": len(affordable),
             "catalog_total": len(catalog),
         },
-        "feasibility": {**gate, "bev_removed": bev_removed},
+        "feasibility": {**gate, "bev_removed": bev_removed,
+                        "phev_removed": picked["phev_removed"]},
         # 400 re-rankings, about 75 ms. Negligible against the analyst call that
         # follows, but worth skipping in tests that only want the ranking.
         "stability": rank_stability(matrix_rows, weights, bounds) if with_stability else None,

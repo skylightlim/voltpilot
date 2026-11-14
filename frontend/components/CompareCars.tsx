@@ -14,6 +14,7 @@ const rm = (n: number) => `RM${Math.round(n).toLocaleString("en-MY")}`;
 
 const CRITERION: Record<string, { label: string; lowerIsBetter: boolean; fmt: (n: number) => string }> = {
   total_cost_10yr_rm: { label: "Total cost, 10-year basis", lowerIsBetter: true, fmt: rm },
+  holding_cost_5yr_rm: { label: "Cost to keep, 5 years (before resale loss)", lowerIsBetter: true, fmt: rm },
   resale_retained_pct: { label: "Holds value", lowerIsBetter: false, fmt: (n) => `${n.toFixed(0)}%` },
   behaviour_score: { label: "Fits your driving", lowerIsBetter: false, fmt: (n) => n.toFixed(0) },
   infrastructure_score: { label: "Refuelling access", lowerIsBetter: false, fmt: (n) => n.toFixed(0) },

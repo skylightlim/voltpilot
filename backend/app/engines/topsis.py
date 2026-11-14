@@ -15,6 +15,8 @@ User's 4 preference sliders -> criteria weights (normalized 0-1).
 
 from __future__ import annotations
 
+import math
+
 import numpy as np
 
 # Two of these used to be `financial_score` and `energy_score`, 0-100 values
@@ -25,7 +27,7 @@ import numpy as np
 # changed the winner. Scoring the raw quantities against profile-derived bounds
 # removes the dependency entirely (measured: 0 of 182 move).
 CRITERIA = [
-    "total_cost_5yr_rm",
+    "holding_cost_5yr_rm",
     "resale_retained_pct",
     "behaviour_score",
     "infrastructure_score",
@@ -39,7 +41,7 @@ TYPES = [-1, 1, 1, 1, -1]  # min cost and emissions, max resale and fit
 # accident rather than by choice. Cost and resale now total 0.50, which is a
 # deliberate figure for a purchase this size.
 BASE_WEIGHTS = {
-    "total_cost_5yr_rm": 0.34,
+    "holding_cost_5yr_rm": 0.34,
     "resale_retained_pct": 0.16,
     "behaviour_score": 0.17,
     "infrastructure_score": 0.14,
@@ -93,7 +95,7 @@ def preference_weights(sliders: dict) -> list[float]:
     # price by RM20. It drives resale retention now, which is what the label,
     # and the hint about "5-year used market resale retention", promise.
     w = dict(BASE_WEIGHTS)
-    w["total_cost_5yr_rm"] *= _clamp(1.0 + 1.0 * (s["save_money"] - 1))
+    w["holding_cost_5yr_rm"] *= _clamp(1.0 + 1.0 * (s["save_money"] - 1))
     w["resale_retained_pct"] *= _clamp(1.0 + 1.2 * (s["future_proofing"] - 1))
     w["co2_kg_yr"] *= _clamp(1.0 + 1.6 * (s["environment"] - 1))
     w["behaviour_score"] *= _clamp(1.0 + 0.7 * (s["convenience"] - 1))
@@ -134,18 +136,38 @@ PRICE_FLOOR_RM = 30_000.0
 # reachable from library callers such as backend/repro.py, not from the app.
 NO_BUDGET_CEILING_RM = 2_000_000.0
 
-# Five-year fixed cost as a multiple of the stated budget. The dearest ratio in
-# the catalogue is 0.903 x price (denza-z9-gt) and the filter admits up to
-# BUDGET_STRETCH x budget, so 0.903 x 1.10 = 0.993 is the binding case; 1.05
-# carries it with margin. test_no_budget_path_clips_nothing holds the line.
-FIVE_YR_COST_X_BUDGET = 1.05
+# Five-year HOLDING cost as a multiple of price: everything in
+# costing.five_year_breakdown except depreciation and energy, which is loan
+# interest, insurance, maintenance, road tax and opportunity cost. Across the
+# catalogue it runs from 0.193 x price (rolls-royce-spectre) to 0.326 x price
+# (denza-z9-gt).
+#
+# Ceiling: the filter admits up to BUDGET_STRETCH x budget, so 0.326 x 1.10 =
+# 0.359 is the binding case and 0.38 carries it with margin.
+# Floor: the same cost for the cheapest car anyone buys new, PRICE_FLOOR_RM at
+# the lowest ratio. test_no_budget_path_clips_nothing holds both.
+HOLDING_COST_X_BUDGET = 0.38
+HOLDING_COST_X_PRICE_MIN = 0.19
 
-# Ceilings as multiples of a profile input, calibrated against the catalogue so
-# no real vehicle clips: the highest observed 10-yr TCO is 0.67x price, the
-# dearest running cost RM0.324/km, the dirtiest 0.226 kg CO2/km.
-TCO_CEILING_X_BUDGET = 0.70
+# Ceilings as multiples of annual distance. RM0.33/km covers every car on home
+# charging or subsidised petrol. A large EV on public rates reaches RM0.546/km
+# and a 15 L/100km hybrid at market petrol RM0.588/km, but those cars hold
+# their price cheaply enough that the budget term absorbs it: no affordable car
+# clips the cost ceiling across 2,160 profiles under either fuel scenario. The
+# dirtiest car this was calibrated on emitted 0.226 kg CO2/km; issue.md issue
+# 31 records the eleven that now exceed it.
 RUNNING_CEILING_RM_PER_KM = 0.33
 CO2_CEILING_KG_PER_KM = 0.23
+
+# Five-year resale retention, percent. The fitted curves put every trim between
+# 33.7 and 61.6, and no five-year-old car is worth nothing or everything it
+# cost, so a 0-100 axis left 72% of itself empty for every buyer: the criterion
+# carried 0.16 of the weight and did 0.045 of the separating. These are
+# properties of the depreciation data, not of a candidate set, so they keep the
+# independence criteria_bounds exists for.
+# test_resale_bounds_cover_the_catalogue fails if a trim leaves the range.
+RESALE_FLOOR_PCT = 30.0
+RESALE_CEILING_PCT = 65.0
 
 
 def criteria_bounds(profile: dict, annual_km: float) -> list[tuple[float, float]]:
@@ -165,22 +187,38 @@ def criteria_bounds(profile: dict, annual_km: float) -> list[tuple[float, float]
     exactly the buyers most sensitive to it. Anchoring the ceiling on their own
     budget restores 58-83% axis usage across the golden profiles.
     """
-    budget = float(profile.get("budget_max_rm") or 0) or NO_BUDGET_CEILING_RM
+    try:
+        budget = float(profile.get("budget_max_rm") or 0)
+    except (TypeError, ValueError):
+        budget = 0.0
+    if not math.isfinite(budget) or budget <= 0:
+        budget = NO_BUDGET_CEILING_RM
+    # A budget under the price floor would put the ceiling below the floor and
+    # invert the axis: (cost - lo) / (hi - lo) goes negative, clips to 0, and
+    # every car scores the best possible cost. No such car exists to rank, so
+    # the anchor stops at the floor. scoring._candidates keeps the app off this
+    # path; the guard is for library callers.
+    budget = max(budget, PRICE_FLOOR_RM)
     km = max(float(annual_km or 0), 1000.0)
-    # Ceiling on the five-year cost. The dearest car the filter admits is
-    # BUDGET_STRETCH x budget; its five-year fixed cost (depreciation, interest,
-    # insurance, maintenance, road tax, opportunity) tops out at 0.903 x price
-    # across the catalogue, so FIVE_YR_COST_X_BUDGET covers that with margin.
-    # Five years of running cost adds the rest.
-    cost_ceiling = FIVE_YR_COST_X_BUDGET * budget + 5.0 * RUNNING_CEILING_RM_PER_KM * km
+    # Ceiling on the five-year holding cost: the dearest car the filter admits,
+    # plus five years of the dearest energy. Depreciation is deliberately not
+    # here; see scoring.score_catalog.
+    cost_floor = HOLDING_COST_X_PRICE_MIN * PRICE_FLOOR_RM
+    cost_ceiling = HOLDING_COST_X_BUDGET * budget + 5.0 * RUNNING_CEILING_RM_PER_KM * km
     return [
-        (PRICE_FLOOR_RM, cost_ceiling),
-        (0.0, 100.0),
+        (cost_floor, cost_ceiling),
+        (RESALE_FLOOR_PCT, RESALE_CEILING_PCT),
+        # Convenience and infrastructure stay 0-100. Within one buyer's shortlist
+        # they use a fifth of that, which looks like the same fault as resale and
+        # is not: across buyers they really do run from 4 to 100 (a rural driver
+        # with no charger against a Klang Valley one with a wallbox). Narrowing
+        # them would clip those buyers, and narrowing them per shortlist is the
+        # candidate-set dependence described above. When every car suits a buyer
+        # equally, the criterion should say so.
         (0.0, 100.0),
         (0.0, 100.0),
         (0.0, CO2_CEILING_KG_PER_KM * km),
     ]
-
 
 def run_topsis(matrix_rows: list[dict], weights: list[float],
                bounds: list[tuple[float, float]]) -> list[dict]:
