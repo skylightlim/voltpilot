@@ -106,9 +106,13 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
         "resale_value_rm": round(price * retained_pct / 100.0, 0),
         "retained_pct": round(retained_pct, 1),
         "retained_basis": retained_basis,
-        # 16 of 170 trims carry a measured servicing figure; the rest are fitted
-        # from drivetrain and price band. Surfaced so the page can say which.
+        # 24 of 171 trims carry a published servicing figure (the best sellers);
+        # the rest are fitted from drivetrain and price band. Surfaced so the
+        # page can say which.
         "maintenance_basis": maintenance_basis,
+        # Where a published figure came from (distributor, document, date), so
+        # the page can name the source instead of only saying "measured".
+        "maintenance_note": own.get("maintenance_note"),
         "lines": [
             {
                 "key": key,
@@ -122,62 +126,124 @@ def five_year_breakdown(vehicle: dict, running_cost_rm_yr: float) -> dict:
 
 def breakeven_km_per_year(ev: dict, hybrid: dict, energy: dict,
                           profile: dict, features: dict) -> dict:
-    """Annual mileage at which the EV's five-year cost overtakes the hybrid's.
+    """Annual mileage at which the EV's five-year cost crosses the hybrid's.
 
-    Everything except energy is fixed per car, so the two totals are straight
-    lines in annual mileage and cross at most once. At subsidised RON95 the EV
-    is often dearer per kilometre than an efficient hybrid, in which case the
-    lines diverge and there is no crossing. Saying that plainly is the point of
-    the feature.
+    Everything except energy is fixed per car, so the gap between the two
+    totals moves only with mileage. It used to be treated as two straight lines
+    from rates measured at 10,000 km, which stopped being true twice over: the
+    home charging rate climbs as the kWh push the household up TNB's tariff
+    steps, and since BUDI95's quota is priced in, a hybrid's petrol jumps from
+    RM1.99 to the unsubsidised price past 3,600 L a year. A thirsty hybrid can
+    therefore be cheaper than an EV at 20,000 km and dearer at 50,000, a
+    crossing the straight lines put at the wrong mileage or missed entirely.
+
+    So the gap is evaluated on the real cost functions across every plausible
+    mileage and the first sign change is refined by bisection. At subsidised
+    RON95 the EV is often dearer per kilometre than an efficient hybrid and the
+    totals never cross; saying that plainly is the point of the feature.
     """
-    def at(vehicle: dict, km: float) -> tuple[float, float]:
-        feat = {**features, "annual_km": km}
-        per_year = engines.energy_engine(vehicle, profile, feat, energy)["cost_rm_yr"]
-        fixed = five_year_breakdown(vehicle, 0.0)["total_rm"]
-        return fixed, per_year
+    fixed = {
+        "ev": five_year_breakdown(ev, 0.0)["total_rm"],
+        "hybrid": five_year_breakdown(hybrid, 0.0)["total_rm"],
+    }
 
-    ev_fixed, ev_rate = at(ev, 10_000.0)
-    hy_fixed, hy_rate = at(hybrid, 10_000.0)
-    # cost(km) = fixed + rate_per_km * km * YEARS, rate measured at 10,000 km
+    def per_year(vehicle: dict, km: float) -> float:
+        feat = {**features, "annual_km": km}
+        return engines.energy_engine(vehicle, profile, feat, energy)["cost_rm_yr"]
+
+    def gap(km: float) -> float:
+        """EV five-year total minus the hybrid's; negative means the EV is cheaper."""
+        return (fixed["ev"] + per_year(ev, km) * OWNERSHIP_YEARS) - (
+            fixed["hybrid"] + per_year(hybrid, km) * OWNERSHIP_YEARS
+        )
+
+    ev_rate = per_year(ev, 10_000.0)
+    hy_rate = per_year(hybrid, 10_000.0)
     ev_per_km = ev_rate / 10_000.0
     hy_per_km = hy_rate / 10_000.0
-    slope = (ev_per_km - hy_per_km) * OWNERSHIP_YEARS
-    intercept = ev_fixed - hy_fixed
 
     result = {
         "ev_slug": ev["id"],
         "hybrid_slug": hybrid["id"],
         "ev_rm_per_100km": round(ev_per_km * 100, 2),
         "hybrid_rm_per_100km": round(hy_per_km * 100, 2),
-        "ev_fixed_5yr_rm": round(ev_fixed, 0),
-        "hybrid_fixed_5yr_rm": round(hy_fixed, 0),
+        "ev_fixed_5yr_rm": round(fixed["ev"], 0),
+        "hybrid_fixed_5yr_rm": round(fixed["hybrid"], 0),
         "your_km_per_year": round(features.get("annual_km", 0), 0),
     }
     # Beyond this the crossover is arithmetic rather than advice: 100,000 km a
     # year is 274 km every single day. When the two cost-per-km figures are
     # close the lines are nearly parallel and cross somewhere absurd, which is
     # not a break-even a buyer can act on.
-    MAX_PLAUSIBLE_KM = 100_000.0
+    MIN_KM, MAX_PLAUSIBLE_KM, STEP_KM = 1_000.0, 100_000.0, 1_000.0
 
-    if slope >= 0 and intercept >= 0:
-        result["breakeven_km_per_year"] = None
-        result["verdict"] = "hybrid_always"
-    elif slope <= 0 and intercept <= 0:
-        result["breakeven_km_per_year"] = None
-        result["verdict"] = "ev_always"
-    else:
-        km = -intercept / slope
-        if 0 < km <= MAX_PLAUSIBLE_KM:
-            result["breakeven_km_per_year"] = round(km, 0)
-            result["verdict"] = "crossover"
-            result["you_are_past_it"] = features.get("annual_km", 0) >= km
-        else:
-            # The lines do cross, but not inside any mileage a person drives.
-            result["breakeven_km_per_year"] = None
-            result["verdict"] = "hybrid_always" if intercept > 0 else "ev_always"
-            result["note"] = (
-                "the two are within RM"
-                f"{abs(ev_per_km - hy_per_km) * 100:.2f} per 100 km, so mileage "
-                "does not decide this one"
-            )
+    lo_km, lo_gap = MIN_KM, gap(MIN_KM)
+    first_gap = lo_gap
+    crossing = None
+    km = MIN_KM
+    while km < MAX_PLAUSIBLE_KM:
+        km = min(km + STEP_KM, MAX_PLAUSIBLE_KM)
+        g = gap(km)
+        if (g < 0) != (lo_gap < 0):
+            a, b, ga = lo_km, km, lo_gap
+            for _ in range(20):  # to within 1 km
+                mid = (a + b) / 2
+                gm = gap(mid)
+                if (gm < 0) == (ga < 0):
+                    a, ga = mid, gm
+                else:
+                    b = mid
+            crossing = (a + b) / 2
+            break
+        lo_km, lo_gap = km, g
+
+    if crossing is not None:
+        result["breakeven_km_per_year"] = round(crossing, 0)
+        result["verdict"] = "crossover"
+        # Which car is cheaper on the low-mileage side of the crossing. It used
+        # to be the EV by construction; the fuel quota made the other order real.
+        result["cheaper_below"] = "ev" if first_gap < 0 else "hybrid"
+        result["you_are_past_it"] = features.get("annual_km", 0) >= crossing
+        return result
+
+    result["breakeven_km_per_year"] = None
+    result["verdict"] = "hybrid_always" if first_gap > 0 else "ev_always"
+    # The gap closes across the whole range without reaching zero: the lines
+    # would cross, but not inside any mileage a person drives.
+    if abs(lo_gap) < abs(first_gap):
+        result["note"] = (
+            "the two are within RM"
+            f"{abs(ev_per_km - hy_per_km) * 100:.2f} per 100 km, so mileage "
+            "does not decide this one"
+        )
     return result
+
+
+def five_year_cost_curve(ev: dict, hybrid: dict, energies: dict[str, dict],
+                         profile: dict, features: dict, max_km: float,
+                         points: int = 21) -> list[dict]:
+    """Five-year total of the best EV and best hybrid across annual mileages.
+
+    What the fuel panel draws: one EV line (electricity does not depend on the
+    RON95 scenario) and one hybrid line per scenario in `energies`, so the
+    reader sees the subsidy as the gap between two hybrid lines and the quota as
+    the bend in the subsidised one. The same arithmetic as breakeven_km_per_year,
+    sampled instead of solved.
+    """
+    fixed_ev = five_year_breakdown(ev, 0.0)["total_rm"]
+    fixed_hy = five_year_breakdown(hybrid, 0.0)["total_rm"]
+    any_energy = next(iter(energies.values()))
+    out = []
+    for i in range(points):
+        km = max_km * i / (points - 1)
+        feat = {**features, "annual_km": km}
+        row = {
+            "km": round(km, 0),
+            "ev_rm": round(fixed_ev + engines.energy_engine(
+                ev, profile, feat, any_energy)["cost_rm_yr"] * OWNERSHIP_YEARS, 0),
+        }
+        for name, energy in energies.items():
+            per_year = engines.energy_engine(hybrid, profile, feat, energy)["cost_rm_yr"]
+            row[f"hybrid_{name}_rm"] = round(fixed_hy + per_year * OWNERSHIP_YEARS, 0)
+        out.append(row)
+    return out

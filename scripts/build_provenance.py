@@ -73,7 +73,12 @@ def provenance_for(v: dict) -> dict:
 
     # --- maintenance: measured on 22 rows; the rest fall back in code -------
     if own.get("maintenance_rm_yr"):
-        out["maintenance_rm_yr"] = {"method": MEASURED, "basis": "published service schedule"}
+        # Rows filled from 14 Nov 2026 carry the five-year total and where it
+        # came from; older measured rows have only the annual figure.
+        out["maintenance_rm_yr"] = {
+            "method": MEASURED,
+            "basis": own.get("maintenance_note", "published service schedule"),
+        }
 
     # --- consumption --------------------------------------------------------
     if specs.get("fuel_l_per_100km"):

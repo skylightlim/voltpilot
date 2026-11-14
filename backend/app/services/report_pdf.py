@@ -694,9 +694,14 @@ def _how_to_get_there(ctx: dict, lang: str, st: dict) -> list:
         s = ctx["solar"]
         step(
             t("how_solar", lang),
-            f"Capex RM{_rm(s.get('capex_rm'))}, saving about RM{_rm(s.get('savings_rm_per_year'))} "
-            f"a year, paying back in {s.get('payback_years', '—')} years. Daytime charging then "
-            f"costs close to nothing.",
+            f"Under Solar ATAP, a {s.get('system_kw_peak', 5)} kW rooftop system for a typical "
+            f"home with an EV costs about RM{_rm(s.get('capex_rm'))} and saves about "
+            f"RM{_rm(s.get('savings_rm_per_year'))} a year, paying back in "
+            f"{s.get('payback_years', '—')} years. Exports earn only the energy charge, so "
+            f"charging the car from the panels in daylight is worth more than exporting. "
+            f"A {(s.get('battery') or {}).get('kwh', 10)} kWh battery adds about "
+            f"RM{_rm((s.get('battery') or {}).get('capex_rm'))} for RM"
+            f"{_rm((s.get('battery') or {}).get('extra_savings_rm_per_year'))} a year more.",
             "",
         )
     return out

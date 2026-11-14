@@ -41,6 +41,7 @@ export function RangeField({
   onChange,
   caption,
   zeroLabel,
+  snap,
 }: {
   id: string;
   label: string;
@@ -52,6 +53,9 @@ export function RangeField({
   onChange: (v: number) => void;
   caption: (v: number) => string;
   zeroLabel?: string;
+  /** Rounds a value from the slider only. Typed values pass through as typed:
+   *  snapping them would rewrite the box mid-keystroke. */
+  snap?: (v: number) => number;
 }) {
   /* The box hugs its value instead of sitting in a fixed 128px well. The face is
      mono with tabular-nums, so every digit is exactly 1ch and this is exact
@@ -87,7 +91,10 @@ export function RangeField({
         aria-label={label}
         // a value typed past the band pins the thumb at that end
         value={Math.min(max, Math.max(min, value))}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          const v = Number(e.target.value);
+          onChange(snap ? snap(v) : v);
+        }}
         className="mt-3"
       />
       <div className="mt-1.5 flex justify-between font-mono text-[10px] uppercase tracking-wider text-muted">

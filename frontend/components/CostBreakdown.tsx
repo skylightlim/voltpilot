@@ -56,6 +56,8 @@ function Bar({ lines }: { lines: CostLine[] }) {
 function Car({ car }: { car: CarCosts }) {
   const [open, setOpen] = useState(false);
   const energy = car.lines.find((l) => l.key === "energy");
+  const servicing = car.lines.find((l) => l.key === "maintenance");
+  const published = car.maintenance_basis === "measured";
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -74,6 +76,24 @@ function Car({ car }: { car: CarCosts }) {
         <Bar lines={car.lines} />
       </div>
 
+      {/* Servicing stays visible without opening the breakdown: it is the line
+          buyers ask about, and the one most often guessed. Published figures
+          name their source; the rest say they are an estimate. */}
+      {servicing && (
+        <p className="mt-2 text-xs text-slate-600">
+          Servicing over {car.years} years{" "}
+          <span className="font-semibold tabular-nums text-slate-900">{rm(servicing.amount_rm)}</span>
+          {published ? (
+            <span className="text-slate-500" title={car.maintenance_note ?? undefined}>
+              {" "}
+              · the brand&apos;s published schedule
+            </span>
+          ) : (
+            <span className="text-slate-500"> · estimated from the car&apos;s type and price</span>
+          )}
+        </p>
+      )}
+
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -89,6 +109,9 @@ function Car({ car }: { car: CarCosts }) {
               <dt className="flex items-center gap-2 text-slate-600">
                 <span className={`h-2 w-2 rounded-full ${TINT[l.key] ?? "bg-slate-300"}`} />
                 {LABEL[l.key] ?? l.key}
+                {l.key === "maintenance" && !published && (
+                  <span className="text-xs text-slate-400">(estimated)</span>
+                )}
               </dt>
               <dd className="tabular-nums text-slate-900">
                 {rm(l.amount_rm)}

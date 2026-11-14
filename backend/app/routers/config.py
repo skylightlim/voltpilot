@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..config import load_solar, load_sponsor
+from ..config import load_sponsor
+from ..services.solar import solar_estimate
 from ..schemas import INTERVIEW_QUESTIONS
 
 router = APIRouter(prefix="/config", tags=["config"])
@@ -16,7 +17,7 @@ async def interview_script() -> dict:
 
 @router.get("/solar")
 async def solar() -> dict:
-    return {"solar": load_solar()}
+    return {"solar": solar_estimate()}
 
 
 @router.get("/sponsor")

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import math
 import time
 from datetime import datetime
 
@@ -9,7 +10,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..config import brand_contact, load_policy_markdown, load_solar, settings
+from ..config import brand_contact, load_policy_markdown, settings
+from ..services.solar import solar_estimate
 from ..db import (
     AsyncSessionLocal, MindChange, Profile, Recommendation, ResultTiming, TopsisResult, get_db,
 )
@@ -85,7 +87,7 @@ async def get_results(token: str, db: AsyncSession = Depends(get_db)):
         # scoring time so the page does not re-run 400 rankings on every read.
         "stability": result.overview_json.get("stability"),
         "fuel_scenario": result.overview_json.get("fuel_scenario", "subsidised"),
-        "solar": load_solar() if result.overview_json.get("solar_eligible") else None,
+        "solar": solar_estimate() if result.overview_json.get("solar_eligible") else None,
         "profile": profile_row.profile_json if profile_row else None,
         "recommendation": recommendation.analyst_json if recommendation else None,
         # Where to actually go and buy the thing. Attached per ranked row rather
@@ -129,7 +131,9 @@ async def _build_and_store(token: str, db: AsyncSession) -> Recommendation:
         "weights": result.weights,
         "ranking": result.ranking_json,
         "features": result.overview_json.get("features", {}),
-        "solar": result.overview_json.get("solar_eligible", False),
+        # The figures, not a flag: the analyst echoes this as solar_banner, and
+        # given only True it had nothing true to echo.
+        "solar": solar_estimate() if result.overview_json.get("solar_eligible") else None,
         "policy_context": load_policy_markdown(),
     }
     analyst = await build_recommendation(bundle, lang)
@@ -291,7 +295,35 @@ async def get_breakeven(token: str, db: AsyncSession = Depends(get_db)):
         name: breakeven_km_per_year(ev, hybrid, energy_context(name), profile, features)
         for name in ("subsidised", "market")
     }
-    return {"token": token, "available": True, "scenarios": scenarios}
+    # What the panel says about BUDI95, from data rather than from copy: the
+    # copy said RM3.77 long after fuel.json moved to RM3.87.
+    from ..engines.engines import energy_engine
+
+    sub = energy_context("subsidised")["fuel"]
+    litres_yr = energy_engine(hybrid, profile, features, energy_context("subsidised"))["litres_yr"]
+    fuel = {
+        "ron95_rm_per_l": float(sub["ron95_rm_per_l"]),
+        "ron95_market_rm_per_l": float(energy_context("market")["fuel"]["ron95_rm_per_l"]),
+        "quota_l_month": (float(sub["ron95_quota_l_yr"]) / 12
+                          if sub.get("ron95_quota_l_yr") else None),
+        "hybrid_litres_month": round(float(litres_yr) / 12, 0),
+    }
+    # The chart: every mileage from zero to twice the buyer's, at least 40,000
+    # km and never past the 100,000 km break-even ceiling.
+    from ..services.costing import five_year_cost_curve
+
+    yours = float(features.get("annual_km", 0) or 0)
+    max_km = min(100_000.0, max(40_000.0, math.ceil(yours * 2 / 10_000) * 10_000))
+    curve = five_year_cost_curve(
+        ev, hybrid, {name: energy_context(name) for name in ("subsidised", "market")},
+        profile, features, max_km,
+    )
+    names = {
+        "ev": " ".join(x for x in (ev.get("brand"), ev.get("model")) if x),
+        "hybrid": " ".join(x for x in (hybrid.get("brand"), hybrid.get("model")) if x),
+    }
+    return {"token": token, "available": True, "scenarios": scenarios, "fuel": fuel,
+            "curve": curve, "names": names}
 
 
 @router.get("/{token}/compare")

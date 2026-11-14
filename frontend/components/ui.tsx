@@ -1,8 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { setLang, useLang, useT, type Lang } from "@/lib/i18n";
-import { Sparkles, Globe, X, ArrowUpRight } from "lucide-react";
-import { Reveal, ScrubStagger } from "@/components/motion";
+import { Sparkles, Globe, X } from "lucide-react";
 
 /* --------------------------------------------------------------------------
    VoltPilot Malaysia UI Primitives
@@ -295,7 +294,7 @@ export function Navbar({ dark = false }: { dark?: boolean }) {
             {t("nav.calcs")}
           </a>
           <a
-            href="/methodology"
+            href="/method"
             className={`${dark ? "text-white/70 hover:text-white" : "text-muted hover:text-ink"} transition-colors`}
           >
             {t("nav.method")}
@@ -338,151 +337,10 @@ export function Footer({ dark = false }: { dark?: boolean }) {
     >
       <div className="mx-auto max-w-6xl px-6 py-16">
 
-        {/* Regulatory detail. DESIGN.md §1: hairline rules, not card soup — the
-            figures are divided by rules, not boxed. Amber is the signal colour and is
-            spent once, on the only figure that is a closing deadline. Motion is
-            scrub-linked per §3, and every figure is in the DOM before JS runs.
-            The figures deliberately do NOT use ScrubCount: a scrub-bound counter rests
-            wherever the scroll left it, and a road-tax figure caught mid-count reads as
-            a wrong number rather than an unfinished animation. Entrance motion here is
-            opacity and transform only, which cannot render a false value. */}
+        {/* The regulatory figures and official sources that used to open the
+            footer now live on the Method & sources page (components/RulesAndSources). */}
         <div>
-          <p className="mono-label text-fog">{t("ft.glance")}</p>
-          <p
-            className={`mt-2 max-w-[52ch] text-[15px] leading-relaxed ${
-              dark ? "text-white/60" : "text-fog"
-            }`}
-          >
-            {t("ft.regIntro")}
-          </p>
 
-          <ScrubStagger
-            className={`mt-9 grid grid-cols-2 border-t lg:grid-cols-4 ${
-              dark ? "border-white/10" : "border-line"
-            }`}
-            selector="> div"
-            y={18}
-            each={0.07}
-          >
-            {(
-              [
-                ["ft.s1v", "ft.s1l"],
-                ["ft.s2v", "ft.s2l"],
-                ["ft.s3v", "ft.s3l"],
-                ["ft.s4v", "ft.s4l"],
-              ] as const
-            ).map(([figure, label], i) => (
-              <div
-                key={label}
-                className={`border-b py-6 pr-6 lg:border-b-0 lg:py-7 ${
-                  i % 2 === 1 ? "pl-6" : ""
-                } lg:pl-6 lg:first:pl-0 ${
-                  i % 2 === 1 ? "border-l" : ""
-                } lg:border-l lg:first:border-l-0 ${
-                  dark ? "border-white/10" : "border-line"
-                }`}
-              >
-                <p
-                  className={`figure text-[27px] leading-none ${
-                    // The CKD window is the one fact with an expiry the reader must act
-                    // on, so it carries the amber signal. Everything else stays pine.
-                    label === "ft.s4l" ? "text-amber" : "text-primary"
-                  }`}
-                >
-                  {t(figure)}
-                </p>
-                <p
-                  className={`mt-2.5 max-w-[22ch] text-[13px] leading-snug ${
-                    dark ? "text-white/55" : "text-fog"
-                  }`}
-                >
-                  {t(label)}
-                </p>
-              </div>
-            ))}
-          </ScrubStagger>
-
-          <Reveal className="mt-14 grid gap-x-14 gap-y-11 sm:grid-cols-2" y={18}>
-            {(
-              [
-                ["ft.reg1t", "ft.p1", "ft.reg1"],
-                ["ft.reg2t", "ft.p2", "ft.reg2"],
-                ["ft.reg3t", "ft.p3", "ft.reg3"],
-                ["ft.reg4t", "ft.p4", "ft.reg4"],
-              ] as const
-            ).map(([title, prov, body]) => (
-              <div key={title}>
-                <h3
-                  className={`font-display text-[16px] font-semibold tracking-tight ${
-                    dark ? "text-white/90" : "text-ink"
-                  }`}
-                >
-                  {t(title)}
-                </h3>
-                <p className={`t-caption mt-1 ${dark ? "text-white/40" : "text-fog/80"}`}>
-                  {t(prov)}
-                </p>
-                <p
-                  className={`mt-3 max-w-[54ch] text-[14.5px] leading-relaxed ${
-                    dark ? "text-white/60" : "text-fog"
-                  }`}
-                >
-                  {t(body)}
-                </p>
-              </div>
-            ))}
-          </Reveal>
-
-          <p className="mono-label mt-14 pb-4 text-fog">{t("ft.sources")}</p>
-          {/* A ruled index. The name column is sized by the longest name via subgrid
-              rather than a fixed width behind a breakpoint — below `sm` that fixed
-              column switched off and every description started at a different x.
-              Subgrid keeps all three columns aligned at any width. */}
-          <ul
-            className={`grid grid-cols-[max-content_1fr_auto] border-t ${
-              dark ? "border-white/10" : "border-line"
-            }`}
-          >
-            {(
-              [
-                ["JPJ", "https://www.jpj.gov.my/", "ft.srcJpj"],
-                ["myTNB", "https://www.mytnb.com.my/tariff/index.html", "ft.srcTnb"],
-                ["MITI", "https://www.miti.gov.my/", "ft.srcMiti"],
-                [
-                  "Suruhanjaya Tenaga",
-                  "https://www.st.gov.my/resources/guidelines-electric-vehicle-charging-system-evcs",
-                  "ft.srcSt",
-                ],
-                ["PLANMalaysia MEVnet", "https://www.planmalaysia.gov.my/mevnet/", "ft.srcPlan"],
-              ] as const
-            ).map(([name, href, label]) => (
-              <li
-                key={href}
-                className={`col-span-3 grid grid-cols-subgrid border-b ${
-                  dark ? "border-white/10" : "border-line"
-                }`}
-              >
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group col-span-3 grid min-h-12 grid-cols-subgrid items-center gap-x-5 py-3 text-[14px] transition-colors ${
-                    dark ? "text-white/70 hover:text-white" : "text-ink/80 hover:text-primary"
-                  }`}
-                >
-                  <span className="font-medium">{name}</span>
-                  <span className={dark ? "text-white/45" : "text-fog"}>{t(label)}</span>
-                  <ArrowUpRight
-                    className="h-3.5 w-3.5 shrink-0 opacity-40 transition-transform duration-200 will-change-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-90 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0"
-                    aria-hidden
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={`mt-16 border-t pt-14 ${dark ? "border-white/10" : "border-line"}`}>
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             <div className="lg:col-span-1">
               <div className="flex items-center gap-2.5 font-display text-[17px] font-bold tracking-tight">
@@ -517,7 +375,7 @@ export function Footer({ dark = false }: { dark?: boolean }) {
                   </a>
                 </li>
                 <li>
-                  <a className="hover:underline text-ink/80" href="/methodology">
+                  <a className="hover:underline text-ink/80" href="/method">
                     {t("ft.how")}
                   </a>
                 </li>
@@ -557,7 +415,6 @@ export function Footer({ dark = false }: { dark?: boolean }) {
           }`}
         >
           <div className="grid max-w-[100ch] gap-2 leading-relaxed sm:grid-cols-2 sm:gap-x-12">
-            <p>{t("ft.verified")}</p>
             <p>{t("ft.disc")}</p>
             <p>{t("ft.privacy")}</p>
           </div>

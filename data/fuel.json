@@ -31,5 +31,10 @@
     "diesel_skds": 2.15,
     "ron95_budi95": 1.99,
     "diesel_eastmsia": 4.87
+  },
+  "budi95": {
+    "quota_l_per_month": 300,
+    "since": "2026-09-01",
+    "note": "BUDI95: RON95 at the subsidised pump price (fuel.ron95_rm_per_l) for eligible Malaysians with a valid driving licence, up to quota_l_per_month per person; every litre past it in a month is paid at market_rm_per_l.ron95. Restored to 300 L on 1 Sep 2026 after 200 L from 1 Apr to 31 Aug 2026 (MOF / Bernama, 30 Aug 2026). Set by policy announcement, not by data.gov.my, so scripts/update_fuel_prices.py leaves this block alone; change it by hand when the quota moves."
   }
 }

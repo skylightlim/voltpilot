@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { Button, Card, SectionLabel } from "@/components/ui";
 import { Stagger } from "@/components/motion";
 import { getPostcodeArea } from "@/lib/postcode";
-import { SESSION, type Profile } from "@/lib/api";
+import { SESSION, apiService, type CalcVehicle, type Profile } from "@/lib/api";
 import { CHOICE_LABELS } from "@/lib/interview-script";
 import { useT, useLang } from "@/lib/i18n";
 import { FieldLabel, RangeField } from "@/components/RangeField";
@@ -106,6 +106,30 @@ export default function CalculatorFormPage() {
   const postcodeArea =
     (p.home_postcode || "").length >= 2 ? getPostcodeArea(p.home_postcode || "") : null;
 
+  /* The catalogue, for the budget slider: its floor is the cheapest car we
+     rank (it was a fixed RM30k, below anything in the catalogue), and the line
+     under it names the dearest car the budget reaches. The fixed figure stays
+     only as the fallback if the list cannot load. */
+  const [cars, setCars] = useState<CalcVehicle[]>([]);
+  useEffect(() => {
+    apiService.getCalcVehicles().then((r) => setCars(r.vehicles)).catch(() => {});
+  }, []);
+  const cheapest = cars.reduce<CalcVehicle | null>(
+    (lo, c) => (lo == null || c.price_rm < lo.price_rm ? c : lo), null);
+  const budgetFloor = cheapest?.price_rm ?? 30000;
+  const budget = p.budget_max_rm ?? 0;
+  const inBudget = cars.filter((c) => c.price_rm <= budget);
+  const dearest = inBudget.reduce<CalcVehicle | null>(
+    (hi, c) => (hi == null || c.price_rm > hi.price_rm ? c : hi), null);
+  const rmFull = (n: number) => `RM${Math.round(n).toLocaleString("en-MY")}`;
+  const budgetHint = !cheapest || !budget
+    ? ""
+    : !dearest
+      ? t("cf.budgetNone", { car: cheapest.label, price: rmFull(cheapest.price_rm) })
+      : inBudget.length === 1
+        ? t("cf.budgetOne", { car: dearest.label, price: rmFull(dearest.price_rm) })
+        : t("cf.budgetFits", { n: inBudget.length, car: dearest.label, price: rmFull(dearest.price_rm) });
+
   const set = (patch: Partial<Profile>) => {
     setP((prev) => ({ ...prev, ...patch }));
     setError("");
@@ -188,17 +212,29 @@ export default function CalculatorFormPage() {
                 per field, which wrapped "Monthly electricity bill (RM)" onto three
                 lines and knocked the two sliders out of alignment. */}
             <div className="space-y-5">
-              <RangeField
-                id="budget"
-                label={t("cf.budget")}
-                min={30000}
-                max={500000}
-                step={5000}
-                hardMax={2000000}
-                value={p.budget_max_rm ?? 0}
-                onChange={(v) => set({ budget_max_rm: v })}
-                caption={(v) => `RM ${Math.round(v / 1000)}k`}
-              />
+              <div>
+                <RangeField
+                  id="budget"
+                  label={t("cf.budget")}
+                  min={budgetFloor}
+                  max={500000}
+                  // A fine step so the far left lands exactly on the cheapest
+                  // car's price; everything else snaps to round thousands.
+                  step={100}
+                  hardMax={2000000}
+                  value={p.budget_max_rm ?? 0}
+                  onChange={(v) => set({ budget_max_rm: v })}
+                  snap={(v) => (v <= budgetFloor ? budgetFloor : Math.round(v / 1000) * 1000)}
+                  caption={(v) =>
+                    `RM ${v % 1000 ? (v / 1000).toFixed(1) : Math.round(v / 1000)}k`
+                  }
+                />
+                {budgetHint && (
+                  <p className="mt-2 text-[14px] leading-snug text-muted" aria-live="polite">
+                    {budgetHint}
+                  </p>
+                )}
+              </div>
               <RangeField
                 id="bill"
                 label={t("cf.bill")}

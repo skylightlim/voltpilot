@@ -12,7 +12,8 @@ from fastapi.concurrency import run_in_threadpool
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..config import load_solar, settings
+from ..config import settings
+from ..services.solar import solar_estimate
 from ..db import Profile, Recommendation, ReportRequest, TopsisResult, get_db
 from ..schemas import ReportRequest as ReportRequestSchema
 from ..services.report_pdf import MYT, build_pdf
@@ -68,7 +69,7 @@ async def email_report(body: ReportRequestSchema, db: AsyncSession = Depends(get
     lang = str((profile_row.profile_json or {}).get("language", "en")).lower()
     subject = ("Laporan keputusan VoltPilot anda" if lang == "bm"
                else "Your VoltPilot decision report")
-    solar = load_solar() if result.overview_json.get("solar_eligible") else None
+    solar = solar_estimate() if result.overview_json.get("solar_eligible") else None
     pdf = build_pdf({
         "token": body.result_token,
         "profile": profile_row.profile_json,

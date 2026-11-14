@@ -36,7 +36,8 @@ export function Hero() {
   }, [annualKm]);
 
   const annualSavingsRm = annualPetrolRm - annualEvRm;
-  const tenYearSavingsRm = annualSavingsRm * 10;
+  // Five years: the ownership horizon the whole engine uses.
+  const fiveYearSavingsRm = annualSavingsRm * 5;
   const annualCo2Kg = Math.round((annualKm * 7.2 / 100) * 2.31 - (annualKm * 15.5 / 100) * 0.58);
 
   return (
@@ -154,7 +155,7 @@ export function Hero() {
               </div>
 
               <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[12px] text-white/80">
-                <span>{t("calc.tenYearSave")}: <b>RM <AnimatedNumber value={tenYearSavingsRm} /></b></span>
+                <span>{t("calc.fiveYearSave")}: <b>RM <AnimatedNumber value={fiveYearSavingsRm} /></b></span>
                 <span className="text-emerald-400">-<AnimatedNumber value={annualCo2Kg} /> kg CO₂/yr</span>
               </div>
             </div>

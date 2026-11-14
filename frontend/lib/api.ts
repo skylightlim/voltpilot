@@ -94,6 +94,10 @@ export type CarCosts = {
   resale_value_rm: number;
   retained_pct: number;
   retained_basis: "measured" | "type_curve" | "fallback";
+  /** "measured" = the distributor's published schedule; "estimated" = fitted
+   *  from drivetrain and price. maintenance_note names the source when measured. */
+  maintenance_basis?: "measured" | "estimated";
+  maintenance_note?: string | null;
   lines: CostLine[];
 };
 
@@ -129,8 +133,26 @@ export type Breakeven = {
   your_km_per_year: number;
   breakeven_km_per_year: number | null;
   verdict: "crossover" | "ev_always" | "hybrid_always";
+  /** On a crossover, which car is cheaper below the break-even mileage. */
+  cheaper_below?: "ev" | "hybrid";
   you_are_past_it?: boolean;
   note?: string;
+};
+
+/** One mileage on the fuel panel's chart: five-year totals in RM. */
+export type CostCurvePoint = {
+  km: number;
+  ev_rm: number;
+  hybrid_subsidised_rm: number;
+  hybrid_market_rm: number;
+};
+
+/** BUDI95 as it applies to this buyer's best hybrid, from /results/{token}/breakeven. */
+export type FuelFacts = {
+  ron95_rm_per_l: number;
+  ron95_market_rm_per_l: number;
+  quota_l_month: number | null;
+  hybrid_litres_month: number;
 };
 
 export type ChargerMix = {
@@ -430,7 +452,14 @@ export const apiService = {
   /** Mileage at which the shortlist's best EV overtakes its best hybrid, under
    *  both fuel scenarios. Often there is no crossing, which is the point. */
   getBreakeven: (token: string) =>
-    api<{ available: boolean; reason?: string; scenarios?: Record<FuelScenario, Breakeven> }>(
+    api<{
+      available: boolean;
+      reason?: string;
+      scenarios?: Record<FuelScenario, Breakeven>;
+      fuel?: FuelFacts;
+      curve?: CostCurvePoint[];
+      names?: { ev: string; hybrid: string };
+    }>(
       `/results/${token}/breakeven`,
     ),
   /** Re-rank under a different fuel price. Does not persist: the stored result
@@ -476,7 +505,7 @@ export const apiService = {
       method: "POST",
       body: JSON.stringify({ transcript, lang }),
     }),
-  getSolar: () => api<{ solar: any }>("/config/solar"),
+  getSolar: () => api<{ solar: SolarEstimate }>("/config/solar"),
   getSponsor: () => api<{ sponsor: any }>("/config/sponsor"),
   /** Whether voice is configured; mints nothing. 501 when it is not. */
   checkLive: () =>
@@ -492,4 +521,22 @@ export const apiService = {
       if (!r.ok) throw new ApiError(r.status, await r.text().catch(() => ""), kindForStatus(r.status));
       return r.json() as Promise<{ token: string; model: string; api_version: string }>;
     }),
+};
+
+/** backend/app/services/solar.py solar_estimate(): one reference household
+ *  under Solar ATAP, with panels alone and with a battery added. */
+export type SolarEstimate = {
+  scheme: string;
+  system_kw_peak: number;
+  capex_rm: number;
+  savings_rm_per_year: number;
+  payback_years: number | null;
+  credit_years: number;
+  battery: {
+    kwh: number;
+    capex_rm: number;
+    extra_savings_rm_per_year: number;
+    payback_years: number | null;
+    combined_payback_years: number | null;
+  };
 };

@@ -26,6 +26,13 @@ def energy_context(scenario: str = "subsidised") -> dict:
         tariff = load_tariff()
         fuel = load_fuel()
         fuel_block = dict(fuel["fuel"])
+        # BUDI95: the pump price holds only up to the monthly quota; litres past
+        # it are paid at market. engines.petrol_cost_rm reads these two keys.
+        quota_month = float((fuel.get("budi95") or {}).get("quota_l_per_month") or 0)
+        market_ron95 = (fuel.get("market_rm_per_l") or {}).get("ron95")
+        if scenario == "subsidised" and quota_month > 0 and market_ron95:
+            fuel_block["ron95_quota_l_yr"] = quota_month * 12
+            fuel_block["ron95_over_quota_rm_per_l"] = float(market_ron95)
         if scenario == "market":
             market = fuel.get("market_rm_per_l") or {}
             if market.get("ron95"):

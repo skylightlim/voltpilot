@@ -23,7 +23,9 @@
    },
    "ownership": {
     "warranty_battery_yrs": 8,
-    "maintenance_rm_yr": 650,
+    "maintenance_rm_yr": 238,
+    "maintenance_5yr_rm": 1188.21,
+    "maintenance_note": "the 5 services due by month 60 (3, 15, 27, 39, 51 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-5/, page updated 2 Apr 2026",
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 85 kW)",
     "road_tax_rm": 60,
     "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM72,800 @ 2.60%)",
@@ -60,7 +62,7 @@
     },
     "maintenance_rm_yr": {
      "method": "measured",
-     "basis": "published service schedule"
+     "basis": "the 5 services due by month 60 (3, 15, 27, 39, 51 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-5/, page updated 2 Apr 2026"
     },
     "energy_kwh_per_100km": {
      "method": "measured",
@@ -217,14 +219,14 @@
    "id": "tesla-model-3",
    "brand": "Tesla",
    "model": "Model 3",
-   "variant": "Rear-Wheel Drive",
+   "variant": "Standard RWD",
    "type": "ev",
    "price_rm": 149000,
    "source": "official",
-   "as_of_date": "2026-04-15",
+   "as_of_date": "2026-11-15",
    "specs": {
-    "battery_kwh": 60,
-    "range_km": 513,
+    "battery_kwh": 62.5,
+    "range_km": 534,
     "energy_kwh_per_100km": 12.4,
     "motor_kw": 208,
     "charge_power_kw_ac": 11,
@@ -278,7 +280,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "source_url": "https://paultan.org/research/tesla/model-3/"
   },
   {
    "id": "tesla-model-y",
@@ -1011,7 +1014,9 @@
    "ownership": {
     "warranty_battery_yrs": 8,
     "warranty_battery_km": 150000,
-    "maintenance_rm_yr": 950,
+    "maintenance_rm_yr": 821,
+    "maintenance_5yr_rm": 4103.66,
+    "maintenance_note": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2265, price as of 8 Oct 2026, after Honda's 15% discount",
     "road_tax_rm": 120,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1498cc non-saloon)",
     "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1498cc band2 x RM143,900)",
@@ -1048,7 +1053,7 @@
     },
     "maintenance_rm_yr": {
      "method": "measured",
-     "basis": "published service schedule"
+     "basis": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2265, price as of 8 Oct 2026, after Honda's 15% discount"
     },
     "fuel_l_per_100km": {
      "method": "measured",
@@ -1082,7 +1087,9 @@
    "ownership": {
     "warranty_battery_yrs": 8,
     "warranty_battery_km": 150000,
-    "maintenance_rm_yr": 950,
+    "maintenance_rm_yr": 918,
+    "maintenance_5yr_rm": 4590.54,
+    "maintenance_note": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2756, price as of 8 Oct 2026, after Honda's 15% discount",
     "road_tax_rm": 376,
     "road_tax_note": "hybrid road tax by engine cc (JPJ) (1993cc saloon)",
     "insurance_note": "comprehensive, Peninsular, 0% NCD (carbase.my formula) (1993cc band3 x RM167,900)",
@@ -1119,7 +1126,7 @@
     },
     "maintenance_rm_yr": {
      "method": "measured",
-     "basis": "published service schedule"
+     "basis": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2756, price as of 8 Oct 2026, after Honda's 15% discount"
     },
     "fuel_l_per_100km": {
      "method": "measured",
@@ -1137,7 +1144,7 @@
    "type": "ev",
    "price_rm": 67800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/wuling/bingo/",
    "body": "Hatchback",
    "segment": "B-Segment",
@@ -1157,8 +1164,8 @@
     "insurance_rm_yr": 1914
    },
    "specs": {
-    "battery_kwh": 37.9,
-    "range_km": 337.0,
+    "battery_kwh": 31.9,
+    "range_km": 273.0,
     "power_hp": 67,
     "energy_kwh_per_100km": 10.1,
     "charge_power_kw_dc": 50.0,
@@ -1191,33 +1198,37 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Pro"
   },
   {
    "id": "perodua-qv-e",
    "brand": "Perodua",
    "model": "QV-E",
    "type": "ev",
-   "price_rm": 87499,
+   "price_rm": 93999,
    "source": "paultan",
-   "as_of_date": "2026-11-12",
-   "source_url": "https://paultan.org/2026/09/15/perodua-qv-e-gets-an-additional-rm10k-rebate-now-priced-from-rm53499-with-baas-rm77499-full-purchase/",
+   "as_of_date": "2026-11-15",
+   "source_url": "https://paultan.org/research/perodua/qv-e/",
    "body": "SUV",
    "segment": "B-Segment",
    "launch": "2025-12-01",
-   "monthly_rm": 892,
+   "monthly_rm": 960,
    "ownership": {
     "road_tax_yr": 160,
     "road_tax_rm": 160,
     "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 150 kW)",
-    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM87,499 @ 2.60%)",
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM93,999 @ 2.60%)",
     "loan_rate_pct": 1.75,
     "loan_tenure_yrs": 7,
-    "loan_down_payment_rm": 8750,
-    "loan_monthly_rm": 1052.33,
-    "loan_total_interest_rm": 9647,
+    "loan_down_payment_rm": 9400,
+    "loan_monthly_rm": 1130.51,
+    "loan_total_interest_rm": 10363,
+    "maintenance_rm_yr": 283,
+    "maintenance_5yr_rm": 1416.08,
+    "maintenance_note": "Perodua's yearly schedule over five years / 100,000 km; Perodua service schedule as reported by paultan.org, 7 Aug 2026 (paultan.org/2026/08/07/2026-perodua-qv-e-maintenance-costs/)",
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
-    "insurance_rm_yr": 2467
+    "insurance_rm_yr": 2649
    },
    "specs": {
     "battery_kwh": 52.5,
@@ -1228,7 +1239,7 @@
     "boot_l": 320,
     "seats": 5
    },
-   "price_display": "RM87,499",
+   "price_display": "RM93,999",
    "registered_my": 549,
    "popularity_rating": 3,
    "registered_basis": "paultan_exact",
@@ -1249,6 +1260,10 @@
     "loan_total_interest_rm": {
      "method": "computed",
      "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "Perodua's yearly schedule over five years / 100,000 km; Perodua service schedule as reported by paultan.org, 7 Aug 2026 (paultan.org/2026/08/07/2026-perodua-qv-e-maintenance-costs/)"
     },
     "energy_kwh_per_100km": {
      "method": "measured",
@@ -1516,7 +1531,7 @@
    "type": "ev",
    "price_rm": 103800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/proton/emas-7/",
    "body": "SUV",
    "segment": "C-Segment",
@@ -1532,12 +1547,15 @@
     "loan_down_payment_rm": 10380,
     "loan_monthly_rm": 1248.38,
     "loan_total_interest_rm": 11444,
+    "maintenance_rm_yr": 299,
+    "maintenance_5yr_rm": 1496.45,
+    "maintenance_note": "the 5 services due by month 60 (3, 15, 27, 39, 51 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-7/, page updated 13 Oct 2026",
     "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 2813
    },
    "specs": {
-    "battery_kwh": 60.22,
-    "range_km": 410.0,
+    "battery_kwh": 49.52,
+    "range_km": 345.0,
     "power_hp": 215,
     "energy_kwh_per_100km": 13.2,
     "charge_power_kw_dc": 80.0,
@@ -1566,11 +1584,16 @@
      "method": "computed",
      "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
     },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "the 5 services due by month 60 (3, 15, 27, 39, 51 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-7/, page updated 13 Oct 2026"
+    },
     "energy_kwh_per_100km": {
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Prime"
   },
   {
    "id": "aion-es",
@@ -1769,7 +1792,7 @@
    "type": "ev",
    "price_rm": 109800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/byd/m6/",
    "body": "MPV",
    "segment": "C-Segment",
@@ -1789,11 +1812,11 @@
     "insurance_rm_yr": 2975
    },
    "specs": {
-    "battery_kwh": 71.8,
-    "range_km": 530.0,
+    "battery_kwh": 55.4,
+    "range_km": 420.0,
     "power_hp": 161,
     "energy_kwh_per_100km": 12.2,
-    "charge_power_kw_dc": 115.0,
+    "charge_power_kw_dc": 89.0,
     "boot_l": 580,
     "seats": 7
    },
@@ -1823,7 +1846,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Standard Range"
   },
   {
    "id": "mg-s5",
@@ -2268,7 +2292,7 @@
    "type": "ev",
    "price_rm": 163800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/byd/sealion-7/",
    "body": "SUV",
    "segment": "Compact Executive",
@@ -2288,8 +2312,8 @@
     "insurance_rm_yr": 4433
    },
    "specs": {
-    "battery_kwh": 82.5,
-    "range_km": 542.0,
+    "battery_kwh": 71.8,
+    "range_km": 520.0,
     "power_hp": 228,
     "energy_kwh_per_100km": 13.7,
     "charge_power_kw_dc": 110.0,
@@ -2322,7 +2346,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Dynamic"
   },
   {
    "id": "renault-zoe",
@@ -2457,7 +2482,7 @@
    "type": "ev",
    "price_rm": 169000,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/smart/smart-1/",
    "body": "SUV",
    "segment": "B-Segment",
@@ -2477,13 +2502,13 @@
     "insurance_rm_yr": 4573
    },
    "specs": {
-    "battery_kwh": 66.0,
-    "range_km": 440.0,
+    "battery_kwh": 49.0,
+    "range_km": 315.0,
     "power_hp": 268,
     "energy_kwh_per_100km": 13.5,
     "charge_power_kw_dc": 150.0,
     "seats": 5,
-    "boot_l": 313
+    "boot_l": 411
    },
    "price_display": "RM169,000 –RM249,000",
    "registered_my": 1424,
@@ -2511,7 +2536,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Pro"
   },
   {
    "id": "dongfeng-007",
@@ -2583,7 +2609,7 @@
    "type": "ev",
    "price_rm": 182800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/zeekr/7x/",
    "body": "SUV",
    "segment": "Compact Executive",
@@ -2603,8 +2629,8 @@
     "insurance_rm_yr": 4946
    },
    "specs": {
-    "battery_kwh": 100.0,
-    "range_km": 543.0,
+    "battery_kwh": 75.0,
+    "range_km": 480.0,
     "power_hp": 416,
     "energy_kwh_per_100km": 16.6,
     "charge_power_kw_dc": 450.0,
@@ -2637,7 +2663,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "RWD Standard Range"
   },
   {
    "id": "suzuki-evitara",
@@ -3148,7 +3175,7 @@
    "type": "ev",
    "price_rm": 248888,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/volvo/ec40/",
    "body": "SUV",
    "segment": "Compact Executive",
@@ -3168,8 +3195,8 @@
     "insurance_rm_yr": 6461
    },
    "specs": {
-    "battery_kwh": 78.0,
-    "range_km": 440.0,
+    "battery_kwh": 70.0,
+    "range_km": 488.0,
     "power_hp": 235,
     "energy_kwh_per_100km": 16.0,
     "charge_power_kw_dc": 200.0,
@@ -3202,7 +3229,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "Ultra Single Motor"
   },
   {
    "id": "bmw-ix1",
@@ -3456,7 +3484,7 @@
    "type": "ev",
    "price_rm": 281073,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/xpeng/x9/",
    "body": "MPV",
    "segment": "D-Segment",
@@ -3476,8 +3504,8 @@
     "insurance_rm_yr": 7295
    },
    "specs": {
-    "battery_kwh": 110.0,
-    "range_km": 580.0,
+    "battery_kwh": 94.8,
+    "range_km": 535.0,
     "power_hp": 315,
     "energy_kwh_per_100km": 17.1,
     "charge_power_kw_dc": 537.0,
@@ -3510,7 +3538,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "2WD Standard Range"
   },
   {
    "id": "bmw-ix2",
@@ -4339,7 +4368,7 @@
    "type": "ev",
    "price_rm": 425800,
    "source": "paultan",
-   "as_of_date": "2026-08-10",
+   "as_of_date": "2026-11-15",
    "source_url": "https://paultan.org/research/bmw/ix/",
    "body": "SUV",
    "segment": "Executive",
@@ -4359,8 +4388,8 @@
     "insurance_rm_yr": 10817
    },
    "specs": {
-    "battery_kwh": 111.5,
-    "range_km": 701.0,
+    "battery_kwh": 100.6,
+    "range_km": 602.0,
     "power_hp": 402,
     "energy_kwh_per_100km": 14.3,
     "charge_power_kw_dc": 175.0,
@@ -4393,7 +4422,8 @@
      "method": "measured",
      "basis": "manufacturer figure"
     }
-   }
+   },
+   "variant": "xDrive45 Sport"
   },
   {
    "id": "lexus-rz",
@@ -5616,6 +5646,9 @@
     "loan_down_payment_rm": 10390,
     "loan_monthly_rm": 1269.06,
     "loan_total_interest_rm": 13091,
+    "maintenance_rm_yr": 730,
+    "maintenance_5yr_rm": 3650.0,
+    "maintenance_note": "prepaid scheduled servicing for five years or 100,000 km; UMW Toyota Service Savers 5 Years / 100,000km package, RM3,650 (optional at order; UMW Toyota Vios HEV price list, Jan 2026)",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 2981
    },
@@ -5650,6 +5683,10 @@
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
     },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "prepaid scheduled servicing for five years or 100,000 km; UMW Toyota Service Savers 5 Years / 100,000km package, RM3,650 (optional at order; UMW Toyota Vios HEV price list, Jan 2026)"
+    },
     "fuel_l_per_100km": {
      "method": "measured",
      "basis": "manufacturer figure"
@@ -5679,6 +5716,9 @@
     "loan_down_payment_rm": 10980,
     "loan_monthly_rm": 1341.13,
     "loan_total_interest_rm": 13835,
+    "maintenance_rm_yr": 732,
+    "maintenance_5yr_rm": 3661.36,
+    "maintenance_note": "the 6 services due by month 60 (3, 12, 24, 36, 48, 60 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-7-phev/, page updated 15 Sep 2026",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 3134
    },
@@ -5720,6 +5760,10 @@
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (phev @ 2.00% flat x 7yr, 90% financing)"
     },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "the 6 services due by month 60 (3, 12, 24, 36, 48, 60 months), labour + parts + 8% SST; Proton e.MAS official service intervals, emas.proton.com/services-e-mas-7-phev/, page updated 15 Sep 2026"
+    },
     "fuel_l_per_100km": {
      "method": "measured",
      "basis": "official",
@@ -5755,6 +5799,9 @@
     "loan_down_payment_rm": 10990,
     "loan_monthly_rm": 1342.35,
     "loan_total_interest_rm": 13847,
+    "maintenance_rm_yr": 730,
+    "maintenance_5yr_rm": 3650.0,
+    "maintenance_note": "prepaid scheduled servicing for five years or 100,000 km; UMW Toyota Service Savers 5 Years / 100,000km package, RM3,650 (optional at order; paultan.org launch report, 8 May 2026)",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 3137
    },
@@ -5792,6 +5839,10 @@
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
     },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "prepaid scheduled servicing for five years or 100,000 km; UMW Toyota Service Savers 5 Years / 100,000km package, RM3,650 (optional at order; paultan.org launch report, 8 May 2026)"
+    },
     "fuel_l_per_100km": {
      "method": "measured",
      "basis": "official",
@@ -5825,6 +5876,9 @@
     "loan_down_payment_rm": 11190,
     "loan_monthly_rm": 1366.78,
     "loan_total_interest_rm": 14099,
+    "maintenance_rm_yr": 814,
+    "maintenance_5yr_rm": 4072.06,
+    "maintenance_note": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/3102, price as of 1 Sep 2026, after Honda's 15% discount",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 3189
    },
@@ -5860,6 +5914,10 @@
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
     },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/3102, price as of 1 Sep 2026, after Honda's 15% discount"
+    },
     "fuel_l_per_100km": {
      "method": "measured",
      "basis": "manufacturer figure"
@@ -5889,6 +5947,9 @@
     "loan_down_payment_rm": 11290,
     "loan_monthly_rm": 1378.99,
     "loan_total_interest_rm": 14225,
+    "maintenance_rm_yr": 863,
+    "maintenance_5yr_rm": 4313.16,
+    "maintenance_note": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/3178, price as of 1 Sep 2026, after Honda's 15% discount",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 3215
    },
@@ -5926,6 +5987,10 @@
     "loan_total_interest_rm": {
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+    },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/3178, price as of 1 Sep 2026, after Honda's 15% discount"
     },
     "fuel_l_per_100km": {
      "method": "measured",
@@ -6441,6 +6506,9 @@
     "loan_down_payment_rm": 17820,
     "loan_monthly_rm": 2176.59,
     "loan_total_interest_rm": 22453,
+    "maintenance_rm_yr": 918,
+    "maintenance_5yr_rm": 4590.54,
+    "maintenance_note": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2565, price as of 8 Oct 2026, after Honda's 15% discount",
     "loan_note": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)",
     "insurance_rm_yr": 4946
    },
@@ -6474,6 +6542,10 @@
     "loan_total_interest_rm": {
      "method": "computed",
      "basis": "hire purchase, 7yr @ 2.00% flat, 90% financing (hybrid @ 2.00% flat x 7yr, 90% financing)"
+    },
+    "maintenance_rm_yr": {
+     "method": "measured",
+     "basis": "the 11 services due by month 60 / 100,000 km (first one free); Honda Malaysia periodic maintenance schedule, honda.com.my/doc/maintenance/2565, price as of 8 Oct 2026, after Honda's 15% discount"
     },
     "fuel_l_per_100km": {
      "method": "measured",
@@ -11324,6 +11396,68 @@
    "popularity_rating": 1,
    "registered_basis": "paultan_no_records",
    "registered_as_of": "2026-10"
+  },
+  {
+   "id": "jac-t9-ev",
+   "brand": "JAC",
+   "model": "T9 EV",
+   "variant": "Luxury",
+   "type": "ev",
+   "price_rm": 199888,
+   "source": "paultan",
+   "as_of_date": "2026-11-15",
+   "ckd": false,
+   "source_url": "https://paultan.org/research/jac/t9-ev/",
+   "body": "Pickup",
+   "segment": "Truck/4X4",
+   "monthly_rm": 2040,
+   "price_display": "RM199,888",
+   "ownership": {
+    "road_tax_rm": 305,
+    "road_tax_note": "EV road tax (JPJ kW schedule, 2026) (power 215 kW, from 288 hp: no JPJ certified figure yet)",
+    "insurance_rm_yr": 5407,
+    "insurance_note": "comprehensive car+battery only, Peninsular, 0% NCD, incl. SST+stamp (calculatormalaysia.com EV formula) (SI RM199,888 @ 2.50%)",
+    "loan_rate_pct": 1.75,
+    "loan_tenure_yrs": 7,
+    "loan_down_payment_rm": 19989,
+    "loan_monthly_rm": 2404.01,
+    "loan_total_interest_rm": 22038,
+    "loan_note": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+   },
+   "specs": {
+    "battery_kwh": 88.0,
+    "range_km": 340.0,
+    "power_hp": 288,
+    "charge_power_kw_dc": 88.0,
+    "charge_power_kw_ac": 11.0,
+    "seats": 5
+   },
+   "registered_my": 0,
+   "popularity_rating": 1,
+   "registered_basis": "paultan_no_records",
+   "registered_as_of": "2026-10",
+   "provenance": {
+    "price_rm": {
+     "method": "measured",
+     "basis": "published on-the-road price"
+    },
+    "road_tax_rm": {
+     "method": "computed",
+     "basis": "JPJ Lampiran B, EV kW schedule (2026)"
+    },
+    "insurance_rm_yr": {
+     "method": "computed",
+     "basis": "calculatormalaysia.com EV formula, Peninsular, 0% NCD, incl. SST + stamp"
+    },
+    "loan_total_interest_rm": {
+     "method": "computed",
+     "basis": "hire purchase, 7yr @ 1.75% flat, 90% financing (ev @ 1.75% flat x 7yr, 90% financing)"
+    },
+    "energy_kwh_per_100km": {
+     "method": "computed",
+     "basis": "battery_kwh / range_km"
+    }
+   }
   }
  ]
 }

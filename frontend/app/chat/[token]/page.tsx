@@ -8,7 +8,8 @@ import Link from "next/link";
 import { BatteryWarning, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui";
 import { apiService } from "@/lib/api";
-import { useT } from "@/lib/i18n";
+import { ASK_PROMPTS } from "@/lib/ask";
+import { getLang, makeT, useT } from "@/lib/i18n";
 
 type Msg = { role: "user" | "ai"; text: string };
 
@@ -21,20 +22,50 @@ export default function ChatPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  // The question carried in from the results page is sent once. React runs this
+  // effect twice in development; the ref keeps that from asking twice.
+  const asked = useRef(false);
+  // Read once: the first run strips ?q= from the address bar, so a second run
+  // reading the URL again would find nothing and clear the question.
+  const carried = useRef<string | null>(null);
 
-  // honor ?ask=battery deep link
-  const askDefault = useRef(
-    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("ask") === "battery",
-  );
+  // The network half of sending: the user's message is already on screen.
+  const ask = async (q: string) => {
+    setError("");
+    setBusy(true);
+    try {
+      const r = await apiService.postChat(token, q, getLang());
+      setMessages((m) => [...m, { role: "ai", text: r.reply || "" }]);
+    } catch {
+      setError(makeT(getLang())("ch.offline"));
+    } finally {
+      setBusy(false);
+    }
+  };
 
   useEffect(() => {
-    const greeting =
-      "Hi! I'm your AI analyst. Ask me anything about your results — pricing, charging, battery degradation, or the roadmap. (Malay works too.)";
-    const starter: Msg[] = [{ role: "ai", text: greeting }];
-    if (askDefault.current) {
-      starter.push({ role: "user", text: "How much does battery degradation matter for my EV?" });
+    // ?q=<question> from a results-page chip; ?ask=battery is the older link
+    // from the battery card. The battery link used to put the question on
+    // screen without ever sending it, so it sat there unanswered.
+    // useT() still reads "en" on the first render, before useLang's effect
+    // has looked at the stored language, so read it directly here.
+    const tNow = makeT(getLang());
+    if (carried.current === null) {
+      const params = new URLSearchParams(window.location.search);
+      carried.current = (
+        params.get("q") || (params.get("ask") === "battery" ? tNow("ask.battery") : "")
+      ).trim();
     }
-    setMessages(starter);
+    const q = carried.current;
+    const greeting: Msg = { role: "ai", text: tNow("ch.hello") };
+    setMessages(q ? [greeting, { role: "user", text: q }] : [greeting]);
+    if (q && !asked.current) {
+      asked.current = true;
+      // Drop the query so a reload does not ask again.
+      window.history.replaceState(null, "", window.location.pathname);
+      ask(q);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -45,18 +76,8 @@ export default function ChatPage() {
     const q = (text ?? input).trim();
     if (!q || busy) return;
     setInput("");
-    setError("");
     setMessages((m) => [...m, { role: "user", text: q }]);
-    setBusy(true);
-    try {
-      const r = await apiService.postChat(token, q, "en");
-      setMessages((m) => [...m, { role: "ai", text: r.reply || "" }]);
-    } catch (e: any) {
-      setError("The analyst is offline right now — try again in a moment.");
-      setBusy(false);
-    } finally {
-      setBusy(false);
-    }
+    await ask(q);
   };
 
   return (
@@ -93,7 +114,7 @@ export default function ChatPage() {
         {busy && (
           <div className="flex items-center gap-2 px-1 text-[15px] text-muted">
             <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-            Thinking…
+            {t("ch.thinking")}
           </div>
         )}
         {error && <p className="px-1 text-sm font-medium text-destructive">{error}</p>}
@@ -102,7 +123,7 @@ export default function ChatPage() {
 
       {/* quick chips */}
       <div className="flex gap-2 overflow-x-auto px-5 pb-2 no-scrollbar">
-        {(["ch.q1", "ch.q2", "ch.q3", "ch.q4"] as const).map((k) => {
+        {ASK_PROMPTS.map((k) => {
           const chip = t(k);
           return (
           <button

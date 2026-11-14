@@ -33,9 +33,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ApiError, SESSION, apiService } from "@/lib/api";
 import { useT, type StrKey } from "@/lib/i18n";
+import { ASK_PROMPTS, askHref } from "@/lib/ask";
 import { DealerContact } from "@/components/DealerContact";
 import { MindChangeCard } from "@/components/MindChange";
 import { BatteryAge } from "@/components/BatteryAge";
+import { SolarBanner } from "@/components/SolarBanner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,13 +262,7 @@ export default function ResultsPage() {
             <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
             {/* inner card */}
             <div className="relative m-[3px] rounded-[calc(24px-3px)] bg-gradient-to-br from-pine-deep via-pine-deep to-[#0a1f18] p-5 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
-              <div className="flex items-center gap-2.5">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-emerald-500/20 ring-1 ring-emerald-500/30">
-                  <Sparkles className="h-4.5 w-4.5 text-emerald-400" />
-                </span>
-                <p className="mono-label text-emerald-400/80">{t("r.ai")}</p>
-              </div>
-              <h1 className="apple-display mt-4 sm:mt-5 text-[26px] sm:text-[38px] text-white leading-[1.08]">
+              <h1 className="apple-display text-[26px] sm:text-[38px] text-white leading-[1.08]">
                 {rec.headline}
               </h1>
               <p className="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-white/60 max-w-prose">
@@ -295,6 +291,26 @@ export default function ResultsPage() {
                   <Download className="h-4 w-4" /> {t("r.pdf")}
                 </button>
               </Stagger>
+              {/* Ready-made follow-ups: one tap opens the chat with the question
+                  already sent, so a buyer who does not know what to ask still
+                  gets somewhere. lib/ask.ts holds the list. */}
+              <div className="mt-6 border-t border-white/10 pt-5">
+                <p className="mono-label text-white/45">{t("ask.label")}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {ASK_PROMPTS.slice(0, 4).map((k) => {
+                    const q = t(k);
+                    return (
+                      <Link
+                        key={k}
+                        href={askHref(token, q)}
+                        className="pressable tap-target inline-flex items-center rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-left text-[15px] leading-snug text-white/85 hover:border-white/25 hover:bg-white/10 hover:text-white active:scale-[0.97]"
+                      >
+                        {q}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </ScrubReveal>
@@ -460,39 +476,7 @@ export default function ResultsPage() {
       {/* ── Solar Bonus Banner ────────────────────────────────────────── */}
       {data.solar && (
         <ScrubReveal className="mb-10">
-          <div className="group relative overflow-hidden rounded-lg sm:rounded-lg border border-amber-300/40 bg-gradient-to-br from-[#fffbeb] via-[#fef3c7] to-[#fff9ec] p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all hover:shadow-md">
-            <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-amber-500/[0.08]" />
-            <div className="flex items-start gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-amber-500/15 ring-1 ring-amber-500/25">
-                <Sun className="h-5 w-5 text-amber-700" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[16px] font-semibold text-ink">{t("r.solar")}</p>
-                <p className="mt-1 text-[16px] leading-relaxed text-muted">
-                  {(() => {
-                    // Split the translated template on its placeholders so each
-                    // figure keeps its emphasis wherever the language puts it.
-                    const values: Record<string, string> = {
-                      "{capex}": `RM${data.solar.capex_rm.toLocaleString()}`,
-                      "{savings}": `~RM${data.solar.savings_rm_per_year.toLocaleString()}${t("r.perYear")}`,
-                      "{payback}": t("r.solarPayback", { n: data.solar.payback_years }),
-                    };
-                    return t("r.solarBody")
-                      .split(/(\{capex\}|\{savings\}|\{payback\})/)
-                      .map((part, i) =>
-                        values[part] ? (
-                          <span key={i} className="font-semibold text-ink">
-                            {values[part]}
-                          </span>
-                        ) : (
-                          part
-                        ),
-                      );
-                  })()}
-                </p>
-              </div>
-            </div>
-          </div>
+          <SolarBanner solar={data.solar} token={token} />
         </ScrubReveal>
       )}
 
