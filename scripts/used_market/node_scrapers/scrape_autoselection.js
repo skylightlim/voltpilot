@@ -1,10 +1,13 @@
 const { chromium } = require('playwright-core');
 const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const RAW = path.join(__dirname, '../../../data/used_market_raw');
 
 const BRANDS = ['bmw', 'toyota', 'perodua', 'mazda', 'mercedes_benz', 'mini', 'hyundai', 'proton', 'honda', 'byd', 'lexus'];
 const BASE = 'https://autoselection.simemotors.com.my';
-const OUT = '/home/skylight/ai-transport-platform/data/used_market_raw/autoselection_listings.jsonl';
-const LOG = '/home/skylight/ai-transport-platform/data/used_market_raw/autoselection_run.log';
+const OUT = path.join(RAW, 'autoselection_listings.jsonl');
+const LOG = path.join(RAW, 'autoselection_run.log');
 
 function log(msg) {
   fs.appendFileSync(LOG, new Date().toISOString() + ' ' + msg + '\n');
@@ -12,7 +15,7 @@ function log(msg) {
 
 async function main() {
   const browser = await chromium.launch({
-    executablePath: '/home/skylight/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',
+    executablePath: path.join(os.homedir(), '.cache/ms-playwright/chromium-1234/chrome-linux64/chrome'),
     headless: true,
     args: ['--no-sandbox', '--disable-blink-features=AutomationControlled'],
   });
