@@ -1,39 +1,4 @@
 month,rank,make,model,units,share_pct
-2023-10,1,BYD,Dolphin,441,32.14
-2023-10,2,BYD,Atto 3,204,14.87
-2023-10,3,BMW,iX,124,9.04
-2023-10,4,BMW,iX1,123,8.97
-2023-10,5,BMW,i7,88,6.41
-2023-10,6,Great Wall,Ora,56,4.08
-2023-10,7,Mercedes Benz,EQA,51,3.72
-2023-10,8,Porsche,Taycan,46,3.35
-2023-10,9,BMW,i4,40,2.92
-2023-10,10,Mini,Cooper,39,2.84
-2023-10,11,Mercedes Benz,EQC,28,2.04
-2023-10,12,Volvo,XC40,17,1.24
-2023-10,13,Audi,Q8,13,0.95
-2023-10,14,Tesla,Model Y,13,0.95
-2023-10,15,Volvo,C40,13,0.95
-2023-10,16,Mercedes Benz,EQE,10,0.73
-2023-10,17,Hyundai,Ioniq 6,9,0.66
-2023-10,18,Mazda,MX-30,7,0.51
-2023-10,19,Tesla,Model 3,7,0.51
-2023-10,20,Mercedes Benz,EQS,6,0.44
-2023-10,21,Mercedes Benz,EQB,5,0.36
-2023-10,22,Audi,RS e-tron GT,4,0.29
-2023-10,23,BMW,iX3,4,0.29
-2023-10,24,Hyundai,Ioniq 5,4,0.29
-2023-10,25,Hyundai,Kona,4,0.29
-2023-10,26,Kia,Niro,3,0.22
-2023-10,27,Lotus,Eletre,3,0.22
-2023-10,28,Ford,Mustang,2,0.15
-2023-10,29,Weststar Maxus,MIFA 9,2,0.15
-2023-10,30,Audi,E-tron,1,0.07
-2023-10,31,Jaguar,I-Pace,1,0.07
-2023-10,32,MG,ZS EV,1,0.07
-2023-10,33,Mercedes Benz,E-Class,1,0.07
-2023-10,34,Nissan,Leaf,1,0.07
-2023-10,35,Polestar,2,1,0.07
 2023-11,1,BYD,Dolphin,264,16.94
 2023-11,2,Tesla,Model 3,205,13.16
 2023-11,3,BYD,Atto 3,198,12.71

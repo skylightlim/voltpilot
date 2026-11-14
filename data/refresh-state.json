@@ -3,8 +3,8 @@
   "errors": [],
   "warnings": 4
  },
- "started_at": "2026-11-13T02:28:36.032197+00:00",
- "finished_at": "2026-11-13T02:29:05.877824+00:00",
+ "started_at": "2026-11-14T02:02:32.267211+00:00",
+ "finished_at": "2026-11-14T02:03:03.615927+00:00",
  "succeeded": [
   "fuel",
   "registrations"
@@ -23,7 +23,7 @@
     "updated /home/runner/work/voltpilot/voltpilot/data/fuel.json",
     "Done. Cron: 0 6 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_fuel_prices.py"
    ],
-   "seconds": 2.87
+   "seconds": 3.55
   },
   {
    "source": "registrations",
@@ -35,7 +35,7 @@
     "",
     "Done. Cron: 0 7 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_vehicle_registrations.py"
    ],
-   "seconds": 5.24
+   "seconds": 6.05
   },
   {
    "source": "ev_stations",
@@ -47,7 +47,7 @@
     "    raise SSLError(e, request=request)",
     "requests.exceptions.SSLError: HTTPSConnectionPool(host='tools.evcharge.my', port=443): Max retries exceeded with url: /_api/ev-stations (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)')))"
    ],
-   "seconds": 21.71
+   "seconds": 21.73
   }
  ],
  "status": "ok"
