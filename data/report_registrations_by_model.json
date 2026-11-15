@@ -88,7 +88,7 @@
       "id": "tesla-model-3",
       "brand": "Tesla",
       "model": "Model 3",
-      "variant": "Rear-Wheel Drive",
+      "variant": "Standard RWD",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -310,7 +310,7 @@
       "id": "wuling-bingo",
       "brand": "Wuling",
       "model": "Bingo",
-      "variant": null,
+      "variant": "Pro",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -413,7 +413,7 @@
       "id": "proton-emas-7",
       "brand": "Proton",
       "model": "eMas 7",
-      "variant": null,
+      "variant": "Prime",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -481,7 +481,7 @@
       "id": "byd-m6",
       "brand": "BYD",
       "model": "M6",
-      "variant": null,
+      "variant": "Standard Range",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -617,7 +617,7 @@
       "id": "byd-sealion-7",
       "brand": "BYD",
       "model": "Sealion 7",
-      "variant": null,
+      "variant": "Dynamic",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -668,7 +668,7 @@
       "id": "smart-1",
       "brand": "smart",
       "model": "#1",
-      "variant": null,
+      "variant": "Pro",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -702,7 +702,7 @@
       "id": "zeekr-7x",
       "brand": "Zeekr",
       "model": "7X",
-      "variant": null,
+      "variant": "RWD Standard Range",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -851,7 +851,7 @@
       "id": "volvo-ec40",
       "brand": "Volvo",
       "model": "EC40",
-      "variant": null,
+      "variant": "Ultra Single Motor",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -937,7 +937,7 @@
       "id": "xpeng-x9",
       "brand": "XPeng",
       "model": "X9",
-      "variant": null,
+      "variant": "2WD Standard Range",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -1175,7 +1175,7 @@
       "id": "bmw-ix",
       "brand": "BMW",
       "model": "iX",
-      "variant": null,
+      "variant": "xDrive45 Sport",
       "type": "ev",
       "fuel_class": "ev",
       "paultan_keys": [
@@ -2895,6 +2895,21 @@
       "variant": null,
       "type": "phev",
       "fuel_class": "hybrid",
+      "paultan_keys": [],
+      "units": 0,
+      "rank": 0,
+      "share_pct": 0.0,
+      "registered_basis": "paultan_no_records",
+      "registered_note": null,
+      "popularity_rating": 1
+    },
+    {
+      "id": "jac-t9-ev",
+      "brand": "JAC",
+      "model": "T9 EV",
+      "variant": "Luxury",
+      "type": "ev",
+      "fuel_class": "ev",
       "paultan_keys": [],
       "units": 0,
       "rank": 0,

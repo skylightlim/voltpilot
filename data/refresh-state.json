@@ -3,15 +3,15 @@
   "errors": [],
   "warnings": 4
  },
- "started_at": "2026-11-14T02:02:32.267211+00:00",
- "finished_at": "2026-11-14T02:03:03.615927+00:00",
+ "started_at": "2026-11-15T01:35:31.873731+00:00",
+ "finished_at": "2026-11-15T01:35:43.892690+00:00",
  "succeeded": [
   "fuel",
-  "registrations"
+  "registrations",
+  "ev_stations",
+  "ev_density"
  ],
- "failed": [
-  "ev_stations"
- ],
+ "failed": [],
  "results": [
   {
    "source": "fuel",
@@ -23,7 +23,7 @@
     "updated /home/runner/work/voltpilot/voltpilot/data/fuel.json",
     "Done. Cron: 0 6 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_fuel_prices.py"
    ],
-   "seconds": 3.55
+   "seconds": 3.46
   },
   {
    "source": "registrations",
@@ -35,19 +35,28 @@
     "",
     "Done. Cron: 0 7 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_vehicle_registrations.py"
    ],
-   "seconds": 6.05
+   "seconds": 5.17
   },
   {
    "source": "ev_stations",
    "script": "scraper/ev_stations.py",
-   "ok": false,
-   "error": "SSLError: HTTPSConnectionPool(host='tools.evcharge.my', port=443): Max retries exceeded with url: /_api/ev-stations (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)')))",
-   "traceback": [
-    "  File \"/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/requests/adapters.py\", line 727, in send",
-    "    raise SSLError(e, request=request)",
-    "requests.exceptions.SSLError: HTTPSConnectionPool(host='tools.evcharge.my', port=443): Max retries exceeded with url: /_api/ev-stations (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)')))"
+   "ok": true,
+   "exit_code": 0,
+   "output": [
+    "OK: 852 frozen MY EV Hub points + 670 MEVnet-only sites",
+    "    /home/runner/work/voltpilot/voltpilot/data/ev-stations.csv"
    ],
-   "seconds": 21.73
+   "seconds": 3.28
+  },
+  {
+   "source": "ev_density",
+   "script": "scripts/used_market/build_station_density.py",
+   "ok": true,
+   "exit_code": 0,
+   "output": [
+    "wrote /home/runner/work/voltpilot/voltpilot/data/ev_station_density.json: 75 prefixes, 289 postcodes (8 fall back to prefix)"
+   ],
+   "seconds": 0.1
   }
  ],
  "status": "ok"
