@@ -1,7 +1,7 @@
 {
  "_meta": {
   "source": "ev-stations.csv (1522 rows, 1196 public)",
-  "built_at": "2026-11-17",
+  "built_at": "2026-11-18",
   "scale": "14.0*log2(1+n); exact = public stations within 3 km of the postcode centre; prefix = public stations per 2-digit prefix; cap 100",
   "prefix_count": 75,
   "postcode_count": 289,
