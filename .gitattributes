@@ -1,0 +1,4 @@
+# frontend/public holds static assets that are not this project's source (the 3D
+# anatomy page and the Draco decoders). Keep them out of GitHub's language stats,
+# so the repository shows as TypeScript and Python rather than HTML.
+frontend/public/** linguist-vendored
