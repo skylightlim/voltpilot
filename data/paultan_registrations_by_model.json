@@ -15,7 +15,7 @@
    "share_pct"
   ],
   "note": "Paultan aggregates the official JPJ per-transaction dataset (registration_transactions_car). EV = fuel electric; Hybrid = hybrid_petrol + hybrid_diesel (incl PHEV). share_pct is the share of that fuel class within the queried period.",
-  "retrieved_at": "2026-11-23T02:23:23+00:00"
+  "retrieved_at": "2026-11-24T05:47:20+00:00"
  },
  "all_time": {
   "EV": [
@@ -113,16 +113,16 @@
    {
     "rank": 14,
     "make": "iCaur",
-    "model": "iCaur 03",
-    "units": 2585,
-    "share_pct": 1.82
+    "model": "iCaur V23",
+    "units": 2509,
+    "share_pct": 1.77
    },
    {
     "rank": 15,
     "make": "iCaur",
-    "model": "iCaur V23",
-    "units": 2257,
-    "share_pct": 1.59
+    "model": "iCaur 03",
+    "units": 2333,
+    "share_pct": 1.65
    },
    {
     "rank": 16,
