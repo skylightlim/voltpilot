@@ -1,15 +1,15 @@
 {
   "_meta": {
     "currency": "RM",
-    "updated_at": "2026-11-25",
+    "updated_at": "2026-11-26",
     "source": "data.gov.my fuel price weekly API (id=fuelprice) \u2014 updated daily via scripts/update_fuel_prices.py",
-    "price_date": "2026-11-19"
+    "price_date": "2026-11-26"
   },
   "fuel": {
     "ron95_rm_per_l": 1.99,
-    "ron97_rm_per_l": 4.0,
+    "ron97_rm_per_l": 3.75,
     "diesel_rm_per_l": 2.1,
-    "note": "Pump prices = what consumers pay: RON95 RM1.99 (SKPS-subsidized), diesel RM2.10 (BUDI); RON97 RM4.00 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-11-19."
+    "note": "Pump prices = what consumers pay: RON95 RM1.99 (SKPS-subsidized), diesel RM2.10 (BUDI); RON97 RM3.75 unsubsidized market. Raw market levels in market_rm_per_l. Price week: 2026-11-26."
   },
   "co2_factors": {
     "petrol_kg_co2_per_l": 2.31,
@@ -23,14 +23,14 @@
     }
   },
   "market_rm_per_l": {
-    "ron95": 3.72,
-    "ron97": 4.0,
-    "diesel": 4.72,
+    "ron95": 3.47,
+    "ron97": 3.75,
+    "diesel": 4.47,
     "ron95_skps": 2.05,
     "diesel_budi": 2.1,
     "diesel_skds": 2.15,
     "ron95_budi95": 1.99,
-    "diesel_eastmsia": 4.72
+    "diesel_eastmsia": 4.47
   },
   "budi95": {
     "quota_l_per_month": 300,

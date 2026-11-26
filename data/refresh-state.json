@@ -3,8 +3,8 @@
   "errors": [],
   "warnings": 4
  },
- "started_at": "2026-11-25T04:49:33.746865+00:00",
- "finished_at": "2026-11-25T04:49:44.348527+00:00",
+ "started_at": "2026-11-26T04:00:48.526918+00:00",
+ "finished_at": "2026-11-26T04:01:04.235732+00:00",
  "succeeded": [
   "fuel",
   "registrations",
@@ -19,11 +19,11 @@
    "ok": true,
    "exit_code": 0,
    "output": [
-    "market:      ron95 RM3.72 | ron97 RM4.00 | diesel RM4.72 (SKPS 2.05 / BUDI 2.10 / SKDS 2.15)",
+    "market:      ron95 RM3.47 | ron97 RM3.75 | diesel RM4.47 (SKPS 2.05 / BUDI 2.10 / SKDS 2.15)",
     "updated /home/runner/work/voltpilot/voltpilot/data/fuel.json",
     "Done. Cron: 0 6 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_fuel_prices.py"
    ],
-   "seconds": 3.3
+   "seconds": 5.68
   },
   {
    "source": "registrations",
@@ -35,7 +35,7 @@
     "",
     "Done. Cron: 0 7 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_vehicle_registrations.py"
    ],
-   "seconds": 4.59
+   "seconds": 7.05
   },
   {
    "source": "ev_stations",
@@ -46,7 +46,7 @@
     "OK: 852 frozen MY EV Hub points + 670 MEVnet-only sites",
     "    /home/runner/work/voltpilot/voltpilot/data/ev-stations.csv"
    ],
-   "seconds": 2.6
+   "seconds": 2.91
   },
   {
    "source": "ev_density",
@@ -56,7 +56,7 @@
    "output": [
     "wrote /home/runner/work/voltpilot/voltpilot/data/ev_station_density.json: 75 prefixes, 289 postcodes (8 fall back to prefix)"
    ],
-   "seconds": 0.08
+   "seconds": 0.05
   }
  ],
  "status": "ok"
