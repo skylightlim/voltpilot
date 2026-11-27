@@ -3,8 +3,8 @@
   "errors": [],
   "warnings": 4
  },
- "started_at": "2026-11-26T04:00:48.526918+00:00",
- "finished_at": "2026-11-26T04:01:04.235732+00:00",
+ "started_at": "2026-11-27T03:59:07.617250+00:00",
+ "finished_at": "2026-11-27T03:59:26.110821+00:00",
  "succeeded": [
   "fuel",
   "registrations",
@@ -23,7 +23,7 @@
     "updated /home/runner/work/voltpilot/voltpilot/data/fuel.json",
     "Done. Cron: 0 6 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_fuel_prices.py"
    ],
-   "seconds": 5.68
+   "seconds": 7.11
   },
   {
    "source": "registrations",
@@ -35,7 +35,7 @@
     "",
     "Done. Cron: 0 7 * * * cd /home/runner/work/voltpilot/voltpilot && python3 scripts/update_vehicle_registrations.py"
    ],
-   "seconds": 7.05
+   "seconds": 8.72
   },
   {
    "source": "ev_stations",
@@ -46,7 +46,7 @@
     "OK: 852 frozen MY EV Hub points + 670 MEVnet-only sites",
     "    /home/runner/work/voltpilot/voltpilot/data/ev-stations.csv"
    ],
-   "seconds": 2.91
+   "seconds": 2.59
   },
   {
    "source": "ev_density",
@@ -56,7 +56,7 @@
    "output": [
     "wrote /home/runner/work/voltpilot/voltpilot/data/ev_station_density.json: 75 prefixes, 289 postcodes (8 fall back to prefix)"
    ],
-   "seconds": 0.05
+   "seconds": 0.06
   }
  ],
  "status": "ok"
